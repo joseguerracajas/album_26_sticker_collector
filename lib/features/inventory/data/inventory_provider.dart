@@ -1,9 +1,13 @@
 // Archivo: lib/features/inventory/data/inventory_provider.dart
 
+import 'package:album_26_sticker_collector/brick/app_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../main.dart'; // Tu instancia de supabase
+import 'package:brick_offline_first/brick_offline_first.dart';
+import '../../../main.dart';
 
-// Creamos un alias para no escribir "Map<String, Map<String, int>>" todo el tiempo.
+// IMPORTANTE: Asegúrate de importar tu Repositorio y tu Modelo de Brick
+import 'package:album_26_sticker_collector/features/inventory/domain/inventory.dart';
+
 // Estructura: { 'ECU_1': { 'normal': 1, 'legend': 0 } }
 typedef InventoryMap = Map<String, Map<String, int>>;
 
@@ -15,26 +19,26 @@ final inventoryProvider =
 class InventoryNotifier extends AsyncNotifier<InventoryMap> {
   @override
   Future<InventoryMap> build() async {
+    // 1. Obtenemos el ID del usuario usando Supabase Auth
     final userId = supabase.auth.currentUser!.id;
-    // Ahora pedimos también el variant_id
-    final response = await supabase
-        .from('inventory')
-        .select('sticker_id, variant_id, quantity')
-        .eq('user_id', userId);
+
+    // 2. Le pedimos a Brick TODOS los cromos de este usuario
+    // (Esto sale de SQLite en 0.001s, no gasta internet)
+    final query = Query(where: [Where.exact('userId', userId)]);
+    final inventarioLocal = await AppRepository().get<Inventory>(query: query);
 
     final InventoryMap inventoryMap = {};
 
-    for (var row in response) {
-      final stickerId = row['sticker_id'] as String;
-      final variantId = row['variant_id'] as String;
-      final quantity = row['quantity'] as int;
+    // 3. Mapeamos los objetos de Brick a tu estructura de UI
+    for (var item in inventarioLocal) {
+      final stickerId = item.stickerId;
+      final variantId = item.variantId;
+      final quantity = item.quantity;
 
-      // Si es el primer cromo de este ID, inicializamos su mapa interno
       if (!inventoryMap.containsKey(stickerId)) {
         inventoryMap[stickerId] = {};
       }
 
-      // Guardamos la cantidad de esa variante específica
       inventoryMap[stickerId]![variantId] = quantity;
     }
 
@@ -47,19 +51,16 @@ class InventoryNotifier extends AsyncNotifier<InventoryMap> {
 
     final userId = supabase.auth.currentUser!.id;
 
-    // Hacemos una copia profunda del mapa para que la pantalla se actualice al instante
     final currentMap = Map<String, Map<String, int>>.from(
       state.value!.map(
         (key, value) => MapEntry(key, Map<String, int>.from(value)),
       ),
     );
 
-    // Si no existía en el mapa, lo preparamos
     if (!currentMap.containsKey(stickerId)) {
       currentMap[stickerId] = {};
     }
 
-    // Vemos cuántos cromos NORMALES tiene
     final currentNormalQty = currentMap[stickerId]!['normal'] ?? 0;
     final isAdding = currentNormalQty == 0;
 
@@ -67,32 +68,46 @@ class InventoryNotifier extends AsyncNotifier<InventoryMap> {
     currentMap[stickerId]!['normal'] = isAdding ? 1 : 0;
     state = AsyncData(currentMap);
 
-    // Guardado en Supabase (solo de la variante normal)
+    // Guardado con Brick Offline-First
     try {
+      final query = Query(
+        where: [
+          Where.exact('userId', userId),
+          Where.exact('stickerId', stickerId),
+          Where.exact('variantId', 'normal'),
+        ],
+      );
+      final registroPrevio = await AppRepository().get<Inventory>(query: query);
+
       if (isAdding) {
-        await supabase.from('inventory').insert({
-          'user_id': userId,
-          'sticker_id': stickerId,
-          'variant_id': 'normal',
-          'quantity': 1,
-        });
+        final nuevoInventario = Inventory(
+          userId: userId,
+          stickerId: stickerId,
+          variantId: 'normal',
+          quantity: 1,
+          lastUpdated: DateTime.now(),
+        );
+
+        // Limpiamos rastro viejo por seguridad
+        if (registroPrevio.isNotEmpty) {
+          await AppRepository().delete<Inventory>(registroPrevio.first);
+        }
+        // Guardamos en memoria local (Se encola a Supabase automático)
+        await AppRepository().upsert<Inventory>(nuevoInventario);
       } else {
-        await supabase
-            .from('inventory')
-            .delete()
-            .eq('user_id', userId)
-            .eq('sticker_id', stickerId)
-            .eq('variant_id', 'normal');
+        // Borramos el registro si lo está quitando
+        if (registroPrevio.isNotEmpty) {
+          await AppRepository().delete<Inventory>(registroPrevio.first);
+        }
       }
     } catch (e) {
-      print('Error al guardar: $e');
-      // Revertimos si falla
+      print('Error en base local (SQLite lleno/corrupto): $e');
       currentMap[stickerId]!['normal'] = currentNormalQty;
       state = AsyncData(currentMap);
     }
   }
 
-  // Función para sumar (+1) o restar (-1) cualquier variante desde el Bottom Sheet
+  // Función para sumar (+1) o restar (-1) cualquier variante
   Future<void> updateVariantQuantity(
     String stickerId,
     String variantId,
@@ -102,7 +117,6 @@ class InventoryNotifier extends AsyncNotifier<InventoryMap> {
 
     final userId = supabase.auth.currentUser!.id;
 
-    // Copia profunda del estado actual para la UI optimista
     final currentMap = Map<String, Map<String, int>>.from(
       state.value!.map(
         (key, value) => MapEntry(key, Map<String, int>.from(value)),
@@ -116,43 +130,46 @@ class InventoryNotifier extends AsyncNotifier<InventoryMap> {
     final currentQty = currentMap[stickerId]![variantId] ?? 0;
     final newQty = currentQty + delta;
 
-    // No podemos tener cantidades negativas
     if (newQty < 0) return;
 
-    // 1. Actualizamos la pantalla al instante
+    // Actualizamos la pantalla al instante
     currentMap[stickerId]![variantId] = newQty;
     state = AsyncData(currentMap);
 
-    // 2. Guardamos en Supabase en segundo plano
+    // Guardado con Brick Offline-First
     try {
+      final query = Query(
+        where: [
+          Where.exact('userId', userId),
+          Where.exact('stickerId', stickerId),
+          Where.exact('variantId', variantId),
+        ],
+      );
+
+      final registroPrevio = await AppRepository().get<Inventory>(query: query);
+
       if (newQty == 0) {
-        // Si bajó a 0, borramos el registro
-        await supabase
-            .from('inventory')
-            .delete()
-            .eq('user_id', userId)
-            .eq('sticker_id', stickerId)
-            .eq('variant_id', variantId);
-      } else if (currentQty == 0 && newQty == 1) {
-        // Si no lo teníamos y subió a 1, insertamos
-        await supabase.from('inventory').insert({
-          'user_id': userId,
-          'sticker_id': stickerId,
-          'variant_id': variantId,
-          'quantity': 1,
-        });
+        // Si bajó a 0, destruimos el registro local
+        if (registroPrevio.isNotEmpty) {
+          await AppRepository().delete<Inventory>(registroPrevio.first);
+        }
       } else {
-        // Si ya existía y solo cambió la cantidad, actualizamos
-        await supabase
-            .from('inventory')
-            .update({'quantity': newQty})
-            .eq('user_id', userId)
-            .eq('sticker_id', stickerId)
-            .eq('variant_id', variantId);
+        final nuevoInventario = Inventory(
+          userId: userId,
+          stickerId: stickerId,
+          variantId: variantId,
+          quantity: newQty,
+          lastUpdated: DateTime.now(),
+        );
+
+        if (registroPrevio.isNotEmpty) {
+          await AppRepository().delete<Inventory>(registroPrevio.first);
+        }
+
+        await AppRepository().upsert<Inventory>(nuevoInventario);
       }
     } catch (e) {
-      print('Error al actualizar cantidad: $e');
-      // Si falla, revertimos al número anterior
+      print('Error en base local (SQLite lleno/corrupto): $e');
       currentMap[stickerId]![variantId] = currentQty;
       state = AsyncData(currentMap);
     }

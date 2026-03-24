@@ -1,0 +1,13 @@
+# targets:
+#   $default:
+#     builders:
+#       # Este es el que te está faltando ahora mismo:
+#       brick_offline_first_with_supabase_build|brick_schema_builder:
+#         generate_for:
+#           - lib/features/**.dart
+#       brick_offline_first_with_supabase_build|brick_adapters_builder:
+#         generate_for:
+#           - lib/features/**.dart
+#       brick_offline_first_with_supabase_build|brick_model_dictionary_builder:
+#         generate_for:
+#           - lib/features/**.dart

@@ -4,7 +4,6 @@ import 'package:album_26_sticker_collector/features/catalog/presentation/global_
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/category_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:share_plus/share_plus.dart';
 import '../../auth/presentation/profile_screen.dart';
 import 'category_detail_screen.dart';
 import '../data/categories_provider.dart';

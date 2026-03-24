@@ -1,3 +1,4 @@
+import 'package:album_26_sticker_collector/brick/app_repository.dart';
 import 'package:album_26_sticker_collector/features/auth/presentation/auth_screen.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -9,12 +10,20 @@ final supabase = Supabase.instance.client;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  const supabaseUrl = 'https://phemsppmupfvwgeckfzi.supabase.co';
+  const supabaseAnonKey =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBoZW1zcHBtdXBmdndnZWNrZnppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4OTA3MTQsImV4cCI6MjA4OTQ2NjcxNH0.M3mYbOwXXA8_59OkvAm6aNq-H_oeyPhPhIAI8jWMW6s';
+
   // Inicializar la conexión con tu base de datos
-  await Supabase.initialize(
-    url: 'https://phemsppmupfvwgeckfzi.supabase.co',
-    anonKey:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBoZW1zcHBtdXBmdndnZWNrZnppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4OTA3MTQsImV4cCI6MjA4OTQ2NjcxNH0.M3mYbOwXXA8_59OkvAm6aNq-H_oeyPhPhIAI8jWMW6s',
+  await Supabase.initialize(url: supabaseUrl, anonKey: supabaseAnonKey);
+
+  AppRepository.configure(
+    supabaseUrl: supabaseUrl,
+    supabaseAnonKey: supabaseAnonKey,
   );
+
+  await AppRepository().initialize();
+
   runApp(const MainApp());
 }
 
@@ -44,56 +53,6 @@ class MainApp extends StatelessWidget {
             // Si no hay sesión, mandamos al login
             return const LoginScreen();
           },
-        ),
-      ),
-    );
-  }
-}
-
-// Pantalla temporal para validar que Supabase responde
-class ConnectionTestScreen extends StatefulWidget {
-  const ConnectionTestScreen({super.key});
-
-  @override
-  State<ConnectionTestScreen> createState() => _ConnectionTestScreenState();
-}
-
-class _ConnectionTestScreenState extends State<ConnectionTestScreen> {
-  String _status = 'Conectando a Supabase...';
-
-  @override
-  void initState() {
-    super.initState();
-    _testConnection();
-  }
-
-  Future<void> _testConnection() async {
-    try {
-      // Hacemos una consulta rápida a la tabla de categorías que creamos
-      final data = await supabase.from('categories').select();
-      setState(() {
-        _status =
-            '¡Conexión exitosa! 🎉\nCategorías encontradas: ${data.length}';
-      });
-    } catch (e) {
-      setState(() {
-        _status = 'Error de conexión: $e';
-      });
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Album 26 - Setup')),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-            _status,
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
         ),
       ),
     );

@@ -1,8 +1,10 @@
 // Archivo: lib/features/inventory/data/share_provider.dart
 
+import 'package:album_26_sticker_collector/brick/app_repository.dart';
+import 'package:album_26_sticker_collector/features/catalog/domain/category.dart';
+import 'package:album_26_sticker_collector/features/catalog/domain/sticker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
-import '../../../main.dart';
 import 'inventory_provider.dart';
 
 // 1. Creamos las 3 opciones posibles
@@ -16,17 +18,37 @@ class ShareNotifier extends Notifier<bool> {
   Future<void> generarYCompartirLista(ShareType tipo) async {
     state = true;
     try {
-      final response = await supabase
-          .from('stickers')
-          .select('''
-            id, 
-            sticker_code, 
-            category_id,
-            categories (name, emoji)
-          ''')
-          .order('category_id', ascending: true)
-          .order('order_index', ascending: true);
-      ;
+      // 1. Pedimos a nuestro Gerente ambas listas (¡Saldrán de la RAM o SQLite al instante!)
+      final allStickers = await AppRepository().get<Sticker>();
+      final allCategories = await AppRepository().get<Category>();
+
+      // 2. Creamos un "Diccionario" de categorías para buscar a la velocidad de la luz
+      // Esto hace que buscar una categoría por su ID sea instantáneo (O(1))
+      final categoryMap = {for (var c in allCategories) c.id: c};
+
+      // 3. Ordenamos los stickers exactamente como lo hacías en Supabase
+      allStickers.sort((a, b) {
+        // Primero ordenamos por category_id
+        int catCompare = (a.categoryId).compareTo(b.categoryId);
+
+        // Si son de la misma categoría, desempatamos por el order_index
+        if (catCompare != 0) return catCompare;
+        return a.orderIndex.compareTo(b.orderIndex);
+      });
+
+      // 4. "Ensamblamos" el resultado final uniendo el Sticker con su Categoría
+      final response = allStickers.map((sticker) {
+        // Buscamos la categoría de este sticker en nuestro diccionario
+        final category = categoryMap[sticker.categoryId];
+
+        // Retornamos la estructura que tu pantalla está esperando leer
+        return {
+          'id': sticker.id,
+          'sticker_code': sticker.stickerCode,
+          'category_id': sticker.categoryId,
+          'categories': {'name': category?.name, 'emoji': category?.emoji},
+        };
+      }).toList();
 
       final miInventario = await ref.read(inventoryProvider.future);
 
@@ -45,7 +67,9 @@ class ShareNotifier extends Notifier<bool> {
 
         final inv = miInventario[stickerId] ?? {};
         int total = 0;
-        inv.values.forEach((v) => total += v);
+        for (var v in inv.values) {
+          total += v;
+        }
 
         if (total == 0) {
           _agrupar(faltantesAgrupados, nombreCat, emojiCat, stickerLabel);

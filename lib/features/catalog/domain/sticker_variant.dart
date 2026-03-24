@@ -3,25 +3,28 @@ import 'package:brick_sqlite/brick_sqlite.dart';
 import 'package:brick_supabase/brick_supabase.dart';
 
 @ConnectOfflineFirstWithSupabase(
-  supabaseConfig: SupabaseSerializable(tableName: 'stickers'),
+  supabaseConfig: SupabaseSerializable(tableName: 'sticker_variants'),
 )
-class Sticker extends OfflineFirstWithSupabaseModel {
+class StickerVariant extends OfflineFirstWithSupabaseModel {
   @Supabase(unique: true, name: 'id')
   @Sqlite(index: true, unique: true)
   final String id;
-  @Supabase(name: 'category_id')
-  final String categoryId;
-  @Supabase(name: 'sticker_code')
-  final String stickerCode;
-  @Supabase(name: 'description')
-  final String? description;
+  final String name;
+  @Supabase(name: 'hex_color')
+  final String hexColor;
+  @Supabase(name: 'is_special')
+  final bool? isSpecial;
+  @Supabase(name: 'icon_url')
+  final String? iconUrl;
   @Supabase(name: 'order_index')
   final int orderIndex;
-  Sticker({
+
+  StickerVariant({
     required this.id,
-    required this.categoryId,
-    required this.stickerCode,
-    this.description,
+    required this.name,
+    required this.hexColor,
+    this.isSpecial = false,
+    this.iconUrl,
     required this.orderIndex,
   });
 }
