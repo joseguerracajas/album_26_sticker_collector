@@ -1,9 +1,9 @@
 // Archivo: lib/features/catalog/presentation/catalog_screen.dart
 
+import 'package:album_26_sticker_collector/features/catalog/data/categories_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/category_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../data/catalog_provider.dart';
 
 // Usamos ConsumerWidget en lugar de StatelessWidget para poder escuchar a Riverpod
 class CatalogScreen extends ConsumerWidget {

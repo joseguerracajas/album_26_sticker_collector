@@ -1,11 +1,10 @@
-// import brick.g.dart and brick/db/schema.g.dart
-
+import 'package:path/path.dart' as p; // Necesitas la librería 'path'
+import 'package:sqflite/sqflite.dart';
 import 'package:album_26_sticker_collector/brick/brick.g.dart';
 import 'package:album_26_sticker_collector/brick/db/schema.g.dart';
 import 'package:brick_offline_first_with_supabase/brick_offline_first_with_supabase.dart';
 import 'package:brick_sqlite/brick_sqlite.dart';
 import 'package:brick_sqlite/memory_cache_provider.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:brick_supabase/brick_supabase.dart';
 
@@ -22,14 +21,12 @@ class AppRepository extends OfflineFirstWithSupabaseRepository {
 
   factory AppRepository() => _singleton!;
 
-  static void configure({
+  // Cambiamos a Future porque ahora necesitamos esperar las rutas y la inicialización
+  static Future<void> configure({
     required String supabaseUrl,
     required String supabaseAnonKey,
-  }) {
-    // Convenience method `.clientQueue` makes creating the queue and client easy.
+  }) async {
     final (client, queue) = OfflineFirstWithSupabaseRepository.clientQueue(
-      // For Flutter, use import 'package:sqflite/sqflite.dart' show databaseFactory;
-      // For unit testing (even in Flutter), use import 'package:sqflite_common_ffi/sqflite_ffi.dart' show databaseFactory;
       databaseFactory: databaseFactory,
     );
 
@@ -38,11 +35,14 @@ class AppRepository extends OfflineFirstWithSupabaseRepository {
       modelDictionary: supabaseModelDictionary,
     );
 
-    // Finally, initialize the repository as normal.
+    // 1. OBTENEMOS LA RUTA CORRECTA PARA SQLite
+    final databasesPath = await getDatabasesPath();
+    final dbPath = p.join(databasesPath, 'album_offline_v1.sqlite');
+
     _singleton = AppRepository._(
       supabaseProvider: provider,
       sqliteProvider: SqliteProvider(
-        'my_repository.sqlite',
+        dbPath, // Usamos la ruta completa
         databaseFactory: databaseFactory,
         modelDictionary: sqliteModelDictionary,
       ),
@@ -50,5 +50,8 @@ class AppRepository extends OfflineFirstWithSupabaseRepository {
       offlineRequestQueue: queue,
       memoryCacheProvider: MemoryCacheProvider(),
     );
+
+    // 2. ¡MÁXIMA IMPORTANCIA!: Inicializar para correr migraciones
+    await _singleton!.initialize();
   }
 }

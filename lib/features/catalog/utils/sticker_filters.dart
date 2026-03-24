@@ -1,9 +1,8 @@
 // Archivo: lib/features/catalog/utils/sticker_filters.dart
 
-import 'package:album_26_sticker_collector/features/catalog/domain/category.dart';
-
-import '../domain/sticker.dart';
-import '../presentation/category_detail_screen.dart'; // Importamos el enum FilterOption
+import 'package:album_26_sticker_collector/features/catalog/domain/category.model.dart';
+import 'package:album_26_sticker_collector/features/catalog/domain/sticker.model.dart';
+import 'package:album_26_sticker_collector/features/catalog/presentation/category_detail_screen.dart';
 
 /// Función pura para filtrar la lista de cromos según el estado y la búsqueda
 List<Sticker> aplicarFiltrosCromos({

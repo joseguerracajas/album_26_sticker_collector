@@ -1,7 +1,7 @@
 // Archivo: lib/features/inventory/data/stats_provider.dart
 
 import 'package:album_26_sticker_collector/brick/app_repository.dart';
-import 'package:album_26_sticker_collector/features/catalog/domain/sticker.dart';
+import 'package:album_26_sticker_collector/features/catalog/domain/sticker.model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'inventory_provider.dart';
 

@@ -1,7 +1,9 @@
 // Archivo: lib/features/auth/presentation/profile_screen.dart
 
+import 'package:album_26_sticker_collector/brick/app_repository.dart';
+import 'package:album_26_sticker_collector/features/inventory/domain/inventory.model.dart';
 import 'package:flutter/material.dart';
-import '../../../main.dart';
+import 'package:album_26_sticker_collector/main.dart';
 import 'auth_screen.dart'; // Tu instancia de supabase
 // IMPORTANTE: Asegúrate de importar aquí tu pantalla de Login
 // import 'login_screen.dart';
@@ -11,6 +13,31 @@ class ProfileScreen extends StatelessWidget {
 
   void _cerrarSesion(BuildContext context) async {
     try {
+      final repo = AppRepository();
+
+      // 1. FRENAR LA COLA: Le decimos a Brick que deje de intentar enviar cosas
+      repo.offlineRequestQueue.stop();
+
+      try {
+        // 2. BORRAR INVENTARIO LOCAL SILENCIOSAMENTE
+        // Usamos 'sqliteProvider.get' y 'sqliteProvider.delete' para que Brick
+        // NO intente subir estos borrados a Supabase.
+        final inventarioLocal = await repo.sqliteProvider.get<Inventory>();
+
+        for (final item in inventarioLocal) {
+          await repo.sqliteProvider.delete<Inventory>(item);
+        }
+
+        // (Haz lo mismo si tienes otras tablas privadas)
+
+        // 3. VACIAR LA "MOCHILA" (Opcional pero ideal)
+        // Esto borra los intentos atascados (#68, etc.) para que cuando inicie
+        // sesión otro usuario, no se envíen los cromos del usuario anterior.
+        // Dependiendo de tu versión de Brick, puedes hacer esto:
+        // await repo.offlineRequestQueue.requestManager.clear();
+      } catch (e) {
+        print('Error limpiando datos locales: $e');
+      }
       // 1. Cerramos sesión en Supabase
       await supabase.auth.signOut();
 

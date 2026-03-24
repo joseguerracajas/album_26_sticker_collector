@@ -1,7 +1,13 @@
 // ignore: unused_import, unused_shown_name, unnecessary_import
 import 'package:brick_core/query.dart';
 // ignore: unused_import, unused_shown_name, unnecessary_import
-import 'package:brick_sqlite/db.dart';// GENERATED CODE DO NOT EDIT
+import 'package:brick_sqlite/db.dart';
+// ignore: unused_import, unused_shown_name, unnecessary_import
+import 'package:brick_offline_first_with_supabase/brick_offline_first_with_supabase.dart';
+// ignore: unused_import, unused_shown_name, unnecessary_import
+import 'package:brick_sqlite/brick_sqlite.dart';
+// ignore: unused_import, unused_shown_name, unnecessary_import
+import 'package:brick_supabase/brick_supabase.dart';// GENERATED CODE DO NOT EDIT
 // ignore: unused_import
 import 'dart:convert';
 import 'package:brick_sqlite/brick_sqlite.dart' show SqliteModel, SqliteAdapter, SqliteModelDictionary, RuntimeSqliteColumnDefinition, SqliteProvider;
@@ -11,18 +17,30 @@ import 'package:brick_offline_first/brick_offline_first.dart' show RuntimeOfflin
 // ignore: unused_import, unused_shown_name
 import 'package:sqflite_common/sqlite_api.dart' show DatabaseExecutor;
 
+import '../features/catalog/domain/category.model.dart';
+import '../features/catalog/domain/sticker.model.dart';
+import '../features/catalog/domain/sticker_variant.model.dart';
+import '../features/inventory/domain/inventory.model.dart';
 
-
-
+part 'adapters/category_adapter.g.dart';
+part 'adapters/sticker_adapter.g.dart';
+part 'adapters/sticker_variant_adapter.g.dart';
+part 'adapters/inventory_adapter.g.dart';
 
 /// Supabase mappings should only be used when initializing a [SupabaseProvider]
 final Map<Type, SupabaseAdapter<SupabaseModel>> supabaseMappings = {
-  
+  Category: CategoryAdapter(),
+  Sticker: StickerAdapter(),
+  StickerVariant: StickerVariantAdapter(),
+  Inventory: InventoryAdapter()
 };
 final supabaseModelDictionary = SupabaseModelDictionary(supabaseMappings);
 
 /// Sqlite mappings should only be used when initializing a [SqliteProvider]
 final Map<Type, SqliteAdapter<SqliteModel>> sqliteMappings = {
-  
+  Category: CategoryAdapter(),
+  Sticker: StickerAdapter(),
+  StickerVariant: StickerVariantAdapter(),
+  Inventory: InventoryAdapter()
 };
 final sqliteModelDictionary = SqliteModelDictionary(sqliteMappings);

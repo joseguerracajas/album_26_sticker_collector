@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../main.dart'; // Para usar la variable supabase
+import 'package:album_26_sticker_collector/main.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

@@ -1,14 +1,14 @@
 // Archivo: lib/features/catalog/presentation/category_detail_screen.dart
 
+import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
+import 'package:album_26_sticker_collector/features/catalog/data/variants_provider.dart';
+import 'package:album_26_sticker_collector/features/catalog/domain/category.model.dart';
+import 'package:album_26_sticker_collector/features/catalog/domain/sticker.model.dart';
+import 'package:album_26_sticker_collector/features/catalog/utils/sticker_filters.dart';
+import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../inventory/data/inventory_provider.dart';
-import '../data/variants_provider.dart';
-import '../domain/category.dart';
-import '../domain/sticker.dart';
-import '../data/stickers_provider.dart';
-import '../utils/sticker_filters.dart';
 
 // --- ESTADOS (RIVERPOD 2.0 MODERN) ---
 

@@ -1,16 +1,16 @@
 // Archivo: lib/features/catalog/presentation/home_screen.dart
 
+import 'package:album_26_sticker_collector/features/auth/presentation/profile_screen.dart';
+import 'package:album_26_sticker_collector/features/catalog/data/categories_provider.dart';
+import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/global_collection_screen.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/category_avatar.dart';
+import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
+import 'package:album_26_sticker_collector/features/inventory/data/share_provider.dart';
+import 'package:album_26_sticker_collector/features/inventory/data/stats_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../auth/presentation/profile_screen.dart';
 import 'category_detail_screen.dart';
-import '../data/categories_provider.dart';
-import '../data/stickers_provider.dart';
-import '../../inventory/data/stats_provider.dart';
-import '../../inventory/data/inventory_provider.dart';
-import '../../inventory/data/share_provider.dart';
 
 // --- ESTADO DEL BUSCADOR (RIVERPOD 2.0 Seguro) ---
 class SearchQueryNotifier extends Notifier<String> {

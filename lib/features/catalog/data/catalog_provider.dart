@@ -1,8 +1,8 @@
 // Archivo: lib/features/catalog/data/catalog_provider.dart
 
 import 'package:album_26_sticker_collector/brick/app_repository.dart';
+import 'package:album_26_sticker_collector/features/catalog/domain/category.model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../domain/category.dart';
 
 // FutureProvider es ideal para llamadas a bases de datos que ocurren una sola vez al cargar
 final categoriesProvider = FutureProvider<List<Category>>((ref) async {

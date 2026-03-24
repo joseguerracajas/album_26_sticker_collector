@@ -1,5 +1,5 @@
 import 'package:album_26_sticker_collector/brick/app_repository.dart';
-import 'package:album_26_sticker_collector/features/catalog/domain/sticker_variant.dart';
+import 'package:album_26_sticker_collector/features/catalog/domain/sticker_variant.model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Usamos FutureProvider porque solo necesitamos leer esta lista una vez

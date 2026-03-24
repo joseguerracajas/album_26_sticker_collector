@@ -1,8 +1,8 @@
 // Archivo: lib/features/inventory/data/share_provider.dart
 
 import 'package:album_26_sticker_collector/brick/app_repository.dart';
-import 'package:album_26_sticker_collector/features/catalog/domain/category.dart';
-import 'package:album_26_sticker_collector/features/catalog/domain/sticker.dart';
+import 'package:album_26_sticker_collector/features/catalog/domain/category.model.dart';
+import 'package:album_26_sticker_collector/features/catalog/domain/sticker.model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 import 'inventory_provider.dart';

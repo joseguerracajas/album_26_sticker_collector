@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../main.dart';
+import 'package:album_26_sticker_collector/main.dart';
 import 'register_screen.dart'; // Importamos la nueva pantalla
 
 class LoginScreen extends StatefulWidget {

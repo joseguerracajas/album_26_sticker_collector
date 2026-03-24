@@ -1,12 +1,12 @@
 // Archivo: lib/features/inventory/data/inventory_provider.dart
 
 import 'package:album_26_sticker_collector/brick/app_repository.dart';
+import 'package:album_26_sticker_collector/main.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brick_offline_first/brick_offline_first.dart';
-import '../../../main.dart';
 
 // IMPORTANTE: Asegúrate de importar tu Repositorio y tu Modelo de Brick
-import 'package:album_26_sticker_collector/features/inventory/domain/inventory.dart';
+import 'package:album_26_sticker_collector/features/inventory/domain/inventory.model.dart';
 
 // Estructura: { 'ECU_1': { 'normal': 1, 'legend': 0 } }
 typedef InventoryMap = Map<String, Map<String, int>>;

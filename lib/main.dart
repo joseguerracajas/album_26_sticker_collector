@@ -17,7 +17,7 @@ Future<void> main() async {
   // Inicializar la conexión con tu base de datos
   await Supabase.initialize(url: supabaseUrl, anonKey: supabaseAnonKey);
 
-  AppRepository.configure(
+  await AppRepository.configure(
     supabaseUrl: supabaseUrl,
     supabaseAnonKey: supabaseAnonKey,
   );

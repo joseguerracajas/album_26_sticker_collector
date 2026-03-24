@@ -1,6 +1,6 @@
 import 'package:album_26_sticker_collector/brick/app_repository.dart';
+import 'package:album_26_sticker_collector/features/catalog/domain/sticker.model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../domain/sticker.dart';
 
 // Usamos .family para poder pasarle un parámetro (el categoryId) al provider
 
