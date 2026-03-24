@@ -1,0 +1,39 @@
+# build.yaml
+# Fuerza a build_runner a considerar los archivos bajo lib/ y habilita los builders
+# de brick_offline_first_with_supabase para que procesen tus modelos.
+targets:
+  $default:
+    sources:
+      - "lib/**"
+      - "pubspec.yaml"
+    builders:
+      # Adapters (genera adapters para modelos)
+      brick_offline_first_with_supabase_build|brick_adapters_builder:
+        enabled: true
+        options:
+          generate_for:
+            - "lib/**"
+      # Schema / migrations
+      brick_offline_first_with_supabase_build|brick_schema_builder:
+        enabled: true
+        options:
+          generate_for:
+            - "lib/**"
+      # Diccionario de modelos (sqliteMappings / supabaseMappings)
+      brick_offline_first_with_supabase_build|brick_model_dictionary_builder:
+        enabled: true
+        options:
+          generate_for:
+            - "lib/**"
+      # Nuevo builder de migraciones
+      brick_offline_first_with_supabase_build|brick_new_migration_builder:
+        enabled: true
+        options:
+          generate_for:
+            - "lib/**"
+      # Agregador (si aplica)
+      brick_offline_first_with_supabase_build|brick_aggregate_builder:
+        enabled: true
+        options:
+          generate_for:
+            - "lib/**"
