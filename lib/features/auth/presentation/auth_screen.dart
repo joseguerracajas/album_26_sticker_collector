@@ -1,30 +1,42 @@
+import 'package:album_26_sticker_collector/features/auth/data/auth_provider.dart';
+import 'package:album_26_sticker_collector/features/catalog/presentation/category_detail_screen.dart';
+import 'package:album_26_sticker_collector/features/catalog/presentation/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:album_26_sticker_collector/main.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'register_screen.dart'; // Importamos la nueva pantalla
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _isLoading = false;
 
   Future<void> _login() async {
     setState(() => _isLoading = true);
+
     try {
-      await supabase.auth.signInWithPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      );
+      await ref
+          .read(authControllerProvider)
+          .login(_emailController.text.trim(), _passwordController.text.trim());
+
+      if (mounted) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
+        );
+      }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e'), backgroundColor: Colors.red),
+          SnackBar(
+            content: Text('Error al iniciar sesión: $e'),
+            backgroundColor: Colors.red,
+          ),
         );
       }
     } finally {

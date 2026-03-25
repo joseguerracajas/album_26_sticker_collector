@@ -1,54 +1,26 @@
 // Archivo: lib/features/auth/presentation/profile_screen.dart
 
-import 'package:album_26_sticker_collector/brick/app_repository.dart';
-import 'package:album_26_sticker_collector/features/inventory/domain/inventory.model.dart';
+import 'package:album_26_sticker_collector/features/auth/data/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart'; // IMPORTANTE: Agregar Riverpod
 import 'package:album_26_sticker_collector/main.dart';
-import 'auth_screen.dart'; // Tu instancia de supabase
-// IMPORTANTE: Asegúrate de importar aquí tu pantalla de Login
-// import 'login_screen.dart';
+import 'auth_screen.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
 
-  void _cerrarSesion(BuildContext context) async {
+  // 2. Añadimos WidgetRef a la función para poder leer el Provider
+  void _cerrarSesion(BuildContext context, WidgetRef ref) async {
     try {
-      final repo = AppRepository();
+      await ref.read(authControllerProvider).logout();
 
-      // 1. FRENAR LA COLA: Le decimos a Brick que deje de intentar enviar cosas
-      repo.offlineRequestQueue.stop();
-
-      try {
-        // 2. BORRAR INVENTARIO LOCAL SILENCIOSAMENTE
-        // Usamos 'sqliteProvider.get' y 'sqliteProvider.delete' para que Brick
-        // NO intente subir estos borrados a Supabase.
-        final inventarioLocal = await repo.sqliteProvider.get<Inventory>();
-
-        for (final item in inventarioLocal) {
-          await repo.sqliteProvider.delete<Inventory>(item);
-        }
-
-        // (Haz lo mismo si tienes otras tablas privadas)
-
-        // 3. VACIAR LA "MOCHILA" (Opcional pero ideal)
-        // Esto borra los intentos atascados (#68, etc.) para que cuando inicie
-        // sesión otro usuario, no se envíen los cromos del usuario anterior.
-        // Dependiendo de tu versión de Brick, puedes hacer esto:
-        // await repo.offlineRequestQueue.requestManager.clear();
-      } catch (e) {
-        print('Error limpiando datos locales: $e');
-      }
-      // 1. Cerramos sesión en Supabase
-      await supabase.auth.signOut();
-
-      // 2. Redirigimos al Login borrando el historial de navegación
+      // 4. Redirigimos al Login borrando el historial de navegación
       if (context.mounted) {
         Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
             builder: (context) => const Scaffold(body: LoginScreen()),
           ),
-          (Route<dynamic> route) =>
-              false, // Esto evita que el usuario pueda volver atrás con el botón de Android
+          (Route<dynamic> route) => false, // Evita que el usuario vuelva atrás
         );
       }
     } catch (e) {
@@ -64,8 +36,9 @@ class ProfileScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    // Obtenemos el usuario actual de Supabase
+  // 5. Añadimos WidgetRef al método build
+  Widget build(BuildContext context, WidgetRef ref) {
+    // Obtenemos el usuario actual de Supabase para mostrar su correo
     final user = supabase.auth.currentUser;
 
     return Scaffold(
@@ -123,7 +96,8 @@ class ProfileScreen extends StatelessWidget {
                 'Cerrar Sesión',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
-              onPressed: () => _cerrarSesion(context),
+              // 6. Le pasamos el context y el ref a nuestra función
+              onPressed: () => _cerrarSesion(context, ref),
             ),
             const SizedBox(height: 40), // Espacio inferior seguro
           ],

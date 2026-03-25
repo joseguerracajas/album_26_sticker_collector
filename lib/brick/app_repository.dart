@@ -6,7 +6,7 @@ import 'package:brick_offline_first_with_supabase/brick_offline_first_with_supab
 import 'package:brick_sqlite/brick_sqlite.dart';
 import 'package:brick_sqlite/memory_cache_provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:brick_supabase/brick_supabase.dart';
+import 'package:brick_supabase/brick_supabase.dart' hide Supabase;
 
 class AppRepository extends OfflineFirstWithSupabaseRepository {
   static late AppRepository? _singleton;
@@ -30,8 +30,14 @@ class AppRepository extends OfflineFirstWithSupabaseRepository {
       databaseFactory: databaseFactory,
     );
 
+    await Supabase.initialize(
+      url: supabaseUrl,
+      anonKey: supabaseAnonKey,
+      httpClient: client,
+    );
+
     final provider = SupabaseProvider(
-      SupabaseClient(supabaseUrl, supabaseAnonKey, httpClient: client),
+      Supabase.instance.client,
       modelDictionary: supabaseModelDictionary,
     );
 

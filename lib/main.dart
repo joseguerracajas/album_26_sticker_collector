@@ -15,7 +15,7 @@ Future<void> main() async {
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBoZW1zcHBtdXBmdndnZWNrZnppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4OTA3MTQsImV4cCI6MjA4OTQ2NjcxNH0.M3mYbOwXXA8_59OkvAm6aNq-H_oeyPhPhIAI8jWMW6s';
 
   // Inicializar la conexión con tu base de datos
-  await Supabase.initialize(url: supabaseUrl, anonKey: supabaseAnonKey);
+  // await Supabase.initialize(url: supabaseUrl, anonKey: supabaseAnonKey);
 
   await AppRepository.configure(
     supabaseUrl: supabaseUrl,
