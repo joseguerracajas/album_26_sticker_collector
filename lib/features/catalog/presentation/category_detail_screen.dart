@@ -4,13 +4,15 @@ import 'package:album_26_sticker_collector/features/catalog/data/stickers_provid
 import 'package:album_26_sticker_collector/features/catalog/data/variants_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/category.model.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/sticker.model.dart';
+import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/animated_sticker_card.dart';
 import 'package:album_26_sticker_collector/features/catalog/utils/sticker_filters.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
+import 'package:animations/animations.dart'; // 🔥 Imprescindible para el Switcher y OpenContainer
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// --- ESTADOS (RIVERPOD 2.0 MODERN) ---
+// --- ESTADOS MODERNOS (NOTIFIERS) ---
 
 enum FilterOption { todos, faltantes, repetidas }
 
@@ -41,14 +43,12 @@ class CategoryDetailScreen extends ConsumerWidget {
 
   const CategoryDetailScreen({super.key, required this.category});
 
-  // 1. ALERTA DE BORRADO SEGURO (MANTENIENDO TU DISEÑO)
+  // 1. ALERTA DE BORRADO SEGURO
   Future<void> _confirmarBorrado(
     BuildContext context,
     WidgetRef ref,
     Sticker sticker,
   ) async {
-    HapticFeedback.mediumImpact();
-
     final confirmar = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -64,10 +64,7 @@ class CategoryDetailScreen extends ConsumerWidget {
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-            onPressed: () {
-              HapticFeedback.lightImpact();
-              Navigator.pop(ctx, true);
-            },
+            onPressed: () => Navigator.pop(ctx, true),
             child: const Text('Quitar', style: TextStyle(color: Colors.white)),
           ),
         ],
@@ -75,31 +72,18 @@ class CategoryDetailScreen extends ConsumerWidget {
     );
 
     if (confirmar == true) {
-      try {
-        await ref
-            .read(inventoryProvider.notifier)
-            .toggleNormalSticker(sticker.id);
-      } catch (e) {
-        if (context.mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Error de conexión: $e'),
-              backgroundColor: Colors.red,
-            ),
-          );
-        }
-      }
+      await ref
+          .read(inventoryProvider.notifier)
+          .toggleNormalSticker(sticker.id);
     }
   }
 
-  // 2. BOTTOM SHEET (MANTENIENDO TU LÓGICA DE BATCH UPDATES)
+  // 2. BOTTOM SHEET OPCIONES AVANZADAS
   void _mostrarOpcionesAvanzadas(
     BuildContext context,
     WidgetRef ref,
     Sticker sticker,
   ) {
-    HapticFeedback.selectionClick();
-
     final inventoryAsync = ref.read(inventoryProvider);
     final inventarioOriginal = inventoryAsync.value?[sticker.id] ?? {};
     final inventarioTemporal = Map<String, int>.from(inventarioOriginal);
@@ -196,15 +180,12 @@ class CategoryDetailScreen extends ConsumerWidget {
                                                   ? Colors.red.shade300
                                                   : Colors.grey.shade800,
                                               onPressed: cantidadActual > 0
-                                                  ? () {
-                                                      HapticFeedback.lightImpact();
-                                                      setModalState(
-                                                        () =>
-                                                            inventarioTemporal[variantId] =
-                                                                cantidadActual -
-                                                                1,
-                                                      );
-                                                    }
+                                                  ? () => setModalState(
+                                                      () =>
+                                                          inventarioTemporal[variantId] =
+                                                              cantidadActual -
+                                                              1,
+                                                    )
                                                   : null,
                                             ),
                                             SizedBox(
@@ -225,14 +206,11 @@ class CategoryDetailScreen extends ConsumerWidget {
                                                 size: 32,
                                               ),
                                               color: Colors.amber,
-                                              onPressed: () {
-                                                HapticFeedback.lightImpact();
-                                                setModalState(
-                                                  () =>
-                                                      inventarioTemporal[variantId] =
-                                                          cantidadActual + 1,
-                                                );
-                                              },
+                                              onPressed: () => setModalState(
+                                                () =>
+                                                    inventarioTemporal[variantId] =
+                                                        cantidadActual + 1,
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -274,10 +252,13 @@ class CategoryDetailScreen extends ConsumerWidget {
       inventarioTemporal.forEach((variantId, nuevaCantidad) {
         final cantidadVieja = inventarioOriginal[variantId] ?? 0;
         if (nuevaCantidad != cantidadVieja) {
-          final diferencia = nuevaCantidad - cantidadVieja;
           ref
               .read(inventoryProvider.notifier)
-              .updateVariantQuantity(sticker.id, variantId, diferencia);
+              .updateVariantQuantity(
+                sticker.id,
+                variantId,
+                nuevaCantidad - cantidadVieja,
+              );
         }
       });
     });
@@ -297,10 +278,6 @@ class CategoryDetailScreen extends ConsumerWidget {
             const Center(child: CircularProgressIndicator(color: Colors.amber)),
         error: (error, stack) => Center(child: Text('Error: $error')),
         data: (stickers) {
-          if (stickers.isEmpty)
-            return const Center(child: Text('No hay cromos.'));
-
-          // LÓGICA DE FILTRADO COMBINADA
           final filteredStickers = aplicarFiltrosCromos(
             stickers: stickers,
             inventarioGlobal: inventoryAsync.value ?? {},
@@ -311,7 +288,7 @@ class CategoryDetailScreen extends ConsumerWidget {
 
           return Column(
             children: [
-              // LOS BOTONES DEL FILTRO (TU SEGMENTED BUTTON)
+              // 1. SELECTOR DE FILTROS
               Padding(
                 padding: const EdgeInsets.symmetric(
                   vertical: 16.0,
@@ -347,7 +324,7 @@ class CategoryDetailScreen extends ConsumerWidget {
                 ),
               ),
 
-              // EL BUSCADOR (NUEVO ELEMENTO INTEGRADO)
+              // 2. BUSCADOR
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16.0,
@@ -356,194 +333,97 @@ class CategoryDetailScreen extends ConsumerWidget {
                 child: TextField(
                   onChanged: (val) =>
                       ref.read(stickerSearchProvider.notifier).updateQuery(val),
-                  style: const TextStyle(fontSize: 14, color: Colors.white),
                   decoration: InputDecoration(
-                    // --- NUEVO HINT TEXT ---
                     hintText: 'Buscar país, código o número...',
-                    hintStyle: TextStyle(color: Colors.grey.shade600),
-                    prefixIcon: const Icon(
-                      Icons.search,
-                      size: 20,
-                      color: Colors.amber,
-                    ),
+                    prefixIcon: const Icon(Icons.search, color: Colors.amber),
                     filled: true,
                     fillColor: const Color(0xFF1E1E1E),
-                    // Le damos un poco de respiro al padding para que no se rompa el LongPress
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 14,
-                    ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide.none,
                     ),
-                    suffixIcon: searchQuery.isNotEmpty
-                        ? IconButton(
-                            icon: const Icon(
-                              Icons.close,
-                              size: 18,
-                              color: Colors.grey,
-                            ),
-                            onPressed: () {
-                              ref
-                                  .read(stickerSearchProvider.notifier)
-                                  .updateQuery('');
-                              FocusScope.of(context).unfocus();
-                            },
-                          )
-                        : null,
                   ),
                 ),
               ),
 
-              // LA CUADRÍCULA (RESPETANDO TU DISEÑO EXACTO)
+              // 3. LA CUADRÍCULA CON TRANSICIONES FLUIDAS
               Expanded(
-                child: filteredStickers.isEmpty
-                    ? const Center(
-                        child: Text(
-                          'Sin resultados.',
-                          style: TextStyle(color: Colors.grey, fontSize: 16),
-                        ),
-                      )
-                    : GridView.builder(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 8,
-                        ),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 4,
-                              crossAxisSpacing: 10,
-                              mainAxisSpacing: 10,
-                              childAspectRatio: 0.70, // TU RATIO ORIGINAL
-                            ),
-                        itemCount: filteredStickers.length,
-                        itemBuilder: (context, index) {
-                          final sticker = filteredStickers[index];
-                          final miInventario =
-                              inventoryAsync.value?[sticker.id] ?? {};
-                          final normales = miInventario['normal'] ?? 0;
-
-                          int totalCromos = 0;
-                          miInventario.values.forEach(
-                            (cantidad) => totalCromos += cantidad,
-                          );
-
-                          final tieneEspecial = miInventario.keys.any(
-                            (variante) =>
-                                variante != 'normal' &&
-                                miInventario[variante]! > 0,
-                          );
-
-                          return GestureDetector(
-                            onTap: () {
-                              if (totalCromos == 0) {
-                                HapticFeedback.lightImpact();
-                                ref
-                                    .read(inventoryProvider.notifier)
-                                    .toggleNormalSticker(sticker.id);
-                              } else if (totalCromos == 1 && normales == 1) {
-                                _confirmarBorrado(context, ref, sticker);
-                              } else {
-                                _mostrarOpcionesAvanzadas(
-                                  context,
-                                  ref,
-                                  sticker,
-                                );
-                              }
-                            },
-                            onLongPress: () {
-                              HapticFeedback.heavyImpact();
-                              _mostrarOpcionesAvanzadas(context, ref, sticker);
-                            },
-                            child: AnimatedContainer(
-                              duration: const Duration(milliseconds: 200),
-                              decoration: BoxDecoration(
-                                color: totalCromos > 0
-                                    ? Colors.amber
-                                    : const Color(0xFF2A2A2A),
-                                borderRadius: BorderRadius.circular(
-                                  8,
-                                ), // TU RADIO ORIGINAL
-                                border: Border.all(
-                                  color: totalCromos > 0
-                                      ? Colors.amber.shade700
-                                      : Colors.grey.shade800,
-                                ),
+                child: PageTransitionSwitcher(
+                  duration: const Duration(
+                    milliseconds: 400,
+                  ), // Bajamos a 400ms para que sea más ágil
+                  transitionBuilder:
+                      (child, primaryAnimation, secondaryAnimation) {
+                        return FadeThroughTransition(
+                          animation: primaryAnimation,
+                          secondaryAnimation: secondaryAnimation,
+                          fillColor: Colors.transparent,
+                          child: child,
+                        );
+                      },
+                  child: filteredStickers.isEmpty
+                      ? Center(
+                          key: const ValueKey('empty'),
+                          child: const Text(
+                            'Sin resultados.',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        )
+                      : GridView.builder(
+                          key: ValueKey(
+                            currentFilter,
+                          ), // 🔥 Clave para que el Switcher sepa cuándo animar
+                          padding: const EdgeInsets.all(16),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 4,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 10,
+                                childAspectRatio: 0.70,
                               ),
-                              child: Stack(
-                                children: [
-                                  Center(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          sticker.categoryId,
-                                          style: TextStyle(
-                                            fontSize:
-                                                22, // Tamaño original destacado
-                                            fontWeight: FontWeight.bold,
-                                            color: totalCromos > 0
-                                                ? Colors.black
-                                                : Colors.grey,
-                                          ),
-                                        ),
-                                        Text(
-                                          sticker.stickerCode,
-                                          style: TextStyle(
-                                            fontSize:
-                                                22, // Tamaño original destacado
-                                            fontWeight: FontWeight.bold,
-                                            color: totalCromos > 0
-                                                ? Colors.black
-                                                : Colors.grey,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  if (tieneEspecial)
-                                    const Positioned(
-                                      top: 4,
-                                      right: 4,
-                                      child: Icon(
-                                        Icons.star,
-                                        color: Colors.white,
-                                        size: 16,
-                                      ),
-                                    ),
-                                  if (totalCromos > 0)
-                                    Positioned(
-                                      bottom: 6,
-                                      left: 0,
-                                      right: 0,
-                                      child: Center(
-                                        child: Container(
-                                          padding: const EdgeInsets.all(6),
-                                          decoration: BoxDecoration(
-                                            color: Colors.white.withOpacity(
-                                              0.3,
-                                            ),
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: Text(
-                                            '$totalCromos',
-                                            style: const TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                ],
+                          itemCount: filteredStickers.length,
+                          itemBuilder: (context, index) {
+                            final sticker = filteredStickers[index];
+                            final miInv =
+                                inventoryAsync.value?[sticker.id] ?? {};
+                            final total = miInv.values.fold(
+                              0,
+                              (sum, val) => sum + val,
+                            );
+                            final tieneEsp = miInv.keys.any(
+                              (v) => v != 'normal' && miInv[v]! > 0,
+                            );
+
+                            return AnimatedStickerCard(
+                              key: ValueKey(sticker.id),
+                              sticker: sticker,
+                              totalCromos: total,
+                              tieneEspecial: tieneEsp,
+                              onTap: () {
+                                if (total == 0) {
+                                  ref
+                                      .read(inventoryProvider.notifier)
+                                      .toggleNormalSticker(sticker.id);
+                                } else if (total == 1 &&
+                                    (miInv['normal'] ?? 0) == 1) {
+                                  _confirmarBorrado(context, ref, sticker);
+                                } else {
+                                  _mostrarOpcionesAvanzadas(
+                                    context,
+                                    ref,
+                                    sticker,
+                                  );
+                                }
+                              },
+                              onLongPress: () => _mostrarOpcionesAvanzadas(
+                                context,
+                                ref,
+                                sticker,
                               ),
-                            ),
-                          );
-                        },
-                      ),
+                            );
+                          },
+                        ),
+                ),
               ),
             ],
           );
