@@ -7,7 +7,9 @@ import 'package:brick_offline_first_with_supabase/brick_offline_first_with_supab
 // ignore: unused_import, unused_shown_name, unnecessary_import
 import 'package:brick_sqlite/brick_sqlite.dart';
 // ignore: unused_import, unused_shown_name, unnecessary_import
-import 'package:brick_supabase/brick_supabase.dart';// GENERATED CODE DO NOT EDIT
+import 'package:brick_supabase/brick_supabase.dart';
+// ignore: unused_import, unused_shown_name, unnecessary_import
+import 'package:uuid/uuid.dart';// GENERATED CODE DO NOT EDIT
 // ignore: unused_import
 import 'dart:convert';
 import 'package:brick_sqlite/brick_sqlite.dart' show SqliteModel, SqliteAdapter, SqliteModelDictionary, RuntimeSqliteColumnDefinition, SqliteProvider;

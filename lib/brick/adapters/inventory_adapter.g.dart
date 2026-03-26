@@ -7,6 +7,7 @@ Future<Inventory> _$InventoryFromSupabase(
   OfflineFirstWithSupabaseRepository? repository,
 }) async {
   return Inventory(
+    id: data['id'] as String?,
     userId: data['user_id'] as String,
     stickerId: data['sticker_id'] as String,
     variantId: data['variant_id'] as String,
@@ -25,6 +26,7 @@ Future<Map<String, dynamic>> _$InventoryToSupabase(
   OfflineFirstWithSupabaseRepository? repository,
 }) async {
   return {
+    'id': instance.id,
     'user_id': instance.userId,
     'sticker_id': instance.stickerId,
     'variant_id': instance.variantId,
@@ -39,6 +41,7 @@ Future<Inventory> _$InventoryFromSqlite(
   OfflineFirstWithSupabaseRepository? repository,
 }) async {
   return Inventory(
+    id: data['id'] as String,
     userId: data['user_id'] as String,
     stickerId: data['sticker_id'] as String,
     variantId: data['variant_id'] as String,
@@ -57,6 +60,7 @@ Future<Map<String, dynamic>> _$InventoryToSqlite(
   OfflineFirstWithSupabaseRepository? repository,
 }) async {
   return {
+    'id': instance.id,
     'user_id': instance.userId,
     'sticker_id': instance.stickerId,
     'variant_id': instance.variantId,
@@ -75,6 +79,10 @@ class InventoryAdapter extends OfflineFirstWithSupabaseAdapter<Inventory> {
   final defaultToNull = true;
   @override
   final fieldsToSupabaseColumns = {
+    'id': const RuntimeSupabaseColumnDefinition(
+      association: false,
+      columnName: 'id',
+    ),
     'userId': const RuntimeSupabaseColumnDefinition(
       association: false,
       columnName: 'user_id',
@@ -99,7 +107,7 @@ class InventoryAdapter extends OfflineFirstWithSupabaseAdapter<Inventory> {
   @override
   final ignoreDuplicates = false;
   @override
-  final uniqueFields = {};
+  final uniqueFields = {'id'};
   @override
   final Map<String, RuntimeSqliteColumnDefinition> fieldsToSqliteColumns = {
     'primaryKey': const RuntimeSqliteColumnDefinition(
@@ -107,6 +115,12 @@ class InventoryAdapter extends OfflineFirstWithSupabaseAdapter<Inventory> {
       columnName: '_brick_id',
       iterable: false,
       type: int,
+    ),
+    'id': const RuntimeSqliteColumnDefinition(
+      association: false,
+      columnName: 'id',
+      iterable: false,
+      type: String,
     ),
     'userId': const RuntimeSqliteColumnDefinition(
       association: false,
@@ -143,7 +157,21 @@ class InventoryAdapter extends OfflineFirstWithSupabaseAdapter<Inventory> {
   Future<int?> primaryKeyByUniqueColumns(
     Inventory instance,
     DatabaseExecutor executor,
-  ) async => instance.primaryKey;
+  ) async {
+    final results = await executor.rawQuery(
+      '''
+        SELECT * FROM `Inventory` WHERE id = ? LIMIT 1''',
+      [instance.id],
+    );
+
+    // SQFlite returns [{}] when no results are found
+    if (results.isEmpty || (results.length == 1 && results.first.isEmpty)) {
+      return null;
+    }
+
+    return results.first['_brick_id'] as int;
+  }
+
   @override
   final String tableName = 'Inventory';
 
