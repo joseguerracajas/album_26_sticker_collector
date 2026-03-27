@@ -8,7 +8,9 @@ import 'package:album_26_sticker_collector/features/catalog/presentation/widgets
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/share_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/stats_provider.dart';
+import 'package:animations/animations.dart'; // 🔥 Importante para el OpenContainer
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'category_detail_screen.dart';
 
@@ -373,7 +375,7 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
-// --- WIDGET DE CADA PAÍS (CON ICONO DINÁMICO Y PROGRESO INDIVIDUAL) ---
+// --- WIDGET DE CADA PAÍS (AHORA CON OPENCONTAINER) ---
 class _CategoryTile extends ConsumerWidget {
   final dynamic category;
   const _CategoryTile({required this.category});
@@ -383,120 +385,139 @@ class _CategoryTile extends ConsumerWidget {
     final stickersAsync = ref.watch(stickersByCategoryProvider(category.id));
     final inventoryAsync = ref.watch(inventoryProvider);
 
-    return Card(
-      color: const Color(0xFF1E1E1E),
-      margin: const EdgeInsets.only(bottom: 12),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(16),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CategoryDetailScreen(category: category),
-            ),
-          );
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
-            children: [
-              // --- CIRCLE AVATAR DINÁMICO ---
-              CategoryAvatar(iconUrl: category.iconUrl, text: category.id),
-              const SizedBox(width: 16),
+    return Padding(
+      // Mantenemos tu margen original aquí para separar las tarjetas
+      padding: const EdgeInsets.only(bottom: 12),
+      child: OpenContainer(
+        transitionType: ContainerTransitionType.fade,
+        transitionDuration: const Duration(milliseconds: 500),
+        // Colores para que combine con el fondo al abrirse y cerrarse
+        openColor: const Color(0xFF121212),
+        closedColor: const Color(
+          0xFF1E1E1E,
+        ), // El color exacto de tu antiguo Card
+        closedElevation: 1,
+        closedShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16), // Tu mismo borde
+        ),
 
-              // --- DATOS DEL PAÍS Y BARRA DE PROGRESO ---
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      category.name,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    stickersAsync.when(
-                      loading: () => const LinearProgressIndicator(
-                        color: Colors.amber,
-                        minHeight: 2,
-                      ),
-                      error: (e, s) => const SizedBox.shrink(),
-                      data: (stickers) {
-                        int total = stickers.length;
-                        int unicos = 0;
-                        for (var s in stickers) {
-                          final inv = inventoryAsync.value?[s.id] ?? {};
-                          int sum = 0;
-                          inv.values.forEach((v) => sum += v);
-                          if (sum > 0) unicos++;
-                        }
-                        final double progreso = total == 0 ? 0 : unicos / total;
+        // --- 1. PANTALLA A LA QUE VAMOS ---
+        openBuilder: (context, action) =>
+            CategoryDetailScreen(category: category),
 
-                        return Column(
-                          children: [
-                            Row(
+        // --- 2. LO QUE SE VE EN LA LISTA ---
+        closedBuilder: (context, action) {
+          // Usamos tu mismo InkWell y padding interno
+          return InkWell(
+            borderRadius: BorderRadius.circular(16),
+            onTap: () {
+              HapticFeedback.lightImpact(); // Feedback en el tap
+              action(); // Ejecuta la animación de expansión
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: [
+                  // --- CIRCLE AVATAR DINÁMICO ---
+                  CategoryAvatar(iconUrl: category.iconUrl, text: category.id),
+                  const SizedBox(width: 16),
+
+                  // --- DATOS DEL PAÍS Y BARRA DE PROGRESO ---
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          category.name,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        stickersAsync.when(
+                          loading: () => const LinearProgressIndicator(
+                            color: Colors.amber,
+                            minHeight: 2,
+                          ),
+                          error: (e, s) => const SizedBox.shrink(),
+                          data: (stickers) {
+                            int total = stickers.length;
+                            int unicos = 0;
+                            for (var s in stickers) {
+                              final inv = inventoryAsync.value?[s.id] ?? {};
+                              int sum = 0;
+                              inv.values.forEach((v) => sum += v);
+                              if (sum > 0) unicos++;
+                            }
+                            final double progreso = total == 0
+                                ? 0
+                                : unicos / total;
+
+                            return Column(
                               children: [
-                                Expanded(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(4),
-                                    child: LinearProgressIndicator(
-                                      value: progreso,
-                                      backgroundColor: Colors.black45,
-                                      valueColor:
-                                          const AlwaysStoppedAnimation<Color>(
-                                            Colors.amber,
-                                          ),
-                                      minHeight: 6,
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(4),
+                                        child: LinearProgressIndicator(
+                                          value: progreso,
+                                          backgroundColor: Colors.black45,
+                                          valueColor:
+                                              const AlwaysStoppedAnimation<
+                                                Color
+                                              >(Colors.amber),
+                                          minHeight: 6,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Text(
+                                      '${(progreso * 100).toStringAsFixed(0)}%',
+                                      style: const TextStyle(
+                                        color: Colors.white70,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 4),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    '$unicos de $total obtenidos',
+                                    style: TextStyle(
+                                      color: Colors.grey.shade500,
+                                      fontSize: 11,
+                                      fontStyle: FontStyle.italic,
                                     ),
                                   ),
                                 ),
-                                const SizedBox(width: 10),
-                                Text(
-                                  '${(progreso * 100).toStringAsFixed(0)}%',
-                                  style: const TextStyle(
-                                    color: Colors.white70,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
                               ],
-                            ),
-                            const SizedBox(height: 4),
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                '$unicos de $total obtenidos',
-                                style: TextStyle(
-                                  color: Colors.grey.shade500,
-                                  fontSize: 11,
-                                  fontStyle: FontStyle.italic,
-                                ),
-                              ),
-                            ),
-                          ],
-                        );
-                      },
+                            );
+                          },
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  const Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.white24,
+                    size: 14,
+                  ),
+                ],
               ),
-              const Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.white24,
-                size: 14,
-              ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }
 
-  // Widget de respaldo si no hay URL para la bandera/escudo
+  // Widget de respaldo si no hay URL para la bandera/escudo (Mantenido intacto)
   Widget _buildFallback(String id) {
     return Center(
       child: Text(

@@ -1,6 +1,5 @@
 import 'package:album_26_sticker_collector/brick/app_repository.dart';
 import 'package:album_26_sticker_collector/features/auth/presentation/auth_screen.dart';
-import 'package:album_26_sticker_collector/features/catalog/presentation/catalog_screen.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -49,7 +48,7 @@ class MainApp extends StatelessWidget {
           builder: (context, snapshot) {
             // Si el stream nos dice que hay una sesión activa, vamos al catálogo
             if (snapshot.data?.session != null) {
-              return const CatalogScreen();
+              return const HomeScreen();
             }
             // Si no hay sesión, mandamos al login
             return const LoginScreen();
