@@ -8,10 +8,11 @@ import 'package:album_26_sticker_collector/features/catalog/presentation/widgets
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/share_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/stats_provider.dart';
-import 'package:animations/animations.dart'; // 🔥 Importante para el OpenContainer
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_animate/flutter_animate.dart'; // 🔥 IMPORTACIÓN ESTRELLA
 import 'category_detail_screen.dart';
 
 // --- ESTADO DEL BUSCADOR (RIVERPOD 2.0 Seguro) ---
@@ -141,185 +142,229 @@ class HomeScreen extends ConsumerWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // --- TARJETA DORADA GLOBAL ---
+          // --- TARJETA DORADA GLOBAL ANIMADA ---
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-            child: Container(
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [Colors.amber.shade400, Colors.amber.shade800],
-                ),
-                borderRadius: BorderRadius.circular(24),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.amber.withOpacity(0.3),
-                    blurRadius: 15,
-                    offset: const Offset(0, 8),
-                  ),
-                ],
-              ),
-              child: totalCromosAsync.when(
-                loading: () => const Center(
-                  child: CircularProgressIndicator(color: Colors.black),
-                ),
-                error: (e, s) =>
-                    const Text('Error', style: TextStyle(color: Colors.black)),
-                data: (total) {
-                  final porcentaje = total == 0
-                      ? 0.0
-                      : (cromosUnicos / total) * 100;
-                  final progresoDecimal = total == 0
-                      ? 0.0
-                      : (cromosUnicos / total);
-
-                  return Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Flexible(
-                            child: Text(
-                              'Progreso Global',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Text(
-                              '${porcentaje.toStringAsFixed(1)}%',
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 38,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+            child:
+                Container(
+                      padding: const EdgeInsets.all(24),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Colors.amber.shade400,
+                            Colors.amber.shade800,
+                          ],
+                        ),
+                        borderRadius: BorderRadius.circular(24),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.amber.withOpacity(0.3),
+                            blurRadius: 15,
+                            offset: const Offset(0, 8),
                           ),
                         ],
                       ),
-                      const SizedBox(height: 15),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: LinearProgressIndicator(
-                          value: progresoDecimal,
-                          backgroundColor: Colors.black12,
-                          valueColor: const AlwaysStoppedAnimation<Color>(
-                            Colors.white,
-                          ),
-                          minHeight: 10,
+                      child: totalCromosAsync.when(
+                        loading: () => const Center(
+                          child: CircularProgressIndicator(color: Colors.black),
                         ),
-                      ),
-                      const SizedBox(height: 6),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          '$cromosUnicos de $total coleccionadas',
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13,
-                          ),
+                        error: (e, s) => const Text(
+                          'Error',
+                          style: TextStyle(color: Colors.black),
                         ),
-                      ),
-                      const SizedBox(height: 16),
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton.icon(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.black87,
-                            foregroundColor: Colors.amber,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            padding: const EdgeInsets.symmetric(vertical: 12),
-                          ),
-                          icon: const Icon(Icons.style),
-                          label: const Text(
-                            'Ver Colección Completa',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const GlobalCollectionScreen(),
+                        data: (total) {
+                          final porcentaje = total == 0
+                              ? 0.0
+                              : (cromosUnicos / total) * 100;
+                          final progresoDecimal = total == 0
+                              ? 0.0
+                              : (cromosUnicos / total);
+
+                          return Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Flexible(
+                                    child: Text(
+                                      'Progreso Global',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: Text(
+                                      '${porcentaje.toStringAsFixed(1)}%',
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 38,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ),
-          ),
-
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 8),
-            child: Text(
-              'Equipos',
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ),
-
-          // --- BUSCADOR ---
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20.0,
-              vertical: 4.0,
-            ),
-            child: TextField(
-              onChanged: (value) =>
-                  ref.read(searchQueryProvider.notifier).updateQuery(value),
-              style: const TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                hintText: 'Buscar país o equipo...',
-                hintStyle: TextStyle(color: Colors.grey.shade600),
-                prefixIcon: const Icon(
-                  Icons.search,
-                  color: Colors.amber,
-                  size: 20,
-                ),
-                filled: true,
-                fillColor: const Color(0xFF1E1E1E),
-                contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide.none,
-                ),
-                suffixIcon: searchQuery.isNotEmpty
-                    ? IconButton(
-                        icon: const Icon(
-                          Icons.close,
-                          color: Colors.grey,
-                          size: 18,
-                        ),
-                        onPressed: () {
-                          ref
-                              .read(searchQueryProvider.notifier)
-                              .updateQuery('');
-                          FocusScope.of(
-                            context,
-                          ).unfocus(); // Ocultar teclado al borrar
+                              const SizedBox(height: 15),
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: LinearProgressIndicator(
+                                  value: progresoDecimal,
+                                  backgroundColor: Colors.black12,
+                                  valueColor:
+                                      const AlwaysStoppedAnimation<Color>(
+                                        Colors.white,
+                                      ),
+                                  minHeight: 10,
+                                ),
+                              ),
+                              const SizedBox(height: 6),
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: Text(
+                                  '$cromosUnicos de $total coleccionadas',
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+                              SizedBox(
+                                width: double.infinity,
+                                child: ElevatedButton.icon(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.black87,
+                                    foregroundColor: Colors.amber,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 12,
+                                    ),
+                                  ),
+                                  icon: const Icon(Icons.style),
+                                  label: const Text(
+                                    'Ver Colección Completa',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const GlobalCollectionScreen(),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
+                          );
                         },
-                      )
-                    : null,
-              ),
-            ),
+                      ),
+                    )
+                    // 🔥 ANIMACIÓN DE LA TARJETA DORADA 🔥
+                    .animate()
+                    .scaleXY(
+                      begin: 0.9,
+                      end: 1.0,
+                      duration: 600.ms,
+                      curve: Curves.easeOutBack,
+                    ) // Efecto Pop
+                    .fadeIn(duration: 600.ms)
+                    .shimmer(
+                      delay: 800.ms,
+                      duration: 1000.ms,
+                      color: Colors.white.withOpacity(0.5),
+                      angle: 1.2,
+                    ), // Destello brillante al final
           ),
+
+          // TÍTULO "EQUIPOS" ANIMADO
+          const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 8),
+                child: Text(
+                  'Equipos',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              )
+              .animate()
+              .fadeIn(delay: 200.ms, duration: 400.ms)
+              .slideY(
+                begin: 0.2,
+                end: 0,
+                duration: 400.ms,
+                curve: Curves.easeOut,
+              ),
+
+          // --- BUSCADOR ANIMADO ---
+          Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20.0,
+                  vertical: 4.0,
+                ),
+                child: TextField(
+                  onChanged: (value) =>
+                      ref.read(searchQueryProvider.notifier).updateQuery(value),
+                  style: const TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    hintText: 'Buscar país o equipo...',
+                    hintStyle: TextStyle(color: Colors.grey.shade600),
+                    prefixIcon: const Icon(
+                      Icons.search,
+                      color: Colors.amber,
+                      size: 20,
+                    ),
+                    filled: true,
+                    fillColor: const Color(0xFF1E1E1E),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      borderSide: BorderSide.none,
+                    ),
+                    suffixIcon: searchQuery.isNotEmpty
+                        ? IconButton(
+                            icon: const Icon(
+                              Icons.close,
+                              color: Colors.grey,
+                              size: 18,
+                            ),
+                            onPressed: () {
+                              ref
+                                  .read(searchQueryProvider.notifier)
+                                  .updateQuery('');
+                              FocusScope.of(
+                                context,
+                              ).unfocus(); // Ocultar teclado al borrar
+                            },
+                          )
+                        : null,
+                  ),
+                ),
+              )
+              .animate()
+              .fadeIn(delay: 300.ms, duration: 400.ms)
+              .slideY(
+                begin: 0.2,
+                end: 0,
+                duration: 400.ms,
+                curve: Curves.easeOut,
+              ),
 
           const SizedBox(height: 10),
 
@@ -364,7 +409,8 @@ class HomeScreen extends ConsumerWidget {
                   ),
                   itemCount: filtered.length,
                   itemBuilder: (context, index) =>
-                      _CategoryTile(category: filtered[index]),
+                      // 🔥 Pasamos el 'index' para hacer el efecto cascada
+                      _CategoryTile(category: filtered[index], index: index),
                 );
               },
             ),
@@ -375,149 +421,166 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
-// --- WIDGET DE CADA PAÍS (AHORA CON OPENCONTAINER) ---
+// --- WIDGET DE CADA PAÍS (AHORA CON OPENCONTAINER Y ANIMACIONES DE LISTA) ---
 class _CategoryTile extends ConsumerWidget {
   final dynamic category;
-  const _CategoryTile({required this.category});
+  final int index; // 🔥 Recibimos el índice para escalonar la animación
+
+  const _CategoryTile({required this.category, required this.index});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final stickersAsync = ref.watch(stickersByCategoryProvider(category.id));
     final inventoryAsync = ref.watch(inventoryProvider);
 
+    // Calculamos un pequeño retraso para que entren en cascada.
+    // Usamos clamp para que los elementos que están muy abajo en el scroll no tarden una eternidad en aparecer.
+    final int delayCascada = (index.clamp(0, 10) * 50);
+
     return Padding(
-      // Mantenemos tu margen original aquí para separar las tarjetas
-      padding: const EdgeInsets.only(bottom: 12),
-      child: OpenContainer(
-        transitionType: ContainerTransitionType.fade,
-        transitionDuration: const Duration(milliseconds: 500),
-        // Colores para que combine con el fondo al abrirse y cerrarse
-        openColor: const Color(0xFF121212),
-        closedColor: const Color(
-          0xFF1E1E1E,
-        ), // El color exacto de tu antiguo Card
-        closedElevation: 1,
-        closedShape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16), // Tu mismo borde
-        ),
+          padding: const EdgeInsets.only(bottom: 12),
+          child: OpenContainer(
+            transitionType: ContainerTransitionType.fade,
+            transitionDuration: const Duration(milliseconds: 500),
+            openColor: const Color(0xFF121212),
+            closedColor: const Color(0xFF1E1E1E),
+            closedElevation: 1,
+            closedShape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
 
-        // --- 1. PANTALLA A LA QUE VAMOS ---
-        openBuilder: (context, action) =>
-            CategoryDetailScreen(category: category),
+            // --- 1. PANTALLA A LA QUE VAMOS ---
+            openBuilder: (context, action) =>
+                CategoryDetailScreen(category: category),
 
-        // --- 2. LO QUE SE VE EN LA LISTA ---
-        closedBuilder: (context, action) {
-          // Usamos tu mismo InkWell y padding interno
-          return InkWell(
-            borderRadius: BorderRadius.circular(16),
-            onTap: () {
-              HapticFeedback.lightImpact(); // Feedback en el tap
-              action(); // Ejecuta la animación de expansión
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                children: [
-                  // --- CIRCLE AVATAR DINÁMICO ---
-                  CategoryAvatar(iconUrl: category.iconUrl, text: category.id),
-                  const SizedBox(width: 16),
+            // --- 2. LO QUE SE VE EN LA LISTA ---
+            closedBuilder: (context, action) {
+              return InkWell(
+                borderRadius: BorderRadius.circular(16),
+                onTap: () {
+                  HapticFeedback.lightImpact();
+                  action();
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    children: [
+                      // --- CIRCLE AVATAR DINÁMICO ---
+                      CategoryAvatar(
+                        iconUrl: category.iconUrl,
+                        text: category.id,
+                      ),
+                      const SizedBox(width: 16),
 
-                  // --- DATOS DEL PAÍS Y BARRA DE PROGRESO ---
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          category.name,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 18,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        stickersAsync.when(
-                          loading: () => const LinearProgressIndicator(
-                            color: Colors.amber,
-                            minHeight: 2,
-                          ),
-                          error: (e, s) => const SizedBox.shrink(),
-                          data: (stickers) {
-                            int total = stickers.length;
-                            int unicos = 0;
-                            for (var s in stickers) {
-                              final inv = inventoryAsync.value?[s.id] ?? {};
-                              int sum = 0;
-                              inv.values.forEach((v) => sum += v);
-                              if (sum > 0) unicos++;
-                            }
-                            final double progreso = total == 0
-                                ? 0
-                                : unicos / total;
+                      // --- DATOS DEL PAÍS Y BARRA DE PROGRESO ---
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              category.name,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            stickersAsync.when(
+                              loading: () => const LinearProgressIndicator(
+                                color: Colors.amber,
+                                minHeight: 2,
+                              ),
+                              error: (e, s) => const SizedBox.shrink(),
+                              data: (stickers) {
+                                int total = stickers.length;
+                                int unicos = 0;
+                                for (var s in stickers) {
+                                  final inv = inventoryAsync.value?[s.id] ?? {};
+                                  int sum = 0;
+                                  inv.values.forEach((v) => sum += v);
+                                  if (sum > 0) unicos++;
+                                }
+                                final double progreso = total == 0
+                                    ? 0
+                                    : unicos / total;
 
-                            return Column(
-                              children: [
-                                Row(
+                                return Column(
                                   children: [
-                                    Expanded(
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(4),
-                                        child: LinearProgressIndicator(
-                                          value: progreso,
-                                          backgroundColor: Colors.black45,
-                                          valueColor:
-                                              const AlwaysStoppedAnimation<
-                                                Color
-                                              >(Colors.amber),
-                                          minHeight: 6,
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(
+                                              4,
+                                            ),
+                                            child: LinearProgressIndicator(
+                                              value: progreso,
+                                              backgroundColor: Colors.black45,
+                                              valueColor:
+                                                  const AlwaysStoppedAnimation<
+                                                    Color
+                                                  >(Colors.amber),
+                                              minHeight: 6,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 10),
+                                        Text(
+                                          '${(progreso * 100).toStringAsFixed(0)}%',
+                                          style: const TextStyle(
+                                            color: Colors.white70,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        '$unicos de $total obtenidos',
+                                        style: TextStyle(
+                                          color: Colors.grey.shade500,
+                                          fontSize: 11,
+                                          fontStyle: FontStyle.italic,
                                         ),
                                       ),
                                     ),
-                                    const SizedBox(width: 10),
-                                    Text(
-                                      '${(progreso * 100).toStringAsFixed(0)}%',
-                                      style: const TextStyle(
-                                        color: Colors.white70,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
                                   ],
-                                ),
-                                const SizedBox(height: 4),
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    '$unicos de $total obtenidos',
-                                    style: TextStyle(
-                                      color: Colors.grey.shade500,
-                                      fontSize: 11,
-                                      fontStyle: FontStyle.italic,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            );
-                          },
+                                );
+                              },
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                      const Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.white24,
+                        size: 14,
+                      ),
+                    ],
                   ),
-                  const Icon(
-                    Icons.arrow_forward_ios,
-                    color: Colors.white24,
-                    size: 14,
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
-      ),
-    );
+                ),
+              );
+            },
+          ),
+        )
+        // 🔥 ANIMACIÓN DE CADA ELEMENTO DE LA LISTA 🔥
+        // Fade in de Izquierda a Derecha con efecto cascada (staggered)
+        .animate()
+        .fadeIn(delay: delayCascada.ms, duration: 400.ms, curve: Curves.easeOut)
+        .slideX(
+          begin: -0.2,
+          end: 0,
+          delay: delayCascada.ms,
+          duration: 400.ms,
+          curve: Curves.easeOut,
+        );
   }
 
-  // Widget de respaldo si no hay URL para la bandera/escudo (Mantenido intacto)
+  // Widget de respaldo si no hay URL para la bandera/escudo
   Widget _buildFallback(String id) {
     return Center(
       child: Text(
