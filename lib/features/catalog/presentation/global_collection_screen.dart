@@ -3,6 +3,8 @@
 import 'package:album_26_sticker_collector/features/catalog/data/categories_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/category.model.dart';
+import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/sticker_filter_search.dart';
+import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/sticker_grid.dart';
 import 'package:album_26_sticker_collector/features/catalog/utils/sticker_filters.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:flutter/material.dart';
@@ -31,89 +33,7 @@ class GlobalCollectionScreen extends ConsumerWidget {
       ),
       body: Column(
         children: [
-          // FILTROS (Reutilizados)
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 8.0,
-              horizontal: 16.0,
-            ),
-            child: SizedBox(
-              width: double.infinity,
-              child: SegmentedButton<FilterOption>(
-                style: SegmentedButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                  selectedBackgroundColor: Colors.amber.withOpacity(0.2),
-                  selectedForegroundColor: Colors.amber,
-                ),
-                segments: const [
-                  ButtonSegment(
-                    value: FilterOption.todos,
-                    label: Text('Todos'),
-                  ),
-                  ButtonSegment(
-                    value: FilterOption.faltantes,
-                    label: Text('Faltantes'),
-                  ),
-                  ButtonSegment(
-                    value: FilterOption.repetidas,
-                    label: Text('Repetidas'),
-                  ),
-                ],
-                selected: {currentFilter},
-                onSelectionChanged: (set) =>
-                    ref.read(filterProvider.notifier).changeFilter(set.first),
-              ),
-            ),
-          ),
-
-          // BUSCADOR
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16.0,
-              vertical: 8.0,
-            ),
-            child: TextField(
-              onChanged: (val) =>
-                  ref.read(stickerSearchProvider.notifier).updateQuery(val),
-              style: const TextStyle(fontSize: 14, color: Colors.white),
-              decoration: InputDecoration(
-                hintText: 'Buscar número...',
-                hintStyle: TextStyle(color: Colors.grey.shade600),
-                prefixIcon: const Icon(
-                  Icons.search,
-                  size: 20,
-                  color: Colors.amber,
-                ),
-                filled: true,
-                fillColor: const Color(0xFF1E1E1E),
-                contentPadding: const EdgeInsets.symmetric(
-                  vertical: 0,
-                  horizontal: 16,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide.none,
-                ),
-                suffixIcon: searchQuery.isNotEmpty
-                    ? IconButton(
-                        icon: const Icon(
-                          Icons.close,
-                          size: 18,
-                          color: Colors.grey,
-                        ),
-                        onPressed: () {
-                          ref
-                              .read(stickerSearchProvider.notifier)
-                              .updateQuery('');
-                          FocusScope.of(context).unfocus();
-                        },
-                      )
-                    : null,
-              ),
-            ),
-          ),
-
-          // LISTA GLOBAL
+          StickerFilterSearch(ref: ref),
           Expanded(
             child: categoriesAsync.when(
               loading: () => const Center(
@@ -195,20 +115,11 @@ class _CategoryStickerSection extends ConsumerWidget {
               padding: const EdgeInsets.all(16.0),
               child: Divider(color: Colors.grey.shade700),
             ),
-            GridView.builder(
-              shrinkWrap: true, // Vital para usar GridView dentro de ListView
-              physics:
-                  const NeverScrollableScrollPhysics(), // Evita scroll doble
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                childAspectRatio: 0.70,
-              ),
-              itemCount: filteredStickers.length,
-              itemBuilder: (context, index) =>
-                  StickerCard(sticker: filteredStickers[index]),
+            StickerGrid(
+              category: category,
+              ref: ref,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
             ),
           ],
         );

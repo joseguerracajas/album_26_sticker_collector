@@ -14,7 +14,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class StickerGrid extends StatelessWidget {
   final Category category;
   final WidgetRef ref;
-  const StickerGrid({super.key, required this.category, required this.ref});
+  final bool shrinkWrap;
+  final ScrollPhysics? physics;
+  const StickerGrid({
+    super.key,
+    required this.category,
+    required this.ref,
+    this.shrinkWrap = false,
+    this.physics,
+  });
 
   Future<void> _confirmarBorrado(
     BuildContext context,
@@ -254,67 +262,69 @@ class StickerGrid extends StatelessWidget {
       category: category,
     );
 
-    return Expanded(
-      child: PageTransitionSwitcher(
-        duration: const Duration(
-          milliseconds: 400,
-        ), // Bajamos a 400ms para que sea más ágil
-        transitionBuilder: (child, primaryAnimation, secondaryAnimation) {
-          return FadeThroughTransition(
-            animation: primaryAnimation,
-            secondaryAnimation: secondaryAnimation,
-            fillColor: Colors.transparent,
-            child: child,
-          );
-        },
-        child: filteredStickers.isEmpty
-            ? Center(
-                key: const ValueKey('empty'),
-                child: const Text(
-                  'Sin resultados.',
-                  style: TextStyle(color: Colors.grey),
-                ),
-              )
-            : GridView.builder(
-                key: ValueKey(currentFilter),
-                padding: const EdgeInsets.all(16),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 0.70,
-                ),
-                itemCount: filteredStickers.length,
-                itemBuilder: (context, index) {
-                  final sticker = filteredStickers[index];
-                  final miInv = inventoryAsync.value?[sticker.id] ?? {};
-                  final total = miInv.values.fold(0, (sum, val) => sum + val);
-                  final tieneEsp = miInv.keys.any(
-                    (v) => v != 'normal' && miInv[v]! > 0,
-                  );
-
-                  return AnimatedStickerCard(
-                    key: ValueKey(sticker.id),
-                    sticker: sticker,
-                    totalCromos: total,
-                    tieneEspecial: tieneEsp,
-                    onTap: () {
-                      if (total == 0) {
-                        ref
-                            .read(inventoryProvider.notifier)
-                            .toggleNormalSticker(sticker.id);
-                      } else if (total == 1 && (miInv['normal'] ?? 0) == 1) {
-                        _confirmarBorrado(context, ref, sticker);
-                      } else {
-                        _mostrarOpcionesAvanzadas(context, ref, sticker);
-                      }
-                    },
-                    onLongPress: () =>
-                        _mostrarOpcionesAvanzadas(context, ref, sticker),
-                  );
-                },
+    final gridWidget = PageTransitionSwitcher(
+      duration: const Duration(
+        milliseconds: 400,
+      ), // Bajamos a 400ms para que sea más ágil
+      transitionBuilder: (child, primaryAnimation, secondaryAnimation) {
+        return FadeThroughTransition(
+          animation: primaryAnimation,
+          secondaryAnimation: secondaryAnimation,
+          fillColor: Colors.transparent,
+          child: child,
+        );
+      },
+      child: filteredStickers.isEmpty
+          ? Center(
+              key: const ValueKey('empty'),
+              child: const Text(
+                'Sin resultados.',
+                style: TextStyle(color: Colors.grey),
               ),
-      ),
+            )
+          : GridView.builder(
+              key: ValueKey(currentFilter),
+              shrinkWrap: shrinkWrap!,
+              physics: physics,
+              padding: const EdgeInsets.all(16),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                childAspectRatio: 0.70,
+              ),
+              itemCount: filteredStickers.length,
+              itemBuilder: (context, index) {
+                final sticker = filteredStickers[index];
+                final miInv = inventoryAsync.value?[sticker.id] ?? {};
+                final total = miInv.values.fold(0, (sum, val) => sum + val);
+                final tieneEsp = miInv.keys.any(
+                  (v) => v != 'normal' && miInv[v]! > 0,
+                );
+
+                return AnimatedStickerCard(
+                  key: ValueKey(sticker.id),
+                  sticker: sticker,
+                  totalCromos: total,
+                  tieneEspecial: tieneEsp,
+                  onTap: () {
+                    if (total == 0) {
+                      ref
+                          .read(inventoryProvider.notifier)
+                          .toggleNormalSticker(sticker.id);
+                    } else if (total == 1 && (miInv['normal'] ?? 0) == 1) {
+                      _confirmarBorrado(context, ref, sticker);
+                    } else {
+                      _mostrarOpcionesAvanzadas(context, ref, sticker);
+                    }
+                  },
+                  onLongPress: () =>
+                      _mostrarOpcionesAvanzadas(context, ref, sticker),
+                );
+              },
+            ),
     );
+
+    return shrinkWrap ? gridWidget : Expanded(child: gridWidget);
   }
 }
