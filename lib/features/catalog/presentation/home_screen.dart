@@ -30,6 +30,8 @@ final searchQueryProvider = NotifierProvider<SearchQueryNotifier, String>(
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
+  // on init
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final totalCromosAsync = ref.watch(totalStickersCountProvider);
