@@ -2,7 +2,7 @@
 
 import 'package:album_26_sticker_collector/features/catalog/domain/category.model.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/sticker.model.dart';
-import 'package:album_26_sticker_collector/features/catalog/presentation/category_detail_screen.dart';
+import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/sticker_filter_search.dart';
 
 /// Función pura para filtrar la lista de cromos según el estado y la búsqueda
 List<Sticker> aplicarFiltrosCromos({
