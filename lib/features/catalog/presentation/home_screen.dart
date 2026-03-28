@@ -4,18 +4,18 @@ import 'package:album_26_sticker_collector/features/auth/presentation/profile_sc
 import 'package:album_26_sticker_collector/features/catalog/data/categories_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/global_collection_screen.dart';
+import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/animated_expand_container.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/category_avatar.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/share_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/stats_provider.dart';
-import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_animate/flutter_animate.dart'; // 🔥 IMPORTACIÓN ESTRELLA
+import 'package:flutter_animate/flutter_animate.dart';
 import 'category_detail_screen.dart';
 
-// --- ESTADO DEL BUSCADOR (RIVERPOD 2.0 Seguro) ---
+// --- ESTADO DEL BUSCADOR ---
 class SearchQueryNotifier extends Notifier<String> {
   @override
   String build() => '';
@@ -78,7 +78,6 @@ class HomeScreen extends ConsumerWidget {
                 );
               }
 
-              // Menú desplegable con las 3 opciones
               return PopupMenuButton<ShareType>(
                 icon: const Icon(Icons.share, color: Colors.amber),
                 color: const Color(0xFF1E1E1E),
@@ -238,33 +237,43 @@ class HomeScreen extends ConsumerWidget {
                                 ),
                               ),
                               const SizedBox(height: 16),
+
+                              // 🔥 BOTÓN REUTILIZABLE CON OPEN CONTAINER 🔥
                               SizedBox(
                                 width: double.infinity,
-                                child: ElevatedButton.icon(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.black87,
-                                    foregroundColor: Colors.amber,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 12,
-                                    ),
-                                  ),
-                                  icon: const Icon(Icons.style),
-                                  label: const Text(
-                                    'Ver Colección Completa',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const GlobalCollectionScreen(),
+                                child: AnimatedExpandContainer(
+                                  closedColor: Colors
+                                      .black87, // Color del botón original
+                                  borderRadius: 12.0,
+                                  openBuilder: (context, close) =>
+                                      const GlobalCollectionScreen(),
+                                  closedBuilder: (context, open) {
+                                    return ElevatedButton.icon(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors
+                                            .transparent, // Transparente para usar el fondo del container
+                                        shadowColor: Colors.transparent,
+                                        foregroundColor: Colors.amber,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
+                                        ),
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 12,
+                                        ),
                                       ),
+                                      icon: const Icon(Icons.style),
+                                      label: const Text(
+                                        'Ver Colección Completa',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        HapticFeedback.lightImpact();
+                                        open(); // Dispara la animación
+                                      },
                                     );
                                   },
                                 ),
@@ -274,21 +283,21 @@ class HomeScreen extends ConsumerWidget {
                         },
                       ),
                     )
-                    // 🔥 ANIMACIÓN DE LA TARJETA DORADA 🔥
+                    // ANIMACIÓN DE LA TARJETA DORADA
                     .animate()
                     .scaleXY(
                       begin: 0.9,
                       end: 1.0,
                       duration: 600.ms,
                       curve: Curves.easeOutBack,
-                    ) // Efecto Pop
+                    )
                     .fadeIn(duration: 600.ms)
                     .shimmer(
                       delay: 800.ms,
                       duration: 1000.ms,
                       color: Colors.white.withOpacity(0.5),
                       angle: 1.2,
-                    ), // Destello brillante al final
+                    ),
           ),
 
           // TÍTULO "EQUIPOS" ANIMADO
@@ -348,9 +357,7 @@ class HomeScreen extends ConsumerWidget {
                               ref
                                   .read(searchQueryProvider.notifier)
                                   .updateQuery('');
-                              FocusScope.of(
-                                context,
-                              ).unfocus(); // Ocultar teclado al borrar
+                              FocusScope.of(context).unfocus();
                             },
                           )
                         : null,
@@ -409,7 +416,6 @@ class HomeScreen extends ConsumerWidget {
                   ),
                   itemCount: filtered.length,
                   itemBuilder: (context, index) =>
-                      // 🔥 Pasamos el 'index' para hacer el efecto cascada
                       _CategoryTile(category: filtered[index], index: index),
                 );
               },
@@ -421,10 +427,10 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
-// --- WIDGET DE CADA PAÍS (AHORA CON OPENCONTAINER Y ANIMACIONES DE LISTA) ---
+// --- WIDGET DE CADA PAÍS ---
 class _CategoryTile extends ConsumerWidget {
   final dynamic category;
-  final int index; // 🔥 Recibimos el índice para escalonar la animación
+  final int index;
 
   const _CategoryTile({required this.category, required this.index});
 
@@ -433,46 +439,30 @@ class _CategoryTile extends ConsumerWidget {
     final stickersAsync = ref.watch(stickersByCategoryProvider(category.id));
     final inventoryAsync = ref.watch(inventoryProvider);
 
-    // Calculamos un pequeño retraso para que entren en cascada.
-    // Usamos clamp para que los elementos que están muy abajo en el scroll no tarden una eternidad en aparecer.
     final int delayCascada = (index.clamp(0, 10) * 50);
 
     return Padding(
           padding: const EdgeInsets.only(bottom: 12),
-          child: OpenContainer(
-            transitionType: ContainerTransitionType.fade,
-            transitionDuration: const Duration(milliseconds: 500),
-            openColor: const Color(0xFF121212),
-            closedColor: const Color(0xFF1E1E1E),
-            closedElevation: 1,
-            closedShape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-
-            // --- 1. PANTALLA A LA QUE VAMOS ---
-            openBuilder: (context, action) =>
+          // 🔥 TARJETA REUTILIZABLE CON OPEN CONTAINER 🔥
+          child: AnimatedExpandContainer(
+            openBuilder: (context, close) =>
                 CategoryDetailScreen(category: category),
-
-            // --- 2. LO QUE SE VE EN LA LISTA ---
-            closedBuilder: (context, action) {
+            closedBuilder: (context, open) {
               return InkWell(
                 borderRadius: BorderRadius.circular(16),
                 onTap: () {
                   HapticFeedback.lightImpact();
-                  action();
+                  open(); // Dispara la animación de expansión
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Row(
                     children: [
-                      // --- CIRCLE AVATAR DINÁMICO ---
                       CategoryAvatar(
                         iconUrl: category.iconUrl,
                         text: category.id,
                       ),
                       const SizedBox(width: 16),
-
-                      // --- DATOS DEL PAÍS Y BARRA DE PROGRESO ---
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -567,8 +557,7 @@ class _CategoryTile extends ConsumerWidget {
             },
           ),
         )
-        // 🔥 ANIMACIÓN DE CADA ELEMENTO DE LA LISTA 🔥
-        // Fade in de Izquierda a Derecha con efecto cascada (staggered)
+        // 🔥 ANIMACIÓN CASCADA 🔥
         .animate()
         .fadeIn(delay: delayCascada.ms, duration: 400.ms, curve: Curves.easeOut)
         .slideX(
@@ -578,19 +567,5 @@ class _CategoryTile extends ConsumerWidget {
           duration: 400.ms,
           curve: Curves.easeOut,
         );
-  }
-
-  // Widget de respaldo si no hay URL para la bandera/escudo
-  Widget _buildFallback(String id) {
-    return Center(
-      child: Text(
-        id.substring(0, id.length > 2 ? 2 : id.length).toUpperCase(),
-        style: const TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 16,
-        ),
-      ),
-    );
   }
 }
