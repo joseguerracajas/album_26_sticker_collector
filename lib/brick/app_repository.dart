@@ -60,4 +60,13 @@ class AppRepository extends OfflineFirstWithSupabaseRepository {
     // 2. ¡MÁXIMA IMPORTANCIA!: Inicializar para correr migraciones
     await _singleton!.initialize();
   }
+
+  void startSyncQueue() {
+    offlineRequestQueue.start();
+  }
+
+  // 🔥 2. Método público para apagar la cola
+  void stopSyncQueue() {
+    offlineRequestQueue.stop();
+  }
 }

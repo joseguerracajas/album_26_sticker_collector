@@ -11,6 +11,7 @@ import 'inventory_provider.dart';
 enum ShareType { todos, faltantes, repetidos }
 
 class ShareNotifier extends Notifier<bool> {
+  final _repo = AppRepository();
   @override
   bool build() => false;
 
@@ -19,8 +20,8 @@ class ShareNotifier extends Notifier<bool> {
     state = true;
     try {
       // 1. Pedimos a nuestro Gerente ambas listas (¡Saldrán de la RAM o SQLite al instante!)
-      final allStickers = await AppRepository().get<Sticker>();
-      final allCategories = await AppRepository().get<Category>();
+      final allStickers = await _repo.get<Sticker>();
+      final allCategories = await _repo.get<Category>();
 
       // 2. Creamos un "Diccionario" de categorías para buscar a la velocidad de la luz
       // Esto hace que buscar una categoría por su ID sea instantáneo (O(1))

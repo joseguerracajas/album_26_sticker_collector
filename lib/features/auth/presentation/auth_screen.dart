@@ -1,5 +1,4 @@
 import 'package:album_26_sticker_collector/features/auth/data/auth_provider.dart';
-import 'package:album_26_sticker_collector/features/catalog/presentation/category_detail_screen.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

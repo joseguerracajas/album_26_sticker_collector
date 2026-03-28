@@ -14,12 +14,13 @@ final inventoryProvider =
     });
 
 class InventoryNotifier extends AsyncNotifier<InventoryMap> {
+  final _repo = AppRepository();
   @override
   Future<InventoryMap> build() async {
     final userId = supabase.auth.currentUser!.id;
 
     final query = Query(where: [Where.exact('userId', userId)]);
-    final inventarioLocal = await AppRepository().get<Inventory>(query: query);
+    final inventarioLocal = await _repo.get<Inventory>(query: query);
 
     final InventoryMap inventoryMap = {};
 
@@ -67,11 +68,11 @@ class InventoryNotifier extends AsyncNotifier<InventoryMap> {
           Where.exact('variantId', 'normal'),
         ],
       );
-      final registroPrevio = await AppRepository().get<Inventory>(query: query);
+      final registroPrevio = await _repo.get<Inventory>(query: query);
 
       if (isAdding) {
         if (registroPrevio.isNotEmpty) {
-          await AppRepository().delete<Inventory>(registroPrevio.first);
+          await _repo.delete<Inventory>(registroPrevio.first);
         }
 
         final nuevoInventario = Inventory(
@@ -83,10 +84,10 @@ class InventoryNotifier extends AsyncNotifier<InventoryMap> {
           lastUpdated: DateTime.now(),
         );
 
-        await AppRepository().upsert<Inventory>(nuevoInventario);
+        await _repo.upsert<Inventory>(nuevoInventario);
       } else {
         if (registroPrevio.isNotEmpty) {
-          await AppRepository().delete<Inventory>(registroPrevio.first);
+          await _repo.delete<Inventory>(registroPrevio.first);
         }
       }
     } catch (e) {
@@ -132,11 +133,11 @@ class InventoryNotifier extends AsyncNotifier<InventoryMap> {
         ],
       );
 
-      final registroPrevio = await AppRepository().get<Inventory>(query: query);
+      final registroPrevio = await _repo.get<Inventory>(query: query);
 
       if (newQty == 0) {
         if (registroPrevio.isNotEmpty) {
-          await AppRepository().delete<Inventory>(registroPrevio.first);
+          await _repo.delete<Inventory>(registroPrevio.first);
         }
       } else {
         // Reutiliza el id existente o genera uno nuevo
@@ -155,10 +156,10 @@ class InventoryNotifier extends AsyncNotifier<InventoryMap> {
 
         // Si hay registro previo, bórralo primero
         if (registroPrevio.isNotEmpty) {
-          await AppRepository().delete<Inventory>(registroPrevio.first);
+          await _repo.delete<Inventory>(registroPrevio.first);
         }
 
-        await AppRepository().upsert<Inventory>(nuevoInventario);
+        await _repo.upsert<Inventory>(nuevoInventario);
       }
     } catch (e) {
       print('Error en base local (SQLite lleno/corrupto): $e');
