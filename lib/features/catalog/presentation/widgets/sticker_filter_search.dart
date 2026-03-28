@@ -32,7 +32,7 @@ class StickerFilterSearch extends StatelessWidget {
             child: SegmentedButton<FilterOption>(
               style: SegmentedButton.styleFrom(
                 backgroundColor: Colors.transparent,
-                selectedBackgroundColor: Colors.amber.withOpacity(0.2),
+                selectedBackgroundColor: Colors.amber.withValues(alpha: 0.2),
                 selectedForegroundColor: Colors.amber,
               ),
               segments: const [

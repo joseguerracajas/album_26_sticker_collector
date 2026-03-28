@@ -98,7 +98,7 @@ packages:
     source: hosted
     version: "4.1.0"
   brick_core:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: brick_core
       sha256: d73a7946bf2e5cf60337d456f3ec806500f4e96c446a15fbe022ed0431a0be96
@@ -114,7 +114,7 @@ packages:
     source: hosted
     version: "4.1.0"
   brick_offline_first:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: brick_offline_first
       sha256: acafff734c8c193d5ff99df077cdfc7dba523067a662461e5e28facf42d42fb2

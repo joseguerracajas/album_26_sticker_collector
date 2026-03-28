@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'category_detail_screen.dart'; // Importamos para usar los Notifiers de Filtro y Búsqueda
 import 'widgets/category_avatar.dart';
-import 'widgets/sticker_card.dart';
 
 class GlobalCollectionScreen extends ConsumerWidget {
   const GlobalCollectionScreen({super.key});
@@ -19,8 +18,6 @@ class GlobalCollectionScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final categoriesAsync = ref.watch(categoriesProvider);
-    final currentFilter = ref.watch(filterProvider);
-    final searchQuery = ref.watch(stickerSearchProvider);
 
     return Scaffold(
       backgroundColor: const Color(0xFF121212),

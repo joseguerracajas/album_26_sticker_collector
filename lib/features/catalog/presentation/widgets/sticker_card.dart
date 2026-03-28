@@ -110,10 +110,12 @@ class StickerCard extends ConsumerWidget {
                                   final cantidadActual =
                                       inventarioTemporal[variantId] ?? 0;
                                   Color iconColor = Colors.white;
-                                  if (variantId == 'legend')
+                                  if (variantId == 'legend') {
                                     iconColor = Colors.amber;
-                                  if (variantId == 'gold')
+                                  }
+                                  if (variantId == 'gold') {
                                     iconColor = const Color(0xFFFFD700);
+                                  }
 
                                   return Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -245,7 +247,9 @@ class StickerCard extends ConsumerWidget {
     final normales = miInventario['normal'] ?? 0;
 
     int totalCromos = 0;
-    miInventario.values.forEach((cantidad) => totalCromos += cantidad);
+    for (var cantidad in miInventario.values) {
+      totalCromos += cantidad;
+    }
 
     final tieneEspecial = miInventario.keys.any(
       (variante) => variante != 'normal' && miInventario[variante]! > 0,
@@ -317,7 +321,7 @@ class StickerCard extends ConsumerWidget {
                   child: Container(
                     padding: const EdgeInsets.all(6),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.3),
+                      color: Colors.white.withValues(alpha: 0.3),
                       shape: BoxShape.circle,
                     ),
                     child: Text(

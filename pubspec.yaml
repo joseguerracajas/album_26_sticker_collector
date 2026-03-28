@@ -8,6 +8,8 @@ environment:
 
 dependencies:
   animations: ^2.1.1
+  brick_core: ^2.1.0
+  brick_offline_first: ^4.0.0
   brick_offline_first_with_supabase: ^2.1.0
   brick_sqlite: ^4.1.0+1
   brick_supabase: ^2.1.1

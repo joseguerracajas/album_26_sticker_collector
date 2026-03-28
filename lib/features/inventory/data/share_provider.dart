@@ -103,7 +103,7 @@ class ShareNotifier extends Notifier<bool> {
 
       mensaje += "\n¿Cambiamos? 👀🔥";
 
-      await Share.share(mensaje);
+      await SharePlus.instance.share(ShareParams(text: mensaje));
     } catch (e) {
       rethrow;
     } finally {

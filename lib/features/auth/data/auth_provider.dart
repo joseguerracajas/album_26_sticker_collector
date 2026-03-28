@@ -1,6 +1,6 @@
 // Archivo: lib/features/auth/presentation/auth_provider.dart
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:brick_offline_first/brick_offline_first.dart'; // Para la política
+import 'package:brick_offline_first/brick_offline_first.dart';
 import 'package:album_26_sticker_collector/brick/app_repository.dart';
 import 'package:album_26_sticker_collector/features/inventory/domain/inventory.model.dart';
 import 'package:album_26_sticker_collector/main.dart'; // Tu instancia de supabase

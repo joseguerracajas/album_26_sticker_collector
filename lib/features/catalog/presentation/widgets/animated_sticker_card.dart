@@ -65,7 +65,7 @@ class _AnimatedStickerCardState extends State<AnimatedStickerCard>
       return anim
           .shimmer(
             duration: 200.ms,
-            color: Colors.white.withOpacity(0.7),
+            color: Colors.white.withValues(alpha: 0.7),
             angle: 1.2,
           )
           .shake(
@@ -141,7 +141,7 @@ class _AnimatedStickerCardState extends State<AnimatedStickerCard>
                   child: Container(
                     padding: const EdgeInsets.all(6),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.3),
+                      color: Colors.white.withValues(alpha: 0.3),
                       shape: BoxShape.circle,
                     ),
                     child: Text(

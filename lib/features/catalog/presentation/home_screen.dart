@@ -159,7 +159,7 @@ class HomeScreen extends ConsumerWidget {
                         borderRadius: BorderRadius.circular(24),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.amber.withOpacity(0.3),
+                            color: Colors.amber.withValues(alpha: 0.3),
                             blurRadius: 15,
                             offset: const Offset(0, 8),
                           ),
@@ -295,7 +295,7 @@ class HomeScreen extends ConsumerWidget {
                     .shimmer(
                       delay: 800.ms,
                       duration: 1000.ms,
-                      color: Colors.white.withOpacity(0.5),
+                      color: Colors.white.withValues(alpha: 0.5),
                       angle: 1.2,
                     ),
           ),
@@ -488,7 +488,9 @@ class _CategoryTile extends ConsumerWidget {
                                 for (var s in stickers) {
                                   final inv = inventoryAsync.value?[s.id] ?? {};
                                   int sum = 0;
-                                  inv.values.forEach((v) => sum += v);
+                                  for (var v in inv.values) {
+                                    sum += v;
+                                  }
                                   if (sum > 0) unicos++;
                                 }
                                 final double progreso = total == 0

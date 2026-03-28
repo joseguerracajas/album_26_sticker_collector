@@ -28,7 +28,6 @@ List<Sticker> aplicarFiltrosCromos({
         matchesStatus = totalCromos > 1;
         break;
       case FilterOption.todos:
-      default:
         matchesStatus = true;
     }
 

@@ -119,10 +119,12 @@ class StickerGrid extends StatelessWidget {
                                       inventarioTemporal[variantId] ?? 0;
 
                                   Color iconColor = Colors.white;
-                                  if (variantId == 'legend')
+                                  if (variantId == 'legend') {
                                     iconColor = Colors.amber;
-                                  if (variantId == 'gold')
+                                  }
+                                  if (variantId == 'gold') {
                                     iconColor = const Color(0xFFFFD700);
+                                  }
 
                                   return Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -284,7 +286,7 @@ class StickerGrid extends StatelessWidget {
             )
           : GridView.builder(
               key: ValueKey(currentFilter),
-              shrinkWrap: shrinkWrap!,
+              shrinkWrap: shrinkWrap,
               physics: physics,
               padding: const EdgeInsets.all(16),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
