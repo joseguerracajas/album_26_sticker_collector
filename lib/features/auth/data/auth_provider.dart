@@ -1,6 +1,7 @@
 // Archivo: lib/features/auth/data/auth_provider.dart
 import 'dart:convert';
 import 'package:album_26_sticker_collector/brick/app_repository.dart';
+import 'package:album_26_sticker_collector/features/catalog/data/sync_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:crypto/crypto.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -96,9 +97,20 @@ class AuthController {
   }
 
   Future<void> _iniciarSincronizacion() async {
-    _repo.memoryCacheProvider.reset();
-    _repo.startSyncQueue();
-    _ref.invalidate(inventoryProvider);
+    try {
+      final user = supabase.auth.currentUser;
+      if (user != null) {
+        _repo.memoryCacheProvider.reset();
+        await _ref
+            .read(syncServiceProvider)
+            .sincronizacionFisicaEspejo(user.id);
+      }
+
+      _repo.startSyncQueue();
+      _ref.invalidate(inventoryProvider); // Obliga a la UI a refrescarse
+    } catch (e) {
+      print('Aviso: Error en sincronización inicial: $e');
+    }
   }
 
   // --- CIERRE DE SESIÓN ---
