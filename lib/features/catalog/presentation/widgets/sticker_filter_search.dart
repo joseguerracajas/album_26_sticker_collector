@@ -15,12 +15,21 @@ final filterProvider = NotifierProvider<FilterNotifier, FilterOption>(
   FilterNotifier.new,
 );
 
-class StickerFilterSearch extends StatelessWidget {
-  final WidgetRef ref;
-  const StickerFilterSearch({super.key, required this.ref});
+class StickerSearchNotifier extends Notifier<String> {
+  @override
+  String build() => '';
+  void updateQuery(String query) => state = query;
+}
+
+final stickerSearchProvider = NotifierProvider<StickerSearchNotifier, String>(
+  StickerSearchNotifier.new,
+);
+
+class StickerFilterSearch extends ConsumerWidget {
+  const StickerFilterSearch({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final currentFilter = ref.watch(filterProvider);
 
     return Column(

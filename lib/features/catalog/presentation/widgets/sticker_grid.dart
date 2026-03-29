@@ -11,15 +11,13 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class StickerGrid extends StatelessWidget {
+class StickerGrid extends ConsumerWidget {
   final Category category;
-  final WidgetRef ref;
   final bool shrinkWrap;
   final ScrollPhysics? physics;
   const StickerGrid({
     super.key,
     required this.category,
-    required this.ref,
     this.shrinkWrap = false,
     this.physics,
   });
@@ -247,7 +245,7 @@ class StickerGrid extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final stickersAsync = ref.watch(stickersByCategoryProvider(category.id));
     final inventoryAsync = ref.watch(inventoryProvider);
     final currentFilter = ref.watch(filterProvider);

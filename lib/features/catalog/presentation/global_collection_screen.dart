@@ -2,6 +2,7 @@
 
 import 'package:album_26_sticker_collector/features/catalog/data/categories_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
+import 'package:album_26_sticker_collector/features/catalog/data/sync_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/category.model.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/sticker_filter_search.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/sticker_grid.dart';
@@ -28,38 +29,51 @@ class GlobalCollectionScreen extends ConsumerWidget {
         ),
         backgroundColor: Colors.transparent,
       ),
-      body: Column(
-        children: [
-          StickerFilterSearch(ref: ref),
-          Expanded(
-            child: categoriesAsync.when(
-              loading: () => const Center(
-                child: CircularProgressIndicator(color: Colors.amber),
-              ),
-              error: (e, s) => Center(
-                child: Text(
-                  'Error: $e',
-                  style: const TextStyle(color: Colors.red),
+      body: RefreshIndicator(
+        color: Colors.amber,
+        backgroundColor: const Color(0xFF1E1E1E),
+        onRefresh: ref.read(syncServiceProvider).refreshAll,
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: Column(
+            children: [
+              // 1. Quita el parámetro ref de aquí (Haz que StickerFilterSearch sea ConsumerWidget)
+              const StickerFilterSearch(),
+
+              // 2. ELIMINAMOS EL WIDGET EXPANDED AQUÍ
+              categoriesAsync.when(
+                loading: () => const Center(
+                  child: CircularProgressIndicator(color: Colors.amber),
                 ),
+                error: (e, s) => Center(
+                  child: Text(
+                    'Error: $e',
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                ),
+                data: (categorias) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    padding: const EdgeInsets.only(bottom: 40),
+                    itemCount: categorias.length,
+                    itemBuilder: (context, index) {
+                      return _CategoryStickerSection(
+                        category: categorias[index],
+                      );
+                    },
+                  );
+                },
               ),
-              data: (categorias) {
-                return ListView.builder(
-                  padding: const EdgeInsets.only(bottom: 40),
-                  itemCount: categorias.length,
-                  itemBuilder: (context, index) {
-                    return _CategoryStickerSection(category: categorias[index]);
-                  },
-                );
-              },
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
 }
 
-// Widget Interno para cargar cada sección sin colapsar el rendimiento
+// Widget Interno
 class _CategoryStickerSection extends ConsumerWidget {
   final Category category;
   const _CategoryStickerSection({required this.category});
@@ -83,7 +97,6 @@ class _CategoryStickerSection extends ConsumerWidget {
           category: category,
         );
 
-        // Si la categoría no tiene cromos que coincidan con el filtro, la ocultamos entera
         if (filteredStickers.isEmpty) return const SizedBox.shrink();
 
         return Column(
@@ -115,11 +128,11 @@ class _CategoryStickerSection extends ConsumerWidget {
               padding: const EdgeInsets.all(16.0),
               child: Divider(color: Colors.grey.shade700),
             ),
+            // 3. Quita el ref de aquí. (Considera pasar 'filteredStickers' si tu Grid lo soporta)
             StickerGrid(
               category: category,
-              ref: ref,
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
             ),
           ],
         );

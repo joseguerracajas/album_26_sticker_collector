@@ -40,6 +40,12 @@ class ProfileScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // Obtenemos el usuario actual de Supabase para mostrar su correo
     final user = supabase.auth.currentUser;
+    final nombreUsuario =
+        (user?.userMetadata?['full_name'] ??
+                user?.userMetadata?['name'] ??
+                user?.email?.split('@').first ??
+                'Usuario desconocido')
+            .toString();
 
     return Scaffold(
       backgroundColor: const Color(0xFF121212),
@@ -67,7 +73,7 @@ class ProfileScreen extends ConsumerWidget {
 
             // Correo del usuario
             Text(
-              user?.email ?? 'Usuario desconocido',
+              nombreUsuario,
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,
