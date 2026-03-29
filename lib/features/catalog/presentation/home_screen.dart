@@ -3,6 +3,7 @@
 import 'package:album_26_sticker_collector/features/auth/presentation/profile_screen.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/categories_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
+import 'package:album_26_sticker_collector/features/catalog/data/sync_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/global_collection_screen.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/animated_expand_container.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/category_avatar.dart';
@@ -29,17 +30,6 @@ final searchQueryProvider = NotifierProvider<SearchQueryNotifier, String>(
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
-
-  Future<void> _onRefresh(WidgetRef ref) async {
-    // Invalidamos familias cacheadas para forzar recomputo en los tiles.
-    ref.invalidate(stickersByCategoryProvider);
-
-    await Future.wait([
-      ref.refresh(categoriesProvider.future),
-      ref.refresh(totalStickersCountProvider.future),
-      ref.refresh(inventoryProvider.future),
-    ]);
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -149,274 +139,269 @@ class HomeScreen extends ConsumerWidget {
           ),
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // --- TARJETA DORADA GLOBAL ANIMADA ---
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-            child:
-                Container(
-                      padding: const EdgeInsets.all(24),
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            Colors.amber.shade400,
-                            Colors.amber.shade800,
-                          ],
-                        ),
-                        borderRadius: BorderRadius.circular(24),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.amber.withValues(alpha: 0.3),
-                            blurRadius: 15,
-                            offset: const Offset(0, 8),
+      body: RefreshIndicator(
+        color: Colors.amber,
+        backgroundColor: const Color(0xFF1E1E1E),
+        onRefresh: ref.read(syncServiceProvider).refreshAll,
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // --- TARJETA DORADA GLOBAL ANIMADA ---
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20.0,
+                  vertical: 10,
+                ),
+                child:
+                    Container(
+                          padding: const EdgeInsets.all(24),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                Colors.amber.shade400,
+                                Colors.amber.shade800,
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(24),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.amber.withValues(alpha: 0.3),
+                                blurRadius: 15,
+                                offset: const Offset(0, 8),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      child: totalCromosAsync.when(
-                        loading: () => const Center(
-                          child: CircularProgressIndicator(color: Colors.black),
-                        ),
-                        error: (e, s) => const Text(
-                          'Error',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        data: (total) {
-                          final porcentaje = total == 0
-                              ? 0.0
-                              : (cromosUnicos / total) * 100;
-                          final progresoDecimal = total == 0
-                              ? 0.0
-                              : (cromosUnicos / total);
+                          child: totalCromosAsync.when(
+                            loading: () => const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.black,
+                              ),
+                            ),
+                            error: (e, s) => const Text(
+                              'Error',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            data: (total) {
+                              final porcentaje = total == 0
+                                  ? 0.0
+                                  : (cromosUnicos / total) * 100;
+                              final progresoDecimal = total == 0
+                                  ? 0.0
+                                  : (cromosUnicos / total);
 
-                          return Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                              return Column(
                                 children: [
-                                  const Flexible(
-                                    child: Text(
-                                      'Progreso Global',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.bold,
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      const Flexible(
+                                        child: Text(
+                                          'Progreso Global',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
                                       ),
-                                      overflow: TextOverflow.ellipsis,
+                                      FittedBox(
+                                        fit: BoxFit.scaleDown,
+                                        child: Text(
+                                          '${porcentaje.toStringAsFixed(1)}%',
+                                          style: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 38,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 15),
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: LinearProgressIndicator(
+                                      value: progresoDecimal,
+                                      backgroundColor: Colors.black12,
+                                      valueColor:
+                                          const AlwaysStoppedAnimation<Color>(
+                                            Colors.white,
+                                          ),
+                                      minHeight: 10,
                                     ),
                                   ),
-                                  FittedBox(
-                                    fit: BoxFit.scaleDown,
+                                  const SizedBox(height: 6),
+                                  Align(
+                                    alignment: Alignment.centerRight,
                                     child: Text(
-                                      '${porcentaje.toStringAsFixed(1)}%',
+                                      '$cromosUnicos de $total coleccionadas',
                                       style: const TextStyle(
                                         color: Colors.black,
-                                        fontSize: 38,
                                         fontWeight: FontWeight.bold,
+                                        fontSize: 13,
                                       ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 16),
+
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: AnimatedExpandContainer(
+                                      closedColor: Colors.black87,
+                                      borderRadius: 12.0,
+                                      openBuilder: (context, close) =>
+                                          const GlobalCollectionScreen(),
+                                      closedBuilder: (context, open) {
+                                        return ElevatedButton.icon(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.transparent,
+                                            shadowColor: Colors.transparent,
+                                            foregroundColor: Colors.amber,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                            ),
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 12,
+                                            ),
+                                          ),
+                                          icon: const Icon(Icons.style),
+                                          label: const Text(
+                                            'Ver Colección Completa',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            HapticFeedback.lightImpact();
+                                            open();
+                                          },
+                                        );
+                                      },
                                     ),
                                   ),
                                 ],
-                              ),
-                              const SizedBox(height: 15),
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: LinearProgressIndicator(
-                                  value: progresoDecimal,
-                                  backgroundColor: Colors.black12,
-                                  valueColor:
-                                      const AlwaysStoppedAnimation<Color>(
-                                        Colors.white,
-                                      ),
-                                  minHeight: 10,
-                                ),
-                              ),
-                              const SizedBox(height: 6),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: Text(
-                                  '$cromosUnicos de $total coleccionadas',
-                                  style: const TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 13,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 16),
-
-                              // 🔥 BOTÓN REUTILIZABLE CON OPEN CONTAINER 🔥
-                              SizedBox(
-                                width: double.infinity,
-                                child: AnimatedExpandContainer(
-                                  closedColor: Colors
-                                      .black87, // Color del botón original
-                                  borderRadius: 12.0,
-                                  openBuilder: (context, close) =>
-                                      const GlobalCollectionScreen(),
-                                  closedBuilder: (context, open) {
-                                    return ElevatedButton.icon(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors
-                                            .transparent, // Transparente para usar el fondo del container
-                                        shadowColor: Colors.transparent,
-                                        foregroundColor: Colors.amber,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                            12,
-                                          ),
-                                        ),
-                                        padding: const EdgeInsets.symmetric(
-                                          vertical: 12,
-                                        ),
-                                      ),
-                                      icon: const Icon(Icons.style),
-                                      label: const Text(
-                                        'Ver Colección Completa',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      onPressed: () {
-                                        HapticFeedback.lightImpact();
-                                        open(); // Dispara la animación
-                                      },
-                                    );
-                                  },
-                                ),
-                              ),
-                            ],
-                          );
-                        },
-                      ),
-                    )
-                    // ANIMACIÓN DE LA TARJETA DORADA
-                    .animate()
-                    .scaleXY(
-                      begin: 0.9,
-                      end: 1.0,
-                      duration: 600.ms,
-                      curve: Curves.easeOutBack,
-                    )
-                    .fadeIn(duration: 600.ms)
-                    .shimmer(
-                      delay: 800.ms,
-                      duration: 1000.ms,
-                      color: Colors.white.withValues(alpha: 0.5),
-                      angle: 1.2,
-                    ),
-          ),
-
-          // TÍTULO "EQUIPOS" ANIMADO
-          const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 8),
-                child: Text(
-                  'Equipos',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              )
-              .animate()
-              .fadeIn(delay: 200.ms, duration: 400.ms)
-              .slideY(
-                begin: 0.2,
-                end: 0,
-                duration: 400.ms,
-                curve: Curves.easeOut,
-              ),
-
-          // --- BUSCADOR ANIMADO ---
-          Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20.0,
-                  vertical: 4.0,
-                ),
-                child: TextField(
-                  onChanged: (value) =>
-                      ref.read(searchQueryProvider.notifier).updateQuery(value),
-                  style: const TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
-                    hintText: 'Buscar país o equipo...',
-                    hintStyle: TextStyle(color: Colors.grey.shade600),
-                    prefixIcon: const Icon(
-                      Icons.search,
-                      color: Colors.amber,
-                      size: 20,
-                    ),
-                    filled: true,
-                    fillColor: const Color(0xFF1E1E1E),
-                    contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: BorderSide.none,
-                    ),
-                    suffixIcon: searchQuery.isNotEmpty
-                        ? IconButton(
-                            icon: const Icon(
-                              Icons.close,
-                              color: Colors.grey,
-                              size: 18,
-                            ),
-                            onPressed: () {
-                              ref
-                                  .read(searchQueryProvider.notifier)
-                                  .updateQuery('');
-                              FocusScope.of(context).unfocus();
+                              );
                             },
-                          )
-                        : null,
-                  ),
-                ),
-              )
-              .animate()
-              .fadeIn(delay: 300.ms, duration: 400.ms)
-              .slideY(
-                begin: 0.2,
-                end: 0,
-                duration: 400.ms,
-                curve: Curves.easeOut,
+                          ),
+                        )
+                        .animate()
+                        .scaleXY(
+                          begin: 0.9,
+                          end: 1.0,
+                          duration: 600.ms,
+                          curve: Curves.easeOutBack,
+                        )
+                        .fadeIn(duration: 600.ms)
+                        .shimmer(
+                          delay: 800.ms,
+                          duration: 1000.ms,
+                          color: Colors.white.withValues(alpha: 0.5),
+                          angle: 1.2,
+                        ),
               ),
 
-          const SizedBox(height: 10),
+              // TÍTULO "EQUIPOS" ANIMADO
+              const Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 24.0,
+                      vertical: 8,
+                    ),
+                    child: Text(
+                      'Equipos',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  )
+                  .animate()
+                  .fadeIn(delay: 200.ms, duration: 400.ms)
+                  .slideY(
+                    begin: 0.2,
+                    end: 0,
+                    duration: 400.ms,
+                    curve: Curves.easeOut,
+                  ),
 
-          // --- LISTA DE EQUIPOS ---
-          Expanded(
-            child: RefreshIndicator(
-              color: Colors.amber,
-              backgroundColor: const Color(0xFF1E1E1E),
-              onRefresh: () => _onRefresh(ref),
-              child: categoriesAsync.when(
-                loading: () => ListView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  children: const [
-                    SizedBox(
-                      height: 220,
-                      child: Center(
-                        child: CircularProgressIndicator(color: Colors.amber),
-                      ),
+              // --- BUSCADOR ANIMADO ---
+              Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0,
+                      vertical: 4.0,
                     ),
-                  ],
-                ),
-                error: (e, s) => ListView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  children: [
-                    SizedBox(
-                      height: 220,
-                      child: Center(
-                        child: Text(
-                          'Error: $e',
-                          style: const TextStyle(color: Colors.white),
+                    child: TextField(
+                      onChanged: (value) => ref
+                          .read(searchQueryProvider.notifier)
+                          .updateQuery(value),
+                      style: const TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        hintText: 'Buscar país o equipo...',
+                        hintStyle: TextStyle(color: Colors.grey.shade600),
+                        prefixIcon: const Icon(
+                          Icons.search,
+                          color: Colors.amber,
+                          size: 20,
                         ),
+                        filled: true,
+                        fillColor: const Color(0xFF1E1E1E),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide.none,
+                        ),
+                        suffixIcon: searchQuery.isNotEmpty
+                            ? IconButton(
+                                icon: const Icon(
+                                  Icons.close,
+                                  color: Colors.grey,
+                                  size: 18,
+                                ),
+                                onPressed: () {
+                                  ref
+                                      .read(searchQueryProvider.notifier)
+                                      .updateQuery('');
+                                  FocusScope.of(context).unfocus();
+                                },
+                              )
+                            : null,
                       ),
                     ),
-                  ],
+                  )
+                  .animate()
+                  .fadeIn(delay: 300.ms, duration: 400.ms)
+                  .slideY(
+                    begin: 0.2,
+                    end: 0,
+                    duration: 400.ms,
+                    curve: Curves.easeOut,
+                  ),
+
+              const SizedBox(height: 10),
+
+              // --- LISTA DE EQUIPOS (Ahora envuelta correctamente) ---
+              categoriesAsync.when(
+                loading: () => const SizedBox(
+                  height: 220,
+                  child: Center(
+                    child: CircularProgressIndicator(color: Colors.amber),
+                  ),
+                ),
+                error: (e, s) => SizedBox(
+                  height: 220,
+                  child: Center(
+                    child: Text(
+                      'Error: $e',
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                  ),
                 ),
                 data: (categorias) {
                   final filtered = categorias
@@ -432,24 +417,22 @@ class HomeScreen extends ConsumerWidget {
                       .toList();
 
                   if (filtered.isEmpty) {
-                    return ListView(
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      children: const [
-                        SizedBox(
-                          height: 220,
-                          child: Center(
-                            child: Text(
-                              'Sin resultados',
-                              style: TextStyle(color: Colors.grey),
-                            ),
-                          ),
+                    return const SizedBox(
+                      height: 220,
+                      child: Center(
+                        child: Text(
+                          'Sin resultados',
+                          style: TextStyle(color: Colors.grey),
                         ),
-                      ],
+                      ),
                     );
                   }
 
+                  // 🔥 LISTA DE EQUIPOS CON COMPORTAMIENTO ESTÁTICO 🔥
                   return ListView.builder(
-                    physics: const AlwaysScrollableScrollPhysics(),
+                    shrinkWrap: true, // Se adapta al tamaño de los elementos
+                    physics:
+                        const NeverScrollableScrollPhysics(), // Delega el scroll al SingleChildScrollView padre
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16,
                       vertical: 8,
@@ -460,9 +443,9 @@ class HomeScreen extends ConsumerWidget {
                   );
                 },
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -484,7 +467,6 @@ class _CategoryTile extends ConsumerWidget {
 
     return Padding(
           padding: const EdgeInsets.only(bottom: 12),
-          // 🔥 TARJETA REUTILIZABLE CON OPEN CONTAINER 🔥
           child: AnimatedExpandContainer(
             openBuilder: (context, close) =>
                 CategoryDetailScreen(category: category),
@@ -493,7 +475,7 @@ class _CategoryTile extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(16),
                 onTap: () {
                   HapticFeedback.lightImpact();
-                  open(); // Dispara la animación de expansión
+                  open();
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -600,7 +582,6 @@ class _CategoryTile extends ConsumerWidget {
             },
           ),
         )
-        // 🔥 ANIMACIÓN CASCADA 🔥
         .animate()
         .fadeIn(delay: delayCascada.ms, duration: 400.ms, curve: Curves.easeOut)
         .slideX(
