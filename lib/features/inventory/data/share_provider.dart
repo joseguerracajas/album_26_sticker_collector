@@ -15,34 +15,37 @@ class ShareNotifier extends Notifier<bool> {
   @override
   bool build() => false;
 
-  // 2. Recibimos la opción elegida
   Future<void> generarYCompartirLista(ShareType tipo) async {
     state = true;
     try {
-      // 1. Pedimos a nuestro Gerente ambas listas (¡Saldrán de la RAM o SQLite al instante!)
       final allStickers = await _repo.get<Sticker>();
       final allCategories = await _repo.get<Category>();
 
-      // 2. Creamos un "Diccionario" de categorías para buscar a la velocidad de la luz
-      // Esto hace que buscar una categoría por su ID sea instantáneo (O(1))
+      // Diccionario de categorías para búsqueda instantánea
       final categoryMap = {for (var c in allCategories) c.id: c};
 
-      // 3. Ordenamos los stickers exactamente como lo hacías en Supabase
       allStickers.sort((a, b) {
-        // Primero ordenamos por category_id
-        int catCompare = (a.categoryId).compareTo(b.categoryId);
+        // 1. Buscamos la categoría completa de cada sticker
+        final catA = categoryMap[a.categoryId];
+        final catB = categoryMap[b.categoryId];
 
-        // Si son de la misma categoría, desempatamos por el order_index
+        // 2. Extraemos el orderIndex de la categoría (ponemos 999 por seguridad si falla algo)
+        final catOrderA = catA?.orderIndex ?? 999;
+        final catOrderB = catB?.orderIndex ?? 999;
+
+        // 3. Primero ordenamos por la posición de la Categoría en el álbum
+        int catCompare = catOrderA.compareTo(catOrderB);
+
+        // Si son de distintas categorías, ya sabemos cuál va primero
         if (catCompare != 0) return catCompare;
+
+        // 4. Si son de la misma categoría, desempatamos por la posición del Sticker
         return a.orderIndex.compareTo(b.orderIndex);
       });
 
-      // 4. "Ensamblamos" el resultado final uniendo el Sticker con su Categoría
+      // Ensamblaje del resultado final
       final response = allStickers.map((sticker) {
-        // Buscamos la categoría de este sticker en nuestro diccionario
         final category = categoryMap[sticker.categoryId];
-
-        // Retornamos la estructura que tu pantalla está esperando leer
         return {
           'id': sticker.id,
           'sticker_code': sticker.stickerCode,
@@ -51,6 +54,7 @@ class ShareNotifier extends Notifier<bool> {
         };
       }).toList();
 
+      // Leemos la Verdad Absoluta de la UI
       final miInventario = await ref.read(inventoryProvider.future);
 
       Map<String, Map<String, dynamic>> faltantesAgrupados = {};
@@ -86,7 +90,6 @@ class ShareNotifier extends Notifier<bool> {
 
       String mensaje = "⚽ *INTERCAMBIO ÁLBUM 26* 🏆\n\n";
 
-      // 3. Mostramos secciones según lo que el usuario eligió
       if (tipo == ShareType.todos || tipo == ShareType.faltantes) {
         mensaje += "❌ *ME FALTAN:*\n";
         mensaje += _formatearSeccion(faltantesAgrupados, "¡Ninguno! 😎");
@@ -130,6 +133,8 @@ class ShareNotifier extends Notifier<bool> {
     if (mapa.isEmpty) return "$mensajeVacio\n";
 
     String texto = "";
+    // Nota: Como usamos una lista ordenada arriba, los mapas en Dart mantienen
+    // el orden de inserción. Así que se imprimirán en el orden correcto.
     mapa.forEach((nombre, data) {
       texto += "${data['emoji']} *${nombre.toUpperCase()}*\n";
       final List<String> listaCodigos = data['codigos'] as List<String>;

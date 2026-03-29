@@ -37,7 +37,6 @@ class SyncService {
     final query = Query(where: [Where.exact('userId', userId)]);
 
     try {
-      // 🔥 1. LA VERDAD ABSOLUTA (Solo la nube, sin mezclar con local)
       // Usamos directamente el remoteProvider para obtener los 15 reales
       final remoteItems = await _repo.remoteProvider.get<Inventory>(
         query: query,

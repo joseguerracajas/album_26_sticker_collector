@@ -10,7 +10,6 @@ import 'package:album_26_sticker_collector/features/catalog/utils/sticker_filter
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'category_detail_screen.dart'; // Importamos para usar los Notifiers de Filtro y Búsqueda
 import 'widgets/category_avatar.dart';
 
 class GlobalCollectionScreen extends ConsumerWidget {

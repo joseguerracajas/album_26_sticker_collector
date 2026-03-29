@@ -5,12 +5,10 @@ import 'package:album_26_sticker_collector/features/catalog/data/sync_provider.d
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:crypto/crypto.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:brick_offline_first/brick_offline_first.dart';
 import 'package:google_sign_in/google_sign_in.dart'; // Versión 7.0+
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'package:album_26_sticker_collector/features/inventory/domain/inventory.model.dart';
 import 'package:album_26_sticker_collector/main.dart'; // Tu instancia de supabase
 
 final authControllerProvider = Provider<AuthController>((ref) {

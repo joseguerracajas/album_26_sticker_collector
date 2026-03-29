@@ -1,4 +1,3 @@
-import 'package:brick_offline_first/brick_offline_first.dart';
 import 'package:path/path.dart' as p; // Necesitas la librería 'path'
 import 'package:sqflite/sqflite.dart';
 import 'package:album_26_sticker_collector/brick/brick.g.dart';
@@ -66,7 +65,6 @@ class AppRepository extends OfflineFirstWithSupabaseRepository {
     offlineRequestQueue.start();
   }
 
-  // 🔥 2. Método público para apagar la cola
   void stopSyncQueue() {
     offlineRequestQueue.stop();
   }

@@ -428,7 +428,6 @@ class HomeScreen extends ConsumerWidget {
                     );
                   }
 
-                  // 🔥 LISTA DE EQUIPOS CON COMPORTAMIENTO ESTÁTICO 🔥
                   return ListView.builder(
                     shrinkWrap: true, // Se adapta al tamaño de los elementos
                     physics:
