@@ -1,3 +1,4 @@
+import 'package:brick_offline_first/brick_offline_first.dart';
 import 'package:path/path.dart' as p; // Necesitas la librería 'path'
 import 'package:sqflite/sqflite.dart';
 import 'package:album_26_sticker_collector/brick/brick.g.dart';

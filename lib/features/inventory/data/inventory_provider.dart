@@ -17,10 +17,17 @@ class InventoryNotifier extends AsyncNotifier<InventoryMap> {
   final _repo = AppRepository();
   @override
   Future<InventoryMap> build() async {
+    final user = supabase.auth.currentUser;
+
+    if (user == null) return {};
+
     final userId = supabase.auth.currentUser!.id;
 
     final query = Query(where: [Where.exact('userId', userId)]);
-    final inventarioLocal = await _repo.get<Inventory>(query: query);
+    final inventarioLocal = await _repo.get<Inventory>(
+      query: query,
+      policy: OfflineFirstGetPolicy.alwaysHydrate,
+    );
 
     final InventoryMap inventoryMap = {};
 
@@ -166,5 +173,9 @@ class InventoryNotifier extends AsyncNotifier<InventoryMap> {
       currentMap[stickerId]![variantId] = currentQty;
       state = AsyncData(currentMap);
     }
+  }
+
+  void clear() {
+    state = const AsyncData({});
   }
 }

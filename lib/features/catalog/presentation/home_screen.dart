@@ -30,7 +30,16 @@ final searchQueryProvider = NotifierProvider<SearchQueryNotifier, String>(
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
-  // on init
+  Future<void> _onRefresh(WidgetRef ref) async {
+    // Invalidamos familias cacheadas para forzar recomputo en los tiles.
+    ref.invalidate(stickersByCategoryProvider);
+
+    await Future.wait([
+      ref.refresh(categoriesProvider.future),
+      ref.refresh(totalStickersCountProvider.future),
+      ref.refresh(inventoryProvider.future),
+    ]);
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -379,48 +388,78 @@ class HomeScreen extends ConsumerWidget {
 
           // --- LISTA DE EQUIPOS ---
           Expanded(
-            child: categoriesAsync.when(
-              loading: () => const Center(
-                child: CircularProgressIndicator(color: Colors.amber),
-              ),
-              error: (e, s) => Center(
-                child: Text(
-                  'Error: $e',
-                  style: const TextStyle(color: Colors.white),
-                ),
-              ),
-              data: (categorias) {
-                final filtered = categorias
-                    .where(
-                      (c) =>
-                          c.name.toLowerCase().contains(
-                            searchQuery.toLowerCase(),
-                          ) ||
-                          c.id.toLowerCase().contains(
-                            searchQuery.toLowerCase(),
-                          ),
-                    )
-                    .toList();
-
-                if (filtered.isEmpty) {
-                  return const Center(
-                    child: Text(
-                      'Sin resultados',
-                      style: TextStyle(color: Colors.grey),
+            child: RefreshIndicator(
+              color: Colors.amber,
+              backgroundColor: const Color(0xFF1E1E1E),
+              onRefresh: () => _onRefresh(ref),
+              child: categoriesAsync.when(
+                loading: () => ListView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  children: const [
+                    SizedBox(
+                      height: 220,
+                      child: Center(
+                        child: CircularProgressIndicator(color: Colors.amber),
+                      ),
                     ),
-                  );
-                }
+                  ],
+                ),
+                error: (e, s) => ListView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  children: [
+                    SizedBox(
+                      height: 220,
+                      child: Center(
+                        child: Text(
+                          'Error: $e',
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                data: (categorias) {
+                  final filtered = categorias
+                      .where(
+                        (c) =>
+                            c.name.toLowerCase().contains(
+                              searchQuery.toLowerCase(),
+                            ) ||
+                            c.id.toLowerCase().contains(
+                              searchQuery.toLowerCase(),
+                            ),
+                      )
+                      .toList();
 
-                return ListView.builder(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  itemCount: filtered.length,
-                  itemBuilder: (context, index) =>
-                      _CategoryTile(category: filtered[index], index: index),
-                );
-              },
+                  if (filtered.isEmpty) {
+                    return ListView(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      children: const [
+                        SizedBox(
+                          height: 220,
+                          child: Center(
+                            child: Text(
+                              'Sin resultados',
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  }
+
+                  return ListView.builder(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
+                    itemCount: filtered.length,
+                    itemBuilder: (context, index) =>
+                        _CategoryTile(category: filtered[index], index: index),
+                  );
+                },
+              ),
             ),
           ),
         ],

@@ -1,5 +1,7 @@
 // Archivo: lib/features/auth/data/auth_provider.dart
 import 'dart:convert';
+import 'package:album_26_sticker_collector/brick/app_repository.dart';
+import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:crypto/crypto.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brick_offline_first/brick_offline_first.dart';
@@ -7,15 +9,17 @@ import 'package:google_sign_in/google_sign_in.dart'; // Versión 7.0+
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'package:album_26_sticker_collector/brick/app_repository.dart';
 import 'package:album_26_sticker_collector/features/inventory/domain/inventory.model.dart';
 import 'package:album_26_sticker_collector/main.dart'; // Tu instancia de supabase
 
 final authControllerProvider = Provider<AuthController>((ref) {
-  return AuthController();
+  return AuthController(ref);
 });
 
 class AuthController {
+  AuthController(this._ref);
+
+  final Ref _ref;
   final _repo = AppRepository();
 
   // --- 1. LOGIN TRADICIONAL (Email/Password) ---
@@ -29,37 +33,36 @@ class AuthController {
     const webClientId =
         '853934279575-ea1cqkn04cdvrn9nbk8qi6eufejp9pgu.apps.googleusercontent.com';
     const iosClientId =
-        'com.googleusercontent.apps.853934279575-k6kk31vfp4b2d27d4qabvi2u9kn5lahl';
+        '853934279575-k6kk31vfp4b2d27d4qabvi2u9kn5lahl.apps.googleusercontent.com';
 
-    // 1. Usamos la instancia global según la nueva doc
+    final scopes = ['email', 'profile'];
     final googleSignIn = GoogleSignIn.instance;
 
-    // 2. Inicializamos pasándole los Client IDs
     await googleSignIn.initialize(
       serverClientId: webClientId,
       clientId: iosClientId,
     );
 
-    // 3. Llamamos a authenticate() en lugar de signIn()
-    final GoogleSignInAccount googleUser = await googleSignIn.authenticate();
+    // Usamos authenticate() como dice la doc
+    final googleUser = await googleSignIn.authenticate();
 
-    // if (googleUser == null) {
-    //   throw 'Inicio de sesión con Google cancelado.';
-    // }
+    // La nueva forma de pedir autorización según los docs de Supabase
+    final authorization =
+        await googleUser.authorizationClient.authorizationForScopes(scopes) ??
+        await googleUser.authorizationClient.authorizeScopes(scopes);
 
     final googleAuth = googleUser.authentication;
-    // final googleauthorizationClient = googleUser.authorizationClient;
-    // final accessToken = googleauthorizationClient.accessToken;
     final idToken = googleAuth.idToken;
 
     if (idToken == null) {
-      throw 'No se pudieron obtener los tokens de Google.';
+      throw 'No se pudo obtener el ID Token de Google.';
     }
 
+    // Le mandamos ambos tokens a Supabase tal como piden
     await supabase.auth.signInWithIdToken(
       provider: OAuthProvider.google,
       idToken: idToken,
-      // accessToken: accessToken,
+      accessToken: authorization.accessToken,
     );
 
     await _iniciarSincronizacion();
@@ -92,29 +95,23 @@ class AuthController {
     await _iniciarSincronizacion();
   }
 
-  // --- MÉTODO PRIVADO: INICIAR MOTOR BRICK ---
   Future<void> _iniciarSincronizacion() async {
-    try {
-      await _repo.get<Inventory>(policy: OfflineFirstGetPolicy.alwaysHydrate);
-    } catch (e) {
-      print('Aviso: No se pudo hidratar el inventario inicial: $e');
-    }
+    _repo.memoryCacheProvider.reset();
     _repo.startSyncQueue();
+    _ref.invalidate(inventoryProvider);
   }
 
   // --- CIERRE DE SESIÓN ---
   Future<void> logout() async {
     try {
       _repo.stopSyncQueue();
-
-      final inventarioLocal = await _repo.sqliteProvider.get<Inventory>();
-      for (final item in inventarioLocal) {
-        await _repo.sqliteProvider.delete<Inventory>(item);
-      }
+      _repo.memoryCacheProvider.reset();
+      _ref.read(inventoryProvider.notifier).clear();
+      _ref.invalidate(inventoryProvider);
+      print('Cerrando sesión y limpiando caché local...');
     } catch (e) {
       print('Error limpiando caché local: $e');
     } finally {
-      // Usamos la instancia global para cerrar la sesión de Google
       try {
         await GoogleSignIn.instance.signOut();
       } catch (_) {}

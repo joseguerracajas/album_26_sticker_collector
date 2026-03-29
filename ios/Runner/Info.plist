@@ -66,14 +66,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>CLIENT_ID</key>
+	<key>GIDClientID</key>
 	<string>853934279575-k6kk31vfp4b2d27d4qabvi2u9kn5lahl.apps.googleusercontent.com</string>
-	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.853934279575-k6kk31vfp4b2d27d4qabvi2u9kn5lahl</string>
-	<key>PLIST_VERSION</key>
-	<string>1</string>
-	<key>BUNDLE_ID</key>
-	<string>com.joseguerra.album26StickerCollector</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -82,7 +76,6 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.853934279575-k6kk31vfp4b2d27d4qabvi2u9kn5lahl</string>
-				
 				<string>853934279575-k6kk31vfp4b2d27d4qabvi2u9kn5lahl.apps.googleusercontent.com</string>
 			</array>
 		</dict>
