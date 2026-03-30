@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+    <string>Necesitamos acceso a la cámara para escanear los números de tus cromos automáticamente.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>No grabaremos audio, pero el controlador de la cámara lo solicita por defecto.</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
