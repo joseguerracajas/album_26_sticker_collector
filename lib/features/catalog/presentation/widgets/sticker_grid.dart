@@ -2,7 +2,6 @@ import 'package:album_26_sticker_collector/features/catalog/data/stickers_provid
 import 'package:album_26_sticker_collector/features/catalog/data/variants_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/category.model.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/sticker.model.dart';
-import 'package:album_26_sticker_collector/features/catalog/presentation/category_detail_screen.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/animated_sticker_card.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/sticker_filter_search.dart';
 import 'package:album_26_sticker_collector/features/catalog/utils/sticker_filters.dart';

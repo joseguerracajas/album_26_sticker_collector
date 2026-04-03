@@ -10,6 +10,7 @@ import 'package:album_26_sticker_collector/features/catalog/presentation/widgets
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/share_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/stats_provider.dart';
+import 'package:album_26_sticker_collector/features/inventory/presentation/scanner_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -446,6 +447,34 @@ class HomeScreen extends ConsumerWidget {
           ),
         ),
       ),
+
+      floatingActionButton:
+          FloatingActionButton.extended(
+                backgroundColor: Colors.amber,
+                foregroundColor: Colors.black,
+                elevation: 8,
+                icon: const Icon(Icons.document_scanner_outlined, size: 26),
+                label: const Text(
+                  'Escanear',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+                onPressed: () {
+                  HapticFeedback.heavyImpact(); // Vibra rico al tocarlo
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ScannerScreen(),
+                    ),
+                  );
+                },
+              )
+              // Le damos un toque mágico para que aparezca rebotando después de que cargue la lista
+              .animate()
+              .scale(
+                delay: 600.ms,
+                duration: 500.ms,
+                curve: Curves.easeOutBack,
+              ),
     );
   }
 }
