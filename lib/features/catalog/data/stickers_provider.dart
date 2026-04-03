@@ -4,6 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Usamos .family para poder pasarle un parámetro (el categoryId) al provider
 
+final allStickersProvider = FutureProvider<List<Sticker>>((ref) async {
+  // Le pedimos TODOS los cromos al Gerente (AppRepository)
+  // Como Brick maneja caché interno, esto es súper rápido.
+  return await AppRepository().get<Sticker>();
+});
+
 final stickersByCategoryProvider = FutureProvider.family<List<Sticker>, String>((
   ref,
   categoryId,

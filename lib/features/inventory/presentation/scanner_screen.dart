@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/pending_scans_sheet.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/pending_scans_provider.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,10 @@ class ScannerScreen extends ConsumerStatefulWidget {
 
 class _ScannerScreenState extends ConsumerState<ScannerScreen> {
   CameraController? _cameraController;
+  Map<String, String>? _validStickerIdsCache;
+
+  String? _lastCapturedCode;
+  DateTime? _lastCaptureTime;
   final TextRecognizer _textRecognizer = TextRecognizer(
     script: TextRecognitionScript.latin,
   );
@@ -32,7 +37,32 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
   @override
   void initState() {
     super.initState();
+    _loadValidIdsCache();
     _initializeCamera();
+  }
+
+  Future<void> _loadValidIdsCache() async {
+    try {
+      final allStickers = await ref.read(allStickersProvider.future);
+
+      if (mounted) {
+        setState(() {
+          // Inicializamos como un Map vacío
+          _validStickerIdsCache = {};
+
+          for (var cromo in allStickers) {
+            final realId = cromo.id.toUpperCase(); // Ej: "ECU_10"
+            // Creamos la llave sin espacios ni guiones
+            final searchKey = '${cromo.categoryId}${cromo.stickerCode}';
+
+            // Llenamos el diccionario: traductor["ECU10"] = "ECU_10"
+            _validStickerIdsCache![searchKey] = realId;
+          }
+        });
+      }
+    } catch (e) {
+      debugPrint('❌ Error cargando caché de IDs: $e');
+    }
   }
 
   Future<void> _initializeCamera() async {
@@ -73,20 +103,24 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
 
   Future<void> _processCameraFrame(CameraImage image) async {
     try {
+      // 1. Convertimos el video a formato ML Kit
       final inputImage = _inputImageFromCameraImage(image);
       if (inputImage == null) return;
 
+      // Extraemos el texto crudo de la imagen
       final recognizedText = await _textRecognizer.processImage(inputImage);
       final rawString = recognizedText.text.toUpperCase();
 
-      // 1. EL ESCUDO ANTI-TRAMPAS 🛡️ (Verifica que sea Panini o FIFA)
+      // 2. EL ESCUDO ANTI-TRAMPAS 🛡️ (Ignora pantallas, recibos, etc.)
       if (!rawString.contains('PANINI') && !rawString.contains('FIFA')) {
         _consensusCount = 0;
         return;
       }
 
-      // 2. EL CAZADOR DE NÚMEROS 🎯 (Busca números de 1 a 3 dígitos)
-      final RegExp regex = RegExp(r'\b\d{1,3}\b');
+      // 3. EL CAZADOR DE CÓDIGOS INTELIGENTE 🎯
+      // Busca patrones (ej. "IRN 1", "ECU10", "110") asegurándose de que no sean
+      // partes de un código de barras larguísimo gracias al (?<!\d) y (?!\d)
+      final RegExp regex = RegExp(r'\b[A-Z]{3}\s?\d{1,3}\b');
       final matches = regex.allMatches(rawString);
 
       if (matches.isEmpty) {
@@ -94,9 +128,45 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
         return;
       }
 
-      final foundCode = matches.first.group(0)!;
+      if (_validStickerIdsCache == null) return;
 
-      // 3. LA REGLA DE CONSENSO 🤝
+      String? foundCode;
+
+      // 4. LA ADUANA TRADUCTORA 🛂 (Bucle de salvación)
+      // Revisamos TODO lo que encontró la cámara, no solo el primero
+      for (final match in matches) {
+        String rawCode = match.group(0)!.toUpperCase();
+
+        // Lo "aplastamos" para nuestro traductor (Ej: "IRN 1FIFA" -> "IRN1FIFA" -> la regex solo extrajo "IRN 1" -> "IRN1")
+        String searchKey = rawCode.replaceAll(' ', '').replaceAll('_', '');
+
+        // Le preguntamos al diccionario si esta coincidencia específica existe en Supabase
+        if (_validStickerIdsCache!.containsKey(searchKey)) {
+          // ¡BINGO! Encontramos uno válido (Ej: "IRN_1"). Lo guardamos y rompemos el bucle.
+          foundCode = _validStickerIdsCache![searchKey]!;
+          break;
+        }
+      }
+
+      // Si revisó todo el texto y ningún código existía en el álbum, descartamos el frame
+      if (foundCode == null) {
+        _consensusCount = 0;
+        return;
+      }
+
+      // 🛑 5. EL SEGURO ANTI-METRALLETA (COOLDOWN) 🛑
+      if (foundCode == _lastCapturedCode && _lastCaptureTime != null) {
+        final secondsSinceLastCapture = DateTime.now()
+            .difference(_lastCaptureTime!)
+            .inSeconds;
+
+        // Exigimos 3 segundos de pausa antes de escanear el MISMO cromo exacto
+        if (secondsSinceLastCapture < 3) {
+          return;
+        }
+      }
+
+      // 6. LA REGLA DE CONSENSO 🤝 (3 frames idénticos)
       if (foundCode == _lastDetectedCode) {
         _consensusCount++;
       } else {
@@ -104,20 +174,26 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
         _consensusCount = 1;
       }
 
-      // 4. ¡BINGO! LLEGAMOS AL CONSENSO
+      // 7. ¡CAPTURA EXITOSA! 🏆
       if (_consensusCount >= _requiredConsensus) {
-        // Añadimos a la bandeja temporal usando Riverpod
+        debugPrint('🎯 Cromo validado y capturado -> $foundCode');
+
+        // Lo mandamos a la bandeja temporal (Riverpod)
         ref.read(pendingScansProvider.notifier).addSticker(foundCode);
 
-        // Haptic feedback (vibra el teléfono)
+        // Feedback físico
         HapticFeedback.heavyImpact();
 
-        // Reseteamos
+        // Bloqueamos este cromo específico temporalmente marcando la hora
+        _lastCapturedCode = foundCode;
+        _lastCaptureTime = DateTime.now();
+
+        // Reseteamos las variables de búsqueda para el siguiente cromo
         _consensusCount = 0;
         _lastDetectedCode = null;
 
-        // Pausa de 1 segundo para no leer el mismo cromo a lo loco
-        await Future.delayed(const Duration(seconds: 1));
+        // Breve pausa para liberar el procesador
+        await Future.delayed(const Duration(milliseconds: 500));
       }
     } catch (e) {
       debugPrint('❌ Error en el procesamiento del OCR: $e');
