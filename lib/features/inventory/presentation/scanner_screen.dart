@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:album_26_sticker_collector/features/catalog/presentation/pending_scans_sheet.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/pending_scans_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -220,33 +221,53 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
           ),
 
           // 4. (Opcional) Un mini indicador flotante para ver cuántos llevas
+          // 4. Botón Flotante para ver la bandeja de escaneo
           Positioned(
             bottom: 50,
-            left: 0,
-            right: 0,
+            left: 20,
+            right: 20,
             child: Consumer(
               builder: (context, ref, child) {
                 final escaneados = ref.watch(pendingScansProvider);
+
+                // Si no hay nada escaneado, ocultamos el botón
                 if (escaneados.isEmpty) return const SizedBox.shrink();
 
-                return Center(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 10,
+                // Sumamos la cantidad total de cromos (por si escaneó el mismo 3 veces)
+                final totalCromos = escaneados.values.fold(
+                  0,
+                  (sum, count) => sum + count,
+                );
+
+                return ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.amber,
+                    foregroundColor: Colors.black,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
                     ),
-                    decoration: BoxDecoration(
-                      color: Colors.amber,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Text(
-                      'Cromos leídos: ${escaneados.length}',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
+                    elevation: 8,
+                  ),
+                  icon: const Icon(Icons.fact_check_outlined, size: 26),
+                  label: Text(
+                    'Ver $totalCromos cromos escaneados',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
+                  onPressed: () {
+                    HapticFeedback.lightImpact();
+                    // AQUÍ LLAMAMOS A TU NUEVO WIDGET
+                    showModalBottomSheet(
+                      context: context,
+                      backgroundColor: Colors.transparent,
+                      isScrollControlled:
+                          true, // Permite que crezca si hay muchos
+                      builder: (context) => const PendingScansSheet(),
+                    );
+                  },
                 );
               },
             ),
@@ -260,24 +281,32 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        // La "Mira" con proporciones físicas reales (4.9cm x 6.5cm)
         Container(
-          width: 250,
-          height: 150,
+          width: 309,
+          height: 410,
           decoration: BoxDecoration(
             border: Border.all(color: Colors.amber, width: 3),
             borderRadius: BorderRadius.circular(12),
+            // Un toque de sombra para que resalte sobre cualquier fondo
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                spreadRadius: 2,
+                blurRadius: 15,
+              ),
+            ],
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 24),
         const Text(
-          "Centra el número y el logo de Panini aquí",
+          "Centra la parte trasera del cromo aquí",
+          textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.white,
             fontSize: 16,
             fontWeight: FontWeight.bold,
-            shadows: [
-              Shadow(color: Colors.black, blurRadius: 10),
-            ], // Sombra para que se lea en fondos claros
+            shadows: [Shadow(color: Colors.black, blurRadius: 10)],
           ),
         ),
       ],

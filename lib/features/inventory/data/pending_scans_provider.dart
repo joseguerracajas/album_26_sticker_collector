@@ -1,29 +1,44 @@
-import 'package:album_26_sticker_collector/features/inventory/domain/scanned_sticker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// --- EL ESTADO TEMPORAL (Bandeja de Escaneo) ---
-// 🔥 CORRECCIÓN: En Riverpod 3.x manual, extendemos de Notifier a secas
-class PendingScansNotifier extends Notifier<List<ScannedSticker>> {
+// 🔥 Ahora usamos un Map: { "ECU 10": 2, "ARG 5": 1 }
+class PendingScansNotifier extends Notifier<Map<String, int>> {
   @override
-  List<ScannedSticker> build() => [];
+  Map<String, int> build() => {};
 
   void addSticker(String code) {
-    // Evitamos agregar el mismo cromo en la bandeja repetidas veces seguidas por error
-    if (state.isNotEmpty && state.last.code == code) return;
-
-    state = [...state, ScannedSticker(code: code, timestamp: DateTime.now())];
+    // Si ya existe, le suma 1. Si no existe, lo crea con 1.
+    final currentQuantity = state[code] ?? 0;
+    state = {...state, code: currentQuantity + 1};
   }
 
-  void removeAt(int index) {
-    final newState = List<ScannedSticker>.from(state);
-    newState.removeAt(index);
+  void increment(String code) {
+    if (state.containsKey(code)) {
+      state = {...state, code: state[code]! + 1};
+    }
+  }
+
+  void decrement(String code) {
+    if (!state.containsKey(code)) return;
+
+    final currentQuantity = state[code]!;
+    if (currentQuantity > 1) {
+      state = {...state, code: currentQuantity - 1};
+    } else {
+      // Si llega a 0, lo eliminamos de la lista
+      removeSticker(code);
+    }
+  }
+
+  void removeSticker(String code) {
+    final newState = Map<String, int>.from(state);
+    newState.remove(code);
     state = newState;
   }
 
-  void clear() => state = [];
+  void clear() => state = {};
 }
 
 final pendingScansProvider =
-    NotifierProvider.autoDispose<PendingScansNotifier, List<ScannedSticker>>(
+    NotifierProvider.autoDispose<PendingScansNotifier, Map<String, int>>(
       PendingScansNotifier.new,
     );
