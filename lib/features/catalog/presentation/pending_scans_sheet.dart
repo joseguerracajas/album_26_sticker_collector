@@ -1,5 +1,7 @@
+import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/pending_scans_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PendingScansSheet extends ConsumerWidget {
@@ -74,7 +76,7 @@ class PendingScansSheet extends ConsumerWidget {
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          // Botón Menos (o eliminar si es 1)
+                          // 1. Botón Menos (CORREGIDO: Solo resta o elimina de la lista temporal)
                           IconButton(
                             icon: Icon(
                               quantity == 1
@@ -101,7 +103,7 @@ class PendingScansSheet extends ConsumerWidget {
                               ),
                             ),
                           ),
-                          // Botón Más
+                          // 2. Botón Más (Suma a la lista temporal)
                           IconButton(
                             icon: const Icon(
                               Icons.add_circle_outline,
@@ -121,7 +123,7 @@ class PendingScansSheet extends ConsumerWidget {
 
           const SizedBox(height: 16),
 
-          // Botón de Acción Principal
+          // 3. Botón de Acción Principal "LISTO" (CORREGIDO: Aquí va el guardado real)
           SizedBox(
             width: double.infinity,
             height: 50,
@@ -135,11 +137,66 @@ class PendingScansSheet extends ConsumerWidget {
               ),
               onPressed: pendingScans.isEmpty
                   ? null
-                  : () {
-                      // AQUÍ VA LA LÓGICA PARA GUARDAR EN TU DB REAL
-                      print("Guardando en BD: $pendingScans");
-                      ref.read(pendingScansProvider.notifier).clear();
-                      Navigator.pop(context); // Cierra el bottom sheet
+                  : () async {
+                      // 1. Damos feedback visual inmediato (vibra)
+                      HapticFeedback.mediumImpact();
+
+                      try {
+                        // 2. Leemos el Notifier de tu inventario
+                        final inventoryNotifier = ref.read(
+                          inventoryProvider.notifier,
+                        );
+
+                        // 3. Recorremos el mapa de cromos escaneados
+                        for (var entry in pendingScans.entries) {
+                          final stickerId = entry.key; // Ej: "ECU_10"
+                          final delta = entry.value; // Ej: 2
+
+                          // 4. GUARDAMOS EN TU BASE DE DATOS LOCAL/SUPABASE
+                          await inventoryNotifier.updateVariantQuantity(
+                            stickerId,
+                            'normal',
+                            delta,
+                          );
+                        }
+
+                        // 5. Limpiamos la bandeja temporal para el próximo escaneo
+                        ref.read(pendingScansProvider.notifier).clear();
+
+                        // 6. Cerramos el BottomSheet
+                        Navigator.of(context).pop();
+                        if (context.mounted) {
+                          Navigator.pop(context);
+
+                          // 7. Mostramos el mensaje de triunfo 🏆
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                '¡${pendingScans.length} cromos guardados con éxito! 🏆',
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              backgroundColor: Colors.amber,
+                              behavior: SnackBarBehavior.floating,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          );
+                        }
+                      } catch (e) {
+                        // Si algo falla, se lo decimos al usuario sin cerrar la bandeja
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('❌ Error al guardar: $e'),
+                              backgroundColor: Colors.redAccent,
+                            ),
+                          );
+                        }
+                      }
                     },
               child: const Text(
                 'LISTO',
