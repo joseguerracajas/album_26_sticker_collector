@@ -1,16 +1,20 @@
 // GENERATED CODE DO NOT EDIT
 // This file should be version controlled
 import 'package:brick_sqlite/db.dart';
-part '20260326041305.migration.dart';
+part '20260422225125.migration.dart';
 part '20260324221334.migration.dart';
+part '20260326041305.migration.dart';
 
 /// All intelligently-generated migrations from all `@Migratable` classes on disk
 final migrations = <Migration>{
-  const Migration20260326041305(),const Migration20260324221334()};
+  const Migration20260422225125(),
+  const Migration20260324221334(),
+  const Migration20260326041305(),
+};
 
 /// A consumable database structure including the latest generated migration.
 final schema = Schema(
-  20260324221334,
+  20260326041305,
   generatorVersion: 1,
   tables: <SchemaTable>{
     SchemaTable(
@@ -49,6 +53,7 @@ final schema = Schema(
         SchemaColumn('sticker_code', Column.varchar),
         SchemaColumn('description', Column.varchar),
         SchemaColumn('order_index', Column.integer),
+        SchemaColumn('has_special_variants', Column.boolean),
       },
       indices: <SchemaIndex>{
         SchemaIndex(columns: ['id'], unique: true),

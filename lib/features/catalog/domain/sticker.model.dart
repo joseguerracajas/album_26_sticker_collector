@@ -17,11 +17,14 @@ class Sticker extends OfflineFirstWithSupabaseModel {
   final String? description;
   @Supabase(name: 'order_index')
   final int orderIndex;
+  @Supabase(name: 'has_special_variants')
+  final bool hasSpecialVariants;
   Sticker({
     required this.id,
     required this.categoryId,
     required this.stickerCode,
     this.description,
     required this.orderIndex,
+    this.hasSpecialVariants = false,
   });
 }

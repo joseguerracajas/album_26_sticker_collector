@@ -27,11 +27,9 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
   bool _isProcessing = false;
 
   // --- VARIABLES DEL MULTIESCÁNER ---
-  final int _requiredConsensus = 3; // Cuántas veces seguidas debe ver el número
-  Map<String, int> _consensusMap =
-      {}; // Rastrea el progreso de cada cromo { "ECU_10": 2 }
-  Map<String, DateTime> _cooldownMap =
-      {}; // Rastrea el bloqueo temporal { "ECU_10": 10:05:01 }
+  final int _requiredConsensus = 3;
+  Map<String, int> _consensusMap = {};
+  Map<String, DateTime> _cooldownMap = {};
 
   @override
   void initState() {
@@ -46,15 +44,11 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
 
       if (mounted) {
         setState(() {
-          // Inicializamos como un Map vacío
           _validStickerIdsCache = {};
 
           for (var cromo in allStickers) {
-            final realId = cromo.id.toUpperCase(); // Ej: "ECU_10"
-            // Creamos la llave sin espacios ni guiones
+            final realId = cromo.id.toUpperCase();
             final searchKey = '${cromo.categoryId}${cromo.stickerCode}';
-
-            // Llenamos el diccionario: traductor["ECU10"] = "ECU_10"
             _validStickerIdsCache![searchKey] = realId;
           }
         });
@@ -75,7 +69,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
       _cameraController = CameraController(
         backCamera,
         ResolutionPreset.high,
-        enableAudio: false, // ¡Sin audio para no pedir permisos de micrófono!
+        enableAudio: false,
       );
 
       await _cameraController!.initialize();
@@ -102,31 +96,43 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
 
   Future<void> _processCameraFrame(CameraImage image) async {
     try {
-      // 1. Convertimos el video a formato ML Kit
       final inputImage = _inputImageFromCameraImage(image);
       if (inputImage == null) return;
 
-      // Extraemos el texto crudo de la imagen
       final recognizedText = await _textRecognizer.processImage(inputImage);
       final rawStringGlobal = recognizedText.text.toUpperCase();
 
-      // 2. EL ESCUDO ANTI-TRAMPAS GLOBAL 🛡️
+      // 1. EL ESCUDO ANTI-TRAMPAS GLOBAL 🛡️
       if (!rawStringGlobal.contains('PANINI') &&
           !rawStringGlobal.contains('FIFA')) {
-        _consensusMap.clear(); // Si quitamos los cromos, borramos el progreso
+        _consensusMap.clear();
         return;
       }
 
       if (_validStickerIdsCache == null) return;
 
-      // (?<!\d) y (?!\d) evitan leer códigos de barras largos
-      final RegExp regex = RegExp(r'(?<!\d)(?:[A-Z]{3}\s?)?\d{1,3}(?!\d)');
+      // 2. DEFINIR LA "VISIÓN DE TÚNEL" (Region of Interest) 🔭
+      // Calculamos el 50% central de la imagen de la cámara.
+      final imageWidth = image.width.toDouble();
+      final imageHeight = image.height.toDouble();
+      final roiRect = Rect.fromCenter(
+        center: Offset(imageWidth / 2, imageHeight / 2),
+        width: imageWidth * 0.5, // Solo lee la mitad central de ancho
+        height: imageHeight * 0.5, // Solo lee la mitad central de alto
+      );
 
-      // Aquí guardaremos los cromos válidos que encontremos en ESTE frame exacto
+      // El cazador de códigos mejorado (evita códigos de barras largos)
+      final RegExp regex = RegExp(r'(?<!\d)(?:[A-Z]{3}\s?)?\d{1,3}(?!\d)');
       Set<String> codesInThisFrame = {};
 
-      // 3. LA MAGIA DE LOS CUADROS 🟩 (Procesamos bloque por bloque)
+      // 3. LA MAGIA DE LOS CUADROS CON FILTRO DE ZONA 🟩
       for (final block in recognizedText.blocks) {
+        // 🔥 FILTRO ROI: Si el centro del texto que leyó NO está dentro
+        // de nuestra zona central, lo ignoramos por completo.
+        if (!roiRect.contains(block.boundingBox.center)) {
+          continue;
+        }
+
         final blockText = block.text.toUpperCase();
         final matches = regex.allMatches(blockText);
 
@@ -134,7 +140,6 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
           String rawCode = match.group(0)!.toUpperCase();
           String searchKey = rawCode.replaceAll(' ', '').replaceAll('_', '');
 
-          // Si el código de ESTE cuadro existe en la DB, lo añadimos a la lista del frame
           if (_validStickerIdsCache!.containsKey(searchKey)) {
             codesInThisFrame.add(_validStickerIdsCache![searchKey]!);
           }
@@ -142,40 +147,34 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
       }
 
       // 4. LIMPIEZA DE CONSENSO 🧹
-      // Si un cromo estaba a punto de ser capturado pero moviste la mano, reseteamos su contador
       _consensusMap.removeWhere((code, _) => !codesInThisFrame.contains(code));
 
       // 5. PROCESAR LOS CROMOS DEL FRAME ACTUAL 🎯
       for (final code in codesInThisFrame) {
-        // --- SEGURO ANTI-METRALLETA POR CROMO ---
+        // --- SEGURO ANTI-METRALLETA ---
         if (_cooldownMap.containsKey(code)) {
           final seconds = DateTime.now()
               .difference(_cooldownMap[code]!)
               .inSeconds;
-          if (seconds < 3)
-            continue; // Si este cromo específico fue escaneado hace menos de 3s, lo ignoramos
+          if (seconds < 3) continue;
         }
 
         // --- SISTEMA DE CONSENSO INDIVIDUAL ---
         _consensusMap[code] = (_consensusMap[code] ?? 0) + 1;
 
-        // --- ¡BINGO MULTIPLE! 🏆 ---
+        // --- ¡BINGO! 🏆 ---
         if (_consensusMap[code]! >= _requiredConsensus) {
-          debugPrint('🎯 Cromo capturado por bloque -> $code');
+          debugPrint('🎯 Cromo capturado en la mira -> $code');
 
-          // Guardamos en Riverpod
           ref.read(pendingScansProvider.notifier).addSticker(code);
           HapticFeedback.heavyImpact();
 
-          // Ponemos ESTE cromo en cooldown
           _cooldownMap[code] = DateTime.now();
-
-          // Reseteamos su consenso para el futuro
           _consensusMap.remove(code);
         }
       }
     } catch (e) {
-      debugPrint('❌ Error en el procesamiento del OCR: $e');
+      debugPrint('❌ Error en OCR: $e');
     }
   }
 
@@ -220,13 +219,9 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
 
     if (image.planes.isEmpty) return null;
 
-    // Ajuste para el formato de bytes dependiendo de la plataforma
     final bytes = Platform.isAndroid
-        ? image
-              .planes
-              .first
-              .bytes // NV21/YV12
-        : image.planes.first.bytes; // BGRA8888 en iOS
+        ? image.planes.first.bytes
+        : image.planes.first.bytes;
 
     return InputImage.fromBytes(
       bytes: bytes,
@@ -285,10 +280,8 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
               builder: (context, ref, child) {
                 final escaneados = ref.watch(pendingScansProvider);
 
-                // Si no hay nada escaneado, ocultamos el botón
                 if (escaneados.isEmpty) return const SizedBox.shrink();
 
-                // Sumamos la cantidad total de cromos (por si escaneó el mismo 3 veces)
                 final totalCromos = escaneados.values.fold(
                   0,
                   (sum, count) => sum + count,
@@ -314,12 +307,10 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
                   ),
                   onPressed: () {
                     HapticFeedback.lightImpact();
-                    // AQUÍ LLAMAMOS A TU NUEVO WIDGET
                     showModalBottomSheet(
                       context: context,
                       backgroundColor: Colors.transparent,
-                      isScrollControlled:
-                          true, // Permite que crezca si hay muchos
+                      isScrollControlled: true,
                       builder: (context) => const PendingScansSheet(),
                     );
                   },
@@ -336,14 +327,13 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // La "Mira" con proporciones físicas reales (4.9cm x 6.5cm)
+        // 🔥 MIRA MÁS PEQUEÑA (240x320)
         Container(
-          width: 309,
-          height: 410,
+          width: 240,
+          height: 320,
           decoration: BoxDecoration(
             border: Border.all(color: Colors.amber, width: 3),
             borderRadius: BorderRadius.circular(12),
-            // Un toque de sombra para que resalte sobre cualquier fondo
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.3),

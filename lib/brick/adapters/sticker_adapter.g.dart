@@ -14,6 +14,7 @@ Future<Sticker> _$StickerFromSupabase(
         ? null
         : data['description'] as String?,
     orderIndex: data['order_index'] as int,
+    hasSpecialVariants: data['has_special_variants'] as bool,
   );
 }
 
@@ -28,6 +29,7 @@ Future<Map<String, dynamic>> _$StickerToSupabase(
     'sticker_code': instance.stickerCode,
     'description': instance.description,
     'order_index': instance.orderIndex,
+    'has_special_variants': instance.hasSpecialVariants,
   };
 }
 
@@ -44,6 +46,7 @@ Future<Sticker> _$StickerFromSqlite(
         ? null
         : data['description'] as String?,
     orderIndex: data['order_index'] as int,
+    hasSpecialVariants: data['has_special_variants'] == 1,
   )..primaryKey = data['_brick_id'] as int;
 }
 
@@ -58,6 +61,7 @@ Future<Map<String, dynamic>> _$StickerToSqlite(
     'sticker_code': instance.stickerCode,
     'description': instance.description,
     'order_index': instance.orderIndex,
+    'has_special_variants': instance.hasSpecialVariants ? 1 : 0,
   };
 }
 
@@ -90,6 +94,10 @@ class StickerAdapter extends OfflineFirstWithSupabaseAdapter<Sticker> {
     'orderIndex': const RuntimeSupabaseColumnDefinition(
       association: false,
       columnName: 'order_index',
+    ),
+    'hasSpecialVariants': const RuntimeSupabaseColumnDefinition(
+      association: false,
+      columnName: 'has_special_variants',
     ),
   };
   @override
@@ -133,6 +141,12 @@ class StickerAdapter extends OfflineFirstWithSupabaseAdapter<Sticker> {
       columnName: 'order_index',
       iterable: false,
       type: int,
+    ),
+    'hasSpecialVariants': const RuntimeSqliteColumnDefinition(
+      association: false,
+      columnName: 'has_special_variants',
+      iterable: false,
+      type: bool,
     ),
   };
   @override
