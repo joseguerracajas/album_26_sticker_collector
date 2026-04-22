@@ -1,5 +1,3 @@
-// Archivo: lib/features/catalog/presentation/global_collection_screen.dart
-
 import 'package:album_26_sticker_collector/features/catalog/data/categories_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/sync_provider.dart';
@@ -27,52 +25,60 @@ class GlobalCollectionScreen extends ConsumerWidget {
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
       body: RefreshIndicator(
         color: Colors.amber,
         backgroundColor: const Color(0xFF1E1E1E),
         onRefresh: ref.read(syncServiceProvider).refreshAll,
-        child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          child: Column(
-            children: [
-              // 1. Quita el parámetro ref de aquí (Haz que StickerFilterSearch sea ConsumerWidget)
-              const StickerFilterSearch(),
 
-              // 2. ELIMINAMOS EL WIDGET EXPANDED AQUÍ
-              categoriesAsync.when(
-                loading: () => const Center(
-                  child: CircularProgressIndicator(color: Colors.amber),
+        // 🔥 1. CAMBIAMOS A CustomScrollView
+        child: CustomScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          slivers: [
+            // 🔥 2. El Buscador y Filtros van en un adaptador Sliver
+            const SliverToBoxAdapter(child: StickerFilterSearch()),
+
+            // 🔥 3. Las categorías se renderizan como Slivers (Lazy Loading)
+            categoriesAsync.when(
+              loading: () => const SliverToBoxAdapter(
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(32.0),
+                    child: CircularProgressIndicator(color: Colors.amber),
+                  ),
                 ),
-                error: (e, s) => Center(
+              ),
+              error: (e, s) => SliverToBoxAdapter(
+                child: Center(
                   child: Text(
                     'Error: $e',
                     style: const TextStyle(color: Colors.red),
                   ),
                 ),
-                data: (categorias) {
-                  return ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    padding: const EdgeInsets.only(bottom: 40),
-                    itemCount: categorias.length,
-                    itemBuilder: (context, index) {
+              ),
+              data: (categorias) {
+                // SliverList asegura que Flutter SOLO construya los países visibles
+                return SliverPadding(
+                  padding: const EdgeInsets.only(bottom: 40),
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate((context, index) {
                       return _CategoryStickerSection(
                         category: categorias[index],
                       );
-                    },
-                  );
-                },
-              ),
-            ],
-          ),
+                    }, childCount: categorias.length),
+                  ),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-// Widget Interno
+// Widget Interno (Se queda exactamente igual, como un widget normal)
 class _CategoryStickerSection extends ConsumerWidget {
   final Category category;
   const _CategoryStickerSection({required this.category});
@@ -98,6 +104,7 @@ class _CategoryStickerSection extends ConsumerWidget {
 
         if (filteredStickers.isEmpty) return const SizedBox.shrink();
 
+        // Este Column es una "Caja" normal
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -127,7 +134,9 @@ class _CategoryStickerSection extends ConsumerWidget {
               padding: const EdgeInsets.all(16.0),
               child: Divider(color: Colors.grey.shade700),
             ),
-            // 3. Quita el ref de aquí. (Considera pasar 'filteredStickers' si tu Grid lo soporta)
+
+            // 🔥 SOLUCIÓN: El StickerGrid entra directo como una Caja normal
+            // No usamos SliverToBoxAdapter aquí porque el Column no lo acepta.
             StickerGrid(
               category: category,
               shrinkWrap: true,

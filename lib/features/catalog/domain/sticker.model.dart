@@ -25,6 +25,6 @@ class Sticker extends OfflineFirstWithSupabaseModel {
     required this.stickerCode,
     this.description,
     required this.orderIndex,
-    this.hasSpecialVariants = false,
+    required this.hasSpecialVariants,
   });
 }

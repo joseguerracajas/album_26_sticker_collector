@@ -1,5 +1,3 @@
-// Archivo: lib/features/catalog/presentation/category_detail_screen.dart
-
 import 'package:album_26_sticker_collector/features/catalog/data/sync_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/category.model.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/sticker_filter_search.dart';
@@ -14,28 +12,39 @@ class CategoryDetailScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // 3. El Scaffold va AFUERA para que el AppBar se quede fijo arriba
     return Scaffold(
-      appBar: AppBar(title: Text(category.name)),
+      backgroundColor: const Color(0xFF121212), // Manteniendo el fondo oscuro
+      appBar: AppBar(
+        title: Text(
+          category.name,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
 
-      // 4. El RefreshIndicator va ADENTRO, envolviendo la zona de scroll
+      // 1. RefreshIndicator envuelve el Scroll personalizado
       body: RefreshIndicator(
         color: Colors.amber,
         backgroundColor: const Color(0xFF1E1E1E),
         onRefresh: ref.read(syncServiceProvider).refreshAll,
-        child: SingleChildScrollView(
+
+        child: CustomScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
-          child: Column(
-            children: [
-              const StickerFilterSearch(),
-              StickerGrid(
+          slivers: [
+            // 3. El buscador/filtros va en un SliverToBoxAdapter
+            const SliverToBoxAdapter(child: StickerFilterSearch()),
+
+            // 4. El Grid ya debe ser un SliverGrid nativo (modificamos StickerGrid)
+            // (Asegúrate de pasarle los parámetros correctos, quitamos el shrinkWrap)
+            SliverToBoxAdapter(
+              child: StickerGrid(
                 category: category,
                 shrinkWrap: true,
-                physics:
-                    const NeverScrollableScrollPhysics(), // Faltaba el 'const' aquí
+                physics: const NeverScrollableScrollPhysics(),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

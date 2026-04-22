@@ -106,9 +106,7 @@ class AuthController {
 
       _repo.startSyncQueue();
       _ref.invalidate(inventoryProvider); // Obliga a la UI a refrescarse
-    } catch (e) {
-      print('Aviso: Error en sincronización inicial: $e');
-    }
+    } catch (e) {}
   }
 
   // --- CIERRE DE SESIÓN ---
@@ -118,9 +116,7 @@ class AuthController {
       _repo.memoryCacheProvider.reset();
       _ref.read(inventoryProvider.notifier).clear();
       _ref.invalidate(inventoryProvider);
-      print('Cerrando sesión y limpiando caché local...');
     } catch (e) {
-      print('Error limpiando caché local: $e');
     } finally {
       try {
         await GoogleSignIn.instance.signOut();

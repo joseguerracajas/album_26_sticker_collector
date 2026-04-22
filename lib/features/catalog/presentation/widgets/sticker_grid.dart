@@ -6,7 +6,6 @@ import 'package:album_26_sticker_collector/features/catalog/presentation/widgets
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/sticker_filter_search.dart';
 import 'package:album_26_sticker_collector/features/catalog/utils/sticker_filters.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
-import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -107,21 +106,24 @@ class StickerGrid extends ConsumerWidget {
                               style: const TextStyle(color: Colors.red),
                             ),
                             data: (variantesBDD) {
+                              final variantesParaMostrar =
+                                  sticker.hasSpecialVariants
+                                  ? variantesBDD // Si el cromo es especial, mostramos TODA la lista
+                                  : variantesBDD.where((v) {
+                                      return !(v.isSpecial ?? false);
+                                    }).toList();
                               return Column(
-                                children: variantesBDD.map((variante) {
-                                  final variantId = variante['id'] as String;
-                                  final variantName =
-                                      variante['name'] as String;
+                                children: variantesParaMostrar.map((variante) {
                                   final cantidadActual =
-                                      inventarioTemporal[variantId] ?? 0;
-
-                                  Color iconColor = Colors.white;
-                                  if (variantId == 'legend') {
-                                    iconColor = Colors.amber;
-                                  }
-                                  if (variantId == 'gold') {
-                                    iconColor = const Color(0xFFFFD700);
-                                  }
+                                      inventarioTemporal[variante.id] ?? 0;
+                                  Color iconColor = Color(
+                                    int.parse(
+                                      variante.hexColor.replaceFirst(
+                                        '#',
+                                        '0xFF',
+                                      ),
+                                    ),
+                                  );
 
                                   return Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -140,7 +142,7 @@ class StickerGrid extends ConsumerWidget {
                                             ),
                                             const SizedBox(width: 8),
                                             Text(
-                                              variantName,
+                                              variante.name,
                                               style: const TextStyle(
                                                 fontSize: 18,
                                                 color: Colors.white,
@@ -161,7 +163,8 @@ class StickerGrid extends ConsumerWidget {
                                               onPressed: cantidadActual > 0
                                                   ? () => setModalState(
                                                       () =>
-                                                          inventarioTemporal[variantId] =
+                                                          inventarioTemporal[variante
+                                                                  .id] =
                                                               cantidadActual -
                                                               1,
                                                     )
@@ -187,7 +190,8 @@ class StickerGrid extends ConsumerWidget {
                                               color: Colors.amber,
                                               onPressed: () => setModalState(
                                                 () =>
-                                                    inventarioTemporal[variantId] =
+                                                    inventarioTemporal[variante
+                                                            .id] =
                                                         cantidadActual + 1,
                                               ),
                                             ),
@@ -261,28 +265,23 @@ class StickerGrid extends ConsumerWidget {
       category: category,
     );
 
-    final gridWidget = PageTransitionSwitcher(
-      duration: const Duration(
-        milliseconds: 400,
-      ), // Bajamos a 400ms para que sea más ágil
-      transitionBuilder: (child, primaryAnimation, secondaryAnimation) {
-        return FadeThroughTransition(
-          animation: primaryAnimation,
-          secondaryAnimation: secondaryAnimation,
-          fillColor: Colors.transparent,
-          child: child,
-        );
-      },
+    final gridWidget = AnimatedSwitcher(
+      duration: const Duration(milliseconds: 300),
       child: filteredStickers.isEmpty
           ? Center(
               key: const ValueKey('empty'),
-              child: const Text(
-                'Sin resultados.',
-                style: TextStyle(color: Colors.grey),
+              child: Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: const Text(
+                  'Sin resultados.',
+                  style: TextStyle(color: Colors.grey),
+                ),
               ),
             )
           : GridView.builder(
-              key: ValueKey(currentFilter),
+              key: ValueKey(
+                '${category.id}_${currentFilter}_${filteredStickers.length}',
+              ), // Clave dinámica para forzar la animación
               shrinkWrap: shrinkWrap,
               physics: physics,
               padding: const EdgeInsets.all(16),
@@ -324,6 +323,8 @@ class StickerGrid extends ConsumerWidget {
             ),
     );
 
+    // Si shrinkWrap es true, significa que alguien más (como el CustomScrollView)
+    // está controlando el tamaño. Si es false, usamos Expanded para llenar la pantalla.
     return shrinkWrap ? gridWidget : Expanded(child: gridWidget);
   }
 }

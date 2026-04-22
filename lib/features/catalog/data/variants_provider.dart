@@ -3,9 +3,7 @@ import 'package:album_26_sticker_collector/features/catalog/domain/sticker_varia
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Usamos FutureProvider porque solo necesitamos leer esta lista una vez
-final variantsProvider = FutureProvider<List<Map<String, dynamic>>>((
-  ref,
-) async {
+final variantsProvider = FutureProvider<List<StickerVariant>>((ref) async {
   // 1. Le pedimos a nuestro Gerente todas las variantes (instantáneo desde SQLite/RAM)
   final allVariants = await AppRepository().get<StickerVariant>();
 
@@ -13,7 +11,5 @@ final variantsProvider = FutureProvider<List<Map<String, dynamic>>>((
   allVariants.sort((a, b) => a.id.compareTo(b.id));
 
   // 3. Transformamos los objetos limpios al formato Map que tu pantalla espera
-  return allVariants.map((variant) {
-    return {'id': variant.id, 'name': variant.name};
-  }).toList();
+  return allVariants;
 });

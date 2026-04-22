@@ -98,7 +98,6 @@ class InventoryNotifier extends AsyncNotifier<InventoryMap> {
         }
       }
     } catch (e) {
-      print('Error en base local (SQLite lleno/corrupto): $e');
       currentMap[stickerId]!['normal'] = currentNormalQty;
       state = AsyncData(currentMap);
     }
@@ -169,7 +168,6 @@ class InventoryNotifier extends AsyncNotifier<InventoryMap> {
         await _repo.upsert<Inventory>(nuevoInventario);
       }
     } catch (e) {
-      print('Error en base local (SQLite lleno/corrupto): $e');
       currentMap[stickerId]![variantId] = currentQty;
       state = AsyncData(currentMap);
     }

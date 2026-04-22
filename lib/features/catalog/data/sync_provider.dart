@@ -60,14 +60,7 @@ class SyncService {
         for (final fantasma in fantasmas) {
           await _repo.sqliteProvider.delete<Inventory>(fantasma);
         }
-        print(
-          '✅ Protocolo Espejo: Se eliminaron ${fantasmas.length} fantasmas físicos.',
-        );
-      } else {
-        print('✅ Sin fantasmas detectados. Todo sincronizado.');
       }
-    } catch (e) {
-      print('❌ Error en sincronización física: $e');
-    }
+    } catch (e) {}
   }
 }
