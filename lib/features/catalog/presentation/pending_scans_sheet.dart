@@ -20,7 +20,7 @@ class PendingScansSheet extends ConsumerWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Barrita superior para indicar que se puede deslizar
+          // Barrita superior deslizante
           Container(
             width: 40,
             height: 4,
@@ -76,7 +76,7 @@ class PendingScansSheet extends ConsumerWidget {
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          // 1. Botón Menos (CORREGIDO: Solo resta o elimina de la lista temporal)
+                          // Botón Menos (Elimina o resta de la memoria temporal)
                           IconButton(
                             icon: Icon(
                               quantity == 1
@@ -103,7 +103,7 @@ class PendingScansSheet extends ConsumerWidget {
                               ),
                             ),
                           ),
-                          // 2. Botón Más (Suma a la lista temporal)
+                          // Botón Más (Suma a la memoria temporal)
                           IconButton(
                             icon: const Icon(
                               Icons.add_circle_outline,
@@ -123,7 +123,7 @@ class PendingScansSheet extends ConsumerWidget {
 
           const SizedBox(height: 16),
 
-          // 3. Botón de Acción Principal "LISTO" (CORREGIDO: Aquí va el guardado real)
+          // Botón de Acción Principal "LISTO" (Guardado en BD)
           SizedBox(
             width: double.infinity,
             height: 50,
@@ -138,21 +138,22 @@ class PendingScansSheet extends ConsumerWidget {
               onPressed: pendingScans.isEmpty
                   ? null
                   : () async {
-                      // 1. Damos feedback visual inmediato (vibra)
                       HapticFeedback.mediumImpact();
 
+                      // Capturamos el contexto de navegación antes del proceso asíncrono
+                      final navigator = Navigator.of(context);
+                      final messenger = ScaffoldMessenger.of(context);
+
                       try {
-                        // 2. Leemos el Notifier de tu inventario
                         final inventoryNotifier = ref.read(
                           inventoryProvider.notifier,
                         );
 
-                        // 3. Recorremos el mapa de cromos escaneados
+                        // Recorremos el mapa y guardamos en Supabase/SQLite
                         for (var entry in pendingScans.entries) {
-                          final stickerId = entry.key; // Ej: "ECU_10"
-                          final delta = entry.value; // Ej: 2
+                          final stickerId = entry.key;
+                          final delta = entry.value;
 
-                          // 4. GUARDAMOS EN TU BASE DE DATOS LOCAL/SUPABASE
                           await inventoryNotifier.updateVariantQuantity(
                             stickerId,
                             'normal',
@@ -160,42 +161,36 @@ class PendingScansSheet extends ConsumerWidget {
                           );
                         }
 
-                        // 5. Limpiamos la bandeja temporal para el próximo escaneo
+                        // Limpiamos la bandeja temporal
                         ref.read(pendingScansProvider.notifier).clear();
 
-                        // 6. Cerramos el BottomSheet
-                        Navigator.of(context).pop();
-                        if (context.mounted) {
-                          Navigator.pop(context);
+                        // Cerramos el Bottom Sheet sin matar la cámara
+                        navigator.pop();
 
-                          // 7. Mostramos el mensaje de triunfo 🏆
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                '¡${pendingScans.length} cromos guardados con éxito! 🏆',
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              backgroundColor: Colors.amber,
-                              behavior: SnackBarBehavior.floating,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
+                        // Mostramos el éxito
+                        messenger.showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              '¡${pendingScans.length} cromos guardados con éxito! 🏆',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
                               ),
                             ),
-                          );
-                        }
+                            backgroundColor: Colors.amber,
+                            behavior: SnackBarBehavior.floating,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        );
                       } catch (e) {
-                        // Si algo falla, se lo decimos al usuario sin cerrar la bandeja
-                        if (context.mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('❌ Error al guardar: $e'),
-                              backgroundColor: Colors.redAccent,
-                            ),
-                          );
-                        }
+                        messenger.showSnackBar(
+                          SnackBar(
+                            content: Text('❌ Error al guardar: $e'),
+                            backgroundColor: Colors.redAccent,
+                          ),
+                        );
                       }
                     },
               child: const Text(

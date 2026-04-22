@@ -19,8 +19,6 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
   CameraController? _cameraController;
   Map<String, String>? _validStickerIdsCache;
 
-  String? _lastCapturedCode;
-  DateTime? _lastCaptureTime;
   final TextRecognizer _textRecognizer = TextRecognizer(
     script: TextRecognitionScript.latin,
   );
@@ -28,11 +26,12 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
   bool _isCameraInitialized = false;
   bool _isProcessing = false;
 
-  // --- VARIABLES DE CONSENSO (Anti-errores) ---
-  String? _lastDetectedCode;
-  int _consensusCount = 0;
-  final int _requiredConsensus =
-      3; // Cuántas veces seguidas debe ver el mismo número
+  // --- VARIABLES DEL MULTIESCÁNER ---
+  final int _requiredConsensus = 3; // Cuántas veces seguidas debe ver el número
+  Map<String, int> _consensusMap =
+      {}; // Rastrea el progreso de cada cromo { "ECU_10": 2 }
+  Map<String, DateTime> _cooldownMap =
+      {}; // Rastrea el bloqueo temporal { "ECU_10": 10:05:01 }
 
   @override
   void initState() {
@@ -109,91 +108,71 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
 
       // Extraemos el texto crudo de la imagen
       final recognizedText = await _textRecognizer.processImage(inputImage);
-      final rawString = recognizedText.text.toUpperCase();
+      final rawStringGlobal = recognizedText.text.toUpperCase();
 
-      // 2. EL ESCUDO ANTI-TRAMPAS 🛡️ (Ignora pantallas, recibos, etc.)
-      if (!rawString.contains('PANINI') && !rawString.contains('FIFA')) {
-        _consensusCount = 0;
-        return;
-      }
-
-      // 3. EL CAZADOR DE CÓDIGOS INTELIGENTE 🎯
-      // Busca patrones (ej. "IRN 1", "ECU10", "110") asegurándose de que no sean
-      // partes de un código de barras larguísimo gracias al (?<!\d) y (?!\d)
-      final RegExp regex = RegExp(r'\b[A-Z]{3}\s?\d{1,3}\b');
-      final matches = regex.allMatches(rawString);
-
-      if (matches.isEmpty) {
-        _consensusCount = 0;
+      // 2. EL ESCUDO ANTI-TRAMPAS GLOBAL 🛡️
+      if (!rawStringGlobal.contains('PANINI') &&
+          !rawStringGlobal.contains('FIFA')) {
+        _consensusMap.clear(); // Si quitamos los cromos, borramos el progreso
         return;
       }
 
       if (_validStickerIdsCache == null) return;
 
-      String? foundCode;
+      // (?<!\d) y (?!\d) evitan leer códigos de barras largos
+      final RegExp regex = RegExp(r'(?<!\d)(?:[A-Z]{3}\s?)?\d{1,3}(?!\d)');
 
-      // 4. LA ADUANA TRADUCTORA 🛂 (Bucle de salvación)
-      // Revisamos TODO lo que encontró la cámara, no solo el primero
-      for (final match in matches) {
-        String rawCode = match.group(0)!.toUpperCase();
+      // Aquí guardaremos los cromos válidos que encontremos en ESTE frame exacto
+      Set<String> codesInThisFrame = {};
 
-        // Lo "aplastamos" para nuestro traductor (Ej: "IRN 1FIFA" -> "IRN1FIFA" -> la regex solo extrajo "IRN 1" -> "IRN1")
-        String searchKey = rawCode.replaceAll(' ', '').replaceAll('_', '');
+      // 3. LA MAGIA DE LOS CUADROS 🟩 (Procesamos bloque por bloque)
+      for (final block in recognizedText.blocks) {
+        final blockText = block.text.toUpperCase();
+        final matches = regex.allMatches(blockText);
 
-        // Le preguntamos al diccionario si esta coincidencia específica existe en Supabase
-        if (_validStickerIdsCache!.containsKey(searchKey)) {
-          // ¡BINGO! Encontramos uno válido (Ej: "IRN_1"). Lo guardamos y rompemos el bucle.
-          foundCode = _validStickerIdsCache![searchKey]!;
-          break;
+        for (final match in matches) {
+          String rawCode = match.group(0)!.toUpperCase();
+          String searchKey = rawCode.replaceAll(' ', '').replaceAll('_', '');
+
+          // Si el código de ESTE cuadro existe en la DB, lo añadimos a la lista del frame
+          if (_validStickerIdsCache!.containsKey(searchKey)) {
+            codesInThisFrame.add(_validStickerIdsCache![searchKey]!);
+          }
         }
       }
 
-      // Si revisó todo el texto y ningún código existía en el álbum, descartamos el frame
-      if (foundCode == null) {
-        _consensusCount = 0;
-        return;
-      }
+      // 4. LIMPIEZA DE CONSENSO 🧹
+      // Si un cromo estaba a punto de ser capturado pero moviste la mano, reseteamos su contador
+      _consensusMap.removeWhere((code, _) => !codesInThisFrame.contains(code));
 
-      // 🛑 5. EL SEGURO ANTI-METRALLETA (COOLDOWN) 🛑
-      if (foundCode == _lastCapturedCode && _lastCaptureTime != null) {
-        final secondsSinceLastCapture = DateTime.now()
-            .difference(_lastCaptureTime!)
-            .inSeconds;
-
-        // Exigimos 3 segundos de pausa antes de escanear el MISMO cromo exacto
-        if (secondsSinceLastCapture < 3) {
-          return;
+      // 5. PROCESAR LOS CROMOS DEL FRAME ACTUAL 🎯
+      for (final code in codesInThisFrame) {
+        // --- SEGURO ANTI-METRALLETA POR CROMO ---
+        if (_cooldownMap.containsKey(code)) {
+          final seconds = DateTime.now()
+              .difference(_cooldownMap[code]!)
+              .inSeconds;
+          if (seconds < 3)
+            continue; // Si este cromo específico fue escaneado hace menos de 3s, lo ignoramos
         }
-      }
 
-      // 6. LA REGLA DE CONSENSO 🤝 (3 frames idénticos)
-      if (foundCode == _lastDetectedCode) {
-        _consensusCount++;
-      } else {
-        _lastDetectedCode = foundCode;
-        _consensusCount = 1;
-      }
+        // --- SISTEMA DE CONSENSO INDIVIDUAL ---
+        _consensusMap[code] = (_consensusMap[code] ?? 0) + 1;
 
-      // 7. ¡CAPTURA EXITOSA! 🏆
-      if (_consensusCount >= _requiredConsensus) {
-        debugPrint('🎯 Cromo validado y capturado -> $foundCode');
+        // --- ¡BINGO MULTIPLE! 🏆 ---
+        if (_consensusMap[code]! >= _requiredConsensus) {
+          debugPrint('🎯 Cromo capturado por bloque -> $code');
 
-        // Lo mandamos a la bandeja temporal (Riverpod)
-        ref.read(pendingScansProvider.notifier).addSticker(foundCode);
+          // Guardamos en Riverpod
+          ref.read(pendingScansProvider.notifier).addSticker(code);
+          HapticFeedback.heavyImpact();
 
-        // Feedback físico
-        HapticFeedback.heavyImpact();
+          // Ponemos ESTE cromo en cooldown
+          _cooldownMap[code] = DateTime.now();
 
-        // Bloqueamos este cromo específico temporalmente marcando la hora
-        _lastCapturedCode = foundCode;
-        _lastCaptureTime = DateTime.now();
-
-        // Reseteamos las variables de búsqueda para el siguiente cromo
-        _consensusCount = 0;
-        _lastDetectedCode = null;
-
-        // Breve pausa para liberar el procesador
-        await Future.delayed(const Duration(milliseconds: 500));
+          // Reseteamos su consenso para el futuro
+          _consensusMap.remove(code);
+        }
       }
     } catch (e) {
       debugPrint('❌ Error en el procesamiento del OCR: $e');
@@ -235,8 +214,9 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
         (Platform.isAndroid &&
             format != InputImageFormat.nv21 &&
             format != InputImageFormat.yv12) ||
-        (Platform.isIOS && format != InputImageFormat.bgra8888))
+        (Platform.isIOS && format != InputImageFormat.bgra8888)) {
       return null;
+    }
 
     if (image.planes.isEmpty) return null;
 
@@ -245,7 +225,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
         ? image
               .planes
               .first
-              .bytes // NV21/YV12 usa un buffer continuo a veces, o se asume el primer plano para ML Kit básico
+              .bytes // NV21/YV12
         : image.planes.first.bytes; // BGRA8888 en iOS
 
     return InputImage.fromBytes(
@@ -296,7 +276,6 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
             ),
           ),
 
-          // 4. (Opcional) Un mini indicador flotante para ver cuántos llevas
           // 4. Botón Flotante para ver la bandeja de escaneo
           Positioned(
             bottom: 50,
