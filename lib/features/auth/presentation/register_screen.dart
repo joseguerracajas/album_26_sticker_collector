@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:album_26_sticker_collector/features/auth/presentation/auth_screen.dart';
 import 'package:album_26_sticker_collector/main.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -45,16 +46,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
     try {
       await supabase.auth.signUp(email: email, password: password);
 
+      // En algunos proyectos Supabase puede abrir sesión automáticamente.
+      // Forzamos logout para que el usuario vuelva al login manualmente.
+      await supabase.auth.signOut();
+
       if (mounted) {
-        // Mostramos un mensaje de éxito
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('¡Cuenta creada con éxito!'),
+            content: Text('Cuenta creada con éxito. Ahora inicia sesión.'),
             backgroundColor: Colors.green,
           ),
         );
-        // Cerramos la pantalla de registro
-        Navigator.pop(context);
+
+        await Future<void>.delayed(const Duration(milliseconds: 1200));
+
+        if (!mounted) return;
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const LoginScreen()),
+          (route) => false,
+        );
       }
     } catch (e) {
       _showError(e.toString());

@@ -1,6 +1,7 @@
 // Archivo: lib/features/auth/data/auth_provider.dart
 import 'dart:convert';
 import 'package:album_26_sticker_collector/brick/app_repository.dart';
+import 'package:album_26_sticker_collector/features/auth/data/guest_session_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/sync_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:crypto/crypto.dart';
@@ -15,6 +16,22 @@ final authControllerProvider = Provider<AuthController>((ref) {
   return AuthController(ref);
 });
 
+enum GuestMergeResult { none, migratedGuestToNewAccount, usedExistingRemote }
+
+class GuestMergeResultNotifier extends Notifier<GuestMergeResult> {
+  @override
+  GuestMergeResult build() => GuestMergeResult.none;
+
+  void setResult(GuestMergeResult result) {
+    state = result;
+  }
+}
+
+final guestMergeResultProvider =
+    NotifierProvider<GuestMergeResultNotifier, GuestMergeResult>(
+      GuestMergeResultNotifier.new,
+    );
+
 class AuthController {
   AuthController(this._ref);
 
@@ -23,8 +40,10 @@ class AuthController {
 
   // --- 1. LOGIN TRADICIONAL (Email/Password) ---
   Future<void> login(String email, String password) async {
+    final hadGuestData = await _ref.read(syncServiceProvider).hasGuestData();
+
     await supabase.auth.signInWithPassword(email: email, password: password);
-    await _iniciarSincronizacion();
+    await _iniciarSincronizacion(hadGuestData: hadGuestData);
   }
 
   // --- 2. LOGIN CON GOOGLE (Adaptado a google_sign_in v7.0+) ---
@@ -41,6 +60,8 @@ class AuthController {
       serverClientId: webClientId,
       clientId: iosClientId,
     );
+
+    final hadGuestData = await _ref.read(syncServiceProvider).hasGuestData();
 
     // Usamos authenticate() como dice la doc
     final googleUser = await googleSignIn.authenticate();
@@ -64,11 +85,13 @@ class AuthController {
       accessToken: authorization.accessToken,
     );
 
-    await _iniciarSincronizacion();
+    await _iniciarSincronizacion(hadGuestData: hadGuestData);
   }
 
   // --- 3. LOGIN CON APPLE ---
   Future<void> loginWithApple() async {
+    final hadGuestData = await _ref.read(syncServiceProvider).hasGuestData();
+
     final rawNonce = supabase.auth.generateRawNonce();
     final hashedNonce = sha256.convert(utf8.encode(rawNonce)).toString();
 
@@ -91,13 +114,41 @@ class AuthController {
       nonce: rawNonce,
     );
 
-    await _iniciarSincronizacion();
+    await _iniciarSincronizacion(hadGuestData: hadGuestData);
   }
 
-  Future<void> _iniciarSincronizacion() async {
+  Future<void> _iniciarSincronizacion({required bool hadGuestData}) async {
     try {
       final user = supabase.auth.currentUser;
       if (user != null) {
+        _ref
+            .read(guestMergeResultProvider.notifier)
+            .setResult(GuestMergeResult.none);
+
+        await _ref.read(guestSessionProvider.notifier).disableGuestMode();
+
+        if (hadGuestData) {
+          final remoteHasData = await _ref
+              .read(syncServiceProvider)
+              .remoteHasInventory(user.id);
+
+          if (remoteHasData) {
+            await _ref
+                .read(syncServiceProvider)
+                .discardGuestDataAndUseRemote(user.id);
+            _ref
+                .read(guestMergeResultProvider.notifier)
+                .setResult(GuestMergeResult.usedExistingRemote);
+          } else {
+            await _ref
+                .read(syncServiceProvider)
+                .migrateGuestDataToUser(user.id);
+            _ref
+                .read(guestMergeResultProvider.notifier)
+                .setResult(GuestMergeResult.migratedGuestToNewAccount);
+          }
+        }
+
         _repo.memoryCacheProvider.reset();
         await _ref
             .read(syncServiceProvider)
@@ -114,6 +165,7 @@ class AuthController {
     try {
       _repo.stopSyncQueue();
       _repo.memoryCacheProvider.reset();
+      await _ref.read(guestSessionProvider.notifier).disableGuestMode();
       _ref.read(inventoryProvider.notifier).clear();
       _ref.invalidate(inventoryProvider);
     } catch (e) {

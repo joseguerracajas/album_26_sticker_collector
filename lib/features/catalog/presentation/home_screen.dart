@@ -1,5 +1,6 @@
 // Archivo: lib/features/catalog/presentation/home_screen.dart
 
+import 'package:album_26_sticker_collector/features/auth/presentation/auth_screen.dart';
 import 'package:album_26_sticker_collector/features/auth/presentation/profile_screen.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/categories_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
@@ -15,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:album_26_sticker_collector/main.dart';
 import 'category_detail_screen.dart';
 
 // --- ESTADO DEL BUSCADOR ---
@@ -53,9 +55,13 @@ class HomeScreen extends ConsumerWidget {
           icon: const Icon(Icons.account_circle, color: Colors.grey, size: 28),
           tooltip: 'Mi Perfil',
           onPressed: () {
+            final isLoggedIn = supabase.auth.currentSession != null;
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const ProfileScreen()),
+              MaterialPageRoute(
+                builder: (context) =>
+                    isLoggedIn ? const ProfileScreen() : const LoginScreen(),
+              ),
             );
           },
         ),

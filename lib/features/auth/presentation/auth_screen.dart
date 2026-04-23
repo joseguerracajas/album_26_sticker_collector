@@ -2,6 +2,7 @@
 
 import 'dart:io';
 import 'package:album_26_sticker_collector/features/auth/data/auth_provider.dart';
+import 'package:album_26_sticker_collector/features/auth/data/guest_session_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -46,6 +47,27 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       await loginMethod();
 
       if (mounted) {
+        final mergeResult = ref.read(guestMergeResultProvider);
+        if (mergeResult == GuestMergeResult.migratedGuestToNewAccount) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Tu progreso guest se copio a tu nueva cuenta.'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        } else if (mergeResult == GuestMergeResult.usedExistingRemote) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text(
+                'La cuenta ya existia: se conservaron los datos de la nube y se descarto el progreso guest local.',
+              ),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        }
+      }
+
+      if (mounted) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => const HomeScreen()),
         );
@@ -58,6 +80,21 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             SnackBar(content: Text('Error: $e'), backgroundColor: Colors.red),
           );
         }
+      }
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
+  }
+
+  Future<void> _continuarComoInvitado() async {
+    setState(() => _isLoading = true);
+    try {
+      await ref.read(guestSessionProvider.notifier).enableGuestMode();
+
+      if (mounted) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
+        );
       }
     } finally {
       if (mounted) setState(() => _isLoading = false);
@@ -221,6 +258,26 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
 
                   const SizedBox(height: 24),
+                  OutlinedButton.icon(
+                    style: OutlinedButton.styleFrom(
+                      side: const BorderSide(color: Colors.amber),
+                      foregroundColor: Colors.amber,
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    onPressed: _continuarComoInvitado,
+                    icon: const Icon(Icons.person_outline),
+                    label: const Text(
+                      'Continuar como invitado',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
                   TextButton(
                     onPressed: () {
                       Navigator.push(

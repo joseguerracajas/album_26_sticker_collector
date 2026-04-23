@@ -1,6 +1,7 @@
 // Archivo: lib/features/sync/data/sync_provider.dart
 
 import 'package:album_26_sticker_collector/features/catalog/data/categories_provider.dart';
+import 'package:album_26_sticker_collector/features/auth/data/guest_session_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brick_offline_first/brick_offline_first.dart';
 import 'package:album_26_sticker_collector/brick/app_repository.dart';
@@ -30,6 +31,70 @@ class SyncService {
       _ref.refresh(categoriesProvider.future),
       _ref.refresh(inventoryProvider.future),
     ]);
+  }
+
+  Future<bool> hasGuestData() async {
+    final guestQuery = Query(
+      where: [Where.exact('userId', guestInventoryUserId)],
+    );
+
+    final guestItems = await _repo.sqliteProvider.get<Inventory>(
+      query: guestQuery,
+    );
+
+    return guestItems.isNotEmpty;
+  }
+
+  Future<bool> remoteHasInventory(String userId) async {
+    final query = Query(where: [Where.exact('userId', userId)]);
+    final remoteItems = await _repo.remoteProvider.get<Inventory>(query: query);
+    return remoteItems.isNotEmpty;
+  }
+
+  Future<void> migrateGuestDataToUser(String userId) async {
+    final guestQuery = Query(
+      where: [Where.exact('userId', guestInventoryUserId)],
+    );
+
+    final guestItems = await _repo.sqliteProvider.get<Inventory>(
+      query: guestQuery,
+    );
+
+    if (guestItems.isEmpty) return;
+
+    for (final item in guestItems) {
+      await _repo.sqliteProvider.delete<Inventory>(item);
+
+      final migrated = Inventory(
+        id: item.id,
+        userId: userId,
+        stickerId: item.stickerId,
+        variantId: item.variantId,
+        quantity: item.quantity,
+        lastUpdated: item.lastUpdated ?? DateTime.now(),
+      );
+
+      await _repo.upsert<Inventory>(migrated);
+    }
+
+    _repo.memoryCacheProvider.reset();
+  }
+
+  Future<void> discardGuestDataAndUseRemote(String userId) async {
+    final guestQuery = Query(
+      where: [Where.exact('userId', guestInventoryUserId)],
+    );
+
+    final guestItems = await _repo.sqliteProvider.get<Inventory>(
+      query: guestQuery,
+    );
+
+    for (final item in guestItems) {
+      await _repo.sqliteProvider.delete<Inventory>(item);
+    }
+
+    _repo.memoryCacheProvider.reset();
+    await sincronizacionFisicaEspejo(userId);
   }
 
   // --- EL PROTOCOLO ESPEJO (Destructor de Fantasmas) ---

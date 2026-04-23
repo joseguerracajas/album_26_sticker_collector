@@ -1,4 +1,5 @@
 import 'package:album_26_sticker_collector/brick/app_repository.dart';
+import 'package:album_26_sticker_collector/features/auth/data/guest_session_provider.dart';
 import 'package:album_26_sticker_collector/main.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brick_offline_first/brick_offline_first.dart';
@@ -15,19 +16,23 @@ final inventoryProvider =
 
 class InventoryNotifier extends AsyncNotifier<InventoryMap> {
   final _repo = AppRepository();
+
+  String get _activeUserId =>
+      supabase.auth.currentUser?.id ?? guestInventoryUserId;
+
+  bool get _isAuthenticated => supabase.auth.currentUser != null;
+
   @override
   Future<InventoryMap> build() async {
-    final user = supabase.auth.currentUser;
-
-    if (user == null) return {};
-
-    final userId = supabase.auth.currentUser!.id;
+    final userId = _activeUserId;
 
     final query = Query(where: [Where.exact('userId', userId)]);
-    final inventarioLocal = await _repo.get<Inventory>(
-      query: query,
-      policy: OfflineFirstGetPolicy.alwaysHydrate,
-    );
+    final inventarioLocal = _isAuthenticated
+        ? await _repo.get<Inventory>(
+            query: query,
+            policy: OfflineFirstGetPolicy.alwaysHydrate,
+          )
+        : await _repo.sqliteProvider.get<Inventory>(query: query);
 
     final InventoryMap inventoryMap = {};
 
@@ -49,7 +54,7 @@ class InventoryNotifier extends AsyncNotifier<InventoryMap> {
   Future<void> toggleNormalSticker(String stickerId) async {
     if (!state.hasValue) return;
 
-    final userId = supabase.auth.currentUser!.id;
+    final userId = _activeUserId;
 
     final currentMap = Map<String, Map<String, int>>.from(
       state.value!.map(
@@ -91,10 +96,18 @@ class InventoryNotifier extends AsyncNotifier<InventoryMap> {
           lastUpdated: DateTime.now(),
         );
 
-        await _repo.upsert<Inventory>(nuevoInventario);
+        if (_isAuthenticated) {
+          await _repo.upsert<Inventory>(nuevoInventario);
+        } else {
+          await _repo.sqliteProvider.upsert<Inventory>(nuevoInventario);
+        }
       } else {
         if (registroPrevio.isNotEmpty) {
-          await _repo.delete<Inventory>(registroPrevio.first);
+          if (_isAuthenticated) {
+            await _repo.delete<Inventory>(registroPrevio.first);
+          } else {
+            await _repo.sqliteProvider.delete<Inventory>(registroPrevio.first);
+          }
         }
       }
     } catch (e) {
@@ -110,7 +123,7 @@ class InventoryNotifier extends AsyncNotifier<InventoryMap> {
   ) async {
     if (!state.hasValue) return;
 
-    final userId = supabase.auth.currentUser!.id;
+    final userId = _activeUserId;
 
     final currentMap = Map<String, Map<String, int>>.from(
       state.value!.map(
@@ -143,7 +156,11 @@ class InventoryNotifier extends AsyncNotifier<InventoryMap> {
 
       if (newQty == 0) {
         if (registroPrevio.isNotEmpty) {
-          await _repo.delete<Inventory>(registroPrevio.first);
+          if (_isAuthenticated) {
+            await _repo.delete<Inventory>(registroPrevio.first);
+          } else {
+            await _repo.sqliteProvider.delete<Inventory>(registroPrevio.first);
+          }
         }
       } else {
         // Reutiliza el id existente o genera uno nuevo
@@ -162,10 +179,18 @@ class InventoryNotifier extends AsyncNotifier<InventoryMap> {
 
         // Si hay registro previo, bórralo primero
         if (registroPrevio.isNotEmpty) {
-          await _repo.delete<Inventory>(registroPrevio.first);
+          if (_isAuthenticated) {
+            await _repo.delete<Inventory>(registroPrevio.first);
+          } else {
+            await _repo.sqliteProvider.delete<Inventory>(registroPrevio.first);
+          }
         }
 
-        await _repo.upsert<Inventory>(nuevoInventario);
+        if (_isAuthenticated) {
+          await _repo.upsert<Inventory>(nuevoInventario);
+        } else {
+          await _repo.sqliteProvider.upsert<Inventory>(nuevoInventario);
+        }
       }
     } catch (e) {
       currentMap[stickerId]![variantId] = currentQty;

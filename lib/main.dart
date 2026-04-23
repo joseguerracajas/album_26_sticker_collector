@@ -1,5 +1,4 @@
 import 'package:album_26_sticker_collector/brick/app_repository.dart';
-import 'package:album_26_sticker_collector/features/auth/presentation/auth_screen.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,7 +23,7 @@ Future<void> main() async {
 
   await AppRepository().initialize();
 
-  runApp(const MainApp());
+  runApp(const ProviderScope(child: MainApp()));
 }
 
 class MainApp extends StatelessWidget {
@@ -32,29 +31,17 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProviderScope(
-      child: MaterialApp(
-        title: 'Album 26',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: const Color(0xFF121212),
-          appBarTheme: const AppBarTheme(
-            backgroundColor: Color(0xFF1E1E1E),
-            elevation: 0,
-          ),
-        ),
-        home: StreamBuilder<AuthState>(
-          stream: supabase.auth.onAuthStateChange,
-          builder: (context, snapshot) {
-            // Si el stream nos dice que hay una sesión activa, vamos al catálogo
-            if (snapshot.data?.session != null) {
-              return const HomeScreen();
-            }
-            // Si no hay sesión, mandamos al login
-            return const LoginScreen();
-          },
+    return MaterialApp(
+      title: 'Album 26',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: const Color(0xFF121212),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF1E1E1E),
+          elevation: 0,
         ),
       ),
+      home: const HomeScreen(),
     );
   }
 }
