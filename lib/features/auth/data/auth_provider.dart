@@ -4,6 +4,7 @@ import 'package:album_26_sticker_collector/brick/app_repository.dart';
 import 'package:album_26_sticker_collector/features/auth/data/guest_session_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/sync_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
+import 'package:album_26_sticker_collector/features/monetization/data/subscription_provider.dart';
 import 'package:crypto/crypto.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart'; // Versión 7.0+
@@ -174,6 +175,9 @@ class AuthController {
         await _ref
             .read(syncServiceProvider)
             .sincronizacionFisicaEspejo(user.id);
+
+        // Vincular la suscripción de RevenueCat con este usuario
+        await _ref.read(subscriptionProvider.notifier).loginUser(user.id);
       }
 
       _repo.startSyncQueue();
@@ -189,6 +193,9 @@ class AuthController {
       await _ref.read(guestSessionProvider.notifier).disableGuestMode();
       _ref.read(inventoryProvider.notifier).clear();
       _ref.invalidate(inventoryProvider);
+
+      // Desvincular la suscripción de RevenueCat
+      await _ref.read(subscriptionProvider.notifier).logoutUser();
     } catch (e) {
     } finally {
       try {

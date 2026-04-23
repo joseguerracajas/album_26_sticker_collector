@@ -138,5 +138,31 @@
   "forgotPasswordNewPasswordLabel": "Nueva Contraseña",
   "forgotPasswordShortPasswordError": "La contraseña debe tener al menos 6 caracteres.",
   "forgotPasswordSavePasswordButton": "GUARDAR CONTRASEÑA",
-  "forgotPasswordPasswordUpdatedSuccess": "¡Contraseña actualizada con éxito! 🏆"
+  "forgotPasswordPasswordUpdatedSuccess": "¡Contraseña actualizada con éxito! 🏆",
+
+  "paywallTitle": "Desbloquea el Escáner",
+  "paywallSubtitle": "Escanea cromos ilimitados y di adiós a la publicidad con la suscripción Pro.",
+  "paywallBenefitScanner": "Escáner de cromos ilimitado",
+  "paywallBenefitNoAds": "Sin publicidad",
+  "paywallBenefitSync": "Sincronización en la nube incluida",
+  "paywallSubscribeButton": "Suscribirse por {price}/mes",
+  "@paywallSubscribeButton": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "paywallRestorePurchases": "Restaurar compras",
+  "paywallCancelAnytime": "Cancela cuando quieras. Sin compromisos.",
+  "paywallLoadError": "No se pudieron cargar los planes. Verifica tu conexión.",
+  "paywallRetry": "Reintentar",
+
+  "scannerDemoRemaining": "{count} escaneos gratis restantes",
+  "@scannerDemoRemaining": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerDemoFinishedTitle": "Has usado tus 5 escaneos gratis",
+  "scannerDemoFinishedSubtitle": "Suscríbete para escanear cromos ilimitados y disfrutar sin publicidad.",
+  "scannerDemoUnlockButton": "Ver planes Pro"
 }

@@ -12,6 +12,9 @@ import 'package:album_26_sticker_collector/features/inventory/data/inventory_pro
 import 'package:album_26_sticker_collector/features/inventory/data/share_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/stats_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/presentation/scanner_screen.dart';
+import 'package:album_26_sticker_collector/features/monetization/data/ads_provider.dart';
+import 'package:album_26_sticker_collector/features/monetization/data/subscription_provider.dart';
+import 'package:album_26_sticker_collector/features/monetization/presentation/paywall_screen.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -76,6 +79,17 @@ class HomeScreen extends ConsumerWidget {
             tooltip: l10n.homeScanButton,
             onPressed: () {
               HapticFeedback.heavyImpact();
+              final canScan = ref.read(canScanProvider);
+              if (!canScan) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const PaywallScreen(),
+                    fullscreenDialog: true,
+                  ),
+                );
+                return;
+              }
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const ScannerScreen()),
@@ -162,6 +176,7 @@ class HomeScreen extends ConsumerWidget {
           ),
         ],
       ),
+      bottomNavigationBar: const AdBannerWidget(),
       body: RefreshIndicator(
         color: Colors.amber,
         backgroundColor: const Color(0xFF1E1E1E),

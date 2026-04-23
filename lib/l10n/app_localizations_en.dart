@@ -298,4 +298,52 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get forgotPasswordPasswordUpdatedSuccess =>
       'Password updated successfully! 🏆';
+
+  @override
+  String get paywallTitle => 'Unlock the Scanner';
+
+  @override
+  String get paywallSubtitle =>
+      'Scan unlimited stickers and go ad-free with a Pro subscription.';
+
+  @override
+  String get paywallBenefitScanner => 'Unlimited sticker scanner';
+
+  @override
+  String get paywallBenefitNoAds => 'No ads';
+
+  @override
+  String get paywallBenefitSync => 'Cloud sync included';
+
+  @override
+  String paywallSubscribeButton(Object price) {
+    return 'Subscribe for $price/month';
+  }
+
+  @override
+  String get paywallRestorePurchases => 'Restore purchases';
+
+  @override
+  String get paywallCancelAnytime => 'Cancel anytime. No commitments.';
+
+  @override
+  String get paywallLoadError => 'Could not load plans. Check your connection.';
+
+  @override
+  String get paywallRetry => 'Retry';
+
+  @override
+  String scannerDemoRemaining(Object count) {
+    return '$count free scans remaining';
+  }
+
+  @override
+  String get scannerDemoFinishedTitle => 'You\'ve used your 5 free scans';
+
+  @override
+  String get scannerDemoFinishedSubtitle =>
+      'Subscribe to scan unlimited stickers and enjoy an ad-free experience.';
+
+  @override
+  String get scannerDemoUnlockButton => 'View Pro Plans';
 }

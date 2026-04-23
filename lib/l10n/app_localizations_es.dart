@@ -302,4 +302,53 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get forgotPasswordPasswordUpdatedSuccess =>
       '¡Contraseña actualizada con éxito! 🏆';
+
+  @override
+  String get paywallTitle => 'Desbloquea el Escáner';
+
+  @override
+  String get paywallSubtitle =>
+      'Escanea cromos ilimitados y di adiós a la publicidad con la suscripción Pro.';
+
+  @override
+  String get paywallBenefitScanner => 'Escáner de cromos ilimitado';
+
+  @override
+  String get paywallBenefitNoAds => 'Sin publicidad';
+
+  @override
+  String get paywallBenefitSync => 'Sincronización en la nube incluida';
+
+  @override
+  String paywallSubscribeButton(Object price) {
+    return 'Suscribirse por $price/mes';
+  }
+
+  @override
+  String get paywallRestorePurchases => 'Restaurar compras';
+
+  @override
+  String get paywallCancelAnytime => 'Cancela cuando quieras. Sin compromisos.';
+
+  @override
+  String get paywallLoadError =>
+      'No se pudieron cargar los planes. Verifica tu conexión.';
+
+  @override
+  String get paywallRetry => 'Reintentar';
+
+  @override
+  String scannerDemoRemaining(Object count) {
+    return '$count escaneos gratis restantes';
+  }
+
+  @override
+  String get scannerDemoFinishedTitle => 'Has usado tus 5 escaneos gratis';
+
+  @override
+  String get scannerDemoFinishedSubtitle =>
+      'Suscríbete para escanear cromos ilimitados y disfrutar sin publicidad.';
+
+  @override
+  String get scannerDemoUnlockButton => 'Ver planes Pro';
 }

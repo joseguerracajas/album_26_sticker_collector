@@ -619,6 +619,90 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'¡Contraseña actualizada con éxito! 🏆'**
   String get forgotPasswordPasswordUpdatedSuccess;
+
+  /// No description provided for @paywallTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Desbloquea el Escáner'**
+  String get paywallTitle;
+
+  /// No description provided for @paywallSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Escanea cromos ilimitados y di adiós a la publicidad con la suscripción Pro.'**
+  String get paywallSubtitle;
+
+  /// No description provided for @paywallBenefitScanner.
+  ///
+  /// In es, this message translates to:
+  /// **'Escáner de cromos ilimitado'**
+  String get paywallBenefitScanner;
+
+  /// No description provided for @paywallBenefitNoAds.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin publicidad'**
+  String get paywallBenefitNoAds;
+
+  /// No description provided for @paywallBenefitSync.
+  ///
+  /// In es, this message translates to:
+  /// **'Sincronización en la nube incluida'**
+  String get paywallBenefitSync;
+
+  /// No description provided for @paywallSubscribeButton.
+  ///
+  /// In es, this message translates to:
+  /// **'Suscribirse por {price}/mes'**
+  String paywallSubscribeButton(Object price);
+
+  /// No description provided for @paywallRestorePurchases.
+  ///
+  /// In es, this message translates to:
+  /// **'Restaurar compras'**
+  String get paywallRestorePurchases;
+
+  /// No description provided for @paywallCancelAnytime.
+  ///
+  /// In es, this message translates to:
+  /// **'Cancela cuando quieras. Sin compromisos.'**
+  String get paywallCancelAnytime;
+
+  /// No description provided for @paywallLoadError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudieron cargar los planes. Verifica tu conexión.'**
+  String get paywallLoadError;
+
+  /// No description provided for @paywallRetry.
+  ///
+  /// In es, this message translates to:
+  /// **'Reintentar'**
+  String get paywallRetry;
+
+  /// No description provided for @scannerDemoRemaining.
+  ///
+  /// In es, this message translates to:
+  /// **'{count} escaneos gratis restantes'**
+  String scannerDemoRemaining(Object count);
+
+  /// No description provided for @scannerDemoFinishedTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Has usado tus 5 escaneos gratis'**
+  String get scannerDemoFinishedTitle;
+
+  /// No description provided for @scannerDemoFinishedSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Suscríbete para escanear cromos ilimitados y disfrutar sin publicidad.'**
+  String get scannerDemoFinishedSubtitle;
+
+  /// No description provided for @scannerDemoUnlockButton.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver planes Pro'**
+  String get scannerDemoUnlockButton;
 }
 
 class _AppLocalizationsDelegate

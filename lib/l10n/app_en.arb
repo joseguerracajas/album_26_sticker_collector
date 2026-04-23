@@ -138,5 +138,31 @@
   "forgotPasswordNewPasswordLabel": "New Password",
   "forgotPasswordShortPasswordError": "Password must be at least 6 characters.",
   "forgotPasswordSavePasswordButton": "SAVE PASSWORD",
-  "forgotPasswordPasswordUpdatedSuccess": "Password updated successfully! 🏆"
+  "forgotPasswordPasswordUpdatedSuccess": "Password updated successfully! 🏆",
+
+  "paywallTitle": "Unlock the Scanner",
+  "paywallSubtitle": "Scan unlimited stickers and go ad-free with a Pro subscription.",
+  "paywallBenefitScanner": "Unlimited sticker scanner",
+  "paywallBenefitNoAds": "No ads",
+  "paywallBenefitSync": "Cloud sync included",
+  "paywallSubscribeButton": "Subscribe for {price}/month",
+  "@paywallSubscribeButton": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "paywallRestorePurchases": "Restore purchases",
+  "paywallCancelAnytime": "Cancel anytime. No commitments.",
+  "paywallLoadError": "Could not load plans. Check your connection.",
+  "paywallRetry": "Retry",
+
+  "scannerDemoRemaining": "{count} free scans remaining",
+  "@scannerDemoRemaining": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerDemoFinishedTitle": "You've used your 5 free scans",
+  "scannerDemoFinishedSubtitle": "Subscribe to scan unlimited stickers and enjoy an ad-free experience.",
+  "scannerDemoUnlockButton": "View Pro Plans"
 }
