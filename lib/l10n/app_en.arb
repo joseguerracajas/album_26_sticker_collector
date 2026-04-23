@@ -8,10 +8,10 @@
   "authContinueWith": "Or continue with",
   "authContinueGoogle": "Continue with Google",
   "authContinueApple": "Continue with Apple",
-  "authContinueGuest": "Continue as guest",
-  "authNoAccountRegister": "No account? Sign up",
-  "authGuestMigratedSuccess": "Your guest progress was copied to your new account.",
-  "authGuestRemotePreserved": "This account already existed: cloud data was kept and local guest progress was discarded.",
+  "authContinueGuest": "Continue as Guest",
+  "authNoAccountRegister": "Don't have an account? Sign up",
+  "authGuestMigratedSuccess": "Your guest progress was successfully transferred to your new account! 🏆",
+  "authGuestRemotePreserved": "Welcome back! Your cloud collection has been restored, and local guest progress was discarded.",
   "commonErrorWithMessage": "Error: {message}",
   "@commonErrorWithMessage": {
     "placeholders": {
@@ -23,12 +23,12 @@
   "registerEmailsDontMatch": "Emails do not match.",
   "registerPasswordsDontMatch": "Passwords do not match.",
   "registerPasswordMinLength": "Password must be at least 6 characters.",
-  "registerAccountCreated": "Account created successfully. Please sign in.",
+  "registerAccountCreated": "Account created successfully! ⚽ Please sign in.",
   "registerConfirmEmailLabel": "Confirm email",
   "registerConfirmPasswordLabel": "Confirm password",
   "registerSubmitButton": "SIGN UP",
   "profileTitle": "My Profile",
-  "profileOfficialCollector": "Official Collector",
+  "profileOfficialCollector": "Official Collector 🌟",
   "profileLogoutButton": "Sign out",
   "profileUnknownUser": "Unknown user",
   "profileLogoutError": "Error signing out: {message}",
@@ -39,7 +39,7 @@
   },
   "homeTitle": "My Album 26",
   "homeProfileTooltip": "My Profile",
-  "homeShareAll": "Share All",
+  "homeShareAll": "Share Full List",
   "homeShareMissingOnly": "Missing Only",
   "homeShareDuplicatesOnly": "Duplicates Only",
   "homeGlobalProgressTitle": "Global Progress",
@@ -52,10 +52,10 @@
   },
   "homeViewFullCollection": "View Full Collection",
   "homeTeamsTitle": "Teams",
-  "homeSearchTeamsHint": "Search country or team...",
-  "homeNoResults": "No results",
-  "homeScanButton": "Scan",
-  "homeObtainedCount": "{collected} of {total} obtained",
+  "homeSearchTeamsHint": "Search by country or team...",
+  "homeNoResults": "No teams found",
+  "homeScanButton": "Scan Sticker",
+  "homeObtainedCount": "{collected} of {total} collected",
   "@homeObtainedCount": {
     "placeholders": {
       "collected": {},
@@ -67,9 +67,9 @@
   "filterAll": "All",
   "filterMissing": "Missing",
   "filterDuplicates": "Duplicates",
-  "filterSearchHint": "Search country, code or number...",
+  "filterSearchHint": "Search by country, code or number...",
   "stickerRemoveTitle": "Remove sticker?",
-  "stickerRemoveConfirm": "Are you sure you want to remove sticker {stickerLabel}?",
+  "stickerRemoveConfirm": "Are you sure you want to remove sticker {stickerLabel} from your album?",
   "@stickerRemoveConfirm": {
     "placeholders": {
       "stickerLabel": {}
@@ -78,23 +78,23 @@
   "commonCancel": "Cancel",
   "commonRemove": "Remove",
   "commonDone": "DONE",
-  "gridNoResults": "No results.",
-  "scannerViewScannedButton": "View {count} scanned stickers",
+  "gridNoResults": "No stickers found.",
+  "scannerViewScannedButton": "Review {count} scanned stickers",
   "@scannerViewScannedButton": {
     "placeholders": {
       "count": {}
     }
   },
-  "scannerOverlayHint": "Center the back side of the sticker here",
+  "scannerOverlayHint": "Center the back of the sticker here",
   "pendingScansTitle": "Scanned Stickers",
-  "pendingScansEmpty": "You have not scanned anything yet",
+  "pendingScansEmpty": "You haven't scanned any stickers yet",
   "pendingScansItemLabel": "Sticker: {code}",
   "@pendingScansItemLabel": {
     "placeholders": {
       "code": {}
     }
   },
-  "pendingScansSavedSuccess": "{count} stickers saved successfully!",
+  "pendingScansSavedSuccess": "{count} stickers added to your album! 🏆",
   "@pendingScansSavedSuccess": {
     "placeholders": {
       "count": {}
@@ -106,7 +106,7 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *ALBUM 26 TRADING* 🏆",
+  "shareHeader": "⚽ *ALBUM 26 SWAP LIST* 🏆",
   "shareMissingSectionTitle": "❌ *MISSING:*",
   "shareDuplicatesSectionTitle": "🔁 *DUPLICATES:*",
   "shareNoneMissing": "None! 😎",

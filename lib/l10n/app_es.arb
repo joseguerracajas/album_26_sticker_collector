@@ -1,17 +1,17 @@
 {
   "@@locale": "es",
-  "appTitle": "Album 26",
-  "authWelcomeTitle": "Bienvenido a Album 26",
-  "authEmailLabel": "Correo electronico",
-  "authPasswordLabel": "Contrasena",
-  "authLoginButton": "INICIAR SESION",
-  "authContinueWith": "O continuar con",
+  "appTitle": "Álbum 26",
+  "authWelcomeTitle": "Bienvenido a Álbum 26",
+  "authEmailLabel": "Correo electrónico",
+  "authPasswordLabel": "Contraseña",
+  "authLoginButton": "INICIAR SESIÓN",
+  "authContinueWith": "O continúa con",
   "authContinueGoogle": "Continuar con Google",
   "authContinueApple": "Continuar con Apple",
   "authContinueGuest": "Continuar como invitado",
-  "authNoAccountRegister": "No tienes cuenta? Registrate",
-  "authGuestMigratedSuccess": "Tu progreso invitado se copio a tu nueva cuenta.",
-  "authGuestRemotePreserved": "La cuenta ya existia: se conservaron los datos de la nube y se descarto el progreso invitado local.",
+  "authNoAccountRegister": "¿No tienes cuenta? Regístrate",
+  "authGuestMigratedSuccess": "¡Tu progreso como invitado se transfirió a tu nueva cuenta con éxito! 🏆",
+  "authGuestRemotePreserved": "¡Bienvenido de vuelta! Se ha restaurado tu colección de la nube y el progreso local ha sido descartado.",
   "commonErrorWithMessage": "Error: {message}",
   "@commonErrorWithMessage": {
     "placeholders": {
@@ -19,25 +19,25 @@
     }
   },
   "registerTitle": "Crear Cuenta",
-  "registerFillAllFields": "Por favor, llena todos los campos.",
-  "registerEmailsDontMatch": "Los correos electronicos no coinciden.",
-  "registerPasswordsDontMatch": "Las contrasenas no coinciden.",
-  "registerPasswordMinLength": "La contrasena debe tener al menos 6 caracteres.",
-  "registerAccountCreated": "Cuenta creada con exito. Ahora inicia sesion.",
-  "registerConfirmEmailLabel": "Confirmar correo electronico",
-  "registerConfirmPasswordLabel": "Confirmar contrasena",
+  "registerFillAllFields": "Por favor, completa todos los campos.",
+  "registerEmailsDontMatch": "Los correos electrónicos no coinciden.",
+  "registerPasswordsDontMatch": "Las contraseñas no coinciden.",
+  "registerPasswordMinLength": "La contraseña debe tener al menos 6 caracteres.",
+  "registerAccountCreated": "¡Cuenta creada con éxito! ⚽ Ahora inicia sesión.",
+  "registerConfirmEmailLabel": "Confirmar correo electrónico",
+  "registerConfirmPasswordLabel": "Confirmar contraseña",
   "registerSubmitButton": "REGISTRARME",
   "profileTitle": "Mi Perfil",
-  "profileOfficialCollector": "Coleccionista Oficial",
-  "profileLogoutButton": "Cerrar Sesion",
+  "profileOfficialCollector": "Coleccionista Oficial 🌟",
+  "profileLogoutButton": "Cerrar Sesión",
   "profileUnknownUser": "Usuario desconocido",
-  "profileLogoutError": "Error al cerrar sesion: {message}",
+  "profileLogoutError": "Error al cerrar sesión: {message}",
   "@profileLogoutError": {
     "placeholders": {
       "message": {}
     }
   },
-  "homeTitle": "Mi Album 26",
+  "homeTitle": "Mi Álbum 26",
   "homeProfileTooltip": "Mi Perfil",
   "homeShareAll": "Compartir Todo",
   "homeShareMissingOnly": "Solo Faltantes",
@@ -50,11 +50,11 @@
       "total": {}
     }
   },
-  "homeViewFullCollection": "Ver Coleccion Completa",
+  "homeViewFullCollection": "Ver Colección Completa",
   "homeTeamsTitle": "Equipos",
-  "homeSearchTeamsHint": "Buscar pais o equipo...",
+  "homeSearchTeamsHint": "Buscar país o equipo...",
   "homeNoResults": "Sin resultados",
-  "homeScanButton": "Escanear",
+  "homeScanButton": "Escanear Cromo",
   "homeObtainedCount": "{collected} de {total} obtenidos",
   "@homeObtainedCount": {
     "placeholders": {
@@ -63,13 +63,13 @@
     }
   },
   "homeProgressError": "Error",
-  "globalCollectionTitle": "Coleccion Completa",
+  "globalCollectionTitle": "Colección Completa",
   "filterAll": "Todos",
   "filterMissing": "Faltantes",
   "filterDuplicates": "Repetidas",
-  "filterSearchHint": "Buscar pais, codigo o numero...",
-  "stickerRemoveTitle": "Quitar cromo?",
-  "stickerRemoveConfirm": "Seguro que quieres quitar el cromo {stickerLabel}?",
+  "filterSearchHint": "Buscar país, código o número...",
+  "stickerRemoveTitle": "¿Quitar cromo?",
+  "stickerRemoveConfirm": "¿Seguro que quieres quitar el cromo {stickerLabel} de tu álbum?",
   "@stickerRemoveConfirm": {
     "placeholders": {
       "stickerLabel": {}
@@ -78,23 +78,23 @@
   "commonCancel": "Cancelar",
   "commonRemove": "Quitar",
   "commonDone": "LISTO",
-  "gridNoResults": "Sin resultados.",
-  "scannerViewScannedButton": "Ver {count} cromos escaneados",
+  "gridNoResults": "No se encontraron cromos.",
+  "scannerViewScannedButton": "Revisar {count} cromos escaneados",
   "@scannerViewScannedButton": {
     "placeholders": {
       "count": {}
     }
   },
-  "scannerOverlayHint": "Centra la parte trasera del cromo aqui",
+  "scannerOverlayHint": "Centra la parte trasera del cromo aquí",
   "pendingScansTitle": "Cromos Escaneados",
-  "pendingScansEmpty": "Aun no has escaneado nada",
+  "pendingScansEmpty": "Aún no has escaneado ningún cromo",
   "pendingScansItemLabel": "Cromo: {code}",
   "@pendingScansItemLabel": {
     "placeholders": {
       "code": {}
     }
   },
-  "pendingScansSavedSuccess": "{count} cromos guardados con exito!",
+  "pendingScansSavedSuccess": "¡{count} cromos añadidos a tu álbum con éxito! 🏆",
   "@pendingScansSavedSuccess": {
     "placeholders": {
       "count": {}
@@ -106,11 +106,11 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *INTERCAMBIO ALBUM 26* 🏆",
+  "shareHeader": "⚽ *INTERCAMBIO ÁLBUM 26* 🏆",
   "shareMissingSectionTitle": "❌ *ME FALTAN:*",
   "shareDuplicatesSectionTitle": "🔁 *REPETIDAS:*",
-  "shareNoneMissing": "Ninguno! 😎",
+  "shareNoneMissing": "¡Ninguno! 😎",
   "shareNoDuplicates": "Sin repetidas 😅",
-  "shareLetsTrade": "Cambiamos? 👀🔥",
+  "shareLetsTrade": "¿Cambiamos? 👀🔥",
   "shareSeparator": "--------------------------"
 }
