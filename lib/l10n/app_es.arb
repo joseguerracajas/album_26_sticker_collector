@@ -164,5 +164,11 @@
   },
   "scannerDemoFinishedTitle": "Has usado tus 5 escaneos gratis",
   "scannerDemoFinishedSubtitle": "Suscríbete para escanear cromos ilimitados y disfrutar sin publicidad.",
-  "scannerDemoUnlockButton": "Ver planes Pro"
+  "scannerDemoUnlockButton": "Ver planes Pro",
+
+  "adDialogTitle": "Contenido gratuito",
+  "adDialogBody": "Para continuar, ve un breve anuncio o suscríbete a Pro y olvídate de la publicidad para siempre.",
+  "adDialogWatchAd": "Ver anuncio",
+  "adDialogGetPro": "Obtener Pro",
+  "adDialogNotNow": "Ahora no"
 }

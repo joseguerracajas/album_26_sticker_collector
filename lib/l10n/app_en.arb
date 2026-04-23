@@ -164,5 +164,11 @@
   },
   "scannerDemoFinishedTitle": "You've used your 5 free scans",
   "scannerDemoFinishedSubtitle": "Subscribe to scan unlimited stickers and enjoy an ad-free experience.",
-  "scannerDemoUnlockButton": "View Pro Plans"
+  "scannerDemoUnlockButton": "View Pro Plans",
+
+  "adDialogTitle": "Free content",
+  "adDialogBody": "To continue, watch a short ad or subscribe to Pro and forget about ads forever.",
+  "adDialogWatchAd": "Watch ad",
+  "adDialogGetPro": "Get Pro",
+  "adDialogNotNow": "Not now"
 }

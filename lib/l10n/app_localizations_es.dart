@@ -351,4 +351,20 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get scannerDemoUnlockButton => 'Ver planes Pro';
+
+  @override
+  String get adDialogTitle => 'Contenido gratuito';
+
+  @override
+  String get adDialogBody =>
+      'Para continuar, ve un breve anuncio o suscríbete a Pro y olvídate de la publicidad para siempre.';
+
+  @override
+  String get adDialogWatchAd => 'Ver anuncio';
+
+  @override
+  String get adDialogGetPro => 'Obtener Pro';
+
+  @override
+  String get adDialogNotNow => 'Ahora no';
 }

@@ -2,8 +2,8 @@ import 'dart:io';
 import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/pending_scans_sheet.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/pending_scans_provider.dart';
+import 'package:album_26_sticker_collector/features/monetization/data/ads_provider.dart';
 import 'package:album_26_sticker_collector/features/monetization/data/subscription_provider.dart';
-import 'package:album_26_sticker_collector/features/monetization/presentation/paywall_screen.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,7 +28,6 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
 
   bool _isCameraInitialized = false;
   bool _isProcessing = false;
-  bool _scannerPaused = false; // true cuando el demo termina
 
   // --- VARIABLES DEL MULTIESCÁNER ---
   final int _requiredConsensus = 3;
@@ -176,20 +175,14 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
           _cooldownMap[code] = DateTime.now();
           _consensusMap.remove(code);
 
-          // Consumir demo scan si el usuario no está suscrito
-          final subscriptionState = ref
-              .read(subscriptionProvider)
-              .asData
-              ?.value;
-          if (subscriptionState != null && !subscriptionState.isSubscribed) {
-            await ref.read(subscriptionProvider.notifier).consumeDemoScan();
-
-            // Si ya agotó los demos, pausar el scanner
-            final updated = ref.read(subscriptionProvider).asData?.value;
-            if (updated != null && !updated.canScan && mounted) {
-              setState(() => _scannerPaused = true);
-              await _cameraController?.stopImageStream();
-            }
+          // Intersticial cada 8 cromos (solo usuarios free)
+          final isSubscribed =
+              ref.read(subscriptionProvider).asData?.value.isSubscribed ??
+              false;
+          if (!isSubscribed && mounted) {
+            await ref
+                .read(adServiceProvider)
+                .onStickerScanned(isSubscribed: isSubscribed, context: context);
           }
         }
       }
@@ -293,31 +286,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
             ),
           ),
 
-          // 4. Contador de escaneos demo (solo usuarios free)
-          Consumer(
-            builder: (context, ref, child) {
-              final subState = ref.watch(subscriptionProvider).asData?.value;
-              if (subState == null || subState.isSubscribed) {
-                return const SizedBox.shrink();
-              }
-              return Positioned(
-                top: 52,
-                right: 20,
-                child: _DemoScanBadge(remaining: subState.demoScansRemaining),
-              );
-            },
-          ),
-
-          // 5. Overlay de paywall cuando se agota el demo
-          if (_scannerPaused)
-            _PaywallOverlay(
-              onSubscribed: () {
-                setState(() => _scannerPaused = false);
-                _startImageStream();
-              },
-            ),
-
-          // 6. Botón Flotante para ver la bandeja de escaneo
+          // 4. Botón Flotante para ver la bandeja de escaneo
           Positioned(
             bottom: 50,
             left: 20,
@@ -403,139 +372,6 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
           ),
         ),
       ],
-    );
-  }
-}
-
-// ─── Badge de demos restantes ─────────────────────────────────────────────────
-class _DemoScanBadge extends StatelessWidget {
-  final int remaining;
-  const _DemoScanBadge({required this.remaining});
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      decoration: BoxDecoration(
-        color: Colors.black.withValues(alpha: 0.7),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: remaining <= 1 ? Colors.redAccent : Colors.amber,
-          width: 1.5,
-        ),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            Icons.qr_code_scanner,
-            color: remaining <= 1 ? Colors.redAccent : Colors.amber,
-            size: 14,
-          ),
-          const SizedBox(width: 6),
-          Text(
-            l10n.scannerDemoRemaining(remaining),
-            style: TextStyle(
-              color: remaining <= 1 ? Colors.redAccent : Colors.white,
-              fontSize: 13,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-// ─── Overlay de paywall al quedarse sin demos ─────────────────────────────────
-class _PaywallOverlay extends StatelessWidget {
-  final VoidCallback onSubscribed;
-  const _PaywallOverlay({required this.onSubscribed});
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-
-    return Container(
-      color: Colors.black.withValues(alpha: 0.85),
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 80,
-                height: 80,
-                decoration: BoxDecoration(
-                  color: Colors.amber.withValues(alpha: 0.15),
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(
-                  Icons.lock_outline,
-                  color: Colors.amber,
-                  size: 42,
-                ),
-              ),
-              const SizedBox(height: 20),
-              Text(
-                l10n.scannerDemoFinishedTitle,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 12),
-              Text(
-                l10n.scannerDemoFinishedSubtitle,
-                textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.white60, fontSize: 15),
-              ),
-              const SizedBox(height: 32),
-              SizedBox(
-                width: double.infinity,
-                height: 52,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.amber,
-                    foregroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                  ),
-                  onPressed: () async {
-                    final result = await Navigator.of(context).push<bool>(
-                      MaterialPageRoute(
-                        builder: (_) => const PaywallScreen(),
-                        fullscreenDialog: true,
-                      ),
-                    );
-                    if (result == true) onSubscribed();
-                  },
-                  child: Text(
-                    l10n.scannerDemoUnlockButton,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 12),
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text(
-                  l10n.commonCancel,
-                  style: const TextStyle(color: Colors.white38),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }

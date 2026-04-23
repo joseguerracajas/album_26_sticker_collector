@@ -703,6 +703,36 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Ver planes Pro'**
   String get scannerDemoUnlockButton;
+
+  /// No description provided for @adDialogTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Contenido gratuito'**
+  String get adDialogTitle;
+
+  /// No description provided for @adDialogBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Para continuar, ve un breve anuncio o suscríbete a Pro y olvídate de la publicidad para siempre.'**
+  String get adDialogBody;
+
+  /// No description provided for @adDialogWatchAd.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver anuncio'**
+  String get adDialogWatchAd;
+
+  /// No description provided for @adDialogGetPro.
+  ///
+  /// In es, this message translates to:
+  /// **'Obtener Pro'**
+  String get adDialogGetPro;
+
+  /// No description provided for @adDialogNotNow.
+  ///
+  /// In es, this message translates to:
+  /// **'Ahora no'**
+  String get adDialogNotNow;
 }
 
 class _AppLocalizationsDelegate

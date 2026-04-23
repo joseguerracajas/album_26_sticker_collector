@@ -3,6 +3,7 @@ import 'package:album_26_sticker_collector/features/catalog/data/variants_provid
 import 'package:album_26_sticker_collector/features/catalog/domain/category.model.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/sticker.model.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/animated_sticker_card.dart';
+import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/app_bar_actions.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/sticker_filter_search.dart';
 import 'package:album_26_sticker_collector/features/catalog/utils/sticker_filters.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
@@ -35,23 +36,7 @@ class StickerGrid extends ConsumerWidget {
         backgroundColor: const Color(0xFF1E1E1E),
         title: Text(l10n.stickerRemoveTitle),
         content: Text(l10n.stickerRemoveConfirm(stickerLabel)),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx, false),
-            child: Text(
-              l10n.commonCancel,
-              style: const TextStyle(color: Colors.grey),
-            ),
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-            onPressed: () => Navigator.pop(ctx, true),
-            child: Text(
-              l10n.commonRemove,
-              style: const TextStyle(color: Colors.white),
-            ),
-          ),
-        ],
+        actions: const [ScannerIconButton(), ShareMenuButton()],
       ),
     );
 

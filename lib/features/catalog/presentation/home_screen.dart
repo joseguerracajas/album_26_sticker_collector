@@ -7,6 +7,7 @@ import 'package:album_26_sticker_collector/features/catalog/data/stickers_provid
 import 'package:album_26_sticker_collector/features/catalog/data/sync_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/global_collection_screen.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/animated_expand_container.dart';
+import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/app_bar_actions.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/category_avatar.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/share_provider.dart';
@@ -14,7 +15,6 @@ import 'package:album_26_sticker_collector/features/inventory/data/stats_provide
 import 'package:album_26_sticker_collector/features/inventory/presentation/scanner_screen.dart';
 import 'package:album_26_sticker_collector/features/monetization/data/ads_provider.dart';
 import 'package:album_26_sticker_collector/features/monetization/data/subscription_provider.dart';
-import 'package:album_26_sticker_collector/features/monetization/presentation/paywall_screen.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -70,111 +70,7 @@ class HomeScreen extends ConsumerWidget {
             );
           },
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.document_scanner_outlined,
-              color: Colors.amber,
-            ),
-            tooltip: l10n.homeScanButton,
-            onPressed: () {
-              HapticFeedback.heavyImpact();
-              final canScan = ref.read(canScanProvider);
-              if (!canScan) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const PaywallScreen(),
-                    fullscreenDialog: true,
-                  ),
-                );
-                return;
-              }
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ScannerScreen()),
-              );
-            },
-          ),
-          Consumer(
-            builder: (context, ref, child) {
-              final isLoading = ref.watch(shareProvider);
-
-              if (isLoading) {
-                return const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Center(
-                    child: SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        color: Colors.amber,
-                      ),
-                    ),
-                  ),
-                );
-              }
-
-              return PopupMenuButton<ShareType>(
-                icon: const Icon(Icons.share, color: Colors.amber),
-                color: const Color(0xFF1E1E1E),
-                onSelected: (ShareType tipo) async {
-                  try {
-                    await ref
-                        .read(shareProvider.notifier)
-                        .generarYCompartirLista(context, tipo);
-                  } catch (e) {
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(l10n.commonErrorWithMessage(e)),
-                          backgroundColor: Colors.red,
-                        ),
-                      );
-                    }
-                  }
-                },
-                itemBuilder: (BuildContext context) =>
-                    <PopupMenuEntry<ShareType>>[
-                      PopupMenuItem<ShareType>(
-                        value: ShareType.todos,
-                        child: ListTile(
-                          leading: Icon(Icons.list_alt, color: Colors.amber),
-                          title: Text(
-                            l10n.homeShareAll,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                      PopupMenuItem<ShareType>(
-                        value: ShareType.faltantes,
-                        child: ListTile(
-                          leading: Icon(Icons.close, color: Colors.redAccent),
-                          title: Text(
-                            l10n.homeShareMissingOnly,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                      PopupMenuItem<ShareType>(
-                        value: ShareType.repetidos,
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.repeat,
-                            color: Colors.greenAccent,
-                          ),
-                          title: Text(
-                            l10n.homeShareDuplicatesOnly,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ],
-              );
-            },
-          ),
-        ],
+        actions: const [ScannerIconButton(), ShareMenuButton()],
       ),
       bottomNavigationBar: const AdBannerWidget(),
       body: RefreshIndicator(
