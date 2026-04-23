@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:album_26_sticker_collector/features/auth/data/auth_provider.dart';
 import 'package:album_26_sticker_collector/features/auth/data/guest_session_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/home_screen.dart';
+import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'register_screen.dart'; // Importamos la nueva pantalla
@@ -42,6 +43,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   // --- ENVOLTORIO PARA MANEJO DE ESTADOS Y ERRORES ---
   Future<void> _ejecutarLogin(Future<void> Function() loginMethod) async {
     setState(() => _isLoading = true);
+    final l10n = AppLocalizations.of(context);
 
     try {
       await loginMethod();
@@ -50,17 +52,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         final mergeResult = ref.read(guestMergeResultProvider);
         if (mergeResult == GuestMergeResult.migratedGuestToNewAccount) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Tu progreso guest se copio a tu nueva cuenta.'),
+            SnackBar(
+              content: Text(l10n.authGuestMigratedSuccess),
               backgroundColor: Colors.green,
             ),
           );
         } else if (mergeResult == GuestMergeResult.usedExistingRemote) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text(
-                'La cuenta ya existia: se conservaron los datos de la nube y se descarto el progreso guest local.',
-              ),
+            SnackBar(
+              content: Text(l10n.authGuestRemotePreserved),
               backgroundColor: Colors.orange,
             ),
           );
@@ -77,7 +77,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         // Ignoramos el error si el usuario simplemente canceló el popup
         if (!e.toString().contains('cancelado')) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Error: $e'), backgroundColor: Colors.red),
+            SnackBar(
+              content: Text(l10n.commonErrorWithMessage(e.toString())),
+              backgroundColor: Colors.red,
+            ),
           );
         }
       }
@@ -103,11 +106,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Scaffold(
       backgroundColor: const Color(0xFF121212),
       appBar: AppBar(
-        title: const Text(
-          'Bienvenido a Álbum 26',
+        title: Text(
+          l10n.authWelcomeTitle,
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.transparent,
@@ -133,7 +138,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   controller: _emailController,
                   style: const TextStyle(color: Colors.white),
                   decoration: InputDecoration(
-                    labelText: 'Correo electrónico',
+                    labelText: l10n.authEmailLabel,
                     labelStyle: const TextStyle(color: Colors.grey),
                     prefixIcon: const Icon(Icons.email, color: Colors.amber),
                     filled: true,
@@ -150,7 +155,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   controller: _passwordController,
                   style: const TextStyle(color: Colors.white),
                   decoration: InputDecoration(
-                    labelText: 'Contraseña',
+                    labelText: l10n.authPasswordLabel,
                     labelStyle: const TextStyle(color: Colors.grey),
                     prefixIcon: const Icon(Icons.lock, color: Colors.amber),
                     filled: true,
@@ -181,8 +186,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       ),
                     ),
                     onPressed: _login,
-                    child: const Text(
-                      'INICIAR SESIÓN',
+                    child: Text(
+                      l10n.authLoginButton,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
@@ -198,7 +203,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Text(
-                          'O continuar con',
+                          l10n.authContinueWith,
                           style: TextStyle(color: Colors.grey.shade400),
                         ),
                       ),
@@ -224,8 +229,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       size: 30,
                       color: Colors.red,
                     ),
-                    label: const Text(
-                      'Continuar con Google',
+                    label: Text(
+                      l10n.authContinueGoogle,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
@@ -248,8 +253,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       ),
                       onPressed: _loginApple,
                       icon: const Icon(Icons.apple, size: 28),
-                      label: const Text(
-                        'Continuar con Apple',
+                      label: Text(
+                        l10n.authContinueApple,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
@@ -269,8 +274,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                     onPressed: _continuarComoInvitado,
                     icon: const Icon(Icons.person_outline),
-                    label: const Text(
-                      'Continuar como invitado',
+                    label: Text(
+                      l10n.authContinueGuest,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 15,
@@ -287,8 +292,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         ),
                       );
                     },
-                    child: const Text(
-                      '¿No tienes cuenta? Regístrate',
+                    child: Text(
+                      l10n.authNoAccountRegister,
                       style: TextStyle(color: Colors.amber),
                     ),
                   ),

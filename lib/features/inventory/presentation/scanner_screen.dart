@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/pending_scans_sheet.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/pending_scans_provider.dart';
+import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:camera/camera.dart';
@@ -243,6 +244,8 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     if (!_isCameraInitialized || _cameraController == null) {
       return const Scaffold(
         backgroundColor: Colors.black,
@@ -259,7 +262,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
           CameraPreview(_cameraController!),
 
           // 2. El diseño del marco (La mira)
-          _buildScannerOverlay(),
+          _buildScannerOverlay(context),
 
           // 3. Botón para cerrar
           Positioned(
@@ -299,7 +302,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
                   ),
                   icon: const Icon(Icons.fact_check_outlined, size: 26),
                   label: Text(
-                    'Ver $totalCromos cromos escaneados',
+                    l10n.scannerViewScannedButton(totalCromos),
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -323,7 +326,9 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
     );
   }
 
-  Widget _buildScannerOverlay() {
+  Widget _buildScannerOverlay(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -344,10 +349,10 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
           ),
         ),
         const SizedBox(height: 24),
-        const Text(
-          "Centra la parte trasera del cromo aquí",
+        Text(
+          l10n.scannerOverlayHint,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 16,
             fontWeight: FontWeight.bold,

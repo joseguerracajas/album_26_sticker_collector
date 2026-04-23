@@ -1,0 +1,116 @@
+{
+  "@@locale": "es",
+  "appTitle": "Album 26",
+  "authWelcomeTitle": "Bienvenido a Album 26",
+  "authEmailLabel": "Correo electronico",
+  "authPasswordLabel": "Contrasena",
+  "authLoginButton": "INICIAR SESION",
+  "authContinueWith": "O continuar con",
+  "authContinueGoogle": "Continuar con Google",
+  "authContinueApple": "Continuar con Apple",
+  "authContinueGuest": "Continuar como invitado",
+  "authNoAccountRegister": "No tienes cuenta? Registrate",
+  "authGuestMigratedSuccess": "Tu progreso invitado se copio a tu nueva cuenta.",
+  "authGuestRemotePreserved": "La cuenta ya existia: se conservaron los datos de la nube y se descarto el progreso invitado local.",
+  "commonErrorWithMessage": "Error: {message}",
+  "@commonErrorWithMessage": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "registerTitle": "Crear Cuenta",
+  "registerFillAllFields": "Por favor, llena todos los campos.",
+  "registerEmailsDontMatch": "Los correos electronicos no coinciden.",
+  "registerPasswordsDontMatch": "Las contrasenas no coinciden.",
+  "registerPasswordMinLength": "La contrasena debe tener al menos 6 caracteres.",
+  "registerAccountCreated": "Cuenta creada con exito. Ahora inicia sesion.",
+  "registerConfirmEmailLabel": "Confirmar correo electronico",
+  "registerConfirmPasswordLabel": "Confirmar contrasena",
+  "registerSubmitButton": "REGISTRARME",
+  "profileTitle": "Mi Perfil",
+  "profileOfficialCollector": "Coleccionista Oficial",
+  "profileLogoutButton": "Cerrar Sesion",
+  "profileUnknownUser": "Usuario desconocido",
+  "profileLogoutError": "Error al cerrar sesion: {message}",
+  "@profileLogoutError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "homeTitle": "Mi Album 26",
+  "homeProfileTooltip": "Mi Perfil",
+  "homeShareAll": "Compartir Todo",
+  "homeShareMissingOnly": "Solo Faltantes",
+  "homeShareDuplicatesOnly": "Solo Repetidas",
+  "homeGlobalProgressTitle": "Progreso Global",
+  "homeCollectedCount": "{collected} de {total} coleccionadas",
+  "@homeCollectedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeViewFullCollection": "Ver Coleccion Completa",
+  "homeTeamsTitle": "Equipos",
+  "homeSearchTeamsHint": "Buscar pais o equipo...",
+  "homeNoResults": "Sin resultados",
+  "homeScanButton": "Escanear",
+  "homeObtainedCount": "{collected} de {total} obtenidos",
+  "@homeObtainedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeProgressError": "Error",
+  "globalCollectionTitle": "Coleccion Completa",
+  "filterAll": "Todos",
+  "filterMissing": "Faltantes",
+  "filterDuplicates": "Repetidas",
+  "filterSearchHint": "Buscar pais, codigo o numero...",
+  "stickerRemoveTitle": "Quitar cromo?",
+  "stickerRemoveConfirm": "Seguro que quieres quitar el cromo {stickerLabel}?",
+  "@stickerRemoveConfirm": {
+    "placeholders": {
+      "stickerLabel": {}
+    }
+  },
+  "commonCancel": "Cancelar",
+  "commonRemove": "Quitar",
+  "commonDone": "LISTO",
+  "gridNoResults": "Sin resultados.",
+  "scannerViewScannedButton": "Ver {count} cromos escaneados",
+  "@scannerViewScannedButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerOverlayHint": "Centra la parte trasera del cromo aqui",
+  "pendingScansTitle": "Cromos Escaneados",
+  "pendingScansEmpty": "Aun no has escaneado nada",
+  "pendingScansItemLabel": "Cromo: {code}",
+  "@pendingScansItemLabel": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "pendingScansSavedSuccess": "{count} cromos guardados con exito!",
+  "@pendingScansSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "pendingScansSaveError": "Error al guardar: {message}",
+  "@pendingScansSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "shareHeader": "⚽ *INTERCAMBIO ALBUM 26* 🏆",
+  "shareMissingSectionTitle": "❌ *ME FALTAN:*",
+  "shareDuplicatesSectionTitle": "🔁 *REPETIDAS:*",
+  "shareNoneMissing": "Ninguno! 😎",
+  "shareNoDuplicates": "Sin repetidas 😅",
+  "shareLetsTrade": "Cambiamos? 👀🔥",
+  "shareSeparator": "--------------------------"
+}

@@ -3,6 +3,8 @@
 import 'package:album_26_sticker_collector/brick/app_repository.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/category.model.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/sticker.model.dart';
+import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 import 'inventory_provider.dart';
@@ -15,7 +17,11 @@ class ShareNotifier extends Notifier<bool> {
   @override
   bool build() => false;
 
-  Future<void> generarYCompartirLista(ShareType tipo) async {
+  Future<void> generarYCompartirLista(
+    BuildContext context,
+    ShareType tipo,
+  ) async {
+    final l10n = AppLocalizations.of(context);
     state = true;
     try {
       final allStickers = await _repo.get<Sticker>();
@@ -88,23 +94,26 @@ class ShareNotifier extends Notifier<bool> {
         }
       }
 
-      String mensaje = "⚽ *INTERCAMBIO ÁLBUM 26* 🏆\n\n";
+      String mensaje = '${l10n.shareHeader}\n\n';
 
       if (tipo == ShareType.todos || tipo == ShareType.faltantes) {
-        mensaje += "❌ *ME FALTAN:*\n";
-        mensaje += _formatearSeccion(faltantesAgrupados, "¡Ninguno! 😎");
+        mensaje += '${l10n.shareMissingSectionTitle}\n';
+        mensaje += _formatearSeccion(faltantesAgrupados, l10n.shareNoneMissing);
       }
 
       if (tipo == ShareType.todos) {
-        mensaje += "\n--------------------------\n\n";
+        mensaje += '\n${l10n.shareSeparator}\n\n';
       }
 
       if (tipo == ShareType.todos || tipo == ShareType.repetidos) {
-        mensaje += "🔁 *REPETIDAS:*\n";
-        mensaje += _formatearSeccion(repetidasAgrupadas, "Sin repetidas 😅");
+        mensaje += '${l10n.shareDuplicatesSectionTitle}\n';
+        mensaje += _formatearSeccion(
+          repetidasAgrupadas,
+          l10n.shareNoDuplicates,
+        );
       }
 
-      mensaje += "\n¿Cambiamos? 👀🔥";
+      mensaje += '\n${l10n.shareLetsTrade}';
 
       await SharePlus.instance.share(ShareParams(text: mensaje));
     } catch (e) {

@@ -6,6 +6,7 @@ import 'package:album_26_sticker_collector/features/catalog/presentation/widgets
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/sticker_filter_search.dart';
 import 'package:album_26_sticker_collector/features/catalog/utils/sticker_filters.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
+import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -25,23 +26,30 @@ class StickerGrid extends ConsumerWidget {
     WidgetRef ref,
     Sticker sticker,
   ) async {
+    final l10n = AppLocalizations.of(context);
+    final stickerLabel = '${category.id} ${sticker.stickerCode}';
+
     final confirmar = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
         backgroundColor: const Color(0xFF1E1E1E),
-        title: const Text('¿Quitar cromo?'),
-        content: Text(
-          '¿Seguro que quieres quitar el cromo ${category.id} ${sticker.stickerCode}?',
-        ),
+        title: Text(l10n.stickerRemoveTitle),
+        content: Text(l10n.stickerRemoveConfirm(stickerLabel)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx, false),
-            child: const Text('Cancelar', style: TextStyle(color: Colors.grey)),
+            child: Text(
+              l10n.commonCancel,
+              style: const TextStyle(color: Colors.grey),
+            ),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
             onPressed: () => Navigator.pop(ctx, true),
-            child: const Text('Quitar', style: TextStyle(color: Colors.white)),
+            child: Text(
+              l10n.commonRemove,
+              style: const TextStyle(color: Colors.white),
+            ),
           ),
         ],
       ),
@@ -60,6 +68,7 @@ class StickerGrid extends ConsumerWidget {
     WidgetRef ref,
     Sticker sticker,
   ) {
+    final l10n = AppLocalizations.of(context);
     final inventoryAsync = ref.read(inventoryProvider);
     final inventarioOriginal = inventoryAsync.value?[sticker.id] ?? {};
     final inventarioTemporal = Map<String, int>.from(inventarioOriginal);
@@ -102,7 +111,7 @@ class StickerGrid extends ConsumerWidget {
                               color: Colors.amber,
                             ),
                             error: (e, s) => Text(
-                              'Error: $e',
+                              l10n.commonErrorWithMessage(e),
                               style: const TextStyle(color: Colors.red),
                             ),
                             data: (variantesBDD) {
@@ -217,8 +226,8 @@ class StickerGrid extends ConsumerWidget {
                       ),
                     ),
                     onPressed: () => Navigator.pop(ctx),
-                    child: const Text(
-                      'LISTO',
+                    child: Text(
+                      l10n.commonDone,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
@@ -249,6 +258,7 @@ class StickerGrid extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final stickersAsync = ref.watch(stickersByCategoryProvider(category.id));
     final inventoryAsync = ref.watch(inventoryProvider);
     final currentFilter = ref.watch(filterProvider);
@@ -272,8 +282,8 @@ class StickerGrid extends ConsumerWidget {
               key: const ValueKey('empty'),
               child: Padding(
                 padding: const EdgeInsets.all(32.0),
-                child: const Text(
-                  'Sin resultados.',
+                child: Text(
+                  l10n.gridNoResults,
                   style: TextStyle(color: Colors.grey),
                 ),
               ),

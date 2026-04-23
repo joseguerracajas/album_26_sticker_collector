@@ -1,6 +1,7 @@
 // Archivo: lib/features/auth/presentation/profile_screen.dart
 
 import 'package:album_26_sticker_collector/features/auth/data/auth_provider.dart';
+import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart'; // IMPORTANTE: Agregar Riverpod
 import 'package:album_26_sticker_collector/main.dart';
@@ -11,6 +12,8 @@ class ProfileScreen extends ConsumerWidget {
 
   // 2. Añadimos WidgetRef a la función para poder leer el Provider
   void _cerrarSesion(BuildContext context, WidgetRef ref) async {
+    final l10n = AppLocalizations.of(context);
+
     try {
       await ref.read(authControllerProvider).logout();
 
@@ -27,7 +30,7 @@ class ProfileScreen extends ConsumerWidget {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error al cerrar sesión: $e'),
+            content: Text(l10n.profileLogoutError(e.toString())),
             backgroundColor: Colors.red,
           ),
         );
@@ -38,20 +41,22 @@ class ProfileScreen extends ConsumerWidget {
   @override
   // 5. Añadimos WidgetRef al método build
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+
     // Obtenemos el usuario actual de Supabase para mostrar su correo
     final user = supabase.auth.currentUser;
     final nombreUsuario =
         (user?.userMetadata?['full_name'] ??
                 user?.userMetadata?['name'] ??
                 user?.email?.split('@').first ??
-                'Usuario desconocido')
+                l10n.profileUnknownUser)
             .toString();
 
     return Scaffold(
       backgroundColor: const Color(0xFF121212),
       appBar: AppBar(
-        title: const Text(
-          'Mi Perfil',
+        title: Text(
+          l10n.profileTitle,
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         backgroundColor: Colors.transparent,
@@ -81,8 +86,8 @@ class ProfileScreen extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Coleccionista Oficial',
+            Text(
+              l10n.profileOfficialCollector,
               style: TextStyle(color: Colors.grey, fontSize: 14),
             ),
 
@@ -98,8 +103,8 @@ class ProfileScreen extends ConsumerWidget {
                 ),
               ),
               icon: const Icon(Icons.logout),
-              label: const Text(
-                'Cerrar Sesión',
+              label: Text(
+                l10n.profileLogoutButton,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
               // 6. Le pasamos el context y el ref a nuestra función

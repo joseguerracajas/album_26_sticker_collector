@@ -1,3 +1,4 @@
+import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -52,6 +53,7 @@ class _StickerFilterSearchState extends ConsumerState<StickerFilterSearch> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final currentFilter = ref.watch(filterProvider);
     final searchQuery = ref.watch(stickerSearchProvider);
 
@@ -68,15 +70,18 @@ class _StickerFilterSearchState extends ConsumerState<StickerFilterSearch> {
                 selectedBackgroundColor: Colors.amber.withOpacity(0.2),
                 selectedForegroundColor: Colors.amber,
               ),
-              segments: const [
-                ButtonSegment(value: FilterOption.todos, label: Text('Todos')),
+              segments: [
+                ButtonSegment(
+                  value: FilterOption.todos,
+                  label: Text(l10n.filterAll),
+                ),
                 ButtonSegment(
                   value: FilterOption.faltantes,
-                  label: Text('Faltantes'),
+                  label: Text(l10n.filterMissing),
                 ),
                 ButtonSegment(
                   value: FilterOption.repetidas,
-                  label: Text('Repetidas'),
+                  label: Text(l10n.filterDuplicates),
                 ),
               ],
               selected: {currentFilter},
@@ -94,7 +99,7 @@ class _StickerFilterSearchState extends ConsumerState<StickerFilterSearch> {
             onChanged: (val) =>
                 ref.read(stickerSearchProvider.notifier).updateQuery(val),
             decoration: InputDecoration(
-              hintText: 'Buscar país, código o número...',
+              hintText: l10n.filterSearchHint,
               prefixIcon: const Icon(Icons.search, color: Colors.amber),
               suffixIcon: searchQuery.isNotEmpty
                   ? IconButton(

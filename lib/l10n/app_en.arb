@@ -1,0 +1,116 @@
+{
+  "@@locale": "en",
+  "appTitle": "Album 26",
+  "authWelcomeTitle": "Welcome to Album 26",
+  "authEmailLabel": "Email",
+  "authPasswordLabel": "Password",
+  "authLoginButton": "SIGN IN",
+  "authContinueWith": "Or continue with",
+  "authContinueGoogle": "Continue with Google",
+  "authContinueApple": "Continue with Apple",
+  "authContinueGuest": "Continue as guest",
+  "authNoAccountRegister": "No account? Sign up",
+  "authGuestMigratedSuccess": "Your guest progress was copied to your new account.",
+  "authGuestRemotePreserved": "This account already existed: cloud data was kept and local guest progress was discarded.",
+  "commonErrorWithMessage": "Error: {message}",
+  "@commonErrorWithMessage": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "registerTitle": "Create Account",
+  "registerFillAllFields": "Please fill in all fields.",
+  "registerEmailsDontMatch": "Emails do not match.",
+  "registerPasswordsDontMatch": "Passwords do not match.",
+  "registerPasswordMinLength": "Password must be at least 6 characters.",
+  "registerAccountCreated": "Account created successfully. Please sign in.",
+  "registerConfirmEmailLabel": "Confirm email",
+  "registerConfirmPasswordLabel": "Confirm password",
+  "registerSubmitButton": "SIGN UP",
+  "profileTitle": "My Profile",
+  "profileOfficialCollector": "Official Collector",
+  "profileLogoutButton": "Sign out",
+  "profileUnknownUser": "Unknown user",
+  "profileLogoutError": "Error signing out: {message}",
+  "@profileLogoutError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "homeTitle": "My Album 26",
+  "homeProfileTooltip": "My Profile",
+  "homeShareAll": "Share All",
+  "homeShareMissingOnly": "Missing Only",
+  "homeShareDuplicatesOnly": "Duplicates Only",
+  "homeGlobalProgressTitle": "Global Progress",
+  "homeCollectedCount": "{collected} of {total} collected",
+  "@homeCollectedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeViewFullCollection": "View Full Collection",
+  "homeTeamsTitle": "Teams",
+  "homeSearchTeamsHint": "Search country or team...",
+  "homeNoResults": "No results",
+  "homeScanButton": "Scan",
+  "homeObtainedCount": "{collected} of {total} obtained",
+  "@homeObtainedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeProgressError": "Error",
+  "globalCollectionTitle": "Full Collection",
+  "filterAll": "All",
+  "filterMissing": "Missing",
+  "filterDuplicates": "Duplicates",
+  "filterSearchHint": "Search country, code or number...",
+  "stickerRemoveTitle": "Remove sticker?",
+  "stickerRemoveConfirm": "Are you sure you want to remove sticker {stickerLabel}?",
+  "@stickerRemoveConfirm": {
+    "placeholders": {
+      "stickerLabel": {}
+    }
+  },
+  "commonCancel": "Cancel",
+  "commonRemove": "Remove",
+  "commonDone": "DONE",
+  "gridNoResults": "No results.",
+  "scannerViewScannedButton": "View {count} scanned stickers",
+  "@scannerViewScannedButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerOverlayHint": "Center the back side of the sticker here",
+  "pendingScansTitle": "Scanned Stickers",
+  "pendingScansEmpty": "You have not scanned anything yet",
+  "pendingScansItemLabel": "Sticker: {code}",
+  "@pendingScansItemLabel": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "pendingScansSavedSuccess": "{count} stickers saved successfully!",
+  "@pendingScansSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "pendingScansSaveError": "Error while saving: {message}",
+  "@pendingScansSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "shareHeader": "⚽ *ALBUM 26 TRADING* 🏆",
+  "shareMissingSectionTitle": "❌ *MISSING:*",
+  "shareDuplicatesSectionTitle": "🔁 *DUPLICATES:*",
+  "shareNoneMissing": "None! 😎",
+  "shareNoDuplicates": "No duplicates 😅",
+  "shareLetsTrade": "Want to trade? 👀🔥",
+  "shareSeparator": "--------------------------"
+}

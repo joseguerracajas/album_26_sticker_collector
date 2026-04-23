@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:album_26_sticker_collector/features/auth/presentation/auth_screen.dart';
+import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:album_26_sticker_collector/main.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -18,6 +19,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool _isLoading = false;
 
   Future<void> _register() async {
+    final l10n = AppLocalizations.of(context);
     final email = _emailController.text.trim();
     final confirmEmail = _confirmEmailController.text.trim();
     final password = _passwordController.text.trim();
@@ -25,19 +27,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     // 1. Validaciones locales
     if (email.isEmpty || password.isEmpty) {
-      _showError('Por favor, llena todos los campos.');
+      _showError(l10n.registerFillAllFields);
       return;
     }
     if (email != confirmEmail) {
-      _showError('Los correos electrónicos no coinciden.');
+      _showError(l10n.registerEmailsDontMatch);
       return;
     }
     if (password != confirmPassword) {
-      _showError('Las contraseñas no coinciden.');
+      _showError(l10n.registerPasswordsDontMatch);
       return;
     }
     if (password.length < 6) {
-      _showError('La contraseña debe tener al menos 6 caracteres.');
+      _showError(l10n.registerPasswordMinLength);
       return;
     }
 
@@ -52,8 +54,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Cuenta creada con éxito. Ahora inicia sesión.'),
+          SnackBar(
+            content: Text(l10n.registerAccountCreated),
             backgroundColor: Colors.green,
           ),
         );
@@ -82,8 +84,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Crear Cuenta')),
+      appBar: AppBar(title: Text(l10n.registerTitle)),
       body: SingleChildScrollView(
         // Para que el teclado no tape los campos
         padding: const EdgeInsets.all(24.0),
@@ -96,8 +100,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             // Campo: Correo
             TextField(
               controller: _emailController,
-              decoration: const InputDecoration(
-                labelText: 'Correo electrónico',
+              decoration: InputDecoration(
+                labelText: l10n.authEmailLabel,
                 border: OutlineInputBorder(),
               ),
               keyboardType: TextInputType.emailAddress,
@@ -107,8 +111,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             // Campo: Confirmar Correo
             TextField(
               controller: _confirmEmailController,
-              decoration: const InputDecoration(
-                labelText: 'Confirmar correo electrónico',
+              decoration: InputDecoration(
+                labelText: l10n.registerConfirmEmailLabel,
                 border: OutlineInputBorder(),
               ),
               keyboardType: TextInputType.emailAddress,
@@ -118,8 +122,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             // Campo: Contraseña
             TextField(
               controller: _passwordController,
-              decoration: const InputDecoration(
-                labelText: 'Contraseña',
+              decoration: InputDecoration(
+                labelText: l10n.authPasswordLabel,
                 border: OutlineInputBorder(),
               ),
               obscureText: true,
@@ -129,8 +133,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             // Campo: Confirmar Contraseña
             TextField(
               controller: _confirmPasswordController,
-              decoration: const InputDecoration(
-                labelText: 'Confirmar contraseña',
+              decoration: InputDecoration(
+                labelText: l10n.registerConfirmPasswordLabel,
                 border: OutlineInputBorder(),
               ),
               obscureText: true,
@@ -150,8 +154,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 16),
                 ),
                 onPressed: _register,
-                child: const Text(
-                  'REGISTRARME',
+                child: Text(
+                  l10n.registerSubmitButton,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
               ),

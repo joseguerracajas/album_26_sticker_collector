@@ -12,6 +12,7 @@ import 'package:album_26_sticker_collector/features/inventory/data/inventory_pro
 import 'package:album_26_sticker_collector/features/inventory/data/share_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/stats_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/presentation/scanner_screen.dart';
+import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,6 +37,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final totalCromosAsync = ref.watch(totalStickersCountProvider);
     final cromosUnicos = ref.watch(uniqueCollectedProvider);
     final categoriesAsync = ref.watch(categoriesProvider);
@@ -44,8 +46,8 @@ class HomeScreen extends ConsumerWidget {
     return Scaffold(
       backgroundColor: const Color(0xFF121212),
       appBar: AppBar(
-        title: const Text(
-          'Mi Álbum 26',
+        title: Text(
+          l10n.homeTitle,
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         backgroundColor: Colors.transparent,
@@ -53,7 +55,7 @@ class HomeScreen extends ConsumerWidget {
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.account_circle, color: Colors.grey, size: 28),
-          tooltip: 'Mi Perfil',
+          tooltip: l10n.homeProfileTooltip,
           onPressed: () {
             final isLoggedIn = supabase.auth.currentSession != null;
             Navigator.push(
@@ -66,6 +68,20 @@ class HomeScreen extends ConsumerWidget {
           },
         ),
         actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.document_scanner_outlined,
+              color: Colors.amber,
+            ),
+            tooltip: l10n.homeScanButton,
+            onPressed: () {
+              HapticFeedback.heavyImpact();
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ScannerScreen()),
+              );
+            },
+          ),
           Consumer(
             builder: (context, ref, child) {
               final isLoading = ref.watch(shareProvider);
@@ -93,12 +109,12 @@ class HomeScreen extends ConsumerWidget {
                   try {
                     await ref
                         .read(shareProvider.notifier)
-                        .generarYCompartirLista(tipo);
+                        .generarYCompartirLista(context, tipo);
                   } catch (e) {
                     if (context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text('Error: $e'),
+                          content: Text(l10n.commonErrorWithMessage(e)),
                           backgroundColor: Colors.red,
                         ),
                       );
@@ -107,27 +123,27 @@ class HomeScreen extends ConsumerWidget {
                 },
                 itemBuilder: (BuildContext context) =>
                     <PopupMenuEntry<ShareType>>[
-                      const PopupMenuItem<ShareType>(
+                      PopupMenuItem<ShareType>(
                         value: ShareType.todos,
                         child: ListTile(
                           leading: Icon(Icons.list_alt, color: Colors.amber),
                           title: Text(
-                            'Compartir Todo',
+                            l10n.homeShareAll,
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
                       ),
-                      const PopupMenuItem<ShareType>(
+                      PopupMenuItem<ShareType>(
                         value: ShareType.faltantes,
                         child: ListTile(
                           leading: Icon(Icons.close, color: Colors.redAccent),
                           title: Text(
-                            'Solo Faltantes',
+                            l10n.homeShareMissingOnly,
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
                       ),
-                      const PopupMenuItem<ShareType>(
+                      PopupMenuItem<ShareType>(
                         value: ShareType.repetidos,
                         child: ListTile(
                           leading: Icon(
@@ -135,7 +151,7 @@ class HomeScreen extends ConsumerWidget {
                             color: Colors.greenAccent,
                           ),
                           title: Text(
-                            'Solo Repetidas',
+                            l10n.homeShareDuplicatesOnly,
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
@@ -191,8 +207,8 @@ class HomeScreen extends ConsumerWidget {
                                     color: Colors.black,
                                   ),
                                 ),
-                                error: (e, s) => const Text(
-                                  'Error',
+                                error: (e, s) => Text(
+                                  l10n.homeProgressError,
                                   style: TextStyle(color: Colors.black),
                                 ),
                                 data: (total) {
@@ -209,9 +225,9 @@ class HomeScreen extends ConsumerWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          const Flexible(
+                                          Flexible(
                                             child: Text(
-                                              'Progreso Global',
+                                              l10n.homeGlobalProgressTitle,
                                               style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 22,
@@ -250,7 +266,10 @@ class HomeScreen extends ConsumerWidget {
                                       Align(
                                         alignment: Alignment.centerRight,
                                         child: Text(
-                                          '$cromosUnicos de $total coleccionadas',
+                                          l10n.homeCollectedCount(
+                                            cromosUnicos,
+                                            total,
+                                          ),
                                           style: const TextStyle(
                                             color: Colors.black,
                                             fontWeight: FontWeight.bold,
@@ -283,8 +302,8 @@ class HomeScreen extends ConsumerWidget {
                                                     ),
                                               ),
                                               icon: const Icon(Icons.style),
-                                              label: const Text(
-                                                'Ver Colección Completa',
+                                              label: Text(
+                                                l10n.homeViewFullCollection,
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                 ),
@@ -319,13 +338,13 @@ class HomeScreen extends ConsumerWidget {
                   ),
 
                   // TÍTULO "EQUIPOS"
-                  const Padding(
+                  Padding(
                         padding: EdgeInsets.symmetric(
                           horizontal: 24.0,
                           vertical: 8,
                         ),
                         child: Text(
-                          'Equipos',
+                          l10n.homeTeamsTitle,
                           style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
@@ -354,7 +373,7 @@ class HomeScreen extends ConsumerWidget {
                               .updateQuery(value),
                           style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
-                            hintText: 'Buscar país o equipo...',
+                            hintText: l10n.homeSearchTeamsHint,
                             hintStyle: TextStyle(color: Colors.grey.shade600),
                             prefixIcon: const Icon(
                               Icons.search,
@@ -416,7 +435,7 @@ class HomeScreen extends ConsumerWidget {
                   height: 220,
                   child: Center(
                     child: Text(
-                      'Error: $e',
+                      l10n.commonErrorWithMessage(e),
                       style: const TextStyle(color: Colors.white),
                     ),
                   ),
@@ -436,12 +455,12 @@ class HomeScreen extends ConsumerWidget {
                     .toList();
 
                 if (filtered.isEmpty) {
-                  return const SliverToBoxAdapter(
+                  return SliverToBoxAdapter(
                     child: SizedBox(
                       height: 220,
                       child: Center(
                         child: Text(
-                          'Sin resultados',
+                          l10n.homeNoResults,
                           style: TextStyle(color: Colors.grey),
                         ),
                       ),
@@ -469,34 +488,6 @@ class HomeScreen extends ConsumerWidget {
           ],
         ),
       ),
-
-      floatingActionButton:
-          FloatingActionButton.extended(
-                backgroundColor: Colors.amber,
-                foregroundColor: Colors.black,
-                elevation: 8,
-                icon: const Icon(Icons.document_scanner_outlined, size: 26),
-                label: const Text(
-                  'Escanear',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                ),
-                onPressed: () {
-                  HapticFeedback.heavyImpact(); // Vibra rico al tocarlo
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ScannerScreen(),
-                    ),
-                  );
-                },
-              )
-              // Le damos un toque mágico para que aparezca rebotando después de que cargue la lista
-              .animate()
-              .scale(
-                delay: 600.ms,
-                duration: 500.ms,
-                curve: Curves.easeOutBack,
-              ),
     );
   }
 }
@@ -510,6 +501,7 @@ class _CategoryTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final stickersAsync = ref.watch(stickersByCategoryProvider(category.id));
     final inventoryAsync = ref.watch(inventoryProvider);
 
@@ -605,7 +597,7 @@ class _CategoryTile extends ConsumerWidget {
                                     Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(
-                                        '$unicos de $total obtenidos',
+                                        l10n.homeObtainedCount(unicos, total),
                                         style: TextStyle(
                                           color: Colors.grey.shade500,
                                           fontSize: 11,

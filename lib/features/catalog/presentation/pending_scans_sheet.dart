@@ -1,5 +1,6 @@
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/pending_scans_provider.dart';
+import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,6 +10,7 @@ class PendingScansSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final pendingScans = ref.watch(pendingScansProvider);
 
     return Container(
@@ -30,8 +32,8 @@ class PendingScansSheet extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 16),
-          const Text(
-            'Cromos Escaneados',
+          Text(
+            l10n.pendingScansTitle,
             style: TextStyle(
               color: Colors.white,
               fontSize: 18,
@@ -42,10 +44,10 @@ class PendingScansSheet extends ConsumerWidget {
 
           // La Lista Minimalista
           if (pendingScans.isEmpty)
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(32.0),
               child: Text(
-                "Aún no has escaneado nada",
+                l10n.pendingScansEmpty,
                 style: TextStyle(color: Colors.grey),
               ),
             )
@@ -66,7 +68,7 @@ class PendingScansSheet extends ConsumerWidget {
                     ),
                     child: ListTile(
                       title: Text(
-                        'Cromo: $code',
+                        l10n.pendingScansItemLabel(code),
                         style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -171,7 +173,9 @@ class PendingScansSheet extends ConsumerWidget {
                         messenger.showSnackBar(
                           SnackBar(
                             content: Text(
-                              '¡${pendingScans.length} cromos guardados con éxito! 🏆',
+                              l10n.pendingScansSavedSuccess(
+                                pendingScans.length,
+                              ),
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
@@ -187,14 +191,16 @@ class PendingScansSheet extends ConsumerWidget {
                       } catch (e) {
                         messenger.showSnackBar(
                           SnackBar(
-                            content: Text('❌ Error al guardar: $e'),
+                            content: Text(
+                              l10n.pendingScansSaveError(e.toString()),
+                            ),
                             backgroundColor: Colors.redAccent,
                           ),
                         );
                       }
                     },
-              child: const Text(
-                'LISTO',
+              child: Text(
+                l10n.commonDone,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
             ),
