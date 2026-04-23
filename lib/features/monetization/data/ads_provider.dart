@@ -51,9 +51,10 @@ Future<void> initializeAdMob() async {
 }
 
 // ─── Diálogo previo al anuncio ────────────────────────────────────────────────
-// Devuelve true → el usuario quiere ver el anuncio.
-// Devuelve false → eligió "Obtener Pro" (navega al paywall) o "Ahora no".
-Future<bool> showPreAdDialog(BuildContext context) async {
+// Devuelve true  → el usuario quiere ver el anuncio.
+// Devuelve false  → eligió "Obtener Pro" (navega al paywall).
+// Devuelve null   → eligió "Ahora no".
+Future<bool?> showPreAdDialog(BuildContext context) async {
   final chosen = await showDialog<bool>(
     context: context,
     barrierDismissible: false,
@@ -168,7 +169,9 @@ Future<bool> showPreAdDialog(BuildContext context) async {
     return false;
   }
 
-  return chosen == true; // true = ver ad, null/"Ahora no" = false
+  if (chosen == null) return null; // "Ahora no"
+
+  return true; // "Ver anuncio"
 }
 // ─── Servicio de Interstitial y Rewarded ──────────────────────────────────────
 // Un único servicio que gestiona la carga y presentación de interstitials
@@ -222,24 +225,27 @@ class AdService {
   }
 
   /// Llamar cuando se escanea 1 cromo. Muestra el intersticial cada 8.
-  /// [isSubscribed] debe venir de isSubscribedProvider.
-  Future<void> onStickerScanned({
+  /// Devuelve true si el usuario eligió "Ahora no" (el llamador debe hacer pop).
+  Future<bool> onStickerScanned({
     required bool isSubscribed,
     required BuildContext context,
   }) async {
-    if (isSubscribed) return;
+    if (isSubscribed) return false;
 
     _scansCountSinceLastAd++;
-    if (_scansCountSinceLastAd < _interstitialEveryN) return;
+    if (_scansCountSinceLastAd < _interstitialEveryN) return false;
 
     _scansCountSinceLastAd = 0;
 
-    if (!context.mounted) return;
-    final watchAd = await showPreAdDialog(context);
-    if (!watchAd) return;
+    if (!context.mounted) return false;
+    final choice = await showPreAdDialog(context);
 
-    if (!context.mounted) return;
+    if (choice == null) return true; // "Ahora no" → el scanner debe hacer pop
+    if (choice == false) return false; // "Obtener Pro" → ya navegó al paywall
+
+    if (!context.mounted) return false;
     await showInterstitial(context: context, isSubscribed: isSubscribed);
+    return false;
   }
 
   Future<void> showInterstitial({
@@ -280,7 +286,7 @@ class AdService {
 
     if (!context.mounted) return;
     final watchAd = await showPreAdDialog(context);
-    if (!watchAd) return;
+    if (watchAd != true) return; // null = "Ahora no", false = "Obtener Pro"
 
     if (!_rewardedReady || _rewardedAd == null) {
       // Si no hay ad listo, ejecutamos igual (no penalizamos al usuario)

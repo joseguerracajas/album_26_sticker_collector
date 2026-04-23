@@ -211,10 +211,29 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
         children: [
           Text(
             l10n.paywallLoadError,
-            style: const TextStyle(color: Colors.redAccent),
+            style: const TextStyle(
+              color: Colors.redAccent,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: 8),
-          TextButton(onPressed: _loadOfferings, child: Text(l10n.paywallRetry)),
+          // 🔥 AÑADIDO: Esto te mostrará el motivo real del error en pantalla
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              _errorMessage!,
+              style: const TextStyle(color: Colors.white54, fontSize: 12),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          const SizedBox(height: 16),
+          TextButton(
+            onPressed: _loadOfferings,
+            child: Text(
+              l10n.paywallRetry,
+              style: const TextStyle(color: Colors.amber),
+            ),
+          ),
         ],
       );
     }

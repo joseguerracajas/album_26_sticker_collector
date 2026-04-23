@@ -180,9 +180,13 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
               ref.read(subscriptionProvider).asData?.value.isSubscribed ??
               false;
           if (!isSubscribed && mounted) {
-            await ref
+            final shouldPop = await ref
                 .read(adServiceProvider)
                 .onStickerScanned(isSubscribed: isSubscribed, context: context);
+            if (shouldPop && mounted) {
+              Navigator.of(context).pop();
+              return;
+            }
           }
         }
       }
