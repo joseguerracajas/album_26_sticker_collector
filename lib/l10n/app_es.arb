@@ -120,5 +120,23 @@
   "shareNoneMissing": "¡Ninguno! 😎",
   "shareNoDuplicates": "Sin repetidas 😅",
   "shareLetsTrade": "¿Cambiamos? 👀🔥",
-  "shareSeparator": "--------------------------"
+  "shareSeparator": "--------------------------",
+  "forgotPasswordTitle": "Recuperar Cuenta",
+  "forgotPasswordDescription": "Ingresa tu correo electrónico y te enviaremos un código de 6 dígitos para restablecer tu contraseña.",
+  "forgotPasswordEmailLabel": "Correo Electrónico",
+  "forgotPasswordEmptyEmailError": "Por favor, ingresa tu correo electrónico.",
+  "forgotPasswordCodeSentSuccess": "Código enviado. Revisa tu bandeja de entrada.",
+  "forgotPasswordSendCodeButton": "ENVIAR CÓDIGO",
+  "forgotPasswordStep2Description": "Escribe el código que enviamos a {email} y tu nueva contraseña.",
+  "@forgotPasswordStep2Description": {
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "forgotPasswordCodeInputLabel": "Código de 8 dígitos",
+  "forgotPasswordInvalidCodeError": "El código debe tener exactamente 6 dígitos.",
+  "forgotPasswordNewPasswordLabel": "Nueva Contraseña",
+  "forgotPasswordShortPasswordError": "La contraseña debe tener al menos 6 caracteres.",
+  "forgotPasswordSavePasswordButton": "GUARDAR CONTRASEÑA",
+  "forgotPasswordPasswordUpdatedSuccess": "¡Contraseña actualizada con éxito! 🏆"
 }

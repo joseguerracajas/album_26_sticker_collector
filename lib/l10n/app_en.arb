@@ -120,5 +120,23 @@
   "shareNoneMissing": "None! 😎",
   "shareNoDuplicates": "No duplicates 😅",
   "shareLetsTrade": "Want to trade? 👀🔥",
-  "shareSeparator": "--------------------------"
+  "shareSeparator": "--------------------------",
+  "forgotPasswordTitle": "Recover Account",
+  "forgotPasswordDescription": "Enter your email and we'll send you a 6-digit code to reset your password.",
+  "forgotPasswordEmailLabel": "Email",
+  "forgotPasswordEmptyEmailError": "Please enter your email.",
+  "forgotPasswordCodeSentSuccess": "Code sent. Check your inbox.",
+  "forgotPasswordSendCodeButton": "SEND CODE",
+  "forgotPasswordStep2Description": "Enter the code we sent to {email} and your new password.",
+  "@forgotPasswordStep2Description": {
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "forgotPasswordCodeInputLabel": "8-digit code",
+  "forgotPasswordInvalidCodeError": "The code must have exactly 6 digits.",
+  "forgotPasswordNewPasswordLabel": "New Password",
+  "forgotPasswordShortPasswordError": "Password must be at least 6 characters.",
+  "forgotPasswordSavePasswordButton": "SAVE PASSWORD",
+  "forgotPasswordPasswordUpdatedSuccess": "Password updated successfully! 🏆"
 }

@@ -3,6 +3,7 @@
 import 'dart:io';
 import 'package:album_26_sticker_collector/features/auth/data/auth_provider.dart';
 import 'package:album_26_sticker_collector/features/auth/data/guest_session_provider.dart';
+import 'package:album_26_sticker_collector/features/auth/presentation/forgot_password_screen.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/home_screen.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -21,43 +22,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _passwordController = TextEditingController();
   bool _isLoading = false;
 
-  Future<void> _enviarCorreoRecuperacion() async {
-    final l10n = AppLocalizations.of(context);
-    final email = _emailController.text.trim();
-
-    if (email.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(l10n.authResetPasswordEnterEmail),
-          backgroundColor: Colors.orange,
-        ),
-      );
-      return;
-    }
-
-    setState(() => _isLoading = true);
-    try {
-      await ref.read(authControllerProvider).sendPasswordResetEmail(email);
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n.authResetPasswordEmailSent),
-            backgroundColor: Colors.green,
-          ),
-        );
-      }
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n.commonErrorWithMessage(e.toString())),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
-    } finally {
-      if (mounted) setState(() => _isLoading = false);
-    }
+  Future<void> _goToForgotPasswordScreen() async {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const ForgotPasswordScreen()),
+    );
   }
 
   // --- LOGIN TRADICIONAL ---
@@ -323,7 +292,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   ),
                   const SizedBox(height: 12),
                   TextButton(
-                    onPressed: _enviarCorreoRecuperacion,
+                    onPressed: _goToForgotPasswordScreen,
                     child: Text(
                       l10n.authForgotPassword,
                       style: TextStyle(color: Colors.white70),

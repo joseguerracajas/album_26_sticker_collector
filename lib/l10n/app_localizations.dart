@@ -541,6 +541,84 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'--------------------------'**
   String get shareSeparator;
+
+  /// No description provided for @forgotPasswordTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Recuperar Cuenta'**
+  String get forgotPasswordTitle;
+
+  /// No description provided for @forgotPasswordDescription.
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa tu correo electrónico y te enviaremos un código de 6 dígitos para restablecer tu contraseña.'**
+  String get forgotPasswordDescription;
+
+  /// No description provided for @forgotPasswordEmailLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Correo Electrónico'**
+  String get forgotPasswordEmailLabel;
+
+  /// No description provided for @forgotPasswordEmptyEmailError.
+  ///
+  /// In es, this message translates to:
+  /// **'Por favor, ingresa tu correo electrónico.'**
+  String get forgotPasswordEmptyEmailError;
+
+  /// No description provided for @forgotPasswordCodeSentSuccess.
+  ///
+  /// In es, this message translates to:
+  /// **'Código enviado. Revisa tu bandeja de entrada.'**
+  String get forgotPasswordCodeSentSuccess;
+
+  /// No description provided for @forgotPasswordSendCodeButton.
+  ///
+  /// In es, this message translates to:
+  /// **'ENVIAR CÓDIGO'**
+  String get forgotPasswordSendCodeButton;
+
+  /// No description provided for @forgotPasswordStep2Description.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe el código que enviamos a {email} y tu nueva contraseña.'**
+  String forgotPasswordStep2Description(Object email);
+
+  /// No description provided for @forgotPasswordCodeInputLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Código de 8 dígitos'**
+  String get forgotPasswordCodeInputLabel;
+
+  /// No description provided for @forgotPasswordInvalidCodeError.
+  ///
+  /// In es, this message translates to:
+  /// **'El código debe tener exactamente 6 dígitos.'**
+  String get forgotPasswordInvalidCodeError;
+
+  /// No description provided for @forgotPasswordNewPasswordLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Nueva Contraseña'**
+  String get forgotPasswordNewPasswordLabel;
+
+  /// No description provided for @forgotPasswordShortPasswordError.
+  ///
+  /// In es, this message translates to:
+  /// **'La contraseña debe tener al menos 6 caracteres.'**
+  String get forgotPasswordShortPasswordError;
+
+  /// No description provided for @forgotPasswordSavePasswordButton.
+  ///
+  /// In es, this message translates to:
+  /// **'GUARDAR CONTRASEÑA'**
+  String get forgotPasswordSavePasswordButton;
+
+  /// No description provided for @forgotPasswordPasswordUpdatedSuccess.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Contraseña actualizada con éxito! 🏆'**
+  String get forgotPasswordPasswordUpdatedSuccess;
 }
 
 class _AppLocalizationsDelegate

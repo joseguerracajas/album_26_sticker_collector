@@ -253,4 +253,49 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get shareSeparator => '--------------------------';
+
+  @override
+  String get forgotPasswordTitle => 'Recover Account';
+
+  @override
+  String get forgotPasswordDescription =>
+      'Enter your email and we\'ll send you a 6-digit code to reset your password.';
+
+  @override
+  String get forgotPasswordEmailLabel => 'Email';
+
+  @override
+  String get forgotPasswordEmptyEmailError => 'Please enter your email.';
+
+  @override
+  String get forgotPasswordCodeSentSuccess => 'Code sent. Check your inbox.';
+
+  @override
+  String get forgotPasswordSendCodeButton => 'SEND CODE';
+
+  @override
+  String forgotPasswordStep2Description(Object email) {
+    return 'Enter the code we sent to $email and your new password.';
+  }
+
+  @override
+  String get forgotPasswordCodeInputLabel => '8-digit code';
+
+  @override
+  String get forgotPasswordInvalidCodeError =>
+      'The code must have exactly 6 digits.';
+
+  @override
+  String get forgotPasswordNewPasswordLabel => 'New Password';
+
+  @override
+  String get forgotPasswordShortPasswordError =>
+      'Password must be at least 6 characters.';
+
+  @override
+  String get forgotPasswordSavePasswordButton => 'SAVE PASSWORD';
+
+  @override
+  String get forgotPasswordPasswordUpdatedSuccess =>
+      'Password updated successfully! 🏆';
 }

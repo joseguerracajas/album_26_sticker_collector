@@ -50,6 +50,19 @@ class AuthController {
     await supabase.auth.resetPasswordForEmail(email);
   }
 
+  Future<void> verifyRecoveryOtp(String email, String otp) async {
+    final res = await supabase.auth.verifyOTP(
+      type: OtpType.recovery,
+      token: otp,
+      email: email,
+    );
+
+    // Si la sesión es nula, el código no fue válido
+    if (res.session == null) {
+      throw 'Código inválido o expirado.';
+    }
+  }
+
   Future<void> updatePassword(String newPassword) async {
     await supabase.auth.updateUser(UserAttributes(password: newPassword));
   }

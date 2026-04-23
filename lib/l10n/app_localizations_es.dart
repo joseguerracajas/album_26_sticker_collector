@@ -255,4 +255,51 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get shareSeparator => '--------------------------';
+
+  @override
+  String get forgotPasswordTitle => 'Recuperar Cuenta';
+
+  @override
+  String get forgotPasswordDescription =>
+      'Ingresa tu correo electrónico y te enviaremos un código de 6 dígitos para restablecer tu contraseña.';
+
+  @override
+  String get forgotPasswordEmailLabel => 'Correo Electrónico';
+
+  @override
+  String get forgotPasswordEmptyEmailError =>
+      'Por favor, ingresa tu correo electrónico.';
+
+  @override
+  String get forgotPasswordCodeSentSuccess =>
+      'Código enviado. Revisa tu bandeja de entrada.';
+
+  @override
+  String get forgotPasswordSendCodeButton => 'ENVIAR CÓDIGO';
+
+  @override
+  String forgotPasswordStep2Description(Object email) {
+    return 'Escribe el código que enviamos a $email y tu nueva contraseña.';
+  }
+
+  @override
+  String get forgotPasswordCodeInputLabel => 'Código de 8 dígitos';
+
+  @override
+  String get forgotPasswordInvalidCodeError =>
+      'El código debe tener exactamente 6 dígitos.';
+
+  @override
+  String get forgotPasswordNewPasswordLabel => 'Nueva Contraseña';
+
+  @override
+  String get forgotPasswordShortPasswordError =>
+      'La contraseña debe tener al menos 6 caracteres.';
+
+  @override
+  String get forgotPasswordSavePasswordButton => 'GUARDAR CONTRASEÑA';
+
+  @override
+  String get forgotPasswordPasswordUpdatedSuccess =>
+      '¡Contraseña actualizada con éxito! 🏆';
 }
