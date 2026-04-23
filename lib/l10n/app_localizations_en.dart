@@ -33,18 +33,29 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authContinueApple => 'Continue with Apple';
 
   @override
-  String get authContinueGuest => 'Continue as guest';
+  String get authContinueGuest => 'Continue as Guest';
 
   @override
-  String get authNoAccountRegister => 'No account? Sign up';
+  String get authNoAccountRegister => 'Don\'t have an account? Sign up';
+
+  @override
+  String get authForgotPassword => 'Forgot your password?';
+
+  @override
+  String get authResetPasswordEnterEmail =>
+      'Enter your email to recover your password.';
+
+  @override
+  String get authResetPasswordEmailSent =>
+      'We sent you an email to reset your password.';
 
   @override
   String get authGuestMigratedSuccess =>
-      'Your guest progress was copied to your new account.';
+      'Your guest progress was successfully transferred to your new account! 🏆';
 
   @override
   String get authGuestRemotePreserved =>
-      'This account already existed: cloud data was kept and local guest progress was discarded.';
+      'Welcome back! Your cloud collection has been restored, and local guest progress was discarded.';
 
   @override
   String commonErrorWithMessage(Object message) {
@@ -69,7 +80,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get registerAccountCreated =>
-      'Account created successfully. Please sign in.';
+      'Account created successfully! ⚽ Please sign in.';
 
   @override
   String get registerConfirmEmailLabel => 'Confirm email';
@@ -84,7 +95,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profileTitle => 'My Profile';
 
   @override
-  String get profileOfficialCollector => 'Official Collector';
+  String get profileOfficialCollector => 'Official Collector 🌟';
+
+  @override
+  String get profileChangePasswordButton => 'Update password';
+
+  @override
+  String get profileChangePasswordTitle => 'Update password';
+
+  @override
+  String get profileNewPasswordLabel => 'New password';
+
+  @override
+  String get profileConfirmNewPasswordLabel => 'Confirm new password';
+
+  @override
+  String get profilePasswordUpdatedSuccess => 'Password updated successfully.';
 
   @override
   String get profileLogoutButton => 'Sign out';
@@ -104,7 +130,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeProfileTooltip => 'My Profile';
 
   @override
-  String get homeShareAll => 'Share All';
+  String get homeShareAll => 'Share Full List';
 
   @override
   String get homeShareMissingOnly => 'Missing Only';
@@ -127,17 +153,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeTeamsTitle => 'Teams';
 
   @override
-  String get homeSearchTeamsHint => 'Search country or team...';
+  String get homeSearchTeamsHint => 'Search by country or team...';
 
   @override
-  String get homeNoResults => 'No results';
+  String get homeNoResults => 'No teams found';
 
   @override
-  String get homeScanButton => 'Scan';
+  String get homeScanButton => 'Scan Sticker';
 
   @override
   String homeObtainedCount(Object collected, Object total) {
-    return '$collected of $total obtained';
+    return '$collected of $total collected';
   }
 
   @override
@@ -156,14 +182,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get filterDuplicates => 'Duplicates';
 
   @override
-  String get filterSearchHint => 'Search country, code or number...';
+  String get filterSearchHint => 'Search by country, code or number...';
 
   @override
   String get stickerRemoveTitle => 'Remove sticker?';
 
   @override
   String stickerRemoveConfirm(Object stickerLabel) {
-    return 'Are you sure you want to remove sticker $stickerLabel?';
+    return 'Are you sure you want to remove sticker $stickerLabel from your album?';
   }
 
   @override
@@ -176,21 +202,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonDone => 'DONE';
 
   @override
-  String get gridNoResults => 'No results.';
+  String get gridNoResults => 'No stickers found.';
 
   @override
   String scannerViewScannedButton(Object count) {
-    return 'View $count scanned stickers';
+    return 'Review $count scanned stickers';
   }
 
   @override
-  String get scannerOverlayHint => 'Center the back side of the sticker here';
+  String get scannerOverlayHint => 'Center the back of the sticker here';
 
   @override
   String get pendingScansTitle => 'Scanned Stickers';
 
   @override
-  String get pendingScansEmpty => 'You have not scanned anything yet';
+  String get pendingScansEmpty => 'You haven\'t scanned any stickers yet';
 
   @override
   String pendingScansItemLabel(Object code) {
@@ -199,7 +225,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String pendingScansSavedSuccess(Object count) {
-    return '$count stickers saved successfully!';
+    return '$count stickers added to your album! 🏆';
   }
 
   @override
@@ -208,7 +234,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get shareHeader => '⚽ *ALBUM 26 TRADING* 🏆';
+  String get shareHeader => '⚽ *ALBUM 26 SWAP LIST* 🏆';
 
   @override
   String get shareMissingSectionTitle => '❌ *MISSING:*';

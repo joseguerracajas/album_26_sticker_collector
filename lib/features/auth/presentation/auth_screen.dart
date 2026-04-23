@@ -21,6 +21,45 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _passwordController = TextEditingController();
   bool _isLoading = false;
 
+  Future<void> _enviarCorreoRecuperacion() async {
+    final l10n = AppLocalizations.of(context);
+    final email = _emailController.text.trim();
+
+    if (email.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(l10n.authResetPasswordEnterEmail),
+          backgroundColor: Colors.orange,
+        ),
+      );
+      return;
+    }
+
+    setState(() => _isLoading = true);
+    try {
+      await ref.read(authControllerProvider).sendPasswordResetEmail(email);
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(l10n.authResetPasswordEmailSent),
+            backgroundColor: Colors.green,
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(l10n.commonErrorWithMessage(e.toString())),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
+  }
+
   // --- LOGIN TRADICIONAL ---
   Future<void> _login() async {
     _ejecutarLogin(
@@ -283,6 +322,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                   ),
                   const SizedBox(height: 12),
+                  TextButton(
+                    onPressed: _enviarCorreoRecuperacion,
+                    child: Text(
+                      l10n.authForgotPassword,
+                      style: TextStyle(color: Colors.white70),
+                    ),
+                  ),
                   TextButton(
                     onPressed: () {
                       Navigator.push(

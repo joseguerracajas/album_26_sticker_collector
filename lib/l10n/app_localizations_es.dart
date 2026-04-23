@@ -9,22 +9,22 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
-  String get appTitle => 'Album 26';
+  String get appTitle => 'Álbum 26';
 
   @override
-  String get authWelcomeTitle => 'Bienvenido a Album 26';
+  String get authWelcomeTitle => 'Bienvenido a Álbum 26';
 
   @override
-  String get authEmailLabel => 'Correo electronico';
+  String get authEmailLabel => 'Correo electrónico';
 
   @override
-  String get authPasswordLabel => 'Contrasena';
+  String get authPasswordLabel => 'Contraseña';
 
   @override
-  String get authLoginButton => 'INICIAR SESION';
+  String get authLoginButton => 'INICIAR SESIÓN';
 
   @override
-  String get authContinueWith => 'O continuar con';
+  String get authContinueWith => 'O continúa con';
 
   @override
   String get authContinueGoogle => 'Continuar con Google';
@@ -36,15 +36,26 @@ class AppLocalizationsEs extends AppLocalizations {
   String get authContinueGuest => 'Continuar como invitado';
 
   @override
-  String get authNoAccountRegister => 'No tienes cuenta? Registrate';
+  String get authNoAccountRegister => '¿No tienes cuenta? Regístrate';
+
+  @override
+  String get authForgotPassword => '¿Olvidaste tu contraseña?';
+
+  @override
+  String get authResetPasswordEnterEmail =>
+      'Ingresa tu correo para recuperar la contraseña.';
+
+  @override
+  String get authResetPasswordEmailSent =>
+      'Te enviamos un correo para restablecer tu contraseña.';
 
   @override
   String get authGuestMigratedSuccess =>
-      'Tu progreso invitado se copio a tu nueva cuenta.';
+      '¡Tu progreso como invitado se transfirió a tu nueva cuenta con éxito! 🏆';
 
   @override
   String get authGuestRemotePreserved =>
-      'La cuenta ya existia: se conservaron los datos de la nube y se descarto el progreso invitado local.';
+      '¡Bienvenido de vuelta! Se ha restaurado tu colección de la nube y el progreso local ha sido descartado.';
 
   @override
   String commonErrorWithMessage(Object message) {
@@ -55,28 +66,28 @@ class AppLocalizationsEs extends AppLocalizations {
   String get registerTitle => 'Crear Cuenta';
 
   @override
-  String get registerFillAllFields => 'Por favor, llena todos los campos.';
+  String get registerFillAllFields => 'Por favor, completa todos los campos.';
 
   @override
   String get registerEmailsDontMatch =>
-      'Los correos electronicos no coinciden.';
+      'Los correos electrónicos no coinciden.';
 
   @override
-  String get registerPasswordsDontMatch => 'Las contrasenas no coinciden.';
+  String get registerPasswordsDontMatch => 'Las contraseñas no coinciden.';
 
   @override
   String get registerPasswordMinLength =>
-      'La contrasena debe tener al menos 6 caracteres.';
+      'La contraseña debe tener al menos 6 caracteres.';
 
   @override
   String get registerAccountCreated =>
-      'Cuenta creada con exito. Ahora inicia sesion.';
+      '¡Cuenta creada con éxito! ⚽ Ahora inicia sesión.';
 
   @override
-  String get registerConfirmEmailLabel => 'Confirmar correo electronico';
+  String get registerConfirmEmailLabel => 'Confirmar correo electrónico';
 
   @override
-  String get registerConfirmPasswordLabel => 'Confirmar contrasena';
+  String get registerConfirmPasswordLabel => 'Confirmar contraseña';
 
   @override
   String get registerSubmitButton => 'REGISTRARME';
@@ -85,21 +96,37 @@ class AppLocalizationsEs extends AppLocalizations {
   String get profileTitle => 'Mi Perfil';
 
   @override
-  String get profileOfficialCollector => 'Coleccionista Oficial';
+  String get profileOfficialCollector => 'Coleccionista Oficial 🌟';
 
   @override
-  String get profileLogoutButton => 'Cerrar Sesion';
+  String get profileChangePasswordButton => 'Actualizar contraseña';
+
+  @override
+  String get profileChangePasswordTitle => 'Actualizar contraseña';
+
+  @override
+  String get profileNewPasswordLabel => 'Nueva contraseña';
+
+  @override
+  String get profileConfirmNewPasswordLabel => 'Confirmar nueva contraseña';
+
+  @override
+  String get profilePasswordUpdatedSuccess =>
+      'Contraseña actualizada correctamente.';
+
+  @override
+  String get profileLogoutButton => 'Cerrar Sesión';
 
   @override
   String get profileUnknownUser => 'Usuario desconocido';
 
   @override
   String profileLogoutError(Object message) {
-    return 'Error al cerrar sesion: $message';
+    return 'Error al cerrar sesión: $message';
   }
 
   @override
-  String get homeTitle => 'Mi Album 26';
+  String get homeTitle => 'Mi Álbum 26';
 
   @override
   String get homeProfileTooltip => 'Mi Perfil';
@@ -122,19 +149,19 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get homeViewFullCollection => 'Ver Coleccion Completa';
+  String get homeViewFullCollection => 'Ver Colección Completa';
 
   @override
   String get homeTeamsTitle => 'Equipos';
 
   @override
-  String get homeSearchTeamsHint => 'Buscar pais o equipo...';
+  String get homeSearchTeamsHint => 'Buscar país o equipo...';
 
   @override
   String get homeNoResults => 'Sin resultados';
 
   @override
-  String get homeScanButton => 'Escanear';
+  String get homeScanButton => 'Escanear Cromo';
 
   @override
   String homeObtainedCount(Object collected, Object total) {
@@ -145,7 +172,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get homeProgressError => 'Error';
 
   @override
-  String get globalCollectionTitle => 'Coleccion Completa';
+  String get globalCollectionTitle => 'Colección Completa';
 
   @override
   String get filterAll => 'Todos';
@@ -157,14 +184,14 @@ class AppLocalizationsEs extends AppLocalizations {
   String get filterDuplicates => 'Repetidas';
 
   @override
-  String get filterSearchHint => 'Buscar pais, codigo o numero...';
+  String get filterSearchHint => 'Buscar país, código o número...';
 
   @override
-  String get stickerRemoveTitle => 'Quitar cromo?';
+  String get stickerRemoveTitle => '¿Quitar cromo?';
 
   @override
   String stickerRemoveConfirm(Object stickerLabel) {
-    return 'Seguro que quieres quitar el cromo $stickerLabel?';
+    return '¿Seguro que quieres quitar el cromo $stickerLabel de tu álbum?';
   }
 
   @override
@@ -177,21 +204,21 @@ class AppLocalizationsEs extends AppLocalizations {
   String get commonDone => 'LISTO';
 
   @override
-  String get gridNoResults => 'Sin resultados.';
+  String get gridNoResults => 'No se encontraron cromos.';
 
   @override
   String scannerViewScannedButton(Object count) {
-    return 'Ver $count cromos escaneados';
+    return 'Revisar $count cromos escaneados';
   }
 
   @override
-  String get scannerOverlayHint => 'Centra la parte trasera del cromo aqui';
+  String get scannerOverlayHint => 'Centra la parte trasera del cromo aquí';
 
   @override
   String get pendingScansTitle => 'Cromos Escaneados';
 
   @override
-  String get pendingScansEmpty => 'Aun no has escaneado nada';
+  String get pendingScansEmpty => 'Aún no has escaneado ningún cromo';
 
   @override
   String pendingScansItemLabel(Object code) {
@@ -200,7 +227,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String pendingScansSavedSuccess(Object count) {
-    return '$count cromos guardados con exito!';
+    return '¡$count cromos añadidos a tu álbum con éxito! 🏆';
   }
 
   @override
@@ -209,7 +236,7 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get shareHeader => '⚽ *INTERCAMBIO ALBUM 26* 🏆';
+  String get shareHeader => '⚽ *INTERCAMBIO ÁLBUM 26* 🏆';
 
   @override
   String get shareMissingSectionTitle => '❌ *ME FALTAN:*';
@@ -218,13 +245,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get shareDuplicatesSectionTitle => '🔁 *REPETIDAS:*';
 
   @override
-  String get shareNoneMissing => 'Ninguno! 😎';
+  String get shareNoneMissing => '¡Ninguno! 😎';
 
   @override
   String get shareNoDuplicates => 'Sin repetidas 😅';
 
   @override
-  String get shareLetsTrade => 'Cambiamos? 👀🔥';
+  String get shareLetsTrade => '¿Cambiamos? 👀🔥';
 
   @override
   String get shareSeparator => '--------------------------';

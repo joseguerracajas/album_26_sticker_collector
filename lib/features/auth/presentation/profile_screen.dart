@@ -10,6 +10,99 @@ import 'auth_screen.dart';
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
 
+  Future<void> _actualizarClave(BuildContext context, WidgetRef ref) async {
+    final l10n = AppLocalizations.of(context);
+    final nuevaClaveController = TextEditingController();
+    final confirmarClaveController = TextEditingController();
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(l10n.profileChangePasswordTitle),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nuevaClaveController,
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: l10n.profileNewPasswordLabel,
+                ),
+              ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: confirmarClaveController,
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: l10n.profileConfirmNewPasswordLabel,
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: Text(l10n.commonCancel),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).pop(true),
+              child: Text(l10n.profileChangePasswordButton),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (confirmed != true) {
+      return;
+    }
+
+    final nuevaClave = nuevaClaveController.text.trim();
+    final confirmarClave = confirmarClaveController.text.trim();
+
+    if (nuevaClave.length < 6) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(l10n.registerPasswordMinLength),
+          backgroundColor: Colors.orange,
+        ),
+      );
+      return;
+    }
+
+    if (nuevaClave != confirmarClave) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(l10n.registerPasswordsDontMatch),
+          backgroundColor: Colors.orange,
+        ),
+      );
+      return;
+    }
+
+    try {
+      await ref.read(authControllerProvider).updatePassword(nuevaClave);
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(l10n.profilePasswordUpdatedSuccess),
+            backgroundColor: Colors.green,
+          ),
+        );
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(l10n.commonErrorWithMessage(e.toString())),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
+
   // 2. Añadimos WidgetRef a la función para poder leer el Provider
   void _cerrarSesion(BuildContext context, WidgetRef ref) async {
     final l10n = AppLocalizations.of(context);
@@ -92,6 +185,23 @@ class ProfileScreen extends ConsumerWidget {
             ),
 
             const Spacer(), // Empuja el botón hacia abajo
+            ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blueGrey.shade800,
+                foregroundColor: Colors.white,
+                minimumSize: const Size(double.infinity, 55),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              ),
+              icon: const Icon(Icons.lock_reset),
+              label: Text(
+                l10n.profileChangePasswordButton,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              onPressed: () => _actualizarClave(context, ref),
+            ),
+            const SizedBox(height: 12),
             // Botón de Cerrar Sesión
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(

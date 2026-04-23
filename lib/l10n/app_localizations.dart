@@ -101,37 +101,37 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In es, this message translates to:
-  /// **'Album 26'**
+  /// **'Álbum 26'**
   String get appTitle;
 
   /// No description provided for @authWelcomeTitle.
   ///
   /// In es, this message translates to:
-  /// **'Bienvenido a Album 26'**
+  /// **'Bienvenido a Álbum 26'**
   String get authWelcomeTitle;
 
   /// No description provided for @authEmailLabel.
   ///
   /// In es, this message translates to:
-  /// **'Correo electronico'**
+  /// **'Correo electrónico'**
   String get authEmailLabel;
 
   /// No description provided for @authPasswordLabel.
   ///
   /// In es, this message translates to:
-  /// **'Contrasena'**
+  /// **'Contraseña'**
   String get authPasswordLabel;
 
   /// No description provided for @authLoginButton.
   ///
   /// In es, this message translates to:
-  /// **'INICIAR SESION'**
+  /// **'INICIAR SESIÓN'**
   String get authLoginButton;
 
   /// No description provided for @authContinueWith.
   ///
   /// In es, this message translates to:
-  /// **'O continuar con'**
+  /// **'O continúa con'**
   String get authContinueWith;
 
   /// No description provided for @authContinueGoogle.
@@ -155,19 +155,37 @@ abstract class AppLocalizations {
   /// No description provided for @authNoAccountRegister.
   ///
   /// In es, this message translates to:
-  /// **'No tienes cuenta? Registrate'**
+  /// **'¿No tienes cuenta? Regístrate'**
   String get authNoAccountRegister;
+
+  /// No description provided for @authForgotPassword.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Olvidaste tu contraseña?'**
+  String get authForgotPassword;
+
+  /// No description provided for @authResetPasswordEnterEmail.
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa tu correo para recuperar la contraseña.'**
+  String get authResetPasswordEnterEmail;
+
+  /// No description provided for @authResetPasswordEmailSent.
+  ///
+  /// In es, this message translates to:
+  /// **'Te enviamos un correo para restablecer tu contraseña.'**
+  String get authResetPasswordEmailSent;
 
   /// No description provided for @authGuestMigratedSuccess.
   ///
   /// In es, this message translates to:
-  /// **'Tu progreso invitado se copio a tu nueva cuenta.'**
+  /// **'¡Tu progreso como invitado se transfirió a tu nueva cuenta con éxito! 🏆'**
   String get authGuestMigratedSuccess;
 
   /// No description provided for @authGuestRemotePreserved.
   ///
   /// In es, this message translates to:
-  /// **'La cuenta ya existia: se conservaron los datos de la nube y se descarto el progreso invitado local.'**
+  /// **'¡Bienvenido de vuelta! Se ha restaurado tu colección de la nube y el progreso local ha sido descartado.'**
   String get authGuestRemotePreserved;
 
   /// No description provided for @commonErrorWithMessage.
@@ -185,43 +203,43 @@ abstract class AppLocalizations {
   /// No description provided for @registerFillAllFields.
   ///
   /// In es, this message translates to:
-  /// **'Por favor, llena todos los campos.'**
+  /// **'Por favor, completa todos los campos.'**
   String get registerFillAllFields;
 
   /// No description provided for @registerEmailsDontMatch.
   ///
   /// In es, this message translates to:
-  /// **'Los correos electronicos no coinciden.'**
+  /// **'Los correos electrónicos no coinciden.'**
   String get registerEmailsDontMatch;
 
   /// No description provided for @registerPasswordsDontMatch.
   ///
   /// In es, this message translates to:
-  /// **'Las contrasenas no coinciden.'**
+  /// **'Las contraseñas no coinciden.'**
   String get registerPasswordsDontMatch;
 
   /// No description provided for @registerPasswordMinLength.
   ///
   /// In es, this message translates to:
-  /// **'La contrasena debe tener al menos 6 caracteres.'**
+  /// **'La contraseña debe tener al menos 6 caracteres.'**
   String get registerPasswordMinLength;
 
   /// No description provided for @registerAccountCreated.
   ///
   /// In es, this message translates to:
-  /// **'Cuenta creada con exito. Ahora inicia sesion.'**
+  /// **'¡Cuenta creada con éxito! ⚽ Ahora inicia sesión.'**
   String get registerAccountCreated;
 
   /// No description provided for @registerConfirmEmailLabel.
   ///
   /// In es, this message translates to:
-  /// **'Confirmar correo electronico'**
+  /// **'Confirmar correo electrónico'**
   String get registerConfirmEmailLabel;
 
   /// No description provided for @registerConfirmPasswordLabel.
   ///
   /// In es, this message translates to:
-  /// **'Confirmar contrasena'**
+  /// **'Confirmar contraseña'**
   String get registerConfirmPasswordLabel;
 
   /// No description provided for @registerSubmitButton.
@@ -239,13 +257,43 @@ abstract class AppLocalizations {
   /// No description provided for @profileOfficialCollector.
   ///
   /// In es, this message translates to:
-  /// **'Coleccionista Oficial'**
+  /// **'Coleccionista Oficial 🌟'**
   String get profileOfficialCollector;
+
+  /// No description provided for @profileChangePasswordButton.
+  ///
+  /// In es, this message translates to:
+  /// **'Actualizar contraseña'**
+  String get profileChangePasswordButton;
+
+  /// No description provided for @profileChangePasswordTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Actualizar contraseña'**
+  String get profileChangePasswordTitle;
+
+  /// No description provided for @profileNewPasswordLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Nueva contraseña'**
+  String get profileNewPasswordLabel;
+
+  /// No description provided for @profileConfirmNewPasswordLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Confirmar nueva contraseña'**
+  String get profileConfirmNewPasswordLabel;
+
+  /// No description provided for @profilePasswordUpdatedSuccess.
+  ///
+  /// In es, this message translates to:
+  /// **'Contraseña actualizada correctamente.'**
+  String get profilePasswordUpdatedSuccess;
 
   /// No description provided for @profileLogoutButton.
   ///
   /// In es, this message translates to:
-  /// **'Cerrar Sesion'**
+  /// **'Cerrar Sesión'**
   String get profileLogoutButton;
 
   /// No description provided for @profileUnknownUser.
@@ -257,13 +305,13 @@ abstract class AppLocalizations {
   /// No description provided for @profileLogoutError.
   ///
   /// In es, this message translates to:
-  /// **'Error al cerrar sesion: {message}'**
+  /// **'Error al cerrar sesión: {message}'**
   String profileLogoutError(Object message);
 
   /// No description provided for @homeTitle.
   ///
   /// In es, this message translates to:
-  /// **'Mi Album 26'**
+  /// **'Mi Álbum 26'**
   String get homeTitle;
 
   /// No description provided for @homeProfileTooltip.
@@ -305,7 +353,7 @@ abstract class AppLocalizations {
   /// No description provided for @homeViewFullCollection.
   ///
   /// In es, this message translates to:
-  /// **'Ver Coleccion Completa'**
+  /// **'Ver Colección Completa'**
   String get homeViewFullCollection;
 
   /// No description provided for @homeTeamsTitle.
@@ -317,7 +365,7 @@ abstract class AppLocalizations {
   /// No description provided for @homeSearchTeamsHint.
   ///
   /// In es, this message translates to:
-  /// **'Buscar pais o equipo...'**
+  /// **'Buscar país o equipo...'**
   String get homeSearchTeamsHint;
 
   /// No description provided for @homeNoResults.
@@ -329,7 +377,7 @@ abstract class AppLocalizations {
   /// No description provided for @homeScanButton.
   ///
   /// In es, this message translates to:
-  /// **'Escanear'**
+  /// **'Escanear Cromo'**
   String get homeScanButton;
 
   /// No description provided for @homeObtainedCount.
@@ -347,7 +395,7 @@ abstract class AppLocalizations {
   /// No description provided for @globalCollectionTitle.
   ///
   /// In es, this message translates to:
-  /// **'Coleccion Completa'**
+  /// **'Colección Completa'**
   String get globalCollectionTitle;
 
   /// No description provided for @filterAll.
@@ -371,19 +419,19 @@ abstract class AppLocalizations {
   /// No description provided for @filterSearchHint.
   ///
   /// In es, this message translates to:
-  /// **'Buscar pais, codigo o numero...'**
+  /// **'Buscar país, código o número...'**
   String get filterSearchHint;
 
   /// No description provided for @stickerRemoveTitle.
   ///
   /// In es, this message translates to:
-  /// **'Quitar cromo?'**
+  /// **'¿Quitar cromo?'**
   String get stickerRemoveTitle;
 
   /// No description provided for @stickerRemoveConfirm.
   ///
   /// In es, this message translates to:
-  /// **'Seguro que quieres quitar el cromo {stickerLabel}?'**
+  /// **'¿Seguro que quieres quitar el cromo {stickerLabel} de tu álbum?'**
   String stickerRemoveConfirm(Object stickerLabel);
 
   /// No description provided for @commonCancel.
@@ -407,19 +455,19 @@ abstract class AppLocalizations {
   /// No description provided for @gridNoResults.
   ///
   /// In es, this message translates to:
-  /// **'Sin resultados.'**
+  /// **'No se encontraron cromos.'**
   String get gridNoResults;
 
   /// No description provided for @scannerViewScannedButton.
   ///
   /// In es, this message translates to:
-  /// **'Ver {count} cromos escaneados'**
+  /// **'Revisar {count} cromos escaneados'**
   String scannerViewScannedButton(Object count);
 
   /// No description provided for @scannerOverlayHint.
   ///
   /// In es, this message translates to:
-  /// **'Centra la parte trasera del cromo aqui'**
+  /// **'Centra la parte trasera del cromo aquí'**
   String get scannerOverlayHint;
 
   /// No description provided for @pendingScansTitle.
@@ -431,7 +479,7 @@ abstract class AppLocalizations {
   /// No description provided for @pendingScansEmpty.
   ///
   /// In es, this message translates to:
-  /// **'Aun no has escaneado nada'**
+  /// **'Aún no has escaneado ningún cromo'**
   String get pendingScansEmpty;
 
   /// No description provided for @pendingScansItemLabel.
@@ -443,7 +491,7 @@ abstract class AppLocalizations {
   /// No description provided for @pendingScansSavedSuccess.
   ///
   /// In es, this message translates to:
-  /// **'{count} cromos guardados con exito!'**
+  /// **'¡{count} cromos añadidos a tu álbum con éxito! 🏆'**
   String pendingScansSavedSuccess(Object count);
 
   /// No description provided for @pendingScansSaveError.
@@ -455,7 +503,7 @@ abstract class AppLocalizations {
   /// No description provided for @shareHeader.
   ///
   /// In es, this message translates to:
-  /// **'⚽ *INTERCAMBIO ALBUM 26* 🏆'**
+  /// **'⚽ *INTERCAMBIO ÁLBUM 26* 🏆'**
   String get shareHeader;
 
   /// No description provided for @shareMissingSectionTitle.
@@ -473,7 +521,7 @@ abstract class AppLocalizations {
   /// No description provided for @shareNoneMissing.
   ///
   /// In es, this message translates to:
-  /// **'Ninguno! 😎'**
+  /// **'¡Ninguno! 😎'**
   String get shareNoneMissing;
 
   /// No description provided for @shareNoDuplicates.
@@ -485,7 +533,7 @@ abstract class AppLocalizations {
   /// No description provided for @shareLetsTrade.
   ///
   /// In es, this message translates to:
-  /// **'Cambiamos? 👀🔥'**
+  /// **'¿Cambiamos? 👀🔥'**
   String get shareLetsTrade;
 
   /// No description provided for @shareSeparator.

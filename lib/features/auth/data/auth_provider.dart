@@ -46,6 +46,14 @@ class AuthController {
     await _iniciarSincronizacion(hadGuestData: hadGuestData);
   }
 
+  Future<void> sendPasswordResetEmail(String email) async {
+    await supabase.auth.resetPasswordForEmail(email);
+  }
+
+  Future<void> updatePassword(String newPassword) async {
+    await supabase.auth.updateUser(UserAttributes(password: newPassword));
+  }
+
   // --- 2. LOGIN CON GOOGLE (Adaptado a google_sign_in v7.0+) ---
   Future<void> loginWithGoogle() async {
     const webClientId =
