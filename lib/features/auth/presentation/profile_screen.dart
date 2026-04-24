@@ -7,10 +7,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart'; // IMPORTANTE: Agregar 
 import 'package:album_26_sticker_collector/main.dart';
 import 'auth_screen.dart';
 
-class ProfileScreen extends ConsumerWidget {
+class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
 
-  Future<void> _actualizarClave(BuildContext context, WidgetRef ref) async {
+  @override
+  ConsumerState<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends ConsumerState<ProfileScreen> {
+  double _pointerDownX = 0;
+
+  Future<void> _actualizarClave(BuildContext context) async {
+    final WidgetRef ref = this.ref;
     final l10n = AppLocalizations.of(context);
     final nuevaClaveController = TextEditingController();
     final confirmarClaveController = TextEditingController();
@@ -58,6 +66,8 @@ class ProfileScreen extends ConsumerWidget {
       return;
     }
 
+    if (!context.mounted) return;
+
     final nuevaClave = nuevaClaveController.text.trim();
     final confirmarClave = confirmarClaveController.text.trim();
 
@@ -104,7 +114,8 @@ class ProfileScreen extends ConsumerWidget {
   }
 
   // 2. Añadimos WidgetRef a la función para poder leer el Provider
-  void _cerrarSesion(BuildContext context, WidgetRef ref) async {
+  Future<void> _cerrarSesion(BuildContext context) async {
+    final WidgetRef ref = this.ref;
     final l10n = AppLocalizations.of(context);
 
     try {
@@ -132,8 +143,7 @@ class ProfileScreen extends ConsumerWidget {
   }
 
   @override
-  // 5. Añadimos WidgetRef al método build
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
 
     // Obtenemos el usuario actual de Supabase para mostrar su correo
@@ -145,83 +155,97 @@ class ProfileScreen extends ConsumerWidget {
                 l10n.profileUnknownUser)
             .toString();
 
-    return Scaffold(
-      backgroundColor: const Color(0xFF121212),
-      appBar: AppBar(
-        title: Text(
-          l10n.profileTitle,
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.amber),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            // Avatar genérico
-            const CircleAvatar(
-              radius: 50,
-              backgroundColor: Colors.amber,
-              child: Icon(Icons.person, size: 50, color: Colors.black),
-            ),
-            const SizedBox(height: 20),
-
-            // Correo del usuario
-            Text(
-              nombreUsuario,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 18,
+    return Listener(
+      onPointerDown: (event) => _pointerDownX = event.localPosition.dx,
+      child: GestureDetector(
+        onHorizontalDragEnd: (details) {
+          if (_pointerDownX < 30 &&
+              details.primaryVelocity != null &&
+              details.primaryVelocity! > 100) {
+            Navigator.of(context).pop();
+          }
+        },
+        child: Scaffold(
+          backgroundColor: const Color(0xFF121212),
+          appBar: AppBar(
+            title: Text(
+              l10n.profileTitle,
+              style: TextStyle(
                 fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
-            const SizedBox(height: 8),
-            Text(
-              l10n.profileOfficialCollector,
-              style: TextStyle(color: Colors.grey, fontSize: 14),
-            ),
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            iconTheme: const IconThemeData(color: Colors.amber),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              children: [
+                const SizedBox(height: 20),
+                // Avatar genérico
+                const CircleAvatar(
+                  radius: 50,
+                  backgroundColor: Colors.amber,
+                  child: Icon(Icons.person, size: 50, color: Colors.black),
+                ),
+                const SizedBox(height: 20),
 
-            const Spacer(), // Empuja el botón hacia abajo
-            ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blueGrey.shade800,
-                foregroundColor: Colors.white,
-                minimumSize: const Size(double.infinity, 55),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
+                // Correo del usuario
+                Text(
+                  nombreUsuario,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              icon: const Icon(Icons.lock_reset),
-              label: Text(
-                l10n.profileChangePasswordButton,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              ),
-              onPressed: () => _actualizarClave(context, ref),
-            ),
-            const SizedBox(height: 12),
-            // Botón de Cerrar Sesión
-            ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red.shade900,
-                foregroundColor: Colors.white,
-                minimumSize: const Size(double.infinity, 55),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
+                const SizedBox(height: 8),
+                Text(
+                  l10n.profileOfficialCollector,
+                  style: TextStyle(color: Colors.grey, fontSize: 14),
                 ),
-              ),
-              icon: const Icon(Icons.logout),
-              label: Text(
-                l10n.profileLogoutButton,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              ),
-              // 6. Le pasamos el context y el ref a nuestra función
-              onPressed: () => _cerrarSesion(context, ref),
+
+                const Spacer(), // Empuja el botón hacia abajo
+                ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blueGrey.shade800,
+                    foregroundColor: Colors.white,
+                    minimumSize: const Size(double.infinity, 55),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
+                  icon: const Icon(Icons.lock_reset),
+                  label: Text(
+                    l10n.profileChangePasswordButton,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                  onPressed: () => _actualizarClave(context),
+                ),
+                const SizedBox(height: 12),
+                // Botón de Cerrar Sesión
+                ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red.shade900,
+                    foregroundColor: Colors.white,
+                    minimumSize: const Size(double.infinity, 55),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
+                  icon: const Icon(Icons.logout),
+                  label: Text(
+                    l10n.profileLogoutButton,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                  onPressed: () => _cerrarSesion(context),
+                ),
+                const SizedBox(height: 40), // Espacio inferior seguro
+              ],
             ),
-            const SizedBox(height: 40), // Espacio inferior seguro
-          ],
+          ),
         ),
       ),
     );
