@@ -41,9 +41,20 @@ class StickerGrid extends ConsumerWidget {
     );
 
     if (confirmar == true) {
-      await ref
-          .read(inventoryProvider.notifier)
-          .toggleNormalSticker(sticker.id);
+      try {
+        await ref
+            .read(inventoryProvider.notifier)
+            .toggleNormalSticker(sticker.id);
+      } catch (e) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(l10n.commonErrorWithMessage(e.toString())),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      }
     }
   }
 
@@ -225,19 +236,32 @@ class StickerGrid extends ConsumerWidget {
           },
         );
       },
-    ).then((_) {
-      inventarioTemporal.forEach((variantId, nuevaCantidad) {
-        final cantidadVieja = inventarioOriginal[variantId] ?? 0;
-        if (nuevaCantidad != cantidadVieja) {
-          ref
-              .read(inventoryProvider.notifier)
-              .updateVariantQuantity(
-                sticker.id,
-                variantId,
-                nuevaCantidad - cantidadVieja,
-              );
+    ).then((_) async {
+      try {
+        for (final entry in inventarioTemporal.entries) {
+          final variantId = entry.key;
+          final nuevaCantidad = entry.value;
+          final cantidadVieja = inventarioOriginal[variantId] ?? 0;
+          if (nuevaCantidad != cantidadVieja) {
+            await ref
+                .read(inventoryProvider.notifier)
+                .updateVariantQuantity(
+                  sticker.id,
+                  variantId,
+                  nuevaCantidad - cantidadVieja,
+                );
+          }
         }
-      });
+      } catch (e) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(l10n.commonErrorWithMessage(e.toString())),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      }
     });
   }
 
@@ -300,11 +324,24 @@ class StickerGrid extends ConsumerWidget {
                   sticker: sticker,
                   totalCromos: total,
                   tieneEspecial: tieneEsp,
-                  onTap: () {
+                  onTap: () async {
                     if (total == 0) {
-                      ref
-                          .read(inventoryProvider.notifier)
-                          .toggleNormalSticker(sticker.id);
+                      try {
+                        await ref
+                            .read(inventoryProvider.notifier)
+                            .toggleNormalSticker(sticker.id);
+                      } catch (e) {
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                l10n.commonErrorWithMessage(e.toString()),
+                              ),
+                              backgroundColor: Colors.red,
+                            ),
+                          );
+                        }
+                      }
                     } else if (total == 1 && (miInv['normal'] ?? 0) == 1) {
                       _confirmarBorrado(context, ref, sticker);
                     } else {

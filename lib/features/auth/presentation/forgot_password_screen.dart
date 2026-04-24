@@ -47,7 +47,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
         );
       }
     } catch (e) {
-      _showError(e.toString());
+      _showError(l10n.commonErrorWithMessage(e.toString()));
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
@@ -88,7 +88,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
         Navigator.pop(context);
       }
     } catch (e) {
-      _showError(e.toString());
+      _showError(l10n.commonErrorWithMessage(e.toString()));
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }

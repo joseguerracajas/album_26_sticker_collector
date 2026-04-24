@@ -175,5 +175,7 @@
   "adDialogBody": "To continue, watch a short ad or subscribe to Pro and forget about ads forever.",
   "adDialogWatchAd": "Watch ad",
   "adDialogGetPro": "Get Pro",
-  "adDialogNotNow": "Not now"
+  "adDialogNotNow": "Not now",
+
+  "scannerCameraInitError": "Could not initialize the camera. Make sure the app has camera permission."
 }

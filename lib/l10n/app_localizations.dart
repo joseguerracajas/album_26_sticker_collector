@@ -763,6 +763,12 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Ahora no'**
   String get adDialogNotNow;
+
+  /// No description provided for @scannerCameraInitError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo inicializar la cámara. Verifica que la app tenga permiso de acceso a la cámara.'**
+  String get scannerCameraInitError;
 }
 
 class _AppLocalizationsDelegate

@@ -69,7 +69,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         );
       }
     } catch (e) {
-      _showError(e.toString());
+      _showError(l10n.commonErrorWithMessage(e.toString()));
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }

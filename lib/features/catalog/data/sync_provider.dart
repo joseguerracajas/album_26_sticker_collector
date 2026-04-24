@@ -2,6 +2,7 @@
 
 import 'package:album_26_sticker_collector/features/catalog/data/categories_provider.dart';
 import 'package:album_26_sticker_collector/features/auth/data/guest_session_provider.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brick_offline_first/brick_offline_first.dart';
 import 'package:album_26_sticker_collector/brick/app_repository.dart';
@@ -126,6 +127,8 @@ class SyncService {
           await _repo.sqliteProvider.delete<Inventory>(fantasma);
         }
       }
-    } catch (e) {}
+    } catch (e) {
+      debugPrint('❌ Error en sincronización física espejo: $e');
+    }
   }
 }

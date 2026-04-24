@@ -113,6 +113,7 @@ class InventoryNotifier extends AsyncNotifier<InventoryMap> {
     } catch (e) {
       currentMap[stickerId]!['normal'] = currentNormalQty;
       state = AsyncData(currentMap);
+      rethrow;
     }
   }
 
@@ -195,6 +196,7 @@ class InventoryNotifier extends AsyncNotifier<InventoryMap> {
     } catch (e) {
       currentMap[stickerId]![variantId] = currentQty;
       state = AsyncData(currentMap);
+      rethrow;
     }
   }
 

@@ -175,5 +175,7 @@
   "adDialogBody": "Para continuar, ve un breve anuncio o suscríbete a Pro y olvídate de la publicidad para siempre.",
   "adDialogWatchAd": "Ver anuncio",
   "adDialogGetPro": "Obtener Pro",
-  "adDialogNotNow": "Ahora no"
+  "adDialogNotNow": "Ahora no",
+
+  "scannerCameraInitError": "No se pudo inicializar la cámara. Verifica que la app tenga permiso de acceso a la cámara."
 }

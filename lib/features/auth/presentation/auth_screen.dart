@@ -99,12 +99,22 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   Future<void> _continuarComoInvitado() async {
     setState(() => _isLoading = true);
+    final l10n = AppLocalizations.of(context);
     try {
       await ref.read(guestSessionProvider.notifier).enableGuestMode();
 
       if (mounted) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => const HomeScreen()),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(l10n.commonErrorWithMessage(e.toString())),
+            backgroundColor: Colors.red,
+          ),
         );
       }
     } finally {

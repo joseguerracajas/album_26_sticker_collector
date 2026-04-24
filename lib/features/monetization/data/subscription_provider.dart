@@ -160,7 +160,7 @@ class SubscriptionNotifier extends AsyncNotifier<SubscriptionState> {
       state = AsyncValue.data(current.copyWith(isSubscribed: subscribed));
     } catch (e) {
       debugPrint('❌ Restore error: $e');
-      throw 'Error al restaurar compras. Intenta de nuevo más tarde.';
+      rethrow;
     }
   }
 }

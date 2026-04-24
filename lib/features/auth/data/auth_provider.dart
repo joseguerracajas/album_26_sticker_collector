@@ -6,6 +6,7 @@ import 'package:album_26_sticker_collector/features/catalog/data/sync_provider.d
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:album_26_sticker_collector/features/monetization/data/subscription_provider.dart';
 import 'package:crypto/crypto.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart'; // Versión 7.0+
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -182,7 +183,10 @@ class AuthController {
 
       _repo.startSyncQueue();
       _ref.invalidate(inventoryProvider); // Obliga a la UI a refrescarse
-    } catch (e) {}
+    } catch (e) {
+      // La autenticación ya fue exitosa; no bloqueamos el login por un error de sync.
+      debugPrint('❌ Error en sincronización post-login: $e');
+    }
   }
 
   // --- CIERRE DE SESIÓN ---
@@ -197,6 +201,7 @@ class AuthController {
       // Desvincular la suscripción de RevenueCat
       await _ref.read(subscriptionProvider.notifier).logoutUser();
     } catch (e) {
+      rethrow;
     } finally {
       try {
         await GoogleSignIn.instance.signOut();

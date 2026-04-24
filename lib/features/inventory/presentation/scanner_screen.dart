@@ -28,6 +28,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
 
   bool _isCameraInitialized = false;
   bool _isProcessing = false;
+  bool _cameraError = false;
 
   // --- VARIABLES DEL MULTIESCÁNER ---
   final int _requiredConsensus = 3;
@@ -83,6 +84,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
       }
     } catch (e) {
       debugPrint('❌ Error inicializando la cámara: $e');
+      if (mounted) setState(() => _cameraError = true);
     }
   }
 
@@ -261,6 +263,22 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+
+    if (_cameraError) {
+      return Scaffold(
+        backgroundColor: Colors.black,
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Text(
+              l10n.scannerCameraInitError,
+              style: const TextStyle(color: Colors.white, fontSize: 16),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+      );
+    }
 
     if (!_isCameraInitialized || _cameraController == null) {
       return const Scaffold(

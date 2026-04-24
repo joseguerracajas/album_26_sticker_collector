@@ -379,4 +379,8 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get adDialogNotNow => 'Not now';
+
+  @override
+  String get scannerCameraInitError =>
+      'Could not initialize the camera. Make sure the app has camera permission.';
 }
