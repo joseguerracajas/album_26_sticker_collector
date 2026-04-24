@@ -155,6 +155,8 @@
   "paywallCancelAnytime": "Cancel anytime. No commitments.",
   "paywallLoadError": "Could not load plans. Check your connection.",
   "paywallRetry": "Retry",
+  "paywallPurchaseError": "Purchase failed. Please try again.",
+  "paywallRestoreError": "Could not restore purchases. Please try again.",
   "paywallGuestTitle": "Sign in to subscribe",
   "paywallGuestBody": "Pro is linked to your account. Sign in or create an account to unlock all features.",
   "paywallGuestSignInButton": "SIGN IN",

@@ -155,6 +155,8 @@
   "paywallCancelAnytime": "Cancela cuando quieras. Sin compromisos.",
   "paywallLoadError": "No se pudieron cargar los planes. Verifica tu conexión.",
   "paywallRetry": "Reintentar",
+  "paywallPurchaseError": "Error al procesar la compra. Inténtalo de nuevo.",
+  "paywallRestoreError": "No se pudieron restaurar las compras. Inténtalo de nuevo.",
   "paywallGuestTitle": "Inicia sesión para suscribirte",
   "paywallGuestBody": "Pro está vinculado a tu cuenta. Inicia sesión o crea una cuenta para desbloquear todas las funciones.",
   "paywallGuestSignInButton": "INICIAR SESIÓN",

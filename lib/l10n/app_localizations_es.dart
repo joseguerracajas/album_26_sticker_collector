@@ -338,6 +338,14 @@ class AppLocalizationsEs extends AppLocalizations {
   String get paywallRetry => 'Reintentar';
 
   @override
+  String get paywallPurchaseError =>
+      'Error al procesar la compra. Inténtalo de nuevo.';
+
+  @override
+  String get paywallRestoreError =>
+      'No se pudieron restaurar las compras. Inténtalo de nuevo.';
+
+  @override
   String get paywallGuestTitle => 'Inicia sesión para suscribirte';
 
   @override

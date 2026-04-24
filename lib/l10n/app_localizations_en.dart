@@ -333,6 +333,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get paywallRetry => 'Retry';
 
   @override
+  String get paywallPurchaseError => 'Purchase failed. Please try again.';
+
+  @override
+  String get paywallRestoreError =>
+      'Could not restore purchases. Please try again.';
+
+  @override
   String get paywallGuestTitle => 'Sign in to subscribe';
 
   @override

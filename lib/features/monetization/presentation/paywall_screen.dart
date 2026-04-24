@@ -1,4 +1,3 @@
-import 'package:album_26_sticker_collector/features/auth/data/guest_session_provider.dart';
 import 'package:album_26_sticker_collector/features/auth/presentation/auth_screen.dart'
     show LoginScreen;
 import 'package:album_26_sticker_collector/features/monetization/data/subscription_provider.dart';
@@ -20,6 +19,7 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
   bool _isLoadingOfferings = true;
   bool _isPurchasing = false;
   String? _errorMessage;
+  String? _purchaseErrorMessage;
 
   @override
   void initState() {
@@ -47,23 +47,51 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
   }
 
   Future<void> _purchase(Package package) async {
-    setState(() => _isPurchasing = true);
-    final success = await ref
-        .read(subscriptionProvider.notifier)
-        .purchase(package);
-    if (mounted) {
-      setState(() => _isPurchasing = false);
-      if (success) Navigator.of(context).pop(true);
+    setState(() {
+      _isPurchasing = true;
+      _purchaseErrorMessage = null;
+    });
+    try {
+      final success = await ref
+          .read(subscriptionProvider.notifier)
+          .purchase(package);
+      if (mounted) {
+        setState(() => _isPurchasing = false);
+        if (success) Navigator.of(context).pop(true);
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _isPurchasing = false;
+          _purchaseErrorMessage = AppLocalizations.of(
+            context,
+          ).paywallPurchaseError;
+        });
+      }
     }
   }
 
   Future<void> _restore() async {
-    setState(() => _isPurchasing = true);
-    await ref.read(subscriptionProvider.notifier).restorePurchases();
-    if (mounted) {
-      setState(() => _isPurchasing = false);
-      final isSubscribed = ref.read(isSubscribedProvider);
-      if (isSubscribed) Navigator.of(context).pop(true);
+    setState(() {
+      _isPurchasing = true;
+      _purchaseErrorMessage = null;
+    });
+    try {
+      await ref.read(subscriptionProvider.notifier).restorePurchases();
+      if (mounted) {
+        setState(() => _isPurchasing = false);
+        final isSubscribed = ref.read(isSubscribedProvider);
+        if (isSubscribed) Navigator.of(context).pop(true);
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _isPurchasing = false;
+          _purchaseErrorMessage = AppLocalizations.of(
+            context,
+          ).paywallRestoreError;
+        });
+      }
     }
   }
 
@@ -240,7 +268,23 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
 
                       // ── Botón de compra / loading ────────────────────────
                       _buildPurchaseButton(l10n),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 8),
+
+                      // Error de compra
+                      if (_purchaseErrorMessage != null)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: Text(
+                            _purchaseErrorMessage!,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.redAccent,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      const SizedBox(height: 8),
 
                       // Restaurar compras
                       TextButton(

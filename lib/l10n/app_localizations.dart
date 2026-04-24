@@ -680,6 +680,18 @@ abstract class AppLocalizations {
   /// **'Reintentar'**
   String get paywallRetry;
 
+  /// No description provided for @paywallPurchaseError.
+  ///
+  /// In es, this message translates to:
+  /// **'Error al procesar la compra. Inténtalo de nuevo.'**
+  String get paywallPurchaseError;
+
+  /// No description provided for @paywallRestoreError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudieron restaurar las compras. Inténtalo de nuevo.'**
+  String get paywallRestoreError;
+
   /// No description provided for @paywallGuestTitle.
   ///
   /// In es, this message translates to:

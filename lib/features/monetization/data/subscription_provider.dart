@@ -120,7 +120,8 @@ class SubscriptionNotifier extends AsyncNotifier<SubscriptionState> {
     state = AsyncValue.data(current.copyWith(demoScansUsed: newCount));
   }
 
-  /// Abre la pantalla de compra y actualiza el estado si el usuario suscribe
+  /// Abre la pantalla de compra y actualiza el estado si el usuario suscribe.
+  /// Lanza una excepción si el error no fue cancelación por el usuario.
   Future<bool> purchase(Package package) async {
     try {
       final result = await Purchases.purchasePackage(package);
@@ -133,9 +134,15 @@ class SubscriptionNotifier extends AsyncNotifier<SubscriptionState> {
         state = AsyncValue.data(current.copyWith(isSubscribed: true));
       }
       return subscribed;
-    } on PurchasesErrorCode catch (e) {
-      if (e != PurchasesErrorCode.purchaseCancelledError) {
+    } catch (e) {
+      // PurchasesError.code == purchaseCancelledError → el usuario canceló,
+      // no mostramos error. Cualquier otro error lo propagamos al caller.
+      final cancelled =
+          e.toString().toLowerCase().contains('cancelled') ||
+          e.toString().toLowerCase().contains('canceled');
+      if (!cancelled) {
         debugPrint('❌ Purchase error: $e');
+        rethrow;
       }
       return false;
     }
