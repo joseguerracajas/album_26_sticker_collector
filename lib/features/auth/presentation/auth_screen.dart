@@ -1,6 +1,8 @@
 // Archivo: lib/features/auth/presentation/login_screen.dart
 
 import 'dart:io';
+import 'package:album_26_sticker_collector/core/utils/connectivity_checker.dart';
+import 'package:album_26_sticker_collector/core/utils/supabase_error_mapper.dart';
 import 'package:album_26_sticker_collector/features/auth/data/auth_provider.dart';
 import 'package:album_26_sticker_collector/features/auth/data/guest_session_provider.dart';
 import 'package:album_26_sticker_collector/features/auth/presentation/forgot_password_screen.dart';
@@ -53,6 +55,19 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     setState(() => _isLoading = true);
     final l10n = AppLocalizations.of(context);
 
+    if (!await hasInternetConnection()) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(l10n.authErrorNetworkError),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+      if (mounted) setState(() => _isLoading = false);
+      return;
+    }
+
     try {
       await loginMethod();
 
@@ -86,7 +101,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         if (!e.toString().contains('cancelado')) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(l10n.commonErrorWithMessage(e.toString())),
+              content: Text(mapSupabaseError(e, l10n)),
               backgroundColor: Colors.red,
             ),
           );
@@ -100,6 +115,20 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   Future<void> _continuarComoInvitado() async {
     setState(() => _isLoading = true);
     final l10n = AppLocalizations.of(context);
+
+    if (!await hasInternetConnection()) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(l10n.authErrorNetworkError),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+      if (mounted) setState(() => _isLoading = false);
+      return;
+    }
+
     try {
       await ref.read(guestSessionProvider.notifier).enableGuestMode();
 
@@ -112,7 +141,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(l10n.commonErrorWithMessage(e.toString())),
+            content: Text(mapSupabaseError(e, l10n)),
             backgroundColor: Colors.red,
           ),
         );

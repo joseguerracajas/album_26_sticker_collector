@@ -194,6 +194,66 @@ abstract class AppLocalizations {
   /// **'Error: {message}'**
   String commonErrorWithMessage(Object message);
 
+  /// No description provided for @authErrorInvalidCredentials.
+  ///
+  /// In es, this message translates to:
+  /// **'Correo o contraseña incorrectos. Verifica tus datos e intenta de nuevo.'**
+  String get authErrorInvalidCredentials;
+
+  /// No description provided for @authErrorEmailNotConfirmed.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu correo aún no ha sido confirmado. Revisa tu bandeja de entrada.'**
+  String get authErrorEmailNotConfirmed;
+
+  /// No description provided for @authErrorUserAlreadyRegistered.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya existe una cuenta con ese correo electrónico.'**
+  String get authErrorUserAlreadyRegistered;
+
+  /// No description provided for @authErrorWeakPassword.
+  ///
+  /// In es, this message translates to:
+  /// **'La contraseña es demasiado débil. Usa al menos 6 caracteres.'**
+  String get authErrorWeakPassword;
+
+  /// No description provided for @authErrorInvalidEmail.
+  ///
+  /// In es, this message translates to:
+  /// **'El formato del correo electrónico no es válido.'**
+  String get authErrorInvalidEmail;
+
+  /// No description provided for @authErrorTokenExpired.
+  ///
+  /// In es, this message translates to:
+  /// **'El código ha expirado o no es válido. Solicita uno nuevo.'**
+  String get authErrorTokenExpired;
+
+  /// No description provided for @authErrorRateLimit.
+  ///
+  /// In es, this message translates to:
+  /// **'Demasiados intentos. Espera un momento antes de volver a intentarlo.'**
+  String get authErrorRateLimit;
+
+  /// No description provided for @authErrorNetworkError.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin conexión. Verifica tu red e intenta de nuevo.'**
+  String get authErrorNetworkError;
+
+  /// No description provided for @authErrorSessionExpired.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu sesión ha expirado. Inicia sesión nuevamente.'**
+  String get authErrorSessionExpired;
+
+  /// No description provided for @authErrorUnknown.
+  ///
+  /// In es, this message translates to:
+  /// **'Ocurrió un error inesperado. Intenta de nuevo.'**
+  String get authErrorUnknown;
+
   /// No description provided for @registerTitle.
   ///
   /// In es, this message translates to:

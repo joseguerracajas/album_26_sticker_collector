@@ -1,5 +1,6 @@
 // Archivo: lib/features/auth/presentation/profile_screen.dart
 
+import 'package:album_26_sticker_collector/core/utils/supabase_error_mapper.dart';
 import 'package:album_26_sticker_collector/features/auth/data/auth_provider.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -105,7 +106,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(l10n.commonErrorWithMessage(e.toString())),
+            content: Text(mapSupabaseError(e, l10n)),
             backgroundColor: Colors.red,
           ),
         );
@@ -134,7 +135,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(l10n.profileLogoutError(e.toString())),
+            content: Text(mapSupabaseError(e, l10n)),
             backgroundColor: Colors.red,
           ),
         );

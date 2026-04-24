@@ -63,6 +63,45 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get authErrorInvalidCredentials =>
+      'Incorrect email or password. Please check your details and try again.';
+
+  @override
+  String get authErrorEmailNotConfirmed =>
+      'Your email has not been confirmed yet. Please check your inbox.';
+
+  @override
+  String get authErrorUserAlreadyRegistered =>
+      'An account with that email already exists.';
+
+  @override
+  String get authErrorWeakPassword =>
+      'Password is too weak. Use at least 6 characters.';
+
+  @override
+  String get authErrorInvalidEmail => 'The email address format is not valid.';
+
+  @override
+  String get authErrorTokenExpired =>
+      'The code has expired or is invalid. Please request a new one.';
+
+  @override
+  String get authErrorRateLimit =>
+      'Too many attempts. Please wait a moment before trying again.';
+
+  @override
+  String get authErrorNetworkError =>
+      'No connection. Check your network and try again.';
+
+  @override
+  String get authErrorSessionExpired =>
+      'Your session has expired. Please sign in again.';
+
+  @override
+  String get authErrorUnknown =>
+      'An unexpected error occurred. Please try again.';
+
+  @override
   String get registerTitle => 'Create Account';
 
   @override

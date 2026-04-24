@@ -1,0 +1,16 @@
+import 'dart:io';
+
+/// Verifica si el dispositivo tiene acceso real a internet
+/// haciendo un lookup DNS contra Google. Retorna `false` si no hay conexión.
+Future<bool> hasInternetConnection() async {
+  try {
+    final result = await InternetAddress.lookup(
+      'google.com',
+    ).timeout(const Duration(seconds: 5));
+    return result.isNotEmpty && result.first.rawAddress.isNotEmpty;
+  } on SocketException {
+    return false;
+  } catch (_) {
+    return false;
+  }
+}

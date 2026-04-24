@@ -63,6 +63,46 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get authErrorInvalidCredentials =>
+      'Correo o contraseña incorrectos. Verifica tus datos e intenta de nuevo.';
+
+  @override
+  String get authErrorEmailNotConfirmed =>
+      'Tu correo aún no ha sido confirmado. Revisa tu bandeja de entrada.';
+
+  @override
+  String get authErrorUserAlreadyRegistered =>
+      'Ya existe una cuenta con ese correo electrónico.';
+
+  @override
+  String get authErrorWeakPassword =>
+      'La contraseña es demasiado débil. Usa al menos 6 caracteres.';
+
+  @override
+  String get authErrorInvalidEmail =>
+      'El formato del correo electrónico no es válido.';
+
+  @override
+  String get authErrorTokenExpired =>
+      'El código ha expirado o no es válido. Solicita uno nuevo.';
+
+  @override
+  String get authErrorRateLimit =>
+      'Demasiados intentos. Espera un momento antes de volver a intentarlo.';
+
+  @override
+  String get authErrorNetworkError =>
+      'Sin conexión. Verifica tu red e intenta de nuevo.';
+
+  @override
+  String get authErrorSessionExpired =>
+      'Tu sesión ha expirado. Inicia sesión nuevamente.';
+
+  @override
+  String get authErrorUnknown =>
+      'Ocurrió un error inesperado. Intenta de nuevo.';
+
+  @override
   String get registerTitle => 'Crear Cuenta';
 
   @override

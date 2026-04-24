@@ -21,6 +21,17 @@
       "message": {}
     }
   },
+
+  "authErrorInvalidCredentials": "Incorrect email or password. Please check your details and try again.",
+  "authErrorEmailNotConfirmed": "Your email has not been confirmed yet. Please check your inbox.",
+  "authErrorUserAlreadyRegistered": "An account with that email already exists.",
+  "authErrorWeakPassword": "Password is too weak. Use at least 6 characters.",
+  "authErrorInvalidEmail": "The email address format is not valid.",
+  "authErrorTokenExpired": "The code has expired or is invalid. Please request a new one.",
+  "authErrorRateLimit": "Too many attempts. Please wait a moment before trying again.",
+  "authErrorNetworkError": "No connection. Check your network and try again.",
+  "authErrorSessionExpired": "Your session has expired. Please sign in again.",
+  "authErrorUnknown": "An unexpected error occurred. Please try again.",
   "registerTitle": "Create Account",
   "registerFillAllFields": "Please fill in all fields.",
   "registerEmailsDontMatch": "Emails do not match.",

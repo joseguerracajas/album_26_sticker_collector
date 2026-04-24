@@ -1,3 +1,5 @@
+import 'package:album_26_sticker_collector/core/utils/connectivity_checker.dart';
+import 'package:album_26_sticker_collector/core/utils/supabase_error_mapper.dart';
 import 'package:album_26_sticker_collector/features/auth/data/auth_provider.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +34,14 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
     setState(() => _isLoading = true);
     HapticFeedback.mediumImpact();
 
+    if (!await hasInternetConnection()) {
+      if (mounted) {
+        _showError(l10n.authErrorNetworkError);
+        setState(() => _isLoading = false);
+      }
+      return;
+    }
+
     try {
       // 1. Llamamos a tu Provider
       await ref.read(authControllerProvider).sendPasswordResetEmail(email);
@@ -47,7 +57,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
         );
       }
     } catch (e) {
-      _showError(l10n.commonErrorWithMessage(e.toString()));
+      _showError(mapSupabaseError(e, l10n));
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
@@ -70,6 +80,14 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
     setState(() => _isLoading = true);
     HapticFeedback.heavyImpact();
 
+    if (!await hasInternetConnection()) {
+      if (mounted) {
+        _showError(l10n.authErrorNetworkError);
+        setState(() => _isLoading = false);
+      }
+      return;
+    }
+
     try {
       // 1. Verificamos el código usando el Provider
       await ref.read(authControllerProvider).verifyRecoveryOtp(email, otp);
@@ -88,7 +106,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
         Navigator.pop(context);
       }
     } catch (e) {
-      _showError(l10n.commonErrorWithMessage(e.toString()));
+      _showError(mapSupabaseError(e, l10n));
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }

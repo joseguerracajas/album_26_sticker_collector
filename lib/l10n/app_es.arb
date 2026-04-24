@@ -21,6 +21,17 @@
       "message": {}
     }
   },
+
+  "authErrorInvalidCredentials": "Correo o contraseña incorrectos. Verifica tus datos e intenta de nuevo.",
+  "authErrorEmailNotConfirmed": "Tu correo aún no ha sido confirmado. Revisa tu bandeja de entrada.",
+  "authErrorUserAlreadyRegistered": "Ya existe una cuenta con ese correo electrónico.",
+  "authErrorWeakPassword": "La contraseña es demasiado débil. Usa al menos 6 caracteres.",
+  "authErrorInvalidEmail": "El formato del correo electrónico no es válido.",
+  "authErrorTokenExpired": "El código ha expirado o no es válido. Solicita uno nuevo.",
+  "authErrorRateLimit": "Demasiados intentos. Espera un momento antes de volver a intentarlo.",
+  "authErrorNetworkError": "Sin conexión. Verifica tu red e intenta de nuevo.",
+  "authErrorSessionExpired": "Tu sesión ha expirado. Inicia sesión nuevamente.",
+  "authErrorUnknown": "Ocurrió un error inesperado. Intenta de nuevo.",
   "registerTitle": "Crear Cuenta",
   "registerFillAllFields": "Por favor, completa todos los campos.",
   "registerEmailsDontMatch": "Los correos electrónicos no coinciden.",

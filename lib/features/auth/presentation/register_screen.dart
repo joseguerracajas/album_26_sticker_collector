@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:album_26_sticker_collector/core/utils/connectivity_checker.dart';
+import 'package:album_26_sticker_collector/core/utils/supabase_error_mapper.dart';
 import 'package:album_26_sticker_collector/features/auth/presentation/auth_screen.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:album_26_sticker_collector/main.dart';
@@ -45,6 +47,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     // 2. Enviar a Supabase
     setState(() => _isLoading = true);
+
+    if (!await hasInternetConnection()) {
+      if (mounted) {
+        _showError(l10n.authErrorNetworkError);
+        setState(() => _isLoading = false);
+      }
+      return;
+    }
+
     try {
       await supabase.auth.signUp(email: email, password: password);
 
@@ -69,7 +80,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         );
       }
     } catch (e) {
-      _showError(l10n.commonErrorWithMessage(e.toString()));
+      _showError(mapSupabaseError(e, l10n));
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
