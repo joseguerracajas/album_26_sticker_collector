@@ -155,6 +155,9 @@
   "paywallCancelAnytime": "Cancel anytime. No commitments.",
   "paywallLoadError": "Could not load plans. Check your connection.",
   "paywallRetry": "Retry",
+  "paywallGuestTitle": "Sign in to subscribe",
+  "paywallGuestBody": "Pro is linked to your account. Sign in or create an account to unlock all features.",
+  "paywallGuestSignInButton": "SIGN IN",
 
   "scannerDemoRemaining": "{count} free scans remaining",
   "@scannerDemoRemaining": {

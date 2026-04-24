@@ -155,6 +155,9 @@
   "paywallCancelAnytime": "Cancela cuando quieras. Sin compromisos.",
   "paywallLoadError": "No se pudieron cargar los planes. Verifica tu conexión.",
   "paywallRetry": "Reintentar",
+  "paywallGuestTitle": "Inicia sesión para suscribirte",
+  "paywallGuestBody": "Pro está vinculado a tu cuenta. Inicia sesión o crea una cuenta para desbloquear todas las funciones.",
+  "paywallGuestSignInButton": "INICIAR SESIÓN",
 
   "scannerDemoRemaining": "{count} escaneos gratis restantes",
   "@scannerDemoRemaining": {

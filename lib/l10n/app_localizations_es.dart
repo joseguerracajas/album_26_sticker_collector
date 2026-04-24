@@ -338,6 +338,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get paywallRetry => 'Reintentar';
 
   @override
+  String get paywallGuestTitle => 'Inicia sesión para suscribirte';
+
+  @override
+  String get paywallGuestBody =>
+      'Pro está vinculado a tu cuenta. Inicia sesión o crea una cuenta para desbloquear todas las funciones.';
+
+  @override
+  String get paywallGuestSignInButton => 'INICIAR SESIÓN';
+
+  @override
   String scannerDemoRemaining(Object count) {
     return '$count escaneos gratis restantes';
   }

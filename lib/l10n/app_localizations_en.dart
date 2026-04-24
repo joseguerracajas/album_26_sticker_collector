@@ -333,6 +333,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get paywallRetry => 'Retry';
 
   @override
+  String get paywallGuestTitle => 'Sign in to subscribe';
+
+  @override
+  String get paywallGuestBody =>
+      'Pro is linked to your account. Sign in or create an account to unlock all features.';
+
+  @override
+  String get paywallGuestSignInButton => 'SIGN IN';
+
+  @override
   String scannerDemoRemaining(Object count) {
     return '$count free scans remaining';
   }

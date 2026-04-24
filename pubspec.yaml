@@ -64,5 +64,5 @@ flutter_native_splash:
     color: "#000000"
     image: "assets/icon/app_icon.png"
     
-  # Si quieres que el logo no ocupe toda la pantalla
+  # Si quieres quehomes el logo no ocupe toda la pantalla
   fullscreen: true

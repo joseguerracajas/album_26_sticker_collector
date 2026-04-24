@@ -1,5 +1,9 @@
+import 'package:album_26_sticker_collector/features/auth/data/guest_session_provider.dart';
+import 'package:album_26_sticker_collector/features/auth/presentation/auth_screen.dart'
+    show LoginScreen;
 import 'package:album_26_sticker_collector/features/monetization/data/subscription_provider.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
+import 'package:album_26_sticker_collector/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
@@ -66,13 +70,13 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final isLoggedIn = supabase.auth.currentSession != null;
 
     return Scaffold(
       backgroundColor: const Color(0xFF0D0D0D),
       body: SafeArea(
         child: Column(
           children: [
-            // ── Header ──────────────────────────────────────────────────────
             Padding(
               padding: const EdgeInsets.only(top: 16, right: 8),
               child: Align(
@@ -84,117 +88,186 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
               ),
             ),
 
-            // ── Hero ────────────────────────────────────────────────────────
-            Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 8),
-                    // Icon
-                    Container(
-                      width: 100,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            Colors.amber.shade300,
-                            Colors.amber.shade700,
-                          ],
-                        ),
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.amber.withValues(alpha: 0.4),
-                            blurRadius: 24,
-                            spreadRadius: 4,
-                          ),
-                        ],
+            // ── Contenido principal ─────────────────────────────────────
+            if (!isLoggedIn) ...[
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.lock_outline_rounded,
+                        color: Colors.amber,
+                        size: 72,
                       ),
-                      child: const Icon(
-                        Icons.document_scanner_rounded,
-                        color: Colors.black,
-                        size: 52,
-                      ),
-                    ),
-                    const SizedBox(height: 24),
-
-                    // Título
-                    Text(
-                      l10n.paywallTitle,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 28,
-                        fontWeight: FontWeight.w900,
-                        letterSpacing: -0.5,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-
-                    // Subtítulo
-                    Text(
-                      l10n.paywallSubtitle,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.white60,
-                        fontSize: 16,
-                        height: 1.4,
-                      ),
-                    ),
-                    const SizedBox(height: 32),
-
-                    // ── Lista de beneficios ────────────────────────────────
-                    _BenefitRow(
-                      icon: Icons.qr_code_scanner,
-                      color: Colors.amber,
-                      text: l10n.paywallBenefitScanner,
-                    ),
-                    const SizedBox(height: 16),
-                    _BenefitRow(
-                      icon: Icons.block,
-                      color: Colors.greenAccent,
-                      text: l10n.paywallBenefitNoAds,
-                    ),
-                    const SizedBox(height: 16),
-                    _BenefitRow(
-                      icon: Icons.cloud_sync,
-                      color: Colors.lightBlueAccent,
-                      text: l10n.paywallBenefitSync,
-                    ),
-                    const SizedBox(height: 40),
-
-                    // ── Botón de compra / loading ──────────────────────────
-                    _buildPurchaseButton(l10n),
-                    const SizedBox(height: 16),
-
-                    // Restaurar compras
-                    TextButton(
-                      onPressed: _isPurchasing ? null : _restore,
-                      child: Text(
-                        l10n.paywallRestorePurchases,
+                      const SizedBox(height: 24),
+                      Text(
+                        l10n.paywallGuestTitle,
+                        textAlign: TextAlign.center,
                         style: const TextStyle(
-                          color: Colors.white38,
-                          fontSize: 13,
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w800,
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      l10n.paywallCancelAnytime,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.white24,
-                        fontSize: 12,
+                      const SizedBox(height: 12),
+                      Text(
+                        l10n.paywallGuestBody,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.white60,
+                          fontSize: 15,
+                          height: 1.4,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 24),
-                  ],
+                      const SizedBox(height: 32),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.amber,
+                            foregroundColor: Colors.black,
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop(false);
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => const LoginScreen(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            l10n.paywallGuestSignInButton,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 16,
+                              letterSpacing: 0.5,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
+            ] else ...[
+              // ── Hero ──────────────────────────────────────────────────────
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 8),
+                      // Icon
+                      Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Colors.amber.shade300,
+                              Colors.amber.shade700,
+                            ],
+                          ),
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.amber.withValues(alpha: 0.4),
+                              blurRadius: 24,
+                              spreadRadius: 4,
+                            ),
+                          ],
+                        ),
+                        child: const Icon(
+                          Icons.document_scanner_rounded,
+                          color: Colors.black,
+                          size: 52,
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+
+                      // Título
+                      Text(
+                        l10n.paywallTitle,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 28,
+                          fontWeight: FontWeight.w900,
+                          letterSpacing: -0.5,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+
+                      // Subtítulo
+                      Text(
+                        l10n.paywallSubtitle,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.white60,
+                          fontSize: 16,
+                          height: 1.4,
+                        ),
+                      ),
+                      const SizedBox(height: 32),
+
+                      // ── Lista de beneficios ──────────────────────────────
+                      _BenefitRow(
+                        icon: Icons.qr_code_scanner,
+                        color: Colors.amber,
+                        text: l10n.paywallBenefitScanner,
+                      ),
+                      const SizedBox(height: 16),
+                      _BenefitRow(
+                        icon: Icons.block,
+                        color: Colors.greenAccent,
+                        text: l10n.paywallBenefitNoAds,
+                      ),
+                      const SizedBox(height: 16),
+                      _BenefitRow(
+                        icon: Icons.cloud_sync,
+                        color: Colors.lightBlueAccent,
+                        text: l10n.paywallBenefitSync,
+                      ),
+                      const SizedBox(height: 40),
+
+                      // ── Botón de compra / loading ────────────────────────
+                      _buildPurchaseButton(l10n),
+                      const SizedBox(height: 16),
+
+                      // Restaurar compras
+                      TextButton(
+                        onPressed: _isPurchasing ? null : _restore,
+                        child: Text(
+                          l10n.paywallRestorePurchases,
+                          style: const TextStyle(
+                            color: Colors.white38,
+                            fontSize: 13,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        l10n.paywallCancelAnytime,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.white24,
+                          fontSize: 12,
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ],
         ),
       ),

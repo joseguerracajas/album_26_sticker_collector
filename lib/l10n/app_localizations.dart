@@ -680,6 +680,24 @@ abstract class AppLocalizations {
   /// **'Reintentar'**
   String get paywallRetry;
 
+  /// No description provided for @paywallGuestTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Inicia sesión para suscribirte'**
+  String get paywallGuestTitle;
+
+  /// No description provided for @paywallGuestBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Pro está vinculado a tu cuenta. Inicia sesión o crea una cuenta para desbloquear todas las funciones.'**
+  String get paywallGuestBody;
+
+  /// No description provided for @paywallGuestSignInButton.
+  ///
+  /// In es, this message translates to:
+  /// **'INICIAR SESIÓN'**
+  String get paywallGuestSignInButton;
+
   /// No description provided for @scannerDemoRemaining.
   ///
   /// In es, this message translates to:
