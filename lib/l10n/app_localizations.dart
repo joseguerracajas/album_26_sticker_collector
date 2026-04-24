@@ -623,19 +623,19 @@ abstract class AppLocalizations {
   /// No description provided for @paywallTitle.
   ///
   /// In es, this message translates to:
-  /// **'Desbloquea el Escáner'**
+  /// **'Disfruta sin publicidad'**
   String get paywallTitle;
 
   /// No description provided for @paywallSubtitle.
   ///
   /// In es, this message translates to:
-  /// **'Escanea cromos ilimitados y di adiós a la publicidad con la suscripción Pro.'**
+  /// **'Todas las funciones están disponibles gratis. Con Pro disfrutas de todo sin interrupciones.'**
   String get paywallSubtitle;
 
   /// No description provided for @paywallBenefitScanner.
   ///
   /// In es, this message translates to:
-  /// **'Escáner de cromos ilimitado'**
+  /// **'Escáner sin anuncios intermedios'**
   String get paywallBenefitScanner;
 
   /// No description provided for @paywallBenefitNoAds.

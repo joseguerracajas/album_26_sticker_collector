@@ -8,7 +8,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 const _kScansDemoKey = 'demo_scans_used';
 const kDemoScanLimit = 5;
 const kScannerEntitlement = 'Album_26_Pro';
-const kRevenueCatAppleKey = 'test_kXKxubqbGjyIEWIJIPPuqfnxqZo';
+const kRevenueCatAppleKey = 'appl_RFbaohRODHeXtaMhoUYOZiKIEBV';
 const kRevenueCatGoogleKey = 'test_kXKxubqbGjyIEWIJIPPuqfnxqZo';
 
 // ─── Estado ───────────────────────────────────────────────────────────────────
@@ -48,7 +48,7 @@ class SubscriptionNotifier extends AsyncNotifier<SubscriptionState> {
 
   Future<void> _configureRevenueCat() async {
     try {
-      await Purchases.setLogLevel(LogLevel.error);
+      await Purchases.setLogLevel(LogLevel.debug);
       final config = PurchasesConfiguration(
         defaultTargetPlatform == TargetPlatform.iOS
             ? kRevenueCatAppleKey

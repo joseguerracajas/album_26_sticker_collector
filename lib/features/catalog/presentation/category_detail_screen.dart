@@ -3,10 +3,7 @@ import 'package:album_26_sticker_collector/features/catalog/domain/category.mode
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/app_bar_actions.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/sticker_filter_search.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/sticker_grid.dart';
-import 'package:album_26_sticker_collector/features/inventory/data/share_provider.dart';
-import 'package:album_26_sticker_collector/features/inventory/presentation/scanner_screen.dart';
 import 'package:album_26_sticker_collector/features/monetization/data/ads_provider.dart';
-import 'package:album_26_sticker_collector/features/monetization/data/subscription_provider.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,8 +16,6 @@ class CategoryDetailScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-
     return Scaffold(
       backgroundColor: const Color(0xFF121212), // Manteniendo el fondo oscuro
       appBar: AppBar(

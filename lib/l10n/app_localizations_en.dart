@@ -300,14 +300,14 @@ class AppLocalizationsEn extends AppLocalizations {
       'Password updated successfully! 🏆';
 
   @override
-  String get paywallTitle => 'Unlock the Scanner';
+  String get paywallTitle => 'Enjoy without ads';
 
   @override
   String get paywallSubtitle =>
-      'Scan unlimited stickers and go ad-free with a Pro subscription.';
+      'All features are available for free. With Pro you enjoy everything without interruptions.';
 
   @override
-  String get paywallBenefitScanner => 'Unlimited sticker scanner';
+  String get paywallBenefitScanner => 'Scanner without interstitial ads';
 
   @override
   String get paywallBenefitNoAds => 'No ads';

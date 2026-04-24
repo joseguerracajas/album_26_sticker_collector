@@ -140,9 +140,9 @@
   "forgotPasswordSavePasswordButton": "SAVE PASSWORD",
   "forgotPasswordPasswordUpdatedSuccess": "Password updated successfully! 🏆",
 
-  "paywallTitle": "Unlock the Scanner",
-  "paywallSubtitle": "Scan unlimited stickers and go ad-free with a Pro subscription.",
-  "paywallBenefitScanner": "Unlimited sticker scanner",
+  "paywallTitle": "Enjoy without ads",
+  "paywallSubtitle": "All features are available for free. With Pro you enjoy everything without interruptions.",
+  "paywallBenefitScanner": "Scanner without interstitial ads",
   "paywallBenefitNoAds": "No ads",
   "paywallBenefitSync": "Cloud sync included",
   "paywallSubscribeButton": "Subscribe for {price}/month",

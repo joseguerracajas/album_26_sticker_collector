@@ -304,14 +304,14 @@ class AppLocalizationsEs extends AppLocalizations {
       '¡Contraseña actualizada con éxito! 🏆';
 
   @override
-  String get paywallTitle => 'Desbloquea el Escáner';
+  String get paywallTitle => 'Disfruta sin publicidad';
 
   @override
   String get paywallSubtitle =>
-      'Escanea cromos ilimitados y di adiós a la publicidad con la suscripción Pro.';
+      'Todas las funciones están disponibles gratis. Con Pro disfrutas de todo sin interrupciones.';
 
   @override
-  String get paywallBenefitScanner => 'Escáner de cromos ilimitado';
+  String get paywallBenefitScanner => 'Escáner sin anuncios intermedios';
 
   @override
   String get paywallBenefitNoAds => 'Sin publicidad';

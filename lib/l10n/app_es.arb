@@ -140,9 +140,9 @@
   "forgotPasswordSavePasswordButton": "GUARDAR CONTRASEÑA",
   "forgotPasswordPasswordUpdatedSuccess": "¡Contraseña actualizada con éxito! 🏆",
 
-  "paywallTitle": "Desbloquea el Escáner",
-  "paywallSubtitle": "Escanea cromos ilimitados y di adiós a la publicidad con la suscripción Pro.",
-  "paywallBenefitScanner": "Escáner de cromos ilimitado",
+  "paywallTitle": "Disfruta sin publicidad",
+  "paywallSubtitle": "Todas las funciones están disponibles gratis. Con Pro disfrutas de todo sin interrupciones.",
+  "paywallBenefitScanner": "Escáner sin anuncios intermedios",
   "paywallBenefitNoAds": "Sin publicidad",
   "paywallBenefitSync": "Sincronización en la nube incluida",
   "paywallSubscribeButton": "Suscribirse por {price}/mes",
