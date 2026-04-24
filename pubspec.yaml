@@ -40,6 +40,7 @@ dev_dependencies:
   build_runner: ^2.13.1
   flutter_launcher_icons: ^0.14.4
   flutter_lints: ^6.0.0
+  flutter_native_splash: ^2.4.7
   flutter_test:
     sdk: flutter
 
@@ -53,3 +54,15 @@ flutter_launcher_icons:
   image_path: "assets/icon/app_icon.png"
   adaptive_icon_background: "#000000"
   adaptive_icon_foreground: "assets/icon/app_icon.png"
+
+flutter_native_splash:
+  color: "#000000" # Fondo negro
+  image: "assets/icon/app_icon.png" # Tu escudo dorado
+  
+  # Opciones para Android 12+ (obligatorio para evitar iconos duplicados)
+  android_12:
+    color: "#000000"
+    image: "assets/icon/app_icon.png"
+    
+  # Si quieres que el logo no ocupe toda la pantalla
+  fullscreen: true
