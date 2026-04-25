@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.CAMERA"/>
     <application
-        android:label="album_26_sticker_collector"
+        android:label="Album 26"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
