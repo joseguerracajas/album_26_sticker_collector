@@ -356,6 +356,12 @@ abstract class AppLocalizations {
   /// **'Cerrar Sesión'**
   String get profileLogoutButton;
 
+  /// No description provided for @profileLogoutSuccess.
+  ///
+  /// In es, this message translates to:
+  /// **'Sesión cerrada correctamente.'**
+  String get profileLogoutSuccess;
+
   /// No description provided for @profileUnknownUser.
   ///
   /// In es, this message translates to:

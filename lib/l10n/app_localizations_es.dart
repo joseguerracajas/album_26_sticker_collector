@@ -158,6 +158,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get profileLogoutButton => 'Cerrar Sesión';
 
   @override
+  String get profileLogoutSuccess => 'Sesión cerrada correctamente.';
+
+  @override
   String get profileUnknownUser => 'Usuario desconocido';
 
   @override

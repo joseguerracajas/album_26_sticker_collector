@@ -155,6 +155,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profileLogoutButton => 'Sign out';
 
   @override
+  String get profileLogoutSuccess => 'You have been signed out.';
+
+  @override
   String get profileUnknownUser => 'Unknown user';
 
   @override

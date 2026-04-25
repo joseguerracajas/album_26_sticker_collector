@@ -49,6 +49,7 @@
   "profileConfirmNewPasswordLabel": "Confirm new password",
   "profilePasswordUpdatedSuccess": "Password updated successfully.",
   "profileLogoutButton": "Sign out",
+  "profileLogoutSuccess": "You have been signed out.",
   "profileUnknownUser": "Unknown user",
   "profileLogoutError": "Error signing out: {message}",
   "@profileLogoutError": {

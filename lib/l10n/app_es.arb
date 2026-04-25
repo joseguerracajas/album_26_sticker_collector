@@ -49,6 +49,7 @@
   "profileConfirmNewPasswordLabel": "Confirmar nueva contraseña",
   "profilePasswordUpdatedSuccess": "Contraseña actualizada correctamente.",
   "profileLogoutButton": "Cerrar Sesión",
+  "profileLogoutSuccess": "Sesión cerrada correctamente.",
   "profileUnknownUser": "Usuario desconocido",
   "profileLogoutError": "Error al cerrar sesión: {message}",
   "@profileLogoutError": {

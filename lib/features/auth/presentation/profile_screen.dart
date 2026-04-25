@@ -6,7 +6,6 @@ import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart'; // IMPORTANTE: Agregar Riverpod
 import 'package:album_26_sticker_collector/main.dart';
-import 'auth_screen.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
@@ -122,15 +121,18 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     try {
       await ref.read(authControllerProvider).logout();
 
-      // 4. Redirigimos al Login borrando el historial de navegación
+      // Regresamos a HomeScreen eliminando todo el historial de navegación
       if (context.mounted) {
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-            builder: (context) => const Scaffold(body: LoginScreen()),
-          ),
-          (Route<dynamic> route) => false, // Evita que el usuario vuelva atrás
-        );
+        Navigator.of(context).popUntil((route) => route.isFirst);
       }
+
+      // Mostramos el mensaje usando la clave global (HomeScreen ya está montada)
+      scaffoldMessengerKey.currentState?.showSnackBar(
+        SnackBar(
+          content: Text(l10n.profileLogoutSuccess),
+          backgroundColor: Colors.blueGrey,
+        ),
+      );
     } catch (e) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
