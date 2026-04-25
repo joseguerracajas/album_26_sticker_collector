@@ -127,6 +127,13 @@ class SyncService {
           await _repo.sqliteProvider.delete<Inventory>(fantasma);
         }
       }
+
+      // 6. Upsert de items remotos al SQLite local (espejo completo)
+      //    Esto asegura que en instalación nueva o cambio de dispositivo
+      //    el inventario esté disponible de inmediato sin requerir un refresh manual.
+      for (final item in remoteItems) {
+        await _repo.sqliteProvider.upsert<Inventory>(item);
+      }
     } catch (e) {
       debugPrint('❌ Error en sincronización física espejo: $e');
     }
