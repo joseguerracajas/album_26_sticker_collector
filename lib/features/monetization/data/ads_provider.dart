@@ -10,28 +10,29 @@ import 'subscription_provider.dart';
 // ─── IDs de anuncio ────────────────────────────────────────────────────────────
 // IDs de TEST de Google. Reemplazar por los reales antes de publicar.
 class AdIds {
-  static String get banner => Platform.isIOS
-      ? 'ca-app-pub-3940256099942544/2934735716'
-      : 'ca-app-pub-3940256099942544/6300978111';
-
-  static String get interstitial => Platform.isIOS
-      ? 'ca-app-pub-3940256099942544/4411468910'
-      : 'ca-app-pub-3940256099942544/1033173712';
-
-  static String get rewarded => Platform.isIOS
-      ? 'ca-app-pub-3940256099942544/1712485313'
-      : 'ca-app-pub-3940256099942544/5224354917';
   // static String get banner => Platform.isIOS
-  //     ? 'ca-app-pub-7990642104517736/8103702986'
-  //     : 'ca-app-pub-7990642104517736/6674237099';
+  //     ? 'ca-app-pub-3940256099942544/2934735716'
+  //     : 'ca-app-pub-3940256099942544/6300978111';
 
   // static String get interstitial => Platform.isIOS
-  //     ? 'ca-app-pub-7990642104517736/3796580284'
-  //     : 'ca-app-pub-7990642104517736/6422743627';
+  //     ? 'ca-app-pub-3940256099942544/4411468910'
+  //     : 'ca-app-pub-3940256099942544/1033173712';
 
   // static String get rewarded => Platform.isIOS
-  //     ? 'ca-app-pub-7990642104517736/8084663326'
-  //     : 'ca-app-pub-7990642104517736/9931789976';
+  //     ? 'ca-app-pub-3940256099942544/1712485313'
+  //     : 'ca-app-pub-3940256099942544/5224354917';
+
+  static String get banner => Platform.isIOS
+      ? 'ca-app-pub-7990642104517736/8103702986'
+      : 'ca-app-pub-7990642104517736/6674237099';
+
+  static String get interstitial => Platform.isIOS
+      ? 'ca-app-pub-7990642104517736/3796580284'
+      : 'ca-app-pub-7990642104517736/6422743627';
+
+  static String get rewarded => Platform.isIOS
+      ? 'ca-app-pub-7990642104517736/8084663326'
+      : 'ca-app-pub-7990642104517736/9931789976';
 
   // ── IDs de PRODUCCIÓN (descomentar y reemplazar en producción) ──
   // static const String bannerIos      = 'ca-app-pub-XXXXXXX/XXXXXXXXX';
