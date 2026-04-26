@@ -30,7 +30,7 @@ class ScannerIconButton extends ConsumerWidget {
             .showRewarded(
               context: context,
               isSubscribed: isSubscribed,
-              onRewarded: () {
+              onRewarded: () async {
                 if (context.mounted) {
                   Navigator.push(
                     context,

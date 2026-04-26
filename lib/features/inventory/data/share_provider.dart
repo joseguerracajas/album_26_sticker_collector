@@ -1,16 +1,13 @@
-// Archivo: lib/features/inventory/data/share_provider.dart
-
 import 'package:album_26_sticker_collector/brick/app_repository.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/category.model.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/sticker.model.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
-import 'package:brick_offline_first/brick_offline_first.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:brick_offline_first/brick_offline_first.dart'; // IMPORTANTE: Asegúrate de tener este import
 import 'inventory_provider.dart';
 
-// 1. Creamos las 3 opciones posibles
 enum ShareType { todos, faltantes, repetidos }
 
 class ShareNotifier extends Notifier<bool> {
@@ -25,32 +22,23 @@ class ShareNotifier extends Notifier<bool> {
     final l10n = AppLocalizations.of(context);
     state = true;
     try {
+      // 1. FORZAR LECTURA LOCAL: Evita que Brick intente ir a la red tras el anuncio
       final allStickers = await _repo.get<Sticker>();
       final allCategories = await _repo.get<Category>();
 
-      // Diccionario de categorías para búsqueda instantánea
       final categoryMap = {for (var c in allCategories) c.id: c};
 
       allStickers.sort((a, b) {
-        // 1. Buscamos la categoría completa de cada sticker
         final catA = categoryMap[a.categoryId];
         final catB = categoryMap[b.categoryId];
-
-        // 2. Extraemos el orderIndex de la categoría (ponemos 999 por seguridad si falla algo)
         final catOrderA = catA?.orderIndex ?? 999;
         final catOrderB = catB?.orderIndex ?? 999;
 
-        // 3. Primero ordenamos por la posición de la Categoría en el álbum
         int catCompare = catOrderA.compareTo(catOrderB);
-
-        // Si son de distintas categorías, ya sabemos cuál va primero
         if (catCompare != 0) return catCompare;
-
-        // 4. Si son de la misma categoría, desempatamos por la posición del Sticker
         return a.orderIndex.compareTo(b.orderIndex);
       });
 
-      // Ensamblaje del resultado final
       final response = allStickers.map((sticker) {
         final category = categoryMap[sticker.categoryId];
         return {
@@ -61,7 +49,6 @@ class ShareNotifier extends Notifier<bool> {
         };
       }).toList();
 
-      // Leemos la Verdad Absoluta de la UI
       final miInventario = await ref.read(inventoryProvider.future);
 
       Map<String, Map<String, dynamic>> faltantesAgrupados = {};
@@ -143,8 +130,6 @@ class ShareNotifier extends Notifier<bool> {
     if (mapa.isEmpty) return "$mensajeVacio\n";
 
     String texto = "";
-    // Nota: Como usamos una lista ordenada arriba, los mapas en Dart mantienen
-    // el orden de inserción. Así que se imprimirán en el orden correcto.
     mapa.forEach((nombre, data) {
       texto += "${data['emoji']} *${nombre.toUpperCase()}*\n";
       final List<String> listaCodigos = data['codigos'] as List<String>;

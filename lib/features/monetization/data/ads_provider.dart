@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:album_26_sticker_collector/features/monetization/presentation/paywall_screen.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
@@ -274,13 +275,15 @@ class AdService {
 
   /// Muestra el rewarded y ejecuta [onRewarded] si el usuario completa el anuncio.
   /// Si está suscrito, ejecuta [onRewarded] directamente sin mostrar ad.
+  /// [onRewarded] siempre se llama DESPUÉS de que el ad se descarta completamente,
+  /// evitando conflictos entre el share sheet y el VC del ad en iOS.
   Future<void> showRewarded({
     required BuildContext context,
     required bool isSubscribed,
-    required VoidCallback onRewarded,
+    required Future<void> Function() onRewarded,
   }) async {
     if (isSubscribed) {
-      onRewarded();
+      await onRewarded();
       return;
     }
 
@@ -290,10 +293,15 @@ class AdService {
 
     if (!_rewardedReady || _rewardedAd == null) {
       // Si no hay ad listo, ejecutamos igual (no penalizamos al usuario)
-      onRewarded();
+      await onRewarded();
       preloadRewarded();
       return;
     }
+
+    // Completer que resuelve cuando el ad se descarta completamente.
+    // Usamos bool: true = reward ganado (o fallo al mostrar), false = cerró sin ganar.
+    final completer = Completer<bool>();
+    bool rewardEarned = false;
 
     _rewardedAd!.fullScreenContentCallback = FullScreenContentCallback(
       onAdDismissedFullScreenContent: (ad) {
@@ -301,17 +309,29 @@ class AdService {
         _rewardedAd = null;
         _rewardedReady = false;
         preloadRewarded();
+        if (!completer.isCompleted) completer.complete(rewardEarned);
       },
       onAdFailedToShowFullScreenContent: (ad, error) {
         ad.dispose();
         _rewardedAd = null;
         _rewardedReady = false;
-        onRewarded(); // ejecutamos igual si falla
         preloadRewarded();
+        // Recompensamos igual si el ad falla al mostrarse
+        if (!completer.isCompleted) completer.complete(true);
       },
     );
 
-    await _rewardedAd!.show(onUserEarnedReward: (ad, reward) => onRewarded());
+    try {
+      await _rewardedAd!.show(
+        onUserEarnedReward: (ad, reward) => rewardEarned = true,
+      );
+    } catch (_) {
+      // Si show() lanza, completamos igual para no bloquear
+      if (!completer.isCompleted) completer.complete(true);
+    }
+
+    final earned = await completer.future;
+    if (earned) await onRewarded();
   }
 
   void dispose() {
