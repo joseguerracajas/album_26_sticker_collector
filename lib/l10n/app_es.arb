@@ -157,12 +157,19 @@
   "paywallBenefitScanner": "Escáner sin anuncios intermedios",
   "paywallBenefitNoAds": "Sin publicidad",
   "paywallBenefitSync": "Sincronización en la nube incluida",
-  "paywallSubscribeButton": "Suscribirse por {price}/mes",
+  "paywallSubscribeButton": "Suscribirse · {price}",
   "@paywallSubscribeButton": {
     "placeholders": {
       "price": {}
     }
   },
+  "paywallPackageMonthly": "Mensual",
+  "paywallPackageAnnual": "Anual",
+  "paywallPackageWeekly": "Semanal",
+  "paywallPackageLifetime": "De por vida",
+  "paywallPackageTwoMonth": "Bimestral",
+  "paywallPackageThreeMonth": "Trimestral",
+  "paywallPackageSixMonth": "Semestral",
   "paywallRestorePurchases": "Restaurar compras",
   "paywallCancelAnytime": "Cancela cuando quieras. Sin compromisos.",
   "paywallLoadError": "No se pudieron cargar los planes. Verifica tu conexión.",

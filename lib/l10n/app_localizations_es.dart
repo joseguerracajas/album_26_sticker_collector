@@ -364,8 +364,29 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String paywallSubscribeButton(Object price) {
-    return 'Suscribirse por $price/mes';
+    return 'Suscribirse · $price';
   }
+
+  @override
+  String get paywallPackageMonthly => 'Mensual';
+
+  @override
+  String get paywallPackageAnnual => 'Anual';
+
+  @override
+  String get paywallPackageWeekly => 'Semanal';
+
+  @override
+  String get paywallPackageLifetime => 'De por vida';
+
+  @override
+  String get paywallPackageTwoMonth => 'Bimestral';
+
+  @override
+  String get paywallPackageThreeMonth => 'Trimestral';
+
+  @override
+  String get paywallPackageSixMonth => 'Semestral';
 
   @override
   String get paywallRestorePurchases => 'Restaurar compras';

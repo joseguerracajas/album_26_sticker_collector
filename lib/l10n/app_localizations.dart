@@ -719,8 +719,50 @@ abstract class AppLocalizations {
   /// No description provided for @paywallSubscribeButton.
   ///
   /// In es, this message translates to:
-  /// **'Suscribirse por {price}/mes'**
+  /// **'Suscribirse · {price}'**
   String paywallSubscribeButton(Object price);
+
+  /// No description provided for @paywallPackageMonthly.
+  ///
+  /// In es, this message translates to:
+  /// **'Mensual'**
+  String get paywallPackageMonthly;
+
+  /// No description provided for @paywallPackageAnnual.
+  ///
+  /// In es, this message translates to:
+  /// **'Anual'**
+  String get paywallPackageAnnual;
+
+  /// No description provided for @paywallPackageWeekly.
+  ///
+  /// In es, this message translates to:
+  /// **'Semanal'**
+  String get paywallPackageWeekly;
+
+  /// No description provided for @paywallPackageLifetime.
+  ///
+  /// In es, this message translates to:
+  /// **'De por vida'**
+  String get paywallPackageLifetime;
+
+  /// No description provided for @paywallPackageTwoMonth.
+  ///
+  /// In es, this message translates to:
+  /// **'Bimestral'**
+  String get paywallPackageTwoMonth;
+
+  /// No description provided for @paywallPackageThreeMonth.
+  ///
+  /// In es, this message translates to:
+  /// **'Trimestral'**
+  String get paywallPackageThreeMonth;
+
+  /// No description provided for @paywallPackageSixMonth.
+  ///
+  /// In es, this message translates to:
+  /// **'Semestral'**
+  String get paywallPackageSixMonth;
 
   /// No description provided for @paywallRestorePurchases.
   ///

@@ -1,11 +1,15 @@
 // Archivo: lib/features/sync/data/sync_provider.dart
 
 import 'package:album_26_sticker_collector/features/catalog/data/categories_provider.dart';
+import 'package:album_26_sticker_collector/features/catalog/data/variants_provider.dart';
 import 'package:album_26_sticker_collector/features/auth/data/guest_session_provider.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart' hide Category;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brick_offline_first/brick_offline_first.dart';
 import 'package:album_26_sticker_collector/brick/app_repository.dart';
+import 'package:album_26_sticker_collector/features/catalog/domain/category.model.dart';
+import 'package:album_26_sticker_collector/features/catalog/domain/sticker.model.dart';
+import 'package:album_26_sticker_collector/features/catalog/domain/sticker_variant.model.dart';
 import 'package:album_26_sticker_collector/features/inventory/domain/inventory.model.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
@@ -22,16 +26,73 @@ class SyncService {
   SyncService(this._ref);
 
   Future<void> refreshAll() async {
+    // 1. Sincronizar catálogo completo desde remoto (maneja borrados)
+    await sincronizarCatalogo();
+
+    // 2. Sincronizar inventario del usuario autenticado
     final user = supabase.auth.currentUser;
     if (user != null) {
       await sincronizacionFisicaEspejo(user.id);
     }
 
+    // 3. Limpiar caché en memoria y re-invalidar todos los providers
+    _repo.memoryCacheProvider.reset();
+    _ref.invalidate(categoriesProvider);
+    _ref.invalidate(allStickersProvider);
     _ref.invalidate(stickersByCategoryProvider);
-    await Future.wait([
-      _ref.refresh(categoriesProvider.future),
-      _ref.refresh(inventoryProvider.future),
-    ]);
+    _ref.invalidate(variantsProvider);
+    _ref.invalidate(inventoryProvider);
+  }
+
+  // --- PROTOCOLO ESPEJO PARA CATÁLOGO ---
+  // Igual que sincronizacionFisicaEspejo pero para categorías, stickers y variantes.
+  // Garantiza que los borrados en Supabase se reflejen en el SQLite local.
+  Future<void> sincronizarCatalogo() async {
+    try {
+      // --- Categorías ---
+      final remoteCategories = await _repo.remoteProvider.get<Category>();
+      final localCategories = await _repo.sqliteProvider.get<Category>();
+      final remoteCategoryIds = remoteCategories.map((c) => c.id).toSet();
+
+      for (final local in localCategories) {
+        if (!remoteCategoryIds.contains(local.id)) {
+          await _repo.sqliteProvider.delete<Category>(local);
+        }
+      }
+      for (final remote in remoteCategories) {
+        await _repo.sqliteProvider.upsert<Category>(remote);
+      }
+
+      // --- Stickers ---
+      final remoteStickers = await _repo.remoteProvider.get<Sticker>();
+      final localStickers = await _repo.sqliteProvider.get<Sticker>();
+      final remoteStickerIds = remoteStickers.map((s) => s.id).toSet();
+
+      for (final local in localStickers) {
+        if (!remoteStickerIds.contains(local.id)) {
+          await _repo.sqliteProvider.delete<Sticker>(local);
+        }
+      }
+      for (final remote in remoteStickers) {
+        await _repo.sqliteProvider.upsert<Sticker>(remote);
+      }
+
+      // --- Variantes ---
+      final remoteVariants = await _repo.remoteProvider.get<StickerVariant>();
+      final localVariants = await _repo.sqliteProvider.get<StickerVariant>();
+      final remoteVariantIds = remoteVariants.map((v) => v.id).toSet();
+
+      for (final local in localVariants) {
+        if (!remoteVariantIds.contains(local.id)) {
+          await _repo.sqliteProvider.delete<StickerVariant>(local);
+        }
+      }
+      for (final remote in remoteVariants) {
+        await _repo.sqliteProvider.upsert<StickerVariant>(remote);
+      }
+    } catch (e) {
+      debugPrint('❌ Error en sincronización de catálogo: $e');
+    }
   }
 
   Future<bool> hasGuestData() async {

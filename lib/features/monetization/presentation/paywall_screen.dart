@@ -16,6 +16,7 @@ class PaywallScreen extends ConsumerStatefulWidget {
 
 class _PaywallScreenState extends ConsumerState<PaywallScreen> {
   Offerings? _offerings;
+  Package? _selectedPackage;
   bool _isLoadingOfferings = true;
   bool _isPurchasing = false;
   String? _errorMessage;
@@ -33,6 +34,8 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
       if (mounted) {
         setState(() {
           _offerings = offerings;
+          final packages = offerings.current?.availablePackages ?? [];
+          _selectedPackage = packages.isNotEmpty ? packages.first : null;
           _isLoadingOfferings = false;
         });
       }
@@ -46,7 +49,8 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
     }
   }
 
-  Future<void> _purchase(Package package) async {
+  Future<void> _purchase(Package? package) async {
+    if (package == null) return;
     setState(() {
       _isPurchasing = true;
       _purchaseErrorMessage = null;
@@ -266,6 +270,10 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
                       ),
                       const SizedBox(height: 40),
 
+                      // ── Selector de paquetes ────────────────────────────
+                      _buildPackageSelector(l10n),
+                      const SizedBox(height: 16),
+
                       // ── Botón de compra / loading ────────────────────────
                       _buildPurchaseButton(l10n),
                       const SizedBox(height: 8),
@@ -318,6 +326,95 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
     );
   }
 
+  Widget _buildPackageSelector(AppLocalizations l10n) {
+    if (_isLoadingOfferings || _errorMessage != null)
+      return const SizedBox.shrink();
+
+    final packages = _offerings?.current?.availablePackages ?? [];
+    if (packages.isEmpty) return const SizedBox.shrink();
+
+    return Column(
+      children: packages.map((pkg) {
+        final isSelected = _selectedPackage?.identifier == pkg.identifier;
+        final price = pkg.storeProduct.priceString;
+        final title = _packageTitle(pkg, l10n);
+        return GestureDetector(
+          onTap: () => setState(() => _selectedPackage = pkg),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            margin: const EdgeInsets.only(bottom: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            decoration: BoxDecoration(
+              color: isSelected
+                  ? Colors.amber.withValues(alpha: 0.15)
+                  : Colors.white.withValues(alpha: 0.05),
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(
+                color: isSelected ? Colors.amber : Colors.white24,
+                width: isSelected ? 2 : 1,
+              ),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  isSelected
+                      ? Icons.radio_button_checked
+                      : Icons.radio_button_unchecked,
+                  color: isSelected ? Colors.amber : Colors.white38,
+                  size: 20,
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      color: isSelected ? Colors.amber : Colors.white,
+                      fontWeight: isSelected
+                          ? FontWeight.w700
+                          : FontWeight.w500,
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+                Text(
+                  price,
+                  style: TextStyle(
+                    color: isSelected ? Colors.amber : Colors.white70,
+                    fontWeight: FontWeight.w800,
+                    fontSize: 15,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      }).toList(),
+    );
+  }
+
+  String _packageTitle(Package pkg, AppLocalizations l10n) {
+    switch (pkg.packageType) {
+      case PackageType.monthly:
+        return l10n.paywallPackageMonthly;
+      case PackageType.annual:
+        return l10n.paywallPackageAnnual;
+      case PackageType.weekly:
+        return l10n.paywallPackageWeekly;
+      case PackageType.lifetime:
+        return l10n.paywallPackageLifetime;
+      case PackageType.twoMonth:
+        return l10n.paywallPackageTwoMonth;
+      case PackageType.threeMonth:
+        return l10n.paywallPackageThreeMonth;
+      case PackageType.sixMonth:
+        return l10n.paywallPackageSixMonth;
+      default:
+        return pkg.storeProduct.title.isNotEmpty
+            ? pkg.storeProduct.title
+            : pkg.identifier;
+    }
+  }
+
   Widget _buildPurchaseButton(AppLocalizations l10n) {
     if (_isLoadingOfferings) {
       return const CircularProgressIndicator(color: Colors.amber);
@@ -334,7 +431,6 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
             ),
           ),
           const SizedBox(height: 8),
-          // 🔥 AÑADIDO: Esto te mostrará el motivo real del error en pantalla
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
@@ -355,9 +451,9 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
       );
     }
 
-    final package = _offerings?.current?.monthly;
+    final packages = _offerings?.current?.availablePackages ?? [];
 
-    if (package == null) {
+    if (packages.isEmpty) {
       // Sin offerings configurados (sandbox/test sin producto)
       return _PurchaseButton(
         label: l10n.paywallSubscribeButton(r'$2.99'),
@@ -366,12 +462,12 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
       );
     }
 
-    final price = package.storeProduct.priceString;
+    final price = _selectedPackage?.storeProduct.priceString ?? '';
 
     return _PurchaseButton(
       label: l10n.paywallSubscribeButton(price),
       isPurchasing: _isPurchasing,
-      onPressed: () => _purchase(package),
+      onPressed: () => _purchase(_selectedPackage),
     );
   }
 }

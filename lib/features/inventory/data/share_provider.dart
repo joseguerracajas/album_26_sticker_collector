@@ -5,7 +5,6 @@ import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:brick_offline_first/brick_offline_first.dart'; // IMPORTANTE: Asegúrate de tener este import
 import 'inventory_provider.dart';
 
 enum ShareType { todos, faltantes, repetidos }
