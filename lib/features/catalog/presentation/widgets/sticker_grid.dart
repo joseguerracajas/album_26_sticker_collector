@@ -36,7 +36,23 @@ class StickerGrid extends ConsumerWidget {
         backgroundColor: const Color(0xFF1E1E1E),
         title: Text(l10n.stickerRemoveTitle),
         content: Text(l10n.stickerRemoveConfirm(stickerLabel)),
-        actions: const [ScannerIconButton(), ShareMenuButton()],
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: Text(
+              l10n.commonCancel,
+              style: const TextStyle(color: Colors.grey),
+            ),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+            onPressed: () => Navigator.pop(ctx, true),
+            child: Text(
+              l10n.commonRemove,
+              style: const TextStyle(color: Colors.white),
+            ),
+          ),
+        ],
       ),
     );
 
