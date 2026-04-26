@@ -1,0 +1,200 @@
+{
+  "@@locale": "zh",
+  "appTitle": "球星贴纸册 26",
+  "authWelcomeTitle": "欢迎来到球星贴纸册 26",
+  "authEmailLabel": "电子邮件",
+  "authPasswordLabel": "密码",
+  "authLoginButton": "登录",
+  "authContinueWith": "或使用以下方式继续",
+  "authContinueGoogle": "使用 Google 继续",
+  "authContinueApple": "使用 Apple 继续",
+  "authContinueGuest": "以访客身份继续",
+  "authNoAccountRegister": "没有账号？立即注册",
+  "authForgotPassword": "忘记密码？",
+  "authResetPasswordEnterEmail": "请输入您的电子邮件以恢复密码。",
+  "authResetPasswordEmailSent": "我们已向您发送重置密码的电子邮件。",
+  "authGuestMigratedSuccess": "您的访客进度已成功转移到新账号！🏆",
+  "authGuestRemotePreserved": "欢迎回来！您的云端收藏已恢复，本地访客进度已丢弃。",
+  "commonErrorWithMessage": "错误：{message}",
+  "@commonErrorWithMessage": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+
+  "authErrorInvalidCredentials": "电子邮件或密码不正确。请检查您的信息并重试。",
+  "authErrorEmailNotConfirmed": "您的电子邮件尚未确认。请检查您的收件箱。",
+  "authErrorUserAlreadyRegistered": "该电子邮件地址已存在账号。",
+  "authErrorWeakPassword": "密码太弱。请使用至少 6 个字符。",
+  "authErrorInvalidEmail": "电子邮件地址格式无效。",
+  "authErrorTokenExpired": "验证码已过期或无效。请重新申请。",
+  "authErrorRateLimit": "尝试次数过多。请稍候再试。",
+  "authErrorNetworkError": "无网络连接。请检查您的网络并重试。",
+  "authErrorSessionExpired": "您的会话已过期。请重新登录。",
+  "authErrorUnknown": "发生了意外错误。请重试。",
+  "registerTitle": "创建账号",
+  "registerFillAllFields": "请填写所有字段。",
+  "registerEmailsDontMatch": "电子邮件地址不匹配。",
+  "registerPasswordsDontMatch": "密码不匹配。",
+  "registerPasswordMinLength": "密码必须至少包含 6 个字符。",
+  "registerAccountCreated": "账号创建成功！⚽ 请登录。",
+  "registerConfirmEmailLabel": "确认电子邮件",
+  "registerConfirmPasswordLabel": "确认密码",
+  "registerSubmitButton": "注册",
+  "profileTitle": "我的个人资料",
+  "profileOfficialCollector": "官方收藏家 🌟",
+  "profileChangePasswordButton": "更新密码",
+  "profileChangePasswordTitle": "更新密码",
+  "profileNewPasswordLabel": "新密码",
+  "profileConfirmNewPasswordLabel": "确认新密码",
+  "profilePasswordUpdatedSuccess": "密码更新成功。",
+  "profileLogoutButton": "退出登录",
+  "profileLogoutSuccess": "已成功退出登录。",
+  "profileUnknownUser": "未知用户",
+  "profileLogoutError": "退出登录时出错：{message}",
+  "@profileLogoutError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "homeTitle": "我的贴纸册 26",
+  "homeProfileTooltip": "我的个人资料",
+  "homeShareAll": "分享完整列表",
+  "homeShareMissingOnly": "仅显示缺少的",
+  "homeShareDuplicatesOnly": "仅显示重复的",
+  "homeGlobalProgressTitle": "总体进度",
+  "homeCollectedCount": "已收集 {total} 中的 {collected}",
+  "@homeCollectedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeViewFullCollection": "查看完整收藏",
+  "homeTeamsTitle": "球队",
+  "homeSearchTeamsHint": "按国家或球队搜索...",
+  "homeNoResults": "未找到球队",
+  "homeScanButton": "扫描贴纸",
+  "homeObtainedCount": "已获得 {total} 中的 {collected}",
+  "@homeObtainedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeProgressError": "错误",
+  "globalCollectionTitle": "完整收藏",
+  "filterAll": "全部",
+  "filterMissing": "缺少的",
+  "filterDuplicates": "重复的",
+  "filterSearchHint": "按国家、代码或编号搜索...",
+  "stickerRemoveTitle": "移除贴纸？",
+  "stickerRemoveConfirm": "您确定要从册子中移除贴纸 {stickerLabel} 吗？",
+  "@stickerRemoveConfirm": {
+    "placeholders": {
+      "stickerLabel": {}
+    }
+  },
+  "commonCancel": "取消",
+  "commonRemove": "移除",
+  "commonDone": "完成",
+  "gridNoResults": "未找到贴纸。",
+  "scannerViewScannedButton": "查看 {count} 张已扫描贴纸",
+  "@scannerViewScannedButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerOverlayHint": "将贴纸背面居中放置于此",
+  "pendingScansTitle": "已扫描的贴纸",
+  "pendingScansEmpty": "您尚未扫描任何贴纸",
+  "pendingScansItemLabel": "贴纸：{code}",
+  "@pendingScansItemLabel": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "pendingScansSavedSuccess": "已成功将 {count} 张贴纸添加到您的册子！🏆",
+  "@pendingScansSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "pendingScansSaveError": "保存时出错：{message}",
+  "@pendingScansSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "shareHeader": "⚽ *球星贴纸册 26 交换列表* 🏆",
+  "shareMissingSectionTitle": "❌ *缺少的：*",
+  "shareDuplicatesSectionTitle": "🔁 *重复的：*",
+  "shareNoneMissing": "一张不缺！😎",
+  "shareNoDuplicates": "没有重复 😅",
+  "shareLetsTrade": "想要交换吗？👀🔥",
+  "shareSeparator": "--------------------------",
+  "forgotPasswordTitle": "恢复账号",
+  "forgotPasswordDescription": "请输入您的电子邮件，我们将发送 6 位数验证码以重置密码。",
+  "forgotPasswordEmailLabel": "电子邮件",
+  "forgotPasswordEmptyEmailError": "请输入您的电子邮件地址。",
+  "forgotPasswordCodeSentSuccess": "验证码已发送。请检查您的收件箱。",
+  "forgotPasswordSendCodeButton": "发送验证码",
+  "forgotPasswordStep2Description": "请输入我们发送到 {email} 的验证码和您的新密码。",
+  "@forgotPasswordStep2Description": {
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "forgotPasswordCodeInputLabel": "8 位数验证码",
+  "forgotPasswordInvalidCodeError": "验证码必须恰好为 6 位数字。",
+  "forgotPasswordNewPasswordLabel": "新密码",
+  "forgotPasswordShortPasswordError": "密码必须至少包含 6 个字符。",
+  "forgotPasswordSavePasswordButton": "保存密码",
+  "forgotPasswordPasswordUpdatedSuccess": "密码更新成功！🏆",
+
+  "paywallTitle": "无广告体验",
+  "paywallSubtitle": "所有功能均可免费使用。购买 Pro 享受无中断体验。",
+  "paywallBenefitScanner": "扫描器无插屏广告",
+  "paywallBenefitNoAds": "无广告",
+  "paywallBenefitSync": "包含云端同步",
+  "paywallSubscribeButton": "订阅 · {price}",
+  "@paywallSubscribeButton": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "paywallPackageMonthly": "月度",
+  "paywallPackageAnnual": "年度",
+  "paywallPackageWeekly": "每周",
+  "paywallPackageLifetime": "终身",
+  "paywallPackageTwoMonth": "每 2 个月",
+  "paywallPackageThreeMonth": "每 3 个月",
+  "paywallPackageSixMonth": "每 6 个月",
+  "paywallRestorePurchases": "恢复购买",
+  "paywallCancelAnytime": "随时取消。无需承诺。",
+  "paywallLoadError": "无法加载计划。请检查您的连接。",
+  "paywallRetry": "重试",
+  "paywallPurchaseError": "购买失败。请重试。",
+  "paywallRestoreError": "无法恢复购买。请重试。",
+  "paywallGuestTitle": "登录以订阅",
+  "paywallGuestBody": "Pro 与您的账号绑定。请登录或创建账号以解锁所有功能。",
+  "paywallGuestSignInButton": "登录",
+
+  "scannerDemoRemaining": "剩余 {count} 次免费扫描",
+  "@scannerDemoRemaining": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerDemoFinishedTitle": "您已使用完 5 次免费扫描",
+  "scannerDemoFinishedSubtitle": "订阅以无限扫描贴纸并享受无广告体验。",
+  "scannerDemoUnlockButton": "查看 Pro 计划",
+
+  "adDialogTitle": "免费内容",
+  "adDialogBody": "若要继续，请观看一则短广告，或订阅 Pro 永远告别广告。",
+  "adDialogWatchAd": "观看广告",
+  "adDialogGetPro": "获取 Pro",
+  "adDialogNotNow": "暂不",
+
+  "scannerCameraInitError": "无法初始化摄像头。请确保应用拥有摄像头权限。"
+}

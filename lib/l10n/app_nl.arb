@@ -1,0 +1,200 @@
+{
+  "@@locale": "nl",
+  "appTitle": "Album 26",
+  "authWelcomeTitle": "Welkom bij Album 26",
+  "authEmailLabel": "E-mail",
+  "authPasswordLabel": "Wachtwoord",
+  "authLoginButton": "INLOGGEN",
+  "authContinueWith": "Of ga verder met",
+  "authContinueGoogle": "Ga verder met Google",
+  "authContinueApple": "Ga verder met Apple",
+  "authContinueGuest": "Ga verder als gast",
+  "authNoAccountRegister": "Geen account? Registreer je",
+  "authForgotPassword": "Wachtwoord vergeten?",
+  "authResetPasswordEnterEmail": "Voer je e-mail in om je wachtwoord te herstellen.",
+  "authResetPasswordEmailSent": "We hebben een e-mail gestuurd om je wachtwoord opnieuw in te stellen.",
+  "authGuestMigratedSuccess": "Je gastvoortgang is succesvol overgedragen naar je nieuwe account! 🏆",
+  "authGuestRemotePreserved": "Welkom terug! Je cloudcollectie is hersteld en de lokale gastvoortgang is verwijderd.",
+  "commonErrorWithMessage": "Fout: {message}",
+  "@commonErrorWithMessage": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+
+  "authErrorInvalidCredentials": "Onjuist e-mailadres of wachtwoord. Controleer je gegevens en probeer het opnieuw.",
+  "authErrorEmailNotConfirmed": "Je e-mail is nog niet bevestigd. Controleer je inbox.",
+  "authErrorUserAlreadyRegistered": "Er bestaat al een account met dat e-mailadres.",
+  "authErrorWeakPassword": "Het wachtwoord is te zwak. Gebruik minimaal 6 tekens.",
+  "authErrorInvalidEmail": "Het formaat van het e-mailadres is ongeldig.",
+  "authErrorTokenExpired": "De code is verlopen of ongeldig. Vraag een nieuwe aan.",
+  "authErrorRateLimit": "Te veel pogingen. Wacht even voordat je het opnieuw probeert.",
+  "authErrorNetworkError": "Geen verbinding. Controleer je netwerk en probeer het opnieuw.",
+  "authErrorSessionExpired": "Je sessie is verlopen. Log opnieuw in.",
+  "authErrorUnknown": "Er is een onverwachte fout opgetreden. Probeer het opnieuw.",
+  "registerTitle": "Account aanmaken",
+  "registerFillAllFields": "Vul alle velden in.",
+  "registerEmailsDontMatch": "De e-mailadressen komen niet overeen.",
+  "registerPasswordsDontMatch": "De wachtwoorden komen niet overeen.",
+  "registerPasswordMinLength": "Het wachtwoord moet minimaal 6 tekens bevatten.",
+  "registerAccountCreated": "Account succesvol aangemaakt! ⚽ Log in.",
+  "registerConfirmEmailLabel": "E-mail bevestigen",
+  "registerConfirmPasswordLabel": "Wachtwoord bevestigen",
+  "registerSubmitButton": "REGISTREREN",
+  "profileTitle": "Mijn profiel",
+  "profileOfficialCollector": "Officiële verzamelaar 🌟",
+  "profileChangePasswordButton": "Wachtwoord bijwerken",
+  "profileChangePasswordTitle": "Wachtwoord bijwerken",
+  "profileNewPasswordLabel": "Nieuw wachtwoord",
+  "profileConfirmNewPasswordLabel": "Nieuw wachtwoord bevestigen",
+  "profilePasswordUpdatedSuccess": "Wachtwoord succesvol bijgewerkt.",
+  "profileLogoutButton": "Uitloggen",
+  "profileLogoutSuccess": "Je bent succesvol uitgelogd.",
+  "profileUnknownUser": "Onbekende gebruiker",
+  "profileLogoutError": "Fout bij uitloggen: {message}",
+  "@profileLogoutError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "homeTitle": "Mijn Album 26",
+  "homeProfileTooltip": "Mijn profiel",
+  "homeShareAll": "Volledige lijst delen",
+  "homeShareMissingOnly": "Alleen ontbrekende",
+  "homeShareDuplicatesOnly": "Alleen duplicaten",
+  "homeGlobalProgressTitle": "Algemene voortgang",
+  "homeCollectedCount": "{collected} van {total} verzameld",
+  "@homeCollectedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeViewFullCollection": "Volledige collectie bekijken",
+  "homeTeamsTitle": "Teams",
+  "homeSearchTeamsHint": "Zoek op land of team...",
+  "homeNoResults": "Geen teams gevonden",
+  "homeScanButton": "Sticker scannen",
+  "homeObtainedCount": "{collected} van {total} verkregen",
+  "@homeObtainedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeProgressError": "Fout",
+  "globalCollectionTitle": "Volledige collectie",
+  "filterAll": "Alles",
+  "filterMissing": "Ontbrekende",
+  "filterDuplicates": "Duplicaten",
+  "filterSearchHint": "Zoek op land, code of nummer...",
+  "stickerRemoveTitle": "Sticker verwijderen?",
+  "stickerRemoveConfirm": "Weet je zeker dat je sticker {stickerLabel} uit je album wilt verwijderen?",
+  "@stickerRemoveConfirm": {
+    "placeholders": {
+      "stickerLabel": {}
+    }
+  },
+  "commonCancel": "Annuleren",
+  "commonRemove": "Verwijderen",
+  "commonDone": "KLAAR",
+  "gridNoResults": "Geen stickers gevonden.",
+  "scannerViewScannedButton": "{count} gescande stickers bekijken",
+  "@scannerViewScannedButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerOverlayHint": "Centreer de achterkant van de sticker hier",
+  "pendingScansTitle": "Gescande stickers",
+  "pendingScansEmpty": "Je hebt nog geen stickers gescand",
+  "pendingScansItemLabel": "Sticker: {code}",
+  "@pendingScansItemLabel": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "pendingScansSavedSuccess": "{count} stickers toegevoegd aan je album! 🏆",
+  "@pendingScansSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "pendingScansSaveError": "Fout bij opslaan: {message}",
+  "@pendingScansSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "shareHeader": "⚽ *RUILLIJST ALBUM 26* 🏆",
+  "shareMissingSectionTitle": "❌ *ONTBREKEND:*",
+  "shareDuplicatesSectionTitle": "🔁 *DUPLICATEN:*",
+  "shareNoneMissing": "Geen! 😎",
+  "shareNoDuplicates": "Geen duplicaten 😅",
+  "shareLetsTrade": "Wil je ruilen? 👀🔥",
+  "shareSeparator": "--------------------------",
+  "forgotPasswordTitle": "Account herstellen",
+  "forgotPasswordDescription": "Voer je e-mail in en we sturen je een 6-cijferige code om je wachtwoord opnieuw in te stellen.",
+  "forgotPasswordEmailLabel": "E-mail",
+  "forgotPasswordEmptyEmailError": "Voer je e-mailadres in.",
+  "forgotPasswordCodeSentSuccess": "Code verzonden. Controleer je inbox.",
+  "forgotPasswordSendCodeButton": "CODE VERZENDEN",
+  "forgotPasswordStep2Description": "Voer de code in die we naar {email} hebben gestuurd en je nieuwe wachtwoord.",
+  "@forgotPasswordStep2Description": {
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "forgotPasswordCodeInputLabel": "8-cijferige code",
+  "forgotPasswordInvalidCodeError": "De code moet precies 6 cijfers hebben.",
+  "forgotPasswordNewPasswordLabel": "Nieuw wachtwoord",
+  "forgotPasswordShortPasswordError": "Het wachtwoord moet minimaal 6 tekens bevatten.",
+  "forgotPasswordSavePasswordButton": "WACHTWOORD OPSLAAN",
+  "forgotPasswordPasswordUpdatedSuccess": "Wachtwoord succesvol bijgewerkt! 🏆",
+
+  "paywallTitle": "Geniet zonder advertenties",
+  "paywallSubtitle": "Alle functies zijn gratis beschikbaar. Met Pro geniet je van alles zonder onderbrekingen.",
+  "paywallBenefitScanner": "Scanner zonder interstitiële advertenties",
+  "paywallBenefitNoAds": "Geen advertenties",
+  "paywallBenefitSync": "Cloudsynchronisatie inbegrepen",
+  "paywallSubscribeButton": "Abonneren · {price}",
+  "@paywallSubscribeButton": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "paywallPackageMonthly": "Maandelijks",
+  "paywallPackageAnnual": "Jaarlijks",
+  "paywallPackageWeekly": "Wekelijks",
+  "paywallPackageLifetime": "Levenslang",
+  "paywallPackageTwoMonth": "Elke 2 maanden",
+  "paywallPackageThreeMonth": "Elke 3 maanden",
+  "paywallPackageSixMonth": "Elke 6 maanden",
+  "paywallRestorePurchases": "Aankopen herstellen",
+  "paywallCancelAnytime": "Op elk moment opzeggen. Geen verplichtingen.",
+  "paywallLoadError": "Kon plannen niet laden. Controleer je verbinding.",
+  "paywallRetry": "Opnieuw proberen",
+  "paywallPurchaseError": "Aankoop mislukt. Probeer het opnieuw.",
+  "paywallRestoreError": "Kon aankopen niet herstellen. Probeer het opnieuw.",
+  "paywallGuestTitle": "Log in om te abonneren",
+  "paywallGuestBody": "Pro is gekoppeld aan je account. Log in of maak een account aan om alle functies te ontgrendelen.",
+  "paywallGuestSignInButton": "INLOGGEN",
+
+  "scannerDemoRemaining": "{count} gratis scans resterend",
+  "@scannerDemoRemaining": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerDemoFinishedTitle": "Je hebt je 5 gratis scans gebruikt",
+  "scannerDemoFinishedSubtitle": "Abonneer je om onbeperkt stickers te scannen en een advertentievrije ervaring te hebben.",
+  "scannerDemoUnlockButton": "Pro-plannen bekijken",
+
+  "adDialogTitle": "Gratis content",
+  "adDialogBody": "Om door te gaan, bekijk een korte advertentie of abonneer je op Pro en vergeet advertenties voor altijd.",
+  "adDialogWatchAd": "Advertentie bekijken",
+  "adDialogGetPro": "Pro halen",
+  "adDialogNotNow": "Niet nu",
+
+  "scannerCameraInitError": "Kon de camera niet initialiseren. Zorg ervoor dat de app cameratoegang heeft."
+}

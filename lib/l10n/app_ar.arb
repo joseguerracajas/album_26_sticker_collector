@@ -1,0 +1,200 @@
+{
+  "@@locale": "ar",
+  "appTitle": "ألبوم 26",
+  "authWelcomeTitle": "مرحباً بك في ألبوم 26",
+  "authEmailLabel": "البريد الإلكتروني",
+  "authPasswordLabel": "كلمة المرور",
+  "authLoginButton": "تسجيل الدخول",
+  "authContinueWith": "أو تابع باستخدام",
+  "authContinueGoogle": "المتابعة مع Google",
+  "authContinueApple": "المتابعة مع Apple",
+  "authContinueGuest": "المتابعة كضيف",
+  "authNoAccountRegister": "ليس لديك حساب؟ سجّل الآن",
+  "authForgotPassword": "نسيت كلمة المرور؟",
+  "authResetPasswordEnterEmail": "أدخل بريدك الإلكتروني لاستعادة كلمة المرور.",
+  "authResetPasswordEmailSent": "لقد أرسلنا لك بريداً إلكترونياً لإعادة تعيين كلمة المرور.",
+  "authGuestMigratedSuccess": "تم نقل تقدمك كضيف بنجاح إلى حسابك الجديد! 🏆",
+  "authGuestRemotePreserved": "مرحباً بعودتك! تمت استعادة مجموعتك السحابية وتم تجاهل تقدم الضيف المحلي.",
+  "commonErrorWithMessage": "خطأ: {message}",
+  "@commonErrorWithMessage": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+
+  "authErrorInvalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة. تحقق من بياناتك وحاول مجدداً.",
+  "authErrorEmailNotConfirmed": "لم يتم تأكيد بريدك الإلكتروني بعد. تحقق من صندوق الوارد.",
+  "authErrorUserAlreadyRegistered": "يوجد حساب مرتبط بهذا البريد الإلكتروني بالفعل.",
+  "authErrorWeakPassword": "كلمة المرور ضعيفة جداً. استخدم 6 أحرف على الأقل.",
+  "authErrorInvalidEmail": "تنسيق البريد الإلكتروني غير صالح.",
+  "authErrorTokenExpired": "انتهت صلاحية الرمز أو أنه غير صالح. يرجى طلب رمز جديد.",
+  "authErrorRateLimit": "محاولات كثيرة جداً. انتظر لحظة قبل المحاولة مجدداً.",
+  "authErrorNetworkError": "لا يوجد اتصال. تحقق من شبكتك وحاول مجدداً.",
+  "authErrorSessionExpired": "انتهت جلستك. يرجى تسجيل الدخول مجدداً.",
+  "authErrorUnknown": "حدث خطأ غير متوقع. يرجى المحاولة مجدداً.",
+  "registerTitle": "إنشاء حساب",
+  "registerFillAllFields": "يرجى ملء جميع الحقول.",
+  "registerEmailsDontMatch": "عناوين البريد الإلكتروني غير متطابقة.",
+  "registerPasswordsDontMatch": "كلمتا المرور غير متطابقتين.",
+  "registerPasswordMinLength": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.",
+  "registerAccountCreated": "تم إنشاء الحساب بنجاح! ⚽ يرجى تسجيل الدخول.",
+  "registerConfirmEmailLabel": "تأكيد البريد الإلكتروني",
+  "registerConfirmPasswordLabel": "تأكيد كلمة المرور",
+  "registerSubmitButton": "إنشاء حساب",
+  "profileTitle": "ملفي الشخصي",
+  "profileOfficialCollector": "جامع رسمي 🌟",
+  "profileChangePasswordButton": "تحديث كلمة المرور",
+  "profileChangePasswordTitle": "تحديث كلمة المرور",
+  "profileNewPasswordLabel": "كلمة المرور الجديدة",
+  "profileConfirmNewPasswordLabel": "تأكيد كلمة المرور الجديدة",
+  "profilePasswordUpdatedSuccess": "تم تحديث كلمة المرور بنجاح.",
+  "profileLogoutButton": "تسجيل الخروج",
+  "profileLogoutSuccess": "تم تسجيل خروجك بنجاح.",
+  "profileUnknownUser": "مستخدم غير معروف",
+  "profileLogoutError": "خطأ في تسجيل الخروج: {message}",
+  "@profileLogoutError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "homeTitle": "ألبومي 26",
+  "homeProfileTooltip": "ملفي الشخصي",
+  "homeShareAll": "مشاركة القائمة الكاملة",
+  "homeShareMissingOnly": "المفقودة فقط",
+  "homeShareDuplicatesOnly": "المكررة فقط",
+  "homeGlobalProgressTitle": "التقدم الإجمالي",
+  "homeCollectedCount": "{collected} من {total} تم جمعها",
+  "@homeCollectedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeViewFullCollection": "عرض المجموعة الكاملة",
+  "homeTeamsTitle": "المنتخبات",
+  "homeSearchTeamsHint": "ابحث بالدولة أو الفريق...",
+  "homeNoResults": "لم يتم العثور على فرق",
+  "homeScanButton": "مسح ملصق",
+  "homeObtainedCount": "{collected} من {total} تم الحصول عليها",
+  "@homeObtainedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeProgressError": "خطأ",
+  "globalCollectionTitle": "المجموعة الكاملة",
+  "filterAll": "الكل",
+  "filterMissing": "المفقودة",
+  "filterDuplicates": "المكررة",
+  "filterSearchHint": "ابحث بالدولة أو الرمز أو الرقم...",
+  "stickerRemoveTitle": "إزالة الملصق؟",
+  "stickerRemoveConfirm": "هل أنت متأكد أنك تريد إزالة الملصق {stickerLabel} من ألبومك؟",
+  "@stickerRemoveConfirm": {
+    "placeholders": {
+      "stickerLabel": {}
+    }
+  },
+  "commonCancel": "إلغاء",
+  "commonRemove": "إزالة",
+  "commonDone": "تم",
+  "gridNoResults": "لم يتم العثور على ملصقات.",
+  "scannerViewScannedButton": "مراجعة {count} ملصقات تم مسحها",
+  "@scannerViewScannedButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerOverlayHint": "ضع ظهر الملصق في المنتصف هنا",
+  "pendingScansTitle": "الملصقات الممسوحة",
+  "pendingScansEmpty": "لم تقم بمسح أي ملصق بعد",
+  "pendingScansItemLabel": "ملصق: {code}",
+  "@pendingScansItemLabel": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "pendingScansSavedSuccess": "تمت إضافة {count} ملصقات إلى ألبومك! 🏆",
+  "@pendingScansSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "pendingScansSaveError": "خطأ في الحفظ: {message}",
+  "@pendingScansSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "shareHeader": "⚽ *قائمة تبادل ألبوم 26* 🏆",
+  "shareMissingSectionTitle": "❌ *المفقودة:*",
+  "shareDuplicatesSectionTitle": "🔁 *المكررة:*",
+  "shareNoneMissing": "لا شيء! 😎",
+  "shareNoDuplicates": "لا مكررات 😅",
+  "shareLetsTrade": "هل تريد التبادل؟ 👀🔥",
+  "shareSeparator": "--------------------------",
+  "forgotPasswordTitle": "استعادة الحساب",
+  "forgotPasswordDescription": "أدخل بريدك الإلكتروني وسنرسل لك رمزاً مكوناً من 6 أرقام لإعادة تعيين كلمة المرور.",
+  "forgotPasswordEmailLabel": "البريد الإلكتروني",
+  "forgotPasswordEmptyEmailError": "يرجى إدخال بريدك الإلكتروني.",
+  "forgotPasswordCodeSentSuccess": "تم إرسال الرمز. تحقق من صندوق الوارد.",
+  "forgotPasswordSendCodeButton": "إرسال الرمز",
+  "forgotPasswordStep2Description": "أدخل الرمز الذي أرسلناه إلى {email} وكلمة مرورك الجديدة.",
+  "@forgotPasswordStep2Description": {
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "forgotPasswordCodeInputLabel": "رمز مكون من 8 أرقام",
+  "forgotPasswordInvalidCodeError": "يجب أن يتكون الرمز من 6 أرقام بالضبط.",
+  "forgotPasswordNewPasswordLabel": "كلمة المرور الجديدة",
+  "forgotPasswordShortPasswordError": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.",
+  "forgotPasswordSavePasswordButton": "حفظ كلمة المرور",
+  "forgotPasswordPasswordUpdatedSuccess": "تم تحديث كلمة المرور بنجاح! 🏆",
+
+  "paywallTitle": "استمتع بدون إعلانات",
+  "paywallSubtitle": "جميع الميزات متاحة مجاناً. مع Pro تستمتع بكل شيء دون انقطاع.",
+  "paywallBenefitScanner": "ماسح بدون إعلانات بينية",
+  "paywallBenefitNoAds": "بدون إعلانات",
+  "paywallBenefitSync": "مزامنة سحابية مضمّنة",
+  "paywallSubscribeButton": "اشترك · {price}",
+  "@paywallSubscribeButton": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "paywallPackageMonthly": "شهري",
+  "paywallPackageAnnual": "سنوي",
+  "paywallPackageWeekly": "أسبوعي",
+  "paywallPackageLifetime": "مدى الحياة",
+  "paywallPackageTwoMonth": "كل شهرين",
+  "paywallPackageThreeMonth": "كل 3 أشهر",
+  "paywallPackageSixMonth": "كل 6 أشهر",
+  "paywallRestorePurchases": "استعادة المشتريات",
+  "paywallCancelAnytime": "إلغاء في أي وقت. بدون التزامات.",
+  "paywallLoadError": "تعذّر تحميل الخطط. تحقق من اتصالك.",
+  "paywallRetry": "إعادة المحاولة",
+  "paywallPurchaseError": "فشل الشراء. يرجى المحاولة مجدداً.",
+  "paywallRestoreError": "تعذّر استعادة المشتريات. يرجى المحاولة مجدداً.",
+  "paywallGuestTitle": "سجّل الدخول للاشتراك",
+  "paywallGuestBody": "Pro مرتبط بحسابك. سجّل الدخول أو أنشئ حساباً لفتح جميع الميزات.",
+  "paywallGuestSignInButton": "تسجيل الدخول",
+
+  "scannerDemoRemaining": "{count} مسح مجاني متبقٍ",
+  "@scannerDemoRemaining": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerDemoFinishedTitle": "لقد استخدمت مسحاتك الخمس المجانية",
+  "scannerDemoFinishedSubtitle": "اشترك لمسح ملصقات غير محدودة والاستمتاع بتجربة خالية من الإعلانات.",
+  "scannerDemoUnlockButton": "عرض خطط Pro",
+
+  "adDialogTitle": "محتوى مجاني",
+  "adDialogBody": "للمتابعة، شاهد إعلاناً قصيراً أو اشترك في Pro وانسَ الإعلانات للأبد.",
+  "adDialogWatchAd": "مشاهدة إعلان",
+  "adDialogGetPro": "الحصول على Pro",
+  "adDialogNotNow": "ليس الآن",
+
+  "scannerCameraInitError": "تعذّر تهيئة الكاميرا. تأكد من أن التطبيق يمتلك إذن الوصول إلى الكاميرا."
+}

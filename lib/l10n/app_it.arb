@@ -1,0 +1,200 @@
+{
+  "@@locale": "it",
+  "appTitle": "Album 26",
+  "authWelcomeTitle": "Benvenuto su Album 26",
+  "authEmailLabel": "Email",
+  "authPasswordLabel": "Password",
+  "authLoginButton": "ACCEDI",
+  "authContinueWith": "Oppure continua con",
+  "authContinueGoogle": "Continua con Google",
+  "authContinueApple": "Continua con Apple",
+  "authContinueGuest": "Continua come ospite",
+  "authNoAccountRegister": "Non hai un account? Registrati",
+  "authForgotPassword": "Hai dimenticato la password?",
+  "authResetPasswordEnterEmail": "Inserisci la tua email per recuperare la password.",
+  "authResetPasswordEmailSent": "Ti abbiamo inviato un'email per reimpostare la password.",
+  "authGuestMigratedSuccess": "I tuoi progressi come ospite sono stati trasferiti con successo al tuo nuovo account! 🏆",
+  "authGuestRemotePreserved": "Bentornato! La tua collezione cloud è stata ripristinata e i progressi locali sono stati scartati.",
+  "commonErrorWithMessage": "Errore: {message}",
+  "@commonErrorWithMessage": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+
+  "authErrorInvalidCredentials": "Email o password errati. Verifica i tuoi dati e riprova.",
+  "authErrorEmailNotConfirmed": "La tua email non è ancora stata confermata. Controlla la tua casella di posta.",
+  "authErrorUserAlreadyRegistered": "Esiste già un account con questa email.",
+  "authErrorWeakPassword": "La password è troppo debole. Usa almeno 6 caratteri.",
+  "authErrorInvalidEmail": "Il formato dell'indirizzo email non è valido.",
+  "authErrorTokenExpired": "Il codice è scaduto o non è valido. Richiedine uno nuovo.",
+  "authErrorRateLimit": "Troppi tentativi. Attendi un momento prima di riprovare.",
+  "authErrorNetworkError": "Nessuna connessione. Controlla la rete e riprova.",
+  "authErrorSessionExpired": "La tua sessione è scaduta. Accedi di nuovo.",
+  "authErrorUnknown": "Si è verificato un errore imprevisto. Riprova.",
+  "registerTitle": "Crea Account",
+  "registerFillAllFields": "Compila tutti i campi.",
+  "registerEmailsDontMatch": "Le email non corrispondono.",
+  "registerPasswordsDontMatch": "Le password non corrispondono.",
+  "registerPasswordMinLength": "La password deve contenere almeno 6 caratteri.",
+  "registerAccountCreated": "Account creato con successo! ⚽ Accedi ora.",
+  "registerConfirmEmailLabel": "Conferma email",
+  "registerConfirmPasswordLabel": "Conferma password",
+  "registerSubmitButton": "REGISTRATI",
+  "profileTitle": "Il Mio Profilo",
+  "profileOfficialCollector": "Collezionista Ufficiale 🌟",
+  "profileChangePasswordButton": "Aggiorna password",
+  "profileChangePasswordTitle": "Aggiorna password",
+  "profileNewPasswordLabel": "Nuova password",
+  "profileConfirmNewPasswordLabel": "Conferma nuova password",
+  "profilePasswordUpdatedSuccess": "Password aggiornata con successo.",
+  "profileLogoutButton": "Esci",
+  "profileLogoutSuccess": "Hai effettuato il logout con successo.",
+  "profileUnknownUser": "Utente sconosciuto",
+  "profileLogoutError": "Errore durante il logout: {message}",
+  "@profileLogoutError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "homeTitle": "Il Mio Album 26",
+  "homeProfileTooltip": "Il Mio Profilo",
+  "homeShareAll": "Condividi Lista Completa",
+  "homeShareMissingOnly": "Solo Mancanti",
+  "homeShareDuplicatesOnly": "Solo Doppioni",
+  "homeGlobalProgressTitle": "Progresso Globale",
+  "homeCollectedCount": "{collected} di {total} raccolte",
+  "@homeCollectedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeViewFullCollection": "Vedi Collezione Completa",
+  "homeTeamsTitle": "Squadre",
+  "homeSearchTeamsHint": "Cerca per paese o squadra...",
+  "homeNoResults": "Nessuna squadra trovata",
+  "homeScanButton": "Scansiona Figurina",
+  "homeObtainedCount": "{collected} di {total} ottenute",
+  "@homeObtainedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeProgressError": "Errore",
+  "globalCollectionTitle": "Collezione Completa",
+  "filterAll": "Tutte",
+  "filterMissing": "Mancanti",
+  "filterDuplicates": "Doppioni",
+  "filterSearchHint": "Cerca per paese, codice o numero...",
+  "stickerRemoveTitle": "Rimuovere figurina?",
+  "stickerRemoveConfirm": "Sei sicuro di voler rimuovere la figurina {stickerLabel} dal tuo album?",
+  "@stickerRemoveConfirm": {
+    "placeholders": {
+      "stickerLabel": {}
+    }
+  },
+  "commonCancel": "Annulla",
+  "commonRemove": "Rimuovi",
+  "commonDone": "FATTO",
+  "gridNoResults": "Nessuna figurina trovata.",
+  "scannerViewScannedButton": "Rivedi {count} figurine scansionate",
+  "@scannerViewScannedButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerOverlayHint": "Centra il retro della figurina qui",
+  "pendingScansTitle": "Figurine Scansionate",
+  "pendingScansEmpty": "Non hai ancora scansionato nessuna figurina",
+  "pendingScansItemLabel": "Figurina: {code}",
+  "@pendingScansItemLabel": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "pendingScansSavedSuccess": "{count} figurine aggiunte al tuo album! 🏆",
+  "@pendingScansSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "pendingScansSaveError": "Errore durante il salvataggio: {message}",
+  "@pendingScansSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "shareHeader": "⚽ *LISTA SCAMBI ALBUM 26* 🏆",
+  "shareMissingSectionTitle": "❌ *MANCANTI:*",
+  "shareDuplicatesSectionTitle": "🔁 *DOPPIONI:*",
+  "shareNoneMissing": "Nessuno! 😎",
+  "shareNoDuplicates": "Nessun doppione 😅",
+  "shareLetsTrade": "Vuoi scambiare? 👀🔥",
+  "shareSeparator": "--------------------------",
+  "forgotPasswordTitle": "Recupera Account",
+  "forgotPasswordDescription": "Inserisci la tua email e ti invieremo un codice di 6 cifre per reimpostare la password.",
+  "forgotPasswordEmailLabel": "Email",
+  "forgotPasswordEmptyEmailError": "Inserisci la tua email.",
+  "forgotPasswordCodeSentSuccess": "Codice inviato. Controlla la tua casella di posta.",
+  "forgotPasswordSendCodeButton": "INVIA CODICE",
+  "forgotPasswordStep2Description": "Inserisci il codice che abbiamo inviato a {email} e la tua nuova password.",
+  "@forgotPasswordStep2Description": {
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "forgotPasswordCodeInputLabel": "Codice a 8 cifre",
+  "forgotPasswordInvalidCodeError": "Il codice deve avere esattamente 6 cifre.",
+  "forgotPasswordNewPasswordLabel": "Nuova Password",
+  "forgotPasswordShortPasswordError": "La password deve contenere almeno 6 caratteri.",
+  "forgotPasswordSavePasswordButton": "SALVA PASSWORD",
+  "forgotPasswordPasswordUpdatedSuccess": "Password aggiornata con successo! 🏆",
+
+  "paywallTitle": "Goditi l'app senza pubblicità",
+  "paywallSubtitle": "Tutte le funzioni sono gratuite. Con Pro godi di tutto senza interruzioni.",
+  "paywallBenefitScanner": "Scanner senza annunci interstitial",
+  "paywallBenefitNoAds": "Nessuna pubblicità",
+  "paywallBenefitSync": "Sincronizzazione cloud inclusa",
+  "paywallSubscribeButton": "Abbonati · {price}",
+  "@paywallSubscribeButton": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "paywallPackageMonthly": "Mensile",
+  "paywallPackageAnnual": "Annuale",
+  "paywallPackageWeekly": "Settimanale",
+  "paywallPackageLifetime": "A vita",
+  "paywallPackageTwoMonth": "Ogni 2 mesi",
+  "paywallPackageThreeMonth": "Ogni 3 mesi",
+  "paywallPackageSixMonth": "Ogni 6 mesi",
+  "paywallRestorePurchases": "Ripristina acquisti",
+  "paywallCancelAnytime": "Annulla quando vuoi. Nessun impegno.",
+  "paywallLoadError": "Impossibile caricare i piani. Controlla la connessione.",
+  "paywallRetry": "Riprova",
+  "paywallPurchaseError": "Acquisto non riuscito. Riprova.",
+  "paywallRestoreError": "Impossibile ripristinare gli acquisti. Riprova.",
+  "paywallGuestTitle": "Accedi per abbonarti",
+  "paywallGuestBody": "Pro è collegato al tuo account. Accedi o crea un account per sbloccare tutte le funzioni.",
+  "paywallGuestSignInButton": "ACCEDI",
+
+  "scannerDemoRemaining": "{count} scansioni gratuite rimanenti",
+  "@scannerDemoRemaining": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerDemoFinishedTitle": "Hai usato le tue 5 scansioni gratuite",
+  "scannerDemoFinishedSubtitle": "Abbonati per scansionare figurine illimitate e vivere un'esperienza senza pubblicità.",
+  "scannerDemoUnlockButton": "Vedi Piani Pro",
+
+  "adDialogTitle": "Contenuto gratuito",
+  "adDialogBody": "Per continuare, guarda un breve annuncio o abbonati a Pro e dimentica la pubblicità per sempre.",
+  "adDialogWatchAd": "Guarda annuncio",
+  "adDialogGetPro": "Ottieni Pro",
+  "adDialogNotNow": "Non ora",
+
+  "scannerCameraInitError": "Impossibile inizializzare la fotocamera. Assicurati che l'app abbia il permesso di accedere alla fotocamera."
+}

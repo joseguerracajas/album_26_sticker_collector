@@ -3,3 +3,21 @@ template-arb-file: app_es.arb
 output-localization-file: app_localizations.dart
 output-class: AppLocalizations
 nullable-getter: false
+supported-locales:
+  - es
+  - en
+  - pt
+  - it
+  - de
+  - fr
+  - ar
+  - he
+  - tr
+  - fa
+  - zh
+  - ja
+  - ko
+  - hi
+  - ru
+  - nl
+  - pl

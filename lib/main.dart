@@ -55,6 +55,53 @@ class MainApp extends StatelessWidget {
           backgroundColor: Color(0xFF1E1E1E),
           elevation: 0,
         ),
+
+        // 1. Puntero y selección de texto (Dorado)
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: Colors.amber,
+          selectionColor: Colors.amber.withValues(alpha: 0.3),
+          selectionHandleColor: Colors.amber,
+        ),
+
+        // 2. Bordes y Fondo del TextField (Igual a tu LoginScreen)
+        inputDecorationTheme: InputDecorationTheme(
+          // Activa el fondo gris oscuro
+          filled: true,
+          fillColor: const Color(0xFF1E1E1E),
+
+          // Color del texto descriptivo por defecto
+          labelStyle: const TextStyle(color: Colors.grey),
+          // Color del texto cuando sube (animación al escribir)
+          floatingLabelStyle: const TextStyle(color: Colors.amber),
+
+          // Borde general oculto (Como lo tienes en tu código)
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide.none,
+          ),
+
+          // Borde inactivo oculto
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide.none,
+          ),
+
+          // Borde Dorado brillante al tocar y escribir
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(color: Colors.amber, width: 1.5),
+          ),
+
+          // Errores
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(color: Colors.redAccent, width: 1.0),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(color: Colors.redAccent, width: 2.0),
+          ),
+        ),
       ),
       home: const HomeScreen(),
     );

@@ -1,0 +1,200 @@
+{
+  "@@locale": "fa",
+  "appTitle": "آلبوم ۲۶",
+  "authWelcomeTitle": "به آلبوم ۲۶ خوش آمدید",
+  "authEmailLabel": "ایمیل",
+  "authPasswordLabel": "رمز عبور",
+  "authLoginButton": "ورود",
+  "authContinueWith": "یا ادامه با",
+  "authContinueGoogle": "ادامه با Google",
+  "authContinueApple": "ادامه با Apple",
+  "authContinueGuest": "ادامه به عنوان مهمان",
+  "authNoAccountRegister": "حساب ندارید؟ ثبت‌نام کنید",
+  "authForgotPassword": "رمز عبور را فراموش کردید؟",
+  "authResetPasswordEnterEmail": "ایمیل خود را برای بازیابی رمز عبور وارد کنید.",
+  "authResetPasswordEmailSent": "ایمیلی برای بازنشانی رمز عبور برای شما ارسال کردیم.",
+  "authGuestMigratedSuccess": "پیشرفت شما به عنوان مهمان با موفقیت به حساب جدیدتان منتقل شد! 🏆",
+  "authGuestRemotePreserved": "خوش برگشتید! مجموعه ابری شما بازیابی شد و پیشرفت محلی مهمان حذف شد.",
+  "commonErrorWithMessage": "خطا: {message}",
+  "@commonErrorWithMessage": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+
+  "authErrorInvalidCredentials": "ایمیل یا رمز عبور اشتباه است. اطلاعات خود را بررسی کرده و دوباره امتحان کنید.",
+  "authErrorEmailNotConfirmed": "ایمیل شما هنوز تأیید نشده است. صندوق ورودی خود را بررسی کنید.",
+  "authErrorUserAlreadyRegistered": "قبلاً یک حساب با این ایمیل وجود دارد.",
+  "authErrorWeakPassword": "رمز عبور خیلی ضعیف است. از حداقل ۶ کاراکتر استفاده کنید.",
+  "authErrorInvalidEmail": "فرمت آدرس ایمیل معتبر نیست.",
+  "authErrorTokenExpired": "کد منقضی شده یا نامعتبر است. لطفاً یک کد جدید درخواست کنید.",
+  "authErrorRateLimit": "تلاش‌های زیاد. لطفاً قبل از امتحان مجدد کمی صبر کنید.",
+  "authErrorNetworkError": "اتصال ندارید. شبکه خود را بررسی کرده و دوباره امتحان کنید.",
+  "authErrorSessionExpired": "جلسه شما منقضی شده است. لطفاً دوباره وارد شوید.",
+  "authErrorUnknown": "خطای غیرمنتظره‌ای رخ داد. لطفاً دوباره امتحان کنید.",
+  "registerTitle": "ایجاد حساب",
+  "registerFillAllFields": "لطفاً تمام فیلدها را پر کنید.",
+  "registerEmailsDontMatch": "ایمیل‌ها مطابقت ندارند.",
+  "registerPasswordsDontMatch": "رمزهای عبور مطابقت ندارند.",
+  "registerPasswordMinLength": "رمز عبور باید حداقل ۶ کاراکتر داشته باشد.",
+  "registerAccountCreated": "حساب با موفقیت ایجاد شد! ⚽ لطفاً وارد شوید.",
+  "registerConfirmEmailLabel": "تأیید ایمیل",
+  "registerConfirmPasswordLabel": "تأیید رمز عبور",
+  "registerSubmitButton": "ثبت‌نام",
+  "profileTitle": "پروفایل من",
+  "profileOfficialCollector": "کلکسیونر رسمی 🌟",
+  "profileChangePasswordButton": "به‌روزرسانی رمز عبور",
+  "profileChangePasswordTitle": "به‌روزرسانی رمز عبور",
+  "profileNewPasswordLabel": "رمز عبور جدید",
+  "profileConfirmNewPasswordLabel": "تأیید رمز عبور جدید",
+  "profilePasswordUpdatedSuccess": "رمز عبور با موفقیت به‌روزرسانی شد.",
+  "profileLogoutButton": "خروج",
+  "profileLogoutSuccess": "با موفقیت خارج شدید.",
+  "profileUnknownUser": "کاربر ناشناس",
+  "profileLogoutError": "خطا در خروج: {message}",
+  "@profileLogoutError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "homeTitle": "آلبوم من ۲۶",
+  "homeProfileTooltip": "پروفایل من",
+  "homeShareAll": "اشتراک‌گذاری لیست کامل",
+  "homeShareMissingOnly": "فقط گم‌شده‌ها",
+  "homeShareDuplicatesOnly": "فقط تکراری‌ها",
+  "homeGlobalProgressTitle": "پیشرفت کلی",
+  "homeCollectedCount": "{collected} از {total} جمع‌آوری شده",
+  "@homeCollectedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeViewFullCollection": "مشاهده مجموعه کامل",
+  "homeTeamsTitle": "تیم‌ها",
+  "homeSearchTeamsHint": "جستجو بر اساس کشور یا تیم...",
+  "homeNoResults": "تیمی یافت نشد",
+  "homeScanButton": "اسکن برچسب",
+  "homeObtainedCount": "{collected} از {total} به دست آمده",
+  "@homeObtainedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeProgressError": "خطا",
+  "globalCollectionTitle": "مجموعه کامل",
+  "filterAll": "همه",
+  "filterMissing": "گم‌شده‌ها",
+  "filterDuplicates": "تکراری‌ها",
+  "filterSearchHint": "جستجو بر اساس کشور، کد یا شماره...",
+  "stickerRemoveTitle": "حذف برچسب؟",
+  "stickerRemoveConfirm": "آیا مطمئنید که می‌خواهید برچسب {stickerLabel} را از آلبوم خود حذف کنید؟",
+  "@stickerRemoveConfirm": {
+    "placeholders": {
+      "stickerLabel": {}
+    }
+  },
+  "commonCancel": "لغو",
+  "commonRemove": "حذف",
+  "commonDone": "تمام",
+  "gridNoResults": "برچسبی یافت نشد.",
+  "scannerViewScannedButton": "مرور {count} برچسب اسکن‌شده",
+  "@scannerViewScannedButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerOverlayHint": "پشت برچسب را اینجا وسط قرار دهید",
+  "pendingScansTitle": "برچسب‌های اسکن‌شده",
+  "pendingScansEmpty": "هنوز هیچ برچسبی اسکن نکرده‌اید",
+  "pendingScansItemLabel": "برچسب: {code}",
+  "@pendingScansItemLabel": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "pendingScansSavedSuccess": "{count} برچسب به آلبوم شما اضافه شد! 🏆",
+  "@pendingScansSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "pendingScansSaveError": "خطا در ذخیره‌سازی: {message}",
+  "@pendingScansSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "shareHeader": "⚽ *لیست تبادل آلبوم ۲۶* 🏆",
+  "shareMissingSectionTitle": "❌ *گم‌شده‌ها:*",
+  "shareDuplicatesSectionTitle": "🔁 *تکراری‌ها:*",
+  "shareNoneMissing": "هیچ‌کدام! 😎",
+  "shareNoDuplicates": "تکراری ندارم 😅",
+  "shareLetsTrade": "می‌خواهید تبادل کنید؟ 👀🔥",
+  "shareSeparator": "--------------------------",
+  "forgotPasswordTitle": "بازیابی حساب",
+  "forgotPasswordDescription": "ایمیل خود را وارد کنید تا کد ۶ رقمی برای بازنشانی رمز عبور برایتان ارسال کنیم.",
+  "forgotPasswordEmailLabel": "ایمیل",
+  "forgotPasswordEmptyEmailError": "لطفاً آدرس ایمیل خود را وارد کنید.",
+  "forgotPasswordCodeSentSuccess": "کد ارسال شد. صندوق ورودی خود را بررسی کنید.",
+  "forgotPasswordSendCodeButton": "ارسال کد",
+  "forgotPasswordStep2Description": "کدی که به {email} ارسال کردیم و رمز عبور جدیدتان را وارد کنید.",
+  "@forgotPasswordStep2Description": {
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "forgotPasswordCodeInputLabel": "کد ۸ رقمی",
+  "forgotPasswordInvalidCodeError": "کد باید دقیقاً ۶ رقم داشته باشد.",
+  "forgotPasswordNewPasswordLabel": "رمز عبور جدید",
+  "forgotPasswordShortPasswordError": "رمز عبور باید حداقل ۶ کاراکتر داشته باشد.",
+  "forgotPasswordSavePasswordButton": "ذخیره رمز عبور",
+  "forgotPasswordPasswordUpdatedSuccess": "رمز عبور با موفقیت به‌روزرسانی شد! 🏆",
+
+  "paywallTitle": "بدون تبلیغات لذت ببرید",
+  "paywallSubtitle": "تمام ویژگی‌ها رایگان هستند. با Pro همه چیز را بدون وقفه لذت ببرید.",
+  "paywallBenefitScanner": "اسکنر بدون تبلیغات میانی",
+  "paywallBenefitNoAds": "بدون تبلیغات",
+  "paywallBenefitSync": "همگام‌سازی ابری شامل",
+  "paywallSubscribeButton": "اشتراک · {price}",
+  "@paywallSubscribeButton": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "paywallPackageMonthly": "ماهانه",
+  "paywallPackageAnnual": "سالانه",
+  "paywallPackageWeekly": "هفتگی",
+  "paywallPackageLifetime": "مادام‌العمر",
+  "paywallPackageTwoMonth": "هر ۲ ماه",
+  "paywallPackageThreeMonth": "هر ۳ ماه",
+  "paywallPackageSixMonth": "هر ۶ ماه",
+  "paywallRestorePurchases": "بازیابی خریدها",
+  "paywallCancelAnytime": "هر زمان لغو کنید. بدون تعهد.",
+  "paywallLoadError": "بارگذاری طرح‌ها امکان‌پذیر نیست. اتصال خود را بررسی کنید.",
+  "paywallRetry": "تلاش مجدد",
+  "paywallPurchaseError": "خرید ناموفق بود. لطفاً دوباره امتحان کنید.",
+  "paywallRestoreError": "بازیابی خریدها امکان‌پذیر نیست. لطفاً دوباره امتحان کنید.",
+  "paywallGuestTitle": "برای اشتراک وارد شوید",
+  "paywallGuestBody": "Pro به حساب شما مرتبط است. برای باز کردن همه ویژگی‌ها وارد شوید یا حساب ایجاد کنید.",
+  "paywallGuestSignInButton": "ورود",
+
+  "scannerDemoRemaining": "{count} اسکن رایگان باقی‌مانده",
+  "@scannerDemoRemaining": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerDemoFinishedTitle": "۵ اسکن رایگان خود را استفاده کردید",
+  "scannerDemoFinishedSubtitle": "برای اسکن نامحدود برچسب و تجربه بدون تبلیغات اشتراک بگیرید.",
+  "scannerDemoUnlockButton": "مشاهده طرح‌های Pro",
+
+  "adDialogTitle": "محتوای رایگان",
+  "adDialogBody": "برای ادامه، یک تبلیغ کوتاه تماشا کنید یا در Pro مشترک شوید و تبلیغات را برای همیشه فراموش کنید.",
+  "adDialogWatchAd": "تماشای تبلیغ",
+  "adDialogGetPro": "دریافت Pro",
+  "adDialogNotNow": "نه الان",
+
+  "scannerCameraInitError": "دوربین قابل راه‌اندازی نیست. مطمئن شوید که برنامه دسترسی به دوربین را دارد."
+}

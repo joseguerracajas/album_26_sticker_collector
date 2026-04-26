@@ -1,0 +1,200 @@
+{
+  "@@locale": "hi",
+  "appTitle": "एल्बम 26",
+  "authWelcomeTitle": "एल्बम 26 में आपका स्वागत है",
+  "authEmailLabel": "ईमेल",
+  "authPasswordLabel": "पासवर्ड",
+  "authLoginButton": "साइन इन करें",
+  "authContinueWith": "या इसके साथ जारी रखें",
+  "authContinueGoogle": "Google के साथ जारी रखें",
+  "authContinueApple": "Apple के साथ जारी रखें",
+  "authContinueGuest": "अतिथि के रूप में जारी रखें",
+  "authNoAccountRegister": "खाता नहीं है? साइन अप करें",
+  "authForgotPassword": "पासवर्ड भूल गए?",
+  "authResetPasswordEnterEmail": "पासवर्ड पुनः प्राप्त करने के लिए अपना ईमेल दर्ज करें।",
+  "authResetPasswordEmailSent": "हमने आपके पासवर्ड को रीसेट करने के लिए एक ईमेल भेजा है।",
+  "authGuestMigratedSuccess": "आपकी अतिथि प्रगति सफलतापूर्वक आपके नए खाते में स्थानांतरित कर दी गई! 🏆",
+  "authGuestRemotePreserved": "वापस स्वागत है! आपका क्लाउड संग्रह पुनर्स्थापित कर दिया गया है और स्थानीय अतिथि प्रगति हटा दी गई है।",
+  "commonErrorWithMessage": "त्रुटि: {message}",
+  "@commonErrorWithMessage": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+
+  "authErrorInvalidCredentials": "गलत ईमेल या पासवर्ड। अपनी जानकारी जांचें और पुनः प्रयास करें।",
+  "authErrorEmailNotConfirmed": "आपका ईमेल अभी तक पुष्टि नहीं हुआ है। अपना इनबॉक्स जांचें।",
+  "authErrorUserAlreadyRegistered": "उस ईमेल से पहले से एक खाता मौजूद है।",
+  "authErrorWeakPassword": "पासवर्ड बहुत कमजोर है। कम से कम 6 अक्षरों का उपयोग करें।",
+  "authErrorInvalidEmail": "ईमेल पते का प्रारूप मान्य नहीं है।",
+  "authErrorTokenExpired": "कोड समाप्त हो गया है या अमान्य है। कृपया नया कोड मांगें।",
+  "authErrorRateLimit": "बहुत अधिक प्रयास। पुनः प्रयास करने से पहले थोड़ी प्रतीक्षा करें।",
+  "authErrorNetworkError": "कोई कनेक्शन नहीं। अपना नेटवर्क जांचें और पुनः प्रयास करें।",
+  "authErrorSessionExpired": "आपका सत्र समाप्त हो गया है। कृपया फिर से साइन इन करें।",
+  "authErrorUnknown": "एक अप्रत्याशित त्रुटि हुई। कृपया पुनः प्रयास करें।",
+  "registerTitle": "खाता बनाएं",
+  "registerFillAllFields": "कृपया सभी फ़ील्ड भरें।",
+  "registerEmailsDontMatch": "ईमेल मेल नहीं खाते।",
+  "registerPasswordsDontMatch": "पासवर्ड मेल नहीं खाते।",
+  "registerPasswordMinLength": "पासवर्ड कम से कम 6 अक्षरों का होना चाहिए।",
+  "registerAccountCreated": "खाता सफलतापूर्वक बनाया गया! ⚽ कृपया साइन इन करें।",
+  "registerConfirmEmailLabel": "ईमेल की पुष्टि करें",
+  "registerConfirmPasswordLabel": "पासवर्ड की पुष्टि करें",
+  "registerSubmitButton": "साइन अप करें",
+  "profileTitle": "मेरी प्रोफ़ाइल",
+  "profileOfficialCollector": "आधिकारिक संग्रहकर्ता 🌟",
+  "profileChangePasswordButton": "पासवर्ड अपडेट करें",
+  "profileChangePasswordTitle": "पासवर्ड अपडेट करें",
+  "profileNewPasswordLabel": "नया पासवर्ड",
+  "profileConfirmNewPasswordLabel": "नए पासवर्ड की पुष्टि करें",
+  "profilePasswordUpdatedSuccess": "पासवर्ड सफलतापूर्वक अपडेट किया गया।",
+  "profileLogoutButton": "साइन आउट करें",
+  "profileLogoutSuccess": "आप सफलतापूर्वक साइन आउट हो गए।",
+  "profileUnknownUser": "अज्ञात उपयोगकर्ता",
+  "profileLogoutError": "साइन आउट करने में त्रुटि: {message}",
+  "@profileLogoutError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "homeTitle": "मेरा एल्बम 26",
+  "homeProfileTooltip": "मेरी प्रोफ़ाइल",
+  "homeShareAll": "पूरी सूची शेयर करें",
+  "homeShareMissingOnly": "केवल गायब",
+  "homeShareDuplicatesOnly": "केवल डुप्लिकेट",
+  "homeGlobalProgressTitle": "समग्र प्रगति",
+  "homeCollectedCount": "{total} में से {collected} एकत्रित",
+  "@homeCollectedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeViewFullCollection": "पूरा संग्रह देखें",
+  "homeTeamsTitle": "टीमें",
+  "homeSearchTeamsHint": "देश या टीम से खोजें...",
+  "homeNoResults": "कोई टीम नहीं मिली",
+  "homeScanButton": "स्टिकर स्कैन करें",
+  "homeObtainedCount": "{total} में से {collected} प्राप्त",
+  "@homeObtainedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeProgressError": "त्रुटि",
+  "globalCollectionTitle": "पूरा संग्रह",
+  "filterAll": "सभी",
+  "filterMissing": "गायब",
+  "filterDuplicates": "डुप्लिकेट",
+  "filterSearchHint": "देश, कोड या नंबर से खोजें...",
+  "stickerRemoveTitle": "स्टिकर हटाएं?",
+  "stickerRemoveConfirm": "क्या आप अपने एल्बम से स्टिकर {stickerLabel} हटाना चाहते हैं?",
+  "@stickerRemoveConfirm": {
+    "placeholders": {
+      "stickerLabel": {}
+    }
+  },
+  "commonCancel": "रद्द करें",
+  "commonRemove": "हटाएं",
+  "commonDone": "हो गया",
+  "gridNoResults": "कोई स्टिकर नहीं मिला।",
+  "scannerViewScannedButton": "स्कैन किए गए {count} स्टिकर देखें",
+  "@scannerViewScannedButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerOverlayHint": "यहाँ स्टिकर का पिछला हिस्सा केंद्र में रखें",
+  "pendingScansTitle": "स्कैन किए गए स्टिकर",
+  "pendingScansEmpty": "आपने अभी तक कोई स्टिकर स्कैन नहीं किया",
+  "pendingScansItemLabel": "स्टिकर: {code}",
+  "@pendingScansItemLabel": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "pendingScansSavedSuccess": "{count} स्टिकर आपके एल्बम में जोड़े गए! 🏆",
+  "@pendingScansSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "pendingScansSaveError": "सहेजने में त्रुटि: {message}",
+  "@pendingScansSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "shareHeader": "⚽ *एल्बम 26 अदला-बदली सूची* 🏆",
+  "shareMissingSectionTitle": "❌ *गायब:*",
+  "shareDuplicatesSectionTitle": "🔁 *डुप्लिकेट:*",
+  "shareNoneMissing": "कुछ नहीं! 😎",
+  "shareNoDuplicates": "कोई डुप्लिकेट नहीं 😅",
+  "shareLetsTrade": "अदला-बदली करना चाहते हैं? 👀🔥",
+  "shareSeparator": "--------------------------",
+  "forgotPasswordTitle": "खाता पुनर्प्राप्त करें",
+  "forgotPasswordDescription": "अपना ईमेल दर्ज करें और हम आपको पासवर्ड रीसेट करने के लिए 6 अंकों का कोड भेजेंगे।",
+  "forgotPasswordEmailLabel": "ईमेल",
+  "forgotPasswordEmptyEmailError": "कृपया अपना ईमेल पता दर्ज करें।",
+  "forgotPasswordCodeSentSuccess": "कोड भेजा गया। अपना इनबॉक्स जांचें।",
+  "forgotPasswordSendCodeButton": "कोड भेजें",
+  "forgotPasswordStep2Description": "वह कोड दर्ज करें जो हमने {email} पर भेजा है और अपना नया पासवर्ड।",
+  "@forgotPasswordStep2Description": {
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "forgotPasswordCodeInputLabel": "8 अंकों का कोड",
+  "forgotPasswordInvalidCodeError": "कोड में ठीक 6 अंक होने चाहिए।",
+  "forgotPasswordNewPasswordLabel": "नया पासवर्ड",
+  "forgotPasswordShortPasswordError": "पासवर्ड कम से कम 6 अक्षरों का होना चाहिए।",
+  "forgotPasswordSavePasswordButton": "पासवर्ड सहेजें",
+  "forgotPasswordPasswordUpdatedSuccess": "पासवर्ड सफलतापूर्वक अपडेट किया गया! 🏆",
+
+  "paywallTitle": "विज्ञापन के बिना आनंद लें",
+  "paywallSubtitle": "सभी सुविधाएं मुफ्त में उपलब्ध हैं। Pro के साथ बिना रुकावट के सब कुछ आनंद लें।",
+  "paywallBenefitScanner": "इंटरस्टिशियल विज्ञापनों के बिना स्कैनर",
+  "paywallBenefitNoAds": "कोई विज्ञापन नहीं",
+  "paywallBenefitSync": "क्लाउड सिंक शामिल",
+  "paywallSubscribeButton": "सदस्यता लें · {price}",
+  "@paywallSubscribeButton": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "paywallPackageMonthly": "मासिक",
+  "paywallPackageAnnual": "वार्षिक",
+  "paywallPackageWeekly": "साप्ताहिक",
+  "paywallPackageLifetime": "आजीवन",
+  "paywallPackageTwoMonth": "हर 2 महीने",
+  "paywallPackageThreeMonth": "हर 3 महीने",
+  "paywallPackageSixMonth": "हर 6 महीने",
+  "paywallRestorePurchases": "खरीदारी पुनर्स्थापित करें",
+  "paywallCancelAnytime": "कभी भी रद्द करें। कोई प्रतिबद्धता नहीं।",
+  "paywallLoadError": "प्लान लोड नहीं हो सके। अपना कनेक्शन जांचें।",
+  "paywallRetry": "पुनः प्रयास करें",
+  "paywallPurchaseError": "खरीदारी विफल। कृपया पुनः प्रयास करें।",
+  "paywallRestoreError": "खरीदारी पुनर्स्थापित नहीं हो सकी। कृपया पुनः प्रयास करें।",
+  "paywallGuestTitle": "सदस्यता लेने के लिए साइन इन करें",
+  "paywallGuestBody": "Pro आपके खाते से जुड़ा है। सभी सुविधाएं अनलॉक करने के लिए साइन इन करें या खाता बनाएं।",
+  "paywallGuestSignInButton": "साइन इन करें",
+
+  "scannerDemoRemaining": "{count} मुफ्त स्कैन शेष",
+  "@scannerDemoRemaining": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerDemoFinishedTitle": "आपने अपने 5 मुफ्त स्कैन उपयोग कर लिए",
+  "scannerDemoFinishedSubtitle": "असीमित स्टिकर स्कैन और विज्ञापन-मुक्त अनुभव के लिए सदस्यता लें।",
+  "scannerDemoUnlockButton": "Pro प्लान देखें",
+
+  "adDialogTitle": "मुफ्त सामग्री",
+  "adDialogBody": "जारी रखने के लिए, एक छोटा विज्ञापन देखें या Pro की सदस्यता लें और विज्ञापनों को हमेशा के लिए भूल जाएं।",
+  "adDialogWatchAd": "विज्ञापन देखें",
+  "adDialogGetPro": "Pro प्राप्त करें",
+  "adDialogNotNow": "अभी नहीं",
+
+  "scannerCameraInitError": "कैमरा प्रारंभ नहीं हो सका। सुनिश्चित करें कि ऐप के पास कैमरा अनुमति है।"
+}

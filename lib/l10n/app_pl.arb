@@ -1,0 +1,200 @@
+{
+  "@@locale": "pl",
+  "appTitle": "Album 26",
+  "authWelcomeTitle": "Witaj w Albumie 26",
+  "authEmailLabel": "E-mail",
+  "authPasswordLabel": "Hasło",
+  "authLoginButton": "ZALOGUJ SIĘ",
+  "authContinueWith": "Lub kontynuuj z",
+  "authContinueGoogle": "Kontynuuj z Google",
+  "authContinueApple": "Kontynuuj z Apple",
+  "authContinueGuest": "Kontynuuj jako gość",
+  "authNoAccountRegister": "Nie masz konta? Zarejestruj się",
+  "authForgotPassword": "Nie pamiętasz hasła?",
+  "authResetPasswordEnterEmail": "Wpisz swój adres e-mail, aby odzyskać hasło.",
+  "authResetPasswordEmailSent": "Wysłaliśmy Ci wiadomość e-mail do zresetowania hasła.",
+  "authGuestMigratedSuccess": "Twój postęp jako gość został pomyślnie przeniesiony na nowe konto! 🏆",
+  "authGuestRemotePreserved": "Witaj ponownie! Twoja kolekcja z chmury została przywrócona, a lokalny postęp gościa został odrzucony.",
+  "commonErrorWithMessage": "Błąd: {message}",
+  "@commonErrorWithMessage": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+
+  "authErrorInvalidCredentials": "Nieprawidłowy adres e-mail lub hasło. Sprawdź dane i spróbuj ponownie.",
+  "authErrorEmailNotConfirmed": "Twój adres e-mail nie został jeszcze potwierdzony. Sprawdź skrzynkę odbiorczą.",
+  "authErrorUserAlreadyRegistered": "Konto z tym adresem e-mail już istnieje.",
+  "authErrorWeakPassword": "Hasło jest zbyt słabe. Użyj co najmniej 6 znaków.",
+  "authErrorInvalidEmail": "Format adresu e-mail jest nieprawidłowy.",
+  "authErrorTokenExpired": "Kod wygasł lub jest nieważny. Poproś o nowy.",
+  "authErrorRateLimit": "Zbyt wiele prób. Poczekaj chwilę przed ponowną próbą.",
+  "authErrorNetworkError": "Brak połączenia. Sprawdź sieć i spróbuj ponownie.",
+  "authErrorSessionExpired": "Twoja sesja wygasła. Zaloguj się ponownie.",
+  "authErrorUnknown": "Wystąpił nieoczekiwany błąd. Spróbuj ponownie.",
+  "registerTitle": "Utwórz konto",
+  "registerFillAllFields": "Proszę wypełnić wszystkie pola.",
+  "registerEmailsDontMatch": "Adresy e-mail nie są zgodne.",
+  "registerPasswordsDontMatch": "Hasła nie są zgodne.",
+  "registerPasswordMinLength": "Hasło musi mieć co najmniej 6 znaków.",
+  "registerAccountCreated": "Konto zostało pomyślnie utworzone! ⚽ Zaloguj się.",
+  "registerConfirmEmailLabel": "Potwierdź e-mail",
+  "registerConfirmPasswordLabel": "Potwierdź hasło",
+  "registerSubmitButton": "ZAREJESTRUJ SIĘ",
+  "profileTitle": "Mój profil",
+  "profileOfficialCollector": "Oficjalny kolekcjoner 🌟",
+  "profileChangePasswordButton": "Zaktualizuj hasło",
+  "profileChangePasswordTitle": "Zaktualizuj hasło",
+  "profileNewPasswordLabel": "Nowe hasło",
+  "profileConfirmNewPasswordLabel": "Potwierdź nowe hasło",
+  "profilePasswordUpdatedSuccess": "Hasło zostało pomyślnie zaktualizowane.",
+  "profileLogoutButton": "Wyloguj się",
+  "profileLogoutSuccess": "Zostałeś pomyślnie wylogowany.",
+  "profileUnknownUser": "Nieznany użytkownik",
+  "profileLogoutError": "Błąd podczas wylogowywania: {message}",
+  "@profileLogoutError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "homeTitle": "Mój Album 26",
+  "homeProfileTooltip": "Mój profil",
+  "homeShareAll": "Udostępnij pełną listę",
+  "homeShareMissingOnly": "Tylko brakujące",
+  "homeShareDuplicatesOnly": "Tylko duplikaty",
+  "homeGlobalProgressTitle": "Ogólny postęp",
+  "homeCollectedCount": "{collected} z {total} zebranych",
+  "@homeCollectedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeViewFullCollection": "Zobacz pełną kolekcję",
+  "homeTeamsTitle": "Drużyny",
+  "homeSearchTeamsHint": "Szukaj po kraju lub drużynie...",
+  "homeNoResults": "Nie znaleziono drużyn",
+  "homeScanButton": "Skanuj naklejkę",
+  "homeObtainedCount": "{collected} z {total} uzyskanych",
+  "@homeObtainedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeProgressError": "Błąd",
+  "globalCollectionTitle": "Pełna kolekcja",
+  "filterAll": "Wszystkie",
+  "filterMissing": "Brakujące",
+  "filterDuplicates": "Duplikaty",
+  "filterSearchHint": "Szukaj po kraju, kodzie lub numerze...",
+  "stickerRemoveTitle": "Usunąć naklejkę?",
+  "stickerRemoveConfirm": "Czy na pewno chcesz usunąć naklejkę {stickerLabel} ze swojego albumu?",
+  "@stickerRemoveConfirm": {
+    "placeholders": {
+      "stickerLabel": {}
+    }
+  },
+  "commonCancel": "Anuluj",
+  "commonRemove": "Usuń",
+  "commonDone": "GOTOWE",
+  "gridNoResults": "Nie znaleziono naklejek.",
+  "scannerViewScannedButton": "Przejrzyj {count} zeskanowane naklejki",
+  "@scannerViewScannedButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerOverlayHint": "Wyśrodkuj tylną część naklejki tutaj",
+  "pendingScansTitle": "Zeskanowane naklejki",
+  "pendingScansEmpty": "Nie zeskanowałeś jeszcze żadnej naklejki",
+  "pendingScansItemLabel": "Naklejka: {code}",
+  "@pendingScansItemLabel": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "pendingScansSavedSuccess": "{count} naklejek dodanych do Twojego albumu! 🏆",
+  "@pendingScansSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "pendingScansSaveError": "Błąd podczas zapisywania: {message}",
+  "@pendingScansSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "shareHeader": "⚽ *LISTA WYMIAN ALBUM 26* 🏆",
+  "shareMissingSectionTitle": "❌ *BRAKUJĄCE:*",
+  "shareDuplicatesSectionTitle": "🔁 *DUPLIKATY:*",
+  "shareNoneMissing": "Żadnych! 😎",
+  "shareNoDuplicates": "Brak duplikatów 😅",
+  "shareLetsTrade": "Chcesz się wymienić? 👀🔥",
+  "shareSeparator": "--------------------------",
+  "forgotPasswordTitle": "Odzyskaj konto",
+  "forgotPasswordDescription": "Podaj swój adres e-mail, a wyślemy Ci 6-cyfrowy kod do zresetowania hasła.",
+  "forgotPasswordEmailLabel": "E-mail",
+  "forgotPasswordEmptyEmailError": "Proszę wpisać adres e-mail.",
+  "forgotPasswordCodeSentSuccess": "Kod wysłany. Sprawdź skrzynkę odbiorczą.",
+  "forgotPasswordSendCodeButton": "WYŚLIJ KOD",
+  "forgotPasswordStep2Description": "Wpisz kod, który wysłaliśmy na {email} i nowe hasło.",
+  "@forgotPasswordStep2Description": {
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "forgotPasswordCodeInputLabel": "8-cyfrowy kod",
+  "forgotPasswordInvalidCodeError": "Kod musi składać się z dokładnie 6 cyfr.",
+  "forgotPasswordNewPasswordLabel": "Nowe hasło",
+  "forgotPasswordShortPasswordError": "Hasło musi mieć co najmniej 6 znaków.",
+  "forgotPasswordSavePasswordButton": "ZAPISZ HASŁO",
+  "forgotPasswordPasswordUpdatedSuccess": "Hasło zostało pomyślnie zaktualizowane! 🏆",
+
+  "paywallTitle": "Ciesz się bez reklam",
+  "paywallSubtitle": "Wszystkie funkcje są dostępne bezpłatnie. Z Pro ciesz się wszystkim bez przerw.",
+  "paywallBenefitScanner": "Skaner bez reklam pełnoekranowych",
+  "paywallBenefitNoAds": "Bez reklam",
+  "paywallBenefitSync": "Synchronizacja z chmurą w zestawie",
+  "paywallSubscribeButton": "Subskrybuj · {price}",
+  "@paywallSubscribeButton": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "paywallPackageMonthly": "Miesięcznie",
+  "paywallPackageAnnual": "Rocznie",
+  "paywallPackageWeekly": "Tygodniowo",
+  "paywallPackageLifetime": "Dożywotnio",
+  "paywallPackageTwoMonth": "Co 2 miesiące",
+  "paywallPackageThreeMonth": "Co 3 miesiące",
+  "paywallPackageSixMonth": "Co 6 miesięcy",
+  "paywallRestorePurchases": "Przywróć zakupy",
+  "paywallCancelAnytime": "Anuluj w dowolnym momencie. Bez zobowiązań.",
+  "paywallLoadError": "Nie można załadować planów. Sprawdź połączenie.",
+  "paywallRetry": "Spróbuj ponownie",
+  "paywallPurchaseError": "Zakup nie powiódł się. Spróbuj ponownie.",
+  "paywallRestoreError": "Nie można przywrócić zakupów. Spróbuj ponownie.",
+  "paywallGuestTitle": "Zaloguj się, aby subskrybować",
+  "paywallGuestBody": "Pro jest powiązany z Twoim kontem. Zaloguj się lub utwórz konto, aby odblokować wszystkie funkcje.",
+  "paywallGuestSignInButton": "ZALOGUJ SIĘ",
+
+  "scannerDemoRemaining": "Pozostało {count} darmowych skanowań",
+  "@scannerDemoRemaining": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerDemoFinishedTitle": "Wykorzystałeś swoje 5 darmowych skanowań",
+  "scannerDemoFinishedSubtitle": "Subskrybuj, aby skanować nieograniczoną liczbę naklejek i cieszyć się doświadczeniem bez reklam.",
+  "scannerDemoUnlockButton": "Zobacz plany Pro",
+
+  "adDialogTitle": "Darmowe treści",
+  "adDialogBody": "Aby kontynuować, obejrzyj krótką reklamę lub subskrybuj Pro i zapomnij o reklamach na zawsze.",
+  "adDialogWatchAd": "Obejrzyj reklamę",
+  "adDialogGetPro": "Zdobądź Pro",
+  "adDialogNotNow": "Nie teraz",
+
+  "scannerCameraInitError": "Nie można zainicjować kamery. Upewnij się, że aplikacja ma uprawnienia do kamery."
+}

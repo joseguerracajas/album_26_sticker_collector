@@ -1,0 +1,200 @@
+{
+  "@@locale": "pt",
+  "appTitle": "Álbum 26",
+  "authWelcomeTitle": "Bem-vindo ao Álbum 26",
+  "authEmailLabel": "E-mail",
+  "authPasswordLabel": "Senha",
+  "authLoginButton": "ENTRAR",
+  "authContinueWith": "Ou continue com",
+  "authContinueGoogle": "Continuar com Google",
+  "authContinueApple": "Continuar com Apple",
+  "authContinueGuest": "Continuar como convidado",
+  "authNoAccountRegister": "Não tem conta? Cadastre-se",
+  "authForgotPassword": "Esqueceu sua senha?",
+  "authResetPasswordEnterEmail": "Digite seu e-mail para recuperar a senha.",
+  "authResetPasswordEmailSent": "Enviamos um e-mail para redefinir sua senha.",
+  "authGuestMigratedSuccess": "Seu progresso como convidado foi transferido com sucesso para sua nova conta! 🏆",
+  "authGuestRemotePreserved": "Bem-vindo de volta! Sua coleção da nuvem foi restaurada e o progresso local foi descartado.",
+  "commonErrorWithMessage": "Erro: {message}",
+  "@commonErrorWithMessage": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+
+  "authErrorInvalidCredentials": "E-mail ou senha incorretos. Verifique seus dados e tente novamente.",
+  "authErrorEmailNotConfirmed": "Seu e-mail ainda não foi confirmado. Verifique sua caixa de entrada.",
+  "authErrorUserAlreadyRegistered": "Já existe uma conta com esse e-mail.",
+  "authErrorWeakPassword": "A senha é muito fraca. Use pelo menos 6 caracteres.",
+  "authErrorInvalidEmail": "O formato do e-mail não é válido.",
+  "authErrorTokenExpired": "O código expirou ou é inválido. Solicite um novo.",
+  "authErrorRateLimit": "Muitas tentativas. Aguarde um momento antes de tentar novamente.",
+  "authErrorNetworkError": "Sem conexão. Verifique sua rede e tente novamente.",
+  "authErrorSessionExpired": "Sua sessão expirou. Faça login novamente.",
+  "authErrorUnknown": "Ocorreu um erro inesperado. Tente novamente.",
+  "registerTitle": "Criar Conta",
+  "registerFillAllFields": "Por favor, preencha todos os campos.",
+  "registerEmailsDontMatch": "Os e-mails não coincidem.",
+  "registerPasswordsDontMatch": "As senhas não coincidem.",
+  "registerPasswordMinLength": "A senha deve ter pelo menos 6 caracteres.",
+  "registerAccountCreated": "Conta criada com sucesso! ⚽ Faça login agora.",
+  "registerConfirmEmailLabel": "Confirmar e-mail",
+  "registerConfirmPasswordLabel": "Confirmar senha",
+  "registerSubmitButton": "CADASTRAR",
+  "profileTitle": "Meu Perfil",
+  "profileOfficialCollector": "Colecionador Oficial 🌟",
+  "profileChangePasswordButton": "Atualizar senha",
+  "profileChangePasswordTitle": "Atualizar senha",
+  "profileNewPasswordLabel": "Nova senha",
+  "profileConfirmNewPasswordLabel": "Confirmar nova senha",
+  "profilePasswordUpdatedSuccess": "Senha atualizada com sucesso.",
+  "profileLogoutButton": "Sair",
+  "profileLogoutSuccess": "Você saiu com sucesso.",
+  "profileUnknownUser": "Usuário desconhecido",
+  "profileLogoutError": "Erro ao sair: {message}",
+  "@profileLogoutError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "homeTitle": "Meu Álbum 26",
+  "homeProfileTooltip": "Meu Perfil",
+  "homeShareAll": "Compartilhar Lista Completa",
+  "homeShareMissingOnly": "Só Faltantes",
+  "homeShareDuplicatesOnly": "Só Repetidas",
+  "homeGlobalProgressTitle": "Progresso Global",
+  "homeCollectedCount": "{collected} de {total} coletadas",
+  "@homeCollectedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeViewFullCollection": "Ver Coleção Completa",
+  "homeTeamsTitle": "Seleções",
+  "homeSearchTeamsHint": "Buscar por país ou time...",
+  "homeNoResults": "Nenhum time encontrado",
+  "homeScanButton": "Escanear Figurinha",
+  "homeObtainedCount": "{collected} de {total} obtidas",
+  "@homeObtainedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeProgressError": "Erro",
+  "globalCollectionTitle": "Coleção Completa",
+  "filterAll": "Todas",
+  "filterMissing": "Faltantes",
+  "filterDuplicates": "Repetidas",
+  "filterSearchHint": "Buscar por país, código ou número...",
+  "stickerRemoveTitle": "Remover figurinha?",
+  "stickerRemoveConfirm": "Tem certeza que deseja remover a figurinha {stickerLabel} do seu álbum?",
+  "@stickerRemoveConfirm": {
+    "placeholders": {
+      "stickerLabel": {}
+    }
+  },
+  "commonCancel": "Cancelar",
+  "commonRemove": "Remover",
+  "commonDone": "PRONTO",
+  "gridNoResults": "Nenhuma figurinha encontrada.",
+  "scannerViewScannedButton": "Revisar {count} figurinhas escaneadas",
+  "@scannerViewScannedButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerOverlayHint": "Centre o verso da figurinha aqui",
+  "pendingScansTitle": "Figurinhas Escaneadas",
+  "pendingScansEmpty": "Você ainda não escaneou nenhuma figurinha",
+  "pendingScansItemLabel": "Figurinha: {code}",
+  "@pendingScansItemLabel": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "pendingScansSavedSuccess": "{count} figurinhas adicionadas ao seu álbum! 🏆",
+  "@pendingScansSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "pendingScansSaveError": "Erro ao salvar: {message}",
+  "@pendingScansSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "shareHeader": "⚽ *LISTA DE TROCA ÁLBUM 26* 🏆",
+  "shareMissingSectionTitle": "❌ *FALTAM:*",
+  "shareDuplicatesSectionTitle": "🔁 *REPETIDAS:*",
+  "shareNoneMissing": "Nenhuma! 😎",
+  "shareNoDuplicates": "Sem repetidas 😅",
+  "shareLetsTrade": "Quer trocar? 👀🔥",
+  "shareSeparator": "--------------------------",
+  "forgotPasswordTitle": "Recuperar Conta",
+  "forgotPasswordDescription": "Digite seu e-mail e enviaremos um código de 6 dígitos para redefinir sua senha.",
+  "forgotPasswordEmailLabel": "E-mail",
+  "forgotPasswordEmptyEmailError": "Por favor, digite seu e-mail.",
+  "forgotPasswordCodeSentSuccess": "Código enviado. Verifique sua caixa de entrada.",
+  "forgotPasswordSendCodeButton": "ENVIAR CÓDIGO",
+  "forgotPasswordStep2Description": "Digite o código que enviamos para {email} e sua nova senha.",
+  "@forgotPasswordStep2Description": {
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "forgotPasswordCodeInputLabel": "Código de 8 dígitos",
+  "forgotPasswordInvalidCodeError": "O código deve ter exatamente 6 dígitos.",
+  "forgotPasswordNewPasswordLabel": "Nova Senha",
+  "forgotPasswordShortPasswordError": "A senha deve ter pelo menos 6 caracteres.",
+  "forgotPasswordSavePasswordButton": "SALVAR SENHA",
+  "forgotPasswordPasswordUpdatedSuccess": "Senha atualizada com sucesso! 🏆",
+
+  "paywallTitle": "Aproveite sem anúncios",
+  "paywallSubtitle": "Todos os recursos são gratuitos. Com o Pro você aproveita tudo sem interrupções.",
+  "paywallBenefitScanner": "Scanner sem anúncios intersticiais",
+  "paywallBenefitNoAds": "Sem anúncios",
+  "paywallBenefitSync": "Sincronização na nuvem incluída",
+  "paywallSubscribeButton": "Assinar · {price}",
+  "@paywallSubscribeButton": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "paywallPackageMonthly": "Mensal",
+  "paywallPackageAnnual": "Anual",
+  "paywallPackageWeekly": "Semanal",
+  "paywallPackageLifetime": "Vitalício",
+  "paywallPackageTwoMonth": "A cada 2 meses",
+  "paywallPackageThreeMonth": "A cada 3 meses",
+  "paywallPackageSixMonth": "A cada 6 meses",
+  "paywallRestorePurchases": "Restaurar compras",
+  "paywallCancelAnytime": "Cancele quando quiser. Sem compromisso.",
+  "paywallLoadError": "Não foi possível carregar os planos. Verifique sua conexão.",
+  "paywallRetry": "Tentar novamente",
+  "paywallPurchaseError": "Falha na compra. Tente novamente.",
+  "paywallRestoreError": "Não foi possível restaurar as compras. Tente novamente.",
+  "paywallGuestTitle": "Entre para assinar",
+  "paywallGuestBody": "O Pro está vinculado à sua conta. Entre ou crie uma conta para desbloquear todos os recursos.",
+  "paywallGuestSignInButton": "ENTRAR",
+
+  "scannerDemoRemaining": "{count} escaneamentos gratuitos restantes",
+  "@scannerDemoRemaining": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerDemoFinishedTitle": "Você usou seus 5 escaneamentos gratuitos",
+  "scannerDemoFinishedSubtitle": "Assine para escanear figurinhas ilimitadas e ter uma experiência sem anúncios.",
+  "scannerDemoUnlockButton": "Ver Planos Pro",
+
+  "adDialogTitle": "Conteúdo gratuito",
+  "adDialogBody": "Para continuar, assista a um breve anúncio ou assine o Pro e esqueça os anúncios para sempre.",
+  "adDialogWatchAd": "Assistir anúncio",
+  "adDialogGetPro": "Obter Pro",
+  "adDialogNotNow": "Agora não",
+
+  "scannerCameraInitError": "Não foi possível inicializar a câmera. Verifique se o app tem permissão de câmera."
+}

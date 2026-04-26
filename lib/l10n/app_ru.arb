@@ -1,0 +1,200 @@
+{
+  "@@locale": "ru",
+  "appTitle": "Альбом 26",
+  "authWelcomeTitle": "Добро пожаловать в Альбом 26",
+  "authEmailLabel": "Электронная почта",
+  "authPasswordLabel": "Пароль",
+  "authLoginButton": "ВОЙТИ",
+  "authContinueWith": "Или продолжить с",
+  "authContinueGoogle": "Продолжить с Google",
+  "authContinueApple": "Продолжить с Apple",
+  "authContinueGuest": "Продолжить как гость",
+  "authNoAccountRegister": "Нет аккаунта? Зарегистрироваться",
+  "authForgotPassword": "Забыли пароль?",
+  "authResetPasswordEnterEmail": "Введите свою почту для восстановления пароля.",
+  "authResetPasswordEmailSent": "Мы отправили вам письмо для сброса пароля.",
+  "authGuestMigratedSuccess": "Ваш прогресс гостя успешно перенесён в новый аккаунт! 🏆",
+  "authGuestRemotePreserved": "С возвращением! Ваша облачная коллекция восстановлена, а локальный прогресс гостя удалён.",
+  "commonErrorWithMessage": "Ошибка: {message}",
+  "@commonErrorWithMessage": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+
+  "authErrorInvalidCredentials": "Неверная почта или пароль. Проверьте данные и попробуйте снова.",
+  "authErrorEmailNotConfirmed": "Ваша почта ещё не подтверждена. Проверьте папку входящих.",
+  "authErrorUserAlreadyRegistered": "Аккаунт с этой электронной почтой уже существует.",
+  "authErrorWeakPassword": "Пароль слишком слабый. Используйте не менее 6 символов.",
+  "authErrorInvalidEmail": "Неверный формат адреса электронной почты.",
+  "authErrorTokenExpired": "Код устарел или недействителен. Запросите новый.",
+  "authErrorRateLimit": "Слишком много попыток. Подождите немного перед повторной попыткой.",
+  "authErrorNetworkError": "Нет соединения. Проверьте сеть и попробуйте снова.",
+  "authErrorSessionExpired": "Ваша сессия истекла. Пожалуйста, войдите снова.",
+  "authErrorUnknown": "Произошла неожиданная ошибка. Попробуйте снова.",
+  "registerTitle": "Создать аккаунт",
+  "registerFillAllFields": "Пожалуйста, заполните все поля.",
+  "registerEmailsDontMatch": "Адреса электронной почты не совпадают.",
+  "registerPasswordsDontMatch": "Пароли не совпадают.",
+  "registerPasswordMinLength": "Пароль должен содержать не менее 6 символов.",
+  "registerAccountCreated": "Аккаунт успешно создан! ⚽ Пожалуйста, войдите.",
+  "registerConfirmEmailLabel": "Подтвердить почту",
+  "registerConfirmPasswordLabel": "Подтвердить пароль",
+  "registerSubmitButton": "ЗАРЕГИСТРИРОВАТЬСЯ",
+  "profileTitle": "Мой профиль",
+  "profileOfficialCollector": "Официальный коллекционер 🌟",
+  "profileChangePasswordButton": "Обновить пароль",
+  "profileChangePasswordTitle": "Обновить пароль",
+  "profileNewPasswordLabel": "Новый пароль",
+  "profileConfirmNewPasswordLabel": "Подтвердить новый пароль",
+  "profilePasswordUpdatedSuccess": "Пароль успешно обновлён.",
+  "profileLogoutButton": "Выйти",
+  "profileLogoutSuccess": "Вы успешно вышли из системы.",
+  "profileUnknownUser": "Неизвестный пользователь",
+  "profileLogoutError": "Ошибка при выходе: {message}",
+  "@profileLogoutError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "homeTitle": "Мой альбом 26",
+  "homeProfileTooltip": "Мой профиль",
+  "homeShareAll": "Поделиться полным списком",
+  "homeShareMissingOnly": "Только отсутствующие",
+  "homeShareDuplicatesOnly": "Только дубликаты",
+  "homeGlobalProgressTitle": "Общий прогресс",
+  "homeCollectedCount": "{collected} из {total} собрано",
+  "@homeCollectedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeViewFullCollection": "Посмотреть всю коллекцию",
+  "homeTeamsTitle": "Команды",
+  "homeSearchTeamsHint": "Поиск по стране или команде...",
+  "homeNoResults": "Команды не найдены",
+  "homeScanButton": "Сканировать наклейку",
+  "homeObtainedCount": "{collected} из {total} получено",
+  "@homeObtainedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeProgressError": "Ошибка",
+  "globalCollectionTitle": "Полная коллекция",
+  "filterAll": "Все",
+  "filterMissing": "Отсутствующие",
+  "filterDuplicates": "Дубликаты",
+  "filterSearchHint": "Поиск по стране, коду или номеру...",
+  "stickerRemoveTitle": "Удалить наклейку?",
+  "stickerRemoveConfirm": "Вы уверены, что хотите удалить наклейку {stickerLabel} из своего альбома?",
+  "@stickerRemoveConfirm": {
+    "placeholders": {
+      "stickerLabel": {}
+    }
+  },
+  "commonCancel": "Отмена",
+  "commonRemove": "Удалить",
+  "commonDone": "ГОТОВО",
+  "gridNoResults": "Наклейки не найдены.",
+  "scannerViewScannedButton": "Просмотреть {count} отсканированных наклеек",
+  "@scannerViewScannedButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerOverlayHint": "Разместите оборотную сторону наклейки здесь по центру",
+  "pendingScansTitle": "Отсканированные наклейки",
+  "pendingScansEmpty": "Вы ещё не отсканировали ни одной наклейки",
+  "pendingScansItemLabel": "Наклейка: {code}",
+  "@pendingScansItemLabel": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "pendingScansSavedSuccess": "{count} наклеек добавлено в ваш альбом! 🏆",
+  "@pendingScansSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "pendingScansSaveError": "Ошибка при сохранении: {message}",
+  "@pendingScansSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "shareHeader": "⚽ *СПИСОК ОБМЕНА АЛЬБОМ 26* 🏆",
+  "shareMissingSectionTitle": "❌ *ОТСУТСТВУЮЩИЕ:*",
+  "shareDuplicatesSectionTitle": "🔁 *ДУБЛИКАТЫ:*",
+  "shareNoneMissing": "Ни одной! 😎",
+  "shareNoDuplicates": "Нет дубликатов 😅",
+  "shareLetsTrade": "Хотите обменяться? 👀🔥",
+  "shareSeparator": "--------------------------",
+  "forgotPasswordTitle": "Восстановить аккаунт",
+  "forgotPasswordDescription": "Введите вашу почту и мы отправим 6-значный код для сброса пароля.",
+  "forgotPasswordEmailLabel": "Электронная почта",
+  "forgotPasswordEmptyEmailError": "Пожалуйста, введите вашу электронную почту.",
+  "forgotPasswordCodeSentSuccess": "Код отправлен. Проверьте папку входящих.",
+  "forgotPasswordSendCodeButton": "ОТПРАВИТЬ КОД",
+  "forgotPasswordStep2Description": "Введите код, отправленный на {email}, и ваш новый пароль.",
+  "@forgotPasswordStep2Description": {
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "forgotPasswordCodeInputLabel": "8-значный код",
+  "forgotPasswordInvalidCodeError": "Код должен состоять ровно из 6 цифр.",
+  "forgotPasswordNewPasswordLabel": "Новый пароль",
+  "forgotPasswordShortPasswordError": "Пароль должен содержать не менее 6 символов.",
+  "forgotPasswordSavePasswordButton": "СОХРАНИТЬ ПАРОЛЬ",
+  "forgotPasswordPasswordUpdatedSuccess": "Пароль успешно обновлён! 🏆",
+
+  "paywallTitle": "Наслаждайтесь без рекламы",
+  "paywallSubtitle": "Все функции доступны бесплатно. С Pro наслаждайтесь всем без перебоев.",
+  "paywallBenefitScanner": "Сканер без межстраничной рекламы",
+  "paywallBenefitNoAds": "Без рекламы",
+  "paywallBenefitSync": "Синхронизация с облаком включена",
+  "paywallSubscribeButton": "Подписаться · {price}",
+  "@paywallSubscribeButton": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "paywallPackageMonthly": "Ежемесячно",
+  "paywallPackageAnnual": "Ежегодно",
+  "paywallPackageWeekly": "Еженедельно",
+  "paywallPackageLifetime": "Навсегда",
+  "paywallPackageTwoMonth": "Каждые 2 месяца",
+  "paywallPackageThreeMonth": "Каждые 3 месяца",
+  "paywallPackageSixMonth": "Каждые 6 месяцев",
+  "paywallRestorePurchases": "Восстановить покупки",
+  "paywallCancelAnytime": "Отмена в любое время. Без обязательств.",
+  "paywallLoadError": "Не удалось загрузить планы. Проверьте подключение.",
+  "paywallRetry": "Повторить",
+  "paywallPurchaseError": "Покупка не удалась. Пожалуйста, попробуйте снова.",
+  "paywallRestoreError": "Не удалось восстановить покупки. Пожалуйста, попробуйте снова.",
+  "paywallGuestTitle": "Войдите, чтобы подписаться",
+  "paywallGuestBody": "Pro привязан к вашему аккаунту. Войдите или создайте аккаунт, чтобы разблокировать все функции.",
+  "paywallGuestSignInButton": "ВОЙТИ",
+
+  "scannerDemoRemaining": "Осталось {count} бесплатных сканирований",
+  "@scannerDemoRemaining": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerDemoFinishedTitle": "Вы использовали свои 5 бесплатных сканирований",
+  "scannerDemoFinishedSubtitle": "Подпишитесь для неограниченного сканирования наклеек и работы без рекламы.",
+  "scannerDemoUnlockButton": "Просмотреть планы Pro",
+
+  "adDialogTitle": "Бесплатный контент",
+  "adDialogBody": "Чтобы продолжить, посмотрите короткую рекламу или подпишитесь на Pro и забудьте о рекламе навсегда.",
+  "adDialogWatchAd": "Смотреть рекламу",
+  "adDialogGetPro": "Получить Pro",
+  "adDialogNotNow": "Не сейчас",
+
+  "scannerCameraInitError": "Не удалось инициализировать камеру. Убедитесь, что приложение имеет разрешение на использование камеры."
+}

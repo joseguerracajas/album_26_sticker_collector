@@ -1,0 +1,456 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for Dutch Flemish (`nl`).
+class AppLocalizationsNl extends AppLocalizations {
+  AppLocalizationsNl([String locale = 'nl']) : super(locale);
+
+  @override
+  String get appTitle => 'Album 26';
+
+  @override
+  String get authWelcomeTitle => 'Welkom bij Album 26';
+
+  @override
+  String get authEmailLabel => 'E-mail';
+
+  @override
+  String get authPasswordLabel => 'Wachtwoord';
+
+  @override
+  String get authLoginButton => 'INLOGGEN';
+
+  @override
+  String get authContinueWith => 'Of ga verder met';
+
+  @override
+  String get authContinueGoogle => 'Ga verder met Google';
+
+  @override
+  String get authContinueApple => 'Ga verder met Apple';
+
+  @override
+  String get authContinueGuest => 'Ga verder als gast';
+
+  @override
+  String get authNoAccountRegister => 'Geen account? Registreer je';
+
+  @override
+  String get authForgotPassword => 'Wachtwoord vergeten?';
+
+  @override
+  String get authResetPasswordEnterEmail =>
+      'Voer je e-mail in om je wachtwoord te herstellen.';
+
+  @override
+  String get authResetPasswordEmailSent =>
+      'We hebben een e-mail gestuurd om je wachtwoord opnieuw in te stellen.';
+
+  @override
+  String get authGuestMigratedSuccess =>
+      'Je gastvoortgang is succesvol overgedragen naar je nieuwe account! 🏆';
+
+  @override
+  String get authGuestRemotePreserved =>
+      'Welkom terug! Je cloudcollectie is hersteld en de lokale gastvoortgang is verwijderd.';
+
+  @override
+  String commonErrorWithMessage(Object message) {
+    return 'Fout: $message';
+  }
+
+  @override
+  String get authErrorInvalidCredentials =>
+      'Onjuist e-mailadres of wachtwoord. Controleer je gegevens en probeer het opnieuw.';
+
+  @override
+  String get authErrorEmailNotConfirmed =>
+      'Je e-mail is nog niet bevestigd. Controleer je inbox.';
+
+  @override
+  String get authErrorUserAlreadyRegistered =>
+      'Er bestaat al een account met dat e-mailadres.';
+
+  @override
+  String get authErrorWeakPassword =>
+      'Het wachtwoord is te zwak. Gebruik minimaal 6 tekens.';
+
+  @override
+  String get authErrorInvalidEmail =>
+      'Het formaat van het e-mailadres is ongeldig.';
+
+  @override
+  String get authErrorTokenExpired =>
+      'De code is verlopen of ongeldig. Vraag een nieuwe aan.';
+
+  @override
+  String get authErrorRateLimit =>
+      'Te veel pogingen. Wacht even voordat je het opnieuw probeert.';
+
+  @override
+  String get authErrorNetworkError =>
+      'Geen verbinding. Controleer je netwerk en probeer het opnieuw.';
+
+  @override
+  String get authErrorSessionExpired =>
+      'Je sessie is verlopen. Log opnieuw in.';
+
+  @override
+  String get authErrorUnknown =>
+      'Er is een onverwachte fout opgetreden. Probeer het opnieuw.';
+
+  @override
+  String get registerTitle => 'Account aanmaken';
+
+  @override
+  String get registerFillAllFields => 'Vul alle velden in.';
+
+  @override
+  String get registerEmailsDontMatch => 'De e-mailadressen komen niet overeen.';
+
+  @override
+  String get registerPasswordsDontMatch =>
+      'De wachtwoorden komen niet overeen.';
+
+  @override
+  String get registerPasswordMinLength =>
+      'Het wachtwoord moet minimaal 6 tekens bevatten.';
+
+  @override
+  String get registerAccountCreated =>
+      'Account succesvol aangemaakt! ⚽ Log in.';
+
+  @override
+  String get registerConfirmEmailLabel => 'E-mail bevestigen';
+
+  @override
+  String get registerConfirmPasswordLabel => 'Wachtwoord bevestigen';
+
+  @override
+  String get registerSubmitButton => 'REGISTREREN';
+
+  @override
+  String get profileTitle => 'Mijn profiel';
+
+  @override
+  String get profileOfficialCollector => 'Officiële verzamelaar 🌟';
+
+  @override
+  String get profileChangePasswordButton => 'Wachtwoord bijwerken';
+
+  @override
+  String get profileChangePasswordTitle => 'Wachtwoord bijwerken';
+
+  @override
+  String get profileNewPasswordLabel => 'Nieuw wachtwoord';
+
+  @override
+  String get profileConfirmNewPasswordLabel => 'Nieuw wachtwoord bevestigen';
+
+  @override
+  String get profilePasswordUpdatedSuccess =>
+      'Wachtwoord succesvol bijgewerkt.';
+
+  @override
+  String get profileLogoutButton => 'Uitloggen';
+
+  @override
+  String get profileLogoutSuccess => 'Je bent succesvol uitgelogd.';
+
+  @override
+  String get profileUnknownUser => 'Onbekende gebruiker';
+
+  @override
+  String profileLogoutError(Object message) {
+    return 'Fout bij uitloggen: $message';
+  }
+
+  @override
+  String get homeTitle => 'Mijn Album 26';
+
+  @override
+  String get homeProfileTooltip => 'Mijn profiel';
+
+  @override
+  String get homeShareAll => 'Volledige lijst delen';
+
+  @override
+  String get homeShareMissingOnly => 'Alleen ontbrekende';
+
+  @override
+  String get homeShareDuplicatesOnly => 'Alleen duplicaten';
+
+  @override
+  String get homeGlobalProgressTitle => 'Algemene voortgang';
+
+  @override
+  String homeCollectedCount(Object collected, Object total) {
+    return '$collected van $total verzameld';
+  }
+
+  @override
+  String get homeViewFullCollection => 'Volledige collectie bekijken';
+
+  @override
+  String get homeTeamsTitle => 'Teams';
+
+  @override
+  String get homeSearchTeamsHint => 'Zoek op land of team...';
+
+  @override
+  String get homeNoResults => 'Geen teams gevonden';
+
+  @override
+  String get homeScanButton => 'Sticker scannen';
+
+  @override
+  String homeObtainedCount(Object collected, Object total) {
+    return '$collected van $total verkregen';
+  }
+
+  @override
+  String get homeProgressError => 'Fout';
+
+  @override
+  String get globalCollectionTitle => 'Volledige collectie';
+
+  @override
+  String get filterAll => 'Alles';
+
+  @override
+  String get filterMissing => 'Ontbrekende';
+
+  @override
+  String get filterDuplicates => 'Duplicaten';
+
+  @override
+  String get filterSearchHint => 'Zoek op land, code of nummer...';
+
+  @override
+  String get stickerRemoveTitle => 'Sticker verwijderen?';
+
+  @override
+  String stickerRemoveConfirm(Object stickerLabel) {
+    return 'Weet je zeker dat je sticker $stickerLabel uit je album wilt verwijderen?';
+  }
+
+  @override
+  String get commonCancel => 'Annuleren';
+
+  @override
+  String get commonRemove => 'Verwijderen';
+
+  @override
+  String get commonDone => 'KLAAR';
+
+  @override
+  String get gridNoResults => 'Geen stickers gevonden.';
+
+  @override
+  String scannerViewScannedButton(Object count) {
+    return '$count gescande stickers bekijken';
+  }
+
+  @override
+  String get scannerOverlayHint => 'Centreer de achterkant van de sticker hier';
+
+  @override
+  String get pendingScansTitle => 'Gescande stickers';
+
+  @override
+  String get pendingScansEmpty => 'Je hebt nog geen stickers gescand';
+
+  @override
+  String pendingScansItemLabel(Object code) {
+    return 'Sticker: $code';
+  }
+
+  @override
+  String pendingScansSavedSuccess(Object count) {
+    return '$count stickers toegevoegd aan je album! 🏆';
+  }
+
+  @override
+  String pendingScansSaveError(Object message) {
+    return 'Fout bij opslaan: $message';
+  }
+
+  @override
+  String get shareHeader => '⚽ *RUILLIJST ALBUM 26* 🏆';
+
+  @override
+  String get shareMissingSectionTitle => '❌ *ONTBREKEND:*';
+
+  @override
+  String get shareDuplicatesSectionTitle => '🔁 *DUPLICATEN:*';
+
+  @override
+  String get shareNoneMissing => 'Geen! 😎';
+
+  @override
+  String get shareNoDuplicates => 'Geen duplicaten 😅';
+
+  @override
+  String get shareLetsTrade => 'Wil je ruilen? 👀🔥';
+
+  @override
+  String get shareSeparator => '--------------------------';
+
+  @override
+  String get forgotPasswordTitle => 'Account herstellen';
+
+  @override
+  String get forgotPasswordDescription =>
+      'Voer je e-mail in en we sturen je een 6-cijferige code om je wachtwoord opnieuw in te stellen.';
+
+  @override
+  String get forgotPasswordEmailLabel => 'E-mail';
+
+  @override
+  String get forgotPasswordEmptyEmailError => 'Voer je e-mailadres in.';
+
+  @override
+  String get forgotPasswordCodeSentSuccess =>
+      'Code verzonden. Controleer je inbox.';
+
+  @override
+  String get forgotPasswordSendCodeButton => 'CODE VERZENDEN';
+
+  @override
+  String forgotPasswordStep2Description(Object email) {
+    return 'Voer de code in die we naar $email hebben gestuurd en je nieuwe wachtwoord.';
+  }
+
+  @override
+  String get forgotPasswordCodeInputLabel => '8-cijferige code';
+
+  @override
+  String get forgotPasswordInvalidCodeError =>
+      'De code moet precies 6 cijfers hebben.';
+
+  @override
+  String get forgotPasswordNewPasswordLabel => 'Nieuw wachtwoord';
+
+  @override
+  String get forgotPasswordShortPasswordError =>
+      'Het wachtwoord moet minimaal 6 tekens bevatten.';
+
+  @override
+  String get forgotPasswordSavePasswordButton => 'WACHTWOORD OPSLAAN';
+
+  @override
+  String get forgotPasswordPasswordUpdatedSuccess =>
+      'Wachtwoord succesvol bijgewerkt! 🏆';
+
+  @override
+  String get paywallTitle => 'Geniet zonder advertenties';
+
+  @override
+  String get paywallSubtitle =>
+      'Alle functies zijn gratis beschikbaar. Met Pro geniet je van alles zonder onderbrekingen.';
+
+  @override
+  String get paywallBenefitScanner =>
+      'Scanner zonder interstitiële advertenties';
+
+  @override
+  String get paywallBenefitNoAds => 'Geen advertenties';
+
+  @override
+  String get paywallBenefitSync => 'Cloudsynchronisatie inbegrepen';
+
+  @override
+  String paywallSubscribeButton(Object price) {
+    return 'Abonneren · $price';
+  }
+
+  @override
+  String get paywallPackageMonthly => 'Maandelijks';
+
+  @override
+  String get paywallPackageAnnual => 'Jaarlijks';
+
+  @override
+  String get paywallPackageWeekly => 'Wekelijks';
+
+  @override
+  String get paywallPackageLifetime => 'Levenslang';
+
+  @override
+  String get paywallPackageTwoMonth => 'Elke 2 maanden';
+
+  @override
+  String get paywallPackageThreeMonth => 'Elke 3 maanden';
+
+  @override
+  String get paywallPackageSixMonth => 'Elke 6 maanden';
+
+  @override
+  String get paywallRestorePurchases => 'Aankopen herstellen';
+
+  @override
+  String get paywallCancelAnytime =>
+      'Op elk moment opzeggen. Geen verplichtingen.';
+
+  @override
+  String get paywallLoadError =>
+      'Kon plannen niet laden. Controleer je verbinding.';
+
+  @override
+  String get paywallRetry => 'Opnieuw proberen';
+
+  @override
+  String get paywallPurchaseError => 'Aankoop mislukt. Probeer het opnieuw.';
+
+  @override
+  String get paywallRestoreError =>
+      'Kon aankopen niet herstellen. Probeer het opnieuw.';
+
+  @override
+  String get paywallGuestTitle => 'Log in om te abonneren';
+
+  @override
+  String get paywallGuestBody =>
+      'Pro is gekoppeld aan je account. Log in of maak een account aan om alle functies te ontgrendelen.';
+
+  @override
+  String get paywallGuestSignInButton => 'INLOGGEN';
+
+  @override
+  String scannerDemoRemaining(Object count) {
+    return '$count gratis scans resterend';
+  }
+
+  @override
+  String get scannerDemoFinishedTitle => 'Je hebt je 5 gratis scans gebruikt';
+
+  @override
+  String get scannerDemoFinishedSubtitle =>
+      'Abonneer je om onbeperkt stickers te scannen en een advertentievrije ervaring te hebben.';
+
+  @override
+  String get scannerDemoUnlockButton => 'Pro-plannen bekijken';
+
+  @override
+  String get adDialogTitle => 'Gratis content';
+
+  @override
+  String get adDialogBody =>
+      'Om door te gaan, bekijk een korte advertentie of abonneer je op Pro en vergeet advertenties voor altijd.';
+
+  @override
+  String get adDialogWatchAd => 'Advertentie bekijken';
+
+  @override
+  String get adDialogGetPro => 'Pro halen';
+
+  @override
+  String get adDialogNotNow => 'Niet nu';
+
+  @override
+  String get scannerCameraInitError =>
+      'Kon de camera niet initialiseren. Zorg ervoor dat de app cameratoegang heeft.';
+}

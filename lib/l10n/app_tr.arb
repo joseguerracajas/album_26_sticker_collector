@@ -1,0 +1,200 @@
+{
+  "@@locale": "tr",
+  "appTitle": "Albüm 26",
+  "authWelcomeTitle": "Albüm 26'ya Hoş Geldiniz",
+  "authEmailLabel": "E-posta",
+  "authPasswordLabel": "Şifre",
+  "authLoginButton": "GİRİŞ YAP",
+  "authContinueWith": "Veya şununla devam et",
+  "authContinueGoogle": "Google ile devam et",
+  "authContinueApple": "Apple ile devam et",
+  "authContinueGuest": "Misafir olarak devam et",
+  "authNoAccountRegister": "Hesabın yok mu? Kaydol",
+  "authForgotPassword": "Şifreni mi unuttun?",
+  "authResetPasswordEnterEmail": "Şifreni sıfırlamak için e-postanı gir.",
+  "authResetPasswordEmailSent": "Şifreni sıfırlamak için e-posta gönderdik.",
+  "authGuestMigratedSuccess": "Misafir ilerlemeniz yeni hesabınıza başarıyla aktarıldı! 🏆",
+  "authGuestRemotePreserved": "Tekrar hoş geldiniz! Bulut koleksiyonunuz geri yüklendi ve yerel misafir ilerlemesi silindi.",
+  "commonErrorWithMessage": "Hata: {message}",
+  "@commonErrorWithMessage": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+
+  "authErrorInvalidCredentials": "Yanlış e-posta veya şifre. Bilgilerini kontrol edip tekrar dene.",
+  "authErrorEmailNotConfirmed": "E-postanız henüz onaylanmamış. Gelen kutunuzu kontrol edin.",
+  "authErrorUserAlreadyRegistered": "Bu e-posta ile zaten bir hesap mevcut.",
+  "authErrorWeakPassword": "Şifre çok zayıf. En az 6 karakter kullan.",
+  "authErrorInvalidEmail": "E-posta adresi formatı geçerli değil.",
+  "authErrorTokenExpired": "Kod süresi dolmuş veya geçersiz. Lütfen yeni bir tane isteyin.",
+  "authErrorRateLimit": "Çok fazla deneme. Tekrar denemeden önce bir süre bekleyin.",
+  "authErrorNetworkError": "Bağlantı yok. Ağını kontrol edip tekrar dene.",
+  "authErrorSessionExpired": "Oturumunuzun süresi doldu. Lütfen tekrar giriş yapın.",
+  "authErrorUnknown": "Beklenmedik bir hata oluştu. Lütfen tekrar deneyin.",
+  "registerTitle": "Hesap Oluştur",
+  "registerFillAllFields": "Lütfen tüm alanları doldurun.",
+  "registerEmailsDontMatch": "E-posta adresleri eşleşmiyor.",
+  "registerPasswordsDontMatch": "Şifreler eşleşmiyor.",
+  "registerPasswordMinLength": "Şifre en az 6 karakter olmalıdır.",
+  "registerAccountCreated": "Hesap başarıyla oluşturuldu! ⚽ Lütfen giriş yapın.",
+  "registerConfirmEmailLabel": "E-postayı onayla",
+  "registerConfirmPasswordLabel": "Şifreyi onayla",
+  "registerSubmitButton": "KAYDOL",
+  "profileTitle": "Profilim",
+  "profileOfficialCollector": "Resmi Koleksiyoncu 🌟",
+  "profileChangePasswordButton": "Şifreyi güncelle",
+  "profileChangePasswordTitle": "Şifreyi güncelle",
+  "profileNewPasswordLabel": "Yeni şifre",
+  "profileConfirmNewPasswordLabel": "Yeni şifreyi onayla",
+  "profilePasswordUpdatedSuccess": "Şifre başarıyla güncellendi.",
+  "profileLogoutButton": "Çıkış Yap",
+  "profileLogoutSuccess": "Başarıyla çıkış yapıldı.",
+  "profileUnknownUser": "Bilinmeyen kullanıcı",
+  "profileLogoutError": "Çıkış yapılırken hata: {message}",
+  "@profileLogoutError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "homeTitle": "Albümüm 26",
+  "homeProfileTooltip": "Profilim",
+  "homeShareAll": "Tam Listeyi Paylaş",
+  "homeShareMissingOnly": "Yalnızca Eksikler",
+  "homeShareDuplicatesOnly": "Yalnızca Kopyalar",
+  "homeGlobalProgressTitle": "Genel İlerleme",
+  "homeCollectedCount": "{total} kartın {collected} tanesi toplandı",
+  "@homeCollectedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeViewFullCollection": "Tam Koleksiyonu Görüntüle",
+  "homeTeamsTitle": "Takımlar",
+  "homeSearchTeamsHint": "Ülke veya takıma göre ara...",
+  "homeNoResults": "Takım bulunamadı",
+  "homeScanButton": "Sticker Tara",
+  "homeObtainedCount": "{total} kartın {collected} tanesi elde edildi",
+  "@homeObtainedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeProgressError": "Hata",
+  "globalCollectionTitle": "Tam Koleksiyon",
+  "filterAll": "Tümü",
+  "filterMissing": "Eksikler",
+  "filterDuplicates": "Kopyalar",
+  "filterSearchHint": "Ülke, kod veya numaraya göre ara...",
+  "stickerRemoveTitle": "Sticker kaldırılsın mı?",
+  "stickerRemoveConfirm": "{stickerLabel} stickerını albümünden kaldırmak istediğinizden emin misiniz?",
+  "@stickerRemoveConfirm": {
+    "placeholders": {
+      "stickerLabel": {}
+    }
+  },
+  "commonCancel": "İptal",
+  "commonRemove": "Kaldır",
+  "commonDone": "TAMAM",
+  "gridNoResults": "Sticker bulunamadı.",
+  "scannerViewScannedButton": "Taranan {count} stickerı gözden geçir",
+  "@scannerViewScannedButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerOverlayHint": "Stickerin arkasını buraya ortala",
+  "pendingScansTitle": "Taranan Stickerlar",
+  "pendingScansEmpty": "Henüz hiçbir sticker taramadınız",
+  "pendingScansItemLabel": "Sticker: {code}",
+  "@pendingScansItemLabel": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "pendingScansSavedSuccess": "{count} sticker albümünüze eklendi! 🏆",
+  "@pendingScansSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "pendingScansSaveError": "Kaydedilirken hata: {message}",
+  "@pendingScansSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "shareHeader": "⚽ *ALBÜM 26 TAKAS LİSTESİ* 🏆",
+  "shareMissingSectionTitle": "❌ *EKSİKLER:*",
+  "shareDuplicatesSectionTitle": "🔁 *KOPYALAR:*",
+  "shareNoneMissing": "Yok! 😎",
+  "shareNoDuplicates": "Kopya yok 😅",
+  "shareLetsTrade": "Takas yapmak ister misin? 👀🔥",
+  "shareSeparator": "--------------------------",
+  "forgotPasswordTitle": "Hesabı Kurtar",
+  "forgotPasswordDescription": "E-posta adresinizi girin, şifrenizi sıfırlamak için 6 haneli bir kod gönderelim.",
+  "forgotPasswordEmailLabel": "E-posta",
+  "forgotPasswordEmptyEmailError": "Lütfen e-posta adresinizi girin.",
+  "forgotPasswordCodeSentSuccess": "Kod gönderildi. Gelen kutunuzu kontrol edin.",
+  "forgotPasswordSendCodeButton": "KOD GÖNDER",
+  "forgotPasswordStep2Description": "{email} adresine gönderdiğimiz kodu ve yeni şifrenizi girin.",
+  "@forgotPasswordStep2Description": {
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "forgotPasswordCodeInputLabel": "8 haneli kod",
+  "forgotPasswordInvalidCodeError": "Kod tam olarak 6 rakamdan oluşmalıdır.",
+  "forgotPasswordNewPasswordLabel": "Yeni Şifre",
+  "forgotPasswordShortPasswordError": "Şifre en az 6 karakter olmalıdır.",
+  "forgotPasswordSavePasswordButton": "ŞİFREYİ KAYDET",
+  "forgotPasswordPasswordUpdatedSuccess": "Şifre başarıyla güncellendi! 🏆",
+
+  "paywallTitle": "Reklamsız Keyfini Çıkar",
+  "paywallSubtitle": "Tüm özellikler ücretsiz. Pro ile her şeyi kesintisiz kullanırsınız.",
+  "paywallBenefitScanner": "Geçiş reklamları olmadan tarayıcı",
+  "paywallBenefitNoAds": "Reklam yok",
+  "paywallBenefitSync": "Bulut senkronizasyonu dahil",
+  "paywallSubscribeButton": "Abone Ol · {price}",
+  "@paywallSubscribeButton": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "paywallPackageMonthly": "Aylık",
+  "paywallPackageAnnual": "Yıllık",
+  "paywallPackageWeekly": "Haftalık",
+  "paywallPackageLifetime": "Ömür Boyu",
+  "paywallPackageTwoMonth": "Her 2 ayda bir",
+  "paywallPackageThreeMonth": "Her 3 ayda bir",
+  "paywallPackageSixMonth": "Her 6 ayda bir",
+  "paywallRestorePurchases": "Satın alımları geri yükle",
+  "paywallCancelAnytime": "İstediğinizde iptal edin. Taahhüt yok.",
+  "paywallLoadError": "Planlar yüklenemedi. Bağlantınızı kontrol edin.",
+  "paywallRetry": "Tekrar Dene",
+  "paywallPurchaseError": "Satın alma başarısız oldu. Lütfen tekrar deneyin.",
+  "paywallRestoreError": "Satın alımlar geri yüklenemedi. Lütfen tekrar deneyin.",
+  "paywallGuestTitle": "Abone olmak için giriş yapın",
+  "paywallGuestBody": "Pro hesabınıza bağlıdır. Tüm özelliklerin kilidini açmak için giriş yapın veya hesap oluşturun.",
+  "paywallGuestSignInButton": "GİRİŞ YAP",
+
+  "scannerDemoRemaining": "{count} ücretsiz tarama kaldı",
+  "@scannerDemoRemaining": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerDemoFinishedTitle": "5 ücretsiz taramanızı kullandınız",
+  "scannerDemoFinishedSubtitle": "Sınırsız sticker taramak ve reklamsız deneyim için abone olun.",
+  "scannerDemoUnlockButton": "Pro Planlarını Görüntüle",
+
+  "adDialogTitle": "Ücretsiz içerik",
+  "adDialogBody": "Devam etmek için kısa bir reklam izleyin veya Pro'ya abone olun ve reklamları sonsuza dek unutun.",
+  "adDialogWatchAd": "Reklam izle",
+  "adDialogGetPro": "Pro Al",
+  "adDialogNotNow": "Şimdi değil",
+
+  "scannerCameraInitError": "Kamera başlatılamadı. Uygulamanın kamera iznine sahip olduğundan emin olun."
+}

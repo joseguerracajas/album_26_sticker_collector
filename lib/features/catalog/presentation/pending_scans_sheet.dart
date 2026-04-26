@@ -5,11 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PendingScansSheet extends ConsumerWidget {
+class PendingScansSheet extends ConsumerStatefulWidget {
   const PendingScansSheet({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<PendingScansSheet> createState() => _PendingScansSheetState();
+}
+
+class _PendingScansSheetState extends ConsumerState<PendingScansSheet> {
+  bool _isSaving = false;
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final pendingScans = ref.watch(pendingScansProvider);
 
@@ -137,9 +144,10 @@ class PendingScansSheet extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              onPressed: pendingScans.isEmpty
+              onPressed: pendingScans.isEmpty || _isSaving
                   ? null
                   : () async {
+                      setState(() => _isSaving = true);
                       HapticFeedback.mediumImpact();
 
                       // Capturamos el contexto de navegación antes del proceso asíncrono
@@ -189,6 +197,7 @@ class PendingScansSheet extends ConsumerWidget {
                           ),
                         );
                       } catch (e) {
+                        if (mounted) setState(() => _isSaving = false);
                         messenger.showSnackBar(
                           SnackBar(
                             content: Text(
@@ -199,10 +208,22 @@ class PendingScansSheet extends ConsumerWidget {
                         );
                       }
                     },
-              child: Text(
-                l10n.commonDone,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              ),
+              child: _isSaving
+                  ? const SizedBox(
+                      width: 22,
+                      height: 22,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2.5,
+                        color: Colors.black,
+                      ),
+                    )
+                  : Text(
+                      l10n.commonDone,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
             ),
           ),
         ],

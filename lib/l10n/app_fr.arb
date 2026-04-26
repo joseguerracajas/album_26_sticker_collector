@@ -1,0 +1,200 @@
+{
+  "@@locale": "fr",
+  "appTitle": "Album 26",
+  "authWelcomeTitle": "Bienvenue sur Album 26",
+  "authEmailLabel": "E-mail",
+  "authPasswordLabel": "Mot de passe",
+  "authLoginButton": "SE CONNECTER",
+  "authContinueWith": "Ou continuer avec",
+  "authContinueGoogle": "Continuer avec Google",
+  "authContinueApple": "Continuer avec Apple",
+  "authContinueGuest": "Continuer en tant qu'invité",
+  "authNoAccountRegister": "Pas de compte ? S'inscrire",
+  "authForgotPassword": "Mot de passe oublié ?",
+  "authResetPasswordEnterEmail": "Entrez votre e-mail pour récupérer votre mot de passe.",
+  "authResetPasswordEmailSent": "Nous vous avons envoyé un e-mail pour réinitialiser votre mot de passe.",
+  "authGuestMigratedSuccess": "Votre progression en tant qu'invité a été transférée avec succès vers votre nouveau compte ! 🏆",
+  "authGuestRemotePreserved": "Bienvenue de retour ! Votre collection cloud a été restaurée et la progression locale a été supprimée.",
+  "commonErrorWithMessage": "Erreur : {message}",
+  "@commonErrorWithMessage": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+
+  "authErrorInvalidCredentials": "E-mail ou mot de passe incorrect. Vérifiez vos informations et réessayez.",
+  "authErrorEmailNotConfirmed": "Votre e-mail n'a pas encore été confirmé. Vérifiez votre boîte de réception.",
+  "authErrorUserAlreadyRegistered": "Un compte avec cet e-mail existe déjà.",
+  "authErrorWeakPassword": "Le mot de passe est trop faible. Utilisez au moins 6 caractères.",
+  "authErrorInvalidEmail": "Le format de l'adresse e-mail n'est pas valide.",
+  "authErrorTokenExpired": "Le code a expiré ou n'est pas valide. Veuillez en demander un nouveau.",
+  "authErrorRateLimit": "Trop de tentatives. Veuillez attendre un moment avant de réessayer.",
+  "authErrorNetworkError": "Pas de connexion. Vérifiez votre réseau et réessayez.",
+  "authErrorSessionExpired": "Votre session a expiré. Veuillez vous reconnecter.",
+  "authErrorUnknown": "Une erreur inattendue s'est produite. Veuillez réessayer.",
+  "registerTitle": "Créer un compte",
+  "registerFillAllFields": "Veuillez remplir tous les champs.",
+  "registerEmailsDontMatch": "Les e-mails ne correspondent pas.",
+  "registerPasswordsDontMatch": "Les mots de passe ne correspondent pas.",
+  "registerPasswordMinLength": "Le mot de passe doit contenir au moins 6 caractères.",
+  "registerAccountCreated": "Compte créé avec succès ! ⚽ Veuillez vous connecter.",
+  "registerConfirmEmailLabel": "Confirmer l'e-mail",
+  "registerConfirmPasswordLabel": "Confirmer le mot de passe",
+  "registerSubmitButton": "S'INSCRIRE",
+  "profileTitle": "Mon Profil",
+  "profileOfficialCollector": "Collectionneur Officiel 🌟",
+  "profileChangePasswordButton": "Mettre à jour le mot de passe",
+  "profileChangePasswordTitle": "Mettre à jour le mot de passe",
+  "profileNewPasswordLabel": "Nouveau mot de passe",
+  "profileConfirmNewPasswordLabel": "Confirmer le nouveau mot de passe",
+  "profilePasswordUpdatedSuccess": "Mot de passe mis à jour avec succès.",
+  "profileLogoutButton": "Se déconnecter",
+  "profileLogoutSuccess": "Vous avez été déconnecté.",
+  "profileUnknownUser": "Utilisateur inconnu",
+  "profileLogoutError": "Erreur lors de la déconnexion : {message}",
+  "@profileLogoutError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "homeTitle": "Mon Album 26",
+  "homeProfileTooltip": "Mon Profil",
+  "homeShareAll": "Partager la liste complète",
+  "homeShareMissingOnly": "Manquants seulement",
+  "homeShareDuplicatesOnly": "Doublons seulement",
+  "homeGlobalProgressTitle": "Progression globale",
+  "homeCollectedCount": "{collected} sur {total} collectés",
+  "@homeCollectedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeViewFullCollection": "Voir la collection complète",
+  "homeTeamsTitle": "Équipes",
+  "homeSearchTeamsHint": "Rechercher par pays ou équipe...",
+  "homeNoResults": "Aucune équipe trouvée",
+  "homeScanButton": "Scanner un sticker",
+  "homeObtainedCount": "{collected} sur {total} obtenus",
+  "@homeObtainedCount": {
+    "placeholders": {
+      "collected": {},
+      "total": {}
+    }
+  },
+  "homeProgressError": "Erreur",
+  "globalCollectionTitle": "Collection complète",
+  "filterAll": "Tous",
+  "filterMissing": "Manquants",
+  "filterDuplicates": "Doublons",
+  "filterSearchHint": "Rechercher par pays, code ou numéro...",
+  "stickerRemoveTitle": "Supprimer le sticker ?",
+  "stickerRemoveConfirm": "Êtes-vous sûr de vouloir supprimer le sticker {stickerLabel} de votre album ?",
+  "@stickerRemoveConfirm": {
+    "placeholders": {
+      "stickerLabel": {}
+    }
+  },
+  "commonCancel": "Annuler",
+  "commonRemove": "Supprimer",
+  "commonDone": "TERMINÉ",
+  "gridNoResults": "Aucun sticker trouvé.",
+  "scannerViewScannedButton": "Revoir {count} stickers scannés",
+  "@scannerViewScannedButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerOverlayHint": "Centrez le dos du sticker ici",
+  "pendingScansTitle": "Stickers scannés",
+  "pendingScansEmpty": "Vous n'avez encore scanné aucun sticker",
+  "pendingScansItemLabel": "Sticker : {code}",
+  "@pendingScansItemLabel": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "pendingScansSavedSuccess": "{count} stickers ajoutés à votre album ! 🏆",
+  "@pendingScansSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "pendingScansSaveError": "Erreur lors de la sauvegarde : {message}",
+  "@pendingScansSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "shareHeader": "⚽ *LISTE D'ÉCHANGE ALBUM 26* 🏆",
+  "shareMissingSectionTitle": "❌ *MANQUANTS :*",
+  "shareDuplicatesSectionTitle": "🔁 *DOUBLONS :*",
+  "shareNoneMissing": "Aucun ! 😎",
+  "shareNoDuplicates": "Aucun doublon 😅",
+  "shareLetsTrade": "Vous voulez échanger ? 👀🔥",
+  "shareSeparator": "--------------------------",
+  "forgotPasswordTitle": "Récupérer le compte",
+  "forgotPasswordDescription": "Entrez votre e-mail et nous vous enverrons un code à 6 chiffres pour réinitialiser votre mot de passe.",
+  "forgotPasswordEmailLabel": "E-mail",
+  "forgotPasswordEmptyEmailError": "Veuillez entrer votre adresse e-mail.",
+  "forgotPasswordCodeSentSuccess": "Code envoyé. Vérifiez votre boîte de réception.",
+  "forgotPasswordSendCodeButton": "ENVOYER LE CODE",
+  "forgotPasswordStep2Description": "Entrez le code que nous avons envoyé à {email} et votre nouveau mot de passe.",
+  "@forgotPasswordStep2Description": {
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "forgotPasswordCodeInputLabel": "Code à 8 chiffres",
+  "forgotPasswordInvalidCodeError": "Le code doit avoir exactement 6 chiffres.",
+  "forgotPasswordNewPasswordLabel": "Nouveau mot de passe",
+  "forgotPasswordShortPasswordError": "Le mot de passe doit contenir au moins 6 caractères.",
+  "forgotPasswordSavePasswordButton": "ENREGISTRER LE MOT DE PASSE",
+  "forgotPasswordPasswordUpdatedSuccess": "Mot de passe mis à jour avec succès ! 🏆",
+
+  "paywallTitle": "Profitez sans publicité",
+  "paywallSubtitle": "Toutes les fonctionnalités sont disponibles gratuitement. Avec Pro, profitez de tout sans interruptions.",
+  "paywallBenefitScanner": "Scanner sans publicités interstitielles",
+  "paywallBenefitNoAds": "Sans publicité",
+  "paywallBenefitSync": "Synchronisation cloud incluse",
+  "paywallSubscribeButton": "S'abonner · {price}",
+  "@paywallSubscribeButton": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "paywallPackageMonthly": "Mensuel",
+  "paywallPackageAnnual": "Annuel",
+  "paywallPackageWeekly": "Hebdomadaire",
+  "paywallPackageLifetime": "À vie",
+  "paywallPackageTwoMonth": "Tous les 2 mois",
+  "paywallPackageThreeMonth": "Tous les 3 mois",
+  "paywallPackageSixMonth": "Tous les 6 mois",
+  "paywallRestorePurchases": "Restaurer les achats",
+  "paywallCancelAnytime": "Annulez à tout moment. Sans engagement.",
+  "paywallLoadError": "Impossible de charger les plans. Vérifiez votre connexion.",
+  "paywallRetry": "Réessayer",
+  "paywallPurchaseError": "Achat échoué. Veuillez réessayer.",
+  "paywallRestoreError": "Impossible de restaurer les achats. Veuillez réessayer.",
+  "paywallGuestTitle": "Connectez-vous pour vous abonner",
+  "paywallGuestBody": "Pro est lié à votre compte. Connectez-vous ou créez un compte pour débloquer toutes les fonctionnalités.",
+  "paywallGuestSignInButton": "SE CONNECTER",
+
+  "scannerDemoRemaining": "{count} scans gratuits restants",
+  "@scannerDemoRemaining": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "scannerDemoFinishedTitle": "Vous avez utilisé vos 5 scans gratuits",
+  "scannerDemoFinishedSubtitle": "Abonnez-vous pour scanner des stickers illimités et profiter d'une expérience sans publicité.",
+  "scannerDemoUnlockButton": "Voir les plans Pro",
+
+  "adDialogTitle": "Contenu gratuit",
+  "adDialogBody": "Pour continuer, regardez une courte publicité ou abonnez-vous à Pro et oubliez les publicités pour toujours.",
+  "adDialogWatchAd": "Regarder la pub",
+  "adDialogGetPro": "Obtenir Pro",
+  "adDialogNotNow": "Pas maintenant",
+
+  "scannerCameraInitError": "Impossible d'initialiser la caméra. Assurez-vous que l'application a la permission d'accéder à la caméra."
+}
