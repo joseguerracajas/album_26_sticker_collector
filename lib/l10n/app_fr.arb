@@ -151,6 +151,7 @@
   "forgotPasswordShortPasswordError": "Le mot de passe doit contenir au moins 6 caractères.",
   "forgotPasswordSavePasswordButton": "ENREGISTRER LE MOT DE PASSE",
   "forgotPasswordPasswordUpdatedSuccess": "Mot de passe mis à jour avec succès ! 🏆",
+  "validationEmailInvalid": "L'adresse e-mail n'est pas valide.",
 
   "paywallTitle": "Profitez sans publicité",
   "paywallSubtitle": "Toutes les fonctionnalités sont disponibles gratuitement. Avec Pro, profitez de tout sans interruptions.",

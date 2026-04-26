@@ -151,6 +151,7 @@
   "forgotPasswordShortPasswordError": "La contraseña debe tener al menos 6 caracteres.",
   "forgotPasswordSavePasswordButton": "GUARDAR CONTRASEÑA",
   "forgotPasswordPasswordUpdatedSuccess": "¡Contraseña actualizada con éxito! 🏆",
+  "validationEmailInvalid": "El correo electrónico no es válido.",
 
   "paywallTitle": "Disfruta sin publicidad",
   "paywallSubtitle": "Todas las funciones están disponibles gratis. Con Pro disfrutas de todo sin interrupciones.",

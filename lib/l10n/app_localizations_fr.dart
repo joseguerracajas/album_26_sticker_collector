@@ -348,6 +348,9 @@ class AppLocalizationsFr extends AppLocalizations {
       'Mot de passe mis à jour avec succès ! 🏆';
 
   @override
+  String get validationEmailInvalid => 'L\'adresse e-mail n\'est pas valide.';
+
+  @override
   String get paywallTitle => 'Profitez sans publicité';
 
   @override

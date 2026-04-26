@@ -344,6 +344,9 @@ class AppLocalizationsHi extends AppLocalizations {
       'पासवर्ड सफलतापूर्वक अपडेट किया गया! 🏆';
 
   @override
+  String get validationEmailInvalid => 'ईमेल पता अमान्य है।';
+
+  @override
   String get paywallTitle => 'विज्ञापन के बिना आनंद लें';
 
   @override

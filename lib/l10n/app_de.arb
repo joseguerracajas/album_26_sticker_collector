@@ -151,6 +151,7 @@
   "forgotPasswordShortPasswordError": "Das Passwort muss mindestens 6 Zeichen lang sein.",
   "forgotPasswordSavePasswordButton": "PASSWORT SPEICHERN",
   "forgotPasswordPasswordUpdatedSuccess": "Passwort erfolgreich aktualisiert! 🏆",
+  "validationEmailInvalid": "Die E-Mail-Adresse ist ungültig.",
 
   "paywallTitle": "Ohne Werbung genießen",
   "paywallSubtitle": "Alle Funktionen sind kostenlos verfügbar. Mit Pro genießt du alles ohne Unterbrechungen.",

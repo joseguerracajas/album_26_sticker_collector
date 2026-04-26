@@ -333,6 +333,9 @@ class AppLocalizationsHe extends AppLocalizations {
   String get forgotPasswordPasswordUpdatedSuccess => 'הסיסמה עודכנה בהצלחה! 🏆';
 
   @override
+  String get validationEmailInvalid => 'כתובת האימייל אינה תקינה.';
+
+  @override
   String get paywallTitle => 'תהנה ללא פרסומות';
 
   @override

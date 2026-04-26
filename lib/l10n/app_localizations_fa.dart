@@ -345,6 +345,9 @@ class AppLocalizationsFa extends AppLocalizations {
       'رمز عبور با موفقیت به‌روزرسانی شد! 🏆';
 
   @override
+  String get validationEmailInvalid => 'آدرس ایمیل معتبر نیست.';
+
+  @override
   String get paywallTitle => 'بدون تبلیغات لذت ببرید';
 
   @override

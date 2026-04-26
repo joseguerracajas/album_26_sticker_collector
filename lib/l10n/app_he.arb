@@ -151,6 +151,7 @@
   "forgotPasswordShortPasswordError": "הסיסמה חייבת להכיל לפחות 6 תווים.",
   "forgotPasswordSavePasswordButton": "שמור סיסמה",
   "forgotPasswordPasswordUpdatedSuccess": "הסיסמה עודכנה בהצלחה! 🏆",
+  "validationEmailInvalid": "כתובת האימייל אינה תקינה.",
 
   "paywallTitle": "תהנה ללא פרסומות",
   "paywallSubtitle": "כל התכונות זמינות בחינם. עם Pro תהנה מהכל ללא הפרעות.",

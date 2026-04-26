@@ -343,6 +343,9 @@ class AppLocalizationsTr extends AppLocalizations {
       'Şifre başarıyla güncellendi! 🏆';
 
   @override
+  String get validationEmailInvalid => 'E-posta adresi geçerli değil.';
+
+  @override
   String get paywallTitle => 'Reklamsız Keyfini Çıkar';
 
   @override

@@ -151,6 +151,7 @@
   "forgotPasswordShortPasswordError": "密码必须至少包含 6 个字符。",
   "forgotPasswordSavePasswordButton": "保存密码",
   "forgotPasswordPasswordUpdatedSuccess": "密码更新成功！🏆",
+  "validationEmailInvalid": "电子邮件地址无效。",
 
   "paywallTitle": "无广告体验",
   "paywallSubtitle": "所有功能均可免费使用。购买 Pro 享受无中断体验。",

@@ -346,6 +346,9 @@ class AppLocalizationsNl extends AppLocalizations {
       'Wachtwoord succesvol bijgewerkt! 🏆';
 
   @override
+  String get validationEmailInvalid => 'Het e-mailadres is ongeldig.';
+
+  @override
   String get paywallTitle => 'Geniet zonder advertenties';
 
   @override

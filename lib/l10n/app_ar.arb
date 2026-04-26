@@ -151,6 +151,7 @@
   "forgotPasswordShortPasswordError": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.",
   "forgotPasswordSavePasswordButton": "حفظ كلمة المرور",
   "forgotPasswordPasswordUpdatedSuccess": "تم تحديث كلمة المرور بنجاح! 🏆",
+  "validationEmailInvalid": "عنوان البريد الإلكتروني غير صالح.",
 
   "paywallTitle": "استمتع بدون إعلانات",
   "paywallSubtitle": "جميع الميزات متاحة مجاناً. مع Pro تستمتع بكل شيء دون انقطاع.",

@@ -151,6 +151,7 @@
   "forgotPasswordShortPasswordError": "Пароль должен содержать не менее 6 символов.",
   "forgotPasswordSavePasswordButton": "СОХРАНИТЬ ПАРОЛЬ",
   "forgotPasswordPasswordUpdatedSuccess": "Пароль успешно обновлён! 🏆",
+  "validationEmailInvalid": "Адрес электронной почты недействителен.",
 
   "paywallTitle": "Наслаждайтесь без рекламы",
   "paywallSubtitle": "Все функции доступны бесплатно. С Pro наслаждайтесь всем без перебоев.",

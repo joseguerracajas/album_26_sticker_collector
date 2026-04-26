@@ -4,6 +4,7 @@ import 'package:album_26_sticker_collector/core/utils/supabase_error_mapper.dart
 import 'package:album_26_sticker_collector/features/auth/data/auth_provider.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart'; // IMPORTANTE: Agregar Riverpod
 import 'package:album_26_sticker_collector/main.dart';
 
@@ -64,6 +65,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   controller: nuevaClaveController,
                   obscureText: true,
                   style: const TextStyle(color: Colors.white),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                  ],
                   decoration: InputDecoration(
                     labelText: l10n.profileNewPasswordLabel,
                     labelStyle: const TextStyle(color: Colors.grey),
@@ -84,6 +88,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   controller: confirmarClaveController,
                   obscureText: true,
                   style: const TextStyle(color: Colors.white),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                  ],
                   decoration: InputDecoration(
                     labelText: l10n.profileConfirmNewPasswordLabel,
                     labelStyle: const TextStyle(color: Colors.grey),

@@ -716,6 +716,12 @@ abstract class AppLocalizations {
   /// **'¡Contraseña actualizada con éxito! 🏆'**
   String get forgotPasswordPasswordUpdatedSuccess;
 
+  /// No description provided for @validationEmailInvalid.
+  ///
+  /// In es, this message translates to:
+  /// **'El correo electrónico no es válido.'**
+  String get validationEmailInvalid;
+
   /// No description provided for @paywallTitle.
   ///
   /// In es, this message translates to:

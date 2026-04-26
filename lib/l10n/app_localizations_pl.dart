@@ -345,6 +345,9 @@ class AppLocalizationsPl extends AppLocalizations {
       'Hasło zostało pomyślnie zaktualizowane! 🏆';
 
   @override
+  String get validationEmailInvalid => 'Adres e-mail jest nieprawidłowy.';
+
+  @override
   String get paywallTitle => 'Ciesz się bez reklam';
 
   @override

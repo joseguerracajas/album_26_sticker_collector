@@ -9,6 +9,7 @@ import 'package:album_26_sticker_collector/features/auth/presentation/forgot_pas
 import 'package:album_26_sticker_collector/features/catalog/presentation/home_screen.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'register_screen.dart'; // Importamos la nueva pantalla
 
@@ -33,10 +34,31 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   // --- LOGIN TRADICIONAL ---
   Future<void> _login() async {
+    final l10n = AppLocalizations.of(context);
+    final email = _emailController.text.trim();
+    final password = _passwordController.text.trim();
+
+    if (email.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(l10n.registerFillAllFields),
+          backgroundColor: Colors.orange,
+        ),
+      );
+      return;
+    }
+    if (!RegExp(r'^[\w._%+\-]+@[\w.\-]+\.[a-zA-Z]{2,}$').hasMatch(email)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(l10n.validationEmailInvalid),
+          backgroundColor: Colors.orange,
+        ),
+      );
+      return;
+    }
+
     _ejecutarLogin(
-      () => ref
-          .read(authControllerProvider)
-          .login(_emailController.text.trim(), _passwordController.text.trim()),
+      () => ref.read(authControllerProvider).login(email, password),
     );
   }
 
@@ -184,6 +206,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 TextField(
                   controller: _emailController,
                   style: const TextStyle(color: Colors.white),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                  ],
                   decoration: InputDecoration(
                     labelText: l10n.authEmailLabel,
                     labelStyle: const TextStyle(color: Colors.grey),
@@ -201,6 +226,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 TextField(
                   controller: _passwordController,
                   style: const TextStyle(color: Colors.white),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                  ],
                   decoration: InputDecoration(
                     labelText: l10n.authPasswordLabel,
                     labelStyle: const TextStyle(color: Colors.grey),

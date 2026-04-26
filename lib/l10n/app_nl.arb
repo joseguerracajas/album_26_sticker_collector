@@ -151,6 +151,7 @@
   "forgotPasswordShortPasswordError": "Het wachtwoord moet minimaal 6 tekens bevatten.",
   "forgotPasswordSavePasswordButton": "WACHTWOORD OPSLAAN",
   "forgotPasswordPasswordUpdatedSuccess": "Wachtwoord succesvol bijgewerkt! 🏆",
+  "validationEmailInvalid": "Het e-mailadres is ongeldig.",
 
   "paywallTitle": "Geniet zonder advertenties",
   "paywallSubtitle": "Alle functies zijn gratis beschikbaar. Met Pro geniet je van alles zonder onderbrekingen.",

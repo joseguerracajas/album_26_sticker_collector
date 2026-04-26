@@ -342,6 +342,9 @@ class AppLocalizationsPt extends AppLocalizations {
       'Senha atualizada com sucesso! 🏆';
 
   @override
+  String get validationEmailInvalid => 'O endereço de e-mail não é válido.';
+
+  @override
   String get paywallTitle => 'Aproveite sem anúncios';
 
   @override

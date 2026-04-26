@@ -327,6 +327,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get forgotPasswordPasswordUpdatedSuccess => 'パスワードが正常に更新されました！🏆';
 
   @override
+  String get validationEmailInvalid => 'メールアドレスが無効です。';
+
+  @override
   String get paywallTitle => '広告なしで楽しむ';
 
   @override

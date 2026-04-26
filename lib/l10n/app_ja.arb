@@ -151,6 +151,7 @@
   "forgotPasswordShortPasswordError": "パスワードは少なくとも6文字以上にしてください。",
   "forgotPasswordSavePasswordButton": "パスワードを保存",
   "forgotPasswordPasswordUpdatedSuccess": "パスワードが正常に更新されました！🏆",
+  "validationEmailInvalid": "メールアドレスが無効です。",
 
   "paywallTitle": "広告なしで楽しむ",
   "paywallSubtitle": "すべての機能は無料でご利用いただけます。Proで中断なく全機能をお楽しみください。",

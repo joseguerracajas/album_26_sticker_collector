@@ -30,6 +30,10 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
       _showError(l10n.forgotPasswordEmptyEmailError);
       return;
     }
+    if (!RegExp(r'[\w._%+\-]+@[\w.\-]+\.[a-zA-Z]{2,}$').hasMatch(email)) {
+      _showError(l10n.validationEmailInvalid);
+      return;
+    }
 
     setState(() => _isLoading = true);
     HapticFeedback.mediumImpact();
@@ -163,6 +167,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
         TextField(
           controller: _emailController,
           keyboardType: TextInputType.emailAddress,
+          inputFormatters: [FilteringTextInputFormatter.deny(RegExp(r'\s'))],
           decoration: InputDecoration(
             labelText: l10n.forgotPasswordEmailLabel,
             border: const OutlineInputBorder(),
@@ -215,6 +220,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
         TextField(
           controller: _newPasswordController,
           obscureText: true,
+          inputFormatters: [FilteringTextInputFormatter.deny(RegExp(r'\s'))],
           decoration: InputDecoration(
             labelText: l10n.forgotPasswordNewPasswordLabel,
             border: const OutlineInputBorder(),

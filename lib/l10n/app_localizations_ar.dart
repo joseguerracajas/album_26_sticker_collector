@@ -342,6 +342,9 @@ class AppLocalizationsAr extends AppLocalizations {
       'تم تحديث كلمة المرور بنجاح! 🏆';
 
   @override
+  String get validationEmailInvalid => 'عنوان البريد الإلكتروني غير صالح.';
+
+  @override
   String get paywallTitle => 'استمتع بدون إعلانات';
 
   @override

@@ -328,6 +328,9 @@ class AppLocalizationsKo extends AppLocalizations {
       '비밀번호가 성공적으로 업데이트되었습니다! 🏆';
 
   @override
+  String get validationEmailInvalid => '이메일 주소가 유효하지 않습니다.';
+
+  @override
   String get paywallTitle => '광고 없이 즐기세요';
 
   @override

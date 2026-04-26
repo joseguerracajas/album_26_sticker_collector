@@ -151,6 +151,7 @@
   "forgotPasswordShortPasswordError": "رمز عبور باید حداقل ۶ کاراکتر داشته باشد.",
   "forgotPasswordSavePasswordButton": "ذخیره رمز عبور",
   "forgotPasswordPasswordUpdatedSuccess": "رمز عبور با موفقیت به‌روزرسانی شد! 🏆",
+  "validationEmailInvalid": "آدرس ایمیل معتبر نیست.",
 
   "paywallTitle": "بدون تبلیغات لذت ببرید",
   "paywallSubtitle": "تمام ویژگی‌ها رایگان هستند. با Pro همه چیز را بدون وقفه لذت ببرید.",

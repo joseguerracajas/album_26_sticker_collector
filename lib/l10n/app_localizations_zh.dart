@@ -323,6 +323,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get forgotPasswordPasswordUpdatedSuccess => '密码更新成功！🏆';
 
   @override
+  String get validationEmailInvalid => '电子邮件地址无效。';
+
+  @override
   String get paywallTitle => '无广告体验';
 
   @override

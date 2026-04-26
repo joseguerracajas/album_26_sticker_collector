@@ -347,6 +347,9 @@ class AppLocalizationsEs extends AppLocalizations {
       '¡Contraseña actualizada con éxito! 🏆';
 
   @override
+  String get validationEmailInvalid => 'El correo electrónico no es válido.';
+
+  @override
   String get paywallTitle => 'Disfruta sin publicidad';
 
   @override

@@ -342,6 +342,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Password updated successfully! 🏆';
 
   @override
+  String get validationEmailInvalid => 'The email address is not valid.';
+
+  @override
   String get paywallTitle => 'Enjoy without ads';
 
   @override

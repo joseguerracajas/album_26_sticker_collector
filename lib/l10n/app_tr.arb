@@ -151,6 +151,7 @@
   "forgotPasswordShortPasswordError": "Şifre en az 6 karakter olmalıdır.",
   "forgotPasswordSavePasswordButton": "ŞİFREYİ KAYDET",
   "forgotPasswordPasswordUpdatedSuccess": "Şifre başarıyla güncellendi! 🏆",
+  "validationEmailInvalid": "E-posta adresi geçerli değil.",
 
   "paywallTitle": "Reklamsız Keyfini Çıkar",
   "paywallSubtitle": "Tüm özellikler ücretsiz. Pro ile her şeyi kesintisiz kullanırsınız.",

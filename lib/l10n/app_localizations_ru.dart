@@ -347,6 +347,10 @@ class AppLocalizationsRu extends AppLocalizations {
       'Пароль успешно обновлён! 🏆';
 
   @override
+  String get validationEmailInvalid =>
+      'Адрес электронной почты недействителен.';
+
+  @override
   String get paywallTitle => 'Наслаждайтесь без рекламы';
 
   @override

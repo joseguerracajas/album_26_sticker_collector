@@ -151,6 +151,7 @@
   "forgotPasswordShortPasswordError": "पासवर्ड कम से कम 6 अक्षरों का होना चाहिए।",
   "forgotPasswordSavePasswordButton": "पासवर्ड सहेजें",
   "forgotPasswordPasswordUpdatedSuccess": "पासवर्ड सफलतापूर्वक अपडेट किया गया! 🏆",
+  "validationEmailInvalid": "ईमेल पता अमान्य है।",
 
   "paywallTitle": "विज्ञापन के बिना आनंद लें",
   "paywallSubtitle": "सभी सुविधाएं मुफ्त में उपलब्ध हैं। Pro के साथ बिना रुकावट के सब कुछ आनंद लें।",

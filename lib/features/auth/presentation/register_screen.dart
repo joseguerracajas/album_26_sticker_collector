@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:album_26_sticker_collector/core/utils/connectivity_checker.dart';
 import 'package:album_26_sticker_collector/core/utils/supabase_error_mapper.dart';
 import 'package:album_26_sticker_collector/features/auth/presentation/auth_screen.dart';
@@ -30,6 +31,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
     // 1. Validaciones locales
     if (email.isEmpty || password.isEmpty) {
       _showError(l10n.registerFillAllFields);
+      return;
+    }
+    if (!RegExp(r'[\w._%+\-]+@[\w.\-]+\.[a-zA-Z]{2,}$').hasMatch(email)) {
+      _showError(l10n.validationEmailInvalid);
       return;
     }
     if (email != confirmEmail) {
@@ -111,6 +116,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
             // Campo: Correo
             TextField(
               controller: _emailController,
+              style: const TextStyle(color: Colors.white),
+              inputFormatters: [
+                FilteringTextInputFormatter.deny(RegExp(r'\s')),
+              ],
               decoration: InputDecoration(
                 labelText: l10n.authEmailLabel,
                 border: OutlineInputBorder(),
@@ -122,6 +131,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
             // Campo: Confirmar Correo
             TextField(
               controller: _confirmEmailController,
+              style: const TextStyle(color: Colors.white),
+              inputFormatters: [
+                FilteringTextInputFormatter.deny(RegExp(r'\s')),
+              ],
               decoration: InputDecoration(
                 labelText: l10n.registerConfirmEmailLabel,
                 border: OutlineInputBorder(),
@@ -133,6 +146,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
             // Campo: Contraseña
             TextField(
               controller: _passwordController,
+              style: const TextStyle(color: Colors.white),
+              inputFormatters: [
+                FilteringTextInputFormatter.deny(RegExp(r'\s')),
+              ],
               decoration: InputDecoration(
                 labelText: l10n.authPasswordLabel,
                 border: OutlineInputBorder(),
@@ -144,6 +161,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
             // Campo: Confirmar Contraseña
             TextField(
               controller: _confirmPasswordController,
+              style: const TextStyle(color: Colors.white),
+              inputFormatters: [
+                FilteringTextInputFormatter.deny(RegExp(r'\s')),
+              ],
               decoration: InputDecoration(
                 labelText: l10n.registerConfirmPasswordLabel,
                 border: OutlineInputBorder(),

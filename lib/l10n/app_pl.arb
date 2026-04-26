@@ -151,6 +151,7 @@
   "forgotPasswordShortPasswordError": "Hasło musi mieć co najmniej 6 znaków.",
   "forgotPasswordSavePasswordButton": "ZAPISZ HASŁO",
   "forgotPasswordPasswordUpdatedSuccess": "Hasło zostało pomyślnie zaktualizowane! 🏆",
+  "validationEmailInvalid": "Adres e-mail jest nieprawidłowy.",
 
   "paywallTitle": "Ciesz się bez reklam",
   "paywallSubtitle": "Wszystkie funkcje są dostępne bezpłatnie. Z Pro ciesz się wszystkim bez przerw.",
