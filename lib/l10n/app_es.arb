@@ -197,5 +197,16 @@
   "adDialogGetPro": "Obtener Pro",
   "adDialogNotNow": "Ahora no",
 
-  "scannerCameraInitError": "No se pudo inicializar la cámara. Verifica que la app tenga permiso de acceso a la cámara."
+  "scannerCameraInitError": "No se pudo inicializar la cámara. Verifica que la app tenga permiso de acceso a la cámara.",
+
+  "variantSheetTitle": "Variante del álbum",
+  "variantSheetInventoryNote": "Tu inventario se conserva al cambiar de variante. Los cromos que ya tienes siguen registrados.",
+  "variantSheetLoadError": "Error cargando variantes: {error}",
+  "@variantSheetLoadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "variantSheetEmpty": "No hay variantes disponibles para este álbum.",
+  "variantSheetDefaultLabel": "Variante por defecto"
 }

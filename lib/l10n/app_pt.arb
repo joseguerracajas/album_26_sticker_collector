@@ -197,5 +197,16 @@
   "adDialogGetPro": "Obter Pro",
   "adDialogNotNow": "Agora não",
 
-  "scannerCameraInitError": "Não foi possível inicializar a câmera. Verifique se o app tem permissão de câmera."
+  "scannerCameraInitError": "Não foi possível inicializar a câmera. Verifique se o app tem permissão de câmera.",
+
+  "variantSheetTitle": "Variante do álbum",
+  "variantSheetInventoryNote": "Seu inventário é preservado ao mudar de variante. As figurinhas que você já tem continuam registradas.",
+  "variantSheetLoadError": "Erro ao carregar variantes: {error}",
+  "@variantSheetLoadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "variantSheetEmpty": "Nenhuma variante disponível para este álbum.",
+  "variantSheetDefaultLabel": "Variante padrão"
 }

@@ -424,4 +424,21 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get scannerCameraInitError => '无法初始化摄像头。请确保应用拥有摄像头权限。';
+
+  @override
+  String get variantSheetTitle => '相册版本';
+
+  @override
+  String get variantSheetInventoryNote => '更换版本时，您的收藏将被保留。您已有的贴纸仍会保持记录。';
+
+  @override
+  String variantSheetLoadError(Object error) {
+    return '加载版本时出错：$error';
+  }
+
+  @override
+  String get variantSheetEmpty => '此相册没有可用的版本。';
+
+  @override
+  String get variantSheetDefaultLabel => '默认版本';
 }

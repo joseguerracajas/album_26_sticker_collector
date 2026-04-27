@@ -197,5 +197,16 @@
   "adDialogGetPro": "Pro 가져오기",
   "adDialogNotNow": "나중에",
 
-  "scannerCameraInitError": "카메라를 초기화할 수 없습니다. 앱에 카메라 권한이 있는지 확인하세요."
+  "scannerCameraInitError": "카메라를 초기화할 수 없습니다. 앱에 카메라 권한이  있는지 확인하세요.",
+
+  "variantSheetTitle": "앨범 변형",
+  "variantSheetInventoryNote": "변형을 변경해도 인벤토리는 유지됩니다. 이미 보유한 스티커는 계속 기록됩니다.",
+  "variantSheetLoadError": "변형 로드 오류: {error}",
+  "@variantSheetLoadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "variantSheetEmpty": "이 앨범에 사용 가능한 변형이 없습니다.",
+  "variantSheetDefaultLabel": "기본 변형"
 }

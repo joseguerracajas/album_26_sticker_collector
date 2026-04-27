@@ -454,4 +454,23 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get scannerCameraInitError =>
       'Impossibile inizializzare la fotocamera. Assicurati che l\'app abbia il permesso di accedere alla fotocamera.';
+
+  @override
+  String get variantSheetTitle => 'Variante dell\'album';
+
+  @override
+  String get variantSheetInventoryNote =>
+      'Il tuo inventario viene conservato quando cambi variante. Le figurine che hai già continuano ad essere registrate.';
+
+  @override
+  String variantSheetLoadError(Object error) {
+    return 'Errore nel caricamento delle varianti: $error';
+  }
+
+  @override
+  String get variantSheetEmpty =>
+      'Nessuna variante disponibile per questo album.';
+
+  @override
+  String get variantSheetDefaultLabel => 'Variante predefinita';
 }

@@ -2,6 +2,7 @@
 
 import 'package:album_26_sticker_collector/features/auth/presentation/auth_screen.dart';
 import 'package:album_26_sticker_collector/features/auth/presentation/profile_screen.dart';
+import 'package:album_26_sticker_collector/features/catalog/data/album_variant_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/categories_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/sync_provider.dart';
@@ -9,6 +10,7 @@ import 'package:album_26_sticker_collector/features/catalog/presentation/global_
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/animated_expand_container.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/app_bar_actions.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/category_avatar.dart';
+import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/variant_selector_sheet.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/stats_provider.dart';
 import 'package:album_26_sticker_collector/features/monetization/data/ads_provider.dart';
@@ -251,13 +253,20 @@ class HomeScreen extends ConsumerWidget {
                           horizontal: 24.0,
                           vertical: 8,
                         ),
-                        child: Text(
-                          l10n.homeTeamsTitle,
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
+                        child: Row(
+                          children: [
+                            Text(
+                              l10n.homeTeamsTitle,
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const Spacer(),
+                            // Chip de variante activa
+                            _ActiveVariantChip(),
+                          ],
                         ),
                       )
                       .animate()
@@ -541,5 +550,72 @@ class _CategoryTile extends ConsumerWidget {
           duration: 400.ms,
           curve: Curves.easeOut,
         );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Chip que muestra la variante activa y abre el selector al tocar
+// ---------------------------------------------------------------------------
+class _ActiveVariantChip extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final prefAsync = ref.watch(activeVariantPreferenceProvider);
+    final variantsAsync = ref.watch(activeAlbumVariantsProvider);
+
+    return prefAsync.when(
+      loading: () => const SizedBox(
+        width: 24,
+        height: 24,
+        child: CircularProgressIndicator(strokeWidth: 2, color: Colors.amber),
+      ),
+      error: (_, __) => const SizedBox.shrink(),
+      data: (pref) {
+        if (pref == null) return const SizedBox.shrink();
+
+        final variants = variantsAsync.asData?.value;
+        final variantName = variants
+            ?.firstWhere(
+              (v) => v.id == pref.albumVariantId,
+              orElse: () => variants.first,
+            )
+            .name;
+
+        return GestureDetector(
+          onTap: () {
+            HapticFeedback.selectionClick();
+            VariantSelectorSheet.show(context);
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: Colors.amber.withValues(alpha: 0.12),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: Colors.amber.withValues(alpha: 0.5)),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.public, color: Colors.amber, size: 14),
+                const SizedBox(width: 5),
+                Text(
+                  variantName ?? '...',
+                  style: const TextStyle(
+                    color: Colors.amber,
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(width: 4),
+                const Icon(
+                  Icons.arrow_drop_down,
+                  color: Colors.amber,
+                  size: 18,
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 }

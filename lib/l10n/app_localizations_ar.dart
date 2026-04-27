@@ -449,4 +449,22 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get scannerCameraInitError =>
       'تعذّر تهيئة الكاميرا. تأكد من أن التطبيق يمتلك إذن الوصول إلى الكاميرا.';
+
+  @override
+  String get variantSheetTitle => 'نوع الألبوم';
+
+  @override
+  String get variantSheetInventoryNote =>
+      'تظل مجموعتك محفوظة عند تغيير النوع. الملصقات التي لديك بالفعل تبقى مسجّلة.';
+
+  @override
+  String variantSheetLoadError(Object error) {
+    return 'خطأ في تحميل الأنواع: $error';
+  }
+
+  @override
+  String get variantSheetEmpty => 'لا توجد أنواع متاحة لهذا الألبوم.';
+
+  @override
+  String get variantSheetDefaultLabel => 'النوع الافتراضي';
 }

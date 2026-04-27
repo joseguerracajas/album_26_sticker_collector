@@ -451,4 +451,22 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get scannerCameraInitError =>
       'कैमरा प्रारंभ नहीं हो सका। सुनिश्चित करें कि ऐप के पास कैमरा अनुमति है।';
+
+  @override
+  String get variantSheetTitle => 'एल्बम वेरिएंट';
+
+  @override
+  String get variantSheetInventoryNote =>
+      'वेरिएंट बदलने पर आपकी इन्वेंटरी सुरक्षित रहती है। जो स्टिकर आपके पास पहले से हैं वे दर्ज रहते हैं।';
+
+  @override
+  String variantSheetLoadError(Object error) {
+    return 'वेरिएंट लोड करने में त्रुटि: $error';
+  }
+
+  @override
+  String get variantSheetEmpty => 'इस एल्बम के लिए कोई वेरिएंट उपलब्ध नहीं है।';
+
+  @override
+  String get variantSheetDefaultLabel => 'डिफ़ॉल्ट वेरिएंट';
 }

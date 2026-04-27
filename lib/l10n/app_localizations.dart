@@ -913,6 +913,36 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'No se pudo inicializar la cámara. Verifica que la app tenga permiso de acceso a la cámara.'**
   String get scannerCameraInitError;
+
+  /// No description provided for @variantSheetTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Variante del álbum'**
+  String get variantSheetTitle;
+
+  /// No description provided for @variantSheetInventoryNote.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu inventario se conserva al cambiar de variante. Los cromos que ya tienes siguen registrados.'**
+  String get variantSheetInventoryNote;
+
+  /// No description provided for @variantSheetLoadError.
+  ///
+  /// In es, this message translates to:
+  /// **'Error cargando variantes: {error}'**
+  String variantSheetLoadError(Object error);
+
+  /// No description provided for @variantSheetEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay variantes disponibles para este álbum.'**
+  String get variantSheetEmpty;
+
+  /// No description provided for @variantSheetDefaultLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Variante por defecto'**
+  String get variantSheetDefaultLabel;
 }
 
 class _AppLocalizationsDelegate

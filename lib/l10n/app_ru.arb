@@ -197,5 +197,16 @@
   "adDialogGetPro": "Получить Pro",
   "adDialogNotNow": "Не сейчас",
 
-  "scannerCameraInitError": "Не удалось инициализировать камеру. Убедитесь, что приложение имеет разрешение на использование камеры."
+  "scannerCameraInitError": "Не удалось инициализировать камеру. Убедитесь, что приложение имеет разрешение на использование камеры.",
+
+  "variantSheetTitle": "Вариант альбома",
+  "variantSheetInventoryNote": "Ваш инвентарь сохраняется при смене варианта. Наклейки, которые у вас уже есть, остаются зарегистрированными.",
+  "variantSheetLoadError": "Ошибка загрузки вариантов: {error}",
+  "@variantSheetLoadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "variantSheetEmpty": "Для этого альбома нет доступных вариантов.",
+  "variantSheetDefaultLabel": "Вариант по умолчанию"
 }

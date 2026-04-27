@@ -430,5 +430,23 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get scannerCameraInitError =>
-      '카메라를 초기화할 수 없습니다. 앱에 카메라 권한이 있는지 확인하세요.';
+      '카메라를 초기화할 수 없습니다. 앱에 카메라 권한이  있는지 확인하세요.';
+
+  @override
+  String get variantSheetTitle => '앨범 변형';
+
+  @override
+  String get variantSheetInventoryNote =>
+      '변형을 변경해도 인벤토리는 유지됩니다. 이미 보유한 스티커는 계속 기록됩니다.';
+
+  @override
+  String variantSheetLoadError(Object error) {
+    return '변형 로드 오류: $error';
+  }
+
+  @override
+  String get variantSheetEmpty => '이 앨범에 사용 가능한 변형이 없습니다.';
+
+  @override
+  String get variantSheetDefaultLabel => '기본 변형';
 }

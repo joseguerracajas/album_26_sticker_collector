@@ -49,9 +49,7 @@ final activeVariantStickerIdsProvider = FutureProvider<Set<String>?>((
 
   final rows = await AppRepository().get<AlbumVariantSticker>(
     policy: OfflineFirstGetPolicy.alwaysHydrate,
-    query: Query(
-      where: [Where.exact('albumVariantId', pref.albumVariantId)],
-    ),
+    query: Query(where: [Where.exact('albumVariantId', pref.albumVariantId)]),
   );
   return rows.map((r) => r.stickerId).toSet();
 });
@@ -60,10 +58,11 @@ final activeVariantStickerIdsProvider = FutureProvider<Set<String>?>((
 // Preferencia de variante del usuario para el álbum activo (AsyncNotifier)
 // Se autocrea con la variante default si el usuario no ha elegido aún.
 // ---------------------------------------------------------------------------
-final activeVariantPreferenceProvider = AsyncNotifierProvider<
-  ActiveVariantPreferenceNotifier,
-  UserVariantPreference?
->(() => ActiveVariantPreferenceNotifier());
+final activeVariantPreferenceProvider =
+    AsyncNotifierProvider<
+      ActiveVariantPreferenceNotifier,
+      UserVariantPreference?
+    >(() => ActiveVariantPreferenceNotifier());
 
 class ActiveVariantPreferenceNotifier
     extends AsyncNotifier<UserVariantPreference?> {
@@ -120,7 +119,7 @@ class ActiveVariantPreferenceNotifier
   /// Cambia la variante activa del usuario.
   /// El inventario nunca se toca — solo se actualiza este registro.
   Future<void> switchVariant(String newVariantId) async {
-    final current = state.valueOrNull;
+    final current = state.asData?.value;
     if (current == null) return;
 
     final updated = current.copyWith(

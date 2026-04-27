@@ -456,4 +456,23 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get scannerCameraInitError =>
       'No se pudo inicializar la cámara. Verifica que la app tenga permiso de acceso a la cámara.';
+
+  @override
+  String get variantSheetTitle => 'Variante del álbum';
+
+  @override
+  String get variantSheetInventoryNote =>
+      'Tu inventario se conserva al cambiar de variante. Los cromos que ya tienes siguen registrados.';
+
+  @override
+  String variantSheetLoadError(Object error) {
+    return 'Error cargando variantes: $error';
+  }
+
+  @override
+  String get variantSheetEmpty =>
+      'No hay variantes disponibles para este álbum.';
+
+  @override
+  String get variantSheetDefaultLabel => 'Variante por defecto';
 }

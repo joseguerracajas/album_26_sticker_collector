@@ -197,5 +197,16 @@
   "adDialogGetPro": "Proを取得",
   "adDialogNotNow": "今はしない",
 
-  "scannerCameraInitError": "カメラを初期化できませんでした。アプリにカメラのアクセス許可があることを確認してください。"
+  "scannerCameraInitError": "カメラを初期化できませんでした。アプリにカメラのア クセス許可があることを確認してください。",
+
+  "variantSheetTitle": "アルバムのバリアント",
+  "variantSheetInventoryNote": "バリアントを変更してもインベントリは保持されます。すでに持っているステッカーは引き続き記録されます。",
+  "variantSheetLoadError": "バリアントの読み込みエラー: {error}",
+  "@variantSheetLoadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "variantSheetEmpty": "このアルバムで利用可能なバリアントはありません。",
+  "variantSheetDefaultLabel": "デフォルトバリアント"
 }

@@ -197,5 +197,16 @@
   "adDialogGetPro": "Ottieni Pro",
   "adDialogNotNow": "Non ora",
 
-  "scannerCameraInitError": "Impossibile inizializzare la fotocamera. Assicurati che l'app abbia il permesso di accedere alla fotocamera."
+  "scannerCameraInitError": "Impossibile inizializzare la fotocamera. Assicurati che l'app abbia il permesso di accedere alla fotocamera.",
+
+  "variantSheetTitle": "Variante dell'album",
+  "variantSheetInventoryNote": "Il tuo inventario viene conservato quando cambi variante. Le figurine che hai già continuano ad essere registrate.",
+  "variantSheetLoadError": "Errore nel caricamento delle varianti: {error}",
+  "@variantSheetLoadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "variantSheetEmpty": "Nessuna variante disponibile per questo album.",
+  "variantSheetDefaultLabel": "Variante predefinita"
 }

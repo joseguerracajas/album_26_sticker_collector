@@ -455,4 +455,22 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get scannerCameraInitError =>
       'Nie można zainicjować kamery. Upewnij się, że aplikacja ma uprawnienia do kamery.';
+
+  @override
+  String get variantSheetTitle => 'Wariant albumu';
+
+  @override
+  String get variantSheetInventoryNote =>
+      'Twój ekwipunek jest zachowywany podczas zmiany wariantu. Naklejki, które już masz, pozostają zarejestrowane.';
+
+  @override
+  String variantSheetLoadError(Object error) {
+    return 'Błąd podczas ładowania wariantów: $error';
+  }
+
+  @override
+  String get variantSheetEmpty => 'Brak dostępnych wariantów dla tego albumu.';
+
+  @override
+  String get variantSheetDefaultLabel => 'Wariant domyślny';
 }

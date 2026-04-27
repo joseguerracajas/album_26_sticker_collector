@@ -440,4 +440,22 @@ class AppLocalizationsHe extends AppLocalizations {
   @override
   String get scannerCameraInitError =>
       'לא ניתן לאתחל את המצלמה. ודא שלאפליקציה יש הרשאת גישה למצלמה.';
+
+  @override
+  String get variantSheetTitle => 'גרסת האלבום';
+
+  @override
+  String get variantSheetInventoryNote =>
+      'המלאי שלך נשמר בעת החלפת גרסה. המדבקות שכבר יש לך נשארות רשומות.';
+
+  @override
+  String variantSheetLoadError(Object error) {
+    return 'שגיאה בטעינת הגרסאות: $error';
+  }
+
+  @override
+  String get variantSheetEmpty => 'אין גרסאות זמינות לאלבום זה.';
+
+  @override
+  String get variantSheetDefaultLabel => 'גרסת ברירת מחדל';
 }

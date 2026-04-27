@@ -457,4 +457,22 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get scannerCameraInitError =>
       'Impossible d\'initialiser la caméra. Assurez-vous que l\'application a la permission d\'accéder à la caméra.';
+
+  @override
+  String get variantSheetTitle => 'Variante de l\'album';
+
+  @override
+  String get variantSheetInventoryNote =>
+      'Votre inventaire est conservé lorsque vous changez de variante. Les autocollants que vous avez déjà restent enregistrés.';
+
+  @override
+  String variantSheetLoadError(Object error) {
+    return 'Erreur lors du chargement des variantes : $error';
+  }
+
+  @override
+  String get variantSheetEmpty => 'Aucune variante disponible pour cet album.';
+
+  @override
+  String get variantSheetDefaultLabel => 'Variante par défaut';
 }

@@ -456,4 +456,22 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get scannerCameraInitError =>
       'Kon de camera niet initialiseren. Zorg ervoor dat de app cameratoegang heeft.';
+
+  @override
+  String get variantSheetTitle => 'Albumvariant';
+
+  @override
+  String get variantSheetInventoryNote =>
+      'Uw inventaris blijft behouden bij het wisselen van variant. De stickers die u al heeft, blijven geregistreerd.';
+
+  @override
+  String variantSheetLoadError(Object error) {
+    return 'Fout bij het laden van varianten: $error';
+  }
+
+  @override
+  String get variantSheetEmpty => 'Geen varianten beschikbaar voor dit album.';
+
+  @override
+  String get variantSheetDefaultLabel => 'Standaardvariant';
 }

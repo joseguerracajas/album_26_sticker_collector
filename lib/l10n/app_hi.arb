@@ -197,5 +197,16 @@
   "adDialogGetPro": "Pro प्राप्त करें",
   "adDialogNotNow": "अभी नहीं",
 
-  "scannerCameraInitError": "कैमरा प्रारंभ नहीं हो सका। सुनिश्चित करें कि ऐप के पास कैमरा अनुमति है।"
+  "scannerCameraInitError": "कैमरा प्रारंभ नहीं हो सका। सुनिश्चित करें कि ऐप के पास कैमरा अनुमति है।",
+
+  "variantSheetTitle": "एल्बम वेरिएंट",
+  "variantSheetInventoryNote": "वेरिएंट बदलने पर आपकी इन्वेंटरी सुरक्षित रहती है। जो स्टिकर आपके पास पहले से हैं वे दर्ज रहते हैं।",
+  "variantSheetLoadError": "वेरिएंट लोड करने में त्रुटि: {error}",
+  "@variantSheetLoadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "variantSheetEmpty": "इस एल्बम के लिए कोई वेरिएंट उपलब्ध नहीं है।",
+  "variantSheetDefaultLabel": "डिफ़ॉल्ट वेरिएंट"
 }

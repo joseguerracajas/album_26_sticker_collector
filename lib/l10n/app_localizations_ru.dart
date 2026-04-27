@@ -458,4 +458,22 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get scannerCameraInitError =>
       'Не удалось инициализировать камеру. Убедитесь, что приложение имеет разрешение на использование камеры.';
+
+  @override
+  String get variantSheetTitle => 'Вариант альбома';
+
+  @override
+  String get variantSheetInventoryNote =>
+      'Ваш инвентарь сохраняется при смене варианта. Наклейки, которые у вас уже есть, остаются зарегистрированными.';
+
+  @override
+  String variantSheetLoadError(Object error) {
+    return 'Ошибка загрузки вариантов: $error';
+  }
+
+  @override
+  String get variantSheetEmpty => 'Для этого альбома нет доступных вариантов.';
+
+  @override
+  String get variantSheetDefaultLabel => 'Вариант по умолчанию';
 }

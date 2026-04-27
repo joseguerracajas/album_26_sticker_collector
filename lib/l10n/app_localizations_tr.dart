@@ -452,4 +452,22 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get scannerCameraInitError =>
       'Kamera başlatılamadı. Uygulamanın kamera iznine sahip olduğundan emin olun.';
+
+  @override
+  String get variantSheetTitle => 'Albüm varyantı';
+
+  @override
+  String get variantSheetInventoryNote =>
+      'Varyant değiştirdiğinizde envanteriniz korunur. Zaten sahip olduğunuz çıkartmalar kayıtlı kalır.';
+
+  @override
+  String variantSheetLoadError(Object error) {
+    return 'Varyantlar yüklenirken hata: $error';
+  }
+
+  @override
+  String get variantSheetEmpty => 'Bu albüm için mevcut varyant yok.';
+
+  @override
+  String get variantSheetDefaultLabel => 'Varsayılan varyant';
 }

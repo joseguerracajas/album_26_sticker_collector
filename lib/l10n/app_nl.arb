@@ -197,5 +197,16 @@
   "adDialogGetPro": "Pro halen",
   "adDialogNotNow": "Niet nu",
 
-  "scannerCameraInitError": "Kon de camera niet initialiseren. Zorg ervoor dat de app cameratoegang heeft."
+  "scannerCameraInitError": "Kon de camera niet initialiseren. Zorg ervoor dat de app cameratoegang heeft.",
+
+  "variantSheetTitle": "Albumvariant",
+  "variantSheetInventoryNote": "Uw inventaris blijft behouden bij het wisselen van variant. De stickers die u al heeft, blijven geregistreerd.",
+  "variantSheetLoadError": "Fout bij het laden van varianten: {error}",
+  "@variantSheetLoadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "variantSheetEmpty": "Geen varianten beschikbaar voor dit album.",
+  "variantSheetDefaultLabel": "Standaardvariant"
 }

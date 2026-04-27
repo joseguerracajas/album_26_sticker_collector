@@ -197,5 +197,16 @@
   "adDialogGetPro": "Get Pro",
   "adDialogNotNow": "Not now",
 
-  "scannerCameraInitError": "Could not initialize the camera. Make sure the app has camera permission."
+  "scannerCameraInitError": "Could not initialize the camera. Make sure the app has camera permission.",
+
+  "variantSheetTitle": "Album variant",
+  "variantSheetInventoryNote": "Your inventory is preserved when you change variant. The stickers you already have remain registered.",
+  "variantSheetLoadError": "Error loading variants: {error}",
+  "@variantSheetLoadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "variantSheetEmpty": "No variants available for this album.",
+  "variantSheetDefaultLabel": "Default variant"
 }

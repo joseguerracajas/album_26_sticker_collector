@@ -197,5 +197,16 @@
   "adDialogGetPro": "Obtenir Pro",
   "adDialogNotNow": "Pas maintenant",
 
-  "scannerCameraInitError": "Impossible d'initialiser la caméra. Assurez-vous que l'application a la permission d'accéder à la caméra."
+  "scannerCameraInitError": "Impossible d'initialiser la caméra. Assurez-vous que l'application a la permission d'accéder à la caméra.",
+
+  "variantSheetTitle": "Variante de l'album",
+  "variantSheetInventoryNote": "Votre inventaire est conservé lorsque vous changez de variante. Les autocollants que vous avez déjà restent enregistrés.",
+  "variantSheetLoadError": "Erreur lors du chargement des variantes : {error}",
+  "@variantSheetLoadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "variantSheetEmpty": "Aucune variante disponible pour cet album.",
+  "variantSheetDefaultLabel": "Variante par défaut"
 }

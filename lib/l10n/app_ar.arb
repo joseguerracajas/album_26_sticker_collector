@@ -197,5 +197,16 @@
   "adDialogGetPro": "الحصول على Pro",
   "adDialogNotNow": "ليس الآن",
 
-  "scannerCameraInitError": "تعذّر تهيئة الكاميرا. تأكد من أن التطبيق يمتلك إذن الوصول إلى الكاميرا."
+  "scannerCameraInitError": "تعذّر تهيئة الكاميرا. تأكد من أن التطبيق يمتلك إذن الوصول إلى الكاميرا.",
+
+  "variantSheetTitle": "نوع الألبوم",
+  "variantSheetInventoryNote": "تظل مجموعتك محفوظة عند تغيير النوع. الملصقات التي لديك بالفعل تبقى مسجّلة.",
+  "variantSheetLoadError": "خطأ في تحميل الأنواع: {error}",
+  "@variantSheetLoadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "variantSheetEmpty": "لا توجد أنواع متاحة لهذا الألبوم.",
+  "variantSheetDefaultLabel": "النوع الافتراضي"
 }

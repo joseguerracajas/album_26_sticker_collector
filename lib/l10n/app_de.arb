@@ -197,5 +197,16 @@
   "adDialogGetPro": "Pro holen",
   "adDialogNotNow": "Nicht jetzt",
 
-  "scannerCameraInitError": "Die Kamera konnte nicht initialisiert werden. Stelle sicher, dass die App Kamerazugriff hat."
+  "scannerCameraInitError": "Die Kamera konnte nicht initialisiert werden. Stelle sicher, dass die App Kamerazugriff hat.",
+
+  "variantSheetTitle": "Album-Variante",
+  "variantSheetInventoryNote": "Dein Inventar bleibt beim Variantenwechsel erhalten. Die Sticker, die du bereits hast, bleiben registriert.",
+  "variantSheetLoadError": "Fehler beim Laden der Varianten: {error}",
+  "@variantSheetLoadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "variantSheetEmpty": "Keine Varianten für dieses Album verfügbar.",
+  "variantSheetDefaultLabel": "Standardvariante"
 }

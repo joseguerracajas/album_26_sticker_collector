@@ -197,5 +197,16 @@
   "adDialogGetPro": "קבל Pro",
   "adDialogNotNow": "לא עכשיו",
 
-  "scannerCameraInitError": "לא ניתן לאתחל את המצלמה. ודא שלאפליקציה יש הרשאת גישה למצלמה."
+  "scannerCameraInitError": "לא ניתן לאתחל את המצלמה. ודא שלאפליקציה יש הרשאת גישה למצלמה.",
+
+  "variantSheetTitle": "גרסת האלבום",
+  "variantSheetInventoryNote": "המלאי שלך נשמר בעת החלפת גרסה. המדבקות שכבר יש לך נשארות רשומות.",
+  "variantSheetLoadError": "שגיאה בטעינת הגרסאות: {error}",
+  "@variantSheetLoadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "variantSheetEmpty": "אין גרסאות זמינות לאלבום זה.",
+  "variantSheetDefaultLabel": "גרסת ברירת מחדל"
 }

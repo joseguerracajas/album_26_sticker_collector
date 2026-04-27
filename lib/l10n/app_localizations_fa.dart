@@ -454,4 +454,22 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get scannerCameraInitError =>
       'دوربین قابل راه‌اندازی نیست. مطمئن شوید که برنامه دسترسی به دوربین را دارد.';
+
+  @override
+  String get variantSheetTitle => 'نسخه آلبوم';
+
+  @override
+  String get variantSheetInventoryNote =>
+      'هنگام تغییر نسخه، موجودی شما حفظ می‌شود. استیکرهایی که دارید ثبت‌شده باقی می‌مانند.';
+
+  @override
+  String variantSheetLoadError(Object error) {
+    return 'خطا در بارگذاری نسخه‌ها: $error';
+  }
+
+  @override
+  String get variantSheetEmpty => 'هیچ نسخه‌ای برای این آلبوم موجود نیست.';
+
+  @override
+  String get variantSheetDefaultLabel => 'نسخه پیش‌فرض';
 }

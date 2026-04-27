@@ -197,5 +197,16 @@
   "adDialogGetPro": "Pro Al",
   "adDialogNotNow": "Şimdi değil",
 
-  "scannerCameraInitError": "Kamera başlatılamadı. Uygulamanın kamera iznine sahip olduğundan emin olun."
+  "scannerCameraInitError": "Kamera başlatılamadı. Uygulamanın kamera iznine sahip olduğundan emin olun.",
+
+  "variantSheetTitle": "Albüm varyantı",
+  "variantSheetInventoryNote": "Varyant değiştirdiğinizde envanteriniz korunur. Zaten sahip olduğunuz çıkartmalar kayıtlı kalır.",
+  "variantSheetLoadError": "Varyantlar yüklenirken hata: {error}",
+  "@variantSheetLoadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "variantSheetEmpty": "Bu albüm için mevcut varyant yok.",
+  "variantSheetDefaultLabel": "Varsayılan varyant"
 }

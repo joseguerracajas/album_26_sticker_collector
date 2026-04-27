@@ -429,5 +429,23 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get scannerCameraInitError =>
-      'カメラを初期化できませんでした。アプリにカメラのアクセス許可があることを確認してください。';
+      'カメラを初期化できませんでした。アプリにカメラのア クセス許可があることを確認してください。';
+
+  @override
+  String get variantSheetTitle => 'アルバムのバリアント';
+
+  @override
+  String get variantSheetInventoryNote =>
+      'バリアントを変更してもインベントリは保持されます。すでに持っているステッカーは引き続き記録されます。';
+
+  @override
+  String variantSheetLoadError(Object error) {
+    return 'バリアントの読み込みエラー: $error';
+  }
+
+  @override
+  String get variantSheetEmpty => 'このアルバムで利用可能なバリアントはありません。';
+
+  @override
+  String get variantSheetDefaultLabel => 'デフォルトバリアント';
 }

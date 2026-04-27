@@ -197,5 +197,16 @@
   "adDialogGetPro": "Zdobądź Pro",
   "adDialogNotNow": "Nie teraz",
 
-  "scannerCameraInitError": "Nie można zainicjować kamery. Upewnij się, że aplikacja ma uprawnienia do kamery."
+  "scannerCameraInitError": "Nie można zainicjować kamery. Upewnij się, że aplikacja ma uprawnienia do kamery.",
+
+  "variantSheetTitle": "Wariant albumu",
+  "variantSheetInventoryNote": "Twój ekwipunek jest zachowywany podczas zmiany wariantu. Naklejki, które już masz, pozostają zarejestrowane.",
+  "variantSheetLoadError": "Błąd podczas ładowania wariantów: {error}",
+  "@variantSheetLoadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "variantSheetEmpty": "Brak dostępnych wariantów dla tego albumu.",
+  "variantSheetDefaultLabel": "Wariant domyślny"
 }

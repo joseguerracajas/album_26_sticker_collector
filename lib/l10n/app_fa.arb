@@ -197,5 +197,16 @@
   "adDialogGetPro": "دریافت Pro",
   "adDialogNotNow": "نه الان",
 
-  "scannerCameraInitError": "دوربین قابل راه‌اندازی نیست. مطمئن شوید که برنامه دسترسی به دوربین را دارد."
+  "scannerCameraInitError": "دوربین قابل راه‌اندازی نیست. مطمئن شوید که برنامه دسترسی به دوربین را دارد.",
+
+  "variantSheetTitle": "نسخه آلبوم",
+  "variantSheetInventoryNote": "هنگام تغییر نسخه، موجودی شما حفظ می‌شود. استیکرهایی که دارید ثبت‌شده باقی می‌مانند.",
+  "variantSheetLoadError": "خطا در بارگذاری نسخه‌ها: {error}",
+  "@variantSheetLoadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "variantSheetEmpty": "هیچ نسخه‌ای برای این آلبوم موجود نیست.",
+  "variantSheetDefaultLabel": "نسخه پیش‌فرض"
 }
