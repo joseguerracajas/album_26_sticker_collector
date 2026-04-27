@@ -1,80 +1,68 @@
 // GENERATED CODE DO NOT EDIT
 part of '../brick.g.dart';
 
-Future<Category> _$CategoryFromSupabase(
+Future<Album> _$AlbumFromSupabase(
   Map<String, dynamic> data, {
   required SupabaseProvider provider,
   OfflineFirstWithSupabaseRepository? repository,
 }) async {
-  return Category(
+  return Album(
     id: data['id'] as String,
     name: data['name'] as String,
-    orderIndex: data['order_index'] as int,
-    backgroundUrl: data['background_url'] == null
-        ? null
-        : data['background_url'] as String?,
-    iconUrl: data['icon_url'] == null ? null : data['icon_url'] as String?,
-    emoji: data['emoji'] as String,
-    albumId: data['album_id'] == null ? null : data['album_id'] as String?,
+    year: data['year'] as int,
+    isActive: data['is_active'] as bool,
+    coverUrl: data['cover_url'] == null ? null : data['cover_url'] as String?,
   );
 }
 
-Future<Map<String, dynamic>> _$CategoryToSupabase(
-  Category instance, {
+Future<Map<String, dynamic>> _$AlbumToSupabase(
+  Album instance, {
   required SupabaseProvider provider,
   OfflineFirstWithSupabaseRepository? repository,
 }) async {
   return {
     'id': instance.id,
     'name': instance.name,
-    'order_index': instance.orderIndex,
-    'background_url': instance.backgroundUrl,
-    'icon_url': instance.iconUrl,
-    'emoji': instance.emoji,
-    'album_id': instance.albumId,
+    'year': instance.year,
+    'is_active': instance.isActive,
+    'cover_url': instance.coverUrl,
   };
 }
 
-Future<Category> _$CategoryFromSqlite(
+Future<Album> _$AlbumFromSqlite(
   Map<String, dynamic> data, {
   required SqliteProvider provider,
   OfflineFirstWithSupabaseRepository? repository,
 }) async {
-  return Category(
+  return Album(
     id: data['id'] as String,
     name: data['name'] as String,
-    orderIndex: data['order_index'] as int,
-    backgroundUrl: data['background_url'] == null
-        ? null
-        : data['background_url'] as String?,
-    iconUrl: data['icon_url'] == null ? null : data['icon_url'] as String?,
-    emoji: data['emoji'] as String,
-    albumId: data['album_id'] == null ? null : data['album_id'] as String?,
+    year: data['year'] as int,
+    isActive: data['is_active'] == 1,
+    coverUrl: data['cover_url'] == null ? null : data['cover_url'] as String?,
   )..primaryKey = data['_brick_id'] as int;
 }
 
-Future<Map<String, dynamic>> _$CategoryToSqlite(
-  Category instance, {
+Future<Map<String, dynamic>> _$AlbumToSqlite(
+  Album instance, {
   required SqliteProvider provider,
   OfflineFirstWithSupabaseRepository? repository,
 }) async {
   return {
     'id': instance.id,
     'name': instance.name,
-    'order_index': instance.orderIndex,
-    'background_url': instance.backgroundUrl,
-    'icon_url': instance.iconUrl,
-    'emoji': instance.emoji,
-    'album_id': instance.albumId,
+    'year': instance.year,
+    'is_active': instance.isActive ? 1 : 0,
+    'cover_url': instance.coverUrl,
   };
 }
 
-/// Construct a [Category]
-class CategoryAdapter extends OfflineFirstWithSupabaseAdapter<Category> {
-  CategoryAdapter();
+/// Construct a [Album]
+class AlbumAdapter extends OfflineFirstWithSupabaseAdapter<Album> {
+  AlbumAdapter();
 
   @override
-  final supabaseTableName = 'categories';
+  final supabaseTableName = 'albums';
   @override
   final defaultToNull = true;
   @override
@@ -87,25 +75,17 @@ class CategoryAdapter extends OfflineFirstWithSupabaseAdapter<Category> {
       association: false,
       columnName: 'name',
     ),
-    'orderIndex': const RuntimeSupabaseColumnDefinition(
+    'year': const RuntimeSupabaseColumnDefinition(
       association: false,
-      columnName: 'order_index',
+      columnName: 'year',
     ),
-    'backgroundUrl': const RuntimeSupabaseColumnDefinition(
+    'isActive': const RuntimeSupabaseColumnDefinition(
       association: false,
-      columnName: 'background_url',
+      columnName: 'is_active',
     ),
-    'iconUrl': const RuntimeSupabaseColumnDefinition(
+    'coverUrl': const RuntimeSupabaseColumnDefinition(
       association: false,
-      columnName: 'icon_url',
-    ),
-    'emoji': const RuntimeSupabaseColumnDefinition(
-      association: false,
-      columnName: 'emoji',
-    ),
-    'albumId': const RuntimeSupabaseColumnDefinition(
-      association: false,
-      columnName: 'album_id',
+      columnName: 'cover_url',
     ),
   };
   @override
@@ -132,45 +112,33 @@ class CategoryAdapter extends OfflineFirstWithSupabaseAdapter<Category> {
       iterable: false,
       type: String,
     ),
-    'orderIndex': const RuntimeSqliteColumnDefinition(
+    'year': const RuntimeSqliteColumnDefinition(
       association: false,
-      columnName: 'order_index',
+      columnName: 'year',
       iterable: false,
       type: int,
     ),
-    'backgroundUrl': const RuntimeSqliteColumnDefinition(
+    'isActive': const RuntimeSqliteColumnDefinition(
       association: false,
-      columnName: 'background_url',
+      columnName: 'is_active',
       iterable: false,
-      type: String,
+      type: bool,
     ),
-    'iconUrl': const RuntimeSqliteColumnDefinition(
+    'coverUrl': const RuntimeSqliteColumnDefinition(
       association: false,
-      columnName: 'icon_url',
-      iterable: false,
-      type: String,
-    ),
-    'emoji': const RuntimeSqliteColumnDefinition(
-      association: false,
-      columnName: 'emoji',
-      iterable: false,
-      type: String,
-    ),
-    'albumId': const RuntimeSqliteColumnDefinition(
-      association: false,
-      columnName: 'album_id',
+      columnName: 'cover_url',
       iterable: false,
       type: String,
     ),
   };
   @override
   Future<int?> primaryKeyByUniqueColumns(
-    Category instance,
+    Album instance,
     DatabaseExecutor executor,
   ) async {
     final results = await executor.rawQuery(
       '''
-        SELECT * FROM `Category` WHERE id = ? LIMIT 1''',
+        SELECT * FROM `Album` WHERE id = ? LIMIT 1''',
       [instance.id],
     );
 
@@ -183,46 +151,43 @@ class CategoryAdapter extends OfflineFirstWithSupabaseAdapter<Category> {
   }
 
   @override
-  final String tableName = 'Category';
+  final String tableName = 'Album';
 
   @override
-  Future<Category> fromSupabase(
+  Future<Album> fromSupabase(
     Map<String, dynamic> input, {
     required provider,
     covariant OfflineFirstWithSupabaseRepository? repository,
-  }) async => await _$CategoryFromSupabase(
+  }) async => await _$AlbumFromSupabase(
     input,
     provider: provider,
     repository: repository,
   );
   @override
   Future<Map<String, dynamic>> toSupabase(
-    Category input, {
+    Album input, {
     required provider,
     covariant OfflineFirstWithSupabaseRepository? repository,
-  }) async => await _$CategoryToSupabase(
+  }) async => await _$AlbumToSupabase(
     input,
     provider: provider,
     repository: repository,
   );
   @override
-  Future<Category> fromSqlite(
+  Future<Album> fromSqlite(
     Map<String, dynamic> input, {
     required provider,
     covariant OfflineFirstWithSupabaseRepository? repository,
-  }) async => await _$CategoryFromSqlite(
+  }) async => await _$AlbumFromSqlite(
     input,
     provider: provider,
     repository: repository,
   );
   @override
   Future<Map<String, dynamic>> toSqlite(
-    Category input, {
+    Album input, {
     required provider,
     covariant OfflineFirstWithSupabaseRepository? repository,
-  }) async => await _$CategoryToSqlite(
-    input,
-    provider: provider,
-    repository: repository,
-  );
+  }) async =>
+      await _$AlbumToSqlite(input, provider: provider, repository: repository);
 }

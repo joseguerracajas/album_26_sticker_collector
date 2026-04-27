@@ -20,6 +20,10 @@ class Category extends OfflineFirstWithSupabaseModel {
   final String? iconUrl;
   @Supabase(name: 'emoji')
   final String emoji;
+
+  @Supabase(name: 'album_id')
+  final String? albumId;
+
   Category({
     required this.id,
     required this.name,
@@ -27,6 +31,7 @@ class Category extends OfflineFirstWithSupabaseModel {
     this.backgroundUrl,
     this.iconUrl,
     required this.emoji,
+    this.albumId,
   });
 
   Category copyWith({
@@ -36,6 +41,7 @@ class Category extends OfflineFirstWithSupabaseModel {
     String? backgroundUrl,
     String? iconUrl,
     String? emoji,
+    String? albumId,
   }) {
     return Category(
       id: id ?? this.id,
@@ -44,6 +50,7 @@ class Category extends OfflineFirstWithSupabaseModel {
       backgroundUrl: backgroundUrl ?? this.backgroundUrl,
       iconUrl: iconUrl ?? this.iconUrl,
       emoji: emoji ?? this.emoji,
+      albumId: albumId ?? this.albumId,
     );
   }
 }
