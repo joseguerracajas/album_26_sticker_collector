@@ -12,7 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // ---------------------------------------------------------------------------
 final activeAlbumProvider = FutureProvider<Album?>((ref) async {
   final all = await AppRepository().get<Album>(
-    policy: OfflineFirstGetPolicy.alwaysHydrate,
+    policy: OfflineFirstGetPolicy.awaitRemoteWhenNoneExist,
   );
   try {
     return all.firstWhere((a) => a.isActive);
@@ -31,7 +31,7 @@ final activeAlbumVariantsProvider = FutureProvider<List<AlbumVariant>>((
   if (album == null) return [];
 
   final all = await AppRepository().get<AlbumVariant>(
-    policy: OfflineFirstGetPolicy.alwaysHydrate,
+    policy: OfflineFirstGetPolicy.awaitRemoteWhenNoneExist,
   );
   return all.where((v) => v.albumId == album.id).toList()
     ..sort((a, b) => a.name.compareTo(b.name));
@@ -47,11 +47,21 @@ final activeVariantStickerIdsProvider = FutureProvider<Set<String>?>((
   final pref = await ref.watch(activeVariantPreferenceProvider.future);
   if (pref == null) return null;
 
-  final rows = await AppRepository().get<AlbumVariantSticker>(
+  // Traemos todos los registros sin WHERE para evitar problemas con la
+  // traducción de campos en Brick cuando el caché local está vacío.
+  // sincronizarCatalogo ya los popula todos en SQLite antes de que
+  // se invaliden los providers.
+  final allRows = await AppRepository().get<AlbumVariantSticker>(
     policy: OfflineFirstGetPolicy.alwaysHydrate,
-    query: Query(where: [Where.exact('albumVariantId', pref.albumVariantId)]),
   );
-  return rows.map((r) => r.stickerId).toSet();
+
+  final filtered = allRows
+      .where((r) => r.albumVariantId == pref.albumVariantId)
+      .toList();
+
+  // Sin filas para esta variante = sin restricción (mostrar todo)
+  if (filtered.isEmpty) return null;
+  return filtered.map((r) => r.stickerId).toSet();
 });
 
 // ---------------------------------------------------------------------------
@@ -80,7 +90,7 @@ class ActiveVariantPreferenceNotifier
 
     // 1. Buscar preferencia existente
     final existing = await _repo.get<UserVariantPreference>(
-      policy: OfflineFirstGetPolicy.alwaysHydrate,
+      policy: OfflineFirstGetPolicy.awaitRemoteWhenNoneExist,
       query: Query(
         where: [
           Where.exact('userId', userId),
@@ -93,7 +103,7 @@ class ActiveVariantPreferenceNotifier
 
     // 2. Si no existe, buscar la variante default del álbum
     final variants = await _repo.get<AlbumVariant>(
-      policy: OfflineFirstGetPolicy.alwaysHydrate,
+      policy: OfflineFirstGetPolicy.awaitRemoteWhenNoneExist,
     );
     final albumVariants = variants.where((v) => v.albumId == album.id).toList();
     if (albumVariants.isEmpty) return null;
@@ -130,8 +140,7 @@ class ActiveVariantPreferenceNotifier
     state = AsyncData(updated);
 
     await _repo.upsert<UserVariantPreference>(updated);
-
-    // Invalidar los IDs de stickers para que el catálogo se re-filtre
-    ref.invalidate(activeVariantStickerIdsProvider);
+    // activeVariantStickerIdsProvider ya observa este notifier, se reconstruye
+    // automáticamente cuando cambia el estado — no es necesario invalidarlo.
   }
 }
