@@ -171,6 +171,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get homeProfileTooltip => 'Profilim';
 
   @override
+  String get drawerSignIn => 'Giriş Yap';
+
+  @override
   String get homeShareAll => 'Tam Listeyi Paylaş';
 
   @override

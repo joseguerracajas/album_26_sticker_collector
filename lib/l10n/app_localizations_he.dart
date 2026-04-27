@@ -164,6 +164,9 @@ class AppLocalizationsHe extends AppLocalizations {
   String get homeProfileTooltip => 'הפרופיל שלי';
 
   @override
+  String get drawerSignIn => 'התחבר';
+
+  @override
   String get homeShareAll => 'שתף רשימה מלאה';
 
   @override

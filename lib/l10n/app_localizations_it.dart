@@ -174,6 +174,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get homeProfileTooltip => 'Il Mio Profilo';
 
   @override
+  String get drawerSignIn => 'Accedi';
+
+  @override
   String get homeShareAll => 'Condividi Lista Completa';
 
   @override

@@ -58,8 +58,7 @@
     }
   },
   "homeTitle": "Mój Album 26",
-  "homeProfileTooltip": "Mój profil",
-  "homeShareAll": "Udostępnij pełną listę",
+  "homeProfileTooltip": "Mój profil",  "drawerSignIn": "Zaloguj się",  "homeShareAll": "Udostępnij pełną listę",
   "homeShareMissingOnly": "Tylko brakujące",
   "homeShareDuplicatesOnly": "Tylko duplikaty",
   "homeGlobalProgressTitle": "Ogólny postęp",

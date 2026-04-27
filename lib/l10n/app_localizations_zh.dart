@@ -157,6 +157,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get homeProfileTooltip => '我的个人资料';
 
   @override
+  String get drawerSignIn => '登录';
+
+  @override
   String get homeShareAll => '分享完整列表';
 
   @override

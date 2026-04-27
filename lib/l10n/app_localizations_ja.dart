@@ -160,6 +160,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get homeProfileTooltip => 'マイプロフィール';
 
   @override
+  String get drawerSignIn => 'サインイン';
+
+  @override
   String get homeShareAll => '完全なリストを共有';
 
   @override

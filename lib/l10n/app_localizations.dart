@@ -416,6 +416,12 @@ abstract class AppLocalizations {
   /// **'Mi Perfil'**
   String get homeProfileTooltip;
 
+  /// No description provided for @drawerSignIn.
+  ///
+  /// In es, this message translates to:
+  /// **'Iniciar Sesión'**
+  String get drawerSignIn;
+
   /// No description provided for @homeShareAll.
   ///
   /// In es, this message translates to:

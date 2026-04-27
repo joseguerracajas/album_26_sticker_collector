@@ -175,6 +175,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get homeProfileTooltip => 'Mi Perfil';
 
   @override
+  String get drawerSignIn => 'Iniciar Sesión';
+
+  @override
   String get homeShareAll => 'Compartir Todo';
 
   @override

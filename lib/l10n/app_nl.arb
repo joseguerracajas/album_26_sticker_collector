@@ -58,8 +58,7 @@
     }
   },
   "homeTitle": "Mijn Album 26",
-  "homeProfileTooltip": "Mijn profiel",
-  "homeShareAll": "Volledige lijst delen",
+  "homeProfileTooltip": "Mijn profiel",  "drawerSignIn": "Inloggen",  "homeShareAll": "Volledige lijst delen",
   "homeShareMissingOnly": "Alleen ontbrekende",
   "homeShareDuplicatesOnly": "Alleen duplicaten",
   "homeGlobalProgressTitle": "Algemene voortgang",

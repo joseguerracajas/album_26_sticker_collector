@@ -34,6 +34,16 @@ final searchQueryProvider = NotifierProvider<SearchQueryNotifier, String>(
   SearchQueryNotifier.new,
 );
 
+String _normalize(String text) {
+  const accents = 'áàäâãéèëêíìïîóòöôõúùüûñçÁÀÄÂÃÉÈËÊÍÌÏÎÓÒÖÔÕÚÙÜÛÑÇ';
+  const normalized = 'aaaaaeeeeiiiioooooouuuuncAAAAaEEEEIIIIOOOOOUUUUNC';
+  var result = text.toLowerCase();
+  for (var i = 0; i < accents.length; i++) {
+    result = result.replaceAll(accents[i], normalized[i]);
+  }
+  return result;
+}
+
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
@@ -72,26 +82,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.account_circle, color: Colors.grey, size: 28),
-          tooltip: l10n.homeProfileTooltip,
-          onPressed: () {
-            final isLoggedIn = supabase.auth.currentSession != null;
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    isLoggedIn ? const ProfileScreen() : const LoginScreen(),
-              ),
-            );
-          },
+        leading: Builder(
+          builder: (ctx) => IconButton(
+            icon: const Icon(Icons.menu, color: Colors.amber),
+            onPressed: () => Scaffold.of(ctx).openDrawer(),
+          ),
         ),
-        actions: const [
-          ScannerIconButton(),
-          ShareMenuButton(),
-          _VariantOverflowMenu(),
-        ],
+        actions: const [ScannerIconButton(), ShareMenuButton()],
       ),
+      drawer: const _AppDrawer(),
       bottomNavigationBar: const AdBannerWidget(),
       body: RefreshIndicator(
         color: Colors.amber,
@@ -308,6 +307,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                               .read(searchQueryProvider.notifier)
                               .updateQuery(value),
                           style: const TextStyle(color: Colors.white),
+                          autocorrect: false,
+                          enableSuggestions: true,
                           decoration: InputDecoration(
                             hintText: l10n.homeSearchTeamsHint,
                             hintStyle: TextStyle(color: Colors.grey.shade600),
@@ -378,15 +379,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ),
               ),
               data: (categorias) {
+                final normalizedQuery = _normalize(searchQuery);
                 final filtered = categorias
                     .where(
                       (c) =>
-                          c.name.toLowerCase().contains(
-                            searchQuery.toLowerCase(),
-                          ) ||
-                          c.id.toLowerCase().contains(
-                            searchQuery.toLowerCase(),
-                          ),
+                          _normalize(c.name).contains(normalizedQuery) ||
+                          _normalize(c.id).contains(normalizedQuery),
                     )
                     .toList();
 
@@ -573,15 +571,17 @@ class _CategoryTile extends ConsumerWidget {
 }
 
 // ---------------------------------------------------------------------------
-// Menú de desbordamiento (⋮) con la opción de cambiar variante
+// Drawer lateral con perfil y variante del álbum
 // ---------------------------------------------------------------------------
-class _VariantOverflowMenu extends ConsumerWidget {
-  const _VariantOverflowMenu();
+class _AppDrawer extends ConsumerWidget {
+  const _AppDrawer();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final prefAsync = ref.watch(activeVariantPreferenceProvider);
     final variantsAsync = ref.watch(activeAlbumVariantsProvider);
+    final isLoggedIn = supabase.auth.currentSession != null;
 
     final variants = variantsAsync.asData?.value;
     final pref = prefAsync.asData?.value;
@@ -594,44 +594,106 @@ class _VariantOverflowMenu extends ConsumerWidget {
               )
               .name;
 
-    return PopupMenuButton<String>(
-      icon: const Icon(Icons.more_vert, color: Colors.amber),
-      color: const Color(0xFF1E1E1E),
-      onSelected: (value) {
-        if (value == 'variant') {
-          HapticFeedback.selectionClick();
-          VariantSelectorSheet.show(context);
-        }
-      },
-      itemBuilder: (_) => [
-        PopupMenuItem<String>(
-          value: 'variant',
-          child: Row(
-            children: [
-              const Icon(Icons.public, color: Colors.amber, size: 20),
-              const SizedBox(width: 12),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    return Drawer(
+      backgroundColor: const Color(0xFF1A1A1A),
+      child: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Cabecera
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 24, 20, 16),
+              child: Row(
                 children: [
-                  const Text(
-                    'Variante del álbum',
-                    style: TextStyle(color: Colors.white, fontSize: 14),
-                  ),
-                  if (variantName != null)
-                    Text(
-                      variantName,
-                      style: TextStyle(
-                        color: Colors.amber,
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
+                  Container(
+                    width: 48,
+                    height: 48,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Colors.amber.shade400, Colors.amber.shade800],
                       ),
+                      borderRadius: BorderRadius.circular(14),
                     ),
+                    child: const Icon(
+                      Icons.auto_awesome,
+                      color: Colors.black,
+                      size: 26,
+                    ),
+                  ),
+                  const SizedBox(width: 14),
+                  Text(
+                    l10n.appTitle,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ],
               ),
-            ],
-          ),
+            ),
+            const Divider(color: Color(0xFF2A2A2A)),
+
+            // Opción: Perfil / Iniciar sesión
+            ListTile(
+              leading: Icon(
+                isLoggedIn ? Icons.account_circle : Icons.login_rounded,
+                color: Colors.amber,
+              ),
+              title: Text(
+                isLoggedIn ? l10n.homeProfileTooltip : l10n.drawerSignIn,
+                style: TextStyle(
+                  color: isLoggedIn ? Colors.white : Colors.amber,
+                  fontWeight: isLoggedIn ? FontWeight.normal : FontWeight.bold,
+                ),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+                HapticFeedback.lightImpact();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => isLoggedIn
+                        ? const ProfileScreen()
+                        : const LoginScreen(),
+                  ),
+                );
+              },
+            ),
+
+            const Divider(color: Color(0xFF2A2A2A)),
+
+            // Opción: Variante
+            ListTile(
+              leading: const Icon(Icons.public, color: Colors.amber),
+              title: Text(
+                l10n.variantSheetTitle,
+                style: const TextStyle(color: Colors.white),
+              ),
+              subtitle: variantName != null
+                  ? Text(
+                      variantName,
+                      style: const TextStyle(
+                        color: Colors.amber,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
+                    )
+                  : null,
+              trailing: const Icon(
+                Icons.chevron_right,
+                color: Colors.white24,
+                size: 18,
+              ),
+              onTap: () {
+                Navigator.pop(context);
+                HapticFeedback.selectionClick();
+                VariantSelectorSheet.show(context);
+              },
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

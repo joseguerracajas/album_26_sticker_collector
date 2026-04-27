@@ -173,6 +173,9 @@ class AppLocalizationsFa extends AppLocalizations {
   String get homeProfileTooltip => 'پروفایل من';
 
   @override
+  String get drawerSignIn => 'ورود به حساب';
+
+  @override
   String get homeShareAll => 'اشتراک‌گذاری لیست کامل';
 
   @override

@@ -160,6 +160,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get homeProfileTooltip => '내 프로필';
 
   @override
+  String get drawerSignIn => '로그인';
+
+  @override
   String get homeShareAll => '전체 목록 공유';
 
   @override

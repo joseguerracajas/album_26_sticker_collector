@@ -174,6 +174,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get homeProfileTooltip => 'Мой профиль';
 
   @override
+  String get drawerSignIn => 'Войти';
+
+  @override
   String get homeShareAll => 'Поделиться полным списком';
 
   @override

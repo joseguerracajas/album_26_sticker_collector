@@ -171,6 +171,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get homeProfileTooltip => 'ملفي الشخصي';
 
   @override
+  String get drawerSignIn => 'تسجيل الدخول';
+
+  @override
   String get homeShareAll => 'مشاركة القائمة الكاملة';
 
   @override

@@ -59,6 +59,7 @@
   },
   "homeTitle": "Mon Album 26",
   "homeProfileTooltip": "Mon Profil",
+  "drawerSignIn": "Se connecter",
   "homeShareAll": "Partager la liste complète",
   "homeShareMissingOnly": "Manquants seulement",
   "homeShareDuplicatesOnly": "Doublons seulement",

@@ -96,6 +96,8 @@ class _StickerFilterSearchState extends ConsumerState<StickerFilterSearch> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: TextField(
             controller: _searchController,
+            autocorrect: false,
+            enableSuggestions: true,
             onChanged: (val) =>
                 ref.read(stickerSearchProvider.notifier).updateQuery(val),
             decoration: InputDecoration(

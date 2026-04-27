@@ -59,6 +59,7 @@
   },
   "homeTitle": "내 앨범 26",
   "homeProfileTooltip": "내 프로필",
+  "drawerSignIn": "로그인",
   "homeShareAll": "전체 목록 공유",
   "homeShareMissingOnly": "없는 것만",
   "homeShareDuplicatesOnly": "중복만",

@@ -59,6 +59,7 @@
   },
   "homeTitle": "Мой альбом 26",
   "homeProfileTooltip": "Мой профиль",
+  "drawerSignIn": "Войти",
   "homeShareAll": "Поделиться полным списком",
   "homeShareMissingOnly": "Только отсутствующие",
   "homeShareDuplicatesOnly": "Только дубликаты",
