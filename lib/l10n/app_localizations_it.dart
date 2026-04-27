@@ -473,4 +473,16 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get variantSheetDefaultLabel => 'Variante predefinita';
+
+  @override
+  String get variantMandatoryTitle => 'Scegli la tua regione';
+
+  @override
+  String get variantMandatorySubtitle =>
+      'Seleziona la versione dell\'album per la tua regione.';
+
+  @override
+  String variantChangedSuccess(Object name) {
+    return 'Variante cambiata in $name ✅';
+  }
 }

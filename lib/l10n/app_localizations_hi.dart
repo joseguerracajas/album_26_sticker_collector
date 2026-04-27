@@ -469,4 +469,16 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get variantSheetDefaultLabel => 'डिफ़ॉल्ट वेरिएंट';
+
+  @override
+  String get variantMandatoryTitle => 'अपना क्षेत्र चुनें';
+
+  @override
+  String get variantMandatorySubtitle =>
+      'अपने क्षेत्र के लिए एल्बम संस्करण चुनें।';
+
+  @override
+  String variantChangedSuccess(Object name) {
+    return 'वेरिएंट $name में बदल गया ✅';
+  }
 }

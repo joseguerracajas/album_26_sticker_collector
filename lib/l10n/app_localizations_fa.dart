@@ -472,4 +472,16 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get variantSheetDefaultLabel => 'نسخه پیش‌فرض';
+
+  @override
+  String get variantMandatoryTitle => 'منطقه خود را انتخاب کنید';
+
+  @override
+  String get variantMandatorySubtitle =>
+      'نسخه آلبوم مناسب منطقه خود را انتخاب کنید.';
+
+  @override
+  String variantChangedSuccess(Object name) {
+    return 'نسخه به $name تغییر یافت ✅';
+  }
 }

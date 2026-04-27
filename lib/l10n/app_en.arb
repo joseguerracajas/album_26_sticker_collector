@@ -208,5 +208,13 @@
     }
   },
   "variantSheetEmpty": "No variants available for this album.",
-  "variantSheetDefaultLabel": "Default variant"
+  "variantSheetDefaultLabel": "Default variant",
+  "variantMandatoryTitle": "Choose your region",
+  "variantMandatorySubtitle": "Select your album version to see the right stickers for your region.",
+  "variantChangedSuccess": "Variant changed to {name} ✅",
+  "@variantChangedSuccess": {
+    "placeholders": {
+      "name": {}
+    }
+  }
 }

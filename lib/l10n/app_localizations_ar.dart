@@ -467,4 +467,15 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get variantSheetDefaultLabel => 'النوع الافتراضي';
+
+  @override
+  String get variantMandatoryTitle => 'اختر منطقتك';
+
+  @override
+  String get variantMandatorySubtitle => 'اختر إصدار الألبوم المناسب لمنطقتك.';
+
+  @override
+  String variantChangedSuccess(Object name) {
+    return 'تم التغيير إلى $name ✅';
+  }
 }

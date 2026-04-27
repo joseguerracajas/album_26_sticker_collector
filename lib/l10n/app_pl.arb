@@ -208,5 +208,13 @@
     }
   },
   "variantSheetEmpty": "Brak dostępnych wariantów dla tego albumu.",
-  "variantSheetDefaultLabel": "Wariant domyślny"
+  "variantSheetDefaultLabel": "Wariant domyślny",
+  "variantMandatoryTitle": "Wybierz region",
+  "variantMandatorySubtitle": "Wybierz wersję albumu dla swojego regionu.",
+  "variantChangedSuccess": "Wariant zmieniony na {name} ✅",
+  "@variantChangedSuccess": {
+    "placeholders": {
+      "name": {}
+    }
+  }
 }

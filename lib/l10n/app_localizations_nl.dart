@@ -474,4 +474,16 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get variantSheetDefaultLabel => 'Standaardvariant';
+
+  @override
+  String get variantMandatoryTitle => 'Kies je regio';
+
+  @override
+  String get variantMandatorySubtitle =>
+      'Selecteer de albumversie voor jouw regio.';
+
+  @override
+  String variantChangedSuccess(Object name) {
+    return 'Variant gewijzigd naar $name ✅';
+  }
 }

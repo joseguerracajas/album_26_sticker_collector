@@ -208,5 +208,13 @@
     }
   },
   "variantSheetEmpty": "No hay variantes disponibles para este álbum.",
-  "variantSheetDefaultLabel": "Variante por defecto"
+  "variantSheetDefaultLabel": "Variante por defecto",
+  "variantMandatoryTitle": "Elige tu región",
+  "variantMandatorySubtitle": "Selecciona la versión del álbum de tu zona para ver los cromos correctos.",
+  "variantChangedSuccess": "Variante cambiada a {name} ✅",
+  "@variantChangedSuccess": {
+    "placeholders": {
+      "name": {}
+    }
+  }
 }

@@ -208,5 +208,13 @@
     }
   },
   "variantSheetEmpty": "इस एल्बम के लिए कोई वेरिएंट उपलब्ध नहीं है।",
-  "variantSheetDefaultLabel": "डिफ़ॉल्ट वेरिएंट"
+  "variantSheetDefaultLabel": "डिफ़ॉल्ट वेरिएंट",
+  "variantMandatoryTitle": "अपना क्षेत्र चुनें",
+  "variantMandatorySubtitle": "अपने क्षेत्र के लिए एल्बम संस्करण चुनें।",
+  "variantChangedSuccess": "वेरिएंट {name} में बदल गया ✅",
+  "@variantChangedSuccess": {
+    "placeholders": {
+      "name": {}
+    }
+  }
 }

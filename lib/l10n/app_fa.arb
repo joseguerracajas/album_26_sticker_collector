@@ -208,5 +208,13 @@
     }
   },
   "variantSheetEmpty": "هیچ نسخه‌ای برای این آلبوم موجود نیست.",
-  "variantSheetDefaultLabel": "نسخه پیش‌فرض"
+  "variantSheetDefaultLabel": "نسخه پیش‌فرض",
+  "variantMandatoryTitle": "منطقه خود را انتخاب کنید",
+  "variantMandatorySubtitle": "نسخه آلبوم مناسب منطقه خود را انتخاب کنید.",
+  "variantChangedSuccess": "نسخه به {name} تغییر یافت ✅",
+  "@variantChangedSuccess": {
+    "placeholders": {
+      "name": {}
+    }
+  }
 }

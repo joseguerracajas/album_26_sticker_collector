@@ -208,5 +208,13 @@
     }
   },
   "variantSheetEmpty": "אין גרסאות זמינות לאלבום זה.",
-  "variantSheetDefaultLabel": "גרסת ברירת מחדל"
+  "variantSheetDefaultLabel": "גרסת ברירת מחדל",
+  "variantMandatoryTitle": "בחר את האזור שלך",
+  "variantMandatorySubtitle": "בחר את גרסת האלבום לאזורך.",
+  "variantChangedSuccess": "הגרסה שונתה ל-{name} ✅",
+  "@variantChangedSuccess": {
+    "placeholders": {
+      "name": {}
+    }
+  }
 }

@@ -476,4 +476,16 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get variantSheetDefaultLabel => 'Вариант по умолчанию';
+
+  @override
+  String get variantMandatoryTitle => 'Выберите регион';
+
+  @override
+  String get variantMandatorySubtitle =>
+      'Выберите версию альбома для вашего региона.';
+
+  @override
+  String variantChangedSuccess(Object name) {
+    return 'Вариант изменён на $name ✅';
+  }
 }

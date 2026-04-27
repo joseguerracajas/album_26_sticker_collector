@@ -11,16 +11,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 /// Uso:
 /// ```dart
 /// VariantSelectorSheet.show(context);
+/// // Obligatorio (no se puede cerrar sin elegir):
+/// VariantSelectorSheet.show(context, mandatory: true);
 /// ```
 class VariantSelectorSheet extends ConsumerWidget {
-  const VariantSelectorSheet({super.key});
+  final bool mandatory;
+  const VariantSelectorSheet({super.key, this.mandatory = false});
 
-  static Future<void> show(BuildContext context) {
+  static Future<void> show(BuildContext context, {bool mandatory = false}) {
     return showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
-      builder: (_) => const VariantSelectorSheet(),
+      isDismissible: !mandatory,
+      enableDrag: !mandatory,
+      builder: (_) => VariantSelectorSheet(mandatory: mandatory),
     );
   }
 
@@ -42,16 +47,17 @@ class VariantSelectorSheet extends ConsumerWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Handle bar
+          // Handle bar (solo si no es obligatorio)
           const SizedBox(height: 12),
-          Container(
-            width: 40,
-            height: 4,
-            decoration: BoxDecoration(
-              color: Colors.grey.shade700,
-              borderRadius: BorderRadius.circular(2),
+          if (!mandatory)
+            Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade700,
+                borderRadius: BorderRadius.circular(2),
+              ),
             ),
-          ),
           const SizedBox(height: 20),
 
           // Título
@@ -61,41 +67,55 @@ class VariantSelectorSheet extends ConsumerWidget {
               children: [
                 const Icon(Icons.public, color: Colors.amber, size: 22),
                 const SizedBox(width: 10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      l10n.variantSheetTitle,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    albumAsync.when(
-                      data: (album) => Text(
-                        album?.name ?? '',
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        mandatory
+                            ? l10n.variantMandatoryTitle
+                            : l10n.variantSheetTitle,
                         style: TextStyle(
-                          color: Colors.grey.shade400,
-                          fontSize: 13,
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      loading: () => const SizedBox.shrink(),
-                      error: (_, __) => const SizedBox.shrink(),
-                    ),
-                  ],
+                      if (mandatory)
+                        Text(
+                          l10n.variantMandatorySubtitle,
+                          style: TextStyle(
+                            color: Colors.grey.shade400,
+                            fontSize: 13,
+                          ),
+                        )
+                      else
+                        albumAsync.when(
+                          data: (album) => Text(
+                            album?.name ?? '',
+                            style: TextStyle(
+                              color: Colors.grey.shade400,
+                              fontSize: 13,
+                            ),
+                          ),
+                          loading: () => const SizedBox.shrink(),
+                          error: (_, __) => const SizedBox.shrink(),
+                        ),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
           const SizedBox(height: 8),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Text(
-              l10n.variantSheetInventoryNote,
-              style: TextStyle(color: Colors.grey.shade500, fontSize: 12),
+          if (!mandatory)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Text(
+                l10n.variantSheetInventoryNote,
+                style: TextStyle(color: Colors.grey.shade500, fontSize: 12),
+              ),
             ),
-          ),
           const SizedBox(height: 16),
           const Divider(color: Color(0xFF2A2A2A), height: 1),
           const SizedBox(height: 8),
@@ -147,7 +167,21 @@ class VariantSelectorSheet extends ConsumerWidget {
                       await ref
                           .read(activeVariantPreferenceProvider.notifier)
                           .switchVariant(variant.id);
-                      if (context.mounted) Navigator.pop(context);
+                      if (context.mounted) {
+                        Navigator.pop(context);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              l10n.variantChangedSuccess(variant.name),
+                            ),
+                            backgroundColor: const Color(0xFF2A2A2A),
+                            behavior: SnackBarBehavior.floating,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                        );
+                      }
                     },
                   );
                 },

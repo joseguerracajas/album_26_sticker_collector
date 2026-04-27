@@ -208,5 +208,13 @@
     }
   },
   "variantSheetEmpty": "Для этого альбома нет доступных вариантов.",
-  "variantSheetDefaultLabel": "Вариант по умолчанию"
+  "variantSheetDefaultLabel": "Вариант по умолчанию",
+  "variantMandatoryTitle": "Выберите регион",
+  "variantMandatorySubtitle": "Выберите версию альбома для вашего региона.",
+  "variantChangedSuccess": "Вариант изменён на {name} ✅",
+  "@variantChangedSuccess": {
+    "placeholders": {
+      "name": {}
+    }
+  }
 }

@@ -208,5 +208,13 @@
     }
   },
   "variantSheetEmpty": "Geen varianten beschikbaar voor dit album.",
-  "variantSheetDefaultLabel": "Standaardvariant"
+  "variantSheetDefaultLabel": "Standaardvariant",
+  "variantMandatoryTitle": "Kies je regio",
+  "variantMandatorySubtitle": "Selecteer de albumversie voor jouw regio.",
+  "variantChangedSuccess": "Variant gewijzigd naar {name} ✅",
+  "@variantChangedSuccess": {
+    "placeholders": {
+      "name": {}
+    }
+  }
 }

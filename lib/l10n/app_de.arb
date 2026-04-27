@@ -208,5 +208,13 @@
     }
   },
   "variantSheetEmpty": "Keine Varianten für dieses Album verfügbar.",
-  "variantSheetDefaultLabel": "Standardvariante"
+  "variantSheetDefaultLabel": "Standardvariante",
+  "variantMandatoryTitle": "Wähle deine Region",
+  "variantMandatorySubtitle": "Wähle deine Albumvariante, um die richtigen Sticker anzuzeigen.",
+  "variantChangedSuccess": "Variante geändert zu {name} ✅",
+  "@variantChangedSuccess": {
+    "placeholders": {
+      "name": {}
+    }
+  }
 }

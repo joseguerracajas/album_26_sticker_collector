@@ -448,4 +448,15 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get variantSheetDefaultLabel => 'デフォルトバリアント';
+
+  @override
+  String get variantMandatoryTitle => '地域を選んでください';
+
+  @override
+  String get variantMandatorySubtitle => 'あなたの地域のアルバムバージョンを選択してください。';
+
+  @override
+  String variantChangedSuccess(Object name) {
+    return '$name に変更しました ✅';
+  }
 }

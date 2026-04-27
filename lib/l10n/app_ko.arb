@@ -208,5 +208,13 @@
     }
   },
   "variantSheetEmpty": "이 앨범에 사용 가능한 변형이 없습니다.",
-  "variantSheetDefaultLabel": "기본 변형"
+  "variantSheetDefaultLabel": "기본 변형",
+  "variantMandatoryTitle": "지역 선택",
+  "variantMandatorySubtitle": "내 지역에 맞는 앨범 버전을 선택하세요.",
+  "variantChangedSuccess": "{name}(으)로 변경되었습니다 ✅",
+  "@variantChangedSuccess": {
+    "placeholders": {
+      "name": {}
+    }
+  }
 }

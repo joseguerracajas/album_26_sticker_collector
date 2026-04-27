@@ -458,4 +458,15 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get variantSheetDefaultLabel => 'גרסת ברירת מחדל';
+
+  @override
+  String get variantMandatoryTitle => 'בחר את האזור שלך';
+
+  @override
+  String get variantMandatorySubtitle => 'בחר את גרסת האלבום לאזורך.';
+
+  @override
+  String variantChangedSuccess(Object name) {
+    return 'הגרסה שונתה ל-$name ✅';
+  }
 }

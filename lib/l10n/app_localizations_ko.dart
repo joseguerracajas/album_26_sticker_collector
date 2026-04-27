@@ -449,4 +449,15 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get variantSheetDefaultLabel => '기본 변형';
+
+  @override
+  String get variantMandatoryTitle => '지역 선택';
+
+  @override
+  String get variantMandatorySubtitle => '내 지역에 맞는 앨범 버전을 선택하세요.';
+
+  @override
+  String variantChangedSuccess(Object name) {
+    return '$name(으)로 변경되었습니다 ✅';
+  }
 }

@@ -467,4 +467,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get variantSheetDefaultLabel => 'Default variant';
+
+  @override
+  String get variantMandatoryTitle => 'Choose your region';
+
+  @override
+  String get variantMandatorySubtitle =>
+      'Select your album version to see the right stickers for your region.';
+
+  @override
+  String variantChangedSuccess(Object name) {
+    return 'Variant changed to $name ✅';
+  }
 }

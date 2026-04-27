@@ -34,16 +34,33 @@ final searchQueryProvider = NotifierProvider<SearchQueryNotifier, String>(
   SearchQueryNotifier.new,
 );
 
-class HomeScreen extends ConsumerWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  bool _variantDialogShown = false;
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final totalCromosAsync = ref.watch(totalStickersCountProvider);
     final cromosUnicos = ref.watch(uniqueCollectedProvider);
     final categoriesAsync = ref.watch(categoriesProvider);
     final searchQuery = ref.watch(searchQueryProvider);
+
+    // Cuando la preferencia de variante carga y es null → selección obligatoria
+    ref.listen(activeVariantPreferenceProvider, (prev, next) {
+      if (!_variantDialogShown && next.hasValue && next.value == null) {
+        _variantDialogShown = true;
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) VariantSelectorSheet.show(context, mandatory: true);
+        });
+      }
+    });
 
     return Scaffold(
       backgroundColor: const Color(0xFF121212),
@@ -69,7 +86,11 @@ class HomeScreen extends ConsumerWidget {
             );
           },
         ),
-        actions: const [ScannerIconButton(), ShareMenuButton()],
+        actions: const [
+          ScannerIconButton(),
+          ShareMenuButton(),
+          _VariantOverflowMenu(),
+        ],
       ),
       bottomNavigationBar: const AdBannerWidget(),
       body: RefreshIndicator(
@@ -264,8 +285,6 @@ class HomeScreen extends ConsumerWidget {
                               ),
                             ),
                             const Spacer(),
-                            // Chip de variante activa
-                            _ActiveVariantChip(),
                           ],
                         ),
                       )
@@ -554,68 +573,65 @@ class _CategoryTile extends ConsumerWidget {
 }
 
 // ---------------------------------------------------------------------------
-// Chip que muestra la variante activa y abre el selector al tocar
+// Menú de desbordamiento (⋮) con la opción de cambiar variante
 // ---------------------------------------------------------------------------
-class _ActiveVariantChip extends ConsumerWidget {
+class _VariantOverflowMenu extends ConsumerWidget {
+  const _VariantOverflowMenu();
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final prefAsync = ref.watch(activeVariantPreferenceProvider);
     final variantsAsync = ref.watch(activeAlbumVariantsProvider);
 
-    return prefAsync.when(
-      loading: () => const SizedBox(
-        width: 24,
-        height: 24,
-        child: CircularProgressIndicator(strokeWidth: 2, color: Colors.amber),
-      ),
-      error: (_, __) => const SizedBox.shrink(),
-      data: (pref) {
-        if (pref == null) return const SizedBox.shrink();
+    final variants = variantsAsync.asData?.value;
+    final pref = prefAsync.asData?.value;
+    final variantName = pref == null
+        ? null
+        : variants
+              ?.firstWhere(
+                (v) => v.id == pref.albumVariantId,
+                orElse: () => variants.first,
+              )
+              .name;
 
-        final variants = variantsAsync.asData?.value;
-        final variantName = variants
-            ?.firstWhere(
-              (v) => v.id == pref.albumVariantId,
-              orElse: () => variants.first,
-            )
-            .name;
-
-        return GestureDetector(
-          onTap: () {
-            HapticFeedback.selectionClick();
-            VariantSelectorSheet.show(context);
-          },
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            decoration: BoxDecoration(
-              color: Colors.amber.withValues(alpha: 0.12),
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: Colors.amber.withValues(alpha: 0.5)),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(Icons.public, color: Colors.amber, size: 14),
-                const SizedBox(width: 5),
-                Text(
-                  variantName ?? '...',
-                  style: const TextStyle(
-                    color: Colors.amber,
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(width: 4),
-                const Icon(
-                  Icons.arrow_drop_down,
-                  color: Colors.amber,
-                  size: 18,
-                ),
-              ],
-            ),
-          ),
-        );
+    return PopupMenuButton<String>(
+      icon: const Icon(Icons.more_vert, color: Colors.amber),
+      color: const Color(0xFF1E1E1E),
+      onSelected: (value) {
+        if (value == 'variant') {
+          HapticFeedback.selectionClick();
+          VariantSelectorSheet.show(context);
+        }
       },
+      itemBuilder: (_) => [
+        PopupMenuItem<String>(
+          value: 'variant',
+          child: Row(
+            children: [
+              const Icon(Icons.public, color: Colors.amber, size: 20),
+              const SizedBox(width: 12),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Variante del álbum',
+                    style: TextStyle(color: Colors.white, fontSize: 14),
+                  ),
+                  if (variantName != null)
+                    Text(
+                      variantName,
+                      style: TextStyle(
+                        color: Colors.amber,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

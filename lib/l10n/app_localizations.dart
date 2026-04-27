@@ -943,6 +943,24 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Variante por defecto'**
   String get variantSheetDefaultLabel;
+
+  /// No description provided for @variantMandatoryTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Elige tu región'**
+  String get variantMandatoryTitle;
+
+  /// No description provided for @variantMandatorySubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Selecciona la versión del álbum de tu zona para ver los cromos correctos.'**
+  String get variantMandatorySubtitle;
+
+  /// No description provided for @variantChangedSuccess.
+  ///
+  /// In es, this message translates to:
+  /// **'Variante cambiada a {name} ✅'**
+  String variantChangedSuccess(Object name);
 }
 
 class _AppLocalizationsDelegate

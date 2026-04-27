@@ -208,5 +208,13 @@
     }
   },
   "variantSheetEmpty": "此相册没有可用的版本。",
-  "variantSheetDefaultLabel": "默认版本"
+  "variantSheetDefaultLabel": "默认版本",
+  "variantMandatoryTitle": "选择您的地区",
+  "variantMandatorySubtitle": "选择您所在地区的相册版本。",
+  "variantChangedSuccess": "已切换到 {name} ✅",
+  "@variantChangedSuccess": {
+    "placeholders": {
+      "name": {}
+    }
+  }
 }

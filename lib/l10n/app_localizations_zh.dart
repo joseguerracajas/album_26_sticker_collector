@@ -441,4 +441,15 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get variantSheetDefaultLabel => '默认版本';
+
+  @override
+  String get variantMandatoryTitle => '选择您的地区';
+
+  @override
+  String get variantMandatorySubtitle => '选择您所在地区的相册版本。';
+
+  @override
+  String variantChangedSuccess(Object name) {
+    return '已切换到 $name ✅';
+  }
 }

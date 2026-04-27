@@ -208,5 +208,13 @@
     }
   },
   "variantSheetEmpty": "このアルバムで利用可能なバリアントはありません。",
-  "variantSheetDefaultLabel": "デフォルトバリアント"
+  "variantSheetDefaultLabel": "デフォルトバリアント",
+  "variantMandatoryTitle": "地域を選んでください",
+  "variantMandatorySubtitle": "あなたの地域のアルバムバージョンを選択してください。",
+  "variantChangedSuccess": "{name} に変更しました ✅",
+  "@variantChangedSuccess": {
+    "placeholders": {
+      "name": {}
+    }
+  }
 }

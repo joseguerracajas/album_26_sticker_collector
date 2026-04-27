@@ -208,5 +208,13 @@
     }
   },
   "variantSheetEmpty": "Bu albüm için mevcut varyant yok.",
-  "variantSheetDefaultLabel": "Varsayılan varyant"
+  "variantSheetDefaultLabel": "Varsayılan varyant",
+  "variantMandatoryTitle": "Bölgenizi seçin",
+  "variantMandatorySubtitle": "Bölgeniz için albüm sürümünü seçin.",
+  "variantChangedSuccess": "Varyant {name} olarak değiştirildi ✅",
+  "@variantChangedSuccess": {
+    "placeholders": {
+      "name": {}
+    }
+  }
 }

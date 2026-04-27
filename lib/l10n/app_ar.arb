@@ -208,5 +208,13 @@
     }
   },
   "variantSheetEmpty": "لا توجد أنواع متاحة لهذا الألبوم.",
-  "variantSheetDefaultLabel": "النوع الافتراضي"
+  "variantSheetDefaultLabel": "النوع الافتراضي",
+  "variantMandatoryTitle": "اختر منطقتك",
+  "variantMandatorySubtitle": "اختر إصدار الألبوم المناسب لمنطقتك.",
+  "variantChangedSuccess": "تم التغيير إلى {name} ✅",
+  "@variantChangedSuccess": {
+    "placeholders": {
+      "name": {}
+    }
+  }
 }

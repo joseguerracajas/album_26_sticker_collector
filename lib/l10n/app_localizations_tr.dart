@@ -470,4 +470,15 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get variantSheetDefaultLabel => 'Varsayılan varyant';
+
+  @override
+  String get variantMandatoryTitle => 'Bölgenizi seçin';
+
+  @override
+  String get variantMandatorySubtitle => 'Bölgeniz için albüm sürümünü seçin.';
+
+  @override
+  String variantChangedSuccess(Object name) {
+    return 'Varyant $name olarak değiştirildi ✅';
+  }
 }

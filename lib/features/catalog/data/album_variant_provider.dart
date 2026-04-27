@@ -1,4 +1,5 @@
 import 'package:album_26_sticker_collector/brick/app_repository.dart';
+import 'package:album_26_sticker_collector/features/auth/data/guest_session_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/album.model.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/album_variant.model.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/album_variant_sticker.model.dart';
@@ -6,6 +7,9 @@ import 'package:album_26_sticker_collector/features/inventory/domain/user_varian
 import 'package:album_26_sticker_collector/main.dart';
 import 'package:brick_offline_first/brick_offline_first.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+const _guestVariantIdKey = 'guest_album_variant_id';
 
 // ---------------------------------------------------------------------------
 // Álbum activo (is_active = true en Supabase)
@@ -83,7 +87,24 @@ class ActiveVariantPreferenceNotifier
   @override
   Future<UserVariantPreference?> build() async {
     final userId = _userId;
-    if (userId == null) return null;
+
+    // Modo invitado (no autenticado): guardar/leer variante en SharedPreferences
+    if (userId == null) {
+      final album = await ref.watch(activeAlbumProvider.future);
+      if (album == null) return null;
+
+      final prefs = await SharedPreferences.getInstance();
+      final guestVariantId = prefs.getString(_guestVariantIdKey);
+      if (guestVariantId == null)
+        return null; // Sin selección → diálogo obligatorio
+
+      return UserVariantPreference(
+        userId: guestInventoryUserId,
+        albumId: album.id,
+        albumVariantId: guestVariantId,
+        updatedAt: DateTime.now(),
+      );
+    }
 
     final album = await ref.watch(activeAlbumProvider.future);
     if (album == null) return null;
@@ -129,6 +150,26 @@ class ActiveVariantPreferenceNotifier
   /// Cambia la variante activa del usuario.
   /// El inventario nunca se toca — solo se actualiza este registro.
   Future<void> switchVariant(String newVariantId) async {
+    final userId = _userId;
+
+    // Modo invitado: persistir solo en SharedPreferences
+    if (userId == null) {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(_guestVariantIdKey, newVariantId);
+
+      final album = await ref.read(activeAlbumProvider.future);
+      if (album == null) return;
+      state = AsyncData(
+        UserVariantPreference(
+          userId: guestInventoryUserId,
+          albumId: album.id,
+          albumVariantId: newVariantId,
+          updatedAt: DateTime.now(),
+        ),
+      );
+      return;
+    }
+
     final current = state.asData?.value;
     if (current == null) return;
 
