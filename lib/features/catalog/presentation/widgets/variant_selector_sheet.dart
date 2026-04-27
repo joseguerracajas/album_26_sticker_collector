@@ -171,10 +171,26 @@ class VariantSelectorSheet extends ConsumerWidget {
                         Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text(
-                              l10n.variantChangedSuccess(variant.name),
+                            content: Row(
+                              children: [
+                                const Icon(
+                                  Icons.check_circle_outline,
+                                  color: Colors.amber,
+                                  size: 18,
+                                ),
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: Text(
+                                    l10n.variantChangedSuccess(variant.name),
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            backgroundColor: const Color(0xFF2A2A2A),
+                            backgroundColor: const Color(0xFF1E1E1E),
                             behavior: SnackBarBehavior.floating,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),

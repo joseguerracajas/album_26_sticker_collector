@@ -95,8 +95,9 @@ class ActiveVariantPreferenceNotifier
 
       final prefs = await SharedPreferences.getInstance();
       final guestVariantId = prefs.getString(_guestVariantIdKey);
-      if (guestVariantId == null)
+      if (guestVariantId == null) {
         return null; // Sin selección → diálogo obligatorio
+      }
 
       return UserVariantPreference(
         userId: guestInventoryUserId,

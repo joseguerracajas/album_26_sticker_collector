@@ -327,8 +327,9 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
   }
 
   Widget _buildPackageSelector(AppLocalizations l10n) {
-    if (_isLoadingOfferings || _errorMessage != null)
+    if (_isLoadingOfferings || _errorMessage != null) {
       return const SizedBox.shrink();
+    }
 
     final packages = _offerings?.current?.availablePackages ?? [];
     if (packages.isEmpty) return const SizedBox.shrink();

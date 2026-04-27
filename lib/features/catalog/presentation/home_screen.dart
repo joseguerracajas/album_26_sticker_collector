@@ -53,6 +53,13 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   bool _variantDialogShown = false;
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -303,6 +310,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           vertical: 4.0,
                         ),
                         child: TextField(
+                          controller: _searchController,
                           onChanged: (value) => ref
                               .read(searchQueryProvider.notifier)
                               .updateQuery(value),
@@ -334,6 +342,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                       size: 18,
                                     ),
                                     onPressed: () {
+                                      _searchController.clear();
                                       ref
                                           .read(searchQueryProvider.notifier)
                                           .updateQuery('');
