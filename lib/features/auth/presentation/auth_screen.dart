@@ -199,8 +199,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Icon(Icons.sports_soccer, size: 80, color: Colors.amber),
-                const SizedBox(height: 40),
+                Image.asset(
+                  'assets/icon/icon_transparent.png',
+                  height: 120,
+                  fit: BoxFit.contain,
+                ),
+                // const SizedBox(height: 40),
 
                 // --- CAMPOS DE TEXTO ---
                 TextField(

@@ -614,20 +614,10 @@ class _AppDrawer extends ConsumerWidget {
               padding: const EdgeInsets.fromLTRB(20, 24, 20, 16),
               child: Row(
                 children: [
-                  Container(
-                    width: 48,
-                    height: 48,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [Colors.amber.shade400, Colors.amber.shade800],
-                      ),
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    child: const Icon(
-                      Icons.auto_awesome,
-                      color: Colors.black,
-                      size: 26,
-                    ),
+                  Image.asset(
+                    'assets/icon/icon_transparent.png',
+                    height: 80,
+                    fit: BoxFit.contain,
                   ),
                   const SizedBox(width: 14),
                   Text(

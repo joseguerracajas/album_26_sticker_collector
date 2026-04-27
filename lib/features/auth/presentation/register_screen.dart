@@ -110,7 +110,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Icon(Icons.person_add_alt_1, size: 60, color: Colors.amber),
+            Image.asset(
+              'assets/icon/icon_transparent.png',
+              height: 120,
+              fit: BoxFit.contain,
+            ),
             const SizedBox(height: 30),
 
             // Campo: Correo
