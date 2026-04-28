@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:album_26_sticker_collector/core/constants/app_urls.dart';
 import 'package:album_26_sticker_collector/features/auth/presentation/auth_screen.dart'
     show LoginScreen;
@@ -198,44 +200,55 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
                     children: [
                       const SizedBox(height: 8),
                       // Icon
-                      Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              Colors.amber.shade300,
-                              Colors.amber.shade700,
-                            ],
-                          ),
-                          shape: BoxShape.circle,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.amber.withValues(alpha: 0.4),
-                              blurRadius: 24,
-                              spreadRadius: 4,
-                            ),
-                          ],
-                        ),
-                        child: const Icon(
-                          Icons.document_scanner_rounded,
-                          color: Colors.black,
-                          size: 52,
-                        ),
+                      Image.asset(
+                        'assets/icon/icon_transparent.png',
+                        width: 160,
+                        height: 110,
                       ),
                       const SizedBox(height: 24),
 
+                      // Etiqueta "Pro"
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 14,
+                          vertical: 5,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.amber,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Text(
+                          'PRO',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: 2,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+
                       // Título
+                      const Text(
+                        'Album 2026\nSticker Collector',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26,
+                          fontWeight: FontWeight.w900,
+                          letterSpacing: -0.5,
+                          height: 1.15,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
                       Text(
                         l10n.paywallTitle,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: -0.5,
+                          color: Colors.amber,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                       const SizedBox(height: 12),
@@ -584,18 +597,19 @@ class _LegalLinksRow extends StatelessWidget {
       alignment: WrapAlignment.center,
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        GestureDetector(
-          onTap: () => _launch(AppUrls.termsOfUse),
-          child: Text(
-            l10n.paywallTermsOfUse,
-            style: const TextStyle(
-              color: Colors.white38,
-              fontSize: 11,
-              decoration: TextDecoration.underline,
-              decorationColor: Colors.white38,
+        if (Platform.isIOS)
+          GestureDetector(
+            onTap: () => _launch(AppUrls.termsOfUse),
+            child: Text(
+              l10n.paywallTermsOfUse,
+              style: const TextStyle(
+                color: Colors.white38,
+                fontSize: 11,
+                decoration: TextDecoration.underline,
+                decorationColor: Colors.white38,
+              ),
             ),
           ),
-        ),
         const Text(
           '  ·  ',
           style: TextStyle(color: Colors.white24, fontSize: 11),
