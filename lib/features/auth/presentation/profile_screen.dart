@@ -17,6 +17,7 @@ class ProfileScreen extends ConsumerStatefulWidget {
 
 class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   double _pointerDownX = 0;
+  bool _isDeletingAccount = false;
 
   Future<void> _actualizarClave(BuildContext context) async {
     final WidgetRef ref = this.ref;
@@ -279,6 +280,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     if (confirmed != true) return;
     if (!context.mounted) return;
 
+    setState(() => _isDeletingAccount = true);
+
     try {
       await ref.read(authControllerProvider).deleteAccount();
       if (context.mounted) {
@@ -286,11 +289,37 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       }
       scaffoldMessengerKey.currentState?.showSnackBar(
         SnackBar(
-          content: Text(l10n.profileDeleteAccountSuccess),
-          backgroundColor: Colors.blueGrey,
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: const Color(0xFF1B5E20),
+          duration: const Duration(seconds: 5),
+          margin: const EdgeInsets.all(16),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          content: Row(
+            children: [
+              const Icon(
+                Icons.check_circle_rounded,
+                color: Colors.greenAccent,
+                size: 28,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  l10n.profileDeleteAccountSuccess,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       );
     } catch (e) {
+      if (mounted) setState(() => _isDeletingAccount = false);
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -357,104 +386,133 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             Navigator.of(context).pop();
           }
         },
-        child: Scaffold(
-          backgroundColor: const Color(0xFF121212),
-          appBar: AppBar(
-            title: Text(
-              l10n.profileTitle,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+        child: Stack(
+          children: [
+            Scaffold(
+              backgroundColor: const Color(0xFF121212),
+              appBar: AppBar(
+                title: Text(
+                  l10n.profileTitle,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                iconTheme: const IconThemeData(color: Colors.amber),
+              ),
+              body: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 20),
+                    // Avatar genérico
+                    const CircleAvatar(
+                      radius: 50,
+                      backgroundColor: Colors.amber,
+                      child: Icon(Icons.person, size: 50, color: Colors.black),
+                    ),
+                    const SizedBox(height: 20),
+
+                    // Correo del usuario
+                    Text(
+                      nombreUsuario,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      l10n.profileOfficialCollector,
+                      style: TextStyle(color: Colors.grey, fontSize: 14),
+                    ),
+
+                    const Spacer(), // Empuja el botón hacia abajo
+                    ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blueGrey.shade800,
+                        foregroundColor: Colors.white,
+                        minimumSize: const Size(double.infinity, 55),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
+                      icon: const Icon(Icons.lock_reset),
+                      label: Text(
+                        l10n.profileChangePasswordButton,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      onPressed: _isDeletingAccount
+                          ? null
+                          : () => _actualizarClave(context),
+                    ),
+                    const SizedBox(height: 12),
+                    // Botón de Cerrar Sesión
+                    ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red.shade900,
+                        foregroundColor: Colors.white,
+                        minimumSize: const Size(double.infinity, 55),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
+                      icon: const Icon(Icons.logout),
+                      label: Text(
+                        l10n.profileLogoutButton,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      onPressed: _isDeletingAccount
+                          ? null
+                          : () => _cerrarSesion(context),
+                    ),
+                    const SizedBox(height: 12),
+                    // Botón de Eliminar Cuenta
+                    if (_isDeletingAccount)
+                      const SizedBox(height: 40)
+                    else
+                      TextButton.icon(
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.red.shade300,
+                          minimumSize: const Size(double.infinity, 48),
+                        ),
+                        icon: const Icon(
+                          Icons.delete_forever_outlined,
+                          size: 20,
+                        ),
+                        label: Text(
+                          l10n.profileDeleteAccountButton,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                          ),
+                        ),
+                        onPressed: () => _eliminarCuenta(context),
+                      ),
+                    const SizedBox(height: 40), // Espacio inferior seguro
+                  ],
+                ),
               ),
             ),
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            iconTheme: const IconThemeData(color: Colors.amber),
-          ),
-          body: Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              children: [
-                const SizedBox(height: 20),
-                // Avatar genérico
-                const CircleAvatar(
-                  radius: 50,
-                  backgroundColor: Colors.amber,
-                  child: Icon(Icons.person, size: 50, color: Colors.black),
-                ),
-                const SizedBox(height: 20),
 
-                // Correo del usuario
-                Text(
-                  nombreUsuario,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+            // ── Overlay de eliminación ──────────────────────────────────
+            if (_isDeletingAccount)
+              Container(
+                color: Colors.black.withValues(alpha: 0.55),
+                child: const Center(
+                  child: CircularProgressIndicator(color: Colors.redAccent),
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  l10n.profileOfficialCollector,
-                  style: TextStyle(color: Colors.grey, fontSize: 14),
-                ),
-
-                const Spacer(), // Empuja el botón hacia abajo
-                ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blueGrey.shade800,
-                    foregroundColor: Colors.white,
-                    minimumSize: const Size(double.infinity, 55),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                  icon: const Icon(Icons.lock_reset),
-                  label: Text(
-                    l10n.profileChangePasswordButton,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                  onPressed: () => _actualizarClave(context),
-                ),
-                const SizedBox(height: 12),
-                // Botón de Cerrar Sesión
-                ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red.shade900,
-                    foregroundColor: Colors.white,
-                    minimumSize: const Size(double.infinity, 55),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                  icon: const Icon(Icons.logout),
-                  label: Text(
-                    l10n.profileLogoutButton,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                  onPressed: () => _cerrarSesion(context),
-                ),
-                const SizedBox(height: 12),
-                // Botón de Eliminar Cuenta
-                TextButton.icon(
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.red.shade300,
-                    minimumSize: const Size(double.infinity, 48),
-                  ),
-                  icon: const Icon(Icons.delete_forever_outlined, size: 20),
-                  label: Text(
-                    l10n.profileDeleteAccountButton,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                    ),
-                  ),
-                  onPressed: () => _eliminarCuenta(context),
-                ),
-                const SizedBox(height: 40), // Espacio inferior seguro
-              ],
-            ),
-          ),
+              ),
+          ],
         ),
       ),
     );
