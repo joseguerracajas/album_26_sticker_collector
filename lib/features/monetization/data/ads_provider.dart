@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:album_26_sticker_collector/features/monetization/presentation/paywall_screen.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -46,6 +47,17 @@ class AdIds {
 // ─── Inicialización ────────────────────────────────────────────────────────────
 Future<void> initializeAdMob() async {
   try {
+    // En iOS, solicitar permiso ATT antes de inicializar AdMob.
+    // Google recomienda hacerlo antes de llamar a MobileAds.instance.initialize().
+    if (Platform.isIOS) {
+      final status = await AppTrackingTransparency.trackingAuthorizationStatus;
+      if (status == TrackingStatus.notDetermined) {
+        // Pequeña pausa recomendada por Apple para que el diálogo
+        // aparezca después de que la UI esté lista.
+        await Future.delayed(const Duration(milliseconds: 500));
+        await AppTrackingTransparency.requestTrackingAuthorization();
+      }
+    }
     await MobileAds.instance.initialize();
   } catch (e) {
     debugPrint('❌ AdMob init error: $e');
