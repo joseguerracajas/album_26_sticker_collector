@@ -455,4 +455,31 @@ class AppLocalizationsZh extends AppLocalizations {
   String variantChangedSuccess(Object name) {
     return '已切换到 $name ✅';
   }
+
+  @override
+  String get profileDeleteAccountButton => '删除账户';
+
+  @override
+  String get profileDeleteAccountTitle => '删除您的账户？';
+
+  @override
+  String get profileDeleteAccountMessage => '此操作是永久性的。您的所有数据将被删除，您将无法恢复您的收藏。';
+
+  @override
+  String get profileDeleteAccountConfirmButton => '永久删除';
+
+  @override
+  String get profileDeleteAccountSuccess => '您的账户已被删除。';
+
+  @override
+  String get profileDeleteAccountError => '删除账户时出错。请重试。';
+
+  @override
+  String get paywallPrivacyPolicy => '隐私政策';
+
+  @override
+  String get paywallTermsOfUse => '使用条款';
+
+  @override
+  String get paywallLegalDisclaimer => '订阅即表示您同意我们的使用条款和隐私政策。';
 }

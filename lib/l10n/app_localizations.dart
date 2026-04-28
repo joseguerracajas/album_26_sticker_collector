@@ -967,6 +967,60 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Variante cambiada a {name} ✅'**
   String variantChangedSuccess(Object name);
+
+  /// No description provided for @profileDeleteAccountButton.
+  ///
+  /// In es, this message translates to:
+  /// **'Eliminar cuenta'**
+  String get profileDeleteAccountButton;
+
+  /// No description provided for @profileDeleteAccountTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Eliminar tu cuenta?'**
+  String get profileDeleteAccountTitle;
+
+  /// No description provided for @profileDeleteAccountMessage.
+  ///
+  /// In es, this message translates to:
+  /// **'Esta acción es permanente. Se borrarán todos tus datos y no podrás recuperar tu colección.'**
+  String get profileDeleteAccountMessage;
+
+  /// No description provided for @profileDeleteAccountConfirmButton.
+  ///
+  /// In es, this message translates to:
+  /// **'Eliminar definitivamente'**
+  String get profileDeleteAccountConfirmButton;
+
+  /// No description provided for @profileDeleteAccountSuccess.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu cuenta ha sido eliminada.'**
+  String get profileDeleteAccountSuccess;
+
+  /// No description provided for @profileDeleteAccountError.
+  ///
+  /// In es, this message translates to:
+  /// **'Error al eliminar la cuenta. Inténtalo de nuevo.'**
+  String get profileDeleteAccountError;
+
+  /// No description provided for @paywallPrivacyPolicy.
+  ///
+  /// In es, this message translates to:
+  /// **'Política de Privacidad'**
+  String get paywallPrivacyPolicy;
+
+  /// No description provided for @paywallTermsOfUse.
+  ///
+  /// In es, this message translates to:
+  /// **'Términos de Uso'**
+  String get paywallTermsOfUse;
+
+  /// No description provided for @paywallLegalDisclaimer.
+  ///
+  /// In es, this message translates to:
+  /// **'Al suscribirte aceptas nuestros Términos de Uso y Política de Privacidad.'**
+  String get paywallLegalDisclaimer;
 }
 
 class _AppLocalizationsDelegate

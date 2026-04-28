@@ -482,4 +482,34 @@ class AppLocalizationsEn extends AppLocalizations {
   String variantChangedSuccess(Object name) {
     return 'Variant changed to $name ✅';
   }
+
+  @override
+  String get profileDeleteAccountButton => 'Delete account';
+
+  @override
+  String get profileDeleteAccountTitle => 'Delete your account?';
+
+  @override
+  String get profileDeleteAccountMessage =>
+      'This action is permanent. All your data will be deleted and you won\'t be able to recover your collection.';
+
+  @override
+  String get profileDeleteAccountConfirmButton => 'Delete permanently';
+
+  @override
+  String get profileDeleteAccountSuccess => 'Your account has been deleted.';
+
+  @override
+  String get profileDeleteAccountError =>
+      'Error deleting account. Please try again.';
+
+  @override
+  String get paywallPrivacyPolicy => 'Privacy Policy';
+
+  @override
+  String get paywallTermsOfUse => 'Terms of Use';
+
+  @override
+  String get paywallLegalDisclaimer =>
+      'By subscribing you agree to our Terms of Use and Privacy Policy.';
 }

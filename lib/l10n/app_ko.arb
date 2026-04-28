@@ -217,5 +217,16 @@
     "placeholders": {
       "name": {}
     }
-  }
+  },
+
+  "profileDeleteAccountButton": "계정 삭제",
+  "profileDeleteAccountTitle": "계정을 삭제하시겠습니까?",
+  "profileDeleteAccountMessage": "이 작업은 영구적입니다. 모든 데이터가 삭제되며 콜렉션을 복구할 수 없습니다.",
+  "profileDeleteAccountConfirmButton": "영구 삭제",
+  "profileDeleteAccountSuccess": "계정이 삭제되었습니다.",
+  "profileDeleteAccountError": "계정 삭제 중 오류가 발생했습니다. 다시 시도해 주세요.",
+
+  "paywallPrivacyPolicy": "개인정보 처리방침",
+  "paywallTermsOfUse": "이용약관",
+  "paywallLegalDisclaimer": "구독하면 이용약관 및 개인정보 처리방침에 동의하는 것입니다."
 }

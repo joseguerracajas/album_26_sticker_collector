@@ -217,5 +217,16 @@
     "placeholders": {
       "name": {}
     }
-  }
+  },
+
+  "profileDeleteAccountButton": "حذف الحساب",
+  "profileDeleteAccountTitle": "حذف حسابك؟",
+  "profileDeleteAccountMessage": "هذا الإجراء دائم. سيتم حذف جميع بياناتك ولن تتمكن من استعادة مجموعتك.",
+  "profileDeleteAccountConfirmButton": "حذف نهائياً",
+  "profileDeleteAccountSuccess": "تم حذف حسابك.",
+  "profileDeleteAccountError": "خطأ في حذف الحساب. حاول مرة أخرى.",
+
+  "paywallPrivacyPolicy": "سياسة الخصوصية",
+  "paywallTermsOfUse": "شروط الاستخدام",
+  "paywallLegalDisclaimer": "بالاشتراك، فإنك توافق على شروط الاستخدام وسياسة الخصوصية."
 }

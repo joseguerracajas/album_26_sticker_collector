@@ -481,4 +481,33 @@ class AppLocalizationsAr extends AppLocalizations {
   String variantChangedSuccess(Object name) {
     return 'تم التغيير إلى $name ✅';
   }
+
+  @override
+  String get profileDeleteAccountButton => 'حذف الحساب';
+
+  @override
+  String get profileDeleteAccountTitle => 'حذف حسابك؟';
+
+  @override
+  String get profileDeleteAccountMessage =>
+      'هذا الإجراء دائم. سيتم حذف جميع بياناتك ولن تتمكن من استعادة مجموعتك.';
+
+  @override
+  String get profileDeleteAccountConfirmButton => 'حذف نهائياً';
+
+  @override
+  String get profileDeleteAccountSuccess => 'تم حذف حسابك.';
+
+  @override
+  String get profileDeleteAccountError => 'خطأ في حذف الحساب. حاول مرة أخرى.';
+
+  @override
+  String get paywallPrivacyPolicy => 'سياسة الخصوصية';
+
+  @override
+  String get paywallTermsOfUse => 'شروط الاستخدام';
+
+  @override
+  String get paywallLegalDisclaimer =>
+      'بالاشتراك، فإنك توافق على شروط الاستخدام وسياسة الخصوصية.';
 }

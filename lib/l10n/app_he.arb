@@ -217,5 +217,16 @@
     "placeholders": {
       "name": {}
     }
-  }
+  },
+
+  "profileDeleteAccountButton": "מחק חשבון",
+  "profileDeleteAccountTitle": "למחוק את החשבון שלך?",
+  "profileDeleteAccountMessage": "פעולה זו היא קבועה. כל הנתונים שלך יימחקו ולא תוכל לשחזר את האוסף שלך.",
+  "profileDeleteAccountConfirmButton": "מחק לצמיתות",
+  "profileDeleteAccountSuccess": "החשבון שלך נמחק.",
+  "profileDeleteAccountError": "שגיאה במחיקת החשבון. נסה שוב.",
+
+  "paywallPrivacyPolicy": "מדיניות פרטיות",
+  "paywallTermsOfUse": "תנאי שימוש",
+  "paywallLegalDisclaimer": "על ידי מנוי, אתה מסכים לתנאי השימוש ולמדיניות הפרטיות שלנו."
 }

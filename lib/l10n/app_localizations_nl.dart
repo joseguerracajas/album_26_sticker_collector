@@ -489,4 +489,34 @@ class AppLocalizationsNl extends AppLocalizations {
   String variantChangedSuccess(Object name) {
     return 'Variant gewijzigd naar $name ✅';
   }
+
+  @override
+  String get profileDeleteAccountButton => 'Account verwijderen';
+
+  @override
+  String get profileDeleteAccountTitle => 'Je account verwijderen?';
+
+  @override
+  String get profileDeleteAccountMessage =>
+      'Deze actie is permanent. Al je gegevens worden verwijderd en je kunt je collectie niet terugkrijgen.';
+
+  @override
+  String get profileDeleteAccountConfirmButton => 'Definitief verwijderen';
+
+  @override
+  String get profileDeleteAccountSuccess => 'Je account is verwijderd.';
+
+  @override
+  String get profileDeleteAccountError =>
+      'Fout bij het verwijderen van het account. Probeer het opnieuw.';
+
+  @override
+  String get paywallPrivacyPolicy => 'Privacybeleid';
+
+  @override
+  String get paywallTermsOfUse => 'Gebruiksvoorwaarden';
+
+  @override
+  String get paywallLegalDisclaimer =>
+      'Door te abonneren ga je akkoord met onze Gebruiksvoorwaarden en ons Privacybeleid.';
 }

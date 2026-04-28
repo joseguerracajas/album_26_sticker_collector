@@ -488,4 +488,34 @@ class AppLocalizationsPl extends AppLocalizations {
   String variantChangedSuccess(Object name) {
     return 'Wariant zmieniony na $name ✅';
   }
+
+  @override
+  String get profileDeleteAccountButton => 'Usuń konto';
+
+  @override
+  String get profileDeleteAccountTitle => 'Usunąć swoje konto?';
+
+  @override
+  String get profileDeleteAccountMessage =>
+      'Ta czynność jest trwała. Wszystkie dane zostaną usunięte i nie będziesz mógł odzyskać swojej kolekcji.';
+
+  @override
+  String get profileDeleteAccountConfirmButton => 'Usuń na stałe';
+
+  @override
+  String get profileDeleteAccountSuccess => 'Twoje konto zostało usunięte.';
+
+  @override
+  String get profileDeleteAccountError =>
+      'Błąd podczas usuwania konta. Spróbuj ponownie.';
+
+  @override
+  String get paywallPrivacyPolicy => 'Polityka prywatności';
+
+  @override
+  String get paywallTermsOfUse => 'Warunki użytkowania';
+
+  @override
+  String get paywallLegalDisclaimer =>
+      'Subskrybując, akceptujesz nasze Warunki użytkowania i Politykę prywatności.';
 }

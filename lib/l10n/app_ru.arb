@@ -217,5 +217,16 @@
     "placeholders": {
       "name": {}
     }
-  }
+  },
+
+  "profileDeleteAccountButton": "Удалить аккаунт",
+  "profileDeleteAccountTitle": "Удалить аккаунт?",
+  "profileDeleteAccountMessage": "Это действие необратимо. Все данные будут удалены, и вы не сможете восстановить коллекцию.",
+  "profileDeleteAccountConfirmButton": "Удалить навсегда",
+  "profileDeleteAccountSuccess": "Ваш аккаунт удалён.",
+  "profileDeleteAccountError": "Ошибка при удалении аккаунта. Попробуйте ещё раз.",
+
+  "paywallPrivacyPolicy": "Политика конфиденциальности",
+  "paywallTermsOfUse": "Условия использования",
+  "paywallLegalDisclaimer": "Подписываясь, вы принимаете наши Условия использования и Политику конфиденциальности."
 }

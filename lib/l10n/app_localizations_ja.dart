@@ -462,4 +462,33 @@ class AppLocalizationsJa extends AppLocalizations {
   String variantChangedSuccess(Object name) {
     return '$name に変更しました ✅';
   }
+
+  @override
+  String get profileDeleteAccountButton => 'アカウントを削除';
+
+  @override
+  String get profileDeleteAccountTitle => 'アカウントを削除しますか？';
+
+  @override
+  String get profileDeleteAccountMessage =>
+      'この操作は永久的です。すべてのデータが削除され、コレクションを元に戻すことはできません。';
+
+  @override
+  String get profileDeleteAccountConfirmButton => '完全に削除する';
+
+  @override
+  String get profileDeleteAccountSuccess => 'アカウントが削除されました。';
+
+  @override
+  String get profileDeleteAccountError => 'アカウントの削除中にエラーが発生しました。もう一度お試しください。';
+
+  @override
+  String get paywallPrivacyPolicy => 'プライバシーポリシー';
+
+  @override
+  String get paywallTermsOfUse => '利用規約';
+
+  @override
+  String get paywallLegalDisclaimer =>
+      'サブスクライブすることで、利用規約とプライバシーポリシーに同意したことになります。';
 }

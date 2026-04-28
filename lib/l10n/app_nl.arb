@@ -215,5 +215,16 @@
     "placeholders": {
       "name": {}
     }
-  }
+  },
+
+  "profileDeleteAccountButton": "Account verwijderen",
+  "profileDeleteAccountTitle": "Je account verwijderen?",
+  "profileDeleteAccountMessage": "Deze actie is permanent. Al je gegevens worden verwijderd en je kunt je collectie niet terugkrijgen.",
+  "profileDeleteAccountConfirmButton": "Definitief verwijderen",
+  "profileDeleteAccountSuccess": "Je account is verwijderd.",
+  "profileDeleteAccountError": "Fout bij het verwijderen van het account. Probeer het opnieuw.",
+
+  "paywallPrivacyPolicy": "Privacybeleid",
+  "paywallTermsOfUse": "Gebruiksvoorwaarden",
+  "paywallLegalDisclaimer": "Door te abonneren ga je akkoord met onze Gebruiksvoorwaarden en ons Privacybeleid."
 }

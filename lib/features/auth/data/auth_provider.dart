@@ -210,4 +210,31 @@ class AuthController {
       await supabase.auth.signOut();
     }
   }
+
+  // --- ELIMINACIÓN DE CUENTA ---
+  // Requiere una Edge Function en Supabase: supabase/functions/delete-account/index.ts
+  // que use el service-role key para llamar auth.admin.deleteUser(userId).
+  Future<void> deleteAccount() async {
+    final userId = supabase.auth.currentUser?.id;
+    if (userId == null) throw 'No hay sesión activa.';
+
+    try {
+      _repo.stopSyncQueue();
+      _repo.memoryCacheProvider.reset();
+
+      // Llamar a la Edge Function que elimina el usuario en Supabase Auth
+      await supabase.functions.invoke('delete-account');
+
+      await _ref.read(guestSessionProvider.notifier).disableGuestMode();
+      _ref.read(inventoryProvider.notifier).clear();
+      _ref.invalidate(inventoryProvider);
+
+      await _ref.read(subscriptionProvider.notifier).logoutUser();
+    } finally {
+      try {
+        await GoogleSignIn.instance.signOut();
+      } catch (_) {}
+      await supabase.auth.signOut();
+    }
+  }
 }

@@ -217,5 +217,16 @@
     "placeholders": {
       "name": {}
     }
-  }
+  },
+
+  "profileDeleteAccountButton": "アカウントを削除",
+  "profileDeleteAccountTitle": "アカウントを削除しますか？",
+  "profileDeleteAccountMessage": "この操作は永久的です。すべてのデータが削除され、コレクションを元に戻すことはできません。",
+  "profileDeleteAccountConfirmButton": "完全に削除する",
+  "profileDeleteAccountSuccess": "アカウントが削除されました。",
+  "profileDeleteAccountError": "アカウントの削除中にエラーが発生しました。もう一度お試しください。",
+
+  "paywallPrivacyPolicy": "プライバシーポリシー",
+  "paywallTermsOfUse": "利用規約",
+  "paywallLegalDisclaimer": "サブスクライブすることで、利用規約とプライバシーポリシーに同意したことになります。"
 }

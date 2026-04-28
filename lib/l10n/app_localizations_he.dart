@@ -472,4 +472,33 @@ class AppLocalizationsHe extends AppLocalizations {
   String variantChangedSuccess(Object name) {
     return 'הגרסה שונתה ל-$name ✅';
   }
+
+  @override
+  String get profileDeleteAccountButton => 'מחק חשבון';
+
+  @override
+  String get profileDeleteAccountTitle => 'למחוק את החשבון שלך?';
+
+  @override
+  String get profileDeleteAccountMessage =>
+      'פעולה זו היא קבועה. כל הנתונים שלך יימחקו ולא תוכל לשחזר את האוסף שלך.';
+
+  @override
+  String get profileDeleteAccountConfirmButton => 'מחק לצמיתות';
+
+  @override
+  String get profileDeleteAccountSuccess => 'החשבון שלך נמחק.';
+
+  @override
+  String get profileDeleteAccountError => 'שגיאה במחיקת החשבון. נסה שוב.';
+
+  @override
+  String get paywallPrivacyPolicy => 'מדיניות פרטיות';
+
+  @override
+  String get paywallTermsOfUse => 'תנאי שימוש';
+
+  @override
+  String get paywallLegalDisclaimer =>
+      'על ידי מנוי, אתה מסכים לתנאי השימוש ולמדיניות הפרטיות שלנו.';
 }

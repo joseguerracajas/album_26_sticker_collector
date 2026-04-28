@@ -484,4 +484,34 @@ class AppLocalizationsHi extends AppLocalizations {
   String variantChangedSuccess(Object name) {
     return 'वेरिएंट $name में बदल गया ✅';
   }
+
+  @override
+  String get profileDeleteAccountButton => 'खाता हटाएं';
+
+  @override
+  String get profileDeleteAccountTitle => 'अपना खाता हटाएं?';
+
+  @override
+  String get profileDeleteAccountMessage =>
+      'यह क्रिया स्थायी है. आपका सारा डेटा हटा दिया जाएगा और आप अपना संग्रह वापस नहीं पा सकेंगे.';
+
+  @override
+  String get profileDeleteAccountConfirmButton => 'स्थायी रूप से हटाएं';
+
+  @override
+  String get profileDeleteAccountSuccess => 'आपका खाता हटा दिया गया है.';
+
+  @override
+  String get profileDeleteAccountError =>
+      'खाता हटाने में त्रुटि. कृपया पुनः प्रयास करें.';
+
+  @override
+  String get paywallPrivacyPolicy => 'गोपनीयता नीति';
+
+  @override
+  String get paywallTermsOfUse => 'उपयोग की शर्तें';
+
+  @override
+  String get paywallLegalDisclaimer =>
+      'सदस्यता लेकर आप हमारी उपयोग की शर्तों और गोपनीयता नीति से सहमत होते हैं.';
 }

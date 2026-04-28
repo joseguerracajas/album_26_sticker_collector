@@ -1,3 +1,4 @@
+import 'package:album_26_sticker_collector/core/constants/app_urls.dart';
 import 'package:album_26_sticker_collector/features/auth/presentation/auth_screen.dart'
     show LoginScreen;
 import 'package:album_26_sticker_collector/features/monetization/data/subscription_provider.dart';
@@ -6,6 +7,7 @@ import 'package:album_26_sticker_collector/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PaywallScreen extends ConsumerStatefulWidget {
   const PaywallScreen({super.key});
@@ -314,6 +316,10 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
                           fontSize: 12,
                         ),
                       ),
+                      const SizedBox(height: 16),
+
+                      // ── Links legales requeridos por Apple 3.1.2(c) ──────
+                      _LegalLinksRow(l10n: l10n),
                       const SizedBox(height: 24),
                     ],
                   ),
@@ -555,6 +561,58 @@ class _PurchaseButton extends StatelessWidget {
                 ),
               ),
       ),
+    );
+  }
+}
+
+// ─── Links legales (Terms of Use + Privacy Policy) ───────────────────────────
+class _LegalLinksRow extends StatelessWidget {
+  final AppLocalizations l10n;
+
+  const _LegalLinksRow({required this.l10n});
+
+  Future<void> _launch(String url) async {
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      alignment: WrapAlignment.center,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: [
+        GestureDetector(
+          onTap: () => _launch(AppUrls.termsOfUse),
+          child: Text(
+            l10n.paywallTermsOfUse,
+            style: const TextStyle(
+              color: Colors.white38,
+              fontSize: 11,
+              decoration: TextDecoration.underline,
+              decorationColor: Colors.white38,
+            ),
+          ),
+        ),
+        const Text(
+          '  ·  ',
+          style: TextStyle(color: Colors.white24, fontSize: 11),
+        ),
+        GestureDetector(
+          onTap: () => _launch(AppUrls.privacyPolicy),
+          child: Text(
+            l10n.paywallPrivacyPolicy,
+            style: const TextStyle(
+              color: Colors.white38,
+              fontSize: 11,
+              decoration: TextDecoration.underline,
+              decorationColor: Colors.white38,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

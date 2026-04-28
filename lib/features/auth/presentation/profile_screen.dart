@@ -194,6 +194,114 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     }
   }
 
+  Future<void> _eliminarCuenta(BuildContext context) async {
+    final l10n = AppLocalizations.of(context);
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => Dialog(
+        backgroundColor: const Color(0xFF1E1E1E),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 56,
+                height: 56,
+                decoration: BoxDecoration(
+                  color: Colors.red.withValues(alpha: 0.15),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.delete_forever,
+                  color: Colors.red,
+                  size: 28,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                l10n.profileDeleteAccountTitle,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 12),
+              Text(
+                l10n.profileDeleteAccountMessage,
+                style: const TextStyle(
+                  color: Colors.white60,
+                  fontSize: 14,
+                  height: 1.4,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 24),
+              SizedBox(
+                width: double.infinity,
+                height: 48,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  onPressed: () => Navigator.of(context).pop(true),
+                  child: Text(
+                    l10n.profileDeleteAccountConfirmButton,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 4),
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: Text(
+                  l10n.commonCancel,
+                  style: const TextStyle(color: Colors.white30, fontSize: 13),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    if (confirmed != true) return;
+    if (!context.mounted) return;
+
+    try {
+      await ref.read(authControllerProvider).deleteAccount();
+      if (context.mounted) {
+        Navigator.of(context).popUntil((route) => route.isFirst);
+      }
+      scaffoldMessengerKey.currentState?.showSnackBar(
+        SnackBar(
+          content: Text(l10n.profileDeleteAccountSuccess),
+          backgroundColor: Colors.blueGrey,
+        ),
+      );
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(l10n.profileDeleteAccountError),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
+
   // 2. Añadimos WidgetRef a la función para poder leer el Provider
   Future<void> _cerrarSesion(BuildContext context) async {
     final WidgetRef ref = this.ref;
@@ -325,6 +433,23 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                   onPressed: () => _cerrarSesion(context),
+                ),
+                const SizedBox(height: 12),
+                // Botón de Eliminar Cuenta
+                TextButton.icon(
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.red.shade300,
+                    minimumSize: const Size(double.infinity, 48),
+                  ),
+                  icon: const Icon(Icons.delete_forever_outlined, size: 20),
+                  label: Text(
+                    l10n.profileDeleteAccountButton,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                    ),
+                  ),
+                  onPressed: () => _eliminarCuenta(context),
                 ),
                 const SizedBox(height: 40), // Espacio inferior seguro
               ],

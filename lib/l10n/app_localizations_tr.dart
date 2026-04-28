@@ -484,4 +484,34 @@ class AppLocalizationsTr extends AppLocalizations {
   String variantChangedSuccess(Object name) {
     return 'Varyant $name olarak değiştirildi ✅';
   }
+
+  @override
+  String get profileDeleteAccountButton => 'Hesabı sil';
+
+  @override
+  String get profileDeleteAccountTitle => 'Hesabınızı silmek istiyor musunuz?';
+
+  @override
+  String get profileDeleteAccountMessage =>
+      'Bu işlem kalıcıdır. Tüm verileriniz silinecek ve koleksiyonunuzu kurtaramazsınız.';
+
+  @override
+  String get profileDeleteAccountConfirmButton => 'Kalıcı olarak sil';
+
+  @override
+  String get profileDeleteAccountSuccess => 'Hesabınız silindi.';
+
+  @override
+  String get profileDeleteAccountError =>
+      'Hesap silinirken hata oluştu. Tekrar deneyin.';
+
+  @override
+  String get paywallPrivacyPolicy => 'Gizlilik Politikası';
+
+  @override
+  String get paywallTermsOfUse => 'Kullanım Koşulları';
+
+  @override
+  String get paywallLegalDisclaimer =>
+      'Abone olarak Kullanım Koşullarını ve Gizlilik Politikasını kabul etmiş olursunuz.';
 }

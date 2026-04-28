@@ -217,5 +217,16 @@
     "placeholders": {
       "name": {}
     }
-  }
+  },
+
+  "profileDeleteAccountButton": "Supprimer le compte",
+  "profileDeleteAccountTitle": "Supprimer votre compte ?",
+  "profileDeleteAccountMessage": "Cette action est permanente. Toutes vos données seront supprimées et vous ne pourrez pas récupérer votre collection.",
+  "profileDeleteAccountConfirmButton": "Supprimer définitivement",
+  "profileDeleteAccountSuccess": "Votre compte a été supprimé.",
+  "profileDeleteAccountError": "Erreur lors de la suppression du compte. Réessayez.",
+
+  "paywallPrivacyPolicy": "Politique de confidentialité",
+  "paywallTermsOfUse": "Conditions d'utilisation",
+  "paywallLegalDisclaimer": "En vous abonnant, vous acceptez nos Conditions d'utilisation et notre Politique de confidentialité."
 }

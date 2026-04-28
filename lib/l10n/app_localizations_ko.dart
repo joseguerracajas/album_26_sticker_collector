@@ -463,4 +463,32 @@ class AppLocalizationsKo extends AppLocalizations {
   String variantChangedSuccess(Object name) {
     return '$name(으)로 변경되었습니다 ✅';
   }
+
+  @override
+  String get profileDeleteAccountButton => '계정 삭제';
+
+  @override
+  String get profileDeleteAccountTitle => '계정을 삭제하시겠습니까?';
+
+  @override
+  String get profileDeleteAccountMessage =>
+      '이 작업은 영구적입니다. 모든 데이터가 삭제되며 콜렉션을 복구할 수 없습니다.';
+
+  @override
+  String get profileDeleteAccountConfirmButton => '영구 삭제';
+
+  @override
+  String get profileDeleteAccountSuccess => '계정이 삭제되었습니다.';
+
+  @override
+  String get profileDeleteAccountError => '계정 삭제 중 오류가 발생했습니다. 다시 시도해 주세요.';
+
+  @override
+  String get paywallPrivacyPolicy => '개인정보 처리방침';
+
+  @override
+  String get paywallTermsOfUse => '이용약관';
+
+  @override
+  String get paywallLegalDisclaimer => '구독하면 이용약관 및 개인정보 처리방침에 동의하는 것입니다.';
 }

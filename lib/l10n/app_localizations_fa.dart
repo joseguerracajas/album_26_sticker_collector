@@ -487,4 +487,34 @@ class AppLocalizationsFa extends AppLocalizations {
   String variantChangedSuccess(Object name) {
     return 'نسخه به $name تغییر یافت ✅';
   }
+
+  @override
+  String get profileDeleteAccountButton => 'حذف حساب';
+
+  @override
+  String get profileDeleteAccountTitle => 'حذف حساب شما؟';
+
+  @override
+  String get profileDeleteAccountMessage =>
+      'این عمل دائمی است. تمام داده‌های شما حذف خواهند شد و نمی‌توانید مجموعه‌تان را بازیابی کنید.';
+
+  @override
+  String get profileDeleteAccountConfirmButton => 'حذف دائمی';
+
+  @override
+  String get profileDeleteAccountSuccess => 'حساب شما حذف شد.';
+
+  @override
+  String get profileDeleteAccountError =>
+      'خطا در حذف حساب. دوباره امتحان کنید.';
+
+  @override
+  String get paywallPrivacyPolicy => 'سیاست حریم خصوصی';
+
+  @override
+  String get paywallTermsOfUse => 'شرایط استفاده';
+
+  @override
+  String get paywallLegalDisclaimer =>
+      'با اشتراک، شرایط استفاده و سیاست حریم خصوصی ما را می‌پذیرید.';
 }

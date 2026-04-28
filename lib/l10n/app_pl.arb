@@ -215,5 +215,16 @@
     "placeholders": {
       "name": {}
     }
-  }
+  },
+
+  "profileDeleteAccountButton": "Usuń konto",
+  "profileDeleteAccountTitle": "Usunąć swoje konto?",
+  "profileDeleteAccountMessage": "Ta czynność jest trwała. Wszystkie dane zostaną usunięte i nie będziesz mógł odzyskać swojej kolekcji.",
+  "profileDeleteAccountConfirmButton": "Usuń na stałe",
+  "profileDeleteAccountSuccess": "Twoje konto zostało usunięte.",
+  "profileDeleteAccountError": "Błąd podczas usuwania konta. Spróbuj ponownie.",
+
+  "paywallPrivacyPolicy": "Polityka prywatności",
+  "paywallTermsOfUse": "Warunki użytkowania",
+  "paywallLegalDisclaimer": "Subskrybując, akceptujesz nasze Warunki użytkowania i Politykę prywatności."
 }

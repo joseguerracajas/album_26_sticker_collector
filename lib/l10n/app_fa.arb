@@ -217,5 +217,16 @@
     "placeholders": {
       "name": {}
     }
-  }
+  },
+
+  "profileDeleteAccountButton": "حذف حساب",
+  "profileDeleteAccountTitle": "حذف حساب شما؟",
+  "profileDeleteAccountMessage": "این عمل دائمی است. تمام داده‌های شما حذف خواهند شد و نمی‌توانید مجموعه‌تان را بازیابی کنید.",
+  "profileDeleteAccountConfirmButton": "حذف دائمی",
+  "profileDeleteAccountSuccess": "حساب شما حذف شد.",
+  "profileDeleteAccountError": "خطا در حذف حساب. دوباره امتحان کنید.",
+
+  "paywallPrivacyPolicy": "سیاست حریم خصوصی",
+  "paywallTermsOfUse": "شرایط استفاده",
+  "paywallLegalDisclaimer": "با اشتراک، شرایط استفاده و سیاست حریم خصوصی ما را می‌پذیرید."
 }

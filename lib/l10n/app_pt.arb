@@ -217,5 +217,16 @@
     "placeholders": {
       "name": {}
     }
-  }
+  },
+
+  "profileDeleteAccountButton": "Eliminar conta",
+  "profileDeleteAccountTitle": "Eliminar a sua conta?",
+  "profileDeleteAccountMessage": "Esta ação é permanente. Todos os seus dados serão eliminados e não poderá recuperar a sua coleção.",
+  "profileDeleteAccountConfirmButton": "Eliminar definitivamente",
+  "profileDeleteAccountSuccess": "A sua conta foi eliminada.",
+  "profileDeleteAccountError": "Erro ao eliminar a conta. Tente novamente.",
+
+  "paywallPrivacyPolicy": "Política de Privacidade",
+  "paywallTermsOfUse": "Termos de Utilização",
+  "paywallLegalDisclaimer": "Ao subscrever, aceita os nossos Termos de Utilização e a nossa Política de Privacidade."
 }

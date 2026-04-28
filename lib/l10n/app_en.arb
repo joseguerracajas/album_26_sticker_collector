@@ -217,5 +217,16 @@
     "placeholders": {
       "name": {}
     }
-  }
+  },
+
+  "profileDeleteAccountButton": "Delete account",
+  "profileDeleteAccountTitle": "Delete your account?",
+  "profileDeleteAccountMessage": "This action is permanent. All your data will be deleted and you won't be able to recover your collection.",
+  "profileDeleteAccountConfirmButton": "Delete permanently",
+  "profileDeleteAccountSuccess": "Your account has been deleted.",
+  "profileDeleteAccountError": "Error deleting account. Please try again.",
+
+  "paywallPrivacyPolicy": "Privacy Policy",
+  "paywallTermsOfUse": "Terms of Use",
+  "paywallLegalDisclaimer": "By subscribing you agree to our Terms of Use and Privacy Policy."
 }

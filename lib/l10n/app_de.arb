@@ -217,5 +217,16 @@
     "placeholders": {
       "name": {}
     }
-  }
+  },
+
+  "profileDeleteAccountButton": "Konto löschen",
+  "profileDeleteAccountTitle": "Konto löschen?",
+  "profileDeleteAccountMessage": "Diese Aktion ist dauerhaft. Alle deine Daten werden gelöscht und du kannst deine Sammlung nicht wiederherstellen.",
+  "profileDeleteAccountConfirmButton": "Endgültig löschen",
+  "profileDeleteAccountSuccess": "Dein Konto wurde gelöscht.",
+  "profileDeleteAccountError": "Fehler beim Löschen des Kontos. Bitte versuche es erneut.",
+
+  "paywallPrivacyPolicy": "Datenschutzrichtlinie",
+  "paywallTermsOfUse": "Nutzungsbedingungen",
+  "paywallLegalDisclaimer": "Durch das Abonnieren stimmst du unseren Nutzungsbedingungen und der Datenschutzrichtlinie zu."
 }

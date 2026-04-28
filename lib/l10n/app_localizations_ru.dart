@@ -491,4 +491,34 @@ class AppLocalizationsRu extends AppLocalizations {
   String variantChangedSuccess(Object name) {
     return 'Вариант изменён на $name ✅';
   }
+
+  @override
+  String get profileDeleteAccountButton => 'Удалить аккаунт';
+
+  @override
+  String get profileDeleteAccountTitle => 'Удалить аккаунт?';
+
+  @override
+  String get profileDeleteAccountMessage =>
+      'Это действие необратимо. Все данные будут удалены, и вы не сможете восстановить коллекцию.';
+
+  @override
+  String get profileDeleteAccountConfirmButton => 'Удалить навсегда';
+
+  @override
+  String get profileDeleteAccountSuccess => 'Ваш аккаунт удалён.';
+
+  @override
+  String get profileDeleteAccountError =>
+      'Ошибка при удалении аккаунта. Попробуйте ещё раз.';
+
+  @override
+  String get paywallPrivacyPolicy => 'Политика конфиденциальности';
+
+  @override
+  String get paywallTermsOfUse => 'Условия использования';
+
+  @override
+  String get paywallLegalDisclaimer =>
+      'Подписываясь, вы принимаете наши Условия использования и Политику конфиденциальности.';
 }

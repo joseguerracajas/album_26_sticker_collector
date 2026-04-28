@@ -217,5 +217,16 @@
     "placeholders": {
       "name": {}
     }
-  }
+  },
+
+  "profileDeleteAccountButton": "Hesabı sil",
+  "profileDeleteAccountTitle": "Hesabınızı silmek istiyor musunuz?",
+  "profileDeleteAccountMessage": "Bu işlem kalıcıdır. Tüm verileriniz silinecek ve koleksiyonunuzu kurtaramazsınız.",
+  "profileDeleteAccountConfirmButton": "Kalıcı olarak sil",
+  "profileDeleteAccountSuccess": "Hesabınız silindi.",
+  "profileDeleteAccountError": "Hesap silinirken hata oluştu. Tekrar deneyin.",
+
+  "paywallPrivacyPolicy": "Gizlilik Politikası",
+  "paywallTermsOfUse": "Kullanım Koşulları",
+  "paywallLegalDisclaimer": "Abone olarak Kullanım Koşullarını ve Gizlilik Politikasını kabul etmiş olursunuz."
 }
