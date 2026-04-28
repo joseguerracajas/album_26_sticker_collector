@@ -1,4 +1,4 @@
-package com.example.album_26_sticker_collector
+package com.joseguerra.album26StickerCollector
 
 import io.flutter.embedding.android.FlutterActivity
 
