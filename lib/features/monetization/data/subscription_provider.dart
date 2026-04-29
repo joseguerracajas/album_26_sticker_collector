@@ -9,7 +9,7 @@ const _kScansDemoKey = 'demo_scans_used';
 const kDemoScanLimit = 5;
 const kScannerEntitlement = 'Album_26_Pro';
 const kRevenueCatAppleKey = 'appl_RFbaohRODHeXtaMhoUYOZiKIEBV';
-const kRevenueCatGoogleKey = 'test_kXKxubqbGjyIEWIJIPPuqfnxqZo';
+const kRevenueCatGoogleKey = 'goog_npOylmXRDCgfoEKJNZZYPBdDSyE';
 
 // ─── Estado ───────────────────────────────────────────────────────────────────
 class SubscriptionState {

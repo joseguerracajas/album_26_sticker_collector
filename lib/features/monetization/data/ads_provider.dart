@@ -34,14 +34,6 @@ class AdIds {
   static String get rewarded => Platform.isIOS
       ? 'ca-app-pub-7990642104517736/8084663326'
       : 'ca-app-pub-7990642104517736/9931789976';
-
-  // ── IDs de PRODUCCIÓN (descomentar y reemplazar en producción) ──
-  // static const String bannerIos      = 'ca-app-pub-XXXXXXX/XXXXXXXXX';
-  // static const String bannerAndroid  = 'ca-app-pub-XXXXXXX/XXXXXXXXX';
-  // static const String interIos       = 'ca-app-pub-XXXXXXX/XXXXXXXXX';
-  // static const String interAndroid   = 'ca-app-pub-XXXXXXX/XXXXXXXXX';
-  // static const String rewardedIos    = 'ca-app-pub-XXXXXXX/XXXXXXXXX';
-  // static const String rewardedAndroid= 'ca-app-pub-XXXXXXX/XXXXXXXXX';
 }
 
 // ─── Inicialización ────────────────────────────────────────────────────────────
