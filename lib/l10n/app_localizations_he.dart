@@ -605,4 +605,11 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get drawerReplayTutorial => 'לצפות בהדרכה מחדש';
+
+  @override
+  String get variantTutorialTitle => 'בחר את האזור שלך';
+
+  @override
+  String get variantTutorialBody =>
+      'בחר את גרסת האלבום המתאימה למדינה או לאזור שלך. זה קובע אילו מדבקות וגרסאות (Normal, Gold, Legend) יופיעו באוסף שלך.';
 }

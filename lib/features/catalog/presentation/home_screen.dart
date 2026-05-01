@@ -56,18 +56,19 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   bool _variantDialogShown = false;
+  bool _tutorialScheduled = false;
   final TextEditingController _searchController = TextEditingController();
+
+  Future<void> _maybeShowTutorial() async {
+    if (_tutorialScheduled || !mounted) return;
+    _tutorialScheduled = true;
+    final done = await TutorialService.isHomeTutorialDone();
+    if (!done && mounted) HomeTutorial.show(context);
+  }
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      if (!mounted) return;
-      final done = await TutorialService.isHomeTutorialDone();
-      if (!done && mounted) {
-        HomeTutorial.show(context);
-      }
-    });
   }
 
   @override
@@ -84,13 +85,28 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final categoriesAsync = ref.watch(categoriesProvider);
     final searchQuery = ref.watch(searchQueryProvider);
 
-    // Cuando la preferencia de variante carga y es null → selección obligatoria
+    // Cuando la preferencia de variante carga:
+    // - Si es null  → mostrar sheet obligatorio; al cerrarse, lanzar tutorial
+    // - Si ya tiene → lanzar tutorial directamente (primer uso sin sheet)
     ref.listen(activeVariantPreferenceProvider, (prev, next) {
-      if (!_variantDialogShown && next.hasValue && next.value == null) {
-        _variantDialogShown = true;
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (mounted) VariantSelectorSheet.show(context, mandatory: true);
-        });
+      if (!next.hasValue) return;
+      if (next.value == null) {
+        if (!_variantDialogShown) {
+          _variantDialogShown = true;
+          WidgetsBinding.instance.addPostFrameCallback((_) async {
+            if (!mounted) return;
+            await VariantSelectorSheet.show(context, mandatory: true);
+            await _maybeShowTutorial();
+          });
+        }
+      } else {
+        // Variante ya seleccionada: mostrar tutorial si no lo ha visto
+        if (!_variantDialogShown) {
+          _variantDialogShown = true;
+          WidgetsBinding.instance.addPostFrameCallback(
+            (_) => _maybeShowTutorial(),
+          );
+        }
       }
     });
 
@@ -105,10 +121,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         elevation: 0,
         centerTitle: true,
         leading: Builder(
-          builder: (ctx) => IconButton(
-            key: tutorialDrawerKey,
-            icon: const Icon(Icons.menu, color: Colors.amber),
-            onPressed: () => Scaffold.of(ctx).openDrawer(),
+          builder: (ctx) => Center(
+            child: SizedBox(
+              key: tutorialDrawerKey,
+              width: 44,
+              height: 44,
+              child: IconButton(
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+                icon: const Icon(Icons.menu, color: Colors.amber),
+                onPressed: () => Scaffold.of(ctx).openDrawer(),
+              ),
+            ),
           ),
         ),
         actions: const [

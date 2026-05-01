@@ -319,5 +319,9 @@
   "categoryTutorialStep3Body": "Nazhatenie na seruju naklejku dobavljaet ee v albom (stanovitsja zolotoj). Esli ona uzhe est, povtornoe nazhatenie poproset podtverzhdenie udalenija.",
   "categoryTutorialStep4Title": "Uderzhivajte dlja dop opcij",
   "categoryTutorialStep4Body": "Uderzhivanie naklejki pozvoljaet upravljat kolichestvom kopij kazhdogo varianta (Normal, Gold, Legend).",
-  "drawerReplayTutorial": "Povtorit obuchenie"
+  "drawerReplayTutorial": "Povtorit obuchenie",
+  "variantTutorialTitle": "Vyberite svoj region",
+  "variantTutorialBody": "Vyberi variant alboma, sootvetstvujushhij tvoej strane ili regionu. Jeto opredeljaet, kakie naklejki i varianty (Normal, Gold, Legend) pojavjatsja v tvoej kollekcii.",
+  "variantTutorialTitle": "Vyberite svoj region",
+  "variantTutorialBody": "Vyberi variant alboma, sootvetstvujushhij tvoej strane ili regionu. Jeto opredeljaet, kakie naklejki i varianty (Normal, Gold, Legend) pojavjatsja v tvoej kollekcii."
 }

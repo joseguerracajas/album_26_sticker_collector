@@ -1207,6 +1207,18 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Ver tutorial de nuevo'**
   String get drawerReplayTutorial;
+
+  /// No description provided for @variantTutorialTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Selecciona tu region'**
+  String get variantTutorialTitle;
+
+  /// No description provided for @variantTutorialBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Elige la variante del album que corresponde a tu pais o region. Esto define que cromos y variantes (Normal, Gold, Legend) apareceran en tu coleccion.'**
+  String get variantTutorialBody;
 }
 
 class _AppLocalizationsDelegate

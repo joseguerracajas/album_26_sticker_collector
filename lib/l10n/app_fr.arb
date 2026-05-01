@@ -319,5 +319,9 @@
   "categoryTutorialStep3Body": "Appuyer sur un sticker gris l ajoute a votre album (devient dore). Si vous l avez deja et appuyez a nouveau, il vous sera demande de confirmer la suppression.",
   "categoryTutorialStep4Title": "Appui long pour plus d options",
   "categoryTutorialStep4Body": "Un appui long vous permet de gerer le nombre d exemplaires de chaque variante (Normal, Gold, Legend).",
-  "drawerReplayTutorial": "Revoir le tutoriel"
+  "drawerReplayTutorial": "Revoir le tutoriel",
+  "variantTutorialTitle": "Selectionnez votre region",
+  "variantTutorialBody": "Choisissez la variante d album correspondant a votre pays ou region. Cela definit quels stickers et variantes (Normal, Gold, Legend) apparaitront dans votre collection.",
+  "variantTutorialTitle": "Selectionnez votre region",
+  "variantTutorialBody": "Choisissez la variante d album correspondant a votre pays ou region. Cela definit quels stickers et variantes (Normal, Gold, Legend) apparaitront dans votre collection."
 }

@@ -317,5 +317,9 @@
   "categoryTutorialStep3Body": "Dotknięcie szarej naklejki dodaje ja do albumu (staje sie zlota). Jesli juz ja masz i dotkniesz ponownie, zostaniesz poproszony o potwierdzenie usuniecia.",
   "categoryTutorialStep4Title": "Przytrzymaj, aby zobaczyc wiecej opcji",
   "categoryTutorialStep4Body": "Przytrzymanie naklejki pozwala zarzadzac liczba kopii kazdego wariantu (Normal, Gold, Legend).",
-  "drawerReplayTutorial": "Powtorz samouczek"
+  "drawerReplayTutorial": "Powtorz samouczek",
+  "variantTutorialTitle": "Wybierz swoj region",
+  "variantTutorialBody": "Wybierz wariant albumu odpowiadajacy twojemu krajowi lub regionowi. To okresla, ktore naklejki i warianty (Normal, Gold, Legend) pojawia sie w twojej kolekcji.",
+  "variantTutorialTitle": "Wybierz swoj region",
+  "variantTutorialBody": "Wybierz wariant albumu odpowiadajacy twojemu krajowi lub regionowi. To okresla, ktore naklejki i warianty (Normal, Gold, Legend) pojawia sie w twojej kolekcji."
 }

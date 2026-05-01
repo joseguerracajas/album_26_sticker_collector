@@ -319,5 +319,9 @@
   "categoryTutorialStep3Body": "ضربه زدن به یک برچسب خاکستری آن را به آلبوم اضافه می‌کند (طلایی می‌شود). اگر قبلاً آن را دارید، تأیید حذف درخواست می‌شود.",
   "categoryTutorialStep4Title": "نگه دارید برای گزینه‌های بیشتر",
   "categoryTutorialStep4Body": "نگه داشتن برچسب به شما امکان می‌دهد تعداد نسخه‌های هر نوع (Normal, Gold, Legend) را مدیریت کنید.",
-  "drawerReplayTutorial": "مرور آموزش مجدد"
+  "drawerReplayTutorial": "مرور آموزش مجدد",
+  "variantTutorialTitle": "منطقه خود را انتخاب کنید",
+  "variantTutorialBody": "نسخه آلبوم مربوط به کشور یا منطقه خود را انتخاب کنید. این تعیین می‌کند کدام برچسب‌ها و نوع‌ها (Normal, Gold, Legend) در مجموعه شما نمایش داده می‌شوند.",
+  "variantTutorialTitle": "منطقه خود را انتخاب کنید",
+  "variantTutorialBody": "نسخه آلبوم مربوط به کشور یا منطقه خود را انتخاب کنید. این تعیین می‌کند کدام برچسب‌ها و نوع‌ها (Normal, Gold, Legend) در مجموعه شما نمایش داده می‌شوند."
 }

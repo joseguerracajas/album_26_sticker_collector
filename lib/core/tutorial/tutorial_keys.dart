@@ -22,6 +22,11 @@ final GlobalKey tutorialCategoryTileKey = GlobalKey(
   debugLabel: 'tutorialCategoryTile',
 );
 
+// ── VariantSelectorSheet ──────────────────────────────────────────────────────
+final GlobalKey tutorialVariantListKey = GlobalKey(
+  debugLabel: 'tutorialVariantList',
+);
+
 // ── GlobalCollectionScreen / CategoryDetailScreen ─────────────────────────────
 final GlobalKey tutorialFilterBarKey = GlobalKey(
   debugLabel: 'tutorialFilterBar',

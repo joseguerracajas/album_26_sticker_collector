@@ -20,8 +20,9 @@ class ScannerIconButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
 
-    return IconButton(
-      key: showTutorialKey ? tutorialScannerKey : null,
+    final button = IconButton(
+      padding: EdgeInsets.zero,
+      constraints: const BoxConstraints(),
       icon: const Icon(Icons.document_scanner_outlined, color: Colors.amber),
       tooltip: l10n.homeScanButton,
       onPressed: () async {
@@ -44,6 +45,13 @@ class ScannerIconButton extends ConsumerWidget {
               },
             );
       },
+    );
+    if (!showTutorialKey) return button;
+    return SizedBox(
+      key: tutorialScannerKey,
+      width: 44,
+      height: 44,
+      child: Center(child: button),
     );
   }
 }
@@ -75,8 +83,7 @@ class ShareMenuButton extends ConsumerWidget {
       );
     }
 
-    return PopupMenuButton<ShareType>(
-      key: showTutorialKey ? tutorialShareKey : null,
+    final menu = PopupMenuButton<ShareType>(
       icon: const Icon(Icons.share, color: Colors.amber),
       color: const Color(0xFF1E1E1E),
       onSelected: (ShareType tipo) async {
@@ -137,6 +144,13 @@ class ShareMenuButton extends ConsumerWidget {
           ),
         ),
       ],
+    );
+    if (!showTutorialKey) return menu;
+    return SizedBox(
+      key: tutorialShareKey,
+      width: 44,
+      height: 44,
+      child: Center(child: menu),
     );
   }
 }

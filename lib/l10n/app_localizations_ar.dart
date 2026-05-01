@@ -614,4 +614,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get drawerReplayTutorial => 'إعادة مشاهدة الدليل';
+
+  @override
+  String get variantTutorialTitle => 'اختر منطقتك';
+
+  @override
+  String get variantTutorialBody =>
+      'اختر نسخة الألبوم التي تتوافق مع بلدك أو منطقتك. هذا يحدد الملصقات والنسخ (Normal, Gold, Legend) التي ستظهر في مجموعتك.';
 }

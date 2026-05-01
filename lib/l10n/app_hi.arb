@@ -319,5 +319,9 @@
   "categoryTutorialStep3Body": "ग्रे स्टिकर पर टैप करने से वह एल्बम में जुड़ जाता है (सुनहरा हो जाता है)। यदि पहले से है और फिर टैप करते हैं, हटाने की पुष्टि माँगी जाएगी।",
   "categoryTutorialStep4Title": "अधिक विकल्पों के लिए दबाए रखें",
   "categoryTutorialStep4Body": "स्टिकर को देर तक दबाने पर प्रत्येक वेरिएंट (Normal, Gold, Legend) की कितनी प्रतियाँ हैं, यह प्रबंधित कर सकते हैं।",
-  "drawerReplayTutorial": "ट्यूटोरियल फिर से देखें"
+  "drawerReplayTutorial": "ट्यूटोरियल फिर से देखें",
+  "variantTutorialTitle": "अपना क्षेत्र चुनें",
+  "variantTutorialBody": "वह एल्बम वेरिएंट चुनें जो आपके देश या क्षेत्र से मेल खाता हो। यह तय करता है कि आपकी कलेक्शन में कौन से स्टिकर और वेरिएंट (Normal, Gold, Legend) दिखाई देंगे।",
+  "variantTutorialTitle": "apna kshetr chunen",
+  "variantTutorialBody": "vah album variant chunen jo apke desh ya kshetr se mel khata ho. yah tay karta hai ki apki collection mein kaun se sticker aur variant (Normal, Gold, Legend) dikhai denge."
 }

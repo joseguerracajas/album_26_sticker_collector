@@ -319,5 +319,9 @@
   "categoryTutorialStep3Body": "Ein Tipp auf einen grauen Sticker fuegt ihn deinem Album hinzu (wird gold). Wenn du ihn bereits hast und erneut tippst, wirst du gefragt, ob du ihn entfernen moechtest.",
   "categoryTutorialStep4Title": "Lang druecken fuer weitere Optionen",
   "categoryTutorialStep4Body": "Langes Druecken erlaubt dir, die Anzahl der Exemplare jeder Variante (Normal, Gold, Legend) zu verwalten.",
-  "drawerReplayTutorial": "Tutorial wiederholen"
+  "drawerReplayTutorial": "Tutorial wiederholen",
+  "variantTutorialTitle": "Waehle deine Region",
+  "variantTutorialBody": "Waehle die Albumvariante, die deinem Land oder deiner Region entspricht. Das legt fest, welche Sticker und Varianten (Normal, Gold, Legend) in deiner Sammlung erscheinen.",
+  "variantTutorialTitle": "Waehle deine Region",
+  "variantTutorialBody": "Waehle die Albumvariante, die deinem Land oder deiner Region entspricht. Das legt fest, welche Sticker und Varianten (Normal, Gold, Legend) in deiner Sammlung erscheinen."
 }

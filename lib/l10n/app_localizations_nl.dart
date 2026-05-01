@@ -626,4 +626,11 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get drawerReplayTutorial => 'Tutorial opnieuw bekijken';
+
+  @override
+  String get variantTutorialTitle => 'Selecteer je regio';
+
+  @override
+  String get variantTutorialBody =>
+      'Kies de albumvariant die overeenkomt met jouw land of regio. Dit bepaalt welke stickers en varianten (Normal, Gold, Legend) in jouw collectie verschijnen.';
 }

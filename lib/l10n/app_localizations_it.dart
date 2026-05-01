@@ -625,4 +625,11 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get drawerReplayTutorial => 'Rivedere il tutorial';
+
+  @override
+  String get variantTutorialTitle => 'Seleziona la tua regione';
+
+  @override
+  String get variantTutorialBody =>
+      'Scegli la variante dell album corrispondente al tuo paese o regione. Questo definisce quali figurine e varianti (Normal, Gold, Legend) appariranno nella tua collezione.';
 }

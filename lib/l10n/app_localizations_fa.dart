@@ -624,4 +624,11 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get drawerReplayTutorial => 'مرور آموزش مجدد';
+
+  @override
+  String get variantTutorialTitle => 'منطقه خود را انتخاب کنید';
+
+  @override
+  String get variantTutorialBody =>
+      'نسخه آلبوم مربوط به کشور یا منطقه خود را انتخاب کنید. این تعیین می‌کند کدام برچسب‌ها و نوع‌ها (Normal, Gold, Legend) در مجموعه شما نمایش داده می‌شوند.';
 }

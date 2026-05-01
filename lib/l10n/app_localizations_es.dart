@@ -627,4 +627,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get drawerReplayTutorial => 'Ver tutorial de nuevo';
+
+  @override
+  String get variantTutorialTitle => 'Selecciona tu region';
+
+  @override
+  String get variantTutorialBody =>
+      'Elige la variante del album que corresponde a tu pais o region. Esto define que cromos y variantes (Normal, Gold, Legend) apareceran en tu coleccion.';
 }

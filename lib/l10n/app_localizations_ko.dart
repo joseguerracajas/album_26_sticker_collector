@@ -591,4 +591,11 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get drawerReplayTutorial => '튜토리얼 다시 보기';
+
+  @override
+  String get variantTutorialTitle => '지역을 선택하세요';
+
+  @override
+  String get variantTutorialBody =>
+      '본인의 국가나 지역에 맞는 앨범 버전을 선택하세요. 이것이 컬렉션에 표시될 스티커와 변형(Normal, Gold, Legend)을 결정합니다.';
 }

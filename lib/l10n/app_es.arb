@@ -271,5 +271,9 @@
   "categoryTutorialStep3Body": "Un toque sobre un cromo gris lo anade a tu album (se pone dorado). Si ya lo tienes y lo tocas de nuevo, te pedira confirmacion para quitarlo.",
   "categoryTutorialStep4Title": "Manten pulsado para mas opciones",
   "categoryTutorialStep4Body": "Si mantienes pulsado un cromo puedes gestionar cuantas copias tienes de cada variante (Normal, Gold, Legend) y actualizar tu inventario de repetidas.",
-  "drawerReplayTutorial": "Ver tutorial de nuevo"
+  "drawerReplayTutorial": "Ver tutorial de nuevo",
+  "variantTutorialTitle": "Selecciona tu region",
+  "variantTutorialBody": "Elige la variante del album que corresponde a tu pais o region. Esto define que cromos y variantes (Normal, Gold, Legend) apareceran en tu coleccion.",
+  "variantTutorialTitle": "Selecciona tu region",
+  "variantTutorialBody": "Elige la variante del album que corresponde a tu pais o region. Esto define que cromos y variantes (Normal, Gold, Legend) apareceran en tu coleccion."
 }

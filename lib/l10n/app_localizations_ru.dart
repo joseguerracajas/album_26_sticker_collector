@@ -627,4 +627,11 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get drawerReplayTutorial => 'Povtorit obuchenie';
+
+  @override
+  String get variantTutorialTitle => 'Vyberite svoj region';
+
+  @override
+  String get variantTutorialBody =>
+      'Vyberi variant alboma, sootvetstvujushhij tvoej strane ili regionu. Jeto opredeljaet, kakie naklejki i varianty (Normal, Gold, Legend) pojavjatsja v tvoej kollekcii.';
 }

@@ -578,4 +578,11 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get drawerReplayTutorial => '重新查看教程';
+
+  @override
+  String get variantTutorialTitle => '选择您的地区';
+
+  @override
+  String get variantTutorialBody =>
+      '选择与您的国家或地区对应的专辑版本。这将决定您的收藏中显示哪些贴纸和变体(Normal, Gold, Legend)。';
 }

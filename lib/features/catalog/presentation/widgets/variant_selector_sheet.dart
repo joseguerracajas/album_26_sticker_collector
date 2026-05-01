@@ -1,3 +1,5 @@
+import 'package:album_26_sticker_collector/core/tutorial/tutorial_keys.dart';
+import 'package:album_26_sticker_collector/core/tutorial/variant_tutorial.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/album_variant_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/album_variant.model.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
@@ -14,7 +16,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 /// // Obligatorio (no se puede cerrar sin elegir):
 /// VariantSelectorSheet.show(context, mandatory: true);
 /// ```
-class VariantSelectorSheet extends ConsumerWidget {
+class VariantSelectorSheet extends ConsumerStatefulWidget {
   final bool mandatory;
   const VariantSelectorSheet({super.key, this.mandatory = false});
 
@@ -30,7 +32,24 @@ class VariantSelectorSheet extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<VariantSelectorSheet> createState() =>
+      _VariantSelectorSheetState();
+}
+
+class _VariantSelectorSheetState extends ConsumerState<VariantSelectorSheet> {
+  @override
+  void initState() {
+    super.initState();
+    if (widget.mandatory) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) VariantTutorial.show(context);
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final mandatory = widget.mandatory;
     final l10n = AppLocalizations.of(context);
     final variantsAsync = ref.watch(activeAlbumVariantsProvider);
     final prefAsync = ref.watch(activeVariantPreferenceProvider);
@@ -154,7 +173,7 @@ class VariantSelectorSheet extends ConsumerWidget {
                 itemBuilder: (context, index) {
                   final variant = variants[index];
                   final isSelected = variant.id == currentVariantId;
-                  return _VariantTile(
+                  final tile = _VariantTile(
                     variant: variant,
                     isSelected: isSelected,
                     defaultLabel: l10n.variantSheetDefaultLabel,
@@ -200,6 +219,13 @@ class VariantSelectorSheet extends ConsumerWidget {
                       }
                     },
                   );
+                  if (index == 0) {
+                    return KeyedSubtree(
+                      key: tutorialVariantListKey,
+                      child: tile,
+                    );
+                  }
+                  return tile;
                 },
               );
             },

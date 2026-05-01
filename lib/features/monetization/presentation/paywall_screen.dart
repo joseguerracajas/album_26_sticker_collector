@@ -1,11 +1,8 @@
 import 'dart:io';
 
 import 'package:album_26_sticker_collector/core/constants/app_urls.dart';
-import 'package:album_26_sticker_collector/features/auth/presentation/auth_screen.dart'
-    show LoginScreen;
 import 'package:album_26_sticker_collector/features/monetization/data/subscription_provider.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
-import 'package:album_26_sticker_collector/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';

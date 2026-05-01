@@ -590,4 +590,11 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get drawerReplayTutorial => 'チュートリアルをもう一度見る';
+
+  @override
+  String get variantTutorialTitle => '地域を選択してください';
+
+  @override
+  String get variantTutorialBody =>
+      'あなたの国や地域に合ったアルバムバリアントを選択してください。これにより、コレクションに表示されるステッカーとバリアントが決まります。';
 }

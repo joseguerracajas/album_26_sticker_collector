@@ -621,4 +621,11 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get drawerReplayTutorial => 'ट्यूटोरियल फिर से देखें';
+
+  @override
+  String get variantTutorialTitle => 'apna kshetr chunen';
+
+  @override
+  String get variantTutorialBody =>
+      'vah album variant chunen jo apke desh ya kshetr se mel khata ho. yah tay karta hai ki apki collection mein kaun se sticker aur variant (Normal, Gold, Legend) dikhai denge.';
 }
