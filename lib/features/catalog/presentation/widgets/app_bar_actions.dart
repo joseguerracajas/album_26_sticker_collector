@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Importa tus dependencias reales aquí
+import 'package:album_26_sticker_collector/core/tutorial/tutorial_keys.dart';
 import 'package:album_26_sticker_collector/features/inventory/presentation/scanner_screen.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/share_provider.dart';
 import 'package:album_26_sticker_collector/features/monetization/data/ads_provider.dart';
@@ -11,13 +12,16 @@ import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 
 // ─── 1. WIDGET DEL BOTÓN DEL ESCÁNER ──────────────────────────────────────────
 class ScannerIconButton extends ConsumerWidget {
-  const ScannerIconButton({super.key});
+  const ScannerIconButton({super.key, this.showTutorialKey = false});
+
+  final bool showTutorialKey;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
 
     return IconButton(
+      key: showTutorialKey ? tutorialScannerKey : null,
       icon: const Icon(Icons.document_scanner_outlined, color: Colors.amber),
       tooltip: l10n.homeScanButton,
       onPressed: () async {
@@ -46,7 +50,9 @@ class ScannerIconButton extends ConsumerWidget {
 
 // ─── 2. WIDGET DEL MENÚ DE COMPARTIR ────────────────────────────────────────
 class ShareMenuButton extends ConsumerWidget {
-  const ShareMenuButton({super.key});
+  const ShareMenuButton({super.key, this.showTutorialKey = false});
+
+  final bool showTutorialKey;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -70,6 +76,7 @@ class ShareMenuButton extends ConsumerWidget {
     }
 
     return PopupMenuButton<ShareType>(
+      key: showTutorialKey ? tutorialShareKey : null,
       icon: const Icon(Icons.share, color: Colors.amber),
       color: const Color(0xFF1E1E1E),
       onSelected: (ShareType tipo) async {

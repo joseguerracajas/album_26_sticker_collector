@@ -491,4 +491,104 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get paywallLegalDisclaimer => '구독하면 이용약관 및 개인정보 처리방침에 동의하는 것입니다.';
+
+  @override
+  String get tutorialSkip => '건너뛰기';
+
+  @override
+  String get tutorialTapToContinue => '계속하려면 어디든 탭하세요';
+
+  @override
+  String get tutorialStep1Title => '전체 진행 상황';
+
+  @override
+  String get tutorialStep1Body => '수집한 스티커 수를 확인하세요. 계속 수집하세요!';
+
+  @override
+  String get tutorialStep2Title => '팀 검색';
+
+  @override
+  String get tutorialStep2Body => '국가나 팀 이름을 입력해 목록을 필터링하세요.';
+
+  @override
+  String get tutorialStep3Title => '메인 메뉴';
+
+  @override
+  String get tutorialStep3Body => '프로필 접근과 앨범 버전 변경이 가능합니다.';
+
+  @override
+  String get tutorialStep4Title => '스티커 스캔';
+
+  @override
+  String get tutorialStep4Body => '카메라로 스티커를 스캔해 앨범에 자동으로 추가하세요.';
+
+  @override
+  String get tutorialStep5Title => '목록 공유';
+
+  @override
+  String get tutorialStep5Body => '부족하거나 중복된 스티커 목록을 내보내 친구들과 교환하세요.';
+
+  @override
+  String get globalTutorialStep1Title => '컬렉션 필터링';
+
+  @override
+  String get globalTutorialStep1Body =>
+      '이 버튼을 사용하여 모든 스티커, 없는 것만 또는 중복된 것만 볼 수 있습니다. 교환 정리에 안성맞춤!';
+
+  @override
+  String get globalTutorialStep2Title => '스티커 검색';
+
+  @override
+  String get globalTutorialStep2Body => '국가 이름, 코드 또는 스티커 번호를 입력하여 빠르게 찾으세요.';
+
+  @override
+  String get globalTutorialStep3Title => '탭하여 표시';
+
+  @override
+  String get globalTutorialStep3Body =>
+      '회색 스티커를 한 번 탭하면 앨범에 추가됩니다(금색이 됩니다). 다시 탭하면 제거 확인을 요청합니다.';
+
+  @override
+  String get globalTutorialStep4Title => '길게 누르면 더 많은 옵션';
+
+  @override
+  String get globalTutorialStep4Body =>
+      '스티커를 길게 눌러 각 변형(Normal, Gold, Legend...)의 복사본 수를 관리하세요.';
+
+  @override
+  String get tutorialStep6Title => '카테고리 탐색';
+
+  @override
+  String get tutorialStep6Body =>
+      '국가나 팀을 탭하여 스티커를 확인하세요. 이미 가진 것을 표시하고 중복을 관리할 수 있습니다.';
+
+  @override
+  String get categoryTutorialStep1Title => '스티커 필터링';
+
+  @override
+  String get categoryTutorialStep1Body =>
+      '이 버튼으로 모든 스티커, 없는 것만 또는 중복만 볼 수 있습니다.';
+
+  @override
+  String get categoryTutorialStep2Title => '스티커 검색';
+
+  @override
+  String get categoryTutorialStep2Body => '국가명, 코드 또는 번호를 입력하여 빠르게 찾으세요.';
+
+  @override
+  String get categoryTutorialStep3Title => '탭하여 표시';
+
+  @override
+  String get categoryTutorialStep3Body =>
+      '회색 스티커를 탭하면 앨범에 추가됩니다(금색으로 변함). 이미 있는데 다시 탭하면 삭제 확인이 표시됩니다.';
+
+  @override
+  String get categoryTutorialStep4Title => '길게 눌러 더 많은 옵션';
+
+  @override
+  String get categoryTutorialStep4Body =>
+      '스티커를 길게 누르면 각 변형(Normal, Gold, Legend)의 보유 수량을 관리할 수 있습니다.';
+
+  @override
+  String get drawerReplayTutorial => '튜토리얼 다시 보기';
 }

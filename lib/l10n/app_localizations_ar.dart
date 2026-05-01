@@ -510,4 +510,108 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get paywallLegalDisclaimer =>
       'بالاشتراك، فإنك توافق على شروط الاستخدام وسياسة الخصوصية.';
+
+  @override
+  String get tutorialSkip => 'تخطَّ';
+
+  @override
+  String get tutorialTapToContinue => 'اضغط في أي مكان للمتابعة';
+
+  @override
+  String get tutorialStep1Title => 'تقدمك العام';
+
+  @override
+  String get tutorialStep1Body => 'هنا ترى عدد الملصقات التي جمعتها. استمر!';
+
+  @override
+  String get tutorialStep2Title => 'ابحث عن الفرق';
+
+  @override
+  String get tutorialStep2Body => 'اكتب اسم بلد أو فريق لتصفية القائمة.';
+
+  @override
+  String get tutorialStep3Title => 'القائمة الرئيسية';
+
+  @override
+  String get tutorialStep3Body => 'ادخل إلى ملفك الشخصي وغيّر نسخة الألبوم.';
+
+  @override
+  String get tutorialStep4Title => 'مسح الملصقات';
+
+  @override
+  String get tutorialStep4Body =>
+      'استخدم الكاميرا لمسح الملصقات وإضافتها تلقائيًا.';
+
+  @override
+  String get tutorialStep5Title => 'مشاركة القائمة';
+
+  @override
+  String get tutorialStep5Body =>
+      'صدّر قائمة الملصقات الناقصة أو المكررة لمبادلتها.';
+
+  @override
+  String get globalTutorialStep1Title => 'تصفية المجموعة';
+
+  @override
+  String get globalTutorialStep1Body =>
+      'استخدم هذه الأزرار لرؤية جميع ملصقاتك أو الناقصة فقط أو المكررة فقط. مثالي لتنظيم التبادل!';
+
+  @override
+  String get globalTutorialStep2Title => 'ابحث عن ملصق';
+
+  @override
+  String get globalTutorialStep2Body =>
+      'اكتب اسم البلد أو الرمز أو رقم الملصق للعثور عليه بسرعة.';
+
+  @override
+  String get globalTutorialStep3Title => 'اضغط للتحديد';
+
+  @override
+  String get globalTutorialStep3Body =>
+      'ضغطة واحدة على ملصق رمادي تضيفه إلى ألبومك (يصبح ذهبياً). إذا ضغطت مرة أخرى ستُطلب منك تأكيد الحذف.';
+
+  @override
+  String get globalTutorialStep4Title => 'اضغط مطولاً للمزيد من الخيارات';
+
+  @override
+  String get globalTutorialStep4Body =>
+      'اضغط مطولاً على ملصق لإدارة عدد النسخ لكل نوع (Normal, Gold, Legend...).';
+
+  @override
+  String get tutorialStep6Title => 'استكشف فئة';
+
+  @override
+  String get tutorialStep6Body =>
+      'اضغط على أي دولة أو فريق لعرض ملصقاته. هناك يمكنك تحديد ما لديك وإدارة المكرر.';
+
+  @override
+  String get categoryTutorialStep1Title => 'تصفية الملصقات';
+
+  @override
+  String get categoryTutorialStep1Body =>
+      'استخدم هذه الأزرار لعرض جميع الملصقات أو الناقصة فقط أو المكررة فقط.';
+
+  @override
+  String get categoryTutorialStep2Title => 'ابحث عن ملصق';
+
+  @override
+  String get categoryTutorialStep2Body =>
+      'اكتب اسم الدولة أو الرمز أو رقم الملصق للعثور عليه بسرعة.';
+
+  @override
+  String get categoryTutorialStep3Title => 'اضغط للتحديد';
+
+  @override
+  String get categoryTutorialStep3Body =>
+      'الضغط على ملصق رمادي يضيفه للبومك (يصبح ذهبياً). إذا كان لديك بالفعل وضغطت مجدداً، ستُطلب منك تأكيد الحذف.';
+
+  @override
+  String get categoryTutorialStep4Title => 'اضغط مطولاً لمزيد من الخيارات';
+
+  @override
+  String get categoryTutorialStep4Body =>
+      'الضغط المطول يتيح لك إدارة عدد نسخك من كل نسخة (Normal, Gold, Legend).';
+
+  @override
+  String get drawerReplayTutorial => 'إعادة مشاهدة الدليل';
 }

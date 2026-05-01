@@ -515,4 +515,111 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get paywallLegalDisclaimer =>
       'Ao subscrever, aceita os nossos Termos de Utilização e a nossa Política de Privacidade.';
+
+  @override
+  String get tutorialSkip => 'Pular';
+
+  @override
+  String get tutorialTapToContinue => 'Toque em qualquer lugar para continuar';
+
+  @override
+  String get tutorialStep1Title => 'Seu progresso global';
+
+  @override
+  String get tutorialStep1Body =>
+      'Veja quantas figurinhas coletou. Continue colecionando!';
+
+  @override
+  String get tutorialStep2Title => 'Buscar times';
+
+  @override
+  String get tutorialStep2Body =>
+      'Digite o nome de um país ou time para filtrar a lista.';
+
+  @override
+  String get tutorialStep3Title => 'Menu principal';
+
+  @override
+  String get tutorialStep3Body =>
+      'Acesse seu perfil e mude a variante do álbum.';
+
+  @override
+  String get tutorialStep4Title => 'Escanear figurinhas';
+
+  @override
+  String get tutorialStep4Body =>
+      'Use a câmera para escanear figurinhas físicas e adicioná-las automaticamente.';
+
+  @override
+  String get tutorialStep5Title => 'Compartilhar lista';
+
+  @override
+  String get tutorialStep5Body =>
+      'Exporte sua lista de figurinhas faltantes ou repetidas para trocar.';
+
+  @override
+  String get globalTutorialStep1Title => 'Filtrar a coleção';
+
+  @override
+  String get globalTutorialStep1Body =>
+      'Use esses botões para ver todas as suas figurinhas, apenas as que faltam ou apenas as repetidas. Ideal para organizar trocas!';
+
+  @override
+  String get globalTutorialStep2Title => 'Buscar uma figurinha';
+
+  @override
+  String get globalTutorialStep2Body =>
+      'Digite o nome do país, o código ou o número da figurinha para encontrá-la rapidamente.';
+
+  @override
+  String get globalTutorialStep3Title => 'Toque para marcar';
+
+  @override
+  String get globalTutorialStep3Body =>
+      'Um toque numa figurinha cinza a adiciona ao seu álbum (fica dourada). Se tocar novamente, será pedida confirmação para removê-la.';
+
+  @override
+  String get globalTutorialStep4Title => 'Toque longo para mais opções';
+
+  @override
+  String get globalTutorialStep4Body =>
+      'Mantenha uma figurinha pressionada para gerenciar quantas cópias você tem de cada variante (Normal, Gold, Legend...).';
+
+  @override
+  String get tutorialStep6Title => 'Explorar uma categoria';
+
+  @override
+  String get tutorialStep6Body =>
+      'Toque em qualquer pais ou equipa para ver as suas cromos. La pode marcar os que ja tem e gerir os repetidos.';
+
+  @override
+  String get categoryTutorialStep1Title => 'Filtrar cromos';
+
+  @override
+  String get categoryTutorialStep1Body =>
+      'Use estes botoes para ver todos os cromos desta categoria, apenas os que faltam ou apenas os repetidos.';
+
+  @override
+  String get categoryTutorialStep2Title => 'Procurar um cromo';
+
+  @override
+  String get categoryTutorialStep2Body =>
+      'Escreva o nome do pais, o codigo ou o numero do cromo para o encontrar rapidamente.';
+
+  @override
+  String get categoryTutorialStep3Title => 'Toque para marcar';
+
+  @override
+  String get categoryTutorialStep3Body =>
+      'Tocar num cromo cinza adiciona-o ao album (fica dourado). Se ja o tem e tocar novamente, sera pedida confirmacao para o remover.';
+
+  @override
+  String get categoryTutorialStep4Title => 'Pressione para mais opcoes';
+
+  @override
+  String get categoryTutorialStep4Body =>
+      'Pressionar prolongadamente um cromo permite gerir quantas copias tem de cada variante (Normal, Gold, Legend).';
+
+  @override
+  String get drawerReplayTutorial => 'Ver tutorial novamente';
 }

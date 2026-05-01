@@ -519,4 +519,111 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get paywallLegalDisclaimer =>
       'Door te abonneren ga je akkoord met onze Gebruiksvoorwaarden en ons Privacybeleid.';
+
+  @override
+  String get tutorialSkip => 'Overslaan';
+
+  @override
+  String get tutorialTapToContinue => 'Tik ergens om door te gaan';
+
+  @override
+  String get tutorialStep1Title => 'Je globale voortgang';
+
+  @override
+  String get tutorialStep1Body =>
+      'Zie hoeveel stickers je hebt verzameld. Blijf verzamelen!';
+
+  @override
+  String get tutorialStep2Title => 'Teams zoeken';
+
+  @override
+  String get tutorialStep2Body =>
+      'Typ een land- of teamnaam om de lijst direct te filteren.';
+
+  @override
+  String get tutorialStep3Title => 'Hoofdmenu';
+
+  @override
+  String get tutorialStep3Body =>
+      'Ga naar je profiel en wissel van albumvariant.';
+
+  @override
+  String get tutorialStep4Title => 'Stickers scannen';
+
+  @override
+  String get tutorialStep4Body =>
+      'Gebruik de camera om stickers te scannen en automatisch toe te voegen.';
+
+  @override
+  String get tutorialStep5Title => 'Lijst delen';
+
+  @override
+  String get tutorialStep5Body =>
+      'Exporteer je lijst met ontbrekende of dubbele stickers om te ruilen.';
+
+  @override
+  String get globalTutorialStep1Title => 'Verzameling filteren';
+
+  @override
+  String get globalTutorialStep1Body =>
+      'Gebruik deze knoppen om alle stickers, alleen de ontbrekende of alleen de dubbele te zien. Perfect om ruilhandel te organiseren!';
+
+  @override
+  String get globalTutorialStep2Title => 'Zoek een sticker';
+
+  @override
+  String get globalTutorialStep2Body =>
+      'Typ de landnaam, de code of het stickernummer om deze snel te vinden.';
+
+  @override
+  String get globalTutorialStep3Title => 'Tikken om te markeren';
+
+  @override
+  String get globalTutorialStep3Body =>
+      'Eén tik op een grijze sticker voegt hem toe aan je album (wordt goud). Als je opnieuw tikt, wordt om bevestiging gevraagd om hem te verwijderen.';
+
+  @override
+  String get globalTutorialStep4Title => 'Lang indrukken voor meer opties';
+
+  @override
+  String get globalTutorialStep4Body =>
+      'Houd een sticker ingedrukt om te beheren hoeveel exemplaren je hebt van elke variant (Normal, Gold, Legend...).';
+
+  @override
+  String get tutorialStep6Title => 'Verken een categorie';
+
+  @override
+  String get tutorialStep6Body =>
+      'Tik op een land of team om zijn stickers te zien. Daar kun je de stickers die je al hebt markeren en je dubbele beheren.';
+
+  @override
+  String get categoryTutorialStep1Title => 'Stickers filteren';
+
+  @override
+  String get categoryTutorialStep1Body =>
+      'Gebruik deze knoppen om alle stickers, alleen ontbrekende of alleen dubbele stickers te zien.';
+
+  @override
+  String get categoryTutorialStep2Title => 'Zoek een sticker';
+
+  @override
+  String get categoryTutorialStep2Body =>
+      'Typ de naam van het land, de code of het nummer van de sticker om hem snel te vinden.';
+
+  @override
+  String get categoryTutorialStep3Title => 'Tik om te markeren';
+
+  @override
+  String get categoryTutorialStep3Body =>
+      'Tikken op een grijze sticker voegt hem toe aan je album (wordt goud). Als je hem al hebt en opnieuw tikt, wordt je gevraagd om de verwijdering te bevestigen.';
+
+  @override
+  String get categoryTutorialStep4Title => 'Lang indrukken voor meer opties';
+
+  @override
+  String get categoryTutorialStep4Body =>
+      'Lang indrukken van een sticker laat je beheren hoeveel exemplaren je hebt van elke variant (Normal, Gold, Legend).';
+
+  @override
+  String get drawerReplayTutorial => 'Tutorial opnieuw bekijken';
 }

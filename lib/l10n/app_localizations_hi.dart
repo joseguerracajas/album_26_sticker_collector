@@ -514,4 +514,111 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get paywallLegalDisclaimer =>
       'सदस्यता लेकर आप हमारी उपयोग की शर्तों और गोपनीयता नीति से सहमत होते हैं.';
+
+  @override
+  String get tutorialSkip => 'छोड़ें';
+
+  @override
+  String get tutorialTapToContinue => 'जारी रखने के लिए कहीं भी टैप करें';
+
+  @override
+  String get tutorialStep1Title => 'आपकी वैश्विक प्रगति';
+
+  @override
+  String get tutorialStep1Body =>
+      'यहाँ देखें आपने कितने स्टिकर इकट्ठे किए हैं। इकट्ठा करते रहें!';
+
+  @override
+  String get tutorialStep2Title => 'टीमें खोजें';
+
+  @override
+  String get tutorialStep2Body =>
+      'सूची फ़िल्टर करने के लिए देश या टीम का नाम टाइप करें।';
+
+  @override
+  String get tutorialStep3Title => 'मुख्य मेनू';
+
+  @override
+  String get tutorialStep3Body =>
+      'अपनी प्रोफ़ाइल तक पहुँचें और एल्बम वेरिएंट बदलें।';
+
+  @override
+  String get tutorialStep4Title => 'स्टिकर स्कैन करें';
+
+  @override
+  String get tutorialStep4Body =>
+      'स्टिकर स्कैन करने और जोड़ने के लिए कैमरा उपयोग करें।';
+
+  @override
+  String get tutorialStep5Title => 'सूची साझा करें';
+
+  @override
+  String get tutorialStep5Body =>
+      'गुम या डुप्लीकेट स्टिकर सूची एक्सचेंज के लिए निर्यात करें।';
+
+  @override
+  String get globalTutorialStep1Title => 'कलेक्शन फ़िल्टर करें';
+
+  @override
+  String get globalTutorialStep1Body =>
+      'सभी स्टिकर, केवल गुम या केवल डुप्लीकेट देखने के लिए इन बटन का उपयोग करें। ट्रेड के लिए बिल्कुल सही!';
+
+  @override
+  String get globalTutorialStep2Title => 'स्टिकर खोजें';
+
+  @override
+  String get globalTutorialStep2Body =>
+      'देश का नाम, कोड या स्टिकर नंबर टाइप करें और इसे जल्दी खोजें।';
+
+  @override
+  String get globalTutorialStep3Title => 'मार्क करने के लिए टैप करें';
+
+  @override
+  String get globalTutorialStep3Body =>
+      'ग्रे स्टिकर पर एक टैप उसे एल्बम में जोड़ता है (सुनहरा)। दोबारा टैप करने पर हटाने की पुष्टि मांगी जाएगी।';
+
+  @override
+  String get globalTutorialStep4Title => 'अधिक विकल्पों के लिए देर तक दबाएँ';
+
+  @override
+  String get globalTutorialStep4Body =>
+      'प्रत्येक वेरिएंट (Normal, Gold, Legend...) की प्रतियाँ प्रबंधित करने के लिए स्टिकर को देर तक दबाएँ।';
+
+  @override
+  String get tutorialStep6Title => 'श्रेणी एक्सप्लोर करें';
+
+  @override
+  String get tutorialStep6Body =>
+      'स्टिकर देखने के लिए किसी भी देश या टीम पर टैप करें। वहाँ आप जो पहले से हैं उन्हें चिह्नित कर सकते हैं और डुप्लीकेट प्रबंधित कर सकते हैं।';
+
+  @override
+  String get categoryTutorialStep1Title => 'स्टिकर फ़िल्टर करें';
+
+  @override
+  String get categoryTutorialStep1Body =>
+      'सभी स्टिकर, केवल गायब या केवल डुप्लीकेट देखने के लिए इन बटन का उपयोग करें।';
+
+  @override
+  String get categoryTutorialStep2Title => 'स्टिकर खोजें';
+
+  @override
+  String get categoryTutorialStep2Body =>
+      'देश का नाम, कोड या स्टिकर नंबर टाइप करें ताकि इसे जल्दी से ढूंढा जा सके।';
+
+  @override
+  String get categoryTutorialStep3Title => 'चिह्नित करने के लिए टैप करें';
+
+  @override
+  String get categoryTutorialStep3Body =>
+      'ग्रे स्टिकर पर टैप करने से वह एल्बम में जुड़ जाता है (सुनहरा हो जाता है)। यदि पहले से है और फिर टैप करते हैं, हटाने की पुष्टि माँगी जाएगी।';
+
+  @override
+  String get categoryTutorialStep4Title => 'अधिक विकल्पों के लिए दबाए रखें';
+
+  @override
+  String get categoryTutorialStep4Body =>
+      'स्टिकर को देर तक दबाने पर प्रत्येक वेरिएंट (Normal, Gold, Legend) की कितनी प्रतियाँ हैं, यह प्रबंधित कर सकते हैं।';
+
+  @override
+  String get drawerReplayTutorial => 'ट्यूटोरियल फिर से देखें';
 }

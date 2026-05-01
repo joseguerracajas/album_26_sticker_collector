@@ -1,9 +1,9 @@
+import 'package:album_26_sticker_collector/core/tutorial/tutorial_keys.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/variants_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/category.model.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/sticker.model.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/animated_sticker_card.dart';
-import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/app_bar_actions.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/sticker_filter_search.dart';
 import 'package:album_26_sticker_collector/features/catalog/utils/sticker_filters.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
@@ -15,11 +15,16 @@ class StickerGrid extends ConsumerWidget {
   final Category category;
   final bool shrinkWrap;
   final ScrollPhysics? physics;
+
+  /// Si es true, la primera card del grid recibe [tutorialStickerCardKey]
+  /// para que el tutorial de GlobalCollection pueda apuntarle.
+  final bool showTutorialKey;
   const StickerGrid({
     super.key,
     required this.category,
     this.shrinkWrap = false,
     this.physics,
+    this.showTutorialKey = false,
   });
 
   Future<void> _confirmarBorrado(
@@ -336,7 +341,9 @@ class StickerGrid extends ConsumerWidget {
                 );
 
                 return AnimatedStickerCard(
-                  key: ValueKey(sticker.id),
+                  key: (showTutorialKey && index == 0)
+                      ? tutorialStickerCardKey
+                      : ValueKey(sticker.id),
                   sticker: sticker,
                   totalCromos: total,
                   tieneEspecial: tieneEsp,

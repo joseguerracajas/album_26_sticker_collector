@@ -1,3 +1,5 @@
+import 'package:album_26_sticker_collector/core/tutorial/category_detail_tutorial.dart';
+import 'package:album_26_sticker_collector/core/tutorial/tutorial_service.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/sync_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/category.model.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/app_bar_actions.dart';
@@ -19,6 +21,16 @@ class CategoryDetailScreen extends ConsumerStatefulWidget {
 
 class _CategoryDetailScreenState extends ConsumerState<CategoryDetailScreen> {
   double _pointerDownX = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!mounted) return;
+      final done = await TutorialService.isCategoryTutorialDone();
+      if (!done && mounted) CategoryDetailTutorial.show(context);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +79,7 @@ class _CategoryDetailScreenState extends ConsumerState<CategoryDetailScreen> {
                     category: category,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
+                    showTutorialKey: true,
                   ),
                 ),
               ],

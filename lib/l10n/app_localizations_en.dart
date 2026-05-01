@@ -512,4 +512,111 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get paywallLegalDisclaimer =>
       'By subscribing you agree to our Terms of Use and Privacy Policy.';
+
+  @override
+  String get tutorialSkip => 'Skip';
+
+  @override
+  String get tutorialTapToContinue => 'Tap anywhere to continue';
+
+  @override
+  String get tutorialStep1Title => 'Your global progress';
+
+  @override
+  String get tutorialStep1Body =>
+      'Here you can see how many stickers you have collected and your completion percentage. Keep collecting!';
+
+  @override
+  String get tutorialStep2Title => 'Search teams';
+
+  @override
+  String get tutorialStep2Body =>
+      'Type a country or team name to filter the list instantly.';
+
+  @override
+  String get tutorialStep3Title => 'Main menu';
+
+  @override
+  String get tutorialStep3Body =>
+      'Access your profile, switch album variants, and explore more options here.';
+
+  @override
+  String get tutorialStep4Title => 'Scan stickers';
+
+  @override
+  String get tutorialStep4Body =>
+      'Use the camera to scan the back of your physical stickers and add them automatically to your album.';
+
+  @override
+  String get tutorialStep5Title => 'Share your list';
+
+  @override
+  String get tutorialStep5Body =>
+      'Export your missing or duplicate sticker list to trade with friends.';
+
+  @override
+  String get globalTutorialStep1Title => 'Filter your collection';
+
+  @override
+  String get globalTutorialStep1Body =>
+      'Use these buttons to see all your stickers, only the missing ones, or only your duplicates. Perfect for organising trades!';
+
+  @override
+  String get globalTutorialStep2Title => 'Search for a sticker';
+
+  @override
+  String get globalTutorialStep2Body =>
+      'Type the country name, code, or sticker number to find it quickly.';
+
+  @override
+  String get globalTutorialStep3Title => 'Tap to mark';
+
+  @override
+  String get globalTutorialStep3Body =>
+      'A single tap on a grey sticker adds it to your album (turns golden). If you already have it and tap again, you\'ll be asked to confirm removal.';
+
+  @override
+  String get globalTutorialStep4Title => 'Long press for more options';
+
+  @override
+  String get globalTutorialStep4Body =>
+      'Long press a sticker to manage how many copies you have of each variant (Normal, Gold, Legend…) and update your duplicate inventory.';
+
+  @override
+  String get tutorialStep6Title => 'Explore a category';
+
+  @override
+  String get tutorialStep6Body =>
+      'Tap any country or team to see its stickers. There you can mark the ones you already have and manage your duplicates.';
+
+  @override
+  String get categoryTutorialStep1Title => 'Filter stickers';
+
+  @override
+  String get categoryTutorialStep1Body =>
+      'Use these buttons to see all stickers in this category, only the missing ones, or only duplicates.';
+
+  @override
+  String get categoryTutorialStep2Title => 'Search for a sticker';
+
+  @override
+  String get categoryTutorialStep2Body =>
+      'Type the country name, code, or sticker number to find it quickly.';
+
+  @override
+  String get categoryTutorialStep3Title => 'Tap to mark';
+
+  @override
+  String get categoryTutorialStep3Body =>
+      'Tapping a grey sticker adds it to your album (turns gold). If you already have it and tap again, you will be asked to confirm removing it.';
+
+  @override
+  String get categoryTutorialStep4Title => 'Long press for more options';
+
+  @override
+  String get categoryTutorialStep4Body =>
+      'Long pressing a sticker lets you manage how many copies you have of each variant (Normal, Gold, Legend) and update your duplicates inventory.';
+
+  @override
+  String get drawerReplayTutorial => 'Replay tutorial';
 }

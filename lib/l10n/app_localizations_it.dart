@@ -518,4 +518,111 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get paywallLegalDisclaimer =>
       'Abbonandoti accetti i nostri Termini di utilizzo e la nostra Informativa sulla privacy.';
+
+  @override
+  String get tutorialSkip => 'Salta';
+
+  @override
+  String get tutorialTapToContinue => 'Tocca ovunque per continuare';
+
+  @override
+  String get tutorialStep1Title => 'Il tuo progresso globale';
+
+  @override
+  String get tutorialStep1Body =>
+      'Vedi quante figurine hai collezionato. Continua!';
+
+  @override
+  String get tutorialStep2Title => 'Cerca squadre';
+
+  @override
+  String get tutorialStep2Body =>
+      'Digita il nome di un paese o squadra per filtrare la lista.';
+
+  @override
+  String get tutorialStep3Title => 'Menu principale';
+
+  @override
+  String get tutorialStep3Body =>
+      'Accedi al tuo profilo e cambia la variante dell\'album.';
+
+  @override
+  String get tutorialStep4Title => 'Scansiona figurine';
+
+  @override
+  String get tutorialStep4Body =>
+      'Usa la fotocamera per scansionare figurine fisiche e aggiungerle automaticamente.';
+
+  @override
+  String get tutorialStep5Title => 'Condividi la lista';
+
+  @override
+  String get tutorialStep5Body =>
+      'Esporta la tua lista di figurine mancanti o duplicate per scambiarle.';
+
+  @override
+  String get globalTutorialStep1Title => 'Filtra la tua raccolta';
+
+  @override
+  String get globalTutorialStep1Body =>
+      'Usa questi pulsanti per vedere tutte le tue figurine, solo quelle mancanti o solo i doppioni. Perfetto per organizzare gli scambi!';
+
+  @override
+  String get globalTutorialStep2Title => 'Cerca una figurina';
+
+  @override
+  String get globalTutorialStep2Body =>
+      'Digita il nome del paese, il codice o il numero della figurina per trovarla rapidamente.';
+
+  @override
+  String get globalTutorialStep3Title => 'Tocca per segnare';
+
+  @override
+  String get globalTutorialStep3Body =>
+      'Un tocco su una figurina grigia la aggiunge al tuo album (diventa dorata). Se la tocchi di nuovo, ti verrà chiesta conferma per rimuoverla.';
+
+  @override
+  String get globalTutorialStep4Title => 'Premi a lungo per più opzioni';
+
+  @override
+  String get globalTutorialStep4Body =>
+      'Tieni premuta una figurina per gestire quante copie hai di ogni variante (Normal, Gold, Legend...).';
+
+  @override
+  String get tutorialStep6Title => 'Esplora una categoria';
+
+  @override
+  String get tutorialStep6Body =>
+      'Tocca un paese o una squadra per vedere le sue figurine. Li puoi segnare quelle che hai gia e gestire i duplicati.';
+
+  @override
+  String get categoryTutorialStep1Title => 'Filtra le figurine';
+
+  @override
+  String get categoryTutorialStep1Body =>
+      'Usa questi pulsanti per vedere tutte le figurine, solo quelle mancanti o solo i doppioni.';
+
+  @override
+  String get categoryTutorialStep2Title => 'Cerca una figurina';
+
+  @override
+  String get categoryTutorialStep2Body =>
+      'Digita il nome del paese, il codice o il numero della figurina per trovarla rapidamente.';
+
+  @override
+  String get categoryTutorialStep3Title => 'Tocca per segnare';
+
+  @override
+  String get categoryTutorialStep3Body =>
+      'Toccare una figurina grigia la aggiunge all album (diventa dorata). Se ce l hai gia e tocchi di nuovo, ti verra chiesta conferma per rimuoverla.';
+
+  @override
+  String get categoryTutorialStep4Title => 'Tieni premuto per piu opzioni';
+
+  @override
+  String get categoryTutorialStep4Body =>
+      'Tenere premuta una figurina permette di gestire quante copie hai di ogni variante (Normal, Gold, Legend).';
+
+  @override
+  String get drawerReplayTutorial => 'Rivedere il tutorial';
 }

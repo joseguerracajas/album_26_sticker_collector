@@ -1021,6 +1021,192 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Al suscribirte aceptas nuestros Términos de Uso y Política de Privacidad.'**
   String get paywallLegalDisclaimer;
+
+  /// No description provided for @tutorialSkip.
+  ///
+  /// In es, this message translates to:
+  /// **'Saltar'**
+  String get tutorialSkip;
+
+  /// No description provided for @tutorialTapToContinue.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca en cualquier lugar para continuar'**
+  String get tutorialTapToContinue;
+
+  /// No description provided for @tutorialStep1Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu progreso global'**
+  String get tutorialStep1Title;
+
+  /// No description provided for @tutorialStep1Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Aquí ves cuántos cromos llevas y tu porcentaje de completado. ¡Sigue coleccionando!'**
+  String get tutorialStep1Body;
+
+  /// No description provided for @tutorialStep2Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Busca equipos'**
+  String get tutorialStep2Title;
+
+  /// No description provided for @tutorialStep2Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe el nombre de un país o equipo para filtrar la lista al instante.'**
+  String get tutorialStep2Body;
+
+  /// No description provided for @tutorialStep3Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Menú principal'**
+  String get tutorialStep3Title;
+
+  /// No description provided for @tutorialStep3Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Aquí puedes cambiar tu perfil, elegir la variante del álbum y más opciones.'**
+  String get tutorialStep3Body;
+
+  /// No description provided for @tutorialStep4Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Escanea cromos'**
+  String get tutorialStep4Title;
+
+  /// No description provided for @tutorialStep4Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Usa la cámara para escanear el dorso de tus cromos físicos y añadirlos automáticamente a tu álbum.'**
+  String get tutorialStep4Body;
+
+  /// No description provided for @tutorialStep5Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Comparte tu lista'**
+  String get tutorialStep5Title;
+
+  /// No description provided for @tutorialStep5Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Exporta tu lista de faltantes o repetidas para intercambiar cromos con amigos.'**
+  String get tutorialStep5Body;
+
+  /// No description provided for @globalTutorialStep1Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Filtra tu colección'**
+  String get globalTutorialStep1Title;
+
+  /// No description provided for @globalTutorialStep1Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Usa estos botones para ver todos tus cromos, solo los que te faltan o solo los repetidos. ¡Ideal para organizar intercambios!'**
+  String get globalTutorialStep1Body;
+
+  /// No description provided for @globalTutorialStep2Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Busca un cromo'**
+  String get globalTutorialStep2Title;
+
+  /// No description provided for @globalTutorialStep2Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe el nombre del país, el código o el número del cromo para encontrarlo rápidamente.'**
+  String get globalTutorialStep2Body;
+
+  /// No description provided for @globalTutorialStep3Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca para marcar'**
+  String get globalTutorialStep3Title;
+
+  /// No description provided for @globalTutorialStep3Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Un toque sobre un cromo gris lo añade a tu álbum (se pone dorado). Si ya lo tienes y lo tocas de nuevo, te pedirá confirmación para quitarlo.'**
+  String get globalTutorialStep3Body;
+
+  /// No description provided for @globalTutorialStep4Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Mantén pulsado para más opciones'**
+  String get globalTutorialStep4Title;
+
+  /// No description provided for @globalTutorialStep4Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Si mantienes pulsado un cromo puedes gestionar cuántas copias tienes de cada variante (Normal, Gold, Legend…) y actualizar tu inventario de repetidas.'**
+  String get globalTutorialStep4Body;
+
+  /// No description provided for @tutorialStep6Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Explora una categoria'**
+  String get tutorialStep6Title;
+
+  /// No description provided for @tutorialStep6Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca cualquier pais o equipo para ver sus cromos. Alli podras marcar los que ya tienes y gestionar tus repetidos.'**
+  String get tutorialStep6Body;
+
+  /// No description provided for @categoryTutorialStep1Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Filtra los cromos'**
+  String get categoryTutorialStep1Title;
+
+  /// No description provided for @categoryTutorialStep1Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Usa estos botones para ver todos los cromos de esta categoria, solo los que te faltan o solo los repetidos.'**
+  String get categoryTutorialStep1Body;
+
+  /// No description provided for @categoryTutorialStep2Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Busca un cromo'**
+  String get categoryTutorialStep2Title;
+
+  /// No description provided for @categoryTutorialStep2Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe el nombre del pais, el codigo o el numero del cromo para encontrarlo rapidamente.'**
+  String get categoryTutorialStep2Body;
+
+  /// No description provided for @categoryTutorialStep3Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca para marcar'**
+  String get categoryTutorialStep3Title;
+
+  /// No description provided for @categoryTutorialStep3Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Un toque sobre un cromo gris lo anade a tu album (se pone dorado). Si ya lo tienes y lo tocas de nuevo, te pedira confirmacion para quitarlo.'**
+  String get categoryTutorialStep3Body;
+
+  /// No description provided for @categoryTutorialStep4Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Manten pulsado para mas opciones'**
+  String get categoryTutorialStep4Title;
+
+  /// No description provided for @categoryTutorialStep4Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Si mantienes pulsado un cromo puedes gestionar cuantas copias tienes de cada variante (Normal, Gold, Legend) y actualizar tu inventario de repetidas.'**
+  String get categoryTutorialStep4Body;
+
+  /// No description provided for @drawerReplayTutorial.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver tutorial de nuevo'**
+  String get drawerReplayTutorial;
 }
 
 class _AppLocalizationsDelegate

@@ -1,3 +1,5 @@
+import 'package:album_26_sticker_collector/core/tutorial/global_collection_tutorial.dart';
+import 'package:album_26_sticker_collector/core/tutorial/tutorial_service.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/categories_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/sync_provider.dart';
@@ -24,6 +26,18 @@ class GlobalCollectionScreen extends ConsumerStatefulWidget {
 class _GlobalCollectionScreenState
     extends ConsumerState<GlobalCollectionScreen> {
   double _pointerDownX = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!mounted) return;
+      final done = await TutorialService.isGlobalTutorialDone();
+      if (!done && mounted) {
+        GlobalCollectionTutorial.show(context);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +107,7 @@ class _GlobalCollectionScreenState
                         delegate: SliverChildBuilderDelegate((context, index) {
                           return _CategoryStickerSection(
                             category: categorias[index],
+                            isFirst: index == 0,
                           );
                         }, childCount: categorias.length),
                       ),
@@ -111,7 +126,8 @@ class _GlobalCollectionScreenState
 // Widget Interno (Se queda exactamente igual, como un widget normal)
 class _CategoryStickerSection extends ConsumerWidget {
   final Category category;
-  const _CategoryStickerSection({required this.category});
+  final bool isFirst;
+  const _CategoryStickerSection({required this.category, this.isFirst = false});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -171,6 +187,7 @@ class _CategoryStickerSection extends ConsumerWidget {
               category: category,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
+              showTutorialKey: isFirst,
             ),
           ],
         );

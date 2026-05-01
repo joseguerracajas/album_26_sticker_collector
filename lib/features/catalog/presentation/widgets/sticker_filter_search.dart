@@ -1,3 +1,4 @@
+import 'package:album_26_sticker_collector/core/tutorial/tutorial_keys.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -61,6 +62,7 @@ class _StickerFilterSearchState extends ConsumerState<StickerFilterSearch> {
       children: [
         // BOTONES DE FILTRO
         Padding(
+          key: tutorialFilterBarKey,
           padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
           child: SizedBox(
             width: double.infinity,
@@ -93,6 +95,7 @@ class _StickerFilterSearchState extends ConsumerState<StickerFilterSearch> {
 
         // BUSCADOR
         Padding(
+          key: tutorialStickerSearchKey,
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: TextField(
             controller: _searchController,

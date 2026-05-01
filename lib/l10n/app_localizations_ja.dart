@@ -491,4 +491,103 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get paywallLegalDisclaimer =>
       'サブスクライブすることで、利用規約とプライバシーポリシーに同意したことになります。';
+
+  @override
+  String get tutorialSkip => 'スキップ';
+
+  @override
+  String get tutorialTapToContinue => '続けるには画面をタップしてください';
+
+  @override
+  String get tutorialStep1Title => '全体の進捗';
+
+  @override
+  String get tutorialStep1Body => '集めたシールの数と完成率を確認できます。集め続けましょう！';
+
+  @override
+  String get tutorialStep2Title => 'チームを検索';
+
+  @override
+  String get tutorialStep2Body => '国名やチーム名を入力してリストを絞り込みます。';
+
+  @override
+  String get tutorialStep3Title => 'メインメニュー';
+
+  @override
+  String get tutorialStep3Body => 'プロフィールへのアクセスとアルバムのバリエーション変更ができます。';
+
+  @override
+  String get tutorialStep4Title => 'シールをスキャン';
+
+  @override
+  String get tutorialStep4Body => 'カメラを使ってシールをスキャンし、自動でアルバムに追加します。';
+
+  @override
+  String get tutorialStep5Title => 'リストを共有';
+
+  @override
+  String get tutorialStep5Body => '不足や重複しているシールのリストをエクスポートして友達と交換しましょう。';
+
+  @override
+  String get globalTutorialStep1Title => 'コレクションを絞り込む';
+
+  @override
+  String get globalTutorialStep1Body =>
+      'このボタンでシール全体、不足しているもの、または重複しているものだけを表示できます。交換の整理に最適です！';
+
+  @override
+  String get globalTutorialStep2Title => 'シールを検索';
+
+  @override
+  String get globalTutorialStep2Body => '国名、コード、またはシール番号を入力して素早く見つけます。';
+
+  @override
+  String get globalTutorialStep3Title => 'タップしてマーク';
+
+  @override
+  String get globalTutorialStep3Body =>
+      '灰色のシールを1回タップするとアルバムに追加されます（金色になります）。再度タップすると削除の確認が求められます。';
+
+  @override
+  String get globalTutorialStep4Title => '長押しで詳細オプション';
+
+  @override
+  String get globalTutorialStep4Body =>
+      'シールを長押しすると各バリアント（Normal、Gold、Legend...）の所持数を管理できます。';
+
+  @override
+  String get tutorialStep6Title => 'カテゴリを探索する';
+
+  @override
+  String get tutorialStep6Body =>
+      '国やチームをタップしてステッカーを確認しましょう。そこで持っているものをマークし、重複を管理できます。';
+
+  @override
+  String get categoryTutorialStep1Title => 'ステッカーを絞り込む';
+
+  @override
+  String get categoryTutorialStep1Body => 'このボタンで、全てのステッカー・未収集のみ・重複のみを表示できます。';
+
+  @override
+  String get categoryTutorialStep2Title => 'ステッカーを検索する';
+
+  @override
+  String get categoryTutorialStep2Body => '国名・コード・番号を入力して素早く見つけましょう。';
+
+  @override
+  String get categoryTutorialStep3Title => 'タップしてマーク';
+
+  @override
+  String get categoryTutorialStep3Body =>
+      'グレーのステッカーをタップするとアルバムに追加されます（ゴールドになります）。既に持っている場合は削除確認が表示されます。';
+
+  @override
+  String get categoryTutorialStep4Title => '長押しで詳細オプション';
+
+  @override
+  String get categoryTutorialStep4Body =>
+      '長押しで各バリアント（Normal, Gold, Legend）の所持数を管理できます。';
+
+  @override
+  String get drawerReplayTutorial => 'チュートリアルをもう一度見る';
 }

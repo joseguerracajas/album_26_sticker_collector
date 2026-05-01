@@ -521,4 +521,110 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get paywallLegalDisclaimer =>
       'Подписываясь, вы принимаете наши Условия использования и Политику конфиденциальности.';
+
+  @override
+  String get tutorialSkip => 'Пропустить';
+
+  @override
+  String get tutorialTapToContinue => 'Нажмите в любом месте, чтобы продолжить';
+
+  @override
+  String get tutorialStep1Title => 'Ваш общий прогресс';
+
+  @override
+  String get tutorialStep1Body =>
+      'Здесь видно, сколько наклеек вы собрали. Продолжайте!';
+
+  @override
+  String get tutorialStep2Title => 'Поиск команд';
+
+  @override
+  String get tutorialStep2Body =>
+      'Введите название страны или команды для фильтрации.';
+
+  @override
+  String get tutorialStep3Title => 'Главное меню';
+
+  @override
+  String get tutorialStep3Body => 'Откройте профиль и смените вариант альбома.';
+
+  @override
+  String get tutorialStep4Title => 'Сканирование наклеек';
+
+  @override
+  String get tutorialStep4Body =>
+      'Используйте камеру для сканирования и добавления наклеек автоматически.';
+
+  @override
+  String get tutorialStep5Title => 'Поделиться списком';
+
+  @override
+  String get tutorialStep5Body =>
+      'Экспортируйте список недостающих или дублирующихся наклеек для обмена.';
+
+  @override
+  String get globalTutorialStep1Title => 'Фильтр коллекции';
+
+  @override
+  String get globalTutorialStep1Body =>
+      'Используйте эти кнопки, чтобы просматривать все наклейки, только недостающие или только дублирующиеся. Идеально для организации обменов!';
+
+  @override
+  String get globalTutorialStep2Title => 'Поиск наклейки';
+
+  @override
+  String get globalTutorialStep2Body =>
+      'Введите название страны, код или номер наклейки, чтобы быстро её найти.';
+
+  @override
+  String get globalTutorialStep3Title => 'Нажмите, чтобы отметить';
+
+  @override
+  String get globalTutorialStep3Body =>
+      'Одно нажатие на серую наклейку добавляет её в альбом (становится золотой). Повторное нажатие запросит подтверждение удаления.';
+
+  @override
+  String get globalTutorialStep4Title => 'Долгое нажатие для доп. опций';
+
+  @override
+  String get globalTutorialStep4Body =>
+      'Удерживайте наклейку, чтобы управлять количеством копий каждого варианта (Normal, Gold, Legend...).';
+
+  @override
+  String get tutorialStep6Title => 'Issleduyte kategoriju';
+
+  @override
+  String get tutorialStep6Body =>
+      'Nazhimite na ljubuju stranu ili komandu, chtoby uvidet ee naklejki. Tam vy mozhete otmechat uzhe imejushhiesja i upravljat dublikatami.';
+
+  @override
+  String get categoryTutorialStep1Title => 'Filtracija naklejok';
+
+  @override
+  String get categoryTutorialStep1Body =>
+      'Ispolzujte eti knopki, chtoby uvidet vse naklejki, tolko nedostajushhie ili tolko duplikaty.';
+
+  @override
+  String get categoryTutorialStep2Title => 'Poisk naklejki';
+
+  @override
+  String get categoryTutorialStep2Body =>
+      'Vvedite nazvanie strany, kod ili nomer naklejki, chtoby bystro ee najti.';
+
+  @override
+  String get categoryTutorialStep3Title => 'Nazhmite dlja otmetki';
+
+  @override
+  String get categoryTutorialStep3Body =>
+      'Nazhatenie na seruju naklejku dobavljaet ee v albom (stanovitsja zolotoj). Esli ona uzhe est, povtornoe nazhatenie poproset podtverzhdenie udalenija.';
+
+  @override
+  String get categoryTutorialStep4Title => 'Uderzhivajte dlja dop opcij';
+
+  @override
+  String get categoryTutorialStep4Body =>
+      'Uderzhivanie naklejki pozvoljaet upravljat kolichestvom kopij kazhdogo varianta (Normal, Gold, Legend).';
+
+  @override
+  String get drawerReplayTutorial => 'Povtorit obuchenie';
 }

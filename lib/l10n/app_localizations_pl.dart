@@ -518,4 +518,111 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get paywallLegalDisclaimer =>
       'Subskrybując, akceptujesz nasze Warunki użytkowania i Politykę prywatności.';
+
+  @override
+  String get tutorialSkip => 'Pomiń';
+
+  @override
+  String get tutorialTapToContinue => 'Dotknij gdziekolwiek, aby kontynuować';
+
+  @override
+  String get tutorialStep1Title => 'Twój globalny postep';
+
+  @override
+  String get tutorialStep1Body =>
+      'Tutaj widzisz, ile naklejek zebrales. Kolekcjonuj dalej!';
+
+  @override
+  String get tutorialStep2Title => 'Szukaj druzyn';
+
+  @override
+  String get tutorialStep2Body =>
+      'Wpisz nazwe kraju lub druzyny, aby filtrowac liste.';
+
+  @override
+  String get tutorialStep3Title => 'Glowne menu';
+
+  @override
+  String get tutorialStep3Body => 'Przejdz do profilu i zmien wariant albumu.';
+
+  @override
+  String get tutorialStep4Title => 'Skanuj naklejki';
+
+  @override
+  String get tutorialStep4Body =>
+      'Uzyj kamery, aby skanowac naklejki i automatycznie je dodawac.';
+
+  @override
+  String get tutorialStep5Title => 'Udostepnij liste';
+
+  @override
+  String get tutorialStep5Body =>
+      'Eksportuj liste brakujacych lub zduplikowanych naklejek do wymiany.';
+
+  @override
+  String get globalTutorialStep1Title => 'Filtruj kolekcje';
+
+  @override
+  String get globalTutorialStep1Body =>
+      'Uzyj tych przyciskow, aby zobaczyc wszystkie naklejki, tylko brakujace lub tylko powtarzajace sie. Idealne do organizowania wymian!';
+
+  @override
+  String get globalTutorialStep2Title => 'Szukaj naklejki';
+
+  @override
+  String get globalTutorialStep2Body =>
+      'Wpisz nazwe kraju, kod lub numer naklejki, aby szybko ja znalezc.';
+
+  @override
+  String get globalTutorialStep3Title => 'Dotknij, aby oznaczyc';
+
+  @override
+  String get globalTutorialStep3Body =>
+      'Jedno dotknięcie szarej naklejki dodaje ja do albumu (staje sie zlota). Jesli dotkniesz ponownie, zostaniesz poproszon o potwierdzenie usuniecia.';
+
+  @override
+  String get globalTutorialStep4Title => 'Przytrzymaj dla wiekszych opcji';
+
+  @override
+  String get globalTutorialStep4Body =>
+      'Przytrzymaj naklejke, aby zarzadzac liczba kopii kazdego wariantu (Normal, Gold, Legend...).';
+
+  @override
+  String get tutorialStep6Title => 'Przegladaj kategorie';
+
+  @override
+  String get tutorialStep6Body =>
+      'Dotknij dowolnego kraju lub druzyny, aby zobaczyc jego naklejki. Tam mozesz oznaczac te, ktore juz masz i zarzadzac duplikatami.';
+
+  @override
+  String get categoryTutorialStep1Title => 'Filtruj naklejki';
+
+  @override
+  String get categoryTutorialStep1Body =>
+      'Uzyj tych przyciskow, aby zobaczyc wszystkie naklejki, tylko brakujace lub tylko duplikaty.';
+
+  @override
+  String get categoryTutorialStep2Title => 'Szukaj naklejki';
+
+  @override
+  String get categoryTutorialStep2Body =>
+      'Wpisz nazwe kraju, kod lub numer naklejki, aby szybko ja znalezc.';
+
+  @override
+  String get categoryTutorialStep3Title => 'Dotknij, aby oznaczyc';
+
+  @override
+  String get categoryTutorialStep3Body =>
+      'Dotknięcie szarej naklejki dodaje ja do albumu (staje sie zlota). Jesli juz ja masz i dotkniesz ponownie, zostaniesz poproszony o potwierdzenie usuniecia.';
+
+  @override
+  String get categoryTutorialStep4Title =>
+      'Przytrzymaj, aby zobaczyc wiecej opcji';
+
+  @override
+  String get categoryTutorialStep4Body =>
+      'Przytrzymanie naklejki pozwala zarzadzac liczba kopii kazdego wariantu (Normal, Gold, Legend).';
+
+  @override
+  String get drawerReplayTutorial => 'Powtorz samouczek';
 }

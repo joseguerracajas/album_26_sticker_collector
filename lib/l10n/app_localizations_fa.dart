@@ -517,4 +517,111 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get paywallLegalDisclaimer =>
       'با اشتراک، شرایط استفاده و سیاست حریم خصوصی ما را می‌پذیرید.';
+
+  @override
+  String get tutorialSkip => 'رد کردن';
+
+  @override
+  String get tutorialTapToContinue => 'برای ادامه هر جایی را لمس کنید';
+
+  @override
+  String get tutorialStep1Title => 'پیشرفت کلی شما';
+
+  @override
+  String get tutorialStep1Body =>
+      'اینجا تعداد برچسب‌های جمع‌آوری‌شده را می‌بینید. ادامه دهید!';
+
+  @override
+  String get tutorialStep2Title => 'جستجوی تیم‌ها';
+
+  @override
+  String get tutorialStep2Body =>
+      'نام کشور یا تیمی را بنویسید تا فهرست فیلتر شود.';
+
+  @override
+  String get tutorialStep3Title => 'منوی اصلی';
+
+  @override
+  String get tutorialStep3Body =>
+      'به پروفایل دسترسی پیدا کنید و نوع آلبوم را تغییر دهید.';
+
+  @override
+  String get tutorialStep4Title => 'اسکن برچسب‌ها';
+
+  @override
+  String get tutorialStep4Body =>
+      'از دوربین برای اسکن و اضافه کردن خودکار برچسب‌ها استفاده کنید.';
+
+  @override
+  String get tutorialStep5Title => 'اشتراک‌گذاری فهرست';
+
+  @override
+  String get tutorialStep5Body =>
+      'فهرست برچسب‌های ناقص یا تکراری را برای تبادل خروجی بگیرید.';
+
+  @override
+  String get globalTutorialStep1Title => 'فیلتر مجموعه';
+
+  @override
+  String get globalTutorialStep1Body =>
+      'از این دکمه‌ها برای نمایش همه برچسب‌ها، فقط ناقص‌ها یا فقط تکراری‌ها استفاده کنید. ایده‌آل برای سازماندهی تبادل!';
+
+  @override
+  String get globalTutorialStep2Title => 'جستجوی برچسب';
+
+  @override
+  String get globalTutorialStep2Body =>
+      'نام کشور، کد یا شماره برچسب را بنویسید تا سریع پیدا شود.';
+
+  @override
+  String get globalTutorialStep3Title => 'برای علامت‌گذاری لمس کنید';
+
+  @override
+  String get globalTutorialStep3Body =>
+      'یک لمس روی برچسب خاکستری آن را به آلبوم اضافه می‌کند (طلایی می‌شود). لمس مجدد تأیید حذف خواسته می‌شود.';
+
+  @override
+  String get globalTutorialStep4Title => 'فشار طولانی برای گزینه‌های بیشتر';
+
+  @override
+  String get globalTutorialStep4Body =>
+      'برچسب را نگه دارید تا تعداد نسخه‌های هر نوع (Normal, Gold, Legend...) را مدیریت کنید.';
+
+  @override
+  String get tutorialStep6Title => 'دسته‌بندی را کاوش کنید';
+
+  @override
+  String get tutorialStep6Body =>
+      'روی هر کشور یا تیمی ضربه بزنید تا برچسب‌هایش را ببینید. آنجا می‌توانید آنچه دارید را علامت بزنید و تکراری‌ها را مدیریت کنید.';
+
+  @override
+  String get categoryTutorialStep1Title => 'برچسب‌ها را فیلتر کنید';
+
+  @override
+  String get categoryTutorialStep1Body =>
+      'از این دکمه‌ها برای دیدن همه برچسب‌ها، فقط گم‌شده‌ها یا فقط تکراری‌ها استفاده کنید.';
+
+  @override
+  String get categoryTutorialStep2Title => 'برچسب را جستجو کنید';
+
+  @override
+  String get categoryTutorialStep2Body =>
+      'نام کشور، کد یا شماره برچسب را تایپ کنید تا سریعاً پیدا شود.';
+
+  @override
+  String get categoryTutorialStep3Title => 'برای علامت‌گذاری ضربه بزنید';
+
+  @override
+  String get categoryTutorialStep3Body =>
+      'ضربه زدن به یک برچسب خاکستری آن را به آلبوم اضافه می‌کند (طلایی می‌شود). اگر قبلاً آن را دارید، تأیید حذف درخواست می‌شود.';
+
+  @override
+  String get categoryTutorialStep4Title => 'نگه دارید برای گزینه‌های بیشتر';
+
+  @override
+  String get categoryTutorialStep4Body =>
+      'نگه داشتن برچسب به شما امکان می‌دهد تعداد نسخه‌های هر نوع (Normal, Gold, Legend) را مدیریت کنید.';
+
+  @override
+  String get drawerReplayTutorial => 'مرور آموزش مجدد';
 }

@@ -501,4 +501,108 @@ class AppLocalizationsHe extends AppLocalizations {
   @override
   String get paywallLegalDisclaimer =>
       'על ידי מנוי, אתה מסכים לתנאי השימוש ולמדיניות הפרטיות שלנו.';
+
+  @override
+  String get tutorialSkip => 'דלג';
+
+  @override
+  String get tutorialTapToContinue => 'הקש בכל מקום כדי להמשיך';
+
+  @override
+  String get tutorialStep1Title => 'ההתקדמות הכוללת שלך';
+
+  @override
+  String get tutorialStep1Body => 'ראה כמה מדבקות אספת. המשך לאסוף!';
+
+  @override
+  String get tutorialStep2Title => 'חפש קבוצות';
+
+  @override
+  String get tutorialStep2Body => 'הקלד שם מדינה או קבוצה לסינון הרשימה.';
+
+  @override
+  String get tutorialStep3Title => 'תפריט ראשי';
+
+  @override
+  String get tutorialStep3Body => 'גש לפרופיל שלך ושנה גרסת אלבום.';
+
+  @override
+  String get tutorialStep4Title => 'סרוק מדבקות';
+
+  @override
+  String get tutorialStep4Body =>
+      'השתמש במצלמה לסריקת מדבקות והוספתן אוטומטית.';
+
+  @override
+  String get tutorialStep5Title => 'שתף רשימה';
+
+  @override
+  String get tutorialStep5Body =>
+      'ייצא את רשימת המדבקות החסרות או הכפולות להחלפה.';
+
+  @override
+  String get globalTutorialStep1Title => 'סנן את האוסף';
+
+  @override
+  String get globalTutorialStep1Body =>
+      'השתמש בכפתורים כדי לראות את כל המדבקות, רק החסרות או רק הכפולות. מושלם לארגון החלפות!';
+
+  @override
+  String get globalTutorialStep2Title => 'חפש מדבקה';
+
+  @override
+  String get globalTutorialStep2Body =>
+      'הקלד שם מדינה, קוד או מספר מדבקה כדי למצוא אותה במהירות.';
+
+  @override
+  String get globalTutorialStep3Title => 'הקש כדי לסמן';
+
+  @override
+  String get globalTutorialStep3Body =>
+      'הקשה אחת על מדבקה אפורה מוסיפה אותה לאלבום (הופכת לזהובה). הקשה נוספת תדרוש אישור הסרה.';
+
+  @override
+  String get globalTutorialStep4Title => 'לחיצה ארוכה לאפשרויות נוספות';
+
+  @override
+  String get globalTutorialStep4Body =>
+      'החזק מדבקה לחוצה כדי לנהל כמה עותקים יש לך מכל גרסה (Normal, Gold, Legend...).';
+
+  @override
+  String get tutorialStep6Title => 'חקור קטגוריה';
+
+  @override
+  String get tutorialStep6Body =>
+      'הקש על כל מדינה או קבוצה כדי לראות את המדבקות שלה. שם תוכל לסמן מה שכבר יש לך ולנהל כפולים.';
+
+  @override
+  String get categoryTutorialStep1Title => 'סנן מדבקות';
+
+  @override
+  String get categoryTutorialStep1Body =>
+      'השתמש בכפתורים האלה כדי לראות את כל המדבקות, רק את החסרות או רק את הכפולות.';
+
+  @override
+  String get categoryTutorialStep2Title => 'חפש מדבקה';
+
+  @override
+  String get categoryTutorialStep2Body =>
+      'הקלד שם מדינה, קוד או מספר מדבקה כדי למצוא אותה במהירות.';
+
+  @override
+  String get categoryTutorialStep3Title => 'הקש לסימון';
+
+  @override
+  String get categoryTutorialStep3Body =>
+      'הקשה על מדבקה אפורה מוסיפה אותה לאלבום (הופכת לזהב). אם כבר יש לך ותקיש שוב, תתבקש לאשר הסרה.';
+
+  @override
+  String get categoryTutorialStep4Title => 'לחץ לחיצה ארוכה לאפשרויות נוספות';
+
+  @override
+  String get categoryTutorialStep4Body =>
+      'לחיצה ארוכה מאפשרת לנהל כמה עותקים יש לך מכל גרסה (Normal, Gold, Legend).';
+
+  @override
+  String get drawerReplayTutorial => 'לצפות בהדרכה מחדש';
 }

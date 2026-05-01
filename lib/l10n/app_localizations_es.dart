@@ -520,4 +520,111 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get paywallLegalDisclaimer =>
       'Al suscribirte aceptas nuestros Términos de Uso y Política de Privacidad.';
+
+  @override
+  String get tutorialSkip => 'Saltar';
+
+  @override
+  String get tutorialTapToContinue => 'Toca en cualquier lugar para continuar';
+
+  @override
+  String get tutorialStep1Title => 'Tu progreso global';
+
+  @override
+  String get tutorialStep1Body =>
+      'Aquí ves cuántos cromos llevas y tu porcentaje de completado. ¡Sigue coleccionando!';
+
+  @override
+  String get tutorialStep2Title => 'Busca equipos';
+
+  @override
+  String get tutorialStep2Body =>
+      'Escribe el nombre de un país o equipo para filtrar la lista al instante.';
+
+  @override
+  String get tutorialStep3Title => 'Menú principal';
+
+  @override
+  String get tutorialStep3Body =>
+      'Aquí puedes cambiar tu perfil, elegir la variante del álbum y más opciones.';
+
+  @override
+  String get tutorialStep4Title => 'Escanea cromos';
+
+  @override
+  String get tutorialStep4Body =>
+      'Usa la cámara para escanear el dorso de tus cromos físicos y añadirlos automáticamente a tu álbum.';
+
+  @override
+  String get tutorialStep5Title => 'Comparte tu lista';
+
+  @override
+  String get tutorialStep5Body =>
+      'Exporta tu lista de faltantes o repetidas para intercambiar cromos con amigos.';
+
+  @override
+  String get globalTutorialStep1Title => 'Filtra tu colección';
+
+  @override
+  String get globalTutorialStep1Body =>
+      'Usa estos botones para ver todos tus cromos, solo los que te faltan o solo los repetidos. ¡Ideal para organizar intercambios!';
+
+  @override
+  String get globalTutorialStep2Title => 'Busca un cromo';
+
+  @override
+  String get globalTutorialStep2Body =>
+      'Escribe el nombre del país, el código o el número del cromo para encontrarlo rápidamente.';
+
+  @override
+  String get globalTutorialStep3Title => 'Toca para marcar';
+
+  @override
+  String get globalTutorialStep3Body =>
+      'Un toque sobre un cromo gris lo añade a tu álbum (se pone dorado). Si ya lo tienes y lo tocas de nuevo, te pedirá confirmación para quitarlo.';
+
+  @override
+  String get globalTutorialStep4Title => 'Mantén pulsado para más opciones';
+
+  @override
+  String get globalTutorialStep4Body =>
+      'Si mantienes pulsado un cromo puedes gestionar cuántas copias tienes de cada variante (Normal, Gold, Legend…) y actualizar tu inventario de repetidas.';
+
+  @override
+  String get tutorialStep6Title => 'Explora una categoria';
+
+  @override
+  String get tutorialStep6Body =>
+      'Toca cualquier pais o equipo para ver sus cromos. Alli podras marcar los que ya tienes y gestionar tus repetidos.';
+
+  @override
+  String get categoryTutorialStep1Title => 'Filtra los cromos';
+
+  @override
+  String get categoryTutorialStep1Body =>
+      'Usa estos botones para ver todos los cromos de esta categoria, solo los que te faltan o solo los repetidos.';
+
+  @override
+  String get categoryTutorialStep2Title => 'Busca un cromo';
+
+  @override
+  String get categoryTutorialStep2Body =>
+      'Escribe el nombre del pais, el codigo o el numero del cromo para encontrarlo rapidamente.';
+
+  @override
+  String get categoryTutorialStep3Title => 'Toca para marcar';
+
+  @override
+  String get categoryTutorialStep3Body =>
+      'Un toque sobre un cromo gris lo anade a tu album (se pone dorado). Si ya lo tienes y lo tocas de nuevo, te pedira confirmacion para quitarlo.';
+
+  @override
+  String get categoryTutorialStep4Title => 'Manten pulsado para mas opciones';
+
+  @override
+  String get categoryTutorialStep4Body =>
+      'Si mantienes pulsado un cromo puedes gestionar cuantas copias tienes de cada variante (Normal, Gold, Legend) y actualizar tu inventario de repetidas.';
+
+  @override
+  String get drawerReplayTutorial => 'Ver tutorial de nuevo';
 }

@@ -514,4 +514,112 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get paywallLegalDisclaimer =>
       'Abone olarak Kullanım Koşullarını ve Gizlilik Politikasını kabul etmiş olursunuz.';
+
+  @override
+  String get tutorialSkip => 'Atla';
+
+  @override
+  String get tutorialTapToContinue =>
+      'Devam etmek için herhangi bir yere dokun';
+
+  @override
+  String get tutorialStep1Title => 'Genel ilerlemeniz';
+
+  @override
+  String get tutorialStep1Body =>
+      'Kac cikartma topladıgınızı burada görebilirsiniz. Devam edin!';
+
+  @override
+  String get tutorialStep2Title => 'Takim ara';
+
+  @override
+  String get tutorialStep2Body =>
+      'Listeyi filtrelemek için bir ülke veya takim adi yazin.';
+
+  @override
+  String get tutorialStep3Title => 'Ana menu';
+
+  @override
+  String get tutorialStep3Body =>
+      'Profilinize erisin ve albüm varyantini degistirin.';
+
+  @override
+  String get tutorialStep4Title => 'Cikartma tara';
+
+  @override
+  String get tutorialStep4Body =>
+      'Cikartmalari taramak ve otomatik eklemek için kamerayi kullanin.';
+
+  @override
+  String get tutorialStep5Title => 'Listeyi paylas';
+
+  @override
+  String get tutorialStep5Body =>
+      'Eksik veya fazla cikartma listenizi takas icin disa aktarin.';
+
+  @override
+  String get globalTutorialStep1Title => 'Koleksiyonu filtrele';
+
+  @override
+  String get globalTutorialStep1Body =>
+      'Tüm cikartmalarini, yalnizca eksikleri veya yalnizca fazlalari görmek için bu düğmeleri kullan. Takas düzenlemek için mükemmel!';
+
+  @override
+  String get globalTutorialStep2Title => 'Cikartma ara';
+
+  @override
+  String get globalTutorialStep2Body =>
+      'Ülke adini, kodu veya cikartma numarasini yaz ve hizla bul.';
+
+  @override
+  String get globalTutorialStep3Title => 'Isaretlemek için dokun';
+
+  @override
+  String get globalTutorialStep3Body =>
+      'Gri bir cikartmaya bir dokunma onu albüme ekler (altinlasir). Tekrar dokunursan kaldirma onay istenir.';
+
+  @override
+  String get globalTutorialStep4Title => 'Daha fazla secenek için uzun bas';
+
+  @override
+  String get globalTutorialStep4Body =>
+      'Her varyanttan (Normal, Gold, Legend...) kac kopya oldugunu yönetmek için bir cikartmaya uzun bas.';
+
+  @override
+  String get tutorialStep6Title => 'Kategori kesf et';
+
+  @override
+  String get tutorialStep6Body =>
+      'Cikartmalarini gormek icin herhangi bir ulke veya takima dokun. Orada sahip olduklarini isaretleyebilir ve fazlaligini yonetebilirsin.';
+
+  @override
+  String get categoryTutorialStep1Title => 'Cikartmalari filtrele';
+
+  @override
+  String get categoryTutorialStep1Body =>
+      'Tum cikartmalari, yalnizca eksikleri veya yalnizca fazlaliklari gormek icin bu duegmeleri kullan.';
+
+  @override
+  String get categoryTutorialStep2Title => 'Cikartma ara';
+
+  @override
+  String get categoryTutorialStep2Body =>
+      'Hizlica bulmak icin ulke adini, kodu veya cikartma numarasini yaz.';
+
+  @override
+  String get categoryTutorialStep3Title => 'Isaretlemek icin dokun';
+
+  @override
+  String get categoryTutorialStep3Body =>
+      'Gri bir cikartmaya dokunmak onu albume ekler (altin olur). Zaten varsa ve tekrar dokunursan, kaldirmayi onayman istenecek.';
+
+  @override
+  String get categoryTutorialStep4Title => 'Daha fazla secen icin uzun bas';
+
+  @override
+  String get categoryTutorialStep4Body =>
+      'Bir cikartmayi uzun basarak her varyantin (Normal, Gold, Legend) kac kopyasina sahip oldugunu yonetebilirsin.';
+
+  @override
+  String get drawerReplayTutorial => 'Egitimi tekrar izle';
 }

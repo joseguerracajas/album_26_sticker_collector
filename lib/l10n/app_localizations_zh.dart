@@ -482,4 +482,100 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get paywallLegalDisclaimer => '订阅即表示您同意我们的使用条款和隐私政策。';
+
+  @override
+  String get tutorialSkip => '跳过';
+
+  @override
+  String get tutorialTapToContinue => '点击任意位置继续';
+
+  @override
+  String get tutorialStep1Title => '你的整体进度';
+
+  @override
+  String get tutorialStep1Body => '在这里查看你收集了多少贴纸。继续收集吧！';
+
+  @override
+  String get tutorialStep2Title => '搜索队伍';
+
+  @override
+  String get tutorialStep2Body => '输入国家或队伍名称，即时筛选列表。';
+
+  @override
+  String get tutorialStep3Title => '主菜单';
+
+  @override
+  String get tutorialStep3Body => '访问你的个人资料，切换专辑版本。';
+
+  @override
+  String get tutorialStep4Title => '扫描贴纸';
+
+  @override
+  String get tutorialStep4Body => '使用相机扫描实体贴纸并自动添加到你的专辑中。';
+
+  @override
+  String get tutorialStep5Title => '分享列表';
+
+  @override
+  String get tutorialStep5Body => '导出你缺少或重复的贴纸列表，与朋友交换。';
+
+  @override
+  String get globalTutorialStep1Title => '筛选收藏';
+
+  @override
+  String get globalTutorialStep1Body => '使用这些按钮查看所有贴纸、仅缺少的或仅重复的。非常适合组织交换！';
+
+  @override
+  String get globalTutorialStep2Title => '搜索贴纸';
+
+  @override
+  String get globalTutorialStep2Body => '输入国家名称、代码或贴纸编号快速找到它。';
+
+  @override
+  String get globalTutorialStep3Title => '点击标记';
+
+  @override
+  String get globalTutorialStep3Body => '单击灰色贴纸将其添加到您的相册（变成金色）。再次点击将要求确认删除。';
+
+  @override
+  String get globalTutorialStep4Title => '长按查看更多选项';
+
+  @override
+  String get globalTutorialStep4Body =>
+      '长按贴纸可以管理每种变体（Normal、Gold、Legend...）的副本数量。';
+
+  @override
+  String get tutorialStep6Title => '探索分类';
+
+  @override
+  String get tutorialStep6Body => '点击任意国家或球队查看贴纸。在那里可以标记已有的，并管理重复贴纸。';
+
+  @override
+  String get categoryTutorialStep1Title => '筛选贴纸';
+
+  @override
+  String get categoryTutorialStep1Body => '使用这些按钮查看所有贴纸、仅缺少的或仅重复的。';
+
+  @override
+  String get categoryTutorialStep2Title => '搜索贴纸';
+
+  @override
+  String get categoryTutorialStep2Body => '输入国家名称、代码或贴纸编号以快速找到它。';
+
+  @override
+  String get categoryTutorialStep3Title => '点击标记';
+
+  @override
+  String get categoryTutorialStep3Body =>
+      '点击灰色贴纸将其添加到相册（变为金色）。如果已有并再次点击，将要求确认删除。';
+
+  @override
+  String get categoryTutorialStep4Title => '长按获取更多选项';
+
+  @override
+  String get categoryTutorialStep4Body =>
+      '长按贴纸可以管理每种变体（Normal, Gold, Legend）的副本数量。';
+
+  @override
+  String get drawerReplayTutorial => '重新查看教程';
 }

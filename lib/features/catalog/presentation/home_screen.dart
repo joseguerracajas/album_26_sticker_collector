@@ -1,5 +1,8 @@
 // Archivo: lib/features/catalog/presentation/home_screen.dart
 
+import 'package:album_26_sticker_collector/core/tutorial/home_tutorial.dart';
+import 'package:album_26_sticker_collector/core/tutorial/tutorial_keys.dart';
+import 'package:album_26_sticker_collector/core/tutorial/tutorial_service.dart';
 import 'package:album_26_sticker_collector/features/auth/presentation/auth_screen.dart';
 import 'package:album_26_sticker_collector/features/auth/presentation/profile_screen.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/album_variant_provider.dart';
@@ -56,6 +59,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!mounted) return;
+      final done = await TutorialService.isHomeTutorialDone();
+      if (!done && mounted) {
+        HomeTutorial.show(context);
+      }
+    });
+  }
+
+  @override
   void dispose() {
     _searchController.dispose();
     super.dispose();
@@ -91,11 +106,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         centerTitle: true,
         leading: Builder(
           builder: (ctx) => IconButton(
+            key: tutorialDrawerKey,
             icon: const Icon(Icons.menu, color: Colors.amber),
             onPressed: () => Scaffold.of(ctx).openDrawer(),
           ),
         ),
-        actions: const [ScannerIconButton(), ShareMenuButton()],
+        actions: const [
+          ScannerIconButton(showTutorialKey: true),
+          ShareMenuButton(showTutorialKey: true),
+        ],
       ),
       drawer: const _AppDrawer(),
       bottomNavigationBar: const AdBannerWidget(),
@@ -118,6 +137,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     ),
                     child:
                         Container(
+                              key: tutorialProgressCardKey,
                               // ... (TODO EL CÓDIGO DE TU TARJETA DORADA SE QUEDA EXACTAMENTE IGUAL)
                               padding: const EdgeInsets.all(24),
                               decoration: BoxDecoration(
@@ -305,6 +325,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
                   // BUSCADOR
                   Padding(
+                        key: tutorialSearchBarKey,
                         padding: const EdgeInsets.symmetric(
                           horizontal: 20.0,
                           vertical: 4.0,
@@ -451,6 +472,7 @@ class _CategoryTile extends ConsumerWidget {
     final int delayCascada = (index.clamp(0, 10) * 50);
 
     return Padding(
+          key: index == 0 ? tutorialCategoryTileKey : null,
           padding: const EdgeInsets.only(bottom: 12),
           child: AnimatedExpandContainer(
             openBuilder: (context, close) =>
@@ -688,6 +710,26 @@ class _AppDrawer extends ConsumerWidget {
                 Navigator.pop(context);
                 HapticFeedback.selectionClick();
                 VariantSelectorSheet.show(context);
+              },
+            ),
+
+            const Divider(color: Color(0xFF2A2A2A)),
+
+            // Opción: Ver tutorial de nuevo
+            ListTile(
+              leading: const Icon(
+                Icons.help_outline_rounded,
+                color: Colors.amber,
+              ),
+              title: Text(
+                l10n.drawerReplayTutorial,
+                style: const TextStyle(color: Colors.white),
+              ),
+              onTap: () async {
+                Navigator.pop(context);
+                HapticFeedback.lightImpact();
+                await TutorialService.resetAll();
+                if (context.mounted) HomeTutorial.show(context);
               },
             ),
           ],
