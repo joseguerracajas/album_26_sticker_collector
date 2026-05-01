@@ -624,9 +624,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get drawerReplayTutorial => 'Egitimi tekrar izle';
 
   @override
-  String get variantTutorialTitle => 'Bolgeni sec';
+  String get variantTutorialTitle => 'Bölgeni seç';
 
   @override
   String get variantTutorialBody =>
-      'Ulkene veya bolgene karsilik gelen album varyantini sec. Bu, koleksiyonunda hangi cikartmalarin ve varyantlarin (Normal, Gold, Legend) gorunecegini belirler.';
+      'Ülkene veya bölgene karşılık gelen albüm varyantını seç. Bu, koleksiyonunda hangi çıkartmaların ve varyantların (Normal, Gold, Legend) görüneceğini belirler.';
 }

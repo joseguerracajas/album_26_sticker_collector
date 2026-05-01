@@ -629,9 +629,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get drawerReplayTutorial => 'Povtorit obuchenie';
 
   @override
-  String get variantTutorialTitle => 'Vyberite svoj region';
+  String get variantTutorialTitle => 'Выберите свой регион';
 
   @override
   String get variantTutorialBody =>
-      'Vyberi variant alboma, sootvetstvujushhij tvoej strane ili regionu. Jeto opredeljaet, kakie naklejki i varianty (Normal, Gold, Legend) pojavjatsja v tvoej kollekcii.';
+      'Выбери вариант альбома, соответствующий твоей стране или региону. Это определяет, какие наклейки и варианты (Normal, Gold, Legend) появятся в твоей коллекции.';
 }

@@ -629,9 +629,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get drawerReplayTutorial => 'Revoir le tutoriel';
 
   @override
-  String get variantTutorialTitle => 'Selectionnez votre region';
+  String get variantTutorialTitle => 'Sélectionnez votre région';
 
   @override
   String get variantTutorialBody =>
-      'Choisissez la variante d album correspondant a votre pays ou region. Cela definit quels stickers et variantes (Normal, Gold, Legend) apparaitront dans votre collection.';
+      'Choisissez la variante d\'album correspondant à votre pays ou région. Cela définit quels stickers et variantes (Normal, Gold, Legend) apparaîtront dans votre collection.';
 }

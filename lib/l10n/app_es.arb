@@ -272,8 +272,6 @@
   "categoryTutorialStep4Title": "Manten pulsado para mas opciones",
   "categoryTutorialStep4Body": "Si mantienes pulsado un cromo puedes gestionar cuantas copias tienes de cada variante (Normal, Gold, Legend) y actualizar tu inventario de repetidas.",
   "drawerReplayTutorial": "Ver tutorial de nuevo",
-  "variantTutorialTitle": "Selecciona tu region",
-  "variantTutorialBody": "Elige la variante del album que corresponde a tu pais o region. Esto define que cromos y variantes (Normal, Gold, Legend) apareceran en tu coleccion.",
-  "variantTutorialTitle": "Selecciona tu region",
-  "variantTutorialBody": "Elige la variante del album que corresponde a tu pais o region. Esto define que cromos y variantes (Normal, Gold, Legend) apareceran en tu coleccion."
+  "variantTutorialTitle": "Selecciona tu región",
+  "variantTutorialBody": "Elige la variante del álbum que corresponde a tu país o región. Esto define qué cromos y variantes (Normal, Gold, Legend) aparecerán en tu colección."
 }

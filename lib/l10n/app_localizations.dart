@@ -1211,13 +1211,13 @@ abstract class AppLocalizations {
   /// No description provided for @variantTutorialTitle.
   ///
   /// In es, this message translates to:
-  /// **'Selecciona tu region'**
+  /// **'Selecciona tu región'**
   String get variantTutorialTitle;
 
   /// No description provided for @variantTutorialBody.
   ///
   /// In es, this message translates to:
-  /// **'Elige la variante del album que corresponde a tu pais o region. Esto define que cromos y variantes (Normal, Gold, Legend) apareceran en tu coleccion.'**
+  /// **'Elige la variante del álbum que corresponde a tu país o región. Esto define qué cromos y variantes (Normal, Gold, Legend) aparecerán en tu colección.'**
   String get variantTutorialBody;
 }
 

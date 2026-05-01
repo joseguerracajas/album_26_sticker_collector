@@ -320,8 +320,6 @@
   "categoryTutorialStep4Title": "Daha fazla secen icin uzun bas",
   "categoryTutorialStep4Body": "Bir cikartmayi uzun basarak her varyantin (Normal, Gold, Legend) kac kopyasina sahip oldugunu yonetebilirsin.",
   "drawerReplayTutorial": "Egitimi tekrar izle",
-  "variantTutorialTitle": "Bolgeni sec",
-  "variantTutorialBody": "Ulkene veya bolgene karsilik gelen album varyantini sec. Bu, koleksiyonunda hangi cikartmalarin ve varyantlarin (Normal, Gold, Legend) gorunecegini belirler.",
-  "variantTutorialTitle": "Bolgeni sec",
-  "variantTutorialBody": "Ulkene veya bolgene karsilik gelen album varyantini sec. Bu, koleksiyonunda hangi cikartmalarin ve varyantlarin (Normal, Gold, Legend) gorunecegini belirler."
+  "variantTutorialTitle": "Bölgeni seç",
+  "variantTutorialBody": "Ülkene veya bölgene karşılık gelen albüm varyantını seç. Bu, koleksiyonunda hangi çıkartmaların ve varyantların (Normal, Gold, Legend) görüneceğini belirler."
 }

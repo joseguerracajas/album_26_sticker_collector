@@ -623,9 +623,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get drawerReplayTutorial => 'ट्यूटोरियल फिर से देखें';
 
   @override
-  String get variantTutorialTitle => 'apna kshetr chunen';
+  String get variantTutorialTitle => 'अपना क्षेत्र चुनें';
 
   @override
   String get variantTutorialBody =>
-      'vah album variant chunen jo apke desh ya kshetr se mel khata ho. yah tay karta hai ki apki collection mein kaun se sticker aur variant (Normal, Gold, Legend) dikhai denge.';
+      'वह एल्बम वेरिएंट चुनें जो आपके देश या क्षेत्र से मेल खाता हो। यह तय करता है कि आपकी कलेक्शन में कौन से स्टिकर और वेरिएंट (Normal, Gold, Legend) दिखाई देंगे।';
 }

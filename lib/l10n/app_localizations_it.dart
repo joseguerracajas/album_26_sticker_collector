@@ -631,5 +631,5 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get variantTutorialBody =>
-      'Scegli la variante dell album corrispondente al tuo paese o regione. Questo definisce quali figurine e varianti (Normal, Gold, Legend) appariranno nella tua collezione.';
+      'Scegli la variante dell\'album corrispondente al tuo paese o regione. Questo definisce quali figurine e varianti (Normal, Gold, Legend) appariranno nella tua collezione.';
 }

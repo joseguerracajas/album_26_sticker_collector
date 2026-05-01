@@ -596,5 +596,5 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get variantTutorialBody =>
-      'あなたの国や地域に合ったアルバムバリアントを選択してください。これにより、コレクションに表示されるステッカーとバリアントが決まります。';
+      'あなたの国や地域に合ったアルバムバリアントを選択してください。これにより、コレクションに表示されるステッカーとバリアント（Normal、Gold、Legend）が決まります。';
 }

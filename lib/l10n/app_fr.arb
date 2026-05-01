@@ -320,8 +320,6 @@
   "categoryTutorialStep4Title": "Appui long pour plus d options",
   "categoryTutorialStep4Body": "Un appui long vous permet de gerer le nombre d exemplaires de chaque variante (Normal, Gold, Legend).",
   "drawerReplayTutorial": "Revoir le tutoriel",
-  "variantTutorialTitle": "Selectionnez votre region",
-  "variantTutorialBody": "Choisissez la variante d album correspondant a votre pays ou region. Cela definit quels stickers et variantes (Normal, Gold, Legend) apparaitront dans votre collection.",
-  "variantTutorialTitle": "Selectionnez votre region",
-  "variantTutorialBody": "Choisissez la variante d album correspondant a votre pays ou region. Cela definit quels stickers et variantes (Normal, Gold, Legend) apparaitront dans votre collection."
+  "variantTutorialTitle": "Sélectionnez votre région",
+  "variantTutorialBody": "Choisissez la variante d'album correspondant à votre pays ou région. Cela définit quels stickers et variantes (Normal, Gold, Legend) apparaîtront dans votre collection."
 }

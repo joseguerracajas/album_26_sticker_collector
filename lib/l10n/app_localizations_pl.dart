@@ -627,9 +627,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get drawerReplayTutorial => 'Powtorz samouczek';
 
   @override
-  String get variantTutorialTitle => 'Wybierz swoj region';
+  String get variantTutorialTitle => 'Wybierz swój region';
 
   @override
   String get variantTutorialBody =>
-      'Wybierz wariant albumu odpowiadajacy twojemu krajowi lub regionowi. To okresla, ktore naklejki i warianty (Normal, Gold, Legend) pojawia sie w twojej kolekcji.';
+      'Wybierz wariant albumu odpowiadający twojemu krajowi lub regionowi. To określa, które naklejki i warianty (Normal, Gold, Legend) pojawią się w twojej kolekcji.';
 }
