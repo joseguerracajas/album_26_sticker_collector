@@ -612,4 +612,14 @@ class AppLocalizationsHe extends AppLocalizations {
   @override
   String get variantTutorialBody =>
       'בחר את גרסת האלבום המתאימה למדינה או לאזור שלך. זה קובע אילו מדבקות וגרסאות (Normal, Gold, Legend) יופיעו באוסף שלך.';
+
+  @override
+  String get drawerLegalNotice => 'הודעה משפטית';
+
+  @override
+  String get legalNoticeTitle => 'הודעה משפטית';
+
+  @override
+  String get legalNoticeBody =>
+      'אפליקציה זו היא יצירה לא רשמית של מעריצים ואינה קשורה, נתמכת או מחוברת לאף ארגון כדורגל רשמי, יצרן מדבקות או שותף רשמי של הטורניר. כל הסימנים המסחריים הם רכושם של בעליהם המתאימים.';
 }

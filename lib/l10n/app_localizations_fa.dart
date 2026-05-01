@@ -631,4 +631,14 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get variantTutorialBody =>
       'نسخه آلبوم مربوط به کشور یا منطقه خود را انتخاب کنید. این تعیین می‌کند کدام برچسب‌ها و نوع‌ها (Normal, Gold, Legend) در مجموعه شما نمایش داده می‌شوند.';
+
+  @override
+  String get drawerLegalNotice => 'اطلاعیه حقوقی';
+
+  @override
+  String get legalNoticeTitle => 'اطلاعیه حقوقی';
+
+  @override
+  String get legalNoticeBody =>
+      'این اپلیکیشن یک اثر غیررسمی از طرفداران است و با هیچ سازمان رسمی فوتبال، سازنده برچسب، یا شریک رسمی مسابقات فوتبال وابستگی، تأیید یا ارتباطی ندارد. تمام علائم تجاری متعلق به صاحبان مربوطه آنها است.';
 }

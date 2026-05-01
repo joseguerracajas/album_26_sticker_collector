@@ -632,4 +632,14 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get variantTutorialBody =>
       'Scegli la variante dell\'album corrispondente al tuo paese o regione. Questo definisce quali figurine e varianti (Normal, Gold, Legend) appariranno nella tua collezione.';
+
+  @override
+  String get drawerLegalNotice => 'Note Legali';
+
+  @override
+  String get legalNoticeTitle => 'Note Legali';
+
+  @override
+  String get legalNoticeBody =>
+      'Questa applicazione è una creazione non ufficiale di fan e non è affiliata, approvata o collegata a qualsiasi organizzazione calcistica ufficiale, produttore di figurine o partner ufficiale del torneo di calcio. Tutti i marchi registrati sono di proprietà dei rispettivi titolari.';
 }

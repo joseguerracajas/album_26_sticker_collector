@@ -319,5 +319,8 @@
   "categoryTutorialStep4Body": "Przytrzymanie naklejki pozwala zarzadzac liczba kopii kazdego wariantu (Normal, Gold, Legend).",
   "drawerReplayTutorial": "Powtorz samouczek",
   "variantTutorialTitle": "Wybierz swój region",
-  "variantTutorialBody": "Wybierz wariant albumu odpowiadający twojemu krajowi lub regionowi. To określa, które naklejki i warianty (Normal, Gold, Legend) pojawią się w twojej kolekcji."
+  "variantTutorialBody": "Wybierz wariant albumu odpowiadający twojemu krajowi lub regionowi. To określa, które naklejki i warianty (Normal, Gold, Legend) pojawią się w twojej kolekcji.",
+  "drawerLegalNotice": "Informacja Prawna",
+  "legalNoticeTitle": "Informacja Prawna",
+  "legalNoticeBody": "Ta aplikacja jest nieoficjalną twórczością fanów i nie jest powiązana, popierana ani połączona z żadną oficjalną organizacją piłkarską, producentem naklejek ani oficjalnym partnerem turnieju piłkarskiego. Wszystkie znaki towarowe są własnością ich odpowiednich właścicieli."
 }

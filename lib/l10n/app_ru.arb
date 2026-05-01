@@ -321,5 +321,8 @@
   "categoryTutorialStep4Body": "Uderzhivanie naklejki pozvoljaet upravljat kolichestvom kopij kazhdogo varianta (Normal, Gold, Legend).",
   "drawerReplayTutorial": "Povtorit obuchenie",
   "variantTutorialTitle": "Выберите свой регион",
-  "variantTutorialBody": "Выбери вариант альбома, соответствующий твоей стране или региону. Это определяет, какие наклейки и варианты (Normal, Gold, Legend) появятся в твоей коллекции."
+  "variantTutorialBody": "Выбери вариант альбома, соответствующий твоей стране или региону. Это определяет, какие наклейки и варианты (Normal, Gold, Legend) появятся в твоей коллекции.",
+  "drawerLegalNotice": "Правовое уведомление",
+  "legalNoticeTitle": "Правовое уведомление",
+  "legalNoticeBody": "Это приложение является неофициальным фанатским проектом и не связано, не поддержано и не аффилировано ни с какой официальной футбольной организацией, производителем наклеек или официальным партнёром футбольного турнира. Все товарные знаки являются собственностью соответствующих владельцев."
 }

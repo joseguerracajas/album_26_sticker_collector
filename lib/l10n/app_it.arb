@@ -321,5 +321,8 @@
   "categoryTutorialStep4Body": "Tenere premuta una figurina permette di gestire quante copie hai di ogni variante (Normal, Gold, Legend).",
   "drawerReplayTutorial": "Rivedere il tutorial",
   "variantTutorialTitle": "Seleziona la tua regione",
-  "variantTutorialBody": "Scegli la variante dell'album corrispondente al tuo paese o regione. Questo definisce quali figurine e varianti (Normal, Gold, Legend) appariranno nella tua collezione."
+  "variantTutorialBody": "Scegli la variante dell'album corrispondente al tuo paese o regione. Questo definisce quali figurine e varianti (Normal, Gold, Legend) appariranno nella tua collezione.",
+  "drawerLegalNotice": "Note Legali",
+  "legalNoticeTitle": "Note Legali",
+  "legalNoticeBody": "Questa applicazione è una creazione non ufficiale di fan e non è affiliata, approvata o collegata a qualsiasi organizzazione calcistica ufficiale, produttore di figurine o partner ufficiale del torneo di calcio. Tutti i marchi registrati sono di proprietà dei rispettivi titolari."
 }

@@ -626,4 +626,14 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get variantTutorialBody =>
       'Choose the album variant that matches your country or region. This defines which stickers and variants (Normal, Gold, Legend) will appear in your collection.';
+
+  @override
+  String get drawerLegalNotice => 'Legal Notice';
+
+  @override
+  String get legalNoticeTitle => 'Legal Notice';
+
+  @override
+  String get legalNoticeBody =>
+      'This application is an unofficial fan creation and is not affiliated with, endorsed by, or connected to any official football organization, sticker manufacturer, or any official partner of the football tournament. All trademarks are the property of their respective owners.';
 }

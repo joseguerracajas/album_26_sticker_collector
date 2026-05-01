@@ -629,4 +629,14 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get variantTutorialBody =>
       'Ülkene veya bölgene karşılık gelen albüm varyantını seç. Bu, koleksiyonunda hangi çıkartmaların ve varyantların (Normal, Gold, Legend) görüneceğini belirler.';
+
+  @override
+  String get drawerLegalNotice => 'Yasal Bildirim';
+
+  @override
+  String get legalNoticeTitle => 'Yasal Bildirim';
+
+  @override
+  String get legalNoticeBody =>
+      'Bu uygulama resmi olmayan bir hayran yapıtıdır ve herhangi bir resmi futbol organizasyonu, çıkartma üreticisi veya futbol turnuvasının resmi ortağıyla bağlantılı, onaylı veya ilişkilendirilmiş değildir. Tüm ticari markalar ilgili sahiplerinin mülkiyetindedir.';
 }

@@ -321,5 +321,8 @@
   "categoryTutorialStep4Body": "Pressionar prolongadamente um cromo permite gerir quantas copias tem de cada variante (Normal, Gold, Legend).",
   "drawerReplayTutorial": "Ver tutorial novamente",
   "variantTutorialTitle": "Selecione a sua região",
-  "variantTutorialBody": "Escolha a variante do álbum que corresponde ao seu país ou região. Isso define quais cromos e variantes (Normal, Gold, Legend) aparecerão na sua coleção."
+  "variantTutorialBody": "Escolha a variante do álbum que corresponde ao seu país ou região. Isso define quais cromos e variantes (Normal, Gold, Legend) aparecerão na sua coleção.",
+  "drawerLegalNotice": "Aviso Legal",
+  "legalNoticeTitle": "Aviso Legal",
+  "legalNoticeBody": "Esta aplicação é uma criação não oficial de fãs e não está afiliada, apoiada ou conectada a qualquer organização oficial de futebol, fabricante de cromos ou parceiro oficial do torneio de futebol. Todas as marcas registadas são propriedade dos seus respetivos proprietários."
 }

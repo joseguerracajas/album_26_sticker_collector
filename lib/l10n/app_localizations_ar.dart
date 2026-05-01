@@ -621,4 +621,14 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get variantTutorialBody =>
       'اختر نسخة الألبوم التي تتوافق مع بلدك أو منطقتك. هذا يحدد الملصقات والنسخ (Normal, Gold, Legend) التي ستظهر في مجموعتك.';
+
+  @override
+  String get drawerLegalNotice => 'إشعار قانوني';
+
+  @override
+  String get legalNoticeTitle => 'إشعار قانوني';
+
+  @override
+  String get legalNoticeBody =>
+      'هذا التطبيق هو إنشاء غير رسمي من قبل المعجبين وليس مرتبطًا أو مدعومًا أو متصلاً بأي منظمة كرة قدم رسمية أو صانع ملصقات أو أي شريك رسمي في بطولة كرة القدم. جميع العلامات التجارية هي ملك لأصحابها المعنيين.';
 }

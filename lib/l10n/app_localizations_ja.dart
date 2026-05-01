@@ -597,4 +597,14 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get variantTutorialBody =>
       'あなたの国や地域に合ったアルバムバリアントを選択してください。これにより、コレクションに表示されるステッカーとバリアント（Normal、Gold、Legend）が決まります。';
+
+  @override
+  String get drawerLegalNotice => '法的表示';
+
+  @override
+  String get legalNoticeTitle => '法的表示';
+
+  @override
+  String get legalNoticeBody =>
+      'このアプリはファンによる非公式な作品であり、いかなる公式サッカー組織、ステッカーメーカー、またはサッカートーナメントの公式パートナーとも提携、承認、または接続されていません。すべての商標はそれぞれの所有者の財産です。';
 }

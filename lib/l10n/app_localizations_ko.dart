@@ -597,5 +597,15 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get variantTutorialBody =>
-      '본인의 국가나 지역에 맞는 앨범 버전을 선택하세요. 이것이 컬렉션에 표시될 스티커와 변형(Normal, Gold, Legend)을 결정합니다.';
+      '본인의 국가나 지역에 맞는 앨범 버전을 선택하세요. 이것이 콜렉션에 표시될 스티커와 변형(Normal, Gold, Legend)을 결정합니다.';
+
+  @override
+  String get drawerLegalNotice => '법적 고지';
+
+  @override
+  String get legalNoticeTitle => '법적 고지';
+
+  @override
+  String get legalNoticeBody =>
+      '이 앱은 비공식 팩 제작물이며 어떠한 공식 축구 조직, 스티커 제조업체 또는 축구 토너먼트의 공식 파트너와도 제휴, 보증 또는 연결되어 있지 않습니다. 모든 상표는 해당 소유자의 재산입니다.';
 }

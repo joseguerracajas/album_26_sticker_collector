@@ -319,5 +319,8 @@
   "categoryTutorialStep4Body": "Lang indrukken van een sticker laat je beheren hoeveel exemplaren je hebt van elke variant (Normal, Gold, Legend).",
   "drawerReplayTutorial": "Tutorial opnieuw bekijken",
   "variantTutorialTitle": "Selecteer je regio",
-  "variantTutorialBody": "Kies de albumvariant die overeenkomt met jouw land of regio. Dit bepaalt welke stickers en varianten (Normal, Gold, Legend) in jouw collectie verschijnen."
+  "variantTutorialBody": "Kies de albumvariant die overeenkomt met jouw land of regio. Dit bepaalt welke stickers en varianten (Normal, Gold, Legend) in jouw collectie verschijnen.",
+  "drawerLegalNotice": "Juridische Kennisgeving",
+  "legalNoticeTitle": "Juridische Kennisgeving",
+  "legalNoticeBody": "Deze applicatie is een niet-officiële fan-creatie en is niet gelieerd aan, goedgekeurd door of verbonden met enige officiële voetbalorganisatie, stickerproducent of officiële partner van het voetbaltoernooi. Alle handelsmerken zijn eigendom van hun respectieve eigenaren."
 }

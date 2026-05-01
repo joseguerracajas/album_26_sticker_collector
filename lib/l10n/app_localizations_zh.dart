@@ -585,4 +585,14 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get variantTutorialBody =>
       '选择与您的国家或地区对应的专辑版本。这将决定您的收藏中显示哪些贴纸和变体（Normal、Gold、Legend）。';
+
+  @override
+  String get drawerLegalNotice => '法律声明';
+
+  @override
+  String get legalNoticeTitle => '法律声明';
+
+  @override
+  String get legalNoticeBody =>
+      '此应用程序是非官方的球迷创作，与任何官方足球组织、贴纸制造商或足球锦标赛的官方合作伙伴均无关联、认可或连接。所有商标均为其各自所有者的财产。';
 }

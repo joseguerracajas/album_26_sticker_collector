@@ -628,4 +628,14 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get variantTutorialBody =>
       'वह एल्बम वेरिएंट चुनें जो आपके देश या क्षेत्र से मेल खाता हो। यह तय करता है कि आपकी कलेक्शन में कौन से स्टिकर और वेरिएंट (Normal, Gold, Legend) दिखाई देंगे।';
+
+  @override
+  String get drawerLegalNotice => 'कानूनी सूचना';
+
+  @override
+  String get legalNoticeTitle => 'कानूनी सूचना';
+
+  @override
+  String get legalNoticeBody =>
+      'यह ऐप एक अनौपचारिक प्रशंसक रचना है और किसी भी आधिकारिक फुटबॉल संगठन, स्टिकर निर्माता या फुटबॉल टूर्नामेंट के किसी आधिकारिक भागीदार से संबद्ध, समर्थित या जुड़ी नहीं है। सभी ट्रेडमार्क उनके संबंधित स्वामियों की संपत्ति हैं।';
 }

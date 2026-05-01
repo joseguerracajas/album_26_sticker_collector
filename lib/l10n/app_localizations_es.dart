@@ -634,4 +634,14 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get variantTutorialBody =>
       'Elige la variante del álbum que corresponde a tu país o región. Esto define qué cromos y variantes (Normal, Gold, Legend) aparecerán en tu colección.';
+
+  @override
+  String get drawerLegalNotice => 'Aviso Legal';
+
+  @override
+  String get legalNoticeTitle => 'Aviso Legal';
+
+  @override
+  String get legalNoticeBody =>
+      'Esta aplicación es una creación de fans no oficial y no está afiliada, respaldada ni conectada con cualquier organización oficial de fútbol o fabricante de cromos o cualquier socio oficial del torneo de fútbol. Todas las marcas registradas son propiedad de sus respectivos dueños.';
 }

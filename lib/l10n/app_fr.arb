@@ -321,5 +321,8 @@
   "categoryTutorialStep4Body": "Un appui long vous permet de gerer le nombre d exemplaires de chaque variante (Normal, Gold, Legend).",
   "drawerReplayTutorial": "Revoir le tutoriel",
   "variantTutorialTitle": "Sélectionnez votre région",
-  "variantTutorialBody": "Choisissez la variante d'album correspondant à votre pays ou région. Cela définit quels stickers et variantes (Normal, Gold, Legend) apparaîtront dans votre collection."
+  "variantTutorialBody": "Choisissez la variante d'album correspondant à votre pays ou région. Cela définit quels stickers et variantes (Normal, Gold, Legend) apparaîtront dans votre collection.",
+  "drawerLegalNotice": "Mentions Légales",
+  "legalNoticeTitle": "Mentions Légales",
+  "legalNoticeBody": "Cette application est une création non officielle de fans et n'est pas affiliée, approuvée ou connectée à toute organisation officielle de football, fabricant de vignettes ou partenaire officiel du tournoi de football. Toutes les marques déposées sont la propriété de leurs propriétaires respectifs."
 }

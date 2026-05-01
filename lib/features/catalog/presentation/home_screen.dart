@@ -10,6 +10,7 @@ import 'package:album_26_sticker_collector/features/catalog/data/categories_prov
 import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/sync_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/global_collection_screen.dart';
+import 'package:album_26_sticker_collector/features/catalog/presentation/legal_notice_screen.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/animated_expand_container.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/app_bar_actions.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/category_avatar.dart';
@@ -737,9 +738,10 @@ class _AppDrawer extends ConsumerWidget {
               },
             ),
 
-            const Divider(color: Color(0xFF2A2A2A)),
+            const Spacer(),
 
             // Opción: Ver tutorial de nuevo
+            const Divider(color: Color(0xFF2A2A2A)),
             ListTile(
               leading: const Icon(
                 Icons.help_outline_rounded,
@@ -755,6 +757,32 @@ class _AppDrawer extends ConsumerWidget {
                 await TutorialService.resetAll();
                 if (context.mounted) HomeTutorial.show(context);
               },
+            ),
+
+            // Aviso Legal
+            const Divider(color: Color(0xFF2A2A2A)),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const LegalNoticeScreen(),
+                    ),
+                  );
+                },
+                child: Text(
+                  l10n.drawerLegalNotice,
+                  style: const TextStyle(
+                    color: Colors.white38,
+                    fontSize: 12,
+                    decoration: TextDecoration.underline,
+                    decorationColor: Colors.white38,
+                  ),
+                ),
+              ),
             ),
           ],
         ),

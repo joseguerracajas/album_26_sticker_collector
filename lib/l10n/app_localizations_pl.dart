@@ -632,4 +632,14 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get variantTutorialBody =>
       'Wybierz wariant albumu odpowiadający twojemu krajowi lub regionowi. To określa, które naklejki i warianty (Normal, Gold, Legend) pojawią się w twojej kolekcji.';
+
+  @override
+  String get drawerLegalNotice => 'Informacja Prawna';
+
+  @override
+  String get legalNoticeTitle => 'Informacja Prawna';
+
+  @override
+  String get legalNoticeBody =>
+      'Ta aplikacja jest nieoficjalną twórczością fanów i nie jest powiązana, popierana ani połączona z żadną oficjalną organizacją piłkarską, producentem naklejek ani oficjalnym partnerem turnieju piłkarskiego. Wszystkie znaki towarowe są własnością ich odpowiednich właścicieli.';
 }

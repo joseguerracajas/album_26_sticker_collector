@@ -321,5 +321,8 @@
   "categoryTutorialStep4Body": "长按贴纸可以管理每种变体（Normal, Gold, Legend）的副本数量。",
   "drawerReplayTutorial": "重新查看教程",
   "variantTutorialTitle": "选择您的地区",
-  "variantTutorialBody": "选择与您的国家或地区对应的专辑版本。这将决定您的收藏中显示哪些贴纸和变体（Normal、Gold、Legend）。"
+  "variantTutorialBody": "选择与您的国家或地区对应的专辑版本。这将决定您的收藏中显示哪些贴纸和变体（Normal、Gold、Legend）。",
+  "drawerLegalNotice": "法律声明",
+  "legalNoticeTitle": "法律声明",
+  "legalNoticeBody": "此应用程序是非官方的球迷创作，与任何官方足球组织、贴纸制造商或足球锦标赛的官方合作伙伴均无关联、认可或连接。所有商标均为其各自所有者的财产。"
 }
