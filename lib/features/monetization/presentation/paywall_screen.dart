@@ -106,7 +106,6 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final isLoggedIn = supabase.auth.currentSession != null;
 
     return Scaffold(
       backgroundColor: const Color(0xFF0D0D0D),
@@ -124,221 +123,152 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
               ),
             ),
 
-            // ── Contenido principal ─────────────────────────────────────
-            if (!isLoggedIn) ...[
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.lock_outline_rounded,
+            // ── Hero ──────────────────────────────────────────────────────
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 8),
+                    // Icon
+                    Image.asset(
+                      'assets/icon/icon_transparent.png',
+                      width: 160,
+                      height: 110,
+                    ),
+                    const SizedBox(height: 24),
+
+                    // Etiqueta "Pro"
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 5,
+                      ),
+                      decoration: BoxDecoration(
                         color: Colors.amber,
-                        size: 72,
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      const SizedBox(height: 24),
-                      Text(
-                        l10n.paywallGuestTitle,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        l10n.paywallGuestBody,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Colors.white60,
-                          fontSize: 15,
-                          height: 1.4,
-                        ),
-                      ),
-                      const SizedBox(height: 32),
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.amber,
-                            foregroundColor: Colors.black,
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(14),
-                            ),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).pop(false);
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (_) => const LoginScreen(),
-                              ),
-                            );
-                          },
-                          child: Text(
-                            l10n.paywallGuestSignInButton,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w900,
-                              fontSize: 16,
-                              letterSpacing: 0.5,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ] else ...[
-              // ── Hero ──────────────────────────────────────────────────────
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 8),
-                      // Icon
-                      Image.asset(
-                        'assets/icon/icon_transparent.png',
-                        width: 160,
-                        height: 110,
-                      ),
-                      const SizedBox(height: 24),
-
-                      // Etiqueta "Pro"
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 14,
-                          vertical: 5,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.amber,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Text(
-                          'PRO',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w900,
-                            letterSpacing: 2,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-
-                      // Título
-                      const Text(
-                        'Album 2026\nSticker Collector',
-                        textAlign: TextAlign.center,
+                      child: const Text(
+                        'PRO',
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26,
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: -0.5,
-                          height: 1.15,
-                        ),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        l10n.paywallTitle,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Colors.amber,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-
-                      // Subtítulo
-                      Text(
-                        l10n.paywallSubtitle,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Colors.white60,
-                          fontSize: 16,
-                          height: 1.4,
-                        ),
-                      ),
-                      const SizedBox(height: 32),
-
-                      // ── Lista de beneficios ──────────────────────────────
-                      _BenefitRow(
-                        icon: Icons.qr_code_scanner,
-                        color: Colors.amber,
-                        text: l10n.paywallBenefitScanner,
-                      ),
-                      const SizedBox(height: 16),
-                      _BenefitRow(
-                        icon: Icons.block,
-                        color: Colors.greenAccent,
-                        text: l10n.paywallBenefitNoAds,
-                      ),
-                      const SizedBox(height: 16),
-                      _BenefitRow(
-                        icon: Icons.cloud_sync,
-                        color: Colors.lightBlueAccent,
-                        text: l10n.paywallBenefitSync,
-                      ),
-                      const SizedBox(height: 40),
-
-                      // ── Selector de paquetes ────────────────────────────
-                      _buildPackageSelector(l10n),
-                      const SizedBox(height: 16),
-
-                      // ── Botón de compra / loading ────────────────────────
-                      _buildPurchaseButton(l10n),
-                      const SizedBox(height: 8),
-
-                      // Error de compra
-                      if (_purchaseErrorMessage != null)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                          child: Text(
-                            _purchaseErrorMessage!,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              color: Colors.redAccent,
-                              fontSize: 13,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      const SizedBox(height: 8),
-
-                      // Restaurar compras
-                      TextButton(
-                        onPressed: _isPurchasing ? null : _restore,
-                        child: Text(
-                          l10n.paywallRestorePurchases,
-                          style: const TextStyle(
-                            color: Colors.white38,
-                            fontSize: 13,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        l10n.paywallCancelAnytime,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Colors.white24,
+                          color: Colors.black,
                           fontSize: 12,
+                          fontWeight: FontWeight.w900,
+                          letterSpacing: 2,
                         ),
                       ),
-                      const SizedBox(height: 16),
+                    ),
+                    const SizedBox(height: 10),
 
-                      // ── Links legales requeridos por Apple 3.1.2(c) ──────
-                      _LegalLinksRow(l10n: l10n),
-                      const SizedBox(height: 24),
-                    ],
-                  ),
+                    // Título
+                    const Text(
+                      'Album 2026\nSticker Collector',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 26,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: -0.5,
+                        height: 1.15,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      l10n.paywallTitle,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.amber,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+
+                    // Subtítulo
+                    Text(
+                      l10n.paywallSubtitle,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.white60,
+                        fontSize: 16,
+                        height: 1.4,
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+
+                    // ── Lista de beneficios ──────────────────────────────
+                    _BenefitRow(
+                      icon: Icons.qr_code_scanner,
+                      color: Colors.amber,
+                      text: l10n.paywallBenefitScanner,
+                    ),
+                    const SizedBox(height: 16),
+                    _BenefitRow(
+                      icon: Icons.block,
+                      color: Colors.greenAccent,
+                      text: l10n.paywallBenefitNoAds,
+                    ),
+                    const SizedBox(height: 16),
+                    _BenefitRow(
+                      icon: Icons.cloud_sync,
+                      color: Colors.lightBlueAccent,
+                      text: l10n.paywallBenefitSync,
+                    ),
+                    const SizedBox(height: 40),
+
+                    // ── Selector de paquetes ────────────────────────────
+                    _buildPackageSelector(l10n),
+                    const SizedBox(height: 16),
+
+                    // ── Botón de compra / loading ────────────────────────
+                    _buildPurchaseButton(l10n),
+                    const SizedBox(height: 8),
+
+                    // Error de compra
+                    if (_purchaseErrorMessage != null)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Text(
+                          _purchaseErrorMessage!,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Colors.redAccent,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    const SizedBox(height: 8),
+
+                    // Restaurar compras
+                    TextButton(
+                      onPressed: _isPurchasing ? null : _restore,
+                      child: Text(
+                        l10n.paywallRestorePurchases,
+                        style: const TextStyle(
+                          color: Colors.white38,
+                          fontSize: 13,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      l10n.paywallCancelAnytime,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.white24,
+                        fontSize: 12,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+
+                    // ── Links legales requeridos por Apple 3.1.2(c) ──────
+                    _LegalLinksRow(l10n: l10n),
+                    const SizedBox(height: 24),
+                  ],
                 ),
               ),
-            ],
+            ),
           ],
         ),
       ),
