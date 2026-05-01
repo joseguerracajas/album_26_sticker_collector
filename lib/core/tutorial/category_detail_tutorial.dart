@@ -26,6 +26,7 @@ class CategoryDetailTutorial {
         shape: ShapeLightFocus.RRect,
         radius: 12,
         paddingFocus: focusPadding,
+        enableOverlayTab: true,
         contents: [
           TargetContent(
             align: ContentAlign.bottom,
@@ -46,6 +47,7 @@ class CategoryDetailTutorial {
         shape: ShapeLightFocus.RRect,
         radius: 12,
         paddingFocus: focusPadding,
+        enableOverlayTab: true,
         contents: [
           TargetContent(
             align: ContentAlign.bottom,
@@ -66,6 +68,7 @@ class CategoryDetailTutorial {
         shape: ShapeLightFocus.RRect,
         radius: 8,
         paddingFocus: isTablet ? 18.0 : 8.0,
+        enableOverlayTab: true,
         contents: [
           TargetContent(
             align: ContentAlign.bottom,
@@ -86,6 +89,7 @@ class CategoryDetailTutorial {
         shape: ShapeLightFocus.RRect,
         radius: 8,
         paddingFocus: isTablet ? 18.0 : 8.0,
+        enableOverlayTab: true,
         contents: [
           TargetContent(
             align: ContentAlign.bottom,

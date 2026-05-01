@@ -30,6 +30,7 @@ class HomeTutorial {
         shape: ShapeLightFocus.RRect,
         radius: 24,
         paddingFocus: focusPadding,
+        enableOverlayTab: true,
         contents: [
           TargetContent(
             align: ContentAlign.bottom,
@@ -50,6 +51,7 @@ class HomeTutorial {
         shape: ShapeLightFocus.RRect,
         radius: 15,
         paddingFocus: focusPadding,
+        enableOverlayTab: true,
         contents: [
           TargetContent(
             align: ContentAlign.bottom,
@@ -72,6 +74,7 @@ class HomeTutorial {
         // En tablet los botones del AppBar son más grandes visualmente;
         // aumentamos el padding para que el resaltado se vea bien.
         paddingFocus: isTablet ? 28.0 : 14.0,
+        enableOverlayTab: true,
         contents: [
           TargetContent(
             align: appBarContentAlign,
@@ -92,6 +95,7 @@ class HomeTutorial {
         shape: ShapeLightFocus.RRect,
         radius: 8,
         paddingFocus: isTablet ? 28.0 : 14.0,
+        enableOverlayTab: true,
         contents: [
           TargetContent(
             align: appBarContentAlign,
@@ -112,6 +116,7 @@ class HomeTutorial {
         shape: ShapeLightFocus.RRect,
         radius: 8,
         paddingFocus: isTablet ? 28.0 : 14.0,
+        enableOverlayTab: true,
         contents: [
           TargetContent(
             align: appBarContentAlign,
@@ -132,6 +137,7 @@ class HomeTutorial {
         shape: ShapeLightFocus.RRect,
         radius: 16,
         paddingFocus: focusPadding,
+        enableOverlayTab: true,
         contents: [
           TargetContent(
             align: ContentAlign.top,
