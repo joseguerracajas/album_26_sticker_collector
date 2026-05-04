@@ -1,7 +1,7 @@
 {
   "@@locale": "fr",
-  "appTitle": "Album 26",
-  "authWelcomeTitle": "Bienvenue sur Album 26",
+  "appTitle": "Album 2026",
+  "authWelcomeTitle": "Bienvenue sur Album 2026",
   "authEmailLabel": "E-mail",
   "authPasswordLabel": "Mot de passe",
   "authLoginButton": "SE CONNECTER",
@@ -57,7 +57,7 @@
       "message": {}
     }
   },
-  "homeTitle": "Mon Album 26",
+  "homeTitle": "Mon Album 2026",
   "homeProfileTooltip": "Mon Profil",
   "drawerSignIn": "Se connecter",
   "homeShareAll": "Partager la liste complète",
@@ -127,7 +127,7 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *LISTE D'ÉCHANGE ALBUM 26* 🏆",
+  "shareHeader": "⚽ *LISTE D'ÉCHANGE Album 2026* 🏆",
   "shareMissingSectionTitle": "❌ *MANQUANTS :*",
   "shareDuplicatesSectionTitle": "🔁 *DOUBLONS :*",
   "shareNoneMissing": "Aucun ! 😎",
@@ -324,5 +324,24 @@
   "variantTutorialBody": "Choisissez la variante d'album correspondant à votre pays ou région. Cela définit quels stickers et variantes (Normal, Gold, Legend) apparaîtront dans votre collection.",
   "drawerLegalNotice": "Mentions Légales",
   "legalNoticeTitle": "Mentions Légales",
-  "legalNoticeBody": "Cette application est une création non officielle de fans et n'est pas affiliée, approuvée ou connectée à toute organisation officielle de football, fabricant de vignettes ou partenaire officiel du tournoi de football. Toutes les marques déposées sont la propriété de leurs propriétaires respectifs."
+  "legalNoticeBody": "Cette application est une création non officielle de fans et n'est pas affiliée, approuvée ou connectée à toute organisation officielle de football, fabricant de vignettes ou partenaire officiel du tournoi de football. Toutes les marques déposées sont la propriété de leurs propriétaires respectifs.",
+
+  "statsTitle": "Statistiques",
+  "statsTotalLabel": "Total",
+  "statsCollectedLabel": "Collectées",
+  "statsDuplicateCopiesLabel": "Doublons",
+  "statsCategoriesTitle": "Par Catégorie",
+  "statsAllCategories": "Toutes",
+  "statsNoStatsYet": "Pas encore de données. Commencez à collectionner !",
+  "statsBestCategory": "La plus complète",
+  "statsWorstCategory": "La moins complète",
+  "statsCompletedCategories": "Complètes",
+  "drawerStats": "Statistiques",
+  "statsCategoryPickerSearch": "Rechercher une catégorie...",
+  "statsCategoryPickerSelected": "{count} sélectionnées",
+  "@statsCategoryPickerSelected": {
+    "placeholders": { "count": {} }
+  },
+  "statsCategoryPickerAll": "Toutes les catégories",
+  "statsCategoryPickerClear": "Effacer"
 }

@@ -622,4 +622,51 @@ class AppLocalizationsHe extends AppLocalizations {
   @override
   String get legalNoticeBody =>
       'אפליקציה זו היא יצירה לא רשמית של מעריצים ואינה קשורה, נתמכת או מחוברת לאף ארגון כדורגל רשמי, יצרן מדבקות או שותף רשמי של הטורניר. כל הסימנים המסחריים הם רכושם של בעליהם המתאימים.';
+
+  @override
+  String get statsTitle => 'סטטיסטיקות';
+
+  @override
+  String get statsTotalLabel => 'סה\"כ';
+
+  @override
+  String get statsCollectedLabel => 'נאספו';
+
+  @override
+  String get statsDuplicateCopiesLabel => 'כפולים';
+
+  @override
+  String get statsCategoriesTitle => 'לפי קטגוריה';
+
+  @override
+  String get statsAllCategories => 'הכל';
+
+  @override
+  String get statsNoStatsYet => 'אין נתונים עדיין. התחל לאסוף!';
+
+  @override
+  String get statsBestCategory => 'הכי שלמה';
+
+  @override
+  String get statsWorstCategory => 'הכי חסרה';
+
+  @override
+  String get statsCompletedCategories => 'הושלמו';
+
+  @override
+  String get drawerStats => 'סטטיסטיקות';
+
+  @override
+  String get statsCategoryPickerSearch => 'חפש קטגוריה...';
+
+  @override
+  String statsCategoryPickerSelected(Object count) {
+    return '$count נבחרו';
+  }
+
+  @override
+  String get statsCategoryPickerAll => 'כל הקטגוריות';
+
+  @override
+  String get statsCategoryPickerClear => 'נקה';
 }

@@ -1,7 +1,7 @@
 {
   "@@locale": "nl",
-  "appTitle": "Album 26",
-  "authWelcomeTitle": "Welkom bij Album 26",
+  "appTitle": "Album 2026",
+  "authWelcomeTitle": "Welkom bij Album 2026",
   "authEmailLabel": "E-mail",
   "authPasswordLabel": "Wachtwoord",
   "authLoginButton": "INLOGGEN",
@@ -57,7 +57,7 @@
       "message": {}
     }
   },
-  "homeTitle": "Mijn Album 26",
+  "homeTitle": "Mijn Album 2026",
   "homeProfileTooltip": "Mijn profiel",  "drawerSignIn": "Inloggen",  "homeShareAll": "Volledige lijst delen",
   "homeShareMissingOnly": "Alleen ontbrekende",
   "homeShareDuplicatesOnly": "Alleen duplicaten",
@@ -125,7 +125,7 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *RUILLIJST ALBUM 26* 🏆",
+  "shareHeader": "⚽ *RUILLIJST Album 2026* 🏆",
   "shareMissingSectionTitle": "❌ *ONTBREKEND:*",
   "shareDuplicatesSectionTitle": "🔁 *DUPLICATEN:*",
   "shareNoneMissing": "Geen! 😎",
@@ -322,5 +322,24 @@
   "variantTutorialBody": "Kies de albumvariant die overeenkomt met jouw land of regio. Dit bepaalt welke stickers en varianten (Normal, Gold, Legend) in jouw collectie verschijnen.",
   "drawerLegalNotice": "Juridische Kennisgeving",
   "legalNoticeTitle": "Juridische Kennisgeving",
-  "legalNoticeBody": "Deze applicatie is een niet-officiële fan-creatie en is niet gelieerd aan, goedgekeurd door of verbonden met enige officiële voetbalorganisatie, stickerproducent of officiële partner van het voetbaltoernooi. Alle handelsmerken zijn eigendom van hun respectieve eigenaren."
+  "legalNoticeBody": "Deze applicatie is een niet-officiële fan-creatie en is niet gelieerd aan, goedgekeurd door of verbonden met enige officiële voetbalorganisatie, stickerproducent of officiële partner van het voetbaltoernooi. Alle handelsmerken zijn eigendom van hun respectieve eigenaren.",
+
+  "statsTitle": "Statistieken",
+  "statsTotalLabel": "Totaal",
+  "statsCollectedLabel": "Verzameld",
+  "statsDuplicateCopiesLabel": "Duplicaten",
+  "statsCategoriesTitle": "Per categorie",
+  "statsAllCategories": "Alle",
+  "statsNoStatsYet": "Nog geen gegevens. Begin met verzamelen!",
+  "statsBestCategory": "Meest compleet",
+  "statsWorstCategory": "Minst compleet",
+  "statsCompletedCategories": "Voltooid",
+  "drawerStats": "Statistieken",
+  "statsCategoryPickerSearch": "Categorie zoeken...",
+  "statsCategoryPickerSelected": "{count} geselecteerd",
+  "@statsCategoryPickerSelected": {
+    "placeholders": { "count": {} }
+  },
+  "statsCategoryPickerAll": "Alle categorieën",
+  "statsCategoryPickerClear": "Wissen"
 }

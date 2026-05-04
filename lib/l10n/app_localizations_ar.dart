@@ -631,4 +631,51 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get legalNoticeBody =>
       'هذا التطبيق هو إنشاء غير رسمي من قبل المعجبين وليس مرتبطًا أو مدعومًا أو متصلاً بأي منظمة كرة قدم رسمية أو صانع ملصقات أو أي شريك رسمي في بطولة كرة القدم. جميع العلامات التجارية هي ملك لأصحابها المعنيين.';
+
+  @override
+  String get statsTitle => 'إحصائيات';
+
+  @override
+  String get statsTotalLabel => 'الإجمالي';
+
+  @override
+  String get statsCollectedLabel => 'المجمّعة';
+
+  @override
+  String get statsDuplicateCopiesLabel => 'مكررة';
+
+  @override
+  String get statsCategoriesTitle => 'حسب الفئة';
+
+  @override
+  String get statsAllCategories => 'الكل';
+
+  @override
+  String get statsNoStatsYet => 'لا توجد بيانات بعد. ابدأ بالتجميع!';
+
+  @override
+  String get statsBestCategory => 'الأكثر اكتمالاً';
+
+  @override
+  String get statsWorstCategory => 'الأقل اكتمالاً';
+
+  @override
+  String get statsCompletedCategories => 'مكتملة';
+
+  @override
+  String get drawerStats => 'إحصائيات';
+
+  @override
+  String get statsCategoryPickerSearch => 'ابحث عن فئة...';
+
+  @override
+  String statsCategoryPickerSelected(Object count) {
+    return '$count محددة';
+  }
+
+  @override
+  String get statsCategoryPickerAll => 'جميع الفئات';
+
+  @override
+  String get statsCategoryPickerClear => 'مسح';
 }

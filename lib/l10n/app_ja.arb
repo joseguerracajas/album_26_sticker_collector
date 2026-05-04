@@ -324,5 +324,24 @@
   "variantTutorialBody": "あなたの国や地域に合ったアルバムバリアントを選択してください。これにより、コレクションに表示されるステッカーとバリアント（Normal、Gold、Legend）が決まります。",
   "drawerLegalNotice": "法的表示",
   "legalNoticeTitle": "法的表示",
-  "legalNoticeBody": "このアプリはファンによる非公式な作品であり、いかなる公式サッカー組織、ステッカーメーカー、またはサッカートーナメントの公式パートナーとも提携、承認、または接続されていません。すべての商標はそれぞれの所有者の財産です。"
+  "legalNoticeBody": "このアプリはファンによる非公式な作品であり、いかなる公式サッカー組織、ステッカーメーカー、またはサッカートーナメントの公式パートナーとも提携、承認、または接続されていません。すべての商標はそれぞれの所有者の財産です。",
+
+  "statsTitle": "統計",
+  "statsTotalLabel": "合計",
+  "statsCollectedLabel": "収集済み",
+  "statsDuplicateCopiesLabel": "重複",
+  "statsCategoriesTitle": "カテゴリ別",
+  "statsAllCategories": "すべて",
+  "statsNoStatsYet": "データなし。集め始めよう！",
+  "statsBestCategory": "最も完成",
+  "statsWorstCategory": "最も未完成",
+  "statsCompletedCategories": "完了済み",
+  "drawerStats": "統計",
+  "statsCategoryPickerSearch": "カテゴリを検索...",
+  "statsCategoryPickerSelected": "{count}選択中",
+  "@statsCategoryPickerSelected": {
+    "placeholders": { "count": {} }
+  },
+  "statsCategoryPickerAll": "すべてのカテゴリ",
+  "statsCategoryPickerClear": "クリア"
 }

@@ -608,4 +608,51 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get legalNoticeBody =>
       '이 앱은 비공식 팩 제작물이며 어떠한 공식 축구 조직, 스티커 제조업체 또는 축구 토너먼트의 공식 파트너와도 제휴, 보증 또는 연결되어 있지 않습니다. 모든 상표는 해당 소유자의 재산입니다.';
+
+  @override
+  String get statsTitle => '통계';
+
+  @override
+  String get statsTotalLabel => '합계';
+
+  @override
+  String get statsCollectedLabel => '수집됨';
+
+  @override
+  String get statsDuplicateCopiesLabel => '중복';
+
+  @override
+  String get statsCategoriesTitle => '카테고리별';
+
+  @override
+  String get statsAllCategories => '전체';
+
+  @override
+  String get statsNoStatsYet => '아직 데이터 없음. 수집을 시작하세요!';
+
+  @override
+  String get statsBestCategory => '가장 완성됨';
+
+  @override
+  String get statsWorstCategory => '가장 미완성';
+
+  @override
+  String get statsCompletedCategories => '완료됨';
+
+  @override
+  String get drawerStats => '통계';
+
+  @override
+  String get statsCategoryPickerSearch => '카테고리 검색...';
+
+  @override
+  String statsCategoryPickerSelected(Object count) {
+    return '$count개 선택됨';
+  }
+
+  @override
+  String get statsCategoryPickerAll => '모든 카테고리';
+
+  @override
+  String get statsCategoryPickerClear => '왈리기';
 }

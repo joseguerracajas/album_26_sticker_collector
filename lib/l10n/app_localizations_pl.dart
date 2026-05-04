@@ -9,7 +9,7 @@ class AppLocalizationsPl extends AppLocalizations {
   AppLocalizationsPl([String locale = 'pl']) : super(locale);
 
   @override
-  String get appTitle => 'Album 26';
+  String get appTitle => 'Album 2026';
 
   @override
   String get authWelcomeTitle => 'Witaj w Albumie 26';
@@ -168,7 +168,7 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get homeTitle => 'Mój Album 26';
+  String get homeTitle => 'Mój Album 2026';
 
   @override
   String get homeProfileTooltip => 'Mój profil';
@@ -281,7 +281,7 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get shareHeader => '⚽ *LISTA WYMIAN ALBUM 26* 🏆';
+  String get shareHeader => '⚽ *LISTA WYMIAN Album 2026* 🏆';
 
   @override
   String get shareMissingSectionTitle => '❌ *BRAKUJĄCE:*';
@@ -642,4 +642,51 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get legalNoticeBody =>
       'Ta aplikacja jest nieoficjalną twórczością fanów i nie jest powiązana, popierana ani połączona z żadną oficjalną organizacją piłkarską, producentem naklejek ani oficjalnym partnerem turnieju piłkarskiego. Wszystkie znaki towarowe są własnością ich odpowiednich właścicieli.';
+
+  @override
+  String get statsTitle => 'Statystyki';
+
+  @override
+  String get statsTotalLabel => 'Łącznie';
+
+  @override
+  String get statsCollectedLabel => 'Zebrane';
+
+  @override
+  String get statsDuplicateCopiesLabel => 'Duplikaty';
+
+  @override
+  String get statsCategoriesTitle => 'Według kategorii';
+
+  @override
+  String get statsAllCategories => 'Wszystkie';
+
+  @override
+  String get statsNoStatsYet => 'Brak danych. Zacznij zbierać!';
+
+  @override
+  String get statsBestCategory => 'Najbardziej kompletna';
+
+  @override
+  String get statsWorstCategory => 'Najbardziej niekompletna';
+
+  @override
+  String get statsCompletedCategories => 'Ukończone';
+
+  @override
+  String get drawerStats => 'Statystyki';
+
+  @override
+  String get statsCategoryPickerSearch => 'Szukaj kategorii...';
+
+  @override
+  String statsCategoryPickerSelected(Object count) {
+    return '$count wybranych';
+  }
+
+  @override
+  String get statsCategoryPickerAll => 'Wszystkie kategorie';
+
+  @override
+  String get statsCategoryPickerClear => 'Wyczyść';
 }

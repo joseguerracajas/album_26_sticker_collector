@@ -324,5 +324,24 @@
   "variantTutorialBody": "वह एल्बम वेरिएंट चुनें जो आपके देश या क्षेत्र से मेल खाता हो। यह तय करता है कि आपकी कलेक्शन में कौन से स्टिकर और वेरिएंट (Normal, Gold, Legend) दिखाई देंगे।",
   "drawerLegalNotice": "कानूनी सूचना",
   "legalNoticeTitle": "कानूनी सूचना",
-  "legalNoticeBody": "यह ऐप एक अनौपचारिक प्रशंसक रचना है और किसी भी आधिकारिक फुटबॉल संगठन, स्टिकर निर्माता या फुटबॉल टूर्नामेंट के किसी आधिकारिक भागीदार से संबद्ध, समर्थित या जुड़ी नहीं है। सभी ट्रेडमार्क उनके संबंधित स्वामियों की संपत्ति हैं।"
+  "legalNoticeBody": "यह ऐप एक अनौपचारिक प्रशंसक रचना है और किसी भी आधिकारिक फुटबॉल संगठन, स्टिकर निर्माता या फुटबॉल टूर्नामेंट के किसी आधिकारिक भागीदार से संबद्ध, समर्थित या जुड़ी नहीं है। सभी ट्रेडमार्क उनके संबंधित स्वामियों की संपत्ति हैं।",
+
+  "statsTitle": "आँकड़े",
+  "statsTotalLabel": "कुल",
+  "statsCollectedLabel": "संग्रहित",
+  "statsDuplicateCopiesLabel": "डुप्लीकेट",
+  "statsCategoriesTitle": "श्रेणी के अनुसार",
+  "statsAllCategories": "सभी",
+  "statsNoStatsYet": "अभी कोई डेटा नहीं। एकत्र करना शुरू करें!",
+  "statsBestCategory": "सबसे पूर्ण",
+  "statsWorstCategory": "सबसे अपूर्ण",
+  "statsCompletedCategories": "पूर्ण",
+  "drawerStats": "आँकड़े",
+  "statsCategoryPickerSearch": "श्रेणी खोजें...",
+  "statsCategoryPickerSelected": "{count} चुनी गई",
+  "@statsCategoryPickerSelected": {
+    "placeholders": { "count": {} }
+  },
+  "statsCategoryPickerAll": "सभी श्रेणियाँ",
+  "statsCategoryPickerClear": "साफ़ करें"
 }

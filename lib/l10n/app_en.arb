@@ -1,7 +1,7 @@
 {
   "@@locale": "en",
-  "appTitle": "Album 26",
-  "authWelcomeTitle": "Welcome to Album 26",
+  "appTitle": "Album 2026",
+  "authWelcomeTitle": "Welcome to Album 2026",
   "authEmailLabel": "Email",
   "authPasswordLabel": "Password",
   "authLoginButton": "SIGN IN",
@@ -57,7 +57,7 @@
       "message": {}
     }
   },
-  "homeTitle": "My Album 26",
+  "homeTitle": "My Album 2026",
   "homeProfileTooltip": "My Profile",
   "drawerSignIn": "Sign In",
   "homeShareAll": "Share Full List",
@@ -127,7 +127,7 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *ALBUM 26 SWAP LIST* 🏆",
+  "shareHeader": "⚽ *Album 2026 SWAP LIST* 🏆",
   "shareMissingSectionTitle": "❌ *MISSING:*",
   "shareDuplicatesSectionTitle": "🔁 *DUPLICATES:*",
   "shareNoneMissing": "None! 😎",
@@ -276,5 +276,24 @@
   "variantTutorialBody": "Choose the album variant that matches your country or region. This defines which stickers and variants (Normal, Gold, Legend) will appear in your collection.",
   "drawerLegalNotice": "Legal Notice",
   "legalNoticeTitle": "Legal Notice",
-  "legalNoticeBody": "This application is an unofficial fan creation and is not affiliated with, endorsed by, or connected to any official football organization, sticker manufacturer, or any official partner of the football tournament. All trademarks are the property of their respective owners."
+  "legalNoticeBody": "This application is an unofficial fan creation and is not affiliated with, endorsed by, or connected to any official football organization, sticker manufacturer, or any official partner of the football tournament. All trademarks are the property of their respective owners.",
+
+  "statsTitle": "Statistics",
+  "statsTotalLabel": "Total",
+  "statsCollectedLabel": "Collected",
+  "statsDuplicateCopiesLabel": "Duplicates",
+  "statsCategoriesTitle": "By Category",
+  "statsAllCategories": "All",
+  "statsNoStatsYet": "No data yet. Start collecting!",
+  "statsBestCategory": "Most complete",
+  "statsWorstCategory": "Most incomplete",
+  "statsCompletedCategories": "Completed",
+  "drawerStats": "Statistics",
+  "statsCategoryPickerSearch": "Search category...",
+  "statsCategoryPickerSelected": "{count} selected",
+  "@statsCategoryPickerSelected": {
+    "placeholders": { "count": {} }
+  },
+  "statsCategoryPickerAll": "All categories",
+  "statsCategoryPickerClear": "Clear"
 }

@@ -11,6 +11,7 @@ import 'package:album_26_sticker_collector/features/catalog/data/stickers_provid
 import 'package:album_26_sticker_collector/features/catalog/data/sync_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/global_collection_screen.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/legal_notice_screen.dart';
+import 'package:album_26_sticker_collector/features/catalog/presentation/statistics_screen.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/animated_expand_container.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/app_bar_actions.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/category_avatar.dart';
@@ -735,6 +736,29 @@ class _AppDrawer extends ConsumerWidget {
                 Navigator.pop(context);
                 HapticFeedback.selectionClick();
                 VariantSelectorSheet.show(context);
+              },
+            ),
+
+            // Opción: Estadísticas
+            const Divider(color: Color(0xFF2A2A2A)),
+            ListTile(
+              leading: const Icon(Icons.bar_chart_rounded, color: Colors.amber),
+              title: Text(
+                l10n.drawerStats,
+                style: const TextStyle(color: Colors.white),
+              ),
+              trailing: const Icon(
+                Icons.chevron_right,
+                color: Colors.white24,
+                size: 18,
+              ),
+              onTap: () {
+                Navigator.pop(context);
+                HapticFeedback.lightImpact();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const StatisticsScreen()),
+                );
               },
             ),
 

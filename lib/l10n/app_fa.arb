@@ -324,5 +324,24 @@
   "variantTutorialBody": "نسخه آلبوم مربوط به کشور یا منطقه خود را انتخاب کنید. این تعیین می‌کند کدام برچسب‌ها و نوع‌ها (Normal, Gold, Legend) در مجموعه شما نمایش داده می‌شوند.",
   "drawerLegalNotice": "اطلاعیه حقوقی",
   "legalNoticeTitle": "اطلاعیه حقوقی",
-  "legalNoticeBody": "این اپلیکیشن یک اثر غیررسمی از طرفداران است و با هیچ سازمان رسمی فوتبال، سازنده برچسب، یا شریک رسمی مسابقات فوتبال وابستگی، تأیید یا ارتباطی ندارد. تمام علائم تجاری متعلق به صاحبان مربوطه آنها است."
+  "legalNoticeBody": "این اپلیکیشن یک اثر غیررسمی از طرفداران است و با هیچ سازمان رسمی فوتبال، سازنده برچسب، یا شریک رسمی مسابقات فوتبال وابستگی، تأیید یا ارتباطی ندارد. تمام علائم تجاری متعلق به صاحبان مربوطه آنها است.",
+
+  "statsTitle": "آمار",
+  "statsTotalLabel": "کل",
+  "statsCollectedLabel": "جمع‌آوری شده",
+  "statsDuplicateCopiesLabel": "تکراری‌ها",
+  "statsCategoriesTitle": "بر اساس دسته‌بندی",
+  "statsAllCategories": "همه",
+  "statsNoStatsYet": "هنوز داده‌ای وجود ندارد. شروع به جمع‌آوری کنید!",
+  "statsBestCategory": "کامل‌ترین",
+  "statsWorstCategory": "ناقص‌ترین",
+  "statsCompletedCategories": "کامل شده",
+  "drawerStats": "آمار",
+  "statsCategoryPickerSearch": "جستجوی دسته‌بندی...",
+  "statsCategoryPickerSelected": "{count} انتخاب شده",
+  "@statsCategoryPickerSelected": {
+    "placeholders": { "count": {} }
+  },
+  "statsCategoryPickerAll": "همه دسته‌بندی‌ها",
+  "statsCategoryPickerClear": "پاک کردن"
 }

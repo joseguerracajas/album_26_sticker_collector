@@ -324,5 +324,24 @@
   "variantTutorialBody": "Выбери вариант альбома, соответствующий твоей стране или региону. Это определяет, какие наклейки и варианты (Normal, Gold, Legend) появятся в твоей коллекции.",
   "drawerLegalNotice": "Правовое уведомление",
   "legalNoticeTitle": "Правовое уведомление",
-  "legalNoticeBody": "Это приложение является неофициальным фанатским проектом и не связано, не поддержано и не аффилировано ни с какой официальной футбольной организацией, производителем наклеек или официальным партнёром футбольного турнира. Все товарные знаки являются собственностью соответствующих владельцев."
+  "legalNoticeBody": "Это приложение является неофициальным фанатским проектом и не связано, не поддержано и не аффилировано ни с какой официальной футбольной организацией, производителем наклеек или официальным партнёром футбольного турнира. Все товарные знаки являются собственностью соответствующих владельцев.",
+
+  "statsTitle": "Статистика",
+  "statsTotalLabel": "Всего",
+  "statsCollectedLabel": "Собрано",
+  "statsDuplicateCopiesLabel": "Дубликаты",
+  "statsCategoriesTitle": "По категориям",
+  "statsAllCategories": "Все",
+  "statsNoStatsYet": "Данных ещё нет. Начни собирать!",
+  "statsBestCategory": "Наиболее полная",
+  "statsWorstCategory": "Наименее полная",
+  "statsCompletedCategories": "Завершено",
+  "drawerStats": "Статистика",
+  "statsCategoryPickerSearch": "Поиск категории...",
+  "statsCategoryPickerSelected": "{count} выбрано",
+  "@statsCategoryPickerSelected": {
+    "placeholders": { "count": {} }
+  },
+  "statsCategoryPickerAll": "Все категории",
+  "statsCategoryPickerClear": "Очистить"
 }

@@ -1,7 +1,7 @@
 {
   "@@locale": "de",
-  "appTitle": "Album 26",
-  "authWelcomeTitle": "Willkommen bei Album 26",
+  "appTitle": "Album 2026",
+  "authWelcomeTitle": "Willkommen bei Album 2026",
   "authEmailLabel": "E-Mail",
   "authPasswordLabel": "Passwort",
   "authLoginButton": "ANMELDEN",
@@ -57,7 +57,7 @@
       "message": {}
     }
   },
-  "homeTitle": "Mein Album 26",
+  "homeTitle": "Mein Album 2026",
   "homeProfileTooltip": "Mein Profil",
   "drawerSignIn": "Anmelden",
   "homeShareAll": "Vollständige Liste teilen",
@@ -127,7 +127,7 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *TAUSCH-LISTE ALBUM 26* 🏆",
+  "shareHeader": "⚽ *TAUSCH-LISTE Album 2026* 🏆",
   "shareMissingSectionTitle": "❌ *FEHLEND:*",
   "shareDuplicatesSectionTitle": "🔁 *DOPPELTE:*",
   "shareNoneMissing": "Keine! 😎",
@@ -324,5 +324,24 @@
   "variantTutorialBody": "Wähle die Albumvariante, die deinem Land oder deiner Region entspricht. Das legt fest, welche Sticker und Varianten (Normal, Gold, Legend) in deiner Sammlung erscheinen.",
   "drawerLegalNotice": "Rechtlicher Hinweis",
   "legalNoticeTitle": "Rechtlicher Hinweis",
-  "legalNoticeBody": "Diese Anwendung ist eine inoffizielle Fan-Erstellung und steht in keiner Verbindung zu einer offiziellen Fußballorganisation, einem Stickerhersteller oder einem offiziellen Partner des Fußballturniers, wird von diesen nicht unterstützt oder genehmigt. Alle Markenzeichen sind Eigentum der jeweiligen Inhaber."
+  "legalNoticeBody": "Diese Anwendung ist eine inoffizielle Fan-Erstellung und steht in keiner Verbindung zu einer offiziellen Fußballorganisation, einem Stickerhersteller oder einem offiziellen Partner des Fußballturniers, wird von diesen nicht unterstützt oder genehmigt. Alle Markenzeichen sind Eigentum der jeweiligen Inhaber.",
+
+  "statsTitle": "Statistiken",
+  "statsTotalLabel": "Gesamt",
+  "statsCollectedLabel": "Gesammelt",
+  "statsDuplicateCopiesLabel": "Doppelte",
+  "statsCategoriesTitle": "Nach Kategorie",
+  "statsAllCategories": "Alle",
+  "statsNoStatsYet": "Noch keine Daten. Fange an zu sammeln!",
+  "statsBestCategory": "Am vollständigsten",
+  "statsWorstCategory": "Am unvollständigsten",
+  "statsCompletedCategories": "Abgeschlossen",
+  "drawerStats": "Statistiken",
+  "statsCategoryPickerSearch": "Kategorie suchen...",
+  "statsCategoryPickerSelected": "{count} ausgewählt",
+  "@statsCategoryPickerSelected": {
+    "placeholders": { "count": {} }
+  },
+  "statsCategoryPickerAll": "Alle Kategorien",
+  "statsCategoryPickerClear": "Löschen"
 }

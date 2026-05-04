@@ -607,4 +607,51 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get legalNoticeBody =>
       'このアプリはファンによる非公式な作品であり、いかなる公式サッカー組織、ステッカーメーカー、またはサッカートーナメントの公式パートナーとも提携、承認、または接続されていません。すべての商標はそれぞれの所有者の財産です。';
+
+  @override
+  String get statsTitle => '統計';
+
+  @override
+  String get statsTotalLabel => '合計';
+
+  @override
+  String get statsCollectedLabel => '収集済み';
+
+  @override
+  String get statsDuplicateCopiesLabel => '重複';
+
+  @override
+  String get statsCategoriesTitle => 'カテゴリ別';
+
+  @override
+  String get statsAllCategories => 'すべて';
+
+  @override
+  String get statsNoStatsYet => 'データなし。集め始めよう！';
+
+  @override
+  String get statsBestCategory => '最も完成';
+
+  @override
+  String get statsWorstCategory => '最も未完成';
+
+  @override
+  String get statsCompletedCategories => '完了済み';
+
+  @override
+  String get drawerStats => '統計';
+
+  @override
+  String get statsCategoryPickerSearch => 'カテゴリを検索...';
+
+  @override
+  String statsCategoryPickerSelected(Object count) {
+    return '$count選択中';
+  }
+
+  @override
+  String get statsCategoryPickerAll => 'すべてのカテゴリ';
+
+  @override
+  String get statsCategoryPickerClear => 'クリア';
 }

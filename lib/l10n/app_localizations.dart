@@ -1237,6 +1237,96 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Esta aplicación es una creación de fans no oficial y no está afiliada, respaldada ni conectada con cualquier organización oficial de fútbol o fabricante de cromos o cualquier socio oficial del torneo de fútbol. Todas las marcas registradas son propiedad de sus respectivos dueños.'**
   String get legalNoticeBody;
+
+  /// No description provided for @statsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Estadísticas'**
+  String get statsTitle;
+
+  /// No description provided for @statsTotalLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Total'**
+  String get statsTotalLabel;
+
+  /// No description provided for @statsCollectedLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Recolectados'**
+  String get statsCollectedLabel;
+
+  /// No description provided for @statsDuplicateCopiesLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Repetidos'**
+  String get statsDuplicateCopiesLabel;
+
+  /// No description provided for @statsCategoriesTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Por Categoría'**
+  String get statsCategoriesTitle;
+
+  /// No description provided for @statsAllCategories.
+  ///
+  /// In es, this message translates to:
+  /// **'Todas'**
+  String get statsAllCategories;
+
+  /// No description provided for @statsNoStatsYet.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin datos aún. ¡Empieza a coleccionar!'**
+  String get statsNoStatsYet;
+
+  /// No description provided for @statsBestCategory.
+  ///
+  /// In es, this message translates to:
+  /// **'Mejor completada'**
+  String get statsBestCategory;
+
+  /// No description provided for @statsWorstCategory.
+  ///
+  /// In es, this message translates to:
+  /// **'Más incompleta'**
+  String get statsWorstCategory;
+
+  /// No description provided for @statsCompletedCategories.
+  ///
+  /// In es, this message translates to:
+  /// **'Completas'**
+  String get statsCompletedCategories;
+
+  /// No description provided for @drawerStats.
+  ///
+  /// In es, this message translates to:
+  /// **'Estadísticas'**
+  String get drawerStats;
+
+  /// No description provided for @statsCategoryPickerSearch.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar categoría...'**
+  String get statsCategoryPickerSearch;
+
+  /// No description provided for @statsCategoryPickerSelected.
+  ///
+  /// In es, this message translates to:
+  /// **'{count} seleccionadas'**
+  String statsCategoryPickerSelected(Object count);
+
+  /// No description provided for @statsCategoryPickerAll.
+  ///
+  /// In es, this message translates to:
+  /// **'Todas las categorías'**
+  String get statsCategoryPickerAll;
+
+  /// No description provided for @statsCategoryPickerClear.
+  ///
+  /// In es, this message translates to:
+  /// **'Limpiar'**
+  String get statsCategoryPickerClear;
 }
 
 class _AppLocalizationsDelegate

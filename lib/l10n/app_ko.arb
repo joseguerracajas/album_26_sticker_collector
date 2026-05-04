@@ -324,5 +324,24 @@
   "variantTutorialBody": "본인의 국가나 지역에 맞는 앨범 버전을 선택하세요. 이것이 콜렉션에 표시될 스티커와 변형(Normal, Gold, Legend)을 결정합니다.",
   "drawerLegalNotice": "법적 고지",
   "legalNoticeTitle": "법적 고지",
-  "legalNoticeBody": "이 앱은 비공식 팩 제작물이며 어떠한 공식 축구 조직, 스티커 제조업체 또는 축구 토너먼트의 공식 파트너와도 제휴, 보증 또는 연결되어 있지 않습니다. 모든 상표는 해당 소유자의 재산입니다."
+  "legalNoticeBody": "이 앱은 비공식 팩 제작물이며 어떠한 공식 축구 조직, 스티커 제조업체 또는 축구 토너먼트의 공식 파트너와도 제휴, 보증 또는 연결되어 있지 않습니다. 모든 상표는 해당 소유자의 재산입니다.",
+
+  "statsTitle": "통계",
+  "statsTotalLabel": "합계",
+  "statsCollectedLabel": "수집됨",
+  "statsDuplicateCopiesLabel": "중복",
+  "statsCategoriesTitle": "카테고리별",
+  "statsAllCategories": "전체",
+  "statsNoStatsYet": "아직 데이터 없음. 수집을 시작하세요!",
+  "statsBestCategory": "가장 완성됨",
+  "statsWorstCategory": "가장 미완성",
+  "statsCompletedCategories": "완료됨",
+  "drawerStats": "통계",
+  "statsCategoryPickerSearch": "카테고리 검색...",
+  "statsCategoryPickerSelected": "{count}개 선택됨",
+  "@statsCategoryPickerSelected": {
+    "placeholders": { "count": {} }
+  },
+  "statsCategoryPickerAll": "모든 카테고리",
+  "statsCategoryPickerClear": "왈리기"
 }

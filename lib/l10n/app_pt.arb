@@ -324,5 +324,24 @@
   "variantTutorialBody": "Escolha a variante do álbum que corresponde ao seu país ou região. Isso define quais cromos e variantes (Normal, Gold, Legend) aparecerão na sua coleção.",
   "drawerLegalNotice": "Aviso Legal",
   "legalNoticeTitle": "Aviso Legal",
-  "legalNoticeBody": "Esta aplicação é uma criação não oficial de fãs e não está afiliada, apoiada ou conectada a qualquer organização oficial de futebol, fabricante de cromos ou parceiro oficial do torneio de futebol. Todas as marcas registadas são propriedade dos seus respetivos proprietários."
+  "legalNoticeBody": "Esta aplicação é uma criação não oficial de fãs e não está afiliada, apoiada ou conectada a qualquer organização oficial de futebol, fabricante de cromos ou parceiro oficial do torneio de futebol. Todas as marcas registadas são propriedade dos seus respetivos proprietários.",
+
+  "statsTitle": "Estatísticas",
+  "statsTotalLabel": "Total",
+  "statsCollectedLabel": "Recolhidas",
+  "statsDuplicateCopiesLabel": "Repetidos",
+  "statsCategoriesTitle": "Por Categoria",
+  "statsAllCategories": "Todas",
+  "statsNoStatsYet": "Sem dados ainda. Comece a colecionar!",
+  "statsBestCategory": "Mais completa",
+  "statsWorstCategory": "Mais incompleta",
+  "statsCompletedCategories": "Concluídas",
+  "drawerStats": "Estatísticas",
+  "statsCategoryPickerSearch": "Pesquisar categoria...",
+  "statsCategoryPickerSelected": "{count} selecionadas",
+  "@statsCategoryPickerSelected": {
+    "placeholders": { "count": {} }
+  },
+  "statsCategoryPickerAll": "Todas as categorias",
+  "statsCategoryPickerClear": "Limpar"
 }

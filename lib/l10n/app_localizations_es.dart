@@ -644,4 +644,51 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get legalNoticeBody =>
       'Esta aplicación es una creación de fans no oficial y no está afiliada, respaldada ni conectada con cualquier organización oficial de fútbol o fabricante de cromos o cualquier socio oficial del torneo de fútbol. Todas las marcas registradas son propiedad de sus respectivos dueños.';
+
+  @override
+  String get statsTitle => 'Estadísticas';
+
+  @override
+  String get statsTotalLabel => 'Total';
+
+  @override
+  String get statsCollectedLabel => 'Recolectados';
+
+  @override
+  String get statsDuplicateCopiesLabel => 'Repetidos';
+
+  @override
+  String get statsCategoriesTitle => 'Por Categoría';
+
+  @override
+  String get statsAllCategories => 'Todas';
+
+  @override
+  String get statsNoStatsYet => 'Sin datos aún. ¡Empieza a coleccionar!';
+
+  @override
+  String get statsBestCategory => 'Mejor completada';
+
+  @override
+  String get statsWorstCategory => 'Más incompleta';
+
+  @override
+  String get statsCompletedCategories => 'Completas';
+
+  @override
+  String get drawerStats => 'Estadísticas';
+
+  @override
+  String get statsCategoryPickerSearch => 'Buscar categoría...';
+
+  @override
+  String statsCategoryPickerSelected(Object count) {
+    return '$count seleccionadas';
+  }
+
+  @override
+  String get statsCategoryPickerAll => 'Todas las categorías';
+
+  @override
+  String get statsCategoryPickerClear => 'Limpiar';
 }

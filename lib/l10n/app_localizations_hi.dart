@@ -638,4 +638,51 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get legalNoticeBody =>
       'यह ऐप एक अनौपचारिक प्रशंसक रचना है और किसी भी आधिकारिक फुटबॉल संगठन, स्टिकर निर्माता या फुटबॉल टूर्नामेंट के किसी आधिकारिक भागीदार से संबद्ध, समर्थित या जुड़ी नहीं है। सभी ट्रेडमार्क उनके संबंधित स्वामियों की संपत्ति हैं।';
+
+  @override
+  String get statsTitle => 'आँकड़े';
+
+  @override
+  String get statsTotalLabel => 'कुल';
+
+  @override
+  String get statsCollectedLabel => 'संग्रहित';
+
+  @override
+  String get statsDuplicateCopiesLabel => 'डुप्लीकेट';
+
+  @override
+  String get statsCategoriesTitle => 'श्रेणी के अनुसार';
+
+  @override
+  String get statsAllCategories => 'सभी';
+
+  @override
+  String get statsNoStatsYet => 'अभी कोई डेटा नहीं। एकत्र करना शुरू करें!';
+
+  @override
+  String get statsBestCategory => 'सबसे पूर्ण';
+
+  @override
+  String get statsWorstCategory => 'सबसे अपूर्ण';
+
+  @override
+  String get statsCompletedCategories => 'पूर्ण';
+
+  @override
+  String get drawerStats => 'आँकड़े';
+
+  @override
+  String get statsCategoryPickerSearch => 'श्रेणी खोजें...';
+
+  @override
+  String statsCategoryPickerSelected(Object count) {
+    return '$count चुनी गई';
+  }
+
+  @override
+  String get statsCategoryPickerAll => 'सभी श्रेणियाँ';
+
+  @override
+  String get statsCategoryPickerClear => 'साफ़ करें';
 }

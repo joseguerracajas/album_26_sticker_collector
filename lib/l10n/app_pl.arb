@@ -1,6 +1,6 @@
 {
   "@@locale": "pl",
-  "appTitle": "Album 26",
+  "appTitle": "Album 2026",
   "authWelcomeTitle": "Witaj w Albumie 26",
   "authEmailLabel": "E-mail",
   "authPasswordLabel": "Hasło",
@@ -57,7 +57,7 @@
       "message": {}
     }
   },
-  "homeTitle": "Mój Album 26",
+  "homeTitle": "Mój Album 2026",
   "homeProfileTooltip": "Mój profil",  "drawerSignIn": "Zaloguj się",  "homeShareAll": "Udostępnij pełną listę",
   "homeShareMissingOnly": "Tylko brakujące",
   "homeShareDuplicatesOnly": "Tylko duplikaty",
@@ -125,7 +125,7 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *LISTA WYMIAN ALBUM 26* 🏆",
+  "shareHeader": "⚽ *LISTA WYMIAN Album 2026* 🏆",
   "shareMissingSectionTitle": "❌ *BRAKUJĄCE:*",
   "shareDuplicatesSectionTitle": "🔁 *DUPLIKATY:*",
   "shareNoneMissing": "Żadnych! 😎",
@@ -322,5 +322,24 @@
   "variantTutorialBody": "Wybierz wariant albumu odpowiadający twojemu krajowi lub regionowi. To określa, które naklejki i warianty (Normal, Gold, Legend) pojawią się w twojej kolekcji.",
   "drawerLegalNotice": "Informacja Prawna",
   "legalNoticeTitle": "Informacja Prawna",
-  "legalNoticeBody": "Ta aplikacja jest nieoficjalną twórczością fanów i nie jest powiązana, popierana ani połączona z żadną oficjalną organizacją piłkarską, producentem naklejek ani oficjalnym partnerem turnieju piłkarskiego. Wszystkie znaki towarowe są własnością ich odpowiednich właścicieli."
+  "legalNoticeBody": "Ta aplikacja jest nieoficjalną twórczością fanów i nie jest powiązana, popierana ani połączona z żadną oficjalną organizacją piłkarską, producentem naklejek ani oficjalnym partnerem turnieju piłkarskiego. Wszystkie znaki towarowe są własnością ich odpowiednich właścicieli.",
+
+  "statsTitle": "Statystyki",
+  "statsTotalLabel": "Łącznie",
+  "statsCollectedLabel": "Zebrane",
+  "statsDuplicateCopiesLabel": "Duplikaty",
+  "statsCategoriesTitle": "Według kategorii",
+  "statsAllCategories": "Wszystkie",
+  "statsNoStatsYet": "Brak danych. Zacznij zbierać!",
+  "statsBestCategory": "Najbardziej kompletna",
+  "statsWorstCategory": "Najbardziej niekompletna",
+  "statsCompletedCategories": "Ukończone",
+  "drawerStats": "Statystyki",
+  "statsCategoryPickerSearch": "Szukaj kategorii...",
+  "statsCategoryPickerSelected": "{count} wybranych",
+  "@statsCategoryPickerSelected": {
+    "placeholders": { "count": {} }
+  },
+  "statsCategoryPickerAll": "Wszystkie kategorie",
+  "statsCategoryPickerClear": "Wyczyść"
 }

@@ -324,5 +324,24 @@
   "variantTutorialBody": "اختر نسخة الألبوم التي تتوافق مع بلدك أو منطقتك. هذا يحدد الملصقات والنسخ (Normal, Gold, Legend) التي ستظهر في مجموعتك.",
   "drawerLegalNotice": "إشعار قانوني",
   "legalNoticeTitle": "إشعار قانوني",
-  "legalNoticeBody": "هذا التطبيق هو إنشاء غير رسمي من قبل المعجبين وليس مرتبطًا أو مدعومًا أو متصلاً بأي منظمة كرة قدم رسمية أو صانع ملصقات أو أي شريك رسمي في بطولة كرة القدم. جميع العلامات التجارية هي ملك لأصحابها المعنيين."
+  "legalNoticeBody": "هذا التطبيق هو إنشاء غير رسمي من قبل المعجبين وليس مرتبطًا أو مدعومًا أو متصلاً بأي منظمة كرة قدم رسمية أو صانع ملصقات أو أي شريك رسمي في بطولة كرة القدم. جميع العلامات التجارية هي ملك لأصحابها المعنيين.",
+
+  "statsTitle": "إحصائيات",
+  "statsTotalLabel": "الإجمالي",
+  "statsCollectedLabel": "المجمّعة",
+  "statsDuplicateCopiesLabel": "مكررة",
+  "statsCategoriesTitle": "حسب الفئة",
+  "statsAllCategories": "الكل",
+  "statsNoStatsYet": "لا توجد بيانات بعد. ابدأ بالتجميع!",
+  "statsBestCategory": "الأكثر اكتمالاً",
+  "statsWorstCategory": "الأقل اكتمالاً",
+  "statsCompletedCategories": "مكتملة",
+  "drawerStats": "إحصائيات",
+  "statsCategoryPickerSearch": "ابحث عن فئة...",
+  "statsCategoryPickerSelected": "{count} محددة",
+  "@statsCategoryPickerSelected": {
+    "placeholders": { "count": {} }
+  },
+  "statsCategoryPickerAll": "جميع الفئات",
+  "statsCategoryPickerClear": "مسح"
 }

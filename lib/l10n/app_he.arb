@@ -324,5 +324,24 @@
   "variantTutorialBody": "בחר את גרסת האלבום המתאימה למדינה או לאזור שלך. זה קובע אילו מדבקות וגרסאות (Normal, Gold, Legend) יופיעו באוסף שלך.",
   "drawerLegalNotice": "הודעה משפטית",
   "legalNoticeTitle": "הודעה משפטית",
-  "legalNoticeBody": "אפליקציה זו היא יצירה לא רשמית של מעריצים ואינה קשורה, נתמכת או מחוברת לאף ארגון כדורגל רשמי, יצרן מדבקות או שותף רשמי של הטורניר. כל הסימנים המסחריים הם רכושם של בעליהם המתאימים."
+  "legalNoticeBody": "אפליקציה זו היא יצירה לא רשמית של מעריצים ואינה קשורה, נתמכת או מחוברת לאף ארגון כדורגל רשמי, יצרן מדבקות או שותף רשמי של הטורניר. כל הסימנים המסחריים הם רכושם של בעליהם המתאימים.",
+
+  "statsTitle": "סטטיסטיקות",
+  "statsTotalLabel": "סה\"כ",
+  "statsCollectedLabel": "נאספו",
+  "statsDuplicateCopiesLabel": "כפולים",
+  "statsCategoriesTitle": "לפי קטגוריה",
+  "statsAllCategories": "הכל",
+  "statsNoStatsYet": "אין נתונים עדיין. התחל לאסוף!",
+  "statsBestCategory": "הכי שלמה",
+  "statsWorstCategory": "הכי חסרה",
+  "statsCompletedCategories": "הושלמו",
+  "drawerStats": "סטטיסטיקות",
+  "statsCategoryPickerSearch": "חפש קטגוריה...",
+  "statsCategoryPickerSelected": "{count} נבחרו",
+  "@statsCategoryPickerSelected": {
+    "placeholders": { "count": {} }
+  },
+  "statsCategoryPickerAll": "כל הקטגוריות",
+  "statsCategoryPickerClear": "נקה"
 }

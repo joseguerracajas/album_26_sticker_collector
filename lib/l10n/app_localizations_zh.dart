@@ -595,4 +595,51 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get legalNoticeBody =>
       '此应用程序是非官方的球迷创作，与任何官方足球组织、贴纸制造商或足球锦标赛的官方合作伙伴均无关联、认可或连接。所有商标均为其各自所有者的财产。';
+
+  @override
+  String get statsTitle => '统计';
+
+  @override
+  String get statsTotalLabel => '总计';
+
+  @override
+  String get statsCollectedLabel => '已收集';
+
+  @override
+  String get statsDuplicateCopiesLabel => '重复贴纸';
+
+  @override
+  String get statsCategoriesTitle => '按类别';
+
+  @override
+  String get statsAllCategories => '全部';
+
+  @override
+  String get statsNoStatsYet => '暂无数据。开始收集吧！';
+
+  @override
+  String get statsBestCategory => '最完整';
+
+  @override
+  String get statsWorstCategory => '最不完整';
+
+  @override
+  String get statsCompletedCategories => '已完成';
+
+  @override
+  String get drawerStats => '统计';
+
+  @override
+  String get statsCategoryPickerSearch => '搜索类别...';
+
+  @override
+  String statsCategoryPickerSelected(Object count) {
+    return '已选$count项';
+  }
+
+  @override
+  String get statsCategoryPickerAll => '所有类别';
+
+  @override
+  String get statsCategoryPickerClear => '清除';
 }

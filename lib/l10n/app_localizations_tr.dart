@@ -639,4 +639,51 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get legalNoticeBody =>
       'Bu uygulama resmi olmayan bir hayran yapıtıdır ve herhangi bir resmi futbol organizasyonu, çıkartma üreticisi veya futbol turnuvasının resmi ortağıyla bağlantılı, onaylı veya ilişkilendirilmiş değildir. Tüm ticari markalar ilgili sahiplerinin mülkiyetindedir.';
+
+  @override
+  String get statsTitle => 'İstatistikler';
+
+  @override
+  String get statsTotalLabel => 'Toplam';
+
+  @override
+  String get statsCollectedLabel => 'Toplanmış';
+
+  @override
+  String get statsDuplicateCopiesLabel => 'Kopyalar';
+
+  @override
+  String get statsCategoriesTitle => 'Kategoriye Göre';
+
+  @override
+  String get statsAllCategories => 'Tümü';
+
+  @override
+  String get statsNoStatsYet => 'Henüz veri yok. Toplamaya başla!';
+
+  @override
+  String get statsBestCategory => 'En tamamlanmış';
+
+  @override
+  String get statsWorstCategory => 'En eksik';
+
+  @override
+  String get statsCompletedCategories => 'Tamamlananlar';
+
+  @override
+  String get drawerStats => 'İstatistikler';
+
+  @override
+  String get statsCategoryPickerSearch => 'Kategori ara...';
+
+  @override
+  String statsCategoryPickerSelected(Object count) {
+    return '$count seçildi';
+  }
+
+  @override
+  String get statsCategoryPickerAll => 'Tüm kategoriler';
+
+  @override
+  String get statsCategoryPickerClear => 'Temizle';
 }

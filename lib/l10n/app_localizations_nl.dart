@@ -9,10 +9,10 @@ class AppLocalizationsNl extends AppLocalizations {
   AppLocalizationsNl([String locale = 'nl']) : super(locale);
 
   @override
-  String get appTitle => 'Album 26';
+  String get appTitle => 'Album 2026';
 
   @override
-  String get authWelcomeTitle => 'Welkom bij Album 26';
+  String get authWelcomeTitle => 'Welkom bij Album 2026';
 
   @override
   String get authEmailLabel => 'E-mail';
@@ -169,7 +169,7 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get homeTitle => 'Mijn Album 26';
+  String get homeTitle => 'Mijn Album 2026';
 
   @override
   String get homeProfileTooltip => 'Mijn profiel';
@@ -282,7 +282,7 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get shareHeader => '⚽ *RUILLIJST ALBUM 26* 🏆';
+  String get shareHeader => '⚽ *RUILLIJST Album 2026* 🏆';
 
   @override
   String get shareMissingSectionTitle => '❌ *ONTBREKEND:*';
@@ -643,4 +643,51 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get legalNoticeBody =>
       'Deze applicatie is een niet-officiële fan-creatie en is niet gelieerd aan, goedgekeurd door of verbonden met enige officiële voetbalorganisatie, stickerproducent of officiële partner van het voetbaltoernooi. Alle handelsmerken zijn eigendom van hun respectieve eigenaren.';
+
+  @override
+  String get statsTitle => 'Statistieken';
+
+  @override
+  String get statsTotalLabel => 'Totaal';
+
+  @override
+  String get statsCollectedLabel => 'Verzameld';
+
+  @override
+  String get statsDuplicateCopiesLabel => 'Duplicaten';
+
+  @override
+  String get statsCategoriesTitle => 'Per categorie';
+
+  @override
+  String get statsAllCategories => 'Alle';
+
+  @override
+  String get statsNoStatsYet => 'Nog geen gegevens. Begin met verzamelen!';
+
+  @override
+  String get statsBestCategory => 'Meest compleet';
+
+  @override
+  String get statsWorstCategory => 'Minst compleet';
+
+  @override
+  String get statsCompletedCategories => 'Voltooid';
+
+  @override
+  String get drawerStats => 'Statistieken';
+
+  @override
+  String get statsCategoryPickerSearch => 'Categorie zoeken...';
+
+  @override
+  String statsCategoryPickerSelected(Object count) {
+    return '$count geselecteerd';
+  }
+
+  @override
+  String get statsCategoryPickerAll => 'Alle categorieën';
+
+  @override
+  String get statsCategoryPickerClear => 'Wissen';
 }

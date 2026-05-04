@@ -641,4 +641,52 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get legalNoticeBody =>
       'این اپلیکیشن یک اثر غیررسمی از طرفداران است و با هیچ سازمان رسمی فوتبال، سازنده برچسب، یا شریک رسمی مسابقات فوتبال وابستگی، تأیید یا ارتباطی ندارد. تمام علائم تجاری متعلق به صاحبان مربوطه آنها است.';
+
+  @override
+  String get statsTitle => 'آمار';
+
+  @override
+  String get statsTotalLabel => 'کل';
+
+  @override
+  String get statsCollectedLabel => 'جمع‌آوری شده';
+
+  @override
+  String get statsDuplicateCopiesLabel => 'تکراری‌ها';
+
+  @override
+  String get statsCategoriesTitle => 'بر اساس دسته‌بندی';
+
+  @override
+  String get statsAllCategories => 'همه';
+
+  @override
+  String get statsNoStatsYet =>
+      'هنوز داده‌ای وجود ندارد. شروع به جمع‌آوری کنید!';
+
+  @override
+  String get statsBestCategory => 'کامل‌ترین';
+
+  @override
+  String get statsWorstCategory => 'ناقص‌ترین';
+
+  @override
+  String get statsCompletedCategories => 'کامل شده';
+
+  @override
+  String get drawerStats => 'آمار';
+
+  @override
+  String get statsCategoryPickerSearch => 'جستجوی دسته‌بندی...';
+
+  @override
+  String statsCategoryPickerSelected(Object count) {
+    return '$count انتخاب شده';
+  }
+
+  @override
+  String get statsCategoryPickerAll => 'همه دسته‌بندی‌ها';
+
+  @override
+  String get statsCategoryPickerClear => 'پاک کردن';
 }

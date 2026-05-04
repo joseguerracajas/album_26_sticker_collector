@@ -1,7 +1,7 @@
 {
   "@@locale": "it",
-  "appTitle": "Album 26",
-  "authWelcomeTitle": "Benvenuto su Album 26",
+  "appTitle": "Album 2026",
+  "authWelcomeTitle": "Benvenuto su Album 2026",
   "authEmailLabel": "Email",
   "authPasswordLabel": "Password",
   "authLoginButton": "ACCEDI",
@@ -57,7 +57,7 @@
       "message": {}
     }
   },
-  "homeTitle": "Il Mio Album 26",
+  "homeTitle": "Il Mio Album 2026",
   "homeProfileTooltip": "Il Mio Profilo",
   "drawerSignIn": "Accedi",
   "homeShareAll": "Condividi Lista Completa",
@@ -127,7 +127,7 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *LISTA SCAMBI ALBUM 26* 🏆",
+  "shareHeader": "⚽ *LISTA SCAMBI Album 2026* 🏆",
   "shareMissingSectionTitle": "❌ *MANCANTI:*",
   "shareDuplicatesSectionTitle": "🔁 *DOPPIONI:*",
   "shareNoneMissing": "Nessuno! 😎",
@@ -324,5 +324,24 @@
   "variantTutorialBody": "Scegli la variante dell'album corrispondente al tuo paese o regione. Questo definisce quali figurine e varianti (Normal, Gold, Legend) appariranno nella tua collezione.",
   "drawerLegalNotice": "Note Legali",
   "legalNoticeTitle": "Note Legali",
-  "legalNoticeBody": "Questa applicazione è una creazione non ufficiale di fan e non è affiliata, approvata o collegata a qualsiasi organizzazione calcistica ufficiale, produttore di figurine o partner ufficiale del torneo di calcio. Tutti i marchi registrati sono di proprietà dei rispettivi titolari."
+  "legalNoticeBody": "Questa applicazione è una creazione non ufficiale di fan e non è affiliata, approvata o collegata a qualsiasi organizzazione calcistica ufficiale, produttore di figurine o partner ufficiale del torneo di calcio. Tutti i marchi registrati sono di proprietà dei rispettivi titolari.",
+
+  "statsTitle": "Statistiche",
+  "statsTotalLabel": "Totale",
+  "statsCollectedLabel": "Raccolte",
+  "statsDuplicateCopiesLabel": "Duplicati",
+  "statsCategoriesTitle": "Per Categoria",
+  "statsAllCategories": "Tutte",
+  "statsNoStatsYet": "Nessun dato ancora. Inizia a collezionare!",
+  "statsBestCategory": "Più completa",
+  "statsWorstCategory": "Meno completa",
+  "statsCompletedCategories": "Completate",
+  "drawerStats": "Statistiche",
+  "statsCategoryPickerSearch": "Cerca categoria...",
+  "statsCategoryPickerSelected": "{count} selezionate",
+  "@statsCategoryPickerSelected": {
+    "placeholders": { "count": {} }
+  },
+  "statsCategoryPickerAll": "Tutte le categorie",
+  "statsCategoryPickerClear": "Cancella"
 }

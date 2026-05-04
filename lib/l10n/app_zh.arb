@@ -324,5 +324,24 @@
   "variantTutorialBody": "选择与您的国家或地区对应的专辑版本。这将决定您的收藏中显示哪些贴纸和变体（Normal、Gold、Legend）。",
   "drawerLegalNotice": "法律声明",
   "legalNoticeTitle": "法律声明",
-  "legalNoticeBody": "此应用程序是非官方的球迷创作，与任何官方足球组织、贴纸制造商或足球锦标赛的官方合作伙伴均无关联、认可或连接。所有商标均为其各自所有者的财产。"
+  "legalNoticeBody": "此应用程序是非官方的球迷创作，与任何官方足球组织、贴纸制造商或足球锦标赛的官方合作伙伴均无关联、认可或连接。所有商标均为其各自所有者的财产。",
+
+  "statsTitle": "统计",
+  "statsTotalLabel": "总计",
+  "statsCollectedLabel": "已收集",
+  "statsDuplicateCopiesLabel": "重复贴纸",
+  "statsCategoriesTitle": "按类别",
+  "statsAllCategories": "全部",
+  "statsNoStatsYet": "暂无数据。开始收集吧！",
+  "statsBestCategory": "最完整",
+  "statsWorstCategory": "最不完整",
+  "statsCompletedCategories": "已完成",
+  "drawerStats": "统计",
+  "statsCategoryPickerSearch": "搜索类别...",
+  "statsCategoryPickerSelected": "已选{count}项",
+  "@statsCategoryPickerSelected": {
+    "placeholders": { "count": {} }
+  },
+  "statsCategoryPickerAll": "所有类别",
+  "statsCategoryPickerClear": "清除"
 }

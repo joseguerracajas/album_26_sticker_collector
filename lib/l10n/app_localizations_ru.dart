@@ -644,4 +644,51 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get legalNoticeBody =>
       'Это приложение является неофициальным фанатским проектом и не связано, не поддержано и не аффилировано ни с какой официальной футбольной организацией, производителем наклеек или официальным партнёром футбольного турнира. Все товарные знаки являются собственностью соответствующих владельцев.';
+
+  @override
+  String get statsTitle => 'Статистика';
+
+  @override
+  String get statsTotalLabel => 'Всего';
+
+  @override
+  String get statsCollectedLabel => 'Собрано';
+
+  @override
+  String get statsDuplicateCopiesLabel => 'Дубликаты';
+
+  @override
+  String get statsCategoriesTitle => 'По категориям';
+
+  @override
+  String get statsAllCategories => 'Все';
+
+  @override
+  String get statsNoStatsYet => 'Данных ещё нет. Начни собирать!';
+
+  @override
+  String get statsBestCategory => 'Наиболее полная';
+
+  @override
+  String get statsWorstCategory => 'Наименее полная';
+
+  @override
+  String get statsCompletedCategories => 'Завершено';
+
+  @override
+  String get drawerStats => 'Статистика';
+
+  @override
+  String get statsCategoryPickerSearch => 'Поиск категории...';
+
+  @override
+  String statsCategoryPickerSelected(Object count) {
+    return '$count выбрано';
+  }
+
+  @override
+  String get statsCategoryPickerAll => 'Все категории';
+
+  @override
+  String get statsCategoryPickerClear => 'Очистить';
 }
