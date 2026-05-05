@@ -302,5 +302,146 @@
   "statsSortByProgressDesc": "Most progress first",
   "statsSortByProgressAsc": "Least progress first",
   "statsSortByMissing": "Most missing first",
-  "statsSortByDuplicates": "Most duplicates first"
+  "statsSortByDuplicates": "Most duplicates first",
+
+  "tradeHubTitle": "Sticker Trading",
+  "tradeHubMyCode": "My trade code",
+  "tradeHubCodeCopied": "Code copied to clipboard",
+  "tradeHubShareHint": "Share this code or scan the other user's QR",
+  "tradeHubNoActive": "No active trade",
+  "tradeHubNoActiveDesc": "Start a trade by entering another collector's code.",
+  "tradeHubStartBtn": "Start trade",
+  "tradeHubHistory": "History",
+  "tradeHubCancel": "Cancel trade",
+  "tradeHubCancelTitle": "Cancel trade?",
+  "tradeHubCancelMsg": "The trade will be cancelled and stickers will return to your inventory.",
+  "tradeHubCancelYes": "Yes, cancel",
+  "tradeHubActiveLabel": "Active trade",
+  "tradeStatusPending": "Waiting for response",
+  "tradeStatusPendingDesc": "The other user must accept your trade request.",
+  "tradeStatusIncoming": "You have a request!",
+  "tradeStatusIncomingDesc": "Someone wants to trade stickers with you.",
+  "tradeStatusSelecting": "Selecting stickers",
+  "tradeStatusSelectingDesc": "Both of you are choosing what stickers to offer.",
+  "tradeStatusMyConfirmed": "Your offer is ready",
+  "tradeStatusMyConfirmedDesc": "Waiting for the other user to confirm their offer.",
+  "tradeStatusOtherConfirmed": "The other confirmed",
+  "tradeStatusOtherConfirmedDesc": "Confirm your sticker selection to continue.",
+  "tradeStatusReservedLabel": "Stickers reserved",
+  "tradeStatusReservedDesc": "Trade agreed. Confirm when you have received your stickers.",
+  "tradeAcceptBtn": "Accept trade",
+  "tradeSeeOfferBtn": "View trade",
+  "tradeSelectBtn": "Select my stickers",
+  "tradeConfirmDeliveryBtn": "Confirm receipt",
+  "tradeFindTitle": "Find collector",
+  "tradeFindCodeTab": "Code",
+  "tradeFindScanTab": "Scan QR",
+  "tradeFindInstruction": "Enter the collector's 6-digit code",
+  "tradeFindHint": "You can find the code on their trading screen.",
+  "tradeFindSearchBtn": "Search",
+  "tradeFindSearching": "Searching…",
+  "tradeFindScanHint": "Point at the other collector's QR code",
+  "tradeFindPartnerFound": "User found!",
+  "tradeFindPartnerCode": "Code: {code}",
+  "@tradeFindPartnerCode": {
+    "placeholders": { "code": {} }
+  },
+  "tradeFindSendBtn": "Send trade request",
+  "tradeFindSending": "Sending…",
+  "tradeFindRequestSent": "Request sent to {name}! Wait for their response.",
+  "@tradeFindRequestSent": {
+    "placeholders": { "name": {} }
+  },
+  "tradeNegTitle": "Negotiation",
+  "tradeNegMyOfferTab": "My offer",
+  "tradeNegReceivingTab": "I'll receive",
+  "tradeNegAutoMode": "Auto",
+  "tradeNegManualMode": "Manual",
+  "tradeNegAutoHint": "Auto mode: shows your duplicates. Switch to Manual to customise.",
+  "tradeNegSelectedCount": "{count} sticker(s) selected",
+  "@tradeNegSelectedCount": {
+    "placeholders": { "count": {} }
+  },
+  "tradeNegNoStickers": "You have no stickers to offer.",
+  "tradeNegPartnerWaiting": "The other collector hasn't selected their stickers yet.",
+  "tradeNegOfferLabel": "You'll offer {count} sticker(s)",
+  "@tradeNegOfferLabel": {
+    "placeholders": { "count": {} }
+  },
+  "tradeNegConfirmBtn": "Confirm my offer",
+  "tradeNegSaving": "Saving…",
+  "tradeNegAtLeastOne": "Select at least one sticker to offer.",
+  "tradeNegOfferConfirmed": "Offer confirmed! Waiting for the other collector.",
+  "tradeNegAlreadyConfirmedBanner": "Your offer is confirmed. Waiting for the other collector.",
+  "tradeNegModifyOffer": "Modify my offer",
+  "tradeNegModifyOfferWarning": "You can change the stickers you want to give. The other collector will have to wait.",
+  "tradeNegQtyPickerTitle": "How many to offer?",
+  "tradeNegQtyPickerHint": "You have {total} copies. Max to offer: {max}.",
+  "@tradeNegQtyPickerHint": {
+    "placeholders": { "total": {}, "max": {} }
+  },
+  "tradeNegOfferedQtyBadge": "Offering {qty}",
+  "@tradeNegOfferedQtyBadge": {
+    "placeholders": { "qty": {} }
+  },
+  "tradeNegPartnerOfferUpdated": "The other collector updated their sticker offer.",
+  "tradeNegTotalItems": "{count} item(s) total",
+  "@tradeNegTotalItems": {
+    "placeholders": { "count": {} }
+  },
+  "tradeNegReceivingCount": "{count} sticker(s) you'll receive",
+  "@tradeNegReceivingCount": {
+    "placeholders": { "count": {} }
+  },
+  "tradeDeliveryTitle": "Confirm receipt",
+  "tradeDeliveryInstruction": "Mark the stickers you physically received",
+  "tradeDeliveryDesc": "Marked stickers will be added to your album. Unmarked ones will return to the other collector.",
+  "tradeDeliveryNoOffer": "The other collector didn't offer any stickers.",
+  "tradeDeliveryNotReceived": "Not received",
+  "tradeDeliveryAllReceived": "You received all stickers ({received}/{total})",
+  "@tradeDeliveryAllReceived": {
+    "placeholders": { "received": {}, "total": {} }
+  },
+  "tradeDeliveryPartial": "{received} of {total} marked · {pending} will return to the other collector.",
+  "@tradeDeliveryPartial": {
+    "placeholders": { "received": {}, "total": {}, "pending": {} }
+  },
+  "tradeDeliveryConfirmTitle": "Confirm receipt",
+  "tradeDeliveryConfirmMsg": "{received} sticker(s) will be added to your album.\n{pending} unmarked sticker(s) will return to the other collector.",
+  "@tradeDeliveryConfirmMsg": {
+    "placeholders": { "received": {}, "pending": {} }
+  },
+  "tradeDeliverySuccess": "{count} sticker(s) added to your album! 🏆",
+  "@tradeDeliverySuccess": {
+    "placeholders": { "count": {} }
+  },
+  "tradeHistoryTitle": "Trade history",
+  "tradeHistoryEmpty": "No trades yet",
+  "tradeHistoryEmptyDesc": "Completed and cancelled trades will appear here.",
+  "tradeHistoryCompleted": "Completed",
+  "tradeHistoryCancelled": "Cancelled",
+  "tradeHistoryStartedByMe": "You started",
+  "tradeHistoryReceivedRequest": "You received",
+  "tradeHistorySent": "Sent",
+  "tradeHistoryReceivedLabel": "Received",
+  "tradeHistoryDelivered": "{count} delivered",
+  "@tradeHistoryDelivered": {
+    "placeholders": { "count": {} }
+  },
+  "tradeHistoryStickerCount": "{count} sticker(s)",
+  "@tradeHistoryStickerCount": {
+    "placeholders": { "count": {} }
+  },
+  "tradeDrawerTitle": "Trade stickers",
+  "tradeDrawerActiveBadge": "ACTIVE",
+  "tradeErrorGeneric": "An error occurred in the trade. Please try again.",
+  "tradeErrorNotLoggedIn": "You must be signed in to trade stickers.",
+  "tradeErrorSelf": "You cannot trade stickers with yourself.",
+  "tradeErrorCodeNotFound": "No user was found with that code.",
+  "tradeErrorCodeLength": "The code must be exactly 6 digits.",
+  "tradeErrorActiveExists": "You already have an active trade. Complete or cancel it first.",
+  "tradeErrorNoConnection": "This feature requires an internet connection.",
+
+  "tradeRejectBtn": "Reject request",
+  "tradeDrawerRequestBadge": "REQUEST"
 }

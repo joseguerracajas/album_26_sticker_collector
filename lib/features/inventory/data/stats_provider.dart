@@ -4,6 +4,7 @@ import 'package:album_26_sticker_collector/features/catalog/data/album_variant_p
 import 'package:album_26_sticker_collector/features/catalog/data/categories_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/category.model.dart';
+import 'package:album_26_sticker_collector/features/trade/data/trade_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'inventory_provider.dart';
 
@@ -64,12 +65,15 @@ class CategoryStats {
 }
 
 // ---------------------------------------------------------------------------
-// Provider: estadísticas por categoría
+// Provider: estadísticas por categoría (considera stickers reservados)
 // ---------------------------------------------------------------------------
 final categoryStatsProvider = FutureProvider<List<CategoryStats>>((ref) async {
   final categories = await ref.watch(categoriesProvider.future);
   final allStickers = await ref.watch(allStickersProvider.future);
   final inventoryAsync = ref.watch(inventoryProvider);
+  final reservedCounts = await ref.watch(
+    myReservedStickerCountsProvider.future,
+  );
 
   if (!inventoryAsync.hasValue || inventoryAsync.value == null) return [];
   final inventory = inventoryAsync.value!;
@@ -94,7 +98,10 @@ final categoryStatsProvider = FutureProvider<List<CategoryStats>>((ref) async {
         totalCopies += qty;
       }
       if (totalCopies > 0) collected++;
-      if (totalCopies > 1) duplicateCopies += totalCopies - 1;
+      // Restar los reservados (que están en tránsito de entrega)
+      final reserved = reservedCounts[stickerId] ?? 0;
+      final availableCopies = totalCopies - reserved;
+      if (availableCopies > 1) duplicateCopies += availableCopies - 1;
     }
 
     return CategoryStats(

@@ -587,7 +587,7 @@ abstract class AppLocalizations {
   /// No description provided for @pendingScansItemLabel.
   ///
   /// In es, this message translates to:
-  /// **'Cromo: {code}'**
+  /// **'Sticker: {code}'**
   String pendingScansItemLabel(Object code);
 
   /// No description provided for @pendingScansSavedSuccess.
@@ -1363,6 +1363,588 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Más repetidos primero'**
   String get statsSortByDuplicates;
+
+  /// No description provided for @tradeHubTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Intercambio de Cromos'**
+  String get tradeHubTitle;
+
+  /// No description provided for @tradeHubMyCode.
+  ///
+  /// In es, this message translates to:
+  /// **'Mi código de intercambio'**
+  String get tradeHubMyCode;
+
+  /// No description provided for @tradeHubCodeCopied.
+  ///
+  /// In es, this message translates to:
+  /// **'Código copiado al portapapeles'**
+  String get tradeHubCodeCopied;
+
+  /// No description provided for @tradeHubShareHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Comparte este código o escanea el del otro usuario'**
+  String get tradeHubShareHint;
+
+  /// No description provided for @tradeHubNoActive.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin intercambio activo'**
+  String get tradeHubNoActive;
+
+  /// No description provided for @tradeHubNoActiveDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Inicia un intercambio ingresando el código de otro coleccionista.'**
+  String get tradeHubNoActiveDesc;
+
+  /// No description provided for @tradeHubStartBtn.
+  ///
+  /// In es, this message translates to:
+  /// **'Iniciar intercambio'**
+  String get tradeHubStartBtn;
+
+  /// No description provided for @tradeHubHistory.
+  ///
+  /// In es, this message translates to:
+  /// **'Historial'**
+  String get tradeHubHistory;
+
+  /// No description provided for @tradeHubCancel.
+  ///
+  /// In es, this message translates to:
+  /// **'Cancelar intercambio'**
+  String get tradeHubCancel;
+
+  /// No description provided for @tradeHubCancelTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Cancelar intercambio?'**
+  String get tradeHubCancelTitle;
+
+  /// No description provided for @tradeHubCancelMsg.
+  ///
+  /// In es, this message translates to:
+  /// **'Se cancelará el intercambio y los cromos volverán a tu inventario.'**
+  String get tradeHubCancelMsg;
+
+  /// No description provided for @tradeHubCancelYes.
+  ///
+  /// In es, this message translates to:
+  /// **'Sí, cancelar'**
+  String get tradeHubCancelYes;
+
+  /// No description provided for @tradeHubActiveLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Intercambio activo'**
+  String get tradeHubActiveLabel;
+
+  /// No description provided for @tradeStatusPending.
+  ///
+  /// In es, this message translates to:
+  /// **'Esperando respuesta'**
+  String get tradeStatusPending;
+
+  /// No description provided for @tradeStatusPendingDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'El otro usuario debe aceptar tu solicitud de intercambio.'**
+  String get tradeStatusPendingDesc;
+
+  /// No description provided for @tradeStatusIncoming.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Tienes una solicitud!'**
+  String get tradeStatusIncoming;
+
+  /// No description provided for @tradeStatusIncomingDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Alguien quiere intercambiar cromos contigo.'**
+  String get tradeStatusIncomingDesc;
+
+  /// No description provided for @tradeStatusSelecting.
+  ///
+  /// In es, this message translates to:
+  /// **'Seleccionando cromos'**
+  String get tradeStatusSelecting;
+
+  /// No description provided for @tradeStatusSelectingDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Ambos están eligiendo qué cromos ofrecer.'**
+  String get tradeStatusSelectingDesc;
+
+  /// No description provided for @tradeStatusMyConfirmed.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu oferta está lista'**
+  String get tradeStatusMyConfirmed;
+
+  /// No description provided for @tradeStatusMyConfirmedDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Esperando que el otro usuario confirme su oferta.'**
+  String get tradeStatusMyConfirmedDesc;
+
+  /// No description provided for @tradeStatusOtherConfirmed.
+  ///
+  /// In es, this message translates to:
+  /// **'El otro ya confirmó'**
+  String get tradeStatusOtherConfirmed;
+
+  /// No description provided for @tradeStatusOtherConfirmedDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Confirma tu selección de cromos para continuar.'**
+  String get tradeStatusOtherConfirmedDesc;
+
+  /// No description provided for @tradeStatusReservedLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Cromos reservados'**
+  String get tradeStatusReservedLabel;
+
+  /// No description provided for @tradeStatusReservedDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Intercambio acordado. Confirma cuando hayas recibido tus cromos.'**
+  String get tradeStatusReservedDesc;
+
+  /// No description provided for @tradeAcceptBtn.
+  ///
+  /// In es, this message translates to:
+  /// **'Aceptar intercambio'**
+  String get tradeAcceptBtn;
+
+  /// No description provided for @tradeSeeOfferBtn.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver intercambio'**
+  String get tradeSeeOfferBtn;
+
+  /// No description provided for @tradeSelectBtn.
+  ///
+  /// In es, this message translates to:
+  /// **'Seleccionar mis cromos'**
+  String get tradeSelectBtn;
+
+  /// No description provided for @tradeConfirmDeliveryBtn.
+  ///
+  /// In es, this message translates to:
+  /// **'Confirmar recepción'**
+  String get tradeConfirmDeliveryBtn;
+
+  /// No description provided for @tradeFindTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar coleccionista'**
+  String get tradeFindTitle;
+
+  /// No description provided for @tradeFindCodeTab.
+  ///
+  /// In es, this message translates to:
+  /// **'Código'**
+  String get tradeFindCodeTab;
+
+  /// No description provided for @tradeFindScanTab.
+  ///
+  /// In es, this message translates to:
+  /// **'Escanear QR'**
+  String get tradeFindScanTab;
+
+  /// No description provided for @tradeFindInstruction.
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa el código de 6 dígitos del coleccionista'**
+  String get tradeFindInstruction;
+
+  /// No description provided for @tradeFindHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Puedes encontrar el código en su pantalla de intercambio.'**
+  String get tradeFindHint;
+
+  /// No description provided for @tradeFindSearchBtn.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar'**
+  String get tradeFindSearchBtn;
+
+  /// No description provided for @tradeFindSearching.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscando…'**
+  String get tradeFindSearching;
+
+  /// No description provided for @tradeFindScanHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Apunta al código QR del otro coleccionista'**
+  String get tradeFindScanHint;
+
+  /// No description provided for @tradeFindPartnerFound.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Usuario encontrado!'**
+  String get tradeFindPartnerFound;
+
+  /// No description provided for @tradeFindPartnerCode.
+  ///
+  /// In es, this message translates to:
+  /// **'Código: {code}'**
+  String tradeFindPartnerCode(Object code);
+
+  /// No description provided for @tradeFindSendBtn.
+  ///
+  /// In es, this message translates to:
+  /// **'Enviar solicitud de intercambio'**
+  String get tradeFindSendBtn;
+
+  /// No description provided for @tradeFindSending.
+  ///
+  /// In es, this message translates to:
+  /// **'Enviando…'**
+  String get tradeFindSending;
+
+  /// No description provided for @tradeFindRequestSent.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Solicitud enviada a {name}! Espera su respuesta.'**
+  String tradeFindRequestSent(Object name);
+
+  /// No description provided for @tradeNegTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Negociación'**
+  String get tradeNegTitle;
+
+  /// No description provided for @tradeNegMyOfferTab.
+  ///
+  /// In es, this message translates to:
+  /// **'Mi oferta'**
+  String get tradeNegMyOfferTab;
+
+  /// No description provided for @tradeNegReceivingTab.
+  ///
+  /// In es, this message translates to:
+  /// **'Voy a recibir'**
+  String get tradeNegReceivingTab;
+
+  /// No description provided for @tradeNegAutoMode.
+  ///
+  /// In es, this message translates to:
+  /// **'Auto'**
+  String get tradeNegAutoMode;
+
+  /// No description provided for @tradeNegManualMode.
+  ///
+  /// In es, this message translates to:
+  /// **'Manual'**
+  String get tradeNegManualMode;
+
+  /// No description provided for @tradeNegAutoHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Modo automático: se muestran tus repetidos. Cambia a Manual para personalizar.'**
+  String get tradeNegAutoHint;
+
+  /// No description provided for @tradeNegSelectedCount.
+  ///
+  /// In es, this message translates to:
+  /// **'{count} cromo(s) seleccionado(s)'**
+  String tradeNegSelectedCount(Object count);
+
+  /// No description provided for @tradeNegNoStickers.
+  ///
+  /// In es, this message translates to:
+  /// **'No tienes cromos para ofrecer.'**
+  String get tradeNegNoStickers;
+
+  /// No description provided for @tradeNegPartnerWaiting.
+  ///
+  /// In es, this message translates to:
+  /// **'El otro coleccionista aún no ha seleccionado sus cromos.'**
+  String get tradeNegPartnerWaiting;
+
+  /// No description provided for @tradeNegOfferLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Ofrecerás {count} cromo(s)'**
+  String tradeNegOfferLabel(Object count);
+
+  /// No description provided for @tradeNegConfirmBtn.
+  ///
+  /// In es, this message translates to:
+  /// **'Confirmar mi oferta'**
+  String get tradeNegConfirmBtn;
+
+  /// No description provided for @tradeNegSaving.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardando…'**
+  String get tradeNegSaving;
+
+  /// No description provided for @tradeNegAtLeastOne.
+  ///
+  /// In es, this message translates to:
+  /// **'Selecciona al menos un cromo para ofrecer.'**
+  String get tradeNegAtLeastOne;
+
+  /// No description provided for @tradeNegOfferConfirmed.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Oferta confirmada! Esperando al otro coleccionista.'**
+  String get tradeNegOfferConfirmed;
+
+  /// No description provided for @tradeNegAlreadyConfirmedBanner.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu oferta está confirmada. Esperando al otro coleccionista.'**
+  String get tradeNegAlreadyConfirmedBanner;
+
+  /// No description provided for @tradeNegModifyOffer.
+  ///
+  /// In es, this message translates to:
+  /// **'Modificar mi oferta'**
+  String get tradeNegModifyOffer;
+
+  /// No description provided for @tradeNegModifyOfferWarning.
+  ///
+  /// In es, this message translates to:
+  /// **'Podrás cambiar los cromos que vas a dar. El otro coleccionista deberá esperar.'**
+  String get tradeNegModifyOfferWarning;
+
+  /// No description provided for @tradeNegQtyPickerTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Cuántos ofrecer?'**
+  String get tradeNegQtyPickerTitle;
+
+  /// No description provided for @tradeNegQtyPickerHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Tienes {total} copias. Máx. a ofrecer: {max}.'**
+  String tradeNegQtyPickerHint(Object total, Object max);
+
+  /// No description provided for @tradeNegOfferedQtyBadge.
+  ///
+  /// In es, this message translates to:
+  /// **'Ofreciendo {qty}'**
+  String tradeNegOfferedQtyBadge(Object qty);
+
+  /// No description provided for @tradeNegPartnerOfferUpdated.
+  ///
+  /// In es, this message translates to:
+  /// **'El otro coleccionista actualizó su oferta de cromos.'**
+  String get tradeNegPartnerOfferUpdated;
+
+  /// No description provided for @tradeNegTotalItems.
+  ///
+  /// In es, this message translates to:
+  /// **'{count} cromo(s) en total'**
+  String tradeNegTotalItems(Object count);
+
+  /// No description provided for @tradeNegReceivingCount.
+  ///
+  /// In es, this message translates to:
+  /// **'{count} cromo(s) que vas a recibir'**
+  String tradeNegReceivingCount(Object count);
+
+  /// No description provided for @tradeDeliveryTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Confirmar recepción'**
+  String get tradeDeliveryTitle;
+
+  /// No description provided for @tradeDeliveryInstruction.
+  ///
+  /// In es, this message translates to:
+  /// **'Marca los cromos que recibiste físicamente'**
+  String get tradeDeliveryInstruction;
+
+  /// No description provided for @tradeDeliveryDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Los marcados se añadirán a tu álbum. Los desmarcados volverán al inventario del otro coleccionista.'**
+  String get tradeDeliveryDesc;
+
+  /// No description provided for @tradeDeliveryNoOffer.
+  ///
+  /// In es, this message translates to:
+  /// **'El otro coleccionista no ofreció ningún cromo.'**
+  String get tradeDeliveryNoOffer;
+
+  /// No description provided for @tradeDeliveryNotReceived.
+  ///
+  /// In es, this message translates to:
+  /// **'No recibido'**
+  String get tradeDeliveryNotReceived;
+
+  /// No description provided for @tradeDeliveryAllReceived.
+  ///
+  /// In es, this message translates to:
+  /// **'Recibiste todos los cromos ({received}/{total})'**
+  String tradeDeliveryAllReceived(Object received, Object total);
+
+  /// No description provided for @tradeDeliveryPartial.
+  ///
+  /// In es, this message translates to:
+  /// **'{received} de {total} marcados · {pending} volverán al otro coleccionista.'**
+  String tradeDeliveryPartial(Object received, Object total, Object pending);
+
+  /// No description provided for @tradeDeliveryConfirmTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Confirmar recepción'**
+  String get tradeDeliveryConfirmTitle;
+
+  /// No description provided for @tradeDeliveryConfirmMsg.
+  ///
+  /// In es, this message translates to:
+  /// **'Se añadirán {received} cromo(s) a tu álbum.\n{pending} cromo(s) desmarcados volverán al otro coleccionista.'**
+  String tradeDeliveryConfirmMsg(Object received, Object pending);
+
+  /// No description provided for @tradeDeliverySuccess.
+  ///
+  /// In es, this message translates to:
+  /// **'¡{count} cromo(s) añadidos a tu álbum! 🏆'**
+  String tradeDeliverySuccess(Object count);
+
+  /// No description provided for @tradeHistoryTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Historial de intercambios'**
+  String get tradeHistoryTitle;
+
+  /// No description provided for @tradeHistoryEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin intercambios todavía'**
+  String get tradeHistoryEmpty;
+
+  /// No description provided for @tradeHistoryEmptyDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Los intercambios completados y cancelados aparecerán aquí.'**
+  String get tradeHistoryEmptyDesc;
+
+  /// No description provided for @tradeHistoryCompleted.
+  ///
+  /// In es, this message translates to:
+  /// **'Completado'**
+  String get tradeHistoryCompleted;
+
+  /// No description provided for @tradeHistoryCancelled.
+  ///
+  /// In es, this message translates to:
+  /// **'Cancelado'**
+  String get tradeHistoryCancelled;
+
+  /// No description provided for @tradeHistoryStartedByMe.
+  ///
+  /// In es, this message translates to:
+  /// **'Tú iniciaste'**
+  String get tradeHistoryStartedByMe;
+
+  /// No description provided for @tradeHistoryReceivedRequest.
+  ///
+  /// In es, this message translates to:
+  /// **'Recibiste solicitud'**
+  String get tradeHistoryReceivedRequest;
+
+  /// No description provided for @tradeHistorySent.
+  ///
+  /// In es, this message translates to:
+  /// **'Enviaste'**
+  String get tradeHistorySent;
+
+  /// No description provided for @tradeHistoryReceivedLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Recibiste'**
+  String get tradeHistoryReceivedLabel;
+
+  /// No description provided for @tradeHistoryDelivered.
+  ///
+  /// In es, this message translates to:
+  /// **'{count} entregado(s)'**
+  String tradeHistoryDelivered(Object count);
+
+  /// No description provided for @tradeHistoryStickerCount.
+  ///
+  /// In es, this message translates to:
+  /// **'{count} cromo(s)'**
+  String tradeHistoryStickerCount(Object count);
+
+  /// No description provided for @tradeDrawerTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Intercambiar cromos'**
+  String get tradeDrawerTitle;
+
+  /// No description provided for @tradeDrawerActiveBadge.
+  ///
+  /// In es, this message translates to:
+  /// **'ACTIVO'**
+  String get tradeDrawerActiveBadge;
+
+  /// No description provided for @tradeErrorGeneric.
+  ///
+  /// In es, this message translates to:
+  /// **'Ocurrió un error en el intercambio. Inténtalo de nuevo.'**
+  String get tradeErrorGeneric;
+
+  /// No description provided for @tradeErrorNotLoggedIn.
+  ///
+  /// In es, this message translates to:
+  /// **'Debes iniciar sesión para intercambiar cromos.'**
+  String get tradeErrorNotLoggedIn;
+
+  /// No description provided for @tradeErrorSelf.
+  ///
+  /// In es, this message translates to:
+  /// **'No puedes intercambiar cromos contigo mismo.'**
+  String get tradeErrorSelf;
+
+  /// No description provided for @tradeErrorCodeNotFound.
+  ///
+  /// In es, this message translates to:
+  /// **'No se encontró ningún usuario con ese código.'**
+  String get tradeErrorCodeNotFound;
+
+  /// No description provided for @tradeErrorCodeLength.
+  ///
+  /// In es, this message translates to:
+  /// **'El código debe tener exactamente 6 dígitos.'**
+  String get tradeErrorCodeLength;
+
+  /// No description provided for @tradeErrorActiveExists.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya tienes un intercambio activo. Completa o cancela el actual primero.'**
+  String get tradeErrorActiveExists;
+
+  /// No description provided for @tradeErrorNoConnection.
+  ///
+  /// In es, this message translates to:
+  /// **'Esta función requiere conexión a internet.'**
+  String get tradeErrorNoConnection;
+
+  /// No description provided for @tradeRejectBtn.
+  ///
+  /// In es, this message translates to:
+  /// **'Rechazar solicitud'**
+  String get tradeRejectBtn;
+
+  /// No description provided for @tradeDrawerRequestBadge.
+  ///
+  /// In es, this message translates to:
+  /// **'SOLICITUD'**
+  String get tradeDrawerRequestBadge;
 }
 
 class _AppLocalizationsDelegate

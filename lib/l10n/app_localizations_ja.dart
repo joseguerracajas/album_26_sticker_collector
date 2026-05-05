@@ -672,4 +672,350 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get statsSortByDuplicates => '重複枚数順';
+
+  @override
+  String get tradeHubTitle => 'Intercambio de Cromos';
+
+  @override
+  String get tradeHubMyCode => 'Mi código de intercambio';
+
+  @override
+  String get tradeHubCodeCopied => 'Código copiado al portapapeles';
+
+  @override
+  String get tradeHubShareHint =>
+      'Comparte este código o escanea el del otro usuario';
+
+  @override
+  String get tradeHubNoActive => 'Sin intercambio activo';
+
+  @override
+  String get tradeHubNoActiveDesc =>
+      'Inicia un intercambio ingresando el código de otro coleccionista.';
+
+  @override
+  String get tradeHubStartBtn => 'Iniciar intercambio';
+
+  @override
+  String get tradeHubHistory => 'Historial';
+
+  @override
+  String get tradeHubCancel => 'Cancelar intercambio';
+
+  @override
+  String get tradeHubCancelTitle => '¿Cancelar intercambio?';
+
+  @override
+  String get tradeHubCancelMsg =>
+      'Se cancelará el intercambio y los cromos volverán a tu inventario.';
+
+  @override
+  String get tradeHubCancelYes => 'Sí, cancelar';
+
+  @override
+  String get tradeHubActiveLabel => 'Intercambio activo';
+
+  @override
+  String get tradeStatusPending => 'Esperando respuesta';
+
+  @override
+  String get tradeStatusPendingDesc =>
+      'El otro usuario debe aceptar tu solicitud de intercambio.';
+
+  @override
+  String get tradeStatusIncoming => '¡Tienes una solicitud!';
+
+  @override
+  String get tradeStatusIncomingDesc =>
+      'Alguien quiere intercambiar cromos contigo.';
+
+  @override
+  String get tradeStatusSelecting => 'Seleccionando cromos';
+
+  @override
+  String get tradeStatusSelectingDesc =>
+      'Ambos están eligiendo qué cromos ofrecer.';
+
+  @override
+  String get tradeStatusMyConfirmed => 'Tu oferta está lista';
+
+  @override
+  String get tradeStatusMyConfirmedDesc =>
+      'Esperando que el otro usuario confirme su oferta.';
+
+  @override
+  String get tradeStatusOtherConfirmed => 'El otro ya confirmó';
+
+  @override
+  String get tradeStatusOtherConfirmedDesc =>
+      'Confirma tu selección de cromos para continuar.';
+
+  @override
+  String get tradeStatusReservedLabel => 'Cromos reservados';
+
+  @override
+  String get tradeStatusReservedDesc =>
+      'Intercambio acordado. Confirma cuando hayas recibido tus cromos.';
+
+  @override
+  String get tradeAcceptBtn => 'Aceptar intercambio';
+
+  @override
+  String get tradeSeeOfferBtn => 'Ver intercambio';
+
+  @override
+  String get tradeSelectBtn => 'Seleccionar mis cromos';
+
+  @override
+  String get tradeConfirmDeliveryBtn => 'Confirmar recepción';
+
+  @override
+  String get tradeFindTitle => 'Buscar coleccionista';
+
+  @override
+  String get tradeFindCodeTab => 'Código';
+
+  @override
+  String get tradeFindScanTab => 'Escanear QR';
+
+  @override
+  String get tradeFindInstruction =>
+      'Ingresa el código de 6 dígitos del coleccionista';
+
+  @override
+  String get tradeFindHint =>
+      'Puedes encontrar el código en su pantalla de intercambio.';
+
+  @override
+  String get tradeFindSearchBtn => 'Buscar';
+
+  @override
+  String get tradeFindSearching => 'Buscando…';
+
+  @override
+  String get tradeFindScanHint => 'Apunta al código QR del otro coleccionista';
+
+  @override
+  String get tradeFindPartnerFound => '¡Usuario encontrado!';
+
+  @override
+  String tradeFindPartnerCode(Object code) {
+    return 'Código: $code';
+  }
+
+  @override
+  String get tradeFindSendBtn => 'Enviar solicitud de intercambio';
+
+  @override
+  String get tradeFindSending => 'Enviando…';
+
+  @override
+  String tradeFindRequestSent(Object name) {
+    return '¡Solicitud enviada a $name! Espera su respuesta.';
+  }
+
+  @override
+  String get tradeNegTitle => 'Negociación';
+
+  @override
+  String get tradeNegMyOfferTab => 'Mi oferta';
+
+  @override
+  String get tradeNegReceivingTab => 'Voy a recibir';
+
+  @override
+  String get tradeNegAutoMode => 'Auto';
+
+  @override
+  String get tradeNegManualMode => 'Manual';
+
+  @override
+  String get tradeNegAutoHint =>
+      'Modo automático: se muestran tus repetidos. Cambia a Manual para personalizar.';
+
+  @override
+  String tradeNegSelectedCount(Object count) {
+    return '$count cromo(s) seleccionado(s)';
+  }
+
+  @override
+  String get tradeNegNoStickers => 'No tienes cromos para ofrecer.';
+
+  @override
+  String get tradeNegPartnerWaiting =>
+      'El otro coleccionista aún no ha seleccionado sus cromos.';
+
+  @override
+  String tradeNegOfferLabel(Object count) {
+    return 'Ofrecerás $count cromo(s)';
+  }
+
+  @override
+  String get tradeNegConfirmBtn => 'Confirmar mi oferta';
+
+  @override
+  String get tradeNegSaving => 'Guardando…';
+
+  @override
+  String get tradeNegAtLeastOne => 'Selecciona al menos un cromo para ofrecer.';
+
+  @override
+  String get tradeNegOfferConfirmed =>
+      '¡Oferta confirmada! Esperando al otro coleccionista.';
+
+  @override
+  String get tradeNegAlreadyConfirmedBanner =>
+      'Tu oferta está confirmada. Esperando al otro coleccionista.';
+
+  @override
+  String get tradeNegModifyOffer => 'Modificar mi oferta';
+
+  @override
+  String get tradeNegModifyOfferWarning =>
+      'Podrás cambiar los cromos que vas a dar. El otro coleccionista deberá esperar.';
+
+  @override
+  String get tradeNegQtyPickerTitle => '¿Cuántos ofrecer?';
+
+  @override
+  String tradeNegQtyPickerHint(Object total, Object max) {
+    return 'Tienes $total copias. Máx. a ofrecer: $max.';
+  }
+
+  @override
+  String tradeNegOfferedQtyBadge(Object qty) {
+    return 'Ofreciendo $qty';
+  }
+
+  @override
+  String get tradeNegPartnerOfferUpdated =>
+      'El otro coleccionista actualizó su oferta de cromos.';
+
+  @override
+  String tradeNegTotalItems(Object count) {
+    return '$count cromo(s) en total';
+  }
+
+  @override
+  String tradeNegReceivingCount(Object count) {
+    return '$count cromo(s) que vas a recibir';
+  }
+
+  @override
+  String get tradeDeliveryTitle => 'Confirmar recepción';
+
+  @override
+  String get tradeDeliveryInstruction =>
+      'Marca los cromos que recibiste físicamente';
+
+  @override
+  String get tradeDeliveryDesc =>
+      'Los marcados se añadirán a tu álbum. Los desmarcados volverán al inventario del otro coleccionista.';
+
+  @override
+  String get tradeDeliveryNoOffer =>
+      'El otro coleccionista no ofreció ningún cromo.';
+
+  @override
+  String get tradeDeliveryNotReceived => 'No recibido';
+
+  @override
+  String tradeDeliveryAllReceived(Object received, Object total) {
+    return 'Recibiste todos los cromos ($received/$total)';
+  }
+
+  @override
+  String tradeDeliveryPartial(Object received, Object total, Object pending) {
+    return '$received de $total marcados · $pending volverán al otro coleccionista.';
+  }
+
+  @override
+  String get tradeDeliveryConfirmTitle => 'Confirmar recepción';
+
+  @override
+  String tradeDeliveryConfirmMsg(Object received, Object pending) {
+    return 'Se añadirán $received cromo(s) a tu álbum.\n$pending cromo(s) desmarcados volverán al otro coleccionista.';
+  }
+
+  @override
+  String tradeDeliverySuccess(Object count) {
+    return '¡$count cromo(s) añadidos a tu álbum! 🏆';
+  }
+
+  @override
+  String get tradeHistoryTitle => 'Historial de intercambios';
+
+  @override
+  String get tradeHistoryEmpty => 'Sin intercambios todavía';
+
+  @override
+  String get tradeHistoryEmptyDesc =>
+      'Los intercambios completados y cancelados aparecerán aquí.';
+
+  @override
+  String get tradeHistoryCompleted => 'Completado';
+
+  @override
+  String get tradeHistoryCancelled => 'Cancelado';
+
+  @override
+  String get tradeHistoryStartedByMe => 'Tú iniciaste';
+
+  @override
+  String get tradeHistoryReceivedRequest => 'Recibiste solicitud';
+
+  @override
+  String get tradeHistorySent => 'Enviaste';
+
+  @override
+  String get tradeHistoryReceivedLabel => 'Recibiste';
+
+  @override
+  String tradeHistoryDelivered(Object count) {
+    return '$count entregado(s)';
+  }
+
+  @override
+  String tradeHistoryStickerCount(Object count) {
+    return '$count cromo(s)';
+  }
+
+  @override
+  String get tradeDrawerTitle => 'Intercambiar cromos';
+
+  @override
+  String get tradeDrawerActiveBadge => 'ACTIVO';
+
+  @override
+  String get tradeErrorGeneric =>
+      'Ocurrió un error en el intercambio. Inténtalo de nuevo.';
+
+  @override
+  String get tradeErrorNotLoggedIn =>
+      'Debes iniciar sesión para intercambiar cromos.';
+
+  @override
+  String get tradeErrorSelf => 'No puedes intercambiar cromos contigo mismo.';
+
+  @override
+  String get tradeErrorCodeNotFound =>
+      'No se encontró ningún usuario con ese código.';
+
+  @override
+  String get tradeErrorCodeLength =>
+      'El código debe tener exactamente 6 dígitos.';
+
+  @override
+  String get tradeErrorActiveExists =>
+      'Ya tienes un intercambio activo. Completa o cancela el actual primero.';
+
+  @override
+  String get tradeErrorNoConnection =>
+      'Esta función requiere conexión a internet.';
+
+  @override
+  String get tradeRejectBtn => 'Rechazar solicitud';
+
+  @override
+  String get tradeDrawerRequestBadge => 'SOLICITUD';
 }

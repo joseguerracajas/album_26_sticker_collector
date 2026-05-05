@@ -28,6 +28,16 @@ class AppRepository extends OfflineFirstWithSupabaseRepository {
   }) async {
     final (client, queue) = OfflineFirstWithSupabaseRepository.clientQueue(
       databaseFactory: databaseFactory,
+      // Excluir rutas de trade: no deben ser encoladas/reintentadas por Brick.
+      // Las operaciones de trade deben fallar rápido y que el usuario reintente.
+      ignorePaths: const {
+        '/auth/v1',
+        '/storage/v1',
+        '/rest/v1/rpc/',
+        '/rest/v1/trade_sessions',
+        '/rest/v1/trade_offers',
+        '/rest/v1/user_trade_codes',
+      },
     );
 
     await Supabase.initialize(
@@ -57,6 +67,9 @@ class AppRepository extends OfflineFirstWithSupabaseRepository {
       memoryCacheProvider: MemoryCacheProvider(),
     );
 
+    // Limpiar solicitudes RPC heredadas de la cola offline antes de arrancar
+    await clearQueuedRpcRequests();
+
     // 2. ¡MÁXIMA IMPORTANCIA!: Inicializar para correr migraciones
     await _singleton!.initialize();
   }
@@ -67,5 +80,22 @@ class AppRepository extends OfflineFirstWithSupabaseRepository {
 
   void stopSyncQueue() {
     offlineRequestQueue.stop();
+  }
+
+  /// Elimina de la cola offline cualquier request encolada a endpoints /rpc/
+  /// que ya no se usan. Llámarse al inicio de la app para limpiar
+  /// solicitudes heredadas que de lo contrario se reintentan indefinidamente.
+  static Future<void> clearQueuedRpcRequests() async {
+    try {
+      final dbPath = p.join(
+        await getDatabasesPath(),
+        'brick_offline_queue.sqlite',
+      );
+      final db = await openDatabase(dbPath);
+      await db.delete('HttpJobs', where: 'url LIKE ?', whereArgs: ['%/rpc/%']);
+      await db.close();
+    } catch (_) {
+      // Si el archivo no existe todavía, no hay nada que limpiar.
+    }
   }
 }

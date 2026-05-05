@@ -109,7 +109,7 @@
   "scannerOverlayHint": "Centra la parte trasera del cromo aquí",
   "pendingScansTitle": "Cromos Escaneados",
   "pendingScansEmpty": "Aún no has escaneado ningún cromo",
-  "pendingScansItemLabel": "Cromo: {code}",
+  "pendingScansItemLabel": "Sticker: {code}",
   "@pendingScansItemLabel": {
     "placeholders": {
       "code": {}
@@ -302,5 +302,146 @@
   "statsSortByProgressDesc": "Mayor progreso primero",
   "statsSortByProgressAsc": "Menor progreso primero",
   "statsSortByMissing": "Más faltantes primero",
-  "statsSortByDuplicates": "Más repetidos primero"
+  "statsSortByDuplicates": "Más repetidos primero",
+
+  "tradeHubTitle": "Intercambio de Cromos",
+  "tradeHubMyCode": "Mi código de intercambio",
+  "tradeHubCodeCopied": "Código copiado al portapapeles",
+  "tradeHubShareHint": "Comparte este código o escanea el del otro usuario",
+  "tradeHubNoActive": "Sin intercambio activo",
+  "tradeHubNoActiveDesc": "Inicia un intercambio ingresando el código de otro coleccionista.",
+  "tradeHubStartBtn": "Iniciar intercambio",
+  "tradeHubHistory": "Historial",
+  "tradeHubCancel": "Cancelar intercambio",
+  "tradeHubCancelTitle": "¿Cancelar intercambio?",
+  "tradeHubCancelMsg": "Se cancelará el intercambio y los cromos volverán a tu inventario.",
+  "tradeHubCancelYes": "Sí, cancelar",
+  "tradeHubActiveLabel": "Intercambio activo",
+  "tradeStatusPending": "Esperando respuesta",
+  "tradeStatusPendingDesc": "El otro usuario debe aceptar tu solicitud de intercambio.",
+  "tradeStatusIncoming": "¡Tienes una solicitud!",
+  "tradeStatusIncomingDesc": "Alguien quiere intercambiar cromos contigo.",
+  "tradeStatusSelecting": "Seleccionando cromos",
+  "tradeStatusSelectingDesc": "Ambos están eligiendo qué cromos ofrecer.",
+  "tradeStatusMyConfirmed": "Tu oferta está lista",
+  "tradeStatusMyConfirmedDesc": "Esperando que el otro usuario confirme su oferta.",
+  "tradeStatusOtherConfirmed": "El otro ya confirmó",
+  "tradeStatusOtherConfirmedDesc": "Confirma tu selección de cromos para continuar.",
+  "tradeStatusReservedLabel": "Cromos reservados",
+  "tradeStatusReservedDesc": "Intercambio acordado. Confirma cuando hayas recibido tus cromos.",
+  "tradeAcceptBtn": "Aceptar intercambio",
+  "tradeSeeOfferBtn": "Ver intercambio",
+  "tradeSelectBtn": "Seleccionar mis cromos",
+  "tradeConfirmDeliveryBtn": "Confirmar recepción",
+  "tradeFindTitle": "Buscar coleccionista",
+  "tradeFindCodeTab": "Código",
+  "tradeFindScanTab": "Escanear QR",
+  "tradeFindInstruction": "Ingresa el código de 6 dígitos del coleccionista",
+  "tradeFindHint": "Puedes encontrar el código en su pantalla de intercambio.",
+  "tradeFindSearchBtn": "Buscar",
+  "tradeFindSearching": "Buscando…",
+  "tradeFindScanHint": "Apunta al código QR del otro coleccionista",
+  "tradeFindPartnerFound": "¡Usuario encontrado!",
+  "tradeFindPartnerCode": "Código: {code}",
+  "@tradeFindPartnerCode": {
+    "placeholders": { "code": {} }
+  },
+  "tradeFindSendBtn": "Enviar solicitud de intercambio",
+  "tradeFindSending": "Enviando…",
+  "tradeFindRequestSent": "¡Solicitud enviada a {name}! Espera su respuesta.",
+  "@tradeFindRequestSent": {
+    "placeholders": { "name": {} }
+  },
+  "tradeNegTitle": "Negociación",
+  "tradeNegMyOfferTab": "Mi oferta",
+  "tradeNegReceivingTab": "Voy a recibir",
+  "tradeNegAutoMode": "Auto",
+  "tradeNegManualMode": "Manual",
+  "tradeNegAutoHint": "Modo automático: se muestran tus repetidos. Cambia a Manual para personalizar.",
+  "tradeNegSelectedCount": "{count} cromo(s) seleccionado(s)",
+  "@tradeNegSelectedCount": {
+    "placeholders": { "count": {} }
+  },
+  "tradeNegNoStickers": "No tienes cromos para ofrecer.",
+  "tradeNegPartnerWaiting": "El otro coleccionista aún no ha seleccionado sus cromos.",
+  "tradeNegOfferLabel": "Ofrecerás {count} cromo(s)",
+  "@tradeNegOfferLabel": {
+    "placeholders": { "count": {} }
+  },
+  "tradeNegConfirmBtn": "Confirmar mi oferta",
+  "tradeNegSaving": "Guardando…",
+  "tradeNegAtLeastOne": "Selecciona al menos un cromo para ofrecer.",
+  "tradeNegOfferConfirmed": "¡Oferta confirmada! Esperando al otro coleccionista.",
+  "tradeNegAlreadyConfirmedBanner": "Tu oferta está confirmada. Esperando al otro coleccionista.",
+  "tradeNegModifyOffer": "Modificar mi oferta",
+  "tradeNegModifyOfferWarning": "Podrás cambiar los cromos que vas a dar. El otro coleccionista deberá esperar.",
+  "tradeNegQtyPickerTitle": "¿Cuántos ofrecer?",
+  "tradeNegQtyPickerHint": "Tienes {total} copias. Máx. a ofrecer: {max}.",
+  "@tradeNegQtyPickerHint": {
+    "placeholders": { "total": {}, "max": {} }
+  },
+  "tradeNegOfferedQtyBadge": "Ofreciendo {qty}",
+  "@tradeNegOfferedQtyBadge": {
+    "placeholders": { "qty": {} }
+  },
+  "tradeNegPartnerOfferUpdated": "El otro coleccionista actualizó su oferta de cromos.",
+  "tradeNegTotalItems": "{count} cromo(s) en total",
+  "@tradeNegTotalItems": {
+    "placeholders": { "count": {} }
+  },
+  "tradeNegReceivingCount": "{count} cromo(s) que vas a recibir",
+  "@tradeNegReceivingCount": {
+    "placeholders": { "count": {} }
+  },
+  "tradeDeliveryTitle": "Confirmar recepción",
+  "tradeDeliveryInstruction": "Marca los cromos que recibiste físicamente",
+  "tradeDeliveryDesc": "Los marcados se añadirán a tu álbum. Los desmarcados volverán al inventario del otro coleccionista.",
+  "tradeDeliveryNoOffer": "El otro coleccionista no ofreció ningún cromo.",
+  "tradeDeliveryNotReceived": "No recibido",
+  "tradeDeliveryAllReceived": "Recibiste todos los cromos ({received}/{total})",
+  "@tradeDeliveryAllReceived": {
+    "placeholders": { "received": {}, "total": {} }
+  },
+  "tradeDeliveryPartial": "{received} de {total} marcados · {pending} volverán al otro coleccionista.",
+  "@tradeDeliveryPartial": {
+    "placeholders": { "received": {}, "total": {}, "pending": {} }
+  },
+  "tradeDeliveryConfirmTitle": "Confirmar recepción",
+  "tradeDeliveryConfirmMsg": "Se añadirán {received} cromo(s) a tu álbum.\n{pending} cromo(s) desmarcados volverán al otro coleccionista.",
+  "@tradeDeliveryConfirmMsg": {
+    "placeholders": { "received": {}, "pending": {} }
+  },
+  "tradeDeliverySuccess": "¡{count} cromo(s) añadidos a tu álbum! 🏆",
+  "@tradeDeliverySuccess": {
+    "placeholders": { "count": {} }
+  },
+  "tradeHistoryTitle": "Historial de intercambios",
+  "tradeHistoryEmpty": "Sin intercambios todavía",
+  "tradeHistoryEmptyDesc": "Los intercambios completados y cancelados aparecerán aquí.",
+  "tradeHistoryCompleted": "Completado",
+  "tradeHistoryCancelled": "Cancelado",
+  "tradeHistoryStartedByMe": "Tú iniciaste",
+  "tradeHistoryReceivedRequest": "Recibiste solicitud",
+  "tradeHistorySent": "Enviaste",
+  "tradeHistoryReceivedLabel": "Recibiste",
+  "tradeHistoryDelivered": "{count} entregado(s)",
+  "@tradeHistoryDelivered": {
+    "placeholders": { "count": {} }
+  },
+  "tradeHistoryStickerCount": "{count} cromo(s)",
+  "@tradeHistoryStickerCount": {
+    "placeholders": { "count": {} }
+  },
+  "tradeDrawerTitle": "Intercambiar cromos",
+  "tradeDrawerActiveBadge": "ACTIVO",
+  "tradeErrorGeneric": "Ocurrió un error en el intercambio. Inténtalo de nuevo.",
+  "tradeErrorNotLoggedIn": "Debes iniciar sesión para intercambiar cromos.",
+  "tradeErrorSelf": "No puedes intercambiar cromos contigo mismo.",
+  "tradeErrorCodeNotFound": "No se encontró ningún usuario con ese código.",
+  "tradeErrorCodeLength": "El código debe tener exactamente 6 dígitos.",
+  "tradeErrorActiveExists": "Ya tienes un intercambio activo. Completa o cancela el actual primero.",
+  "tradeErrorNoConnection": "Esta función requiere conexión a internet.",
+
+  "tradeRejectBtn": "Rechazar solicitud",
+  "tradeDrawerRequestBadge": "SOLICITUD"
 }

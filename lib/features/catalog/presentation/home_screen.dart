@@ -20,6 +20,8 @@ import 'package:album_26_sticker_collector/features/catalog/presentation/widgets
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/stats_provider.dart';
 import 'package:album_26_sticker_collector/features/monetization/data/ads_provider.dart';
+import 'package:album_26_sticker_collector/features/trade/data/trade_provider.dart';
+import 'package:album_26_sticker_collector/features/trade/presentation/trade_hub_screen.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -742,7 +744,9 @@ class _AppDrawer extends ConsumerWidget {
               },
             ),
 
-            // Opción: Estadísticas
+            // Opción: Intercambiar cromos
+            const Divider(color: Color(0xFF2A2A2A)),
+            const _TradeDrawerTile(),
             const Divider(color: Color(0xFF2A2A2A)),
             ListTile(
               leading: const Icon(Icons.bar_chart_rounded, color: Colors.amber),
@@ -814,6 +818,165 @@ class _AppDrawer extends ConsumerWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Tile de intercambio con badge de sesión activa
+// ─────────────────────────────────────────────────────────────────────────────
+
+class _TradeDrawerTile extends ConsumerWidget {
+  const _TradeDrawerTile();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final myId = supabase.auth.currentUser?.id;
+    final sessionsAsync = ref.watch(activeTradeSessionsProvider);
+
+    final sessions = sessionsAsync.asData?.value ?? [];
+    final hasActive = sessions.isNotEmpty;
+
+    // Solicitud ENTRANTE: alguna sesión está en pending_acceptance y yo soy el receptor
+    final hasIncomingRequest =
+        hasActive &&
+        myId != null &&
+        sessions.any(
+          (s) => s.status == 'pending_acceptance' && s.initiatorId != myId,
+        );
+
+    return ListTile(
+      leading: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Icon(
+            hasIncomingRequest
+                ? Icons.notifications_active_rounded
+                : Icons.swap_horiz_rounded,
+            color: Colors.amber,
+          ),
+          if (hasIncomingRequest)
+            Positioned(
+              top: -5,
+              right: -5,
+              child:
+                  Container(
+                        width: 14,
+                        height: 14,
+                        decoration: const BoxDecoration(
+                          color: Colors.orange,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.priority_high_rounded,
+                          size: 10,
+                          color: Colors.white,
+                        ),
+                      )
+                      .animate(onPlay: (c) => c.repeat())
+                      .scaleXY(
+                        begin: 0.8,
+                        end: 1.25,
+                        duration: 600.ms,
+                        curve: Curves.easeInOut,
+                      )
+                      .then()
+                      .scaleXY(
+                        begin: 1.25,
+                        end: 0.8,
+                        duration: 600.ms,
+                        curve: Curves.easeInOut,
+                      ),
+            )
+          else if (hasActive)
+            Positioned(
+              top: -4,
+              right: -4,
+              child: Container(
+                width: 10,
+                height: 10,
+                decoration: const BoxDecoration(
+                  color: Colors.green,
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ),
+        ],
+      ),
+      title: Row(
+        children: [
+          Expanded(
+            child: Text(
+              l10n.tradeDrawerTitle,
+              style: const TextStyle(color: Colors.white),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          if (hasIncomingRequest) ...[
+            const SizedBox(width: 8),
+            Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 6,
+                    vertical: 2,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.orange.withValues(alpha: 0.2),
+                    borderRadius: BorderRadius.circular(6),
+                    border: Border.all(
+                      color: Colors.orange.withValues(alpha: 0.6),
+                      width: 1,
+                    ),
+                  ),
+                  child: Text(
+                    l10n.tradeDrawerRequestBadge,
+                    style: const TextStyle(
+                      color: Colors.orange,
+                      fontSize: 9,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                )
+                .animate(onPlay: (c) => c.repeat())
+                .shimmer(
+                  duration: 1400.ms,
+                  color: Colors.orange.withValues(alpha: 0.4),
+                ),
+          ] else if (hasActive) ...[
+            const SizedBox(width: 8),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+              decoration: BoxDecoration(
+                color: Colors.green.withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: Text(
+                l10n.tradeDrawerActiveBadge,
+                style: const TextStyle(
+                  color: Colors.green,
+                  fontSize: 9,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.5,
+                ),
+              ),
+            ),
+          ],
+        ],
+      ),
+      trailing: const Icon(
+        Icons.chevron_right,
+        color: Colors.white24,
+        size: 18,
+      ),
+      onTap: () {
+        Navigator.pop(context);
+        HapticFeedback.lightImpact();
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const TradeHubScreen()),
+        );
+      },
     );
   }
 }

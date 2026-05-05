@@ -701,4 +701,346 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get statsSortByDuplicates => 'Most duplicates first';
+
+  @override
+  String get tradeHubTitle => 'Sticker Trading';
+
+  @override
+  String get tradeHubMyCode => 'My trade code';
+
+  @override
+  String get tradeHubCodeCopied => 'Code copied to clipboard';
+
+  @override
+  String get tradeHubShareHint =>
+      'Share this code or scan the other user\'s QR';
+
+  @override
+  String get tradeHubNoActive => 'No active trade';
+
+  @override
+  String get tradeHubNoActiveDesc =>
+      'Start a trade by entering another collector\'s code.';
+
+  @override
+  String get tradeHubStartBtn => 'Start trade';
+
+  @override
+  String get tradeHubHistory => 'History';
+
+  @override
+  String get tradeHubCancel => 'Cancel trade';
+
+  @override
+  String get tradeHubCancelTitle => 'Cancel trade?';
+
+  @override
+  String get tradeHubCancelMsg =>
+      'The trade will be cancelled and stickers will return to your inventory.';
+
+  @override
+  String get tradeHubCancelYes => 'Yes, cancel';
+
+  @override
+  String get tradeHubActiveLabel => 'Active trade';
+
+  @override
+  String get tradeStatusPending => 'Waiting for response';
+
+  @override
+  String get tradeStatusPendingDesc =>
+      'The other user must accept your trade request.';
+
+  @override
+  String get tradeStatusIncoming => 'You have a request!';
+
+  @override
+  String get tradeStatusIncomingDesc =>
+      'Someone wants to trade stickers with you.';
+
+  @override
+  String get tradeStatusSelecting => 'Selecting stickers';
+
+  @override
+  String get tradeStatusSelectingDesc =>
+      'Both of you are choosing what stickers to offer.';
+
+  @override
+  String get tradeStatusMyConfirmed => 'Your offer is ready';
+
+  @override
+  String get tradeStatusMyConfirmedDesc =>
+      'Waiting for the other user to confirm their offer.';
+
+  @override
+  String get tradeStatusOtherConfirmed => 'The other confirmed';
+
+  @override
+  String get tradeStatusOtherConfirmedDesc =>
+      'Confirm your sticker selection to continue.';
+
+  @override
+  String get tradeStatusReservedLabel => 'Stickers reserved';
+
+  @override
+  String get tradeStatusReservedDesc =>
+      'Trade agreed. Confirm when you have received your stickers.';
+
+  @override
+  String get tradeAcceptBtn => 'Accept trade';
+
+  @override
+  String get tradeSeeOfferBtn => 'View trade';
+
+  @override
+  String get tradeSelectBtn => 'Select my stickers';
+
+  @override
+  String get tradeConfirmDeliveryBtn => 'Confirm receipt';
+
+  @override
+  String get tradeFindTitle => 'Find collector';
+
+  @override
+  String get tradeFindCodeTab => 'Code';
+
+  @override
+  String get tradeFindScanTab => 'Scan QR';
+
+  @override
+  String get tradeFindInstruction => 'Enter the collector\'s 6-digit code';
+
+  @override
+  String get tradeFindHint => 'You can find the code on their trading screen.';
+
+  @override
+  String get tradeFindSearchBtn => 'Search';
+
+  @override
+  String get tradeFindSearching => 'Searching…';
+
+  @override
+  String get tradeFindScanHint => 'Point at the other collector\'s QR code';
+
+  @override
+  String get tradeFindPartnerFound => 'User found!';
+
+  @override
+  String tradeFindPartnerCode(Object code) {
+    return 'Code: $code';
+  }
+
+  @override
+  String get tradeFindSendBtn => 'Send trade request';
+
+  @override
+  String get tradeFindSending => 'Sending…';
+
+  @override
+  String tradeFindRequestSent(Object name) {
+    return 'Request sent to $name! Wait for their response.';
+  }
+
+  @override
+  String get tradeNegTitle => 'Negotiation';
+
+  @override
+  String get tradeNegMyOfferTab => 'My offer';
+
+  @override
+  String get tradeNegReceivingTab => 'I\'ll receive';
+
+  @override
+  String get tradeNegAutoMode => 'Auto';
+
+  @override
+  String get tradeNegManualMode => 'Manual';
+
+  @override
+  String get tradeNegAutoHint =>
+      'Auto mode: shows your duplicates. Switch to Manual to customise.';
+
+  @override
+  String tradeNegSelectedCount(Object count) {
+    return '$count sticker(s) selected';
+  }
+
+  @override
+  String get tradeNegNoStickers => 'You have no stickers to offer.';
+
+  @override
+  String get tradeNegPartnerWaiting =>
+      'The other collector hasn\'t selected their stickers yet.';
+
+  @override
+  String tradeNegOfferLabel(Object count) {
+    return 'You\'ll offer $count sticker(s)';
+  }
+
+  @override
+  String get tradeNegConfirmBtn => 'Confirm my offer';
+
+  @override
+  String get tradeNegSaving => 'Saving…';
+
+  @override
+  String get tradeNegAtLeastOne => 'Select at least one sticker to offer.';
+
+  @override
+  String get tradeNegOfferConfirmed =>
+      'Offer confirmed! Waiting for the other collector.';
+
+  @override
+  String get tradeNegAlreadyConfirmedBanner =>
+      'Your offer is confirmed. Waiting for the other collector.';
+
+  @override
+  String get tradeNegModifyOffer => 'Modify my offer';
+
+  @override
+  String get tradeNegModifyOfferWarning =>
+      'You can change the stickers you want to give. The other collector will have to wait.';
+
+  @override
+  String get tradeNegQtyPickerTitle => 'How many to offer?';
+
+  @override
+  String tradeNegQtyPickerHint(Object total, Object max) {
+    return 'You have $total copies. Max to offer: $max.';
+  }
+
+  @override
+  String tradeNegOfferedQtyBadge(Object qty) {
+    return 'Offering $qty';
+  }
+
+  @override
+  String get tradeNegPartnerOfferUpdated =>
+      'The other collector updated their sticker offer.';
+
+  @override
+  String tradeNegTotalItems(Object count) {
+    return '$count item(s) total';
+  }
+
+  @override
+  String tradeNegReceivingCount(Object count) {
+    return '$count sticker(s) you\'ll receive';
+  }
+
+  @override
+  String get tradeDeliveryTitle => 'Confirm receipt';
+
+  @override
+  String get tradeDeliveryInstruction =>
+      'Mark the stickers you physically received';
+
+  @override
+  String get tradeDeliveryDesc =>
+      'Marked stickers will be added to your album. Unmarked ones will return to the other collector.';
+
+  @override
+  String get tradeDeliveryNoOffer =>
+      'The other collector didn\'t offer any stickers.';
+
+  @override
+  String get tradeDeliveryNotReceived => 'Not received';
+
+  @override
+  String tradeDeliveryAllReceived(Object received, Object total) {
+    return 'You received all stickers ($received/$total)';
+  }
+
+  @override
+  String tradeDeliveryPartial(Object received, Object total, Object pending) {
+    return '$received of $total marked · $pending will return to the other collector.';
+  }
+
+  @override
+  String get tradeDeliveryConfirmTitle => 'Confirm receipt';
+
+  @override
+  String tradeDeliveryConfirmMsg(Object received, Object pending) {
+    return '$received sticker(s) will be added to your album.\n$pending unmarked sticker(s) will return to the other collector.';
+  }
+
+  @override
+  String tradeDeliverySuccess(Object count) {
+    return '$count sticker(s) added to your album! 🏆';
+  }
+
+  @override
+  String get tradeHistoryTitle => 'Trade history';
+
+  @override
+  String get tradeHistoryEmpty => 'No trades yet';
+
+  @override
+  String get tradeHistoryEmptyDesc =>
+      'Completed and cancelled trades will appear here.';
+
+  @override
+  String get tradeHistoryCompleted => 'Completed';
+
+  @override
+  String get tradeHistoryCancelled => 'Cancelled';
+
+  @override
+  String get tradeHistoryStartedByMe => 'You started';
+
+  @override
+  String get tradeHistoryReceivedRequest => 'You received';
+
+  @override
+  String get tradeHistorySent => 'Sent';
+
+  @override
+  String get tradeHistoryReceivedLabel => 'Received';
+
+  @override
+  String tradeHistoryDelivered(Object count) {
+    return '$count delivered';
+  }
+
+  @override
+  String tradeHistoryStickerCount(Object count) {
+    return '$count sticker(s)';
+  }
+
+  @override
+  String get tradeDrawerTitle => 'Trade stickers';
+
+  @override
+  String get tradeDrawerActiveBadge => 'ACTIVE';
+
+  @override
+  String get tradeErrorGeneric =>
+      'An error occurred in the trade. Please try again.';
+
+  @override
+  String get tradeErrorNotLoggedIn =>
+      'You must be signed in to trade stickers.';
+
+  @override
+  String get tradeErrorSelf => 'You cannot trade stickers with yourself.';
+
+  @override
+  String get tradeErrorCodeNotFound => 'No user was found with that code.';
+
+  @override
+  String get tradeErrorCodeLength => 'The code must be exactly 6 digits.';
+
+  @override
+  String get tradeErrorActiveExists =>
+      'You already have an active trade. Complete or cancel it first.';
+
+  @override
+  String get tradeErrorNoConnection =>
+      'This feature requires an internet connection.';
+
+  @override
+  String get tradeRejectBtn => 'Reject request';
+
+  @override
+  String get tradeDrawerRequestBadge => 'REQUEST';
 }
