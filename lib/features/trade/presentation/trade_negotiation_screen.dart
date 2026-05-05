@@ -35,7 +35,6 @@ class _TradeNegotiationScreenState extends ConsumerState<TradeNegotiationScreen>
 
   // Mi oferta: { stickerId: quantity }
   Map<String, int> _myOffer = {};
-  bool _autoMode = true;
   bool _isSaving = false;
 
   // Para detectar cambios de ofertas del partner
@@ -482,24 +481,10 @@ class _TradeNegotiationScreenState extends ConsumerState<TradeNegotiationScreen>
                           });
                         }
 
-                        // En modo auto, calcular duplicados
-                        if (_autoMode && _myOffer.isEmpty) {
-                          WidgetsBinding.instance.addPostFrameCallback((_) {
-                            if (mounted) {
-                              final dups = _getDuplicates(
-                                inventory,
-                                allStickers,
-                              );
-                              setState(() => _myOffer = dups);
-                            }
-                          });
-                        }
-
                         return _MyOfferTab(
                           allStickers: allStickers,
                           inventory: inventory,
                           offer: _myOffer,
-                          autoMode: _autoMode,
                           canEdit: canEdit,
                           alreadyConfirmed: alreadyConfirmed,
                           categoriesAsync: categoriesAsync,
@@ -523,19 +508,6 @@ class _TradeNegotiationScreenState extends ConsumerState<TradeNegotiationScreen>
                                       _myOffer.remove(id);
                                     } else {
                                       _myOffer[id] = qty;
-                                    }
-                                  });
-                                }
-                              : null,
-                          onAutoModeToggle: canEdit
-                              ? (val) {
-                                  setState(() {
-                                    _autoMode = val;
-                                    if (val) {
-                                      _myOffer = _getDuplicates(
-                                        inventory,
-                                        allStickers,
-                                      );
                                     }
                                   });
                                 }
@@ -625,23 +597,6 @@ class _TradeNegotiationScreenState extends ConsumerState<TradeNegotiationScreen>
       ),
     );
   }
-
-  Map<String, int> _getDuplicates(
-    Map<String, Map<String, int>> inventory,
-    List<Sticker> allStickers,
-  ) {
-    final result = <String, int>{};
-    for (final sticker in allStickers) {
-      final variants = inventory[sticker.id] ?? {};
-      int total = 0;
-      for (final qty in variants.values) {
-        total += qty;
-      }
-      // Ofrecer 1 de cada repetido (quedará 1 en inventario)
-      if (total > 1) result[sticker.id] = 1;
-    }
-    return result;
-  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -652,27 +607,23 @@ class _MyOfferTab extends StatelessWidget {
   final List<Sticker> allStickers;
   final Map<String, Map<String, int>> inventory;
   final Map<String, int> offer;
-  final bool autoMode;
   final bool canEdit;
   final bool alreadyConfirmed;
   final AsyncValue<List<dynamic>> categoriesAsync;
   final Set<String> lockedInOtherSessions;
   final ValueChanged<String>? onToggle;
   final void Function(String id, int qty)? onQuantityChange;
-  final ValueChanged<bool>? onAutoModeToggle;
 
   const _MyOfferTab({
     required this.allStickers,
     required this.inventory,
     required this.offer,
-    required this.autoMode,
     required this.canEdit,
     required this.alreadyConfirmed,
     required this.categoriesAsync,
     required this.lockedInOtherSessions,
     required this.onToggle,
     required this.onQuantityChange,
-    required this.onAutoModeToggle,
   });
 
   @override
@@ -707,7 +658,7 @@ class _MyOfferTab extends StatelessWidget {
                       ),
                     ),
                   ),
-                  if (totalItems != selectedCount)
+                  if (canEdit && offer.isNotEmpty)
                     Padding(
                       padding: const EdgeInsets.only(right: 8),
                       child: Text(
@@ -718,40 +669,8 @@ class _MyOfferTab extends StatelessWidget {
                         ),
                       ),
                     ),
-                  if (canEdit && onAutoModeToggle != null)
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          autoMode
-                              ? l10n.tradeNegAutoMode
-                              : l10n.tradeNegManualMode,
-                          style: TextStyle(
-                            color: autoMode ? Colors.amber : Colors.white54,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(width: 6),
-                        Switch.adaptive(
-                          value: autoMode,
-                          onChanged: onAutoModeToggle,
-                          activeThumbColor: Colors.amber,
-                          activeTrackColor: Colors.amber.withValues(alpha: 0.4),
-                          inactiveTrackColor: const Color(0xFF2A2A2A),
-                        ),
-                      ],
-                    ),
                 ],
               ),
-              if (autoMode && canEdit)
-                Padding(
-                  padding: const EdgeInsets.only(top: 4),
-                  child: Text(
-                    l10n.tradeNegAutoHint,
-                    style: const TextStyle(color: Colors.white38, fontSize: 11),
-                  ),
-                ),
             ],
           ),
         ),
