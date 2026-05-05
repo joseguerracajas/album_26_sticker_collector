@@ -15,6 +15,7 @@ import 'package:album_26_sticker_collector/features/catalog/presentation/statist
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/animated_expand_container.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/app_bar_actions.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/category_avatar.dart';
+import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/sticker_stat_row.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/variant_selector_sheet.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/stats_provider.dart';
@@ -84,6 +85,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final l10n = AppLocalizations.of(context);
     final totalCromosAsync = ref.watch(totalStickersCountProvider);
     final cromosUnicos = ref.watch(uniqueCollectedProvider);
+    final duplicatesCount =
+        ref.watch(duplicateCopiesCountProvider).asData?.value ?? 0;
     final categoriesAsync = ref.watch(categoriesProvider);
     final searchQuery = ref.watch(searchQueryProvider);
 
@@ -248,16 +251,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                       const SizedBox(height: 6),
                                       Align(
                                         alignment: Alignment.centerRight,
-                                        child: Text(
-                                          l10n.homeCollectedCount(
-                                            cromosUnicos,
-                                            total,
-                                          ),
-                                          style: const TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 13,
-                                          ),
+                                        child: StickerStatRow(
+                                          collected: cromosUnicos,
+                                          total: total,
+                                          missing: total - cromosUnicos,
+                                          duplicateCopies: duplicatesCount,
+                                          collectedColor: Colors.black87,
+                                          missingColor: Colors.black54,
+                                          duplicatesColor: Colors.black45,
                                         ),
                                       ),
                                       const SizedBox(height: 16),
@@ -491,7 +492,6 @@ class _CategoryTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
     final stickersAsync = ref.watch(stickersByCategoryProvider(category.id));
     final inventoryAsync = ref.watch(inventoryProvider);
 
@@ -541,6 +541,7 @@ class _CategoryTile extends ConsumerWidget {
                               data: (stickers) {
                                 int total = stickers.length;
                                 int unicos = 0;
+                                int duplicateCopies = 0;
                                 for (var s in stickers) {
                                   final inv = inventoryAsync.value?[s.id] ?? {};
                                   int sum = 0;
@@ -548,6 +549,7 @@ class _CategoryTile extends ConsumerWidget {
                                     sum += v;
                                   }
                                   if (sum > 0) unicos++;
+                                  if (sum > 1) duplicateCopies += sum - 1;
                                 }
                                 final double progreso = total == 0
                                     ? 0
@@ -584,16 +586,17 @@ class _CategoryTile extends ConsumerWidget {
                                         ),
                                       ],
                                     ),
-                                    const SizedBox(height: 4),
+                                    const SizedBox(height: 6),
                                     Align(
                                       alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        l10n.homeObtainedCount(unicos, total),
-                                        style: TextStyle(
-                                          color: Colors.grey.shade500,
-                                          fontSize: 11,
-                                          fontStyle: FontStyle.italic,
-                                        ),
+                                      child: StickerStatRow(
+                                        collected: unicos,
+                                        total: total,
+                                        missing: total - unicos,
+                                        duplicateCopies: duplicateCopies,
+                                        collectedColor: Colors.amber,
+                                        missingColor: Colors.white54,
+                                        duplicatesColor: Colors.white38,
                                       ),
                                     ),
                                   ],

@@ -5,6 +5,7 @@ import 'dart:math' as math;
 import 'package:album_26_sticker_collector/features/catalog/data/sync_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/category.model.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/app_bar_actions.dart';
+import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/sticker_stat_row.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/stats_provider.dart';
 import 'package:album_26_sticker_collector/features/monetization/data/ads_provider.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
@@ -16,8 +17,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // ---------------------------------------------------------------------------
 // Estado local de la pantalla
 // ---------------------------------------------------------------------------
-enum _StatsFilter { all, missing, duplicates }
-
 class _SelectedCategoryIdsNotifier extends Notifier<Set<String>?> {
   @override
   Set<String>? build() => null;
@@ -40,17 +39,6 @@ final _selectedCategoryIdsProvider =
       _SelectedCategoryIdsNotifier.new,
     );
 
-class _StatsFilterNotifier extends Notifier<_StatsFilter> {
-  @override
-  _StatsFilter build() => _StatsFilter.all;
-  void setFilter(_StatsFilter filter) => state = filter;
-}
-
-final _statsFilterProvider =
-    NotifierProvider<_StatsFilterNotifier, _StatsFilter>(
-      _StatsFilterNotifier.new,
-    );
-
 // ---------------------------------------------------------------------------
 // Pantalla principal
 // ---------------------------------------------------------------------------
@@ -67,7 +55,6 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final statsFilter = ref.watch(_statsFilterProvider);
     final selectedCategoryIds = ref.watch(_selectedCategoryIdsProvider);
     final categoryStatsAsync = ref.watch(categoryStatsProvider);
     final totalAsync = ref.watch(totalStickersCountProvider);
@@ -130,12 +117,7 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
                   ),
                 ),
 
-                // 3. Tabs de estado
-                SliverToBoxAdapter(
-                  child: _StatusFilterBar(filter: statsFilter, l10n: l10n),
-                ),
-
-                // 4. Lista de estadísticas por categoría
+                // 3. Lista de estadísticas por categoría
                 categoryStatsAsync.when(
                   loading: () => const SliverToBoxAdapter(
                     child: Padding(
@@ -168,20 +150,6 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
                                     selectedCategoryIds.contains(s.category.id),
                               )
                               .toList();
-
-                    // Filtrar/ordenar según estado
-                    if (statsFilter == _StatsFilter.missing) {
-                      filtered = filtered.where((s) => s.missing > 0).toList()
-                        ..sort((a, b) => b.missing.compareTo(a.missing));
-                    } else if (statsFilter == _StatsFilter.duplicates) {
-                      filtered =
-                          filtered.where((s) => s.duplicateCopies > 0).toList()
-                            ..sort(
-                              (a, b) => b.duplicateCopies.compareTo(
-                                a.duplicateCopies,
-                              ),
-                            );
-                    }
 
                     if (filtered.isEmpty) {
                       return SliverToBoxAdapter(
@@ -216,7 +184,6 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
                         delegate: SliverChildBuilderDelegate(
                           (context, index) => _CategoryStatCard(
                             stats: filtered[index],
-                            filter: statsFilter,
                             index: index,
                             l10n: l10n,
                           ),
@@ -1185,113 +1152,15 @@ class _CategoryPickerSheetState extends ConsumerState<_CategoryPickerSheet> {
 }
 
 // ---------------------------------------------------------------------------
-// Barra de filtro de estado (Todos / Faltantes / Repetidos)
-// ---------------------------------------------------------------------------
-class _StatusFilterBar extends ConsumerWidget {
-  final _StatsFilter filter;
-  final AppLocalizations l10n;
-
-  const _StatusFilterBar({required this.filter, required this.l10n});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
-      child: Container(
-        decoration: BoxDecoration(
-          color: const Color(0xFF1E1E1E),
-          borderRadius: BorderRadius.circular(14),
-        ),
-        padding: const EdgeInsets.all(4),
-        child: Row(
-          children: [
-            _FilterTab(
-              label: l10n.filterAll,
-              selected: filter == _StatsFilter.all,
-              onTap: () {
-                HapticFeedback.selectionClick();
-                ref
-                    .read(_statsFilterProvider.notifier)
-                    .setFilter(_StatsFilter.all);
-              },
-            ),
-            _FilterTab(
-              label: l10n.filterMissing,
-              selected: filter == _StatsFilter.missing,
-              onTap: () {
-                HapticFeedback.selectionClick();
-                ref
-                    .read(_statsFilterProvider.notifier)
-                    .setFilter(_StatsFilter.missing);
-              },
-            ),
-            _FilterTab(
-              label: l10n.filterDuplicates,
-              selected: filter == _StatsFilter.duplicates,
-              onTap: () {
-                HapticFeedback.selectionClick();
-                ref
-                    .read(_statsFilterProvider.notifier)
-                    .setFilter(_StatsFilter.duplicates);
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _FilterTab extends StatelessWidget {
-  final String label;
-  final bool selected;
-  final VoidCallback onTap;
-
-  const _FilterTab({
-    required this.label,
-    required this.selected,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: GestureDetector(
-        onTap: onTap,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          decoration: BoxDecoration(
-            color: selected ? Colors.amber : Colors.transparent,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Text(
-            label,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: selected ? Colors.black : Colors.white54,
-              fontWeight: selected ? FontWeight.bold : FontWeight.normal,
-              fontSize: 13,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-// ---------------------------------------------------------------------------
 // Tarjeta de estadísticas por categoría
 // ---------------------------------------------------------------------------
 class _CategoryStatCard extends StatelessWidget {
   final CategoryStats stats;
-  final _StatsFilter filter;
   final int index;
   final AppLocalizations l10n;
 
   const _CategoryStatCard({
     required this.stats,
-    required this.filter,
     required this.index,
     required this.l10n,
   });
@@ -1386,32 +1255,14 @@ class _CategoryStatCard extends StatelessWidget {
                       const SizedBox(height: 8),
 
                       // Línea de stats detalladas
-                      Row(
-                        children: [
-                          _MiniStat(
-                            icon: Icons.check_circle_outline_rounded,
-                            value: '${stats.collected}/${stats.total}',
-                            color: Colors.white54,
-                          ),
-                          const SizedBox(width: 14),
-                          _MiniStat(
-                            icon: Icons.radio_button_unchecked_rounded,
-                            value: '${stats.missing}',
-                            color: filter == _StatsFilter.missing
-                                ? Colors.redAccent
-                                : Colors.white38,
-                            bold: filter == _StatsFilter.missing,
-                          ),
-                          const SizedBox(width: 14),
-                          _MiniStat(
-                            icon: Icons.copy_all_rounded,
-                            value: '+${stats.duplicateCopies}',
-                            color: filter == _StatsFilter.duplicates
-                                ? Colors.amber
-                                : Colors.white38,
-                            bold: filter == _StatsFilter.duplicates,
-                          ),
-                        ],
+                      StickerStatRow(
+                        collected: stats.collected,
+                        total: stats.total,
+                        missing: stats.missing,
+                        duplicateCopies: stats.duplicateCopies,
+                        collectedColor: Colors.amber,
+                        missingColor: Colors.redAccent,
+                        duplicatesColor: Colors.white70,
                       ),
                     ],
                   ),
@@ -1429,41 +1280,5 @@ class _CategoryStatCard extends StatelessWidget {
           duration: 350.ms,
           curve: Curves.easeOut,
         );
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Mini stat inline (ícono + valor)
-// ---------------------------------------------------------------------------
-class _MiniStat extends StatelessWidget {
-  final IconData icon;
-  final String value;
-  final Color color;
-  final bool bold;
-
-  const _MiniStat({
-    required this.icon,
-    required this.value,
-    required this.color,
-    this.bold = false,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(icon, color: color, size: 13),
-        const SizedBox(width: 3),
-        Text(
-          value,
-          style: TextStyle(
-            color: color,
-            fontSize: 12,
-            fontWeight: bold ? FontWeight.bold : FontWeight.normal,
-          ),
-        ),
-      ],
-    );
   }
 }
