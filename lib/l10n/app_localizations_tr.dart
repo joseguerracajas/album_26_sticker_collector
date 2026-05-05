@@ -662,10 +662,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get statsNoStatsYet => 'Henüz veri yok. Toplamaya başla!';
 
   @override
-  String get statsBestCategory => 'En tamamlanmış';
+  String get statsBestCategory => 'En fazla ilerleme';
 
   @override
-  String get statsWorstCategory => 'En eksik';
+  String get statsWorstCategory => 'En az ilerleme';
 
   @override
   String get statsCompletedCategories => 'Tamamlananlar';
@@ -686,4 +686,22 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get statsCategoryPickerClear => 'Temizle';
+
+  @override
+  String get statsSortTooltip => 'Sırala';
+
+  @override
+  String get statsSortByName => 'Kategori';
+
+  @override
+  String get statsSortByProgressDesc => 'En fazla ilerleme önce';
+
+  @override
+  String get statsSortByProgressAsc => 'En az ilerleme önce';
+
+  @override
+  String get statsSortByMissing => 'En fazla eksik önce';
+
+  @override
+  String get statsSortByDuplicates => 'En fazla tekrar önce';
 }

@@ -333,8 +333,8 @@
   "statsCategoriesTitle": "حسب الفئة",
   "statsAllCategories": "الكل",
   "statsNoStatsYet": "لا توجد بيانات بعد. ابدأ بالتجميع!",
-  "statsBestCategory": "الأكثر اكتمالاً",
-  "statsWorstCategory": "الأقل اكتمالاً",
+  "statsBestCategory": "أعلى تقدم",
+  "statsWorstCategory": "أدنى تقدم",
   "statsCompletedCategories": "مكتملة",
   "drawerStats": "إحصائيات",
   "statsCategoryPickerSearch": "ابحث عن فئة...",
@@ -343,5 +343,12 @@
     "placeholders": { "count": {} }
   },
   "statsCategoryPickerAll": "جميع الفئات",
-  "statsCategoryPickerClear": "مسح"
+  "statsCategoryPickerClear": "مسح",
+
+  "statsSortTooltip": "ترتيب",
+  "statsSortByName": "الفئة",
+  "statsSortByProgressDesc": "الأعلى تقدماً أولاً",
+  "statsSortByProgressAsc": "الأدنى تقدماً أولاً",
+  "statsSortByMissing": "الأكثر نقصاً أولاً",
+  "statsSortByDuplicates": "الأكثر تكراراً أولاً"
 }

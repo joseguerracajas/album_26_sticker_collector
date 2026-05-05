@@ -122,3 +122,17 @@ final missingCountProvider = FutureProvider<int>((ref) async {
   final stats = await ref.watch(categoryStatsProvider.future);
   return stats.fold<int>(0, (sum, s) => sum + s.missing);
 });
+
+// ---------------------------------------------------------------------------
+// Provider: estadísticas de UNA categoría por su id
+// ---------------------------------------------------------------------------
+final categoryStatsByIdProvider = FutureProvider.family<CategoryStats?, String>(
+  (ref, categoryId) async {
+    final stats = await ref.watch(categoryStatsProvider.future);
+    try {
+      return stats.firstWhere((s) => s.category.id == categoryId);
+    } catch (_) {
+      return null;
+    }
+  },
+);

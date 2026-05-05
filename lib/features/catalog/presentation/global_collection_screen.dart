@@ -7,13 +7,40 @@ import 'package:album_26_sticker_collector/features/catalog/domain/category.mode
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/app_bar_actions.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/sticker_filter_search.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/sticker_grid.dart';
+import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/sticker_stat_row.dart';
 import 'package:album_26_sticker_collector/features/catalog/utils/sticker_filters.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
+import 'package:album_26_sticker_collector/features/inventory/data/stats_provider.dart';
 import 'package:album_26_sticker_collector/features/monetization/data/ads_provider.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'widgets/category_avatar.dart';
+
+// ---------------------------------------------------------------------------
+// Estado: set de IDs de categorías que el usuario ha colapsado
+// ---------------------------------------------------------------------------
+class _CollapsedCategoriesNotifier extends Notifier<Set<String>> {
+  @override
+  Set<String> build() => {};
+
+  void toggle(String id) {
+    final next = Set<String>.from(state);
+    if (next.contains(id)) {
+      next.remove(id);
+    } else {
+      next.add(id);
+    }
+    state = next;
+  }
+
+  bool isCollapsed(String id) => state.contains(id);
+}
+
+final _collapsedCategoriesProvider =
+    NotifierProvider<_CollapsedCategoriesNotifier, Set<String>>(
+      _CollapsedCategoriesNotifier.new,
+    );
 
 class GlobalCollectionScreen extends ConsumerStatefulWidget {
   const GlobalCollectionScreen({super.key});
@@ -123,7 +150,7 @@ class _GlobalCollectionScreenState
   }
 }
 
-// Widget Interno (Se queda exactamente igual, como un widget normal)
+// Widget Interno
 class _CategoryStickerSection extends ConsumerWidget {
   final Category category;
   final bool isFirst;
@@ -131,10 +158,14 @@ class _CategoryStickerSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isCollapsed = ref
+        .watch(_collapsedCategoriesProvider)
+        .contains(category.id);
     final stickersAsync = ref.watch(stickersByCategoryProvider(category.id));
     final inventoryAsync = ref.watch(inventoryProvider);
     final currentFilter = ref.watch(filterProvider);
     final searchQuery = ref.watch(stickerSearchProvider);
+    final statsAsync = ref.watch(categoryStatsByIdProvider(category.id));
 
     return stickersAsync.when(
       loading: () => const SizedBox.shrink(),
@@ -150,46 +181,64 @@ class _CategoryStickerSection extends ConsumerWidget {
 
         if (filteredStickers.isEmpty) return const SizedBox.shrink();
 
-        // Este Column es una "Caja" normal
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 20, top: 24),
-              child: Row(
-                children: [
-                  CategoryAvatar(
-                    iconUrl: category.iconUrl,
-                    text: category.name,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                    child: Text(
-                      category.name,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Divider(color: Colors.grey.shade700),
-            ),
+        final stats = statsAsync.asData?.value;
 
-            // 🔥 SOLUCIÓN: El StickerGrid entra directo como una Caja normal
-            // No usamos SliverToBoxAdapter aquí porque el Column no lo acepta.
-            StickerGrid(
-              category: category,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              showTutorialKey: isFirst,
+        return Theme(
+          data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+          child: ExpansionTile(
+            key: PageStorageKey(category.id),
+            initiallyExpanded: !isCollapsed,
+            onExpansionChanged: (_) => ref
+                .read(_collapsedCategoriesProvider.notifier)
+                .toggle(category.id),
+            tilePadding: const EdgeInsets.fromLTRB(20, 12, 16, 0),
+            childrenPadding: EdgeInsets.zero,
+            collapsedBackgroundColor: Colors.transparent,
+            backgroundColor: Colors.transparent,
+            iconColor: Colors.white38,
+            collapsedIconColor: Colors.white38,
+            title: Row(
+              children: [
+                CategoryAvatar(iconUrl: category.iconUrl, text: category.name),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        category.name,
+                        style: const TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      if (stats != null) ...[
+                        const SizedBox(height: 5),
+                        StickerStatRow(
+                          collected: stats.collected,
+                          total: stats.total,
+                          missing: stats.missing,
+                          duplicateCopies: stats.duplicateCopies,
+                          collectedColor: Colors.amber,
+                          missingColor: Colors.white54,
+                          duplicatesColor: Colors.white38,
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
+            children: [
+              StickerGrid(
+                category: category,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                showTutorialKey: isFirst,
+              ),
+            ],
+          ),
         );
       },
     );

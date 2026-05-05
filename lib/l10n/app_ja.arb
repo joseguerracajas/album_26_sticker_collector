@@ -333,8 +333,8 @@
   "statsCategoriesTitle": "カテゴリ別",
   "statsAllCategories": "すべて",
   "statsNoStatsYet": "データなし。集め始めよう！",
-  "statsBestCategory": "最も完成",
-  "statsWorstCategory": "最も未完成",
+  "statsBestCategory": "最も進んでいる",
+  "statsWorstCategory": "最も遅れている",
   "statsCompletedCategories": "完了済み",
   "drawerStats": "統計",
   "statsCategoryPickerSearch": "カテゴリを検索...",
@@ -343,5 +343,12 @@
     "placeholders": { "count": {} }
   },
   "statsCategoryPickerAll": "すべてのカテゴリ",
-  "statsCategoryPickerClear": "クリア"
+  "statsCategoryPickerClear": "クリア",
+
+  "statsSortTooltip": "並び替え",
+  "statsSortByName": "カテゴリー順",
+  "statsSortByProgressDesc": "進捗の高い順",
+  "statsSortByProgressAsc": "進捗の低い順",
+  "statsSortByMissing": "不足枚数順",
+  "statsSortByDuplicates": "重複枚数順"
 }

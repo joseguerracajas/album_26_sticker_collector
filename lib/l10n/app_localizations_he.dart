@@ -645,10 +645,10 @@ class AppLocalizationsHe extends AppLocalizations {
   String get statsNoStatsYet => 'אין נתונים עדיין. התחל לאסוף!';
 
   @override
-  String get statsBestCategory => 'הכי שלמה';
+  String get statsBestCategory => 'הכי מתקדמת';
 
   @override
-  String get statsWorstCategory => 'הכי חסרה';
+  String get statsWorstCategory => 'הכי פחות מתקדמת';
 
   @override
   String get statsCompletedCategories => 'הושלמו';
@@ -669,4 +669,22 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get statsCategoryPickerClear => 'נקה';
+
+  @override
+  String get statsSortTooltip => 'מיין';
+
+  @override
+  String get statsSortByName => 'קטגוריה';
+
+  @override
+  String get statsSortByProgressDesc => 'הכי מתקדמת קודם';
+
+  @override
+  String get statsSortByProgressAsc => 'הכי פחות מתקדמת קודם';
+
+  @override
+  String get statsSortByMissing => 'הכי חסרה קודם';
+
+  @override
+  String get statsSortByDuplicates => 'הכי כפולה קודם';
 }

@@ -618,10 +618,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get statsNoStatsYet => '暂无数据。开始收集吧！';
 
   @override
-  String get statsBestCategory => '最完整';
+  String get statsBestCategory => '进度最多';
 
   @override
-  String get statsWorstCategory => '最不完整';
+  String get statsWorstCategory => '进度最少';
 
   @override
   String get statsCompletedCategories => '已完成';
@@ -642,4 +642,22 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get statsCategoryPickerClear => '清除';
+
+  @override
+  String get statsSortTooltip => '排序';
+
+  @override
+  String get statsSortByName => '分类';
+
+  @override
+  String get statsSortByProgressDesc => '进度最多优先';
+
+  @override
+  String get statsSortByProgressAsc => '进度最少优先';
+
+  @override
+  String get statsSortByMissing => '缺少最多优先';
+
+  @override
+  String get statsSortByDuplicates => '重复最多优先';
 }

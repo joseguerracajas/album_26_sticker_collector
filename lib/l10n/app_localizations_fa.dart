@@ -665,10 +665,10 @@ class AppLocalizationsFa extends AppLocalizations {
       'هنوز داده‌ای وجود ندارد. شروع به جمع‌آوری کنید!';
 
   @override
-  String get statsBestCategory => 'کامل‌ترین';
+  String get statsBestCategory => 'بیشترین پیشرفت';
 
   @override
-  String get statsWorstCategory => 'ناقص‌ترین';
+  String get statsWorstCategory => 'کمترین پیشرفت';
 
   @override
   String get statsCompletedCategories => 'کامل شده';
@@ -689,4 +689,22 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get statsCategoryPickerClear => 'پاک کردن';
+
+  @override
+  String get statsSortTooltip => 'مرتب‌سازی';
+
+  @override
+  String get statsSortByName => 'دسته‌بندی';
+
+  @override
+  String get statsSortByProgressDesc => 'بیشترین پیشرفت اول';
+
+  @override
+  String get statsSortByProgressAsc => 'کمترین پیشرفت اول';
+
+  @override
+  String get statsSortByMissing => 'بیشترین کمبود اول';
+
+  @override
+  String get statsSortByDuplicates => 'بیشترین تکرار اول';
 }

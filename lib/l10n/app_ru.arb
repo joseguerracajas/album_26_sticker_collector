@@ -333,8 +333,8 @@
   "statsCategoriesTitle": "По категориям",
   "statsAllCategories": "Все",
   "statsNoStatsYet": "Данных ещё нет. Начни собирать!",
-  "statsBestCategory": "Наиболее полная",
-  "statsWorstCategory": "Наименее полная",
+  "statsBestCategory": "Наибольший прогресс",
+  "statsWorstCategory": "Наименьший прогресс",
   "statsCompletedCategories": "Завершено",
   "drawerStats": "Статистика",
   "statsCategoryPickerSearch": "Поиск категории...",
@@ -343,5 +343,12 @@
     "placeholders": { "count": {} }
   },
   "statsCategoryPickerAll": "Все категории",
-  "statsCategoryPickerClear": "Очистить"
+  "statsCategoryPickerClear": "Очистить",
+
+  "statsSortTooltip": "Сортировка",
+  "statsSortByName": "Категория",
+  "statsSortByProgressDesc": "Наибольший прогресс сначала",
+  "statsSortByProgressAsc": "Наименьший прогресс сначала",
+  "statsSortByMissing": "Больше всего отсутствует сначала",
+  "statsSortByDuplicates": "Больше всего дублей сначала"
 }

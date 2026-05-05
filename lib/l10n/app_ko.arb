@@ -333,8 +333,8 @@
   "statsCategoriesTitle": "카테고리별",
   "statsAllCategories": "전체",
   "statsNoStatsYet": "아직 데이터 없음. 수집을 시작하세요!",
-  "statsBestCategory": "가장 완성됨",
-  "statsWorstCategory": "가장 미완성",
+  "statsBestCategory": "진행률 최고",
+  "statsWorstCategory": "진행률 최저",
   "statsCompletedCategories": "완료됨",
   "drawerStats": "통계",
   "statsCategoryPickerSearch": "카테고리 검색...",
@@ -343,5 +343,12 @@
     "placeholders": { "count": {} }
   },
   "statsCategoryPickerAll": "모든 카테고리",
-  "statsCategoryPickerClear": "왈리기"
+  "statsCategoryPickerClear": "지우기",
+
+  "statsSortTooltip": "정렬",
+  "statsSortByName": "카테고리",
+  "statsSortByProgressDesc": "진행률 높은 순",
+  "statsSortByProgressAsc": "진행률 낙은 순",
+  "statsSortByMissing": "부족 많은 순",
+  "statsSortByDuplicates": "중복 많은 순"
 }

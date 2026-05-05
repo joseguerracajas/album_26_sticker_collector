@@ -630,10 +630,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get statsNoStatsYet => 'データなし。集め始めよう！';
 
   @override
-  String get statsBestCategory => '最も完成';
+  String get statsBestCategory => '最も進んでいる';
 
   @override
-  String get statsWorstCategory => '最も未完成';
+  String get statsWorstCategory => '最も遅れている';
 
   @override
   String get statsCompletedCategories => '完了済み';
@@ -654,4 +654,22 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get statsCategoryPickerClear => 'クリア';
+
+  @override
+  String get statsSortTooltip => '並び替え';
+
+  @override
+  String get statsSortByName => 'カテゴリー順';
+
+  @override
+  String get statsSortByProgressDesc => '進捗の高い順';
+
+  @override
+  String get statsSortByProgressAsc => '進捗の低い順';
+
+  @override
+  String get statsSortByMissing => '不足枚数順';
+
+  @override
+  String get statsSortByDuplicates => '重複枚数順';
 }

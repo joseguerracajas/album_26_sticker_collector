@@ -667,10 +667,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get statsNoStatsYet => 'Данных ещё нет. Начни собирать!';
 
   @override
-  String get statsBestCategory => 'Наиболее полная';
+  String get statsBestCategory => 'Наибольший прогресс';
 
   @override
-  String get statsWorstCategory => 'Наименее полная';
+  String get statsWorstCategory => 'Наименьший прогресс';
 
   @override
   String get statsCompletedCategories => 'Завершено';
@@ -691,4 +691,22 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get statsCategoryPickerClear => 'Очистить';
+
+  @override
+  String get statsSortTooltip => 'Сортировка';
+
+  @override
+  String get statsSortByName => 'Категория';
+
+  @override
+  String get statsSortByProgressDesc => 'Наибольший прогресс сначала';
+
+  @override
+  String get statsSortByProgressAsc => 'Наименьший прогресс сначала';
+
+  @override
+  String get statsSortByMissing => 'Больше всего отсутствует сначала';
+
+  @override
+  String get statsSortByDuplicates => 'Больше всего дублей сначала';
 }

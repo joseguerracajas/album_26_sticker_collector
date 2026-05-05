@@ -631,10 +631,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get statsNoStatsYet => '아직 데이터 없음. 수집을 시작하세요!';
 
   @override
-  String get statsBestCategory => '가장 완성됨';
+  String get statsBestCategory => '진행률 최고';
 
   @override
-  String get statsWorstCategory => '가장 미완성';
+  String get statsWorstCategory => '진행률 최저';
 
   @override
   String get statsCompletedCategories => '완료됨';
@@ -654,5 +654,23 @@ class AppLocalizationsKo extends AppLocalizations {
   String get statsCategoryPickerAll => '모든 카테고리';
 
   @override
-  String get statsCategoryPickerClear => '왈리기';
+  String get statsCategoryPickerClear => '지우기';
+
+  @override
+  String get statsSortTooltip => '정렬';
+
+  @override
+  String get statsSortByName => '카테고리';
+
+  @override
+  String get statsSortByProgressDesc => '진행률 높은 순';
+
+  @override
+  String get statsSortByProgressAsc => '진행률 낙은 순';
+
+  @override
+  String get statsSortByMissing => '부족 많은 순';
+
+  @override
+  String get statsSortByDuplicates => '중복 많은 순';
 }

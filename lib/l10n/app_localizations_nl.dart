@@ -666,10 +666,10 @@ class AppLocalizationsNl extends AppLocalizations {
   String get statsNoStatsYet => 'Nog geen gegevens. Begin met verzamelen!';
 
   @override
-  String get statsBestCategory => 'Meest compleet';
+  String get statsBestCategory => 'Meeste voortgang';
 
   @override
-  String get statsWorstCategory => 'Minst compleet';
+  String get statsWorstCategory => 'Minste voortgang';
 
   @override
   String get statsCompletedCategories => 'Voltooid';
@@ -690,4 +690,22 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get statsCategoryPickerClear => 'Wissen';
+
+  @override
+  String get statsSortTooltip => 'Sorteren';
+
+  @override
+  String get statsSortByName => 'Categorie';
+
+  @override
+  String get statsSortByProgressDesc => 'Meeste voortgang eerst';
+
+  @override
+  String get statsSortByProgressAsc => 'Minste voortgang eerst';
+
+  @override
+  String get statsSortByMissing => 'Meest ontbrekend eerst';
+
+  @override
+  String get statsSortByDuplicates => 'Meeste duplicaten eerst';
 }

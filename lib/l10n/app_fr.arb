@@ -333,8 +333,8 @@
   "statsCategoriesTitle": "Par Catégorie",
   "statsAllCategories": "Toutes",
   "statsNoStatsYet": "Pas encore de données. Commencez à collectionner !",
-  "statsBestCategory": "La plus complète",
-  "statsWorstCategory": "La moins complète",
+  "statsBestCategory": "Plus avancée",
+  "statsWorstCategory": "Moins avancée",
   "statsCompletedCategories": "Complètes",
   "drawerStats": "Statistiques",
   "statsCategoryPickerSearch": "Rechercher une catégorie...",
@@ -343,5 +343,12 @@
     "placeholders": { "count": {} }
   },
   "statsCategoryPickerAll": "Toutes les catégories",
-  "statsCategoryPickerClear": "Effacer"
+  "statsCategoryPickerClear": "Effacer",
+
+  "statsSortTooltip": "Trier",
+  "statsSortByName": "Catégorie",
+  "statsSortByProgressDesc": "Plus avancée d’abord",
+  "statsSortByProgressAsc": "Moins avancée d’abord",
+  "statsSortByMissing": "Plus manquantes d’abord",
+  "statsSortByDuplicates": "Plus de doublons d’abord"
 }

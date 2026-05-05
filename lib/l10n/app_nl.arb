@@ -331,8 +331,8 @@
   "statsCategoriesTitle": "Per categorie",
   "statsAllCategories": "Alle",
   "statsNoStatsYet": "Nog geen gegevens. Begin met verzamelen!",
-  "statsBestCategory": "Meest compleet",
-  "statsWorstCategory": "Minst compleet",
+  "statsBestCategory": "Meeste voortgang",
+  "statsWorstCategory": "Minste voortgang",
   "statsCompletedCategories": "Voltooid",
   "drawerStats": "Statistieken",
   "statsCategoryPickerSearch": "Categorie zoeken...",
@@ -341,5 +341,12 @@
     "placeholders": { "count": {} }
   },
   "statsCategoryPickerAll": "Alle categorieën",
-  "statsCategoryPickerClear": "Wissen"
+  "statsCategoryPickerClear": "Wissen",
+
+  "statsSortTooltip": "Sorteren",
+  "statsSortByName": "Categorie",
+  "statsSortByProgressDesc": "Meeste voortgang eerst",
+  "statsSortByProgressAsc": "Minste voortgang eerst",
+  "statsSortByMissing": "Meest ontbrekend eerst",
+  "statsSortByDuplicates": "Meeste duplicaten eerst"
 }

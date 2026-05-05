@@ -333,8 +333,8 @@
   "statsCategoriesTitle": "按类别",
   "statsAllCategories": "全部",
   "statsNoStatsYet": "暂无数据。开始收集吧！",
-  "statsBestCategory": "最完整",
-  "statsWorstCategory": "最不完整",
+  "statsBestCategory": "进度最多",
+  "statsWorstCategory": "进度最少",
   "statsCompletedCategories": "已完成",
   "drawerStats": "统计",
   "statsCategoryPickerSearch": "搜索类别...",
@@ -343,5 +343,12 @@
     "placeholders": { "count": {} }
   },
   "statsCategoryPickerAll": "所有类别",
-  "statsCategoryPickerClear": "清除"
+  "statsCategoryPickerClear": "清除",
+
+  "statsSortTooltip": "排序",
+  "statsSortByName": "分类",
+  "statsSortByProgressDesc": "进度最多优先",
+  "statsSortByProgressAsc": "进度最少优先",
+  "statsSortByMissing": "缺少最多优先",
+  "statsSortByDuplicates": "重复最多优先"
 }

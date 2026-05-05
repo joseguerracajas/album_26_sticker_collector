@@ -333,8 +333,8 @@
   "statsCategoriesTitle": "לפי קטגוריה",
   "statsAllCategories": "הכל",
   "statsNoStatsYet": "אין נתונים עדיין. התחל לאסוף!",
-  "statsBestCategory": "הכי שלמה",
-  "statsWorstCategory": "הכי חסרה",
+  "statsBestCategory": "הכי מתקדמת",
+  "statsWorstCategory": "הכי פחות מתקדמת",
   "statsCompletedCategories": "הושלמו",
   "drawerStats": "סטטיסטיקות",
   "statsCategoryPickerSearch": "חפש קטגוריה...",
@@ -343,5 +343,12 @@
     "placeholders": { "count": {} }
   },
   "statsCategoryPickerAll": "כל הקטגוריות",
-  "statsCategoryPickerClear": "נקה"
+  "statsCategoryPickerClear": "נקה",
+
+  "statsSortTooltip": "מיין",
+  "statsSortByName": "קטגוריה",
+  "statsSortByProgressDesc": "הכי מתקדמת קודם",
+  "statsSortByProgressAsc": "הכי פחות מתקדמת קודם",
+  "statsSortByMissing": "הכי חסרה קודם",
+  "statsSortByDuplicates": "הכי כפולה קודם"
 }

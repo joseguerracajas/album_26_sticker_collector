@@ -331,8 +331,8 @@
   "statsCategoriesTitle": "Według kategorii",
   "statsAllCategories": "Wszystkie",
   "statsNoStatsYet": "Brak danych. Zacznij zbierać!",
-  "statsBestCategory": "Najbardziej kompletna",
-  "statsWorstCategory": "Najbardziej niekompletna",
+  "statsBestCategory": "Największy postęp",
+  "statsWorstCategory": "Najmniejszy postęp",
   "statsCompletedCategories": "Ukończone",
   "drawerStats": "Statystyki",
   "statsCategoryPickerSearch": "Szukaj kategorii...",
@@ -341,5 +341,12 @@
     "placeholders": { "count": {} }
   },
   "statsCategoryPickerAll": "Wszystkie kategorie",
-  "statsCategoryPickerClear": "Wyczyść"
+  "statsCategoryPickerClear": "Wyczyść",
+
+  "statsSortTooltip": "Sortuj",
+  "statsSortByName": "Kategoria",
+  "statsSortByProgressDesc": "Największy postęp najpierw",
+  "statsSortByProgressAsc": "Najmniejszy postęp najpierw",
+  "statsSortByMissing": "Najwięcej brakujących najpierw",
+  "statsSortByDuplicates": "Najwięcej duplikatów najpierw"
 }

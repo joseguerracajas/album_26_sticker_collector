@@ -654,10 +654,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get statsNoStatsYet => 'لا توجد بيانات بعد. ابدأ بالتجميع!';
 
   @override
-  String get statsBestCategory => 'الأكثر اكتمالاً';
+  String get statsBestCategory => 'أعلى تقدم';
 
   @override
-  String get statsWorstCategory => 'الأقل اكتمالاً';
+  String get statsWorstCategory => 'أدنى تقدم';
 
   @override
   String get statsCompletedCategories => 'مكتملة';
@@ -678,4 +678,22 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get statsCategoryPickerClear => 'مسح';
+
+  @override
+  String get statsSortTooltip => 'ترتيب';
+
+  @override
+  String get statsSortByName => 'الفئة';
+
+  @override
+  String get statsSortByProgressDesc => 'الأعلى تقدماً أولاً';
+
+  @override
+  String get statsSortByProgressAsc => 'الأدنى تقدماً أولاً';
+
+  @override
+  String get statsSortByMissing => 'الأكثر نقصاً أولاً';
+
+  @override
+  String get statsSortByDuplicates => 'الأكثر تكراراً أولاً';
 }

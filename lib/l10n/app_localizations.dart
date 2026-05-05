@@ -1283,13 +1283,13 @@ abstract class AppLocalizations {
   /// No description provided for @statsBestCategory.
   ///
   /// In es, this message translates to:
-  /// **'Mejor completada'**
+  /// **'Mayor progreso'**
   String get statsBestCategory;
 
   /// No description provided for @statsWorstCategory.
   ///
   /// In es, this message translates to:
-  /// **'Más incompleta'**
+  /// **'Menor progreso'**
   String get statsWorstCategory;
 
   /// No description provided for @statsCompletedCategories.
@@ -1327,6 +1327,42 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Limpiar'**
   String get statsCategoryPickerClear;
+
+  /// No description provided for @statsSortTooltip.
+  ///
+  /// In es, this message translates to:
+  /// **'Ordenar'**
+  String get statsSortTooltip;
+
+  /// No description provided for @statsSortByName.
+  ///
+  /// In es, this message translates to:
+  /// **'Categoría'**
+  String get statsSortByName;
+
+  /// No description provided for @statsSortByProgressDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Mayor progreso primero'**
+  String get statsSortByProgressDesc;
+
+  /// No description provided for @statsSortByProgressAsc.
+  ///
+  /// In es, this message translates to:
+  /// **'Menor progreso primero'**
+  String get statsSortByProgressAsc;
+
+  /// No description provided for @statsSortByMissing.
+  ///
+  /// In es, this message translates to:
+  /// **'Más faltantes primero'**
+  String get statsSortByMissing;
+
+  /// No description provided for @statsSortByDuplicates.
+  ///
+  /// In es, this message translates to:
+  /// **'Más repetidos primero'**
+  String get statsSortByDuplicates;
 }
 
 class _AppLocalizationsDelegate

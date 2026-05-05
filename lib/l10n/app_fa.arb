@@ -333,8 +333,8 @@
   "statsCategoriesTitle": "بر اساس دسته‌بندی",
   "statsAllCategories": "همه",
   "statsNoStatsYet": "هنوز داده‌ای وجود ندارد. شروع به جمع‌آوری کنید!",
-  "statsBestCategory": "کامل‌ترین",
-  "statsWorstCategory": "ناقص‌ترین",
+  "statsBestCategory": "بیشترین پیشرفت",
+  "statsWorstCategory": "کمترین پیشرفت",
   "statsCompletedCategories": "کامل شده",
   "drawerStats": "آمار",
   "statsCategoryPickerSearch": "جستجوی دسته‌بندی...",
@@ -343,5 +343,12 @@
     "placeholders": { "count": {} }
   },
   "statsCategoryPickerAll": "همه دسته‌بندی‌ها",
-  "statsCategoryPickerClear": "پاک کردن"
+  "statsCategoryPickerClear": "پاک کردن",
+
+  "statsSortTooltip": "مرتب‌سازی",
+  "statsSortByName": "دسته‌بندی",
+  "statsSortByProgressDesc": "بیشترین پیشرفت اول",
+  "statsSortByProgressAsc": "کمترین پیشرفت اول",
+  "statsSortByMissing": "بیشترین کمبود اول",
+  "statsSortByDuplicates": "بیشترین تکرار اول"
 }

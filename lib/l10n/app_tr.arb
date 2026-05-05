@@ -333,8 +333,8 @@
   "statsCategoriesTitle": "Kategoriye Göre",
   "statsAllCategories": "Tümü",
   "statsNoStatsYet": "Henüz veri yok. Toplamaya başla!",
-  "statsBestCategory": "En tamamlanmış",
-  "statsWorstCategory": "En eksik",
+  "statsBestCategory": "En fazla ilerleme",
+  "statsWorstCategory": "En az ilerleme",
   "statsCompletedCategories": "Tamamlananlar",
   "drawerStats": "İstatistikler",
   "statsCategoryPickerSearch": "Kategori ara...",
@@ -343,5 +343,12 @@
     "placeholders": { "count": {} }
   },
   "statsCategoryPickerAll": "Tüm kategoriler",
-  "statsCategoryPickerClear": "Temizle"
+  "statsCategoryPickerClear": "Temizle",
+
+  "statsSortTooltip": "Sırala",
+  "statsSortByName": "Kategori",
+  "statsSortByProgressDesc": "En fazla ilerleme önce",
+  "statsSortByProgressAsc": "En az ilerleme önce",
+  "statsSortByMissing": "En fazla eksik önce",
+  "statsSortByDuplicates": "En fazla tekrar önce"
 }

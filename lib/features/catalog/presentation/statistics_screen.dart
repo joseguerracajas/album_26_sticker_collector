@@ -40,6 +40,29 @@ final _selectedCategoryIdsProvider =
     );
 
 // ---------------------------------------------------------------------------
+// Estado de ordenamiento de categorías
+// ---------------------------------------------------------------------------
+enum _StatsSortOrder {
+  category, // orden original (por defecto)
+  progressDesc, // mayor progreso primero
+  progressAsc, // menor progreso primero
+  missingDesc, // más faltantes primero
+  duplicatesDesc, // más repetidos primero
+}
+
+class _StatsSortNotifier extends Notifier<_StatsSortOrder> {
+  @override
+  _StatsSortOrder build() => _StatsSortOrder.category;
+
+  void set(_StatsSortOrder order) => state = order;
+}
+
+final _statsSortProvider =
+    NotifierProvider<_StatsSortNotifier, _StatsSortOrder>(
+      _StatsSortNotifier.new,
+    );
+
+// ---------------------------------------------------------------------------
 // Pantalla principal
 // ---------------------------------------------------------------------------
 class StatisticsScreen extends ConsumerStatefulWidget {
@@ -56,6 +79,7 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final selectedCategoryIds = ref.watch(_selectedCategoryIdsProvider);
+    final sortOrder = ref.watch(_statsSortProvider);
     final categoryStatsAsync = ref.watch(categoryStatsProvider);
     final totalAsync = ref.watch(totalStickersCountProvider);
     final uniqueCollected = ref.watch(uniqueCollectedProvider);
@@ -151,7 +175,29 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
                               )
                               .toList();
 
-                    if (filtered.isEmpty) {
+                    // Ordenar según la opción activa
+                    final toShow = [...filtered];
+                    switch (sortOrder) {
+                      case _StatsSortOrder.progressDesc:
+                        toShow.sort(
+                          (a, b) => b.percentage.compareTo(a.percentage),
+                        );
+                      case _StatsSortOrder.progressAsc:
+                        toShow.sort(
+                          (a, b) => a.percentage.compareTo(b.percentage),
+                        );
+                      case _StatsSortOrder.missingDesc:
+                        toShow.sort((a, b) => b.missing.compareTo(a.missing));
+                      case _StatsSortOrder.duplicatesDesc:
+                        toShow.sort(
+                          (a, b) =>
+                              b.duplicateCopies.compareTo(a.duplicateCopies),
+                        );
+                      case _StatsSortOrder.category:
+                        break;
+                    }
+
+                    if (toShow.isEmpty) {
                       return SliverToBoxAdapter(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 48),
@@ -183,11 +229,11 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
                       sliver: SliverList(
                         delegate: SliverChildBuilderDelegate(
                           (context, index) => _CategoryStatCard(
-                            stats: filtered[index],
+                            stats: toShow[index],
                             index: index,
                             l10n: l10n,
                           ),
-                          childCount: filtered.length,
+                          childCount: toShow.length,
                         ),
                       ),
                     );
@@ -724,6 +770,39 @@ class _HighlightMiniCard extends StatelessWidget {
 }
 
 // ---------------------------------------------------------------------------
+// Helper para construir ítems del menú de ordenamiento
+// ---------------------------------------------------------------------------
+PopupMenuItem<_StatsSortOrder> _sortMenuItem(
+  _StatsSortOrder value,
+  IconData icon,
+  String label,
+  _StatsSortOrder current,
+) {
+  final isSelected = value == current;
+  return PopupMenuItem<_StatsSortOrder>(
+    value: value,
+    child: Row(
+      children: [
+        Icon(icon, size: 16, color: isSelected ? Colors.amber : Colors.white54),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Text(
+            label,
+            style: TextStyle(
+              color: isSelected ? Colors.amber : Colors.white70,
+              fontSize: 13,
+              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+            ),
+          ),
+        ),
+        if (isSelected)
+          const Icon(Icons.check_rounded, size: 14, color: Colors.amber),
+      ],
+    ),
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Filtro de categorías — botón compacto que abre un bottom sheet
 // ---------------------------------------------------------------------------
 class _CategoryFilterChips extends ConsumerWidget {
@@ -754,13 +833,15 @@ class _CategoryFilterChips extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final allSelected = selectedIds == null || selectedIds!.isEmpty;
     final selectedCount = selectedIds?.length ?? 0;
+    final currentSort = ref.watch(_statsSortProvider);
+    final isCustomSort = currentSort != _StatsSortOrder.category;
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Fila: título + botón selector
+          // Fila: título + botón ordenar + botón filtrar
           Row(
             children: [
               Text(
@@ -772,6 +853,57 @@ class _CategoryFilterChips extends ConsumerWidget {
                 ),
               ),
               const Spacer(),
+              // Botón ordenar
+              PopupMenuButton<_StatsSortOrder>(
+                color: const Color(0xFF2A2A2A),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                icon: Icon(
+                  Icons.sort_rounded,
+                  size: 20,
+                  color: isCustomSort ? Colors.amber : Colors.white54,
+                ),
+                tooltip: l10n.statsSortTooltip,
+                onSelected: (order) {
+                  HapticFeedback.selectionClick();
+                  ref.read(_statsSortProvider.notifier).set(order);
+                },
+                itemBuilder: (_) => [
+                  _sortMenuItem(
+                    _StatsSortOrder.category,
+                    Icons.category_rounded,
+                    l10n.statsSortByName,
+                    currentSort,
+                  ),
+                  _sortMenuItem(
+                    _StatsSortOrder.progressDesc,
+                    Icons.arrow_upward_rounded,
+                    l10n.statsSortByProgressDesc,
+                    currentSort,
+                  ),
+                  _sortMenuItem(
+                    _StatsSortOrder.progressAsc,
+                    Icons.arrow_downward_rounded,
+                    l10n.statsSortByProgressAsc,
+                    currentSort,
+                  ),
+                  _sortMenuItem(
+                    _StatsSortOrder.missingDesc,
+                    Icons.radio_button_unchecked_rounded,
+                    l10n.statsSortByMissing,
+                    currentSort,
+                  ),
+                  _sortMenuItem(
+                    _StatsSortOrder.duplicatesDesc,
+                    Icons.copy_all_rounded,
+                    l10n.statsSortByDuplicates,
+                    currentSort,
+                  ),
+                ],
+              ),
+              const SizedBox(width: 4),
+              // Botón filtrar por categoría
               GestureDetector(
                 onTap: () => _openPicker(context, ref),
                 child: Container(

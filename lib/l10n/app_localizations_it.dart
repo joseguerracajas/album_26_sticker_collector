@@ -665,10 +665,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get statsNoStatsYet => 'Nessun dato ancora. Inizia a collezionare!';
 
   @override
-  String get statsBestCategory => 'Più completa';
+  String get statsBestCategory => 'Maggior progresso';
 
   @override
-  String get statsWorstCategory => 'Meno completa';
+  String get statsWorstCategory => 'Minor progresso';
 
   @override
   String get statsCompletedCategories => 'Completate';
@@ -689,4 +689,22 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get statsCategoryPickerClear => 'Cancella';
+
+  @override
+  String get statsSortTooltip => 'Ordina';
+
+  @override
+  String get statsSortByName => 'Categoria';
+
+  @override
+  String get statsSortByProgressDesc => 'Maggior progresso prima';
+
+  @override
+  String get statsSortByProgressAsc => 'Minor progresso prima';
+
+  @override
+  String get statsSortByMissing => 'Più mancanti prima';
+
+  @override
+  String get statsSortByDuplicates => 'Più doppioni prima';
 }

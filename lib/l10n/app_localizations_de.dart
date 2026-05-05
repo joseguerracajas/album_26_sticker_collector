@@ -670,10 +670,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get statsNoStatsYet => 'Noch keine Daten. Fange an zu sammeln!';
 
   @override
-  String get statsBestCategory => 'Am vollständigsten';
+  String get statsBestCategory => 'Meisten Fortschritt';
 
   @override
-  String get statsWorstCategory => 'Am unvollständigsten';
+  String get statsWorstCategory => 'Wenigsten Fortschritt';
 
   @override
   String get statsCompletedCategories => 'Abgeschlossen';
@@ -694,4 +694,22 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get statsCategoryPickerClear => 'Löschen';
+
+  @override
+  String get statsSortTooltip => 'Sortieren';
+
+  @override
+  String get statsSortByName => 'Kategorie';
+
+  @override
+  String get statsSortByProgressDesc => 'Meisten Fortschritt zuerst';
+
+  @override
+  String get statsSortByProgressAsc => 'Wenigsten Fortschritt zuerst';
+
+  @override
+  String get statsSortByMissing => 'Meisten Fehlenden zuerst';
+
+  @override
+  String get statsSortByDuplicates => 'Meisten Duplikate zuerst';
 }

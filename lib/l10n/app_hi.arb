@@ -333,8 +333,8 @@
   "statsCategoriesTitle": "श्रेणी के अनुसार",
   "statsAllCategories": "सभी",
   "statsNoStatsYet": "अभी कोई डेटा नहीं। एकत्र करना शुरू करें!",
-  "statsBestCategory": "सबसे पूर्ण",
-  "statsWorstCategory": "सबसे अपूर्ण",
+  "statsBestCategory": "सबसे अधिक प्रगति",
+  "statsWorstCategory": "सबसे कम प्रगति",
   "statsCompletedCategories": "पूर्ण",
   "drawerStats": "आँकड़े",
   "statsCategoryPickerSearch": "श्रेणी खोजें...",
@@ -343,5 +343,12 @@
     "placeholders": { "count": {} }
   },
   "statsCategoryPickerAll": "सभी श्रेणियाँ",
-  "statsCategoryPickerClear": "साफ़ करें"
+  "statsCategoryPickerClear": "साफ करें",
+
+  "statsSortTooltip": "क्रमबद्ध",
+  "statsSortByName": "श्रेणी",
+  "statsSortByProgressDesc": "अधिक प्रगति पहले",
+  "statsSortByProgressAsc": "कम प्रगति पहले",
+  "statsSortByMissing": "अधिक लापता पहले",
+  "statsSortByDuplicates": "अधिक दोहराव पहले"
 }
