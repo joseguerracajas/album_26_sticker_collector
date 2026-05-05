@@ -366,6 +366,17 @@ class TradeActionsNotifier extends AsyncNotifier<void> {
     ref.invalidate(tradeHistoryProvider);
   }
 
+  // ── Completar sesión directamente (sin pantalla de entrega) ──────────────
+
+  Future<void> completeSession(String sessionId) async {
+    await supabase
+        .from('trade_sessions')
+        .update({'status': 'completed'})
+        .eq('id', sessionId);
+    ref.invalidate(activeTradeSessionsProvider);
+    ref.invalidate(tradeHistoryProvider);
+  }
+
   // ── Marcar cromos como entregados ─────────────────────────────────────────
 
   /// [deliveredOfferIds] = IDs de trade_offers que el receptor confirmó recibir

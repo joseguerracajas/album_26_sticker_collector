@@ -12,7 +12,6 @@ import 'package:album_26_sticker_collector/features/inventory/data/inventory_pro
 import 'package:album_26_sticker_collector/features/trade/data/trade_provider.dart';
 import 'package:album_26_sticker_collector/features/trade/domain/trade_offer.dart';
 import 'package:album_26_sticker_collector/features/trade/domain/trade_session.dart';
-import 'package:album_26_sticker_collector/features/trade/presentation/trade_delivery_screen.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:album_26_sticker_collector/main.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +41,9 @@ class _TradeNegotiationScreenState extends ConsumerState<TradeNegotiationScreen>
   // Para detectar cambios de ofertas del partner
   String _lastPartnerOfferHash = '';
 
+  // Garantiza que el ajuste de inventario solo ocurra una vez por intercambio
+  bool _inventoryUpdated = false;
+
   @override
   void initState() {
     super.initState();
@@ -52,6 +54,71 @@ class _TradeNegotiationScreenState extends ConsumerState<TradeNegotiationScreen>
   void dispose() {
     _tabController.dispose();
     super.dispose();
+  }
+
+  /// Actualiza el inventario propio y completa la sesión.
+  /// Se llama cuando el status pasa a 'reserved' o 'completed'.
+  /// El flag [_inventoryUpdated] evita ejecutarlo dos veces.
+  Future<void> _finalizeTrade(TradeSession session) async {
+    if (_inventoryUpdated) {
+      // El inventario ya fue ajustado; solo asegurarse de navegar
+      if (mounted) Navigator.of(context).popUntil((r) => r.isFirst);
+      return;
+    }
+    _inventoryUpdated = true;
+
+    try {
+      final myId = supabase.auth.currentUser?.id ?? '';
+      final offers =
+          ref.read(tradeOffersProvider(session.id)).asData?.value ?? [];
+      final inventoryNotifier = ref.read(inventoryProvider.notifier);
+
+      for (final offer in offers) {
+        if (offer.offererId != myId) {
+          // Cromo que recibo: sumar
+          await inventoryNotifier.updateVariantQuantity(
+            offer.stickerId,
+            'normal',
+            offer.quantity,
+          );
+        } else {
+          // Cromo que entregué: restar
+          await inventoryNotifier.updateVariantQuantity(
+            offer.stickerId,
+            'normal',
+            -offer.quantity,
+          );
+        }
+      }
+
+      // Solo el que ve 'reserved' primero llama a completar la sesión.
+      // Si ya está 'completed' (el otro lo hizo antes), esta llamada es idempotente.
+      await ref.read(tradeActionsProvider.notifier).completeSession(session.id);
+    } catch (_) {
+      // Si falla, resetear para que pueda reintentarse
+      _inventoryUpdated = false;
+      rethrow;
+    }
+
+    if (!mounted) return;
+
+    final l10n = AppLocalizations.of(context);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          l10n.tradeDeliverySuccess(
+            _myOffer.values.fold<int>(0, (a, b) => a + b),
+          ),
+          style: const TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Colors.green,
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+    Navigator.of(context).popUntil((r) => r.isFirst);
   }
 
   bool _myTurnToEdit(TradeSession session) {
@@ -197,7 +264,10 @@ class _TradeNegotiationScreenState extends ConsumerState<TradeNegotiationScreen>
     final session = sessionAsync.asData?.value ?? widget.session;
 
     // Reaccionar a cambios de estado de la sesión
-    ref.listen(tradeSessionStreamProvider(widget.session.id), (prev, next) {
+    ref.listen(tradeSessionStreamProvider(widget.session.id), (
+      prev,
+      next,
+    ) async {
       final s = next.asData?.value;
       if (s == null || !mounted) return;
       if (s.status == 'cancelled') {
@@ -217,14 +287,9 @@ class _TradeNegotiationScreenState extends ConsumerState<TradeNegotiationScreen>
         Navigator.of(
           context,
         ).popUntil((r) => r.isFirst || r.settings.name == '/trade_hub');
-      } else if (s.status == 'reserved') {
-        // Ambos confirmaron → ir a entrega
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => TradeDeliveryScreen(session: s)),
-        );
-      } else if (s.status == 'completed') {
-        // El otro usuario ya confirmó la entrega → volver al inicio
-        Navigator.of(context).popUntil((r) => r.isFirst);
+      } else if (s.status == 'reserved' || s.status == 'completed') {
+        // Ambos confirmaron → actualizar inventarios y finalizar
+        await _finalizeTrade(s);
       }
     });
 
