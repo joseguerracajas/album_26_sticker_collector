@@ -319,7 +319,7 @@ class StickerGrid extends ConsumerWidget {
               ),
             )
           : GridView.builder(
-              key: ValueKey(
+              key: PageStorageKey(
                 '${category.id}_${currentFilter}_${filteredStickers.length}',
               ), // Clave dinámica para forzar la animación
               shrinkWrap: shrinkWrap,
