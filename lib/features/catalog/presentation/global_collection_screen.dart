@@ -53,6 +53,7 @@ class GlobalCollectionScreen extends ConsumerStatefulWidget {
 class _GlobalCollectionScreenState
     extends ConsumerState<GlobalCollectionScreen> {
   double _pointerDownX = 0;
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -67,81 +68,95 @@ class _GlobalCollectionScreenState
   }
 
   @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final categoriesAsync = ref.watch(categoriesProvider);
 
-    return Listener(
-      onPointerDown: (event) => _pointerDownX = event.localPosition.dx,
-      child: GestureDetector(
-        onHorizontalDragEnd: (details) {
-          if (_pointerDownX < 30 &&
-              details.primaryVelocity != null &&
-              details.primaryVelocity! > 100) {
-            Navigator.of(context).pop();
-          }
-        },
-        child: Scaffold(
-          backgroundColor: const Color(0xFF121212),
-          appBar: AppBar(
-            title: Text(
-              l10n.globalCollectionTitle,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            actions: const [ScannerIconButton(), ShareMenuButton()],
-          ),
-          bottomNavigationBar: const AdBannerWidget(),
-          body: RefreshIndicator(
-            color: Colors.amber,
-            backgroundColor: const Color(0xFF1E1E1E),
-            onRefresh: ref.read(syncServiceProvider).refreshAll,
-
-            // 🔥 1. CAMBIAMOS A CustomScrollView
-            child: CustomScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              slivers: [
-                // 🔥 2. El Buscador y Filtros van en un adaptador Sliver
-                const SliverToBoxAdapter(child: StickerFilterSearch()),
-
-                // 🔥 3. Las categorías se renderizan como Slivers (Lazy Loading)
-                categoriesAsync.when(
-                  loading: () => const SliverToBoxAdapter(
-                    child: Center(
-                      child: Padding(
-                        padding: EdgeInsets.all(32.0),
-                        child: CircularProgressIndicator(color: Colors.amber),
-                      ),
-                    ),
-                  ),
-                  error: (e, s) => SliverToBoxAdapter(
-                    child: Center(
-                      child: Text(
-                        l10n.commonErrorWithMessage(e),
-                        style: const TextStyle(color: Colors.red),
-                      ),
-                    ),
-                  ),
-                  data: (categorias) {
-                    // SliverList asegura que Flutter SOLO construya los países visibles
-                    return SliverPadding(
-                      padding: const EdgeInsets.only(bottom: 40),
-                      sliver: SliverList(
-                        delegate: SliverChildBuilderDelegate((context, index) {
-                          return _CategoryStickerSection(
-                            category: categorias[index],
-                            isFirst: index == 0,
-                          );
-                        }, childCount: categorias.length),
-                      ),
-                    );
-                  },
+    return PrimaryScrollController(
+      controller: _scrollController,
+      child: Listener(
+        onPointerDown: (event) => _pointerDownX = event.localPosition.dx,
+        child: GestureDetector(
+          onHorizontalDragEnd: (details) {
+            if (_pointerDownX < 30 &&
+                details.primaryVelocity != null &&
+                details.primaryVelocity! > 100) {
+              Navigator.of(context).pop();
+            }
+          },
+          child: Scaffold(
+            backgroundColor: const Color(0xFF121212),
+            appBar: AppBar(
+              title: Text(
+                l10n.globalCollectionTitle,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
-              ],
+              ),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              actions: const [ScannerIconButton(), ShareMenuButton()],
+            ),
+            bottomNavigationBar: const AdBannerWidget(),
+            body: RefreshIndicator(
+              color: Colors.amber,
+              backgroundColor: const Color(0xFF1E1E1E),
+              onRefresh: ref.read(syncServiceProvider).refreshAll,
+
+              // 🔥 1. CAMBIAMOS A CustomScrollView
+              child: CustomScrollView(
+                key: const PageStorageKey('global_scroll'),
+                primary: true,
+                physics: const AlwaysScrollableScrollPhysics(),
+                slivers: [
+                  // 🔥 2. El Buscador y Filtros van en un adaptador Sliver
+                  const SliverToBoxAdapter(child: StickerFilterSearch()),
+
+                  // 🔥 3. Las categorías se renderizan como Slivers (Lazy Loading)
+                  categoriesAsync.when(
+                    loading: () => const SliverToBoxAdapter(
+                      child: Center(
+                        child: Padding(
+                          padding: EdgeInsets.all(32.0),
+                          child: CircularProgressIndicator(color: Colors.amber),
+                        ),
+                      ),
+                    ),
+                    error: (e, s) => SliverToBoxAdapter(
+                      child: Center(
+                        child: Text(
+                          l10n.commonErrorWithMessage(e),
+                          style: const TextStyle(color: Colors.red),
+                        ),
+                      ),
+                    ),
+                    data: (categorias) {
+                      // SliverList asegura que Flutter SOLO construya los países visibles
+                      return SliverPadding(
+                        padding: const EdgeInsets.only(bottom: 40),
+                        sliver: SliverList(
+                          delegate: SliverChildBuilderDelegate((
+                            context,
+                            index,
+                          ) {
+                            return _CategoryStickerSection(
+                              category: categorias[index],
+                              isFirst: index == 0,
+                            );
+                          }, childCount: categorias.length),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),

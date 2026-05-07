@@ -63,6 +63,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   bool _variantDialogShown = false;
   bool _tutorialScheduled = false;
   final TextEditingController _searchController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
 
   Future<void> _maybeShowTutorial() async {
     if (_tutorialScheduled || !mounted) return;
@@ -79,6 +80,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   void dispose() {
     _searchController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -117,368 +119,379 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       }
     });
 
-    return Scaffold(
-      backgroundColor: const Color(0xFF121212),
-      appBar: AppBar(
-        title: Text(
-          l10n.homeTitle,
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-        leading: Builder(
-          builder: (ctx) => Center(
-            child: SizedBox(
-              key: tutorialDrawerKey,
-              width: 44,
-              height: 44,
-              child: IconButton(
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
-                icon: const Icon(Icons.menu, color: Colors.amber),
-                onPressed: () => Scaffold.of(ctx).openDrawer(),
+    return PrimaryScrollController(
+      controller: _scrollController,
+      child: Scaffold(
+        backgroundColor: const Color(0xFF121212),
+        appBar: AppBar(
+          title: Text(
+            l10n.homeTitle,
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          ),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          centerTitle: true,
+          leading: Builder(
+            builder: (ctx) => Center(
+              child: SizedBox(
+                key: tutorialDrawerKey,
+                width: 44,
+                height: 44,
+                child: IconButton(
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
+                  icon: const Icon(Icons.menu, color: Colors.amber),
+                  onPressed: () => Scaffold.of(ctx).openDrawer(),
+                ),
               ),
             ),
           ),
+          actions: const [
+            ScannerIconButton(showTutorialKey: true),
+            ShareMenuButton(showTutorialKey: true),
+          ],
         ),
-        actions: const [
-          ScannerIconButton(showTutorialKey: true),
-          ShareMenuButton(showTutorialKey: true),
-        ],
-      ),
-      drawer: const _AppDrawer(),
-      bottomNavigationBar: const AdBannerWidget(),
-      body: RefreshIndicator(
-        color: Colors.amber,
-        backgroundColor: const Color(0xFF1E1E1E),
-        onRefresh: ref.read(syncServiceProvider).refreshAll,
-        child: CustomScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          slivers: [
-            SliverToBoxAdapter(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // --- TARJETA DORADA GLOBAL ANIMADA ---
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20.0,
-                      vertical: 10,
-                    ),
-                    child:
-                        Container(
-                              key: tutorialProgressCardKey,
-                              // ... (TODO EL CÓDIGO DE TU TARJETA DORADA SE QUEDA EXACTAMENTE IGUAL)
-                              padding: const EdgeInsets.all(24),
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  colors: [
-                                    Colors.amber.shade400,
-                                    Colors.amber.shade800,
+        drawer: const _AppDrawer(),
+        bottomNavigationBar: const AdBannerWidget(),
+        body: RefreshIndicator(
+          color: Colors.amber,
+          backgroundColor: const Color(0xFF1E1E1E),
+          onRefresh: ref.read(syncServiceProvider).refreshAll,
+          child: CustomScrollView(
+            primary: true,
+            physics: const AlwaysScrollableScrollPhysics(),
+            slivers: [
+              SliverToBoxAdapter(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // --- TARJETA DORADA GLOBAL ANIMADA ---
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20.0,
+                        vertical: 10,
+                      ),
+                      child:
+                          Container(
+                                key: tutorialProgressCardKey,
+                                // ... (TODO EL CÓDIGO DE TU TARJETA DORADA SE QUEDA EXACTAMENTE IGUAL)
+                                padding: const EdgeInsets.all(24),
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                    colors: [
+                                      Colors.amber.shade400,
+                                      Colors.amber.shade800,
+                                    ],
+                                  ),
+                                  borderRadius: BorderRadius.circular(24),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.amber.withValues(
+                                        alpha: 0.3,
+                                      ),
+                                      blurRadius: 15,
+                                      offset: const Offset(0, 8),
+                                    ),
                                   ],
                                 ),
-                                borderRadius: BorderRadius.circular(24),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.amber.withValues(alpha: 0.3),
-                                    blurRadius: 15,
-                                    offset: const Offset(0, 8),
+                                child: totalCromosAsync.when(
+                                  loading: () => const Center(
+                                    child: CircularProgressIndicator(
+                                      color: Colors.black,
+                                    ),
                                   ),
-                                ],
-                              ),
-                              child: totalCromosAsync.when(
-                                loading: () => const Center(
-                                  child: CircularProgressIndicator(
-                                    color: Colors.black,
+                                  error: (e, s) => Text(
+                                    l10n.homeProgressError,
+                                    style: TextStyle(color: Colors.black),
                                   ),
-                                ),
-                                error: (e, s) => Text(
-                                  l10n.homeProgressError,
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                data: (total) {
-                                  final porcentaje = total == 0
-                                      ? 0.0
-                                      : (cromosUnicos / total) * 100;
-                                  final progresoDecimal = total == 0
-                                      ? 0.0
-                                      : (cromosUnicos / total);
+                                  data: (total) {
+                                    final porcentaje = total == 0
+                                        ? 0.0
+                                        : (cromosUnicos / total) * 100;
+                                    final progresoDecimal = total == 0
+                                        ? 0.0
+                                        : (cromosUnicos / total);
 
-                                  return Column(
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Flexible(
-                                            child: Text(
-                                              l10n.homeGlobalProgressTitle,
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 22,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ),
-                                          FittedBox(
-                                            fit: BoxFit.scaleDown,
-                                            child: Text(
-                                              '${porcentaje.toStringAsFixed(1)}%',
-                                              style: const TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 38,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(height: 15),
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(8),
-                                        child: LinearProgressIndicator(
-                                          value: progresoDecimal,
-                                          backgroundColor: Colors.black12,
-                                          valueColor:
-                                              const AlwaysStoppedAnimation<
-                                                Color
-                                              >(Colors.white),
-                                          minHeight: 10,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 6),
-                                      Align(
-                                        alignment: Alignment.centerRight,
-                                        child: StickerStatRow(
-                                          collected: cromosUnicos,
-                                          total: total,
-                                          missing: total - cromosUnicos,
-                                          duplicateCopies: duplicatesCount,
-                                          collectedColor: Colors.black87,
-                                          missingColor: Colors.black54,
-                                          duplicatesColor: Colors.black45,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 16),
-                                      SizedBox(
-                                        width: double.infinity,
-                                        child: AnimatedExpandContainer(
-                                          closedColor: Colors.black87,
-                                          borderRadius: 12.0,
-                                          openBuilder: (context, close) =>
-                                              const GlobalCollectionScreen(),
-                                          closedBuilder: (context, open) {
-                                            return ElevatedButton.icon(
-                                              style: ElevatedButton.styleFrom(
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                shadowColor: Colors.transparent,
-                                                foregroundColor: Colors.amber,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(12),
-                                                ),
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                      vertical: 12,
-                                                    ),
-                                              ),
-                                              icon: const Icon(Icons.style),
-                                              label: Text(
-                                                l10n.homeViewFullCollection,
+                                    return Column(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Flexible(
+                                              child: Text(
+                                                l10n.homeGlobalProgressTitle,
                                                 style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ),
+                                            FittedBox(
+                                              fit: BoxFit.scaleDown,
+                                              child: Text(
+                                                '${porcentaje.toStringAsFixed(1)}%',
+                                                style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 38,
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ),
-                                              onPressed: () {
-                                                HapticFeedback.lightImpact();
-                                                open();
-                                              },
-                                            );
-                                          },
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                    ],
-                                  );
-                                },
+                                        const SizedBox(height: 15),
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                          child: LinearProgressIndicator(
+                                            value: progresoDecimal,
+                                            backgroundColor: Colors.black12,
+                                            valueColor:
+                                                const AlwaysStoppedAnimation<
+                                                  Color
+                                                >(Colors.white),
+                                            minHeight: 10,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 6),
+                                        Align(
+                                          alignment: Alignment.centerRight,
+                                          child: StickerStatRow(
+                                            collected: cromosUnicos,
+                                            total: total,
+                                            missing: total - cromosUnicos,
+                                            duplicateCopies: duplicatesCount,
+                                            collectedColor: Colors.black87,
+                                            missingColor: Colors.black54,
+                                            duplicatesColor: Colors.black45,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 16),
+                                        SizedBox(
+                                          width: double.infinity,
+                                          child: AnimatedExpandContainer(
+                                            closedColor: Colors.black87,
+                                            borderRadius: 12.0,
+                                            openBuilder: (context, close) =>
+                                                const GlobalCollectionScreen(),
+                                            closedBuilder: (context, open) {
+                                              return ElevatedButton.icon(
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  shadowColor:
+                                                      Colors.transparent,
+                                                  foregroundColor: Colors.amber,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                          12,
+                                                        ),
+                                                  ),
+                                                  padding:
+                                                      const EdgeInsets.symmetric(
+                                                        vertical: 12,
+                                                      ),
+                                                ),
+                                                icon: const Icon(Icons.style),
+                                                label: Text(
+                                                  l10n.homeViewFullCollection,
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                                onPressed: () {
+                                                  HapticFeedback.lightImpact();
+                                                  open();
+                                                },
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ),
+                              )
+                              .animate()
+                              .scaleXY(
+                                begin: 0.9,
+                                end: 1.0,
+                                duration: 600.ms,
+                                curve: Curves.easeOutBack,
+                              )
+                              .fadeIn(duration: 600.ms)
+                              .shimmer(
+                                delay: 800.ms,
+                                duration: 1000.ms,
+                                color: Colors.white.withValues(alpha: 0.5),
+                                angle: 1.2,
                               ),
-                            )
-                            .animate()
-                            .scaleXY(
-                              begin: 0.9,
-                              end: 1.0,
-                              duration: 600.ms,
-                              curve: Curves.easeOutBack,
-                            )
-                            .fadeIn(duration: 600.ms)
-                            .shimmer(
-                              delay: 800.ms,
-                              duration: 1000.ms,
-                              color: Colors.white.withValues(alpha: 0.5),
-                              angle: 1.2,
-                            ),
-                  ),
+                    ),
 
-                  // TÍTULO "EQUIPOS"
-                  Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 24.0,
-                          vertical: 8,
-                        ),
-                        child: Row(
-                          children: [
-                            Text(
-                              l10n.homeTeamsTitle,
-                              style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                            const Spacer(),
-                          ],
-                        ),
-                      )
-                      .animate()
-                      .fadeIn(delay: 200.ms, duration: 400.ms)
-                      .slideY(
-                        begin: 0.2,
-                        end: 0,
-                        duration: 400.ms,
-                        curve: Curves.easeOut,
-                      ),
-
-                  // BUSCADOR
-                  Padding(
-                        key: tutorialSearchBarKey,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0,
-                          vertical: 4.0,
-                        ),
-                        child: TextField(
-                          controller: _searchController,
-                          onChanged: (value) => ref
-                              .read(searchQueryProvider.notifier)
-                              .updateQuery(value),
-                          style: const TextStyle(color: Colors.white),
-                          autocorrect: false,
-                          enableSuggestions: true,
-                          decoration: InputDecoration(
-                            hintText: l10n.homeSearchTeamsHint,
-                            hintStyle: TextStyle(color: Colors.grey.shade600),
-                            prefixIcon: const Icon(
-                              Icons.search,
-                              color: Colors.amber,
-                              size: 20,
-                            ),
-                            filled: true,
-                            fillColor: const Color(0xFF1E1E1E),
-                            contentPadding: const EdgeInsets.symmetric(
-                              vertical: 0,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide.none,
-                            ),
-                            suffixIcon: searchQuery.isNotEmpty
-                                ? IconButton(
-                                    icon: const Icon(
-                                      Icons.close,
-                                      color: Colors.grey,
-                                      size: 18,
-                                    ),
-                                    onPressed: () {
-                                      _searchController.clear();
-                                      ref
-                                          .read(searchQueryProvider.notifier)
-                                          .updateQuery('');
-                                      FocusScope.of(context).unfocus();
-                                    },
-                                  )
-                                : null,
+                    // TÍTULO "EQUIPOS"
+                    Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 24.0,
+                            vertical: 8,
                           ),
+                          child: Row(
+                            children: [
+                              Text(
+                                l10n.homeTeamsTitle,
+                                style: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              const Spacer(),
+                            ],
+                          ),
+                        )
+                        .animate()
+                        .fadeIn(delay: 200.ms, duration: 400.ms)
+                        .slideY(
+                          begin: 0.2,
+                          end: 0,
+                          duration: 400.ms,
+                          curve: Curves.easeOut,
                         ),
-                      )
-                      .animate()
-                      .fadeIn(delay: 300.ms, duration: 400.ms)
-                      .slideY(
-                        begin: 0.2,
-                        end: 0,
-                        duration: 400.ms,
-                        curve: Curves.easeOut,
-                      ),
-                  const SizedBox(height: 10),
-                ],
-              ),
-            ),
 
-            // 🔥 3. LA LISTA DE EQUIPOS AHORA ES UN SliverList (Recuperamos el Lazy Loading)
-            categoriesAsync.when(
-              loading: () => const SliverToBoxAdapter(
-                child: SizedBox(
-                  height: 220,
-                  child: Center(
-                    child: CircularProgressIndicator(color: Colors.amber),
-                  ),
+                    // BUSCADOR
+                    Padding(
+                          key: tutorialSearchBarKey,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20.0,
+                            vertical: 4.0,
+                          ),
+                          child: TextField(
+                            controller: _searchController,
+                            onChanged: (value) => ref
+                                .read(searchQueryProvider.notifier)
+                                .updateQuery(value),
+                            style: const TextStyle(color: Colors.white),
+                            autocorrect: false,
+                            enableSuggestions: true,
+                            decoration: InputDecoration(
+                              hintText: l10n.homeSearchTeamsHint,
+                              hintStyle: TextStyle(color: Colors.grey.shade600),
+                              prefixIcon: const Icon(
+                                Icons.search,
+                                color: Colors.amber,
+                                size: 20,
+                              ),
+                              filled: true,
+                              fillColor: const Color(0xFF1E1E1E),
+                              contentPadding: const EdgeInsets.symmetric(
+                                vertical: 0,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                borderSide: BorderSide.none,
+                              ),
+                              suffixIcon: searchQuery.isNotEmpty
+                                  ? IconButton(
+                                      icon: const Icon(
+                                        Icons.close,
+                                        color: Colors.grey,
+                                        size: 18,
+                                      ),
+                                      onPressed: () {
+                                        _searchController.clear();
+                                        ref
+                                            .read(searchQueryProvider.notifier)
+                                            .updateQuery('');
+                                        FocusScope.of(context).unfocus();
+                                      },
+                                    )
+                                  : null,
+                            ),
+                          ),
+                        )
+                        .animate()
+                        .fadeIn(delay: 300.ms, duration: 400.ms)
+                        .slideY(
+                          begin: 0.2,
+                          end: 0,
+                          duration: 400.ms,
+                          curve: Curves.easeOut,
+                        ),
+                    const SizedBox(height: 10),
+                  ],
                 ),
               ),
-              error: (e, s) => SliverToBoxAdapter(
-                child: SizedBox(
-                  height: 220,
-                  child: Center(
-                    child: Text(
-                      l10n.commonErrorWithMessage(e),
-                      style: const TextStyle(color: Colors.white),
+
+              // 🔥 3. LA LISTA DE EQUIPOS AHORA ES UN SliverList (Recuperamos el Lazy Loading)
+              categoriesAsync.when(
+                loading: () => const SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 220,
+                    child: Center(
+                      child: CircularProgressIndicator(color: Colors.amber),
                     ),
                   ),
                 ),
-              ),
-              data: (categorias) {
-                final normalizedQuery = _normalize(searchQuery);
-                final filtered = categorias
-                    .where(
-                      (c) =>
-                          _normalize(c.name).contains(normalizedQuery) ||
-                          _normalize(c.id).contains(normalizedQuery),
-                    )
-                    .toList();
+                error: (e, s) => SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 220,
+                    child: Center(
+                      child: Text(
+                        l10n.commonErrorWithMessage(e),
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+                data: (categorias) {
+                  final normalizedQuery = _normalize(searchQuery);
+                  final filtered = categorias
+                      .where(
+                        (c) =>
+                            _normalize(c.name).contains(normalizedQuery) ||
+                            _normalize(c.id).contains(normalizedQuery),
+                      )
+                      .toList();
 
-                if (filtered.isEmpty) {
-                  return SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: 220,
-                      child: Center(
-                        child: Text(
-                          l10n.homeNoResults,
-                          style: TextStyle(color: Colors.grey),
+                  if (filtered.isEmpty) {
+                    return SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: 220,
+                        child: Center(
+                          child: Text(
+                            l10n.homeNoResults,
+                            style: TextStyle(color: Colors.grey),
+                          ),
                         ),
+                      ),
+                    );
+                  }
+
+                  return SliverPadding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
+                    sliver: SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) => _CategoryTile(
+                          category: filtered[index],
+                          index: index,
+                        ),
+                        childCount: filtered.length,
                       ),
                     ),
                   );
-                }
-
-                return SliverPadding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  sliver: SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) => _CategoryTile(
-                        category: filtered[index],
-                        index: index,
-                      ),
-                      childCount: filtered.length,
-                    ),
-                  ),
-                );
-              },
-            ),
-          ],
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

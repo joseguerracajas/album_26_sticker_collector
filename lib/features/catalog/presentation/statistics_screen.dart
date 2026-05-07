@@ -74,6 +74,13 @@ class StatisticsScreen extends ConsumerStatefulWidget {
 
 class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
   double _pointerDownX = 0;
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,164 +91,170 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
     final totalAsync = ref.watch(totalStickersCountProvider);
     final uniqueCollected = ref.watch(uniqueCollectedProvider);
 
-    return Listener(
-      onPointerDown: (event) => _pointerDownX = event.localPosition.dx,
-      child: GestureDetector(
-        onHorizontalDragEnd: (details) {
-          if (_pointerDownX < 30 &&
-              details.primaryVelocity != null &&
-              details.primaryVelocity! > 100) {
-            Navigator.of(context).pop();
-          }
-        },
-        child: Scaffold(
-          backgroundColor: const Color(0xFF121212),
-          appBar: AppBar(
-            title: Text(
-              l10n.statsTitle,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            actions: const [ScannerIconButton(), ShareMenuButton()],
-          ),
-          bottomNavigationBar: const AdBannerWidget(),
-          body: RefreshIndicator(
-            color: Colors.amber,
-            backgroundColor: const Color(0xFF1E1E1E),
-            onRefresh: ref.read(syncServiceProvider).refreshAll,
-            child: CustomScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              slivers: [
-                // 1. Sección global de progreso (tarjeta dorada)
-                SliverToBoxAdapter(
-                  child: _GlobalProgressCard(
-                    totalAsync: totalAsync,
-                    uniqueCollected: uniqueCollected,
-                    categoryStatsAsync: categoryStatsAsync,
-                    l10n: l10n,
-                  ),
+    return PrimaryScrollController(
+      controller: _scrollController,
+      child: Listener(
+        onPointerDown: (event) => _pointerDownX = event.localPosition.dx,
+        child: GestureDetector(
+          onHorizontalDragEnd: (details) {
+            if (_pointerDownX < 30 &&
+                details.primaryVelocity != null &&
+                details.primaryVelocity! > 100) {
+              Navigator.of(context).pop();
+            }
+          },
+          child: Scaffold(
+            backgroundColor: const Color(0xFF121212),
+            appBar: AppBar(
+              title: Text(
+                l10n.statsTitle,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
-
-                // 2. Chips de filtro por categoría
-                categoryStatsAsync.when(
-                  loading: () =>
-                      const SliverToBoxAdapter(child: SizedBox.shrink()),
-                  error: (e, s) =>
-                      const SliverToBoxAdapter(child: SizedBox.shrink()),
-                  data: (stats) => SliverToBoxAdapter(
-                    child: _CategoryFilterChips(
-                      categories: stats.map((s) => s.category).toList(),
-                      selectedIds: selectedCategoryIds,
+              ),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              actions: const [ScannerIconButton(), ShareMenuButton()],
+            ),
+            bottomNavigationBar: const AdBannerWidget(),
+            body: RefreshIndicator(
+              color: Colors.amber,
+              backgroundColor: const Color(0xFF1E1E1E),
+              onRefresh: ref.read(syncServiceProvider).refreshAll,
+              child: CustomScrollView(
+                key: const PageStorageKey('statistics_scroll'),
+                primary: true,
+                physics: const AlwaysScrollableScrollPhysics(),
+                slivers: [
+                  // 1. Sección global de progreso (tarjeta dorada)
+                  SliverToBoxAdapter(
+                    child: _GlobalProgressCard(
+                      totalAsync: totalAsync,
+                      uniqueCollected: uniqueCollected,
+                      categoryStatsAsync: categoryStatsAsync,
                       l10n: l10n,
                     ),
                   ),
-                ),
 
-                // 3. Lista de estadísticas por categoría
-                categoryStatsAsync.when(
-                  loading: () => const SliverToBoxAdapter(
-                    child: Padding(
-                      padding: EdgeInsets.all(48),
-                      child: Center(
-                        child: CircularProgressIndicator(color: Colors.amber),
+                  // 2. Chips de filtro por categoría
+                  categoryStatsAsync.when(
+                    loading: () =>
+                        const SliverToBoxAdapter(child: SizedBox.shrink()),
+                    error: (e, s) =>
+                        const SliverToBoxAdapter(child: SizedBox.shrink()),
+                    data: (stats) => SliverToBoxAdapter(
+                      child: _CategoryFilterChips(
+                        categories: stats.map((s) => s.category).toList(),
+                        selectedIds: selectedCategoryIds,
+                        l10n: l10n,
                       ),
                     ),
                   ),
-                  error: (e, _) => SliverToBoxAdapter(
-                    child: Center(
+
+                  // 3. Lista de estadísticas por categoría
+                  categoryStatsAsync.when(
+                    loading: () => const SliverToBoxAdapter(
                       child: Padding(
-                        padding: const EdgeInsets.all(32),
-                        child: Text(
-                          l10n.commonErrorWithMessage(e),
-                          style: const TextStyle(color: Colors.redAccent),
+                        padding: EdgeInsets.all(48),
+                        child: Center(
+                          child: CircularProgressIndicator(color: Colors.amber),
                         ),
                       ),
                     ),
-                  ),
-                  data: (stats) {
-                    // Filtrar por categorías seleccionadas
-                    var filtered =
-                        (selectedCategoryIds == null ||
-                            selectedCategoryIds.isEmpty)
-                        ? stats
-                        : stats
-                              .where(
-                                (s) =>
-                                    selectedCategoryIds.contains(s.category.id),
-                              )
-                              .toList();
-
-                    // Ordenar según la opción activa
-                    final toShow = [...filtered];
-                    switch (sortOrder) {
-                      case _StatsSortOrder.progressDesc:
-                        toShow.sort(
-                          (a, b) => b.percentage.compareTo(a.percentage),
-                        );
-                      case _StatsSortOrder.progressAsc:
-                        toShow.sort(
-                          (a, b) => a.percentage.compareTo(b.percentage),
-                        );
-                      case _StatsSortOrder.missingDesc:
-                        toShow.sort((a, b) => b.missing.compareTo(a.missing));
-                      case _StatsSortOrder.duplicatesDesc:
-                        toShow.sort(
-                          (a, b) =>
-                              b.duplicateCopies.compareTo(a.duplicateCopies),
-                        );
-                      case _StatsSortOrder.category:
-                        break;
-                    }
-
-                    if (toShow.isEmpty) {
-                      return SliverToBoxAdapter(
+                    error: (e, _) => SliverToBoxAdapter(
+                      child: Center(
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 48),
-                          child: Center(
-                            child: Column(
-                              children: [
-                                const Icon(
-                                  Icons.inbox_outlined,
-                                  color: Colors.white24,
-                                  size: 48,
-                                ),
-                                const SizedBox(height: 12),
-                                Text(
-                                  l10n.statsNoStatsYet,
-                                  style: const TextStyle(
-                                    color: Colors.white38,
-                                    fontSize: 15,
+                          padding: const EdgeInsets.all(32),
+                          child: Text(
+                            l10n.commonErrorWithMessage(e),
+                            style: const TextStyle(color: Colors.redAccent),
+                          ),
+                        ),
+                      ),
+                    ),
+                    data: (stats) {
+                      // Filtrar por categorías seleccionadas
+                      var filtered =
+                          (selectedCategoryIds == null ||
+                              selectedCategoryIds.isEmpty)
+                          ? stats
+                          : stats
+                                .where(
+                                  (s) => selectedCategoryIds.contains(
+                                    s.category.id,
                                   ),
-                                ),
-                              ],
+                                )
+                                .toList();
+
+                      // Ordenar según la opción activa
+                      final toShow = [...filtered];
+                      switch (sortOrder) {
+                        case _StatsSortOrder.progressDesc:
+                          toShow.sort(
+                            (a, b) => b.percentage.compareTo(a.percentage),
+                          );
+                        case _StatsSortOrder.progressAsc:
+                          toShow.sort(
+                            (a, b) => a.percentage.compareTo(b.percentage),
+                          );
+                        case _StatsSortOrder.missingDesc:
+                          toShow.sort((a, b) => b.missing.compareTo(a.missing));
+                        case _StatsSortOrder.duplicatesDesc:
+                          toShow.sort(
+                            (a, b) =>
+                                b.duplicateCopies.compareTo(a.duplicateCopies),
+                          );
+                        case _StatsSortOrder.category:
+                          break;
+                      }
+
+                      if (toShow.isEmpty) {
+                        return SliverToBoxAdapter(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 48),
+                            child: Center(
+                              child: Column(
+                                children: [
+                                  const Icon(
+                                    Icons.inbox_outlined,
+                                    color: Colors.white24,
+                                    size: 48,
+                                  ),
+                                  const SizedBox(height: 12),
+                                  Text(
+                                    l10n.statsNoStatsYet,
+                                    style: const TextStyle(
+                                      color: Colors.white38,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
+                          ),
+                        );
+                      }
+
+                      return SliverPadding(
+                        padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
+                        sliver: SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            (context, index) => _CategoryStatCard(
+                              stats: toShow[index],
+                              index: index,
+                              l10n: l10n,
+                            ),
+                            childCount: toShow.length,
                           ),
                         ),
                       );
-                    }
+                    },
+                  ),
 
-                    return SliverPadding(
-                      padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
-                      sliver: SliverList(
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) => _CategoryStatCard(
-                            stats: toShow[index],
-                            index: index,
-                            l10n: l10n,
-                          ),
-                          childCount: toShow.length,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-
-                const SliverToBoxAdapter(child: SizedBox(height: 16)),
-              ],
+                  const SliverToBoxAdapter(child: SizedBox(height: 16)),
+                ],
+              ),
             ),
           ),
         ),
