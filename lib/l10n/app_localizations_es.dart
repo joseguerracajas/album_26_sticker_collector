@@ -261,7 +261,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get scannerOverlayHint => 'Centra la parte trasera del cromo aquí';
 
   @override
-  String get pendingScansTitle => 'stickers Escaneados';
+  String get pendingScansTitle => 'Stickers escaneados';
 
   @override
   String get pendingScansEmpty => 'Aún no has escaneado ningún cromo';

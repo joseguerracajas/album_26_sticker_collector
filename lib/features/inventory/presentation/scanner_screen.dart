@@ -14,6 +14,19 @@ import 'package:camera/camera.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 
+// Provider que el AppShell activa/desactiva al cambiar de pestaña
+class _ScannerTabActiveNotifier extends Notifier<bool> {
+  @override
+  bool build() => false;
+
+  void setActive(bool value) => state = value;
+}
+
+final scannerTabActiveProvider =
+    NotifierProvider<_ScannerTabActiveNotifier, bool>(
+      _ScannerTabActiveNotifier.new,
+    );
+
 class ScannerScreen extends ConsumerStatefulWidget {
   const ScannerScreen({super.key});
 
@@ -32,6 +45,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
   bool _isCameraInitialized = false;
   bool _isProcessing = false;
   bool _cameraError = false;
+  bool _isInitializing = false;
 
   // --- VARIABLES DEL MULTIESCÁNER ---
   final int _requiredConsensus = 3;
@@ -50,9 +64,11 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
   @override
   void initState() {
     super.initState();
+    // Los datos de caché se cargan siempre (sin cámara)
     _loadValidIdsCache();
     _loadStickerMeta();
-    _initializeCamera();
+    // La cámara se inicia de forma perezosa cuando el tab se activa
+    // (evita el fallo de CameraPreview dentro de Offstage del IndexedStack)
   }
 
   Future<void> _loadStickerMeta() async {
@@ -88,7 +104,28 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
     }
   }
 
+  Future<void> _shutdownCamera() async {
+    _isInitializing = false;
+    try {
+      if (_cameraController?.value.isStreamingImages ?? false) {
+        await _cameraController?.stopImageStream();
+      }
+    } catch (_) {}
+    try {
+      await _cameraController?.dispose();
+    } catch (_) {}
+    _cameraController = null;
+    if (mounted) {
+      setState(() {
+        _isCameraInitialized = false;
+        _cameraError = false;
+      });
+    }
+  }
+
   Future<void> _initializeCamera() async {
+    if (_isInitializing || _isCameraInitialized) return;
+    _isInitializing = true;
     try {
       final cameras = await availableCameras();
       final backCamera = cameras.firstWhere(
@@ -111,6 +148,8 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
     } catch (e) {
       debugPrint('❌ Error inicializando la cámara: $e');
       if (mounted) setState(() => _cameraError = true);
+    } finally {
+      _isInitializing = false;
     }
   }
 
@@ -311,6 +350,16 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
 
+    // Inicia la cámara al entrar al tab, la libera completamente al salir
+    ref.listen<bool>(scannerTabActiveProvider, (_, isActive) {
+      if (!mounted) return;
+      if (isActive) {
+        _initializeCamera();
+      } else {
+        _shutdownCamera();
+      }
+    });
+
     if (_cameraError) {
       return Scaffold(
         backgroundColor: Colors.black,
@@ -345,17 +394,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
           // 2. El diseño del marco (La mira)
           _buildScannerOverlay(context),
 
-          // 3. Botón para cerrar
-          Positioned(
-            top: 50,
-            left: 20,
-            child: IconButton(
-              icon: const Icon(Icons.close, color: Colors.white, size: 30),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-          ),
-
-          // 4. Botón Flotante para ver la bandeja de escaneo
+          // 3. Botón Flotante para ver la bandeja de escaneo
           Positioned(
             bottom: 50,
             left: 20,

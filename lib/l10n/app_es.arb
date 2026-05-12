@@ -75,7 +75,7 @@
   "homeTeamsTitle": "Equipos",
   "homeSearchTeamsHint": "Buscar país o equipo...",
   "homeNoResults": "Sin resultados",
-  "homeScanButton": "Escanear Cromo",
+  "homeScanButton": "Escanear sticker",
   "homeObtainedCount": "{collected} de {total} obtenidos",
   "@homeObtainedCount": {
     "placeholders": {
@@ -107,7 +107,7 @@
     }
   },
   "scannerOverlayHint": "Centra la parte trasera del cromo aquí",
-  "pendingScansTitle": "stickers Escaneados",
+  "pendingScansTitle": "Stickers escaneados",
   "pendingScansEmpty": "Aún no has escaneado ningún cromo",
   "pendingScansItemLabel": "Sticker: {code}",
   "@pendingScansItemLabel": {

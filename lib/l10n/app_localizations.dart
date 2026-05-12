@@ -575,7 +575,7 @@ abstract class AppLocalizations {
   /// No description provided for @pendingScansTitle.
   ///
   /// In es, this message translates to:
-  /// **'stickers Escaneados'**
+  /// **'Stickers escaneados'**
   String get pendingScansTitle;
 
   /// No description provided for @pendingScansEmpty.

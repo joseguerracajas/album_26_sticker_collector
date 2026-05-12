@@ -6,21 +6,16 @@ import 'package:album_26_sticker_collector/features/inventory/presentation/physi
 import 'package:album_26_sticker_collector/features/inventory/presentation/scanner_screen.dart';
 import 'package:album_26_sticker_collector/features/inventory/presentation/sticker_lookup_screen.dart';
 import 'package:album_26_sticker_collector/features/monetization/data/ads_provider.dart';
-import 'package:album_26_sticker_collector/features/monetization/data/subscription_provider.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// Índices del BottomNavigationBar:
+// Índices del BottomNavigationBar = índices del IndexedStack:
 // 0 → Album (HomeScreen)
-// 1 → Escáner  (push modal, no tab persistente)
+// 1 → Escáner (ScannerScreen)
 // 2 → Intercambio (PhysicalExchangeScreen)
 // 3 → Buscar (StickerLookupScreen)
 // 4 → Estadísticas (StatisticsScreen)
-
-// Mapa de índice nav → índice en el IndexedStack (el escáner no tiene slot)
-const _stackIndex = {0: 0, 2: 1, 3: 2, 4: 3};
 
 class AppShell extends ConsumerStatefulWidget {
   const AppShell({super.key});
@@ -30,35 +25,25 @@ class AppShell extends ConsumerStatefulWidget {
 }
 
 class _AppShellState extends ConsumerState<AppShell> {
-  int _currentNavIndex = 0;
-  int _currentStackIndex = 0;
+  int _currentIndex = 0;
 
-  Future<void> _onNavTap(int index) async {
-    if (index == 1) {
-      // Escáner: lanzar como pantalla push con lógica de anuncio
-      HapticFeedback.heavyImpact();
-      final isSubscribed = ref.read(isSubscribedProvider);
-      await ref
-          .read(adServiceProvider)
-          .showRewarded(
-            context: context,
-            isSubscribed: isSubscribed,
-            onRewarded: () async {
-              if (context.mounted) {
-                await Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const ScannerScreen()),
-                );
-              }
-            },
-          );
-      return;
+  void _onNavTap(int index) {
+    if (_currentIndex == index) return;
+
+    // Tab 1: Escáner
+    if (_currentIndex == 1 || index == 1) {
+      ref.read(scannerTabActiveProvider.notifier).setActive(index == 1);
     }
-    if (_currentNavIndex == index) return;
-    setState(() {
-      _currentNavIndex = index;
-      _currentStackIndex = _stackIndex[index]!;
-    });
+    // Tab 2: Intercambio
+    if (_currentIndex == 2 || index == 2) {
+      ref.read(exchangeTabActiveProvider.notifier).setActive(index == 2);
+    }
+    // Tab 3: Buscar (tiene cámara interna)
+    if (_currentIndex == 3 || index == 3) {
+      ref.read(lookupTabActiveProvider.notifier).setActive(index == 3);
+    }
+
+    setState(() => _currentIndex = index);
   }
 
   @override
@@ -67,9 +52,10 @@ class _AppShellState extends ConsumerState<AppShell> {
 
     return Scaffold(
       body: IndexedStack(
-        index: _currentStackIndex,
+        index: _currentIndex,
         children: const [
           HomeScreen(),
+          ScannerScreen(),
           PhysicalExchangeScreen(),
           StickerLookupScreen(),
           StatisticsScreen(),
@@ -80,7 +66,7 @@ class _AppShellState extends ConsumerState<AppShell> {
         children: [
           const AdBannerWidget(),
           BottomNavigationBar(
-            currentIndex: _currentNavIndex,
+            currentIndex: _currentIndex,
             onTap: _onNavTap,
             backgroundColor: const Color(0xFF1E1E1E),
             selectedItemColor: Colors.amber,

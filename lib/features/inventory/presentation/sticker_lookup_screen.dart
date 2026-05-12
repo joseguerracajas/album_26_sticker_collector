@@ -14,6 +14,19 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 
+// Provider que el AppShell activa/desactiva al cambiar de pestaña
+class _LookupTabActiveNotifier extends Notifier<bool> {
+  @override
+  bool build() => false;
+
+  void setActive(bool value) => state = value;
+}
+
+final lookupTabActiveProvider =
+    NotifierProvider<_LookupTabActiveNotifier, bool>(
+      _LookupTabActiveNotifier.new,
+    );
+
 /// Pantalla de consulta de sticker.
 /// Permite buscar un cromo manualmente (escribiendo el código)
 /// o escaneándolo con la cámara.
@@ -120,7 +133,10 @@ class _StickerLookupScreenState extends ConsumerState<StickerLookupScreen>
         physics: const NeverScrollableScrollPhysics(),
         children: [
           _ManualLookupTab(findSticker: _findSticker),
-          _ScannerLookupTab(findSticker: _findSticker),
+          _ScannerLookupTab(
+            findSticker: _findSticker,
+            tabController: _tabController,
+          ),
         ],
       ),
     );
@@ -624,9 +640,13 @@ class _UpperCaseFormatter extends TextInputFormatter {
 /// con la misma información que el buscador manual.
 
 class _ScannerLookupTab extends ConsumerStatefulWidget {
-  const _ScannerLookupTab({required this.findSticker});
+  const _ScannerLookupTab({
+    required this.findSticker,
+    required this.tabController,
+  });
 
   final Sticker? Function(String) findSticker;
+  final TabController tabController;
 
   @override
   ConsumerState<_ScannerLookupTab> createState() => _ScannerLookupTabState();
@@ -642,6 +662,7 @@ class _ScannerLookupTabState extends ConsumerState<_ScannerLookupTab>
   bool _isCameraInitialized = false;
   bool _isProcessing = false;
   bool _cameraError = false;
+  bool _isInitializing = false;
   bool _sheetOpen = false;
 
   final int _requiredConsensus = 3;
@@ -659,10 +680,44 @@ class _ScannerLookupTabState extends ConsumerState<_ScannerLookupTab>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    _initCamera();
+    // La cámara se inicia de forma perezosa: solo cuando este tab
+    // esté activo (lookupTabActiveProvider) y el inner tab sea Scanner (index 1)
+    widget.tabController.addListener(_onInnerTabChanged);
+  }
+
+  void _onInnerTabChanged() {
+    if (!mounted) return;
+    final isOnScannerTab = widget.tabController.index == 1;
+    final isLookupTabActive = ref.read(lookupTabActiveProvider);
+    if (isOnScannerTab && isLookupTabActive) {
+      _initCamera();
+    } else {
+      _shutdownCamera();
+    }
+  }
+
+  Future<void> _shutdownCamera() async {
+    _isInitializing = false;
+    try {
+      if (_cameraController?.value.isStreamingImages ?? false) {
+        await _cameraController?.stopImageStream();
+      }
+    } catch (_) {}
+    try {
+      await _cameraController?.dispose();
+    } catch (_) {}
+    _cameraController = null;
+    if (mounted) {
+      setState(() {
+        _isCameraInitialized = false;
+        _cameraError = false;
+      });
+    }
   }
 
   Future<void> _initCamera() async {
+    if (_isInitializing || _isCameraInitialized) return;
+    _isInitializing = true;
     try {
       final cameras = await availableCameras();
       final back = cameras.firstWhere(
@@ -681,6 +736,8 @@ class _ScannerLookupTabState extends ConsumerState<_ScannerLookupTab>
       }
     } catch (_) {
       if (mounted) setState(() => _cameraError = true);
+    } finally {
+      _isInitializing = false;
     }
   }
 
@@ -840,6 +897,7 @@ class _ScannerLookupTabState extends ConsumerState<_ScannerLookupTab>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    widget.tabController.removeListener(_onInnerTabChanged);
     _cameraController?.dispose();
     _textRecognizer.close();
     super.dispose();
@@ -848,6 +906,17 @@ class _ScannerLookupTabState extends ConsumerState<_ScannerLookupTab>
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+
+    // Inicia la cámara al entrar al tab de Buscar (outer), la libera al salir
+    ref.listen<bool>(lookupTabActiveProvider, (_, isActive) {
+      if (!mounted) return;
+      final isOnScannerTab = widget.tabController.index == 1;
+      if (isActive && isOnScannerTab) {
+        _initCamera();
+      } else {
+        _shutdownCamera();
+      }
+    });
 
     if (_cameraError) {
       return Center(

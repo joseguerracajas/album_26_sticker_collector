@@ -16,6 +16,20 @@ import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart
 /// Pantalla de intercambio físico de stickers.
 /// Escanea stickers en lote y los clasifica en "me faltan" y "repetidos"
 /// para facilitar el intercambio cara a cara con otro coleccionista.
+
+// Provider que el AppShell activa/desactiva al cambiar de pestaña
+class _ExchangeTabActiveNotifier extends Notifier<bool> {
+  @override
+  bool build() => false;
+
+  void setActive(bool value) => state = value;
+}
+
+final exchangeTabActiveProvider =
+    NotifierProvider<_ExchangeTabActiveNotifier, bool>(
+      _ExchangeTabActiveNotifier.new,
+    );
+
 class PhysicalExchangeScreen extends ConsumerStatefulWidget {
   const PhysicalExchangeScreen({super.key});
 
@@ -34,6 +48,7 @@ class _PhysicalExchangeScreenState extends ConsumerState<PhysicalExchangeScreen>
   bool _isCameraInitialized = false;
   bool _isProcessing = false;
   bool _cameraError = false;
+  bool _isInitializing = false;
 
   // Caché de stickers: "ECU10" → Sticker
   Map<String, Sticker>? _stickerCache;
@@ -67,8 +82,9 @@ class _PhysicalExchangeScreenState extends ConsumerState<PhysicalExchangeScreen>
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     _loadCache();
-    _initCamera();
     _loadEmojiCache();
+    // La cámara se inicia de forma perezosa cuando el tab se activa
+    // (evita el fallo de CameraPreview dentro de Offstage del IndexedStack)
   }
 
   Future<void> _loadCache() async {
@@ -93,7 +109,28 @@ class _PhysicalExchangeScreenState extends ConsumerState<PhysicalExchangeScreen>
     }
   }
 
+  Future<void> _shutdownCamera() async {
+    _isInitializing = false;
+    try {
+      if (_cameraController?.value.isStreamingImages ?? false) {
+        await _cameraController?.stopImageStream();
+      }
+    } catch (_) {}
+    try {
+      await _cameraController?.dispose();
+    } catch (_) {}
+    _cameraController = null;
+    if (mounted) {
+      setState(() {
+        _isCameraInitialized = false;
+        _cameraError = false;
+      });
+    }
+  }
+
   Future<void> _initCamera() async {
+    if (_isInitializing || _isCameraInitialized) return;
+    _isInitializing = true;
     try {
       final cameras = await availableCameras();
       final back = cameras.firstWhere(
@@ -112,6 +149,8 @@ class _PhysicalExchangeScreenState extends ConsumerState<PhysicalExchangeScreen>
       }
     } catch (_) {
       if (mounted) setState(() => _cameraError = true);
+    } finally {
+      _isInitializing = false;
     }
   }
 
@@ -621,6 +660,16 @@ class _PhysicalExchangeScreenState extends ConsumerState<PhysicalExchangeScreen>
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+
+    // Inicia la cámara al entrar al tab, la libera completamente al salir
+    ref.listen<bool>(exchangeTabActiveProvider, (_, isActive) {
+      if (!mounted) return;
+      if (isActive) {
+        _initCamera();
+      } else {
+        _shutdownCamera();
+      }
+    });
 
     return Scaffold(
       backgroundColor: const Color(0xFF121212),
