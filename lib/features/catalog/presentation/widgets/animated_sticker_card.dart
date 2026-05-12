@@ -132,26 +132,30 @@ class _AnimatedStickerCardState extends State<AnimatedStickerCard>
                 right: 4,
                 child: Icon(Icons.star, color: Colors.white, size: 16),
               ),
-            if (tieneCromo)
+            if (widget.totalCromos > 1)
               Positioned(
-                bottom: 6,
+                bottom: 4,
                 left: 0,
                 right: 0,
                 child: Center(
-                  child: Container(
-                    padding: const EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.3),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Text(
-                      '${widget.totalCromos}',
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.copy_all_rounded,
+                        color: Colors.black54,
+                        size: 13,
                       ),
-                    ),
+                      const SizedBox(width: 3),
+                      Text(
+                        '+${widget.totalCromos - 1}',
+                        style: const TextStyle(
+                          color: Colors.black54,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
