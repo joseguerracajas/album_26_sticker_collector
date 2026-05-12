@@ -557,13 +557,13 @@ abstract class AppLocalizations {
   /// No description provided for @gridNoResults.
   ///
   /// In es, this message translates to:
-  /// **'No se encontraron cromos.'**
+  /// **'No se encontraron stickers.'**
   String get gridNoResults;
 
   /// No description provided for @scannerViewScannedButton.
   ///
   /// In es, this message translates to:
-  /// **'Revisar {count} cromos escaneados'**
+  /// **'Revisar {count} stickers escaneados'**
   String scannerViewScannedButton(Object count);
 
   /// No description provided for @scannerOverlayHint.
@@ -575,7 +575,7 @@ abstract class AppLocalizations {
   /// No description provided for @pendingScansTitle.
   ///
   /// In es, this message translates to:
-  /// **'Cromos Escaneados'**
+  /// **'stickers Escaneados'**
   String get pendingScansTitle;
 
   /// No description provided for @pendingScansEmpty.
@@ -593,7 +593,7 @@ abstract class AppLocalizations {
   /// No description provided for @pendingScansSavedSuccess.
   ///
   /// In es, this message translates to:
-  /// **'¡{count} cromos añadidos a tu álbum con éxito! 🏆'**
+  /// **'¡{count} stickers añadidos a tu álbum con éxito! 🏆'**
   String pendingScansSavedSuccess(Object count);
 
   /// No description provided for @pendingScansSaveError.
@@ -875,7 +875,7 @@ abstract class AppLocalizations {
   /// No description provided for @scannerDemoFinishedSubtitle.
   ///
   /// In es, this message translates to:
-  /// **'Suscríbete para escanear cromos ilimitados y disfrutar sin publicidad.'**
+  /// **'Suscríbete para escanear stickers ilimitados y disfrutar sin publicidad.'**
   String get scannerDemoFinishedSubtitle;
 
   /// No description provided for @scannerDemoUnlockButton.
@@ -929,7 +929,7 @@ abstract class AppLocalizations {
   /// No description provided for @variantSheetInventoryNote.
   ///
   /// In es, this message translates to:
-  /// **'Tu inventario se conserva al cambiar de variante. Los cromos que ya tienes siguen registrados.'**
+  /// **'Tu inventario se conserva al cambiar de variante. Los stickers que ya tienes siguen registrados.'**
   String get variantSheetInventoryNote;
 
   /// No description provided for @variantSheetLoadError.
@@ -959,7 +959,7 @@ abstract class AppLocalizations {
   /// No description provided for @variantMandatorySubtitle.
   ///
   /// In es, this message translates to:
-  /// **'Selecciona la versión del álbum de tu zona para ver los cromos correctos.'**
+  /// **'Selecciona la versión del álbum de tu zona para ver los stickers correctos.'**
   String get variantMandatorySubtitle;
 
   /// No description provided for @variantChangedSuccess.
@@ -1043,7 +1043,7 @@ abstract class AppLocalizations {
   /// No description provided for @tutorialStep1Body.
   ///
   /// In es, this message translates to:
-  /// **'Aquí ves cuántos cromos llevas y tu porcentaje de completado. ¡Sigue coleccionando!'**
+  /// **'Aquí ves cuántos stickers llevas y tu porcentaje de completado. ¡Sigue coleccionando!'**
   String get tutorialStep1Body;
 
   /// No description provided for @tutorialStep2Title.
@@ -1073,13 +1073,13 @@ abstract class AppLocalizations {
   /// No description provided for @tutorialStep4Title.
   ///
   /// In es, this message translates to:
-  /// **'Escanea cromos'**
+  /// **'Escanea stickers'**
   String get tutorialStep4Title;
 
   /// No description provided for @tutorialStep4Body.
   ///
   /// In es, this message translates to:
-  /// **'Usa la cámara para escanear el dorso de tus cromos físicos y añadirlos automáticamente a tu álbum.'**
+  /// **'Usa la cámara para escanear el dorso de tus stickers físicos y añadirlos automáticamente a tu álbum.'**
   String get tutorialStep4Body;
 
   /// No description provided for @tutorialStep5Title.
@@ -1091,7 +1091,7 @@ abstract class AppLocalizations {
   /// No description provided for @tutorialStep5Body.
   ///
   /// In es, this message translates to:
-  /// **'Exporta tu lista de faltantes o repetidas para intercambiar cromos con amigos.'**
+  /// **'Exporta tu lista de faltantes o repetidas para intercambiar stickers con amigos.'**
   String get tutorialStep5Body;
 
   /// No description provided for @globalTutorialStep1Title.
@@ -1103,7 +1103,7 @@ abstract class AppLocalizations {
   /// No description provided for @globalTutorialStep1Body.
   ///
   /// In es, this message translates to:
-  /// **'Usa estos botones para ver todos tus cromos, solo los que te faltan o solo los repetidos. ¡Ideal para organizar intercambios!'**
+  /// **'Usa estos botones para ver todos tus stickers, solo los que te faltan o solo los repetidos. ¡Ideal para organizar intercambios!'**
   String get globalTutorialStep1Body;
 
   /// No description provided for @globalTutorialStep2Title.
@@ -1151,19 +1151,19 @@ abstract class AppLocalizations {
   /// No description provided for @tutorialStep6Body.
   ///
   /// In es, this message translates to:
-  /// **'Toca cualquier pais o equipo para ver sus cromos. Alli podras marcar los que ya tienes y gestionar tus repetidos.'**
+  /// **'Toca cualquier pais o equipo para ver sus stickers. Alli podras marcar los que ya tienes y gestionar tus repetidos.'**
   String get tutorialStep6Body;
 
   /// No description provided for @categoryTutorialStep1Title.
   ///
   /// In es, this message translates to:
-  /// **'Filtra los cromos'**
+  /// **'Filtra los stickers'**
   String get categoryTutorialStep1Title;
 
   /// No description provided for @categoryTutorialStep1Body.
   ///
   /// In es, this message translates to:
-  /// **'Usa estos botones para ver todos los cromos de esta categoria, solo los que te faltan o solo los repetidos.'**
+  /// **'Usa estos botones para ver todos los stickers de esta categoria, solo los que te faltan o solo los repetidos.'**
   String get categoryTutorialStep1Body;
 
   /// No description provided for @categoryTutorialStep2Title.
@@ -1217,7 +1217,7 @@ abstract class AppLocalizations {
   /// No description provided for @variantTutorialBody.
   ///
   /// In es, this message translates to:
-  /// **'Elige la variante del álbum que corresponde a tu país o región. Esto define qué cromos y variantes (Normal, Gold, Legend) aparecerán en tu colección.'**
+  /// **'Elige la variante del álbum que corresponde a tu país o región. Esto define qué stickers y variantes (Normal, Gold, Legend) aparecerán en tu colección.'**
   String get variantTutorialBody;
 
   /// No description provided for @drawerLegalNotice.
@@ -1235,7 +1235,7 @@ abstract class AppLocalizations {
   /// No description provided for @legalNoticeBody.
   ///
   /// In es, this message translates to:
-  /// **'Esta aplicación es una creación de fans no oficial y no está afiliada, respaldada ni conectada con cualquier organización oficial de fútbol o fabricante de cromos o cualquier socio oficial del torneo de fútbol. Todas las marcas registradas son propiedad de sus respectivos dueños.'**
+  /// **'Esta aplicación es una creación de fans no oficial y no está afiliada, respaldada ni conectada con cualquier organización oficial de fútbol o fabricante de stickers o cualquier socio oficial del torneo de fútbol. Todas las marcas registradas son propiedad de sus respectivos dueños.'**
   String get legalNoticeBody;
 
   /// No description provided for @statsTitle.
@@ -1367,7 +1367,7 @@ abstract class AppLocalizations {
   /// No description provided for @tradeHubTitle.
   ///
   /// In es, this message translates to:
-  /// **'Intercambio de Cromos'**
+  /// **'Intercambio de stickers'**
   String get tradeHubTitle;
 
   /// No description provided for @tradeHubMyCode.
@@ -1427,7 +1427,7 @@ abstract class AppLocalizations {
   /// No description provided for @tradeHubCancelMsg.
   ///
   /// In es, this message translates to:
-  /// **'Se cancelará el intercambio y los cromos volverán a tu inventario.'**
+  /// **'Se cancelará el intercambio y los stickers volverán a tu inventario.'**
   String get tradeHubCancelMsg;
 
   /// No description provided for @tradeHubCancelYes.
@@ -1463,19 +1463,19 @@ abstract class AppLocalizations {
   /// No description provided for @tradeStatusIncomingDesc.
   ///
   /// In es, this message translates to:
-  /// **'Alguien quiere intercambiar cromos contigo.'**
+  /// **'Alguien quiere intercambiar stickers contigo.'**
   String get tradeStatusIncomingDesc;
 
   /// No description provided for @tradeStatusSelecting.
   ///
   /// In es, this message translates to:
-  /// **'Seleccionando cromos'**
+  /// **'Seleccionando stickers'**
   String get tradeStatusSelecting;
 
   /// No description provided for @tradeStatusSelectingDesc.
   ///
   /// In es, this message translates to:
-  /// **'Ambos están eligiendo qué cromos ofrecer.'**
+  /// **'Ambos están eligiendo qué stickers ofrecer.'**
   String get tradeStatusSelectingDesc;
 
   /// No description provided for @tradeStatusMyConfirmed.
@@ -1499,19 +1499,19 @@ abstract class AppLocalizations {
   /// No description provided for @tradeStatusOtherConfirmedDesc.
   ///
   /// In es, this message translates to:
-  /// **'Confirma tu selección de cromos para continuar.'**
+  /// **'Confirma tu selección de stickers para continuar.'**
   String get tradeStatusOtherConfirmedDesc;
 
   /// No description provided for @tradeStatusReservedLabel.
   ///
   /// In es, this message translates to:
-  /// **'Cromos reservados'**
+  /// **'stickers reservados'**
   String get tradeStatusReservedLabel;
 
   /// No description provided for @tradeStatusReservedDesc.
   ///
   /// In es, this message translates to:
-  /// **'Intercambio acordado. Confirma cuando hayas recibido tus cromos.'**
+  /// **'Intercambio acordado. Confirma cuando hayas recibido tus stickers.'**
   String get tradeStatusReservedDesc;
 
   /// No description provided for @tradeAcceptBtn.
@@ -1529,7 +1529,7 @@ abstract class AppLocalizations {
   /// No description provided for @tradeSelectBtn.
   ///
   /// In es, this message translates to:
-  /// **'Seleccionar mis cromos'**
+  /// **'Seleccionar mis stickers'**
   String get tradeSelectBtn;
 
   /// No description provided for @tradeConfirmDeliveryBtn.
@@ -1661,13 +1661,13 @@ abstract class AppLocalizations {
   /// No description provided for @tradeNegNoStickers.
   ///
   /// In es, this message translates to:
-  /// **'No tienes cromos para ofrecer.'**
+  /// **'No tienes stickers para ofrecer.'**
   String get tradeNegNoStickers;
 
   /// No description provided for @tradeNegPartnerWaiting.
   ///
   /// In es, this message translates to:
-  /// **'El otro coleccionista aún no ha seleccionado sus cromos.'**
+  /// **'El otro coleccionista aún no ha seleccionado sus stickers.'**
   String get tradeNegPartnerWaiting;
 
   /// No description provided for @tradeNegOfferLabel.
@@ -1715,7 +1715,7 @@ abstract class AppLocalizations {
   /// No description provided for @tradeNegModifyOfferWarning.
   ///
   /// In es, this message translates to:
-  /// **'Podrás cambiar los cromos que vas a dar. El otro coleccionista deberá esperar.'**
+  /// **'Podrás cambiar los stickers que vas a dar. El otro coleccionista deberá esperar.'**
   String get tradeNegModifyOfferWarning;
 
   /// No description provided for @tradeNegQtyPickerTitle.
@@ -1739,7 +1739,7 @@ abstract class AppLocalizations {
   /// No description provided for @tradeNegPartnerOfferUpdated.
   ///
   /// In es, this message translates to:
-  /// **'El otro coleccionista actualizó su oferta de cromos.'**
+  /// **'El otro coleccionista actualizó su oferta de stickers.'**
   String get tradeNegPartnerOfferUpdated;
 
   /// No description provided for @tradeNegTotalItems.
@@ -1763,7 +1763,7 @@ abstract class AppLocalizations {
   /// No description provided for @tradeDeliveryInstruction.
   ///
   /// In es, this message translates to:
-  /// **'Marca los cromos que recibiste físicamente'**
+  /// **'Marca los stickers que recibiste físicamente'**
   String get tradeDeliveryInstruction;
 
   /// No description provided for @tradeDeliveryDesc.
@@ -1787,7 +1787,7 @@ abstract class AppLocalizations {
   /// No description provided for @tradeDeliveryAllReceived.
   ///
   /// In es, this message translates to:
-  /// **'Recibiste todos los cromos ({received}/{total})'**
+  /// **'Recibiste todos los stickers ({received}/{total})'**
   String tradeDeliveryAllReceived(Object received, Object total);
 
   /// No description provided for @tradeDeliveryPartial.
@@ -1883,7 +1883,7 @@ abstract class AppLocalizations {
   /// No description provided for @tradeDrawerTitle.
   ///
   /// In es, this message translates to:
-  /// **'Intercambiar cromos'**
+  /// **'Intercambiar stickers'**
   String get tradeDrawerTitle;
 
   /// No description provided for @tradeDrawerActiveBadge.
@@ -1901,13 +1901,13 @@ abstract class AppLocalizations {
   /// No description provided for @tradeErrorNotLoggedIn.
   ///
   /// In es, this message translates to:
-  /// **'Debes iniciar sesión para intercambiar cromos.'**
+  /// **'Debes iniciar sesión para intercambiar stickers.'**
   String get tradeErrorNotLoggedIn;
 
   /// No description provided for @tradeErrorSelf.
   ///
   /// In es, this message translates to:
-  /// **'No puedes intercambiar cromos contigo mismo.'**
+  /// **'No puedes intercambiar stickers contigo mismo.'**
   String get tradeErrorSelf;
 
   /// No description provided for @tradeErrorCodeNotFound.
@@ -1946,11 +1946,29 @@ abstract class AppLocalizations {
   /// **'SOLICITUD'**
   String get tradeDrawerRequestBadge;
 
+  /// No description provided for @drawerPhysicalExchange.
+  ///
+  /// In es, this message translates to:
+  /// **'Intercambio'**
+  String get drawerPhysicalExchange;
+
+  /// No description provided for @physicalExchangeScreenTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Intercambio Físico'**
+  String get physicalExchangeScreenTitle;
+
   /// No description provided for @drawerLookup.
   ///
   /// In es, this message translates to:
-  /// **'Consultar Cromo'**
+  /// **'Buscar'**
   String get drawerLookup;
+
+  /// No description provided for @physicalExchangeVirtualBtn.
+  ///
+  /// In es, this message translates to:
+  /// **'Intercambio Virtual'**
+  String get physicalExchangeVirtualBtn;
 
   /// No description provided for @lookupScreenTitle.
   ///
@@ -2065,6 +2083,24 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Reiniciar sesión'**
   String get lookupScannerResetTooltip;
+
+  /// No description provided for @lookupScannerResetConfirmTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Reiniciar sesión?'**
+  String get lookupScannerResetConfirmTitle;
+
+  /// No description provided for @lookupScannerResetConfirmMsg.
+  ///
+  /// In es, this message translates to:
+  /// **'Se borrarán todos los stickers escaneados. Esta acción no se puede deshacer.'**
+  String get lookupScannerResetConfirmMsg;
+
+  /// No description provided for @lookupScannerResetConfirmBtn.
+  ///
+  /// In es, this message translates to:
+  /// **'Reiniciar'**
+  String get lookupScannerResetConfirmBtn;
 
   /// No description provided for @lookupScannerEmptyHint.
   ///

@@ -171,25 +171,22 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
         if (_consensusMap[code]! >= _requiredConsensus) {
           debugPrint('🎯 Cromo capturado en la mira -> $code');
 
-          ref.read(pendingScansProvider.notifier).addSticker(code);
-          HapticFeedback.heavyImpact();
-
           _cooldownMap[code] = DateTime.now();
           _consensusMap.remove(code);
 
-          // Intersticial cada 8 cromos (solo usuarios free)
+          // Validación primero: intersticial cada 8 cromos (solo usuarios free)
           final isSubscribed =
               ref.read(subscriptionProvider).asData?.value.isSubscribed ??
               false;
           if (!isSubscribed && mounted) {
-            final shouldPop = await ref
+            final canProceed = await ref
                 .read(adServiceProvider)
                 .onStickerScanned(isSubscribed: isSubscribed, context: context);
-            if (shouldPop && mounted) {
-              Navigator.of(context).pop();
-              return;
-            }
+            if (!canProceed) continue; // gate bloqueado → no registrar
           }
+
+          ref.read(pendingScansProvider.notifier).addSticker(code);
+          HapticFeedback.heavyImpact();
         }
       }
     } catch (e) {

@@ -99,15 +99,15 @@
   "commonCancel": "Cancelar",
   "commonRemove": "Quitar",
   "commonDone": "LISTO",
-  "gridNoResults": "No se encontraron cromos.",
-  "scannerViewScannedButton": "Revisar {count} cromos escaneados",
+  "gridNoResults": "No se encontraron stickers.",
+  "scannerViewScannedButton": "Revisar {count} stickers escaneados",
   "@scannerViewScannedButton": {
     "placeholders": {
       "count": {}
     }
   },
   "scannerOverlayHint": "Centra la parte trasera del cromo aquí",
-  "pendingScansTitle": "Cromos Escaneados",
+  "pendingScansTitle": "stickers Escaneados",
   "pendingScansEmpty": "Aún no has escaneado ningún cromo",
   "pendingScansItemLabel": "Sticker: {code}",
   "@pendingScansItemLabel": {
@@ -115,7 +115,7 @@
       "code": {}
     }
   },
-  "pendingScansSavedSuccess": "¡{count} cromos añadidos a tu álbum con éxito! 🏆",
+  "pendingScansSavedSuccess": "¡{count} stickers añadidos a tu álbum con éxito! 🏆",
   "@pendingScansSavedSuccess": {
     "placeholders": {
       "count": {}
@@ -189,7 +189,7 @@
     }
   },
   "scannerDemoFinishedTitle": "Has usado tus 5 escaneos gratis",
-  "scannerDemoFinishedSubtitle": "Suscríbete para escanear cromos ilimitados y disfrutar sin publicidad.",
+  "scannerDemoFinishedSubtitle": "Suscríbete para escanear stickers ilimitados y disfrutar sin publicidad.",
   "scannerDemoUnlockButton": "Ver planes Pro",
 
   "adDialogTitle": "Contenido gratuito",
@@ -201,7 +201,7 @@
   "scannerCameraInitError": "No se pudo inicializar la cámara. Verifica que la app tenga permiso de acceso a la cámara.",
 
   "variantSheetTitle": "Variante del álbum",
-  "variantSheetInventoryNote": "Tu inventario se conserva al cambiar de variante. Los cromos que ya tienes siguen registrados.",
+  "variantSheetInventoryNote": "Tu inventario se conserva al cambiar de variante. Los stickers que ya tienes siguen registrados.",
   "variantSheetLoadError": "Error cargando variantes: {error}",
   "@variantSheetLoadError": {
     "placeholders": {
@@ -211,7 +211,7 @@
   "variantSheetEmpty": "No hay variantes disponibles para este álbum.",
   "variantSheetDefaultLabel": "Variante por defecto",
   "variantMandatoryTitle": "Elige tu región",
-  "variantMandatorySubtitle": "Selecciona la versión del álbum de tu zona para ver los cromos correctos.",
+  "variantMandatorySubtitle": "Selecciona la versión del álbum de tu zona para ver los stickers correctos.",
   "variantChangedSuccess": "Variante cambiada a {name} ✅",
   "@variantChangedSuccess": {
     "placeholders": {
@@ -233,18 +233,18 @@
   "tutorialSkip": "Saltar",
   "tutorialTapToContinue": "Toca en cualquier lugar para continuar",
   "tutorialStep1Title": "Tu progreso global",
-  "tutorialStep1Body": "Aquí ves cuántos cromos llevas y tu porcentaje de completado. ¡Sigue coleccionando!",
+  "tutorialStep1Body": "Aquí ves cuántos stickers llevas y tu porcentaje de completado. ¡Sigue coleccionando!",
   "tutorialStep2Title": "Busca equipos",
   "tutorialStep2Body": "Escribe el nombre de un país o equipo para filtrar la lista al instante.",
   "tutorialStep3Title": "Menú principal",
   "tutorialStep3Body": "Aquí puedes cambiar tu perfil, elegir la variante del álbum y más opciones.",
-  "tutorialStep4Title": "Escanea cromos",
-  "tutorialStep4Body": "Usa la cámara para escanear el dorso de tus cromos físicos y añadirlos automáticamente a tu álbum.",
+  "tutorialStep4Title": "Escanea stickers",
+  "tutorialStep4Body": "Usa la cámara para escanear el dorso de tus stickers físicos y añadirlos automáticamente a tu álbum.",
   "tutorialStep5Title": "Comparte tu lista",
-  "tutorialStep5Body": "Exporta tu lista de faltantes o repetidas para intercambiar cromos con amigos.",
+  "tutorialStep5Body": "Exporta tu lista de faltantes o repetidas para intercambiar stickers con amigos.",
 
   "globalTutorialStep1Title": "Filtra tu colección",
-  "globalTutorialStep1Body": "Usa estos botones para ver todos tus cromos, solo los que te faltan o solo los repetidos. ¡Ideal para organizar intercambios!",
+  "globalTutorialStep1Body": "Usa estos botones para ver todos tus stickers, solo los que te faltan o solo los repetidos. ¡Ideal para organizar intercambios!",
   "globalTutorialStep2Title": "Busca un cromo",
   "globalTutorialStep2Body": "Escribe el nombre del país, el código o el número del cromo para encontrarlo rápidamente.",
   "globalTutorialStep3Title": "Toca para marcar",
@@ -252,9 +252,9 @@
   "globalTutorialStep4Title": "Mantén pulsado para más opciones",
   "globalTutorialStep4Body": "Si mantienes pulsado un cromo puedes gestionar cuántas copias tienes de cada variante (Normal, Gold, Legend…) y actualizar tu inventario de repetidas.",
   "tutorialStep6Title": "Explora una categoría",
-  "tutorialStep6Body": "Toca cualquier país o equipo para ver sus cromos. Allí podrás marcar los que ya tienes y gestionar tus repetidos.",
-  "categoryTutorialStep1Title": "Filtra los cromos",
-  "categoryTutorialStep1Body": "Usa estos botones para ver todos los cromos de esta categoría, solo los que te faltan o solo los repetidos.",
+  "tutorialStep6Body": "Toca cualquier país o equipo para ver sus stickers. Allí podrás marcar los que ya tienes y gestionar tus repetidos.",
+  "categoryTutorialStep1Title": "Filtra los stickers",
+  "categoryTutorialStep1Body": "Usa estos botones para ver todos los stickers de esta categoría, solo los que te faltan o solo los repetidos.",
   "categoryTutorialStep2Title": "Busca un cromo",
   "categoryTutorialStep2Body": "Escribe el nombre del país, el código o el número del cromo para encontrarlo rápidamente.",
   "categoryTutorialStep3Title": "Toca para marcar",
@@ -262,9 +262,9 @@
   "categoryTutorialStep4Title": "Mantén pulsado para más opciones",
   "categoryTutorialStep4Body": "Si mantienes pulsado un cromo puedes gestionar cuántas copias tienes de cada variante (Normal, Gold, Legend…) y actualizar tu inventario de repetidas.",
   "tutorialStep6Title": "Explora una categoria",
-  "tutorialStep6Body": "Toca cualquier pais o equipo para ver sus cromos. Alli podras marcar los que ya tienes y gestionar tus repetidos.",
-  "categoryTutorialStep1Title": "Filtra los cromos",
-  "categoryTutorialStep1Body": "Usa estos botones para ver todos los cromos de esta categoria, solo los que te faltan o solo los repetidos.",
+  "tutorialStep6Body": "Toca cualquier pais o equipo para ver sus stickers. Alli podras marcar los que ya tienes y gestionar tus repetidos.",
+  "categoryTutorialStep1Title": "Filtra los stickers",
+  "categoryTutorialStep1Body": "Usa estos botones para ver todos los stickers de esta categoria, solo los que te faltan o solo los repetidos.",
   "categoryTutorialStep2Title": "Busca un cromo",
   "categoryTutorialStep2Body": "Escribe el nombre del pais, el codigo o el numero del cromo para encontrarlo rapidamente.",
   "categoryTutorialStep3Title": "Toca para marcar",
@@ -273,10 +273,10 @@
   "categoryTutorialStep4Body": "Si mantienes pulsado un cromo puedes gestionar cuantas copias tienes de cada variante (Normal, Gold, Legend) y actualizar tu inventario de repetidas.",
   "drawerReplayTutorial": "Ver tutorial de nuevo",
   "variantTutorialTitle": "Selecciona tu región",
-  "variantTutorialBody": "Elige la variante del álbum que corresponde a tu país o región. Esto define qué cromos y variantes (Normal, Gold, Legend) aparecerán en tu colección.",
+  "variantTutorialBody": "Elige la variante del álbum que corresponde a tu país o región. Esto define qué stickers y variantes (Normal, Gold, Legend) aparecerán en tu colección.",
   "drawerLegalNotice": "Aviso Legal",
   "legalNoticeTitle": "Aviso Legal",
-  "legalNoticeBody": "Esta aplicación es una creación de fans no oficial y no está afiliada, respaldada ni conectada con cualquier organización oficial de fútbol o fabricante de cromos o cualquier socio oficial del torneo de fútbol. Todas las marcas registradas son propiedad de sus respectivos dueños.",
+  "legalNoticeBody": "Esta aplicación es una creación de fans no oficial y no está afiliada, respaldada ni conectada con cualquier organización oficial de fútbol o fabricante de stickers o cualquier socio oficial del torneo de fútbol. Todas las marcas registradas son propiedad de sus respectivos dueños.",
 
   "statsTitle": "Estadísticas",
   "statsTotalLabel": "Total",
@@ -304,7 +304,7 @@
   "statsSortByMissing": "Más faltantes primero",
   "statsSortByDuplicates": "Más repetidos primero",
 
-  "tradeHubTitle": "Intercambio de Cromos",
+  "tradeHubTitle": "Intercambio de stickers",
   "tradeHubMyCode": "Mi código de intercambio",
   "tradeHubCodeCopied": "Código copiado al portapapeles",
   "tradeHubShareHint": "Comparte este código o escanea el del otro usuario",
@@ -314,24 +314,24 @@
   "tradeHubHistory": "Historial",
   "tradeHubCancel": "Cancelar intercambio",
   "tradeHubCancelTitle": "¿Cancelar intercambio?",
-  "tradeHubCancelMsg": "Se cancelará el intercambio y los cromos volverán a tu inventario.",
+  "tradeHubCancelMsg": "Se cancelará el intercambio y los stickers volverán a tu inventario.",
   "tradeHubCancelYes": "Sí, cancelar",
   "tradeHubActiveLabel": "Intercambio activo",
   "tradeStatusPending": "Esperando respuesta",
   "tradeStatusPendingDesc": "El otro usuario debe aceptar tu solicitud de intercambio.",
   "tradeStatusIncoming": "¡Tienes una solicitud!",
-  "tradeStatusIncomingDesc": "Alguien quiere intercambiar cromos contigo.",
-  "tradeStatusSelecting": "Seleccionando cromos",
-  "tradeStatusSelectingDesc": "Ambos están eligiendo qué cromos ofrecer.",
+  "tradeStatusIncomingDesc": "Alguien quiere intercambiar stickers contigo.",
+  "tradeStatusSelecting": "Seleccionando stickers",
+  "tradeStatusSelectingDesc": "Ambos están eligiendo qué stickers ofrecer.",
   "tradeStatusMyConfirmed": "Tu oferta está lista",
   "tradeStatusMyConfirmedDesc": "Esperando que el otro usuario confirme su oferta.",
   "tradeStatusOtherConfirmed": "El otro ya confirmó",
-  "tradeStatusOtherConfirmedDesc": "Confirma tu selección de cromos para continuar.",
-  "tradeStatusReservedLabel": "Cromos reservados",
-  "tradeStatusReservedDesc": "Intercambio acordado. Confirma cuando hayas recibido tus cromos.",
+  "tradeStatusOtherConfirmedDesc": "Confirma tu selección de stickers para continuar.",
+  "tradeStatusReservedLabel": "stickers reservados",
+  "tradeStatusReservedDesc": "Intercambio acordado. Confirma cuando hayas recibido tus stickers.",
   "tradeAcceptBtn": "Aceptar intercambio",
   "tradeSeeOfferBtn": "Ver intercambio",
-  "tradeSelectBtn": "Seleccionar mis cromos",
+  "tradeSelectBtn": "Seleccionar mis stickers",
   "tradeConfirmDeliveryBtn": "Confirmar recepción",
   "tradeFindTitle": "Buscar coleccionista",
   "tradeFindCodeTab": "Código",
@@ -362,8 +362,8 @@
   "@tradeNegSelectedCount": {
     "placeholders": { "count": {} }
   },
-  "tradeNegNoStickers": "No tienes cromos para ofrecer.",
-  "tradeNegPartnerWaiting": "El otro coleccionista aún no ha seleccionado sus cromos.",
+  "tradeNegNoStickers": "No tienes stickers para ofrecer.",
+  "tradeNegPartnerWaiting": "El otro coleccionista aún no ha seleccionado sus stickers.",
   "tradeNegOfferLabel": "Ofrecerás {count} cromo(s)",
   "@tradeNegOfferLabel": {
     "placeholders": { "count": {} }
@@ -374,7 +374,7 @@
   "tradeNegOfferConfirmed": "¡Oferta confirmada! Esperando al otro coleccionista.",
   "tradeNegAlreadyConfirmedBanner": "Tu oferta está confirmada. Esperando al otro coleccionista.",
   "tradeNegModifyOffer": "Modificar mi oferta",
-  "tradeNegModifyOfferWarning": "Podrás cambiar los cromos que vas a dar. El otro coleccionista deberá esperar.",
+  "tradeNegModifyOfferWarning": "Podrás cambiar los stickers que vas a dar. El otro coleccionista deberá esperar.",
   "tradeNegQtyPickerTitle": "¿Cuántos ofrecer?",
   "tradeNegQtyPickerHint": "Tienes {total} copias. Máx. a ofrecer: {max}.",
   "@tradeNegQtyPickerHint": {
@@ -384,7 +384,7 @@
   "@tradeNegOfferedQtyBadge": {
     "placeholders": { "qty": {} }
   },
-  "tradeNegPartnerOfferUpdated": "El otro coleccionista actualizó su oferta de cromos.",
+  "tradeNegPartnerOfferUpdated": "El otro coleccionista actualizó su oferta de stickers.",
   "tradeNegTotalItems": "{count} cromo(s) en total",
   "@tradeNegTotalItems": {
     "placeholders": { "count": {} }
@@ -394,11 +394,11 @@
     "placeholders": { "count": {} }
   },
   "tradeDeliveryTitle": "Confirmar recepción",
-  "tradeDeliveryInstruction": "Marca los cromos que recibiste físicamente",
+  "tradeDeliveryInstruction": "Marca los stickers que recibiste físicamente",
   "tradeDeliveryDesc": "Los marcados se añadirán a tu álbum. Los desmarcados volverán al inventario del otro coleccionista.",
   "tradeDeliveryNoOffer": "El otro coleccionista no ofreció ningún cromo.",
   "tradeDeliveryNotReceived": "No recibido",
-  "tradeDeliveryAllReceived": "Recibiste todos los cromos ({received}/{total})",
+  "tradeDeliveryAllReceived": "Recibiste todos los stickers ({received}/{total})",
   "@tradeDeliveryAllReceived": {
     "placeholders": { "received": {}, "total": {} }
   },
@@ -432,11 +432,11 @@
   "@tradeHistoryStickerCount": {
     "placeholders": { "count": {} }
   },
-  "tradeDrawerTitle": "Intercambiar cromos",
+  "tradeDrawerTitle": "Intercambiar stickers",
   "tradeDrawerActiveBadge": "ACTIVO",
   "tradeErrorGeneric": "Ocurrió un error en el intercambio. Inténtalo de nuevo.",
-  "tradeErrorNotLoggedIn": "Debes iniciar sesión para intercambiar cromos.",
-  "tradeErrorSelf": "No puedes intercambiar cromos contigo mismo.",
+  "tradeErrorNotLoggedIn": "Debes iniciar sesión para intercambiar stickers.",
+  "tradeErrorSelf": "No puedes intercambiar stickers contigo mismo.",
   "tradeErrorCodeNotFound": "No se encontró ningún usuario con ese código.",
   "tradeErrorCodeLength": "El código debe tener exactamente 6 dígitos.",
   "tradeErrorActiveExists": "Ya tienes un intercambio activo. Completa o cancela el actual primero.",
@@ -445,7 +445,10 @@
   "tradeRejectBtn": "Rechazar solicitud",
   "tradeDrawerRequestBadge": "SOLICITUD",
 
-  "drawerLookup": "Consultar Cromo",
+  "drawerPhysicalExchange": "Intercambio",
+  "physicalExchangeScreenTitle": "Intercambio Físico",
+  "drawerLookup": "Buscar",
+  "physicalExchangeVirtualBtn": "Intercambio Virtual",
   "lookupScreenTitle": "Consultar Cromo",
   "lookupTabManual": "Manual",
   "lookupTabScanner": "Escáner",
@@ -470,6 +473,9 @@
   "lookupScannerNewLabel": "nuevos",
   "lookupScannerDuplicatesLabel": "repetidos",
   "lookupScannerResetTooltip": "Reiniciar sesión",
+  "lookupScannerResetConfirmTitle": "¿Reiniciar sesión?",
+  "lookupScannerResetConfirmMsg": "Se borrarán todos los stickers escaneados. Esta acción no se puede deshacer.",
+  "lookupScannerResetConfirmBtn": "Reiniciar",
   "lookupScannerEmptyHint": "Apunta la cámara a los stickers",
   "lookupScannerMissingSection": "Me faltan ({count})",
   "@lookupScannerMissingSection": { "placeholders": { "count": {} } },

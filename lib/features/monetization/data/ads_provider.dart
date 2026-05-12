@@ -231,27 +231,34 @@ class AdService {
   }
 
   /// Llamar cuando se escanea 1 cromo. Muestra el intersticial cada 8.
-  /// Devuelve true si el usuario eligió "Ahora no" (el llamador debe hacer pop).
+  /// Devuelve true si se puede procesar el sticker, false si el gate bloqueó
+  /// la acción (usuario eligió "Ahora no").
   Future<bool> onStickerScanned({
     required bool isSubscribed,
     required BuildContext context,
   }) async {
-    if (isSubscribed) return false;
+    if (isSubscribed) return true;
 
     _scansCountSinceLastAd++;
-    if (_scansCountSinceLastAd < _interstitialEveryN) return false;
+    if (_scansCountSinceLastAd < _interstitialEveryN) return true;
 
-    _scansCountSinceLastAd = 0;
-
-    if (!context.mounted) return false;
+    if (!context.mounted) return true;
     final choice = await showPreAdDialog(context);
 
-    if (choice == null) return true; // "Ahora no" → el scanner debe hacer pop
-    if (choice == false) return false; // "Obtener Pro" → ya navegó al paywall
+    if (choice == null) {
+      // "Ahora no" → mantener contador en umbral, bloquear clasificación
+      _scansCountSinceLastAd = _interstitialEveryN;
+      return false;
+    }
 
-    if (!context.mounted) return false;
-    await showInterstitial(context: context, isSubscribed: isSubscribed);
-    return false;
+    // El usuario tomó acción → resetear contador
+    _scansCountSinceLastAd = 0;
+
+    if (choice == true && context.mounted) {
+      await showInterstitial(context: context, isSubscribed: isSubscribed);
+    }
+
+    return true;
   }
 
   Future<void> showInterstitial({

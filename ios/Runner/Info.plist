@@ -5,7 +5,7 @@
 		<key>NSUserTrackingUsageDescription</key>
 		<string>Usamos este identificador para mostrarte anuncios personalizados y mantener la app gratuita.</string>
 		<key>NSCameraUsageDescription</key>
-		<string>Necesitamos acceso a la cámara para escanear los números de tus cromos automáticamente.</string>
+		<string>Necesitamos acceso a la cámara para escanear los números de tus stickers automáticamente.</string>
 		<key>NSMicrophoneUsageDescription</key>
 		<string>No grabaremos audio, pero el controlador de la cámara lo solicita por defecto.</string>
 		<key>CADisableMinimumFrameDurationOnPhone</key>

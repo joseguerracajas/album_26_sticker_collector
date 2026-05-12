@@ -1045,7 +1045,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tradeDrawerRequestBadge => 'REQUEST';
 
   @override
-  String get drawerLookup => 'Sticker Lookup';
+  String get drawerPhysicalExchange => 'Exchange';
+
+  @override
+  String get physicalExchangeScreenTitle => 'Physical Exchange';
+
+  @override
+  String get drawerLookup => 'Search';
+
+  @override
+  String get physicalExchangeVirtualBtn => 'Virtual Exchange';
 
   @override
   String get lookupScreenTitle => 'Sticker Lookup';
@@ -1109,6 +1118,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get lookupScannerResetTooltip => 'Reset session';
+
+  @override
+  String get lookupScannerResetConfirmTitle => 'Reset session?';
+
+  @override
+  String get lookupScannerResetConfirmMsg =>
+      'All scanned stickers will be cleared. This action cannot be undone.';
+
+  @override
+  String get lookupScannerResetConfirmBtn => 'Reset';
 
   @override
   String get lookupScannerEmptyHint => 'Point the camera at the stickers';
