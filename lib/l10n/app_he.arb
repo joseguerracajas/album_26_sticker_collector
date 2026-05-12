@@ -326,7 +326,7 @@
       "message": {}
     }
   },
-  "removeDuplicatesLimitWarning": "אין עוד כפולים להסרה עבור {label}",
+  "removeDuplicatesLimitWarning": "ל{label} אין מדבקות כפולות",
   "@removeDuplicatesLimitWarning": {
     "placeholders": {
       "label": {}

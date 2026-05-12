@@ -326,7 +326,7 @@
       "message": {}
     }
   },
-  "removeDuplicatesLimitWarning": "لا مزيد من المكررات لإزالتها: {label}",
+  "removeDuplicatesLimitWarning": "{label} لا يحتوي على ملصقات مكررة",
   "@removeDuplicatesLimitWarning": {
     "placeholders": {
       "label": {}

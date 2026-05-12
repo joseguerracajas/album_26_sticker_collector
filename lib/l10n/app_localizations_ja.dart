@@ -1188,7 +1188,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String removeDuplicatesLimitWarning(Object label) {
-    return '$labelの重複はこれ以上削除できません';
+    return '$labelには重複ステッカーがありません';
   }
 
   @override

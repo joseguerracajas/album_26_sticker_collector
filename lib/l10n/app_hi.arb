@@ -326,7 +326,7 @@
       "message": {}
     }
   },
-  "removeDuplicatesLimitWarning": "{label} के लिए और डुप्लिकेट नहीं हटाए जा सकते",
+  "removeDuplicatesLimitWarning": "{label} में कोई डुप्लिकेट स्टिकर नहीं है",
   "@removeDuplicatesLimitWarning": {
     "placeholders": {
       "label": {}

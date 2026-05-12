@@ -326,7 +326,7 @@
       "message": {}
     }
   },
-  "removeDuplicatesLimitWarning": "Нет больше дубликатов для {label}",
+  "removeDuplicatesLimitWarning": "У {label} нет дублирующихся наклеек",
   "@removeDuplicatesLimitWarning": {
     "placeholders": {
       "label": {}

@@ -1212,7 +1212,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String removeDuplicatesLimitWarning(Object label) {
-    return 'لا مزيد من المكررات لإزالتها: $label';
+    return '$label لا يحتوي على ملصقات مكررة';
   }
 
   @override

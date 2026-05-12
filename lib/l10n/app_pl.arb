@@ -326,7 +326,7 @@
       "message": {}
     }
   },
-  "removeDuplicatesLimitWarning": "Brak więcej duplikatów do usunięcia dla {label}",
+  "removeDuplicatesLimitWarning": "{label} nie ma zduplikowanych naklejek",
   "@removeDuplicatesLimitWarning": {
     "placeholders": {
       "label": {}

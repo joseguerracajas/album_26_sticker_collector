@@ -326,7 +326,7 @@
       "message": {}
     }
   },
-  "removeDuplicatesLimitWarning": "{label}에 제거할 중복이 없습니다",
+  "removeDuplicatesLimitWarning": "{label}에 중복 스티커가 없습니다",
   "@removeDuplicatesLimitWarning": {
     "placeholders": {
       "label": {}

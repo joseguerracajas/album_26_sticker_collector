@@ -326,7 +326,7 @@
       "message": {}
     }
   },
-  "removeDuplicatesLimitWarning": "Nessun altro doppione da rimuovere per {label}",
+  "removeDuplicatesLimitWarning": "{label} non ha figurine duplicate",
   "@removeDuplicatesLimitWarning": {
     "placeholders": {
       "label": {}

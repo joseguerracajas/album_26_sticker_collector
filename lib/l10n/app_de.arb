@@ -326,7 +326,7 @@
       "message": {}
     }
   },
-  "removeDuplicatesLimitWarning": "Keine weiteren Doppelten für {label}",
+  "removeDuplicatesLimitWarning": "{label} hat keine doppelten Sticker",
   "@removeDuplicatesLimitWarning": {
     "placeholders": {
       "label": {}

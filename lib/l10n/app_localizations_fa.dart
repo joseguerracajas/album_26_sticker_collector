@@ -1223,7 +1223,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String removeDuplicatesLimitWarning(Object label) {
-    return 'دیگر تکراری برای حذف $label وجود ندارد';
+    return '$label استیکر تکراری ندارد';
   }
 
   @override

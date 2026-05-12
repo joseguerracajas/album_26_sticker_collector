@@ -1220,7 +1220,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String removeDuplicatesLimitWarning(Object label) {
-    return '$label için kaldırılacak tekrar kalmadı';
+    return '$label için tekrar çıkartma yok';
   }
 
   @override

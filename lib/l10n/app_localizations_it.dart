@@ -1225,7 +1225,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String removeDuplicatesLimitWarning(Object label) {
-    return 'Nessun altro doppione da rimuovere per $label';
+    return '$label non ha figurine duplicate';
   }
 
   @override

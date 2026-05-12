@@ -2237,7 +2237,7 @@ abstract class AppLocalizations {
   /// No description provided for @removeDuplicatesLimitWarning.
   ///
   /// In es, this message translates to:
-  /// **'Ya quitaste todos los repetidos de {label}'**
+  /// **'{label} no tiene stickers repetidos'**
   String removeDuplicatesLimitWarning(Object label);
 
   /// No description provided for @removeDuplicatesReviewButton.

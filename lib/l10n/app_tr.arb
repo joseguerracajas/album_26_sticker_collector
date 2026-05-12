@@ -326,7 +326,7 @@
       "message": {}
     }
   },
-  "removeDuplicatesLimitWarning": "{label} için kaldırılacak tekrar kalmadı",
+  "removeDuplicatesLimitWarning": "{label} için tekrar çıkartma yok",
   "@removeDuplicatesLimitWarning": {
     "placeholders": {
       "label": {}

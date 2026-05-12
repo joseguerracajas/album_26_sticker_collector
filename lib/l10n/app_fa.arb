@@ -326,7 +326,7 @@
       "message": {}
     }
   },
-  "removeDuplicatesLimitWarning": "دیگر تکراری برای حذف {label} وجود ندارد",
+  "removeDuplicatesLimitWarning": "{label} استیکر تکراری ندارد",
   "@removeDuplicatesLimitWarning": {
     "placeholders": {
       "label": {}

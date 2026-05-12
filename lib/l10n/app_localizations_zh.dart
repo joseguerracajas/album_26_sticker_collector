@@ -1174,7 +1174,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String removeDuplicatesLimitWarning(Object label) {
-    return '$label 没有更多重复可移除';
+    return '$label 没有重复贴纸';
   }
 
   @override

@@ -1226,7 +1226,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String removeDuplicatesLimitWarning(Object label) {
-    return 'Plus de doublons à retirer pour $label';
+    return '$label n\'a pas de stickers en double';
   }
 
   @override

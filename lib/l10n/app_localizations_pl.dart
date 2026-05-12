@@ -1224,7 +1224,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String removeDuplicatesLimitWarning(Object label) {
-    return 'Brak więcej duplikatów do usunięcia dla $label';
+    return '$label nie ma zduplikowanych naklejek';
   }
 
   @override

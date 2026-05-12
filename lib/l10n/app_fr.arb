@@ -326,7 +326,7 @@
       "message": {}
     }
   },
-  "removeDuplicatesLimitWarning": "Plus de doublons à retirer pour {label}",
+  "removeDuplicatesLimitWarning": "{label} n'a pas de stickers en double",
   "@removeDuplicatesLimitWarning": {
     "placeholders": {
       "label": {}

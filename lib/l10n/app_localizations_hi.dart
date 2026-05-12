@@ -1220,7 +1220,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String removeDuplicatesLimitWarning(Object label) {
-    return '$label के लिए और डुप्लिकेट नहीं हटाए जा सकते';
+    return '$label में कोई डुप्लिकेट स्टिकर नहीं है';
   }
 
   @override

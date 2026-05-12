@@ -550,7 +550,7 @@
       "message": {}
     }
   },
-  "removeDuplicatesLimitWarning": "Ya quitaste todos los repetidos de {label}",
+  "removeDuplicatesLimitWarning": "{label} no tiene stickers repetidos",
   "@removeDuplicatesLimitWarning": {
     "placeholders": {
       "label": {}

@@ -326,7 +326,7 @@
       "message": {}
     }
   },
-  "removeDuplicatesLimitWarning": "{label}の重複はこれ以上削除できません",
+  "removeDuplicatesLimitWarning": "{label}には重複ステッカーがありません",
   "@removeDuplicatesLimitWarning": {
     "placeholders": {
       "label": {}

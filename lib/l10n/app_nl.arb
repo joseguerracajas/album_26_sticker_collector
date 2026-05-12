@@ -326,7 +326,7 @@
       "message": {}
     }
   },
-  "removeDuplicatesLimitWarning": "Geen dubbele meer te verwijderen voor {label}",
+  "removeDuplicatesLimitWarning": "{label} heeft geen dubbele stickers",
   "@removeDuplicatesLimitWarning": {
     "placeholders": {
       "label": {}

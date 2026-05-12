@@ -347,10 +347,21 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
               }
               continue;
             }
+            // MODO QUITAR: mismo gate de intersticial que modo agregar
+            final isSubscribed =
+                ref.read(subscriptionProvider).asData?.value.isSubscribed ??
+                false;
+            if (!isSubscribed && mounted) {
+              final canProceed = await ref
+                  .read(adServiceProvider)
+                  .onStickerScanned(
+                    isSubscribed: isSubscribed,
+                    context: context,
+                  );
+              if (!canProceed) continue; // gate bloqueado → no registrar
+            }
             ref.read(pendingRemoveProvider.notifier).addSticker(code);
           }
-
-          // Overlay de notificación
           if (mounted) {
             final sticker = _stickerById?[code];
             final isNew =
@@ -752,7 +763,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
         ),
         const SizedBox(height: 24),
         Text(
-          _isRemoveMode ? l10n.scannerRemoveModeHint : l10n.scannerOverlayHint,
+          l10n.scannerOverlayHint,
           textAlign: TextAlign.center,
           style: TextStyle(
             color: _isRemoveMode ? Colors.orangeAccent : Colors.white,

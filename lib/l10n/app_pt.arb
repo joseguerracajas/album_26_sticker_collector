@@ -326,7 +326,7 @@
       "message": {}
     }
   },
-  "removeDuplicatesLimitWarning": "Sem mais repetidas para remover: {label}",
+  "removeDuplicatesLimitWarning": "{label} não tem figurinhas repetidas",
   "@removeDuplicatesLimitWarning": {
     "placeholders": {
       "label": {}

@@ -541,7 +541,7 @@
       "message": {}
     }
   },
-  "removeDuplicatesLimitWarning": "No more duplicates to remove for {label}",
+  "removeDuplicatesLimitWarning": "{label} has no duplicate stickers",
   "@removeDuplicatesLimitWarning": {
     "placeholders": {
       "label": {}

@@ -1189,7 +1189,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String removeDuplicatesLimitWarning(Object label) {
-    return '$label에 제거할 중복이 없습니다';
+    return '$label에 중복 스티커가 없습니다';
   }
 
   @override

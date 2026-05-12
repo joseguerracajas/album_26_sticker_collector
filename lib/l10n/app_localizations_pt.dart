@@ -1221,7 +1221,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String removeDuplicatesLimitWarning(Object label) {
-    return 'Sem mais repetidas para remover: $label';
+    return '$label não tem figurinhas repetidas';
   }
 
   @override

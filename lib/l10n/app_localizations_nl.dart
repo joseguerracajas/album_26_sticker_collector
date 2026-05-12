@@ -1225,7 +1225,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String removeDuplicatesLimitWarning(Object label) {
-    return 'Geen dubbele meer te verwijderen voor $label';
+    return '$label heeft geen dubbele stickers';
   }
 
   @override

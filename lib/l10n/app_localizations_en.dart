@@ -1212,7 +1212,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String removeDuplicatesLimitWarning(Object label) {
-    return 'No more duplicates to remove for $label';
+    return '$label has no duplicate stickers';
   }
 
   @override

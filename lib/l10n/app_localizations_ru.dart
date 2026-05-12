@@ -1226,7 +1226,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String removeDuplicatesLimitWarning(Object label) {
-    return 'Нет больше дубликатов для $label';
+    return 'У $label нет дублирующихся наклеек';
   }
 
   @override

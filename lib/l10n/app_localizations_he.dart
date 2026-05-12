@@ -1203,7 +1203,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String removeDuplicatesLimitWarning(Object label) {
-    return 'אין עוד כפולים להסרה עבור $label';
+    return 'ל$label אין מדבקות כפולות';
   }
 
   @override

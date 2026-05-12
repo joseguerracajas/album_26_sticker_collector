@@ -1229,7 +1229,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String removeDuplicatesLimitWarning(Object label) {
-    return 'Keine weiteren Doppelten für $label';
+    return '$label hat keine doppelten Sticker';
   }
 
   @override
