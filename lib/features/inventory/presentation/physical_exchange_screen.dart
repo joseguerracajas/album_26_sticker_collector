@@ -58,6 +58,10 @@ class _PhysicalExchangeScreenState extends ConsumerState<PhysicalExchangeScreen>
   bool _isSaving = false;
   Map<String, String> _emojiCache = {};
 
+  // ── Overlay de notificación ───────────────────────────────────────────────
+  String? _overlayLabel;
+  bool _overlayIsNew = true;
+
   @override
   void initState() {
     super.initState();
@@ -197,6 +201,24 @@ class _PhysicalExchangeScreenState extends ConsumerState<PhysicalExchangeScreen>
     final normalizedCode = '${sticker.categoryId}${sticker.stickerCode}'
         .toUpperCase()
         .replaceAll(' ', '');
+
+    // Determinar si es nuevo o repetido ANTES de clasificar
+    final isNewSticker =
+        !_scannedCodes.contains(normalizedCode) &&
+        ((ref.read(inventoryProvider).asData?.value[sticker.id] ?? {}).values
+                .fold(0, (s, q) => s + q) ==
+            0);
+    final emoji = _emojiCache[sticker.categoryId] ?? '';
+    final label = '$emoji ${sticker.categoryId} ${sticker.stickerCode}';
+    if (mounted) {
+      setState(() {
+        _overlayLabel = label;
+        _overlayIsNew = isNewSticker;
+      });
+      Future.delayed(const Duration(seconds: 2), () {
+        if (mounted) setState(() => _overlayLabel = null);
+      });
+    }
 
     if (_scannedCodes.contains(normalizedCode)) {
       if (mounted) setState(() => _duplicatesMap[normalizedCode] = sticker);
@@ -784,6 +806,63 @@ class _PhysicalExchangeScreenState extends ConsumerState<PhysicalExchangeScreen>
             ),
           ),
         ),
+
+        // ── Overlay de notificación de escaneo ───────────────────────────────
+        if (_overlayLabel != null)
+          Positioned(
+            top: 80,
+            left: 24,
+            right: 24,
+            child: AnimatedOpacity(
+              opacity: _overlayLabel != null ? 1.0 : 0.0,
+              duration: const Duration(milliseconds: 300),
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 10,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.black.withValues(alpha: 0.75),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      _overlayLabel!,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 3,
+                      ),
+                      decoration: BoxDecoration(
+                        color: _overlayIsNew
+                            ? Colors.greenAccent
+                            : Colors.redAccent,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Text(
+                        _overlayIsNew ? 'Nuevo' : 'Repetido',
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
       ],
     );
   }

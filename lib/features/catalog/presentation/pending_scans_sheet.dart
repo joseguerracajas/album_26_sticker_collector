@@ -1,3 +1,5 @@
+import 'package:album_26_sticker_collector/features/catalog/data/catalog_provider.dart';
+import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/pending_scans_provider.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
@@ -19,6 +21,20 @@ class _PendingScansSheetState extends ConsumerState<PendingScansSheet> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final pendingScans = ref.watch(pendingScansProvider);
+
+    // Construir mapa stickerId → label formateado "emoji CAT CODE"
+    final stickersAsync = ref.watch(allStickersProvider);
+    final categoriesAsync = ref.watch(categoriesProvider);
+    final Map<String, String> labelMap = {};
+    stickersAsync.whenData((stickers) {
+      categoriesAsync.whenData((cats) {
+        final emojiMap = {for (final c in cats) c.id: c.emoji};
+        for (final s in stickers) {
+          final emoji = emojiMap[s.categoryId] ?? '';
+          labelMap[s.id] = '$emoji ${s.categoryId} ${s.stickerCode}';
+        }
+      });
+    });
 
     return Container(
       padding: const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 32),
@@ -75,7 +91,7 @@ class _PendingScansSheetState extends ConsumerState<PendingScansSheet> {
                     ),
                     child: ListTile(
                       title: Text(
-                        l10n.pendingScansItemLabel(code),
+                        labelMap[code] ?? code,
                         style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,

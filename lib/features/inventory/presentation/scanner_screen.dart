@@ -1,6 +1,9 @@
 import 'dart:io';
+import 'package:album_26_sticker_collector/features/catalog/data/catalog_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
+import 'package:album_26_sticker_collector/features/catalog/domain/sticker.model.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/pending_scans_sheet.dart';
+import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/pending_scans_provider.dart';
 import 'package:album_26_sticker_collector/features/monetization/data/ads_provider.dart';
 import 'package:album_26_sticker_collector/features/monetization/data/subscription_provider.dart';
@@ -35,11 +38,34 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
   final Map<String, int> _consensusMap = {};
   final Map<String, DateTime> _cooldownMap = {};
 
+  // --- SESIÓN ACTUAL Y CACHÉ DE ETIQUETAS ---
+  final Set<String> _scannedThisSession = {}; // sticker IDs escaneados hoy
+  Map<String, Sticker>? _stickerById; // id → Sticker
+  Map<String, String> _emojiCache = {}; // categoryId → emoji
+
+  // --- OVERLAY DE NOTIFICACIÓN ---
+  String? _overlayLabel;
+  bool _overlayIsNew = true;
+
   @override
   void initState() {
     super.initState();
     _loadValidIdsCache();
+    _loadStickerMeta();
     _initializeCamera();
+  }
+
+  Future<void> _loadStickerMeta() async {
+    try {
+      final allStickers = await ref.read(allStickersProvider.future);
+      final cats = await ref.read(categoriesProvider.future);
+      if (mounted) {
+        setState(() {
+          _stickerById = {for (final s in allStickers) s.id: s};
+          _emojiCache = {for (final c in cats) c.id: c.emoji};
+        });
+      }
+    } catch (_) {}
   }
 
   Future<void> _loadValidIdsCache() async {
@@ -187,6 +213,30 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
 
           ref.read(pendingScansProvider.notifier).addSticker(code);
           HapticFeedback.heavyImpact();
+
+          // Overlay de notificación
+          if (mounted) {
+            final sticker = _stickerById?[code];
+            final isNew =
+                !_scannedThisSession.contains(code) &&
+                ((ref.read(inventoryProvider).asData?.value[code] ?? {}).values
+                        .fold(0, (s, q) => s + q) ==
+                    0);
+            _scannedThisSession.add(code);
+            final emoji = sticker != null
+                ? (_emojiCache[sticker.categoryId] ?? '')
+                : '';
+            final label = sticker != null
+                ? '$emoji ${sticker.categoryId} ${sticker.stickerCode}'
+                : code;
+            setState(() {
+              _overlayLabel = label;
+              _overlayIsNew = isNew;
+            });
+            Future.delayed(const Duration(seconds: 2), () {
+              if (mounted) setState(() => _overlayLabel = null);
+            });
+          }
         }
       }
     } catch (e) {
@@ -352,6 +402,63 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
               },
             ),
           ),
+
+          // 5. Overlay de notificación de escaneo
+          if (_overlayLabel != null)
+            Positioned(
+              top: 110,
+              left: 24,
+              right: 24,
+              child: AnimatedOpacity(
+                opacity: _overlayLabel != null ? 1.0 : 0.0,
+                duration: const Duration(milliseconds: 300),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 10,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withValues(alpha: 0.75),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        _overlayLabel!,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 3,
+                        ),
+                        decoration: BoxDecoration(
+                          color: _overlayIsNew
+                              ? Colors.greenAccent
+                              : Colors.redAccent,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Text(
+                          _overlayIsNew ? 'Nuevo' : 'Repetido',
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
         ],
       ),
     );
