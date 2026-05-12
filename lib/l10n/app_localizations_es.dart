@@ -207,7 +207,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get homeNoResults => 'Sin resultados';
 
   @override
-  String get homeScanButton => 'Escanear Cromo';
+  String get homeScanButton => 'Escanear sticker';
 
   @override
   String homeObtainedCount(Object collected, Object total) {
@@ -233,11 +233,11 @@ class AppLocalizationsEs extends AppLocalizations {
   String get filterSearchHint => 'Buscar país, código o número...';
 
   @override
-  String get stickerRemoveTitle => '¿Quitar cromo?';
+  String get stickerRemoveTitle => '¿Quitar sticker?';
 
   @override
   String stickerRemoveConfirm(Object stickerLabel) {
-    return '¿Seguro que quieres quitar el cromo $stickerLabel de tu álbum?';
+    return '¿Seguro que quieres quitar el sticker $stickerLabel de tu álbum?';
   }
 
   @override
@@ -258,13 +258,13 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get scannerOverlayHint => 'Centra la parte trasera del cromo aquí';
+  String get scannerOverlayHint => 'Centra la parte trasera del sticker aquí';
 
   @override
   String get pendingScansTitle => 'Stickers escaneados';
 
   @override
-  String get pendingScansEmpty => 'Aún no has escaneado ningún cromo';
+  String get pendingScansEmpty => 'Aún no has escaneado ningún sticker';
 
   @override
   String pendingScansItemLabel(Object code) {
@@ -570,25 +570,25 @@ class AppLocalizationsEs extends AppLocalizations {
       'Usa estos botones para ver todos tus stickers, solo los que te faltan o solo los repetidos. ¡Ideal para organizar intercambios!';
 
   @override
-  String get globalTutorialStep2Title => 'Busca un cromo';
+  String get globalTutorialStep2Title => 'Busca un sticker';
 
   @override
   String get globalTutorialStep2Body =>
-      'Escribe el nombre del país, el código o el número del cromo para encontrarlo rápidamente.';
+      'Escribe el nombre del país, el código o el número del sticker para encontrarlo rápidamente.';
 
   @override
   String get globalTutorialStep3Title => 'Toca para marcar';
 
   @override
   String get globalTutorialStep3Body =>
-      'Un toque sobre un cromo gris lo añade a tu álbum (se pone dorado). Si ya lo tienes y lo tocas de nuevo, te pedirá confirmación para quitarlo.';
+      'Un toque sobre un sticker gris lo añade a tu álbum (se pone dorado). Si ya lo tienes y lo tocas de nuevo, te pedirá confirmación para quitarlo.';
 
   @override
   String get globalTutorialStep4Title => 'Mantén pulsado para más opciones';
 
   @override
   String get globalTutorialStep4Body =>
-      'Si mantienes pulsado un cromo puedes gestionar cuántas copias tienes de cada variante (Normal, Gold, Legend…) y actualizar tu inventario de repetidas.';
+      'Si mantienes pulsado un sticker puedes gestionar cuántas copias tienes de cada variante (Normal, Gold, Legend…) y actualizar tu inventario de repetidas.';
 
   @override
   String get tutorialStep6Title => 'Explora una categoria';
@@ -605,25 +605,25 @@ class AppLocalizationsEs extends AppLocalizations {
       'Usa estos botones para ver todos los stickers de esta categoria, solo los que te faltan o solo los repetidos.';
 
   @override
-  String get categoryTutorialStep2Title => 'Busca un cromo';
+  String get categoryTutorialStep2Title => 'Busca un sticker';
 
   @override
   String get categoryTutorialStep2Body =>
-      'Escribe el nombre del pais, el codigo o el numero del cromo para encontrarlo rapidamente.';
+      'Escribe el nombre del pais, el codigo o el numero del sticker para encontrarlo rapidamente.';
 
   @override
   String get categoryTutorialStep3Title => 'Toca para marcar';
 
   @override
   String get categoryTutorialStep3Body =>
-      'Un toque sobre un cromo gris lo anade a tu album (se pone dorado). Si ya lo tienes y lo tocas de nuevo, te pedira confirmacion para quitarlo.';
+      'Un toque sobre un sticker gris lo anade a tu album (se pone dorado). Si ya lo tienes y lo tocas de nuevo, te pedira confirmacion para quitarlo.';
 
   @override
   String get categoryTutorialStep4Title => 'Manten pulsado para mas opciones';
 
   @override
   String get categoryTutorialStep4Body =>
-      'Si mantienes pulsado un cromo puedes gestionar cuantas copias tienes de cada variante (Normal, Gold, Legend) y actualizar tu inventario de repetidas.';
+      'Si mantienes pulsado un sticker puedes gestionar cuantas copias tienes de cada variante (Normal, Gold, Legend) y actualizar tu inventario de repetidas.';
 
   @override
   String get drawerReplayTutorial => 'Ver tutorial de nuevo';
@@ -872,7 +872,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String tradeNegSelectedCount(Object count) {
-    return '$count cromo(s) seleccionado(s)';
+    return '$count sticker(s) seleccionado(s)';
   }
 
   @override
@@ -884,7 +884,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String tradeNegOfferLabel(Object count) {
-    return 'Ofrecerás $count cromo(s)';
+    return 'Ofrecerás $count sticker(s)';
   }
 
   @override
@@ -894,7 +894,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get tradeNegSaving => 'Guardando…';
 
   @override
-  String get tradeNegAtLeastOne => 'Selecciona al menos un cromo para ofrecer.';
+  String get tradeNegAtLeastOne =>
+      'Selecciona al menos un sticker para ofrecer.';
 
   @override
   String get tradeNegOfferConfirmed =>
@@ -930,12 +931,12 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String tradeNegTotalItems(Object count) {
-    return '$count cromo(s) en total';
+    return '$count sticker(s) en total';
   }
 
   @override
   String tradeNegReceivingCount(Object count) {
-    return '$count cromo(s) que vas a recibir';
+    return '$count sticker(s) que vas a recibir';
   }
 
   @override
@@ -951,7 +952,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get tradeDeliveryNoOffer =>
-      'El otro coleccionista no ofreció ningún cromo.';
+      'El otro coleccionista no ofreció ningún sticker.';
 
   @override
   String get tradeDeliveryNotReceived => 'No recibido';
@@ -971,12 +972,12 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String tradeDeliveryConfirmMsg(Object received, Object pending) {
-    return 'Se añadirán $received cromo(s) a tu álbum.\n$pending cromo(s) desmarcados volverán al otro coleccionista.';
+    return 'Se añadirán $received sticker(s) a tu álbum.\n$pending sticker(s) desmarcados volverán al otro coleccionista.';
   }
 
   @override
   String tradeDeliverySuccess(Object count) {
-    return '¡$count cromo(s) añadidos a tu álbum! 🏆';
+    return '¡$count sticker(s) añadidos a tu álbum! 🏆';
   }
 
   @override
@@ -1014,7 +1015,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String tradeHistoryStickerCount(Object count) {
-    return '$count cromo(s)';
+    return '$count sticker(s)';
   }
 
   @override
@@ -1069,7 +1070,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get physicalExchangeVirtualBtn => 'Intercambio Virtual';
 
   @override
-  String get lookupScreenTitle => 'Consultar Cromo';
+  String get lookupScreenTitle => 'Consultar Sticker';
 
   @override
   String get lookupTabManual => 'Manual';
@@ -1085,7 +1086,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get lookupStickerNotFound =>
-      'No se encontró ningún cromo con ese código.';
+      'No se encontró ningún sticker con ese código.';
 
   @override
   String get lookupStatusMissing => 'Te falta';
@@ -1102,7 +1103,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get lookupQtyLabel => 'Cantidad en tu inventario';
 
   @override
-  String get lookupScannerHint => 'Centra el cromo para identificarlo';
+  String get lookupScannerHint => 'Centra el sticker para identificarlo';
 
   @override
   String get lookupScannerOpenTooltip => 'Abrir escáner';
@@ -1115,7 +1116,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String lookupScannerSaveSuccess(Object count) {
-    return '$count cromo(s) agregado(s) al inventario';
+    return '$count sticker(s) agregado(s) al inventario';
   }
 
   @override
@@ -1165,21 +1166,21 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get lookupTutorialStep1Body =>
-      'Usa la pestaña Manual para ingresar el código del cromo (ej. ECU 10), o la pestaña Escáner para apuntar la cámara directamente.';
+      'Usa la pestaña Manual para ingresar el código del sticker (ej. ECU 10), o la pestaña Escáner para apuntar la cámara directamente.';
 
   @override
   String get lookupTutorialStep2Title => 'Ingresa el código';
 
   @override
   String get lookupTutorialStep2Body =>
-      'Escribe el código del cromo tal como aparece en el álbum, por ejemplo ECU 10 o ARG 5, y pulsa Buscar.';
+      'Escribe el código del sticker tal como aparece en el álbum, por ejemplo ECU 10 o ARG 5, y pulsa Buscar.';
 
   @override
   String get lookupTutorialStep3Title => 'Consulta y gestiona';
 
   @override
   String get lookupTutorialStep3Body =>
-      'Verás si el cromo está faltando o ya lo tienes o cuántos repetidos llevas. Con los botones + y – puedes actualizar tu inventario al instante.';
+      'Verás si el sticker está faltando o ya lo tienes o cuántos repetidos llevas. Con los botones + y – puedes actualizar tu inventario al instante.';
 
   @override
   String get scanBadgeNew => 'Nuevo';

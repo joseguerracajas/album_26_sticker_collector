@@ -590,35 +590,35 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get tutorialStep6Body =>
-      'Toque em qualquer pais ou equipa para ver as suas cromos. La pode marcar os que ja tem e gerir os repetidos.';
+      'Toque em qualquer pais ou equipa para ver as suas figurinhas. La pode marcar as que ja tem e gerir as repetidas.';
 
   @override
-  String get categoryTutorialStep1Title => 'Filtrar cromos';
+  String get categoryTutorialStep1Title => 'Filtrar figurinhas';
 
   @override
   String get categoryTutorialStep1Body =>
-      'Use estes botoes para ver todos os cromos desta categoria, apenas os que faltam ou apenas os repetidos.';
+      'Use estes botoes para ver todas as figurinhas desta categoria, apenas as que faltam ou apenas as repetidas.';
 
   @override
-  String get categoryTutorialStep2Title => 'Procurar um cromo';
+  String get categoryTutorialStep2Title => 'Procurar uma figurinha';
 
   @override
   String get categoryTutorialStep2Body =>
-      'Escreva o nome do pais, o codigo ou o numero do cromo para o encontrar rapidamente.';
+      'Escreva o nome do pais, o codigo ou o numero da figurinha para a encontrar rapidamente.';
 
   @override
   String get categoryTutorialStep3Title => 'Toque para marcar';
 
   @override
   String get categoryTutorialStep3Body =>
-      'Tocar num cromo cinza adiciona-o ao album (fica dourado). Se ja o tem e tocar novamente, sera pedida confirmacao para o remover.';
+      'Tocar numa figurinha cinza adiciona-a ao album (fica dourada). Se ja a tem e tocar novamente, sera pedida confirmacao para a remover.';
 
   @override
   String get categoryTutorialStep4Title => 'Pressione para mais opcoes';
 
   @override
   String get categoryTutorialStep4Body =>
-      'Pressionar prolongadamente um cromo permite gerir quantas copias tem de cada variante (Normal, Gold, Legend).';
+      'Pressionar prolongadamente uma figurinha permite gerir quantas copias tem de cada variante (Normal, Gold, Legend).';
 
   @override
   String get drawerReplayTutorial => 'Ver tutorial novamente';
@@ -628,7 +628,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get variantTutorialBody =>
-      'Escolha a variante do álbum que corresponde ao seu país ou região. Isso define quais cromos e variantes (Normal, Gold, Legend) aparecerão na sua coleção.';
+      'Escolha a variante do álbum que corresponde ao seu país ou região. Isso define quais figurinhas e variantes (Normal, Gold, Legend) aparecerão na sua coleção.';
 
   @override
   String get drawerLegalNotice => 'Aviso Legal';
@@ -638,7 +638,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get legalNoticeBody =>
-      'Esta aplicação é uma criação não oficial de fãs e não está afiliada, apoiada ou conectada a qualquer organização oficial de futebol, fabricante de cromos ou parceiro oficial do torneio de futebol. Todas as marcas registadas são propriedade dos seus respetivos proprietários.';
+      'Esta aplicação é uma criação não oficial de fãs e não está afiliada, apoiada ou conectada a qualquer organização oficial de futebol, fabricante de figurinhas ou parceiro oficial do torneio de futebol. Todas as marcas registadas são propriedade dos seus respetivos proprietários.';
 
   @override
   String get statsTitle => 'Estatísticas';
@@ -867,7 +867,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String tradeNegSelectedCount(Object count) {
-    return '$count cromo(s) seleccionado(s)';
+    return '$count sticker(s) seleccionado(s)';
   }
 
   @override
@@ -879,7 +879,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String tradeNegOfferLabel(Object count) {
-    return 'Ofrecerás $count cromo(s)';
+    return 'Ofrecerás $count sticker(s)';
   }
 
   @override
@@ -889,7 +889,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get tradeNegSaving => 'Guardando…';
 
   @override
-  String get tradeNegAtLeastOne => 'Selecciona al menos un cromo para ofrecer.';
+  String get tradeNegAtLeastOne =>
+      'Selecciona al menos un sticker para ofrecer.';
 
   @override
   String get tradeNegOfferConfirmed =>
@@ -925,12 +926,12 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String tradeNegTotalItems(Object count) {
-    return '$count cromo(s) en total';
+    return '$count sticker(s) en total';
   }
 
   @override
   String tradeNegReceivingCount(Object count) {
-    return '$count cromo(s) que vas a recibir';
+    return '$count sticker(s) que vas a recibir';
   }
 
   @override
@@ -946,7 +947,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get tradeDeliveryNoOffer =>
-      'El otro coleccionista no ofreció ningún cromo.';
+      'El otro coleccionista no ofreció ningún sticker.';
 
   @override
   String get tradeDeliveryNotReceived => 'No recibido';
@@ -966,12 +967,12 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String tradeDeliveryConfirmMsg(Object received, Object pending) {
-    return 'Se añadirán $received cromo(s) a tu álbum.\n$pending cromo(s) desmarcados volverán al otro coleccionista.';
+    return 'Se añadirán $received sticker(s) a tu álbum.\n$pending sticker(s) desmarcados volverán al otro coleccionista.';
   }
 
   @override
   String tradeDeliverySuccess(Object count) {
-    return '¡$count cromo(s) añadidos a tu álbum! 🏆';
+    return '¡$count sticker(s) añadidos a tu álbum! 🏆';
   }
 
   @override
@@ -1009,7 +1010,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String tradeHistoryStickerCount(Object count) {
-    return '$count cromo(s)';
+    return '$count sticker(s)';
   }
 
   @override
@@ -1058,13 +1059,13 @@ class AppLocalizationsPt extends AppLocalizations {
   String get physicalExchangeScreenTitle => 'Intercambio Físico';
 
   @override
-  String get drawerLookup => 'Consultar cromo';
+  String get drawerLookup => 'Consultar figurinha';
 
   @override
   String get physicalExchangeVirtualBtn => 'Intercambio Virtual';
 
   @override
-  String get lookupScreenTitle => 'Consultar cromo';
+  String get lookupScreenTitle => 'Consultar figurinha';
 
   @override
   String get lookupTabManual => 'Manual';
@@ -1080,7 +1081,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get lookupStickerNotFound =>
-      'Nenhum cromo encontrado com esse código.';
+      'Nenhuma figurinha encontrada com esse código.';
 
   @override
   String get lookupStatusMissing => 'Está faltando';
@@ -1097,7 +1098,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get lookupQtyLabel => 'Quantidade no seu inventário';
 
   @override
-  String get lookupScannerHint => 'Centralize o cromo para identificá-lo';
+  String get lookupScannerHint => 'Centralize a figurinha para identificá-la';
 
   @override
   String get lookupScannerOpenTooltip => 'Abrir escáner';
@@ -1110,7 +1111,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String lookupScannerSaveSuccess(Object count) {
-    return '$count cromo(s) agregado(s) al inventario';
+    return '$count sticker(s) agregado(s) al inventario';
   }
 
   @override
@@ -1160,21 +1161,21 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get lookupTutorialStep1Body =>
-      'Use a aba Manual para digitar o código do cromo ou a aba Scanner para apontar a câmera diretamente.';
+      'Use a aba Manual para digitar o código da figurinha ou a aba Scanner para apontar a câmera diretamente.';
 
   @override
   String get lookupTutorialStep2Title => 'Digite o código';
 
   @override
   String get lookupTutorialStep2Body =>
-      'Escreva o código do cromo como aparece no álbum, ex. ECU 10 ou ARG 5, e toque em Buscar.';
+      'Escreva o código da figurinha como aparece no álbum, ex. ECU 10 ou ARG 5, e toque em Buscar.';
 
   @override
   String get lookupTutorialStep3Title => 'Consulte e gerencie';
 
   @override
   String get lookupTutorialStep3Body =>
-      'Você verá se o cromo está faltando ou já tem. Com + e – você pode atualizar seu inventário na hora.';
+      'Você verá se a figurinha está faltando ou já tem. Com + e – você pode atualizar seu inventário na hora.';
 
   @override
   String get scanBadgeNew => 'Novo';

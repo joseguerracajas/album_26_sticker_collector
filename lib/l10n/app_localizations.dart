@@ -479,7 +479,7 @@ abstract class AppLocalizations {
   /// No description provided for @homeScanButton.
   ///
   /// In es, this message translates to:
-  /// **'Escanear Cromo'**
+  /// **'Escanear sticker'**
   String get homeScanButton;
 
   /// No description provided for @homeObtainedCount.
@@ -527,13 +527,13 @@ abstract class AppLocalizations {
   /// No description provided for @stickerRemoveTitle.
   ///
   /// In es, this message translates to:
-  /// **'¿Quitar cromo?'**
+  /// **'¿Quitar sticker?'**
   String get stickerRemoveTitle;
 
   /// No description provided for @stickerRemoveConfirm.
   ///
   /// In es, this message translates to:
-  /// **'¿Seguro que quieres quitar el cromo {stickerLabel} de tu álbum?'**
+  /// **'¿Seguro que quieres quitar el sticker {stickerLabel} de tu álbum?'**
   String stickerRemoveConfirm(Object stickerLabel);
 
   /// No description provided for @commonCancel.
@@ -569,7 +569,7 @@ abstract class AppLocalizations {
   /// No description provided for @scannerOverlayHint.
   ///
   /// In es, this message translates to:
-  /// **'Centra la parte trasera del cromo aquí'**
+  /// **'Centra la parte trasera del sticker aquí'**
   String get scannerOverlayHint;
 
   /// No description provided for @pendingScansTitle.
@@ -581,7 +581,7 @@ abstract class AppLocalizations {
   /// No description provided for @pendingScansEmpty.
   ///
   /// In es, this message translates to:
-  /// **'Aún no has escaneado ningún cromo'**
+  /// **'Aún no has escaneado ningún sticker'**
   String get pendingScansEmpty;
 
   /// No description provided for @pendingScansItemLabel.
@@ -1109,13 +1109,13 @@ abstract class AppLocalizations {
   /// No description provided for @globalTutorialStep2Title.
   ///
   /// In es, this message translates to:
-  /// **'Busca un cromo'**
+  /// **'Busca un sticker'**
   String get globalTutorialStep2Title;
 
   /// No description provided for @globalTutorialStep2Body.
   ///
   /// In es, this message translates to:
-  /// **'Escribe el nombre del país, el código o el número del cromo para encontrarlo rápidamente.'**
+  /// **'Escribe el nombre del país, el código o el número del sticker para encontrarlo rápidamente.'**
   String get globalTutorialStep2Body;
 
   /// No description provided for @globalTutorialStep3Title.
@@ -1127,7 +1127,7 @@ abstract class AppLocalizations {
   /// No description provided for @globalTutorialStep3Body.
   ///
   /// In es, this message translates to:
-  /// **'Un toque sobre un cromo gris lo añade a tu álbum (se pone dorado). Si ya lo tienes y lo tocas de nuevo, te pedirá confirmación para quitarlo.'**
+  /// **'Un toque sobre un sticker gris lo añade a tu álbum (se pone dorado). Si ya lo tienes y lo tocas de nuevo, te pedirá confirmación para quitarlo.'**
   String get globalTutorialStep3Body;
 
   /// No description provided for @globalTutorialStep4Title.
@@ -1139,7 +1139,7 @@ abstract class AppLocalizations {
   /// No description provided for @globalTutorialStep4Body.
   ///
   /// In es, this message translates to:
-  /// **'Si mantienes pulsado un cromo puedes gestionar cuántas copias tienes de cada variante (Normal, Gold, Legend…) y actualizar tu inventario de repetidas.'**
+  /// **'Si mantienes pulsado un sticker puedes gestionar cuántas copias tienes de cada variante (Normal, Gold, Legend…) y actualizar tu inventario de repetidas.'**
   String get globalTutorialStep4Body;
 
   /// No description provided for @tutorialStep6Title.
@@ -1169,13 +1169,13 @@ abstract class AppLocalizations {
   /// No description provided for @categoryTutorialStep2Title.
   ///
   /// In es, this message translates to:
-  /// **'Busca un cromo'**
+  /// **'Busca un sticker'**
   String get categoryTutorialStep2Title;
 
   /// No description provided for @categoryTutorialStep2Body.
   ///
   /// In es, this message translates to:
-  /// **'Escribe el nombre del pais, el codigo o el numero del cromo para encontrarlo rapidamente.'**
+  /// **'Escribe el nombre del pais, el codigo o el numero del sticker para encontrarlo rapidamente.'**
   String get categoryTutorialStep2Body;
 
   /// No description provided for @categoryTutorialStep3Title.
@@ -1187,7 +1187,7 @@ abstract class AppLocalizations {
   /// No description provided for @categoryTutorialStep3Body.
   ///
   /// In es, this message translates to:
-  /// **'Un toque sobre un cromo gris lo anade a tu album (se pone dorado). Si ya lo tienes y lo tocas de nuevo, te pedira confirmacion para quitarlo.'**
+  /// **'Un toque sobre un sticker gris lo anade a tu album (se pone dorado). Si ya lo tienes y lo tocas de nuevo, te pedira confirmacion para quitarlo.'**
   String get categoryTutorialStep3Body;
 
   /// No description provided for @categoryTutorialStep4Title.
@@ -1199,7 +1199,7 @@ abstract class AppLocalizations {
   /// No description provided for @categoryTutorialStep4Body.
   ///
   /// In es, this message translates to:
-  /// **'Si mantienes pulsado un cromo puedes gestionar cuantas copias tienes de cada variante (Normal, Gold, Legend) y actualizar tu inventario de repetidas.'**
+  /// **'Si mantienes pulsado un sticker puedes gestionar cuantas copias tienes de cada variante (Normal, Gold, Legend) y actualizar tu inventario de repetidas.'**
   String get categoryTutorialStep4Body;
 
   /// No description provided for @drawerReplayTutorial.
@@ -1655,7 +1655,7 @@ abstract class AppLocalizations {
   /// No description provided for @tradeNegSelectedCount.
   ///
   /// In es, this message translates to:
-  /// **'{count} cromo(s) seleccionado(s)'**
+  /// **'{count} sticker(s) seleccionado(s)'**
   String tradeNegSelectedCount(Object count);
 
   /// No description provided for @tradeNegNoStickers.
@@ -1673,7 +1673,7 @@ abstract class AppLocalizations {
   /// No description provided for @tradeNegOfferLabel.
   ///
   /// In es, this message translates to:
-  /// **'Ofrecerás {count} cromo(s)'**
+  /// **'Ofrecerás {count} sticker(s)'**
   String tradeNegOfferLabel(Object count);
 
   /// No description provided for @tradeNegConfirmBtn.
@@ -1691,7 +1691,7 @@ abstract class AppLocalizations {
   /// No description provided for @tradeNegAtLeastOne.
   ///
   /// In es, this message translates to:
-  /// **'Selecciona al menos un cromo para ofrecer.'**
+  /// **'Selecciona al menos un sticker para ofrecer.'**
   String get tradeNegAtLeastOne;
 
   /// No description provided for @tradeNegOfferConfirmed.
@@ -1745,13 +1745,13 @@ abstract class AppLocalizations {
   /// No description provided for @tradeNegTotalItems.
   ///
   /// In es, this message translates to:
-  /// **'{count} cromo(s) en total'**
+  /// **'{count} sticker(s) en total'**
   String tradeNegTotalItems(Object count);
 
   /// No description provided for @tradeNegReceivingCount.
   ///
   /// In es, this message translates to:
-  /// **'{count} cromo(s) que vas a recibir'**
+  /// **'{count} sticker(s) que vas a recibir'**
   String tradeNegReceivingCount(Object count);
 
   /// No description provided for @tradeDeliveryTitle.
@@ -1775,7 +1775,7 @@ abstract class AppLocalizations {
   /// No description provided for @tradeDeliveryNoOffer.
   ///
   /// In es, this message translates to:
-  /// **'El otro coleccionista no ofreció ningún cromo.'**
+  /// **'El otro coleccionista no ofreció ningún sticker.'**
   String get tradeDeliveryNoOffer;
 
   /// No description provided for @tradeDeliveryNotReceived.
@@ -1805,13 +1805,13 @@ abstract class AppLocalizations {
   /// No description provided for @tradeDeliveryConfirmMsg.
   ///
   /// In es, this message translates to:
-  /// **'Se añadirán {received} cromo(s) a tu álbum.\n{pending} cromo(s) desmarcados volverán al otro coleccionista.'**
+  /// **'Se añadirán {received} sticker(s) a tu álbum.\n{pending} sticker(s) desmarcados volverán al otro coleccionista.'**
   String tradeDeliveryConfirmMsg(Object received, Object pending);
 
   /// No description provided for @tradeDeliverySuccess.
   ///
   /// In es, this message translates to:
-  /// **'¡{count} cromo(s) añadidos a tu álbum! 🏆'**
+  /// **'¡{count} sticker(s) añadidos a tu álbum! 🏆'**
   String tradeDeliverySuccess(Object count);
 
   /// No description provided for @tradeHistoryTitle.
@@ -1877,7 +1877,7 @@ abstract class AppLocalizations {
   /// No description provided for @tradeHistoryStickerCount.
   ///
   /// In es, this message translates to:
-  /// **'{count} cromo(s)'**
+  /// **'{count} sticker(s)'**
   String tradeHistoryStickerCount(Object count);
 
   /// No description provided for @tradeDrawerTitle.
@@ -1973,7 +1973,7 @@ abstract class AppLocalizations {
   /// No description provided for @lookupScreenTitle.
   ///
   /// In es, this message translates to:
-  /// **'Consultar Cromo'**
+  /// **'Consultar Sticker'**
   String get lookupScreenTitle;
 
   /// No description provided for @lookupTabManual.
@@ -2003,7 +2003,7 @@ abstract class AppLocalizations {
   /// No description provided for @lookupStickerNotFound.
   ///
   /// In es, this message translates to:
-  /// **'No se encontró ningún cromo con ese código.'**
+  /// **'No se encontró ningún sticker con ese código.'**
   String get lookupStickerNotFound;
 
   /// No description provided for @lookupStatusMissing.
@@ -2033,7 +2033,7 @@ abstract class AppLocalizations {
   /// No description provided for @lookupScannerHint.
   ///
   /// In es, this message translates to:
-  /// **'Centra el cromo para identificarlo'**
+  /// **'Centra el sticker para identificarlo'**
   String get lookupScannerHint;
 
   /// No description provided for @lookupScannerOpenTooltip.
@@ -2057,7 +2057,7 @@ abstract class AppLocalizations {
   /// No description provided for @lookupScannerSaveSuccess.
   ///
   /// In es, this message translates to:
-  /// **'{count} cromo(s) agregado(s) al inventario'**
+  /// **'{count} sticker(s) agregado(s) al inventario'**
   String lookupScannerSaveSuccess(Object count);
 
   /// No description provided for @lookupScannerScannedCount.
@@ -2135,7 +2135,7 @@ abstract class AppLocalizations {
   /// No description provided for @lookupTutorialStep1Body.
   ///
   /// In es, this message translates to:
-  /// **'Usa la pestaña Manual para ingresar el código del cromo (ej. ECU 10), o la pestaña Escáner para apuntar la cámara directamente.'**
+  /// **'Usa la pestaña Manual para ingresar el código del sticker (ej. ECU 10), o la pestaña Escáner para apuntar la cámara directamente.'**
   String get lookupTutorialStep1Body;
 
   /// No description provided for @lookupTutorialStep2Title.
@@ -2147,7 +2147,7 @@ abstract class AppLocalizations {
   /// No description provided for @lookupTutorialStep2Body.
   ///
   /// In es, this message translates to:
-  /// **'Escribe el código del cromo tal como aparece en el álbum, por ejemplo ECU 10 o ARG 5, y pulsa Buscar.'**
+  /// **'Escribe el código del sticker tal como aparece en el álbum, por ejemplo ECU 10 o ARG 5, y pulsa Buscar.'**
   String get lookupTutorialStep2Body;
 
   /// No description provided for @lookupTutorialStep3Title.
@@ -2159,7 +2159,7 @@ abstract class AppLocalizations {
   /// No description provided for @lookupTutorialStep3Body.
   ///
   /// In es, this message translates to:
-  /// **'Verás si el cromo está faltando o ya lo tienes o cuántos repetidos llevas. Con los botones + y – puedes actualizar tu inventario al instante.'**
+  /// **'Verás si el sticker está faltando o ya lo tienes o cuántos repetidos llevas. Con los botones + y – puedes actualizar tu inventario al instante.'**
   String get lookupTutorialStep3Body;
 
   /// No description provided for @scanBadgeNew.

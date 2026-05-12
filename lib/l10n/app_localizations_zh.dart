@@ -823,7 +823,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String tradeNegSelectedCount(Object count) {
-    return '$count cromo(s) seleccionado(s)';
+    return '$count sticker(s) seleccionado(s)';
   }
 
   @override
@@ -835,7 +835,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String tradeNegOfferLabel(Object count) {
-    return 'Ofrecerás $count cromo(s)';
+    return 'Ofrecerás $count sticker(s)';
   }
 
   @override
@@ -845,7 +845,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tradeNegSaving => 'Guardando…';
 
   @override
-  String get tradeNegAtLeastOne => 'Selecciona al menos un cromo para ofrecer.';
+  String get tradeNegAtLeastOne =>
+      'Selecciona al menos un sticker para ofrecer.';
 
   @override
   String get tradeNegOfferConfirmed =>
@@ -881,12 +882,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String tradeNegTotalItems(Object count) {
-    return '$count cromo(s) en total';
+    return '$count sticker(s) en total';
   }
 
   @override
   String tradeNegReceivingCount(Object count) {
-    return '$count cromo(s) que vas a recibir';
+    return '$count sticker(s) que vas a recibir';
   }
 
   @override
@@ -902,7 +903,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get tradeDeliveryNoOffer =>
-      'El otro coleccionista no ofreció ningún cromo.';
+      'El otro coleccionista no ofreció ningún sticker.';
 
   @override
   String get tradeDeliveryNotReceived => 'No recibido';
@@ -922,12 +923,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String tradeDeliveryConfirmMsg(Object received, Object pending) {
-    return 'Se añadirán $received cromo(s) a tu álbum.\n$pending cromo(s) desmarcados volverán al otro coleccionista.';
+    return 'Se añadirán $received sticker(s) a tu álbum.\n$pending sticker(s) desmarcados volverán al otro coleccionista.';
   }
 
   @override
   String tradeDeliverySuccess(Object count) {
-    return '¡$count cromo(s) añadidos a tu álbum! 🏆';
+    return '¡$count sticker(s) añadidos a tu álbum! 🏆';
   }
 
   @override
@@ -965,7 +966,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String tradeHistoryStickerCount(Object count) {
-    return '$count cromo(s)';
+    return '$count sticker(s)';
   }
 
   @override
@@ -1065,7 +1066,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String lookupScannerSaveSuccess(Object count) {
-    return '$count cromo(s) agregado(s) al inventario';
+    return '$count sticker(s) agregado(s) al inventario';
   }
 
   @override
