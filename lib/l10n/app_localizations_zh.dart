@@ -370,6 +370,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get paywallPackageSixMonth => '每 6 个月';
 
   @override
+  String get paywallBestOption => 'Mejor opción';
+
+  @override
+  String get paywallStartFreeTrial => 'Comenzar prueba gratis';
+
+  @override
   String get paywallRestorePurchases => '恢复购买';
 
   @override

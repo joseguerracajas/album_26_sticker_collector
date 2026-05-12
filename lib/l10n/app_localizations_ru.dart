@@ -396,6 +396,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get paywallPackageSixMonth => 'Каждые 6 месяцев';
 
   @override
+  String get paywallBestOption => 'Mejor opción';
+
+  @override
+  String get paywallStartFreeTrial => 'Comenzar prueba gratis';
+
+  @override
   String get paywallRestorePurchases => 'Восстановить покупки';
 
   @override

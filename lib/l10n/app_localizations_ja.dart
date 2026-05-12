@@ -374,6 +374,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get paywallPackageSixMonth => '6ヶ月ごと';
 
   @override
+  String get paywallBestOption => 'Mejor opción';
+
+  @override
+  String get paywallStartFreeTrial => 'Comenzar prueba gratis';
+
+  @override
   String get paywallRestorePurchases => '購入を復元';
 
   @override

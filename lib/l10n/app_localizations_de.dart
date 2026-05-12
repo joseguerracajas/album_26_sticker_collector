@@ -396,6 +396,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get paywallPackageSixMonth => 'Alle 6 Monate';
 
   @override
+  String get paywallBestOption => 'Mejor opción';
+
+  @override
+  String get paywallStartFreeTrial => 'Comenzar prueba gratis';
+
+  @override
   String get paywallRestorePurchases => 'Käufe wiederherstellen';
 
   @override

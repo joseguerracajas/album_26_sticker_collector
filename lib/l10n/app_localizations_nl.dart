@@ -395,6 +395,12 @@ class AppLocalizationsNl extends AppLocalizations {
   String get paywallPackageSixMonth => 'Elke 6 maanden';
 
   @override
+  String get paywallBestOption => 'Mejor opción';
+
+  @override
+  String get paywallStartFreeTrial => 'Comenzar prueba gratis';
+
+  @override
   String get paywallRestorePurchases => 'Aankopen herstellen';
 
   @override

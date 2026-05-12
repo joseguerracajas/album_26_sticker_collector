@@ -390,6 +390,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get paywallPackageSixMonth => 'كل 6 أشهر';
 
   @override
+  String get paywallBestOption => 'Mejor opción';
+
+  @override
+  String get paywallStartFreeTrial => 'Comenzar prueba gratis';
+
+  @override
   String get paywallRestorePurchases => 'استعادة المشتريات';
 
   @override

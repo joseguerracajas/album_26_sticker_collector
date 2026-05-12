@@ -36,7 +36,11 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
         setState(() {
           _offerings = offerings;
           final packages = offerings.current?.availablePackages ?? [];
-          _selectedPackage = packages.isNotEmpty ? packages.first : null;
+          // Seleccionar el plan anual por defecto si existe
+          _selectedPackage = packages.firstWhere(
+            (p) => p.packageType == PackageType.annual,
+            orElse: () => packages.isNotEmpty ? packages.first : packages.first,
+          );
           _isLoadingOfferings = false;
         });
       }
@@ -272,6 +276,24 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
     );
   }
 
+  /// Devuelve el texto de prueba gratuita si el producto la tiene configurada.
+  String? _trialLabel(Package pkg) {
+    try {
+      final intro = pkg.storeProduct.introductoryPrice;
+      if (intro == null || intro.price != 0) return null;
+      final n = intro.periodNumberOfUnits;
+      final unit = intro.periodUnit;
+      if (unit == PeriodUnit.day) {
+        return '$n día${n == 1 ? '' : 's'} gratis';
+      } else if (unit == PeriodUnit.week) {
+        return '$n semana${n == 1 ? '' : 's'} gratis';
+      }
+      return intro.priceString;
+    } catch (_) {
+      return null;
+    }
+  }
+
   Widget _buildPackageSelector(AppLocalizations l10n) {
     if (_isLoadingOfferings || _errorMessage != null) {
       return const SizedBox.shrink();
@@ -283,9 +305,12 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
     return Column(
       children: packages.map((pkg) {
         final isSelected = _selectedPackage?.identifier == pkg.identifier;
+        final isAnnual = pkg.packageType == PackageType.annual;
         final price = pkg.storeProduct.priceString;
         final title = _packageTitle(pkg, l10n);
-        return GestureDetector(
+        final trial = _trialLabel(pkg);
+
+        final card = GestureDetector(
           onTap: () => setState(() => _selectedPackage = pkg),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
@@ -312,15 +337,32 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
                 ),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: Text(
-                    title,
-                    style: TextStyle(
-                      color: isSelected ? Colors.amber : Colors.white,
-                      fontWeight: isSelected
-                          ? FontWeight.w700
-                          : FontWeight.w500,
-                      fontSize: 15,
-                    ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: TextStyle(
+                          color: isSelected ? Colors.amber : Colors.white,
+                          fontWeight: isSelected
+                              ? FontWeight.w700
+                              : FontWeight.w500,
+                          fontSize: 15,
+                        ),
+                      ),
+                      if (trial != null)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 2),
+                          child: Text(
+                            trial,
+                            style: const TextStyle(
+                              color: Colors.greenAccent,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                    ],
                   ),
                 ),
                 Text(
@@ -333,6 +375,42 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
                 ),
               ],
             ),
+          ),
+        );
+
+        if (!isAnnual) return card;
+
+        // Para el plan anual: badge "Mejor opción" superpuesto arriba a la derecha
+        return Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              card,
+              Positioned(
+                top: -10,
+                right: 12,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 3,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.amber,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    l10n.paywallBestOption,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: 0.3,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         );
       }).toList(),
@@ -410,9 +488,15 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
     }
 
     final price = _selectedPackage?.storeProduct.priceString ?? '';
+    final trial = _selectedPackage != null
+        ? _trialLabel(_selectedPackage!)
+        : null;
+    final label = trial != null
+        ? l10n.paywallStartFreeTrial
+        : l10n.paywallSubscribeButton(price);
 
     return _PurchaseButton(
-      label: l10n.paywallSubscribeButton(price),
+      label: label,
       isPurchasing: _isPurchasing,
       onPressed: () => _purchase(_selectedPackage),
     );

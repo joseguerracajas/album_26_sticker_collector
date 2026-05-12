@@ -806,6 +806,18 @@ abstract class AppLocalizations {
   /// **'Semestral'**
   String get paywallPackageSixMonth;
 
+  /// No description provided for @paywallBestOption.
+  ///
+  /// In es, this message translates to:
+  /// **'Mejor opción'**
+  String get paywallBestOption;
+
+  /// No description provided for @paywallStartFreeTrial.
+  ///
+  /// In es, this message translates to:
+  /// **'Comenzar prueba gratis'**
+  String get paywallStartFreeTrial;
+
   /// No description provided for @paywallRestorePurchases.
   ///
   /// In es, this message translates to:

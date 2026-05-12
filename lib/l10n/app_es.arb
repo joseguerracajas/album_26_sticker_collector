@@ -172,6 +172,8 @@
   "paywallPackageTwoMonth": "Bimestral",
   "paywallPackageThreeMonth": "Trimestral",
   "paywallPackageSixMonth": "Semestral",
+  "paywallBestOption": "Mejor opción",
+  "paywallStartFreeTrial": "Comenzar prueba gratis",
   "paywallRestorePurchases": "Restaurar compras",
   "paywallCancelAnytime": "Cancela cuando quieras. Sin compromisos.",
   "paywallLoadError": "No se pudieron cargar los planes. Verifica tu conexión.",
