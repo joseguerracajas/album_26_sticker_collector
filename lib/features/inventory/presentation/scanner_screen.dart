@@ -13,6 +13,7 @@ import 'package:flutter/services.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'camera_coordinator.dart';
 
 // Provider que el AppShell activa/desactiva al cambiar de pestaña
 class _ScannerTabActiveNotifier extends Notifier<bool> {
@@ -46,6 +47,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
   bool _isProcessing = false;
   bool _cameraError = false;
   bool _isInitializing = false;
+  Future<void>? _shutdownFuture;
 
   // --- VARIABLES DEL MULTIESCÁNER ---
   final int _requiredConsensus = 3;
@@ -105,28 +107,74 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
   }
 
   Future<void> _shutdownCamera() async {
+    debugPrint('🎥 [Scanner] _shutdownCamera: inicio');
     _isInitializing = false;
     final controller = _cameraController;
     _cameraController = null;
+    _shutdownFuture = null;
     if (mounted) {
       setState(() {
         _isCameraInitialized = false;
         _cameraError = false;
       });
     }
-    try {
-      if (controller?.value.isStreamingImages ?? false) {
-        await controller?.stopImageStream();
+    // Encadenar sobre cualquier shutdown previo en vuelo (de esta u otra screen)
+    final prev = CameraCoordinator.shutdownFuture;
+    final f = Future<void>(() async {
+      if (prev != null) await prev;
+      try {
+        if (controller?.value.isStreamingImages ?? false) {
+          debugPrint('🎥 [Scanner] stopImageStream...');
+          await controller?.stopImageStream();
+        }
+      } catch (e) {
+        debugPrint('🎥 [Scanner] error en stopImageStream: $e');
       }
-    } catch (_) {}
-    try {
-      await controller?.dispose();
-    } catch (_) {}
+      try {
+        debugPrint('🎥 [Scanner] dispose...');
+        await controller?.dispose();
+        debugPrint('🎥 [Scanner] dispose completado');
+      } catch (e) {
+        debugPrint('🎥 [Scanner] error en dispose: $e');
+      }
+    });
+    _shutdownFuture = f;
+    CameraCoordinator.shutdownFuture = f;
+    await f;
+    if (_shutdownFuture == f) _shutdownFuture = null;
+    if (CameraCoordinator.shutdownFuture == f)
+      CameraCoordinator.shutdownFuture = null;
+    debugPrint('🎥 [Scanner] _shutdownCamera: fin');
   }
 
   Future<void> _initializeCamera() async {
-    if (_isInitializing || _isCameraInitialized) return;
+    debugPrint('🎥 [Scanner] _initializeCamera llamado');
+    // Ceder el event loop para que cualquier _shutdownCamera pendiente
+    // (del screen saliente) pueda arrancar y registrar su Future global.
+    await Future.delayed(Duration.zero);
+    // Esperar cualquier dispose en curso (esta screen u otras)
+    final globalPending = CameraCoordinator.shutdownFuture;
+    if (globalPending != null) {
+      debugPrint('🎥 [Scanner] esperando shutdown global...');
+      await globalPending;
+      debugPrint('🎥 [Scanner] shutdown global finalizado');
+    }
+    if (!mounted) {
+      debugPrint('🎥 [Scanner] no mounted tras espera');
+      return;
+    }
+    if (!ref.read(scannerTabActiveProvider)) {
+      debugPrint('🎥 [Scanner] tab ya no activo');
+      return;
+    }
+    if (_isInitializing || _isCameraInitialized) {
+      debugPrint(
+        '🎥 [Scanner] ya inicializando/inicializado: $_isInitializing/$_isCameraInitialized',
+      );
+      return;
+    }
     _isInitializing = true;
+    debugPrint('🎥 [Scanner] iniciando cámara...');
     try {
       final cameras = await availableCameras();
       final backCamera = cameras.firstWhere(
@@ -143,11 +191,12 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
       await _cameraController!.initialize();
 
       if (mounted) {
+        debugPrint('🎥 [Scanner] cámara OK, iniciando stream');
         setState(() => _isCameraInitialized = true);
         _startImageStream();
       }
-    } catch (e) {
-      debugPrint('❌ Error inicializando la cámara: $e');
+    } catch (e, st) {
+      debugPrint('❌ [Scanner] error inicializando cámara: $e\n$st');
       if (mounted) setState(() => _cameraError = true);
     } finally {
       _isInitializing = false;
@@ -252,7 +301,6 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
           }
 
           ref.read(pendingScansProvider.notifier).addSticker(code);
-          HapticFeedback.heavyImpact();
 
           // Overlay de notificación
           if (mounted) {
@@ -262,6 +310,14 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
                 ((ref.read(inventoryProvider).asData?.value[code] ?? {}).values
                         .fold(0, (s, q) => s + q) ==
                     0);
+            // Haptic: simple para nuevo, doble para repetido
+            if (isNew) {
+              HapticFeedback.heavyImpact();
+            } else {
+              HapticFeedback.heavyImpact();
+              await Future.delayed(const Duration(milliseconds: 120));
+              HapticFeedback.heavyImpact();
+            }
             _scannedThisSession.add(code);
             final emoji = sticker != null
                 ? (_emojiCache[sticker.categoryId] ?? '')

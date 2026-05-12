@@ -7,6 +7,7 @@ import 'package:album_26_sticker_collector/features/inventory/data/inventory_pro
 import 'package:album_26_sticker_collector/features/monetization/data/ads_provider.dart';
 import 'package:album_26_sticker_collector/features/monetization/data/subscription_provider.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
+import 'package:album_26_sticker_collector/features/inventory/presentation/camera_coordinator.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -49,6 +50,7 @@ class _PhysicalExchangeScreenState extends ConsumerState<PhysicalExchangeScreen>
   bool _isProcessing = false;
   bool _cameraError = false;
   bool _isInitializing = false;
+  Future<void>? _shutdownFuture;
 
   // Caché de stickers: "ECU10" → Sticker
   Map<String, Sticker>? _stickerCache;
@@ -110,28 +112,74 @@ class _PhysicalExchangeScreenState extends ConsumerState<PhysicalExchangeScreen>
   }
 
   Future<void> _shutdownCamera() async {
+    debugPrint('🎥 [Exchange] _shutdownCamera: inicio');
     _isInitializing = false;
     final controller = _cameraController;
     _cameraController = null;
+    _shutdownFuture = null;
     if (mounted) {
       setState(() {
         _isCameraInitialized = false;
         _cameraError = false;
       });
     }
-    try {
-      if (controller?.value.isStreamingImages ?? false) {
-        await controller?.stopImageStream();
+    // Encadenar sobre cualquier shutdown previo en vuelo (de esta u otra screen)
+    final prev = CameraCoordinator.shutdownFuture;
+    final f = Future<void>(() async {
+      if (prev != null) await prev;
+      try {
+        if (controller?.value.isStreamingImages ?? false) {
+          debugPrint('🎥 [Exchange] stopImageStream...');
+          await controller?.stopImageStream();
+        }
+      } catch (e) {
+        debugPrint('🎥 [Exchange] error en stopImageStream: $e');
       }
-    } catch (_) {}
-    try {
-      await controller?.dispose();
-    } catch (_) {}
+      try {
+        debugPrint('🎥 [Exchange] dispose...');
+        await controller?.dispose();
+        debugPrint('🎥 [Exchange] dispose completado');
+      } catch (e) {
+        debugPrint('🎥 [Exchange] error en dispose: $e');
+      }
+    });
+    _shutdownFuture = f;
+    CameraCoordinator.shutdownFuture = f;
+    await f;
+    if (_shutdownFuture == f) _shutdownFuture = null;
+    if (CameraCoordinator.shutdownFuture == f)
+      CameraCoordinator.shutdownFuture = null;
+    debugPrint('🎥 [Exchange] _shutdownCamera: fin');
   }
 
   Future<void> _initCamera() async {
-    if (_isInitializing || _isCameraInitialized) return;
+    debugPrint('🎥 [Exchange] _initCamera llamado');
+    // Ceder el event loop para que cualquier _shutdownCamera pendiente
+    // (del screen saliente) pueda arrancar y registrar su Future global.
+    await Future.delayed(Duration.zero);
+    // Esperar cualquier dispose en curso (esta screen u otras)
+    final globalPending = CameraCoordinator.shutdownFuture;
+    if (globalPending != null) {
+      debugPrint('🎥 [Exchange] esperando shutdown global...');
+      await globalPending;
+      debugPrint('🎥 [Exchange] shutdown global finalizado');
+    }
+    if (!mounted) {
+      debugPrint('🎥 [Exchange] no mounted tras espera');
+      return;
+    }
+    if (!ref.read(exchangeTabActiveProvider)) {
+      debugPrint('🎥 [Exchange] tab ya no activo');
+      return;
+    }
+    if (_isInitializing || _isCameraInitialized) {
+      debugPrint(
+        '🎥 [Exchange] ya inicializando/inicializado: $_isInitializing/$_isCameraInitialized',
+      );
+      return;
+    }
     _isInitializing = true;
+    debugPrint('🎥 [Exchange] iniciando cámara...');
     try {
       final cameras = await availableCameras();
       final back = cameras.firstWhere(
@@ -145,10 +193,12 @@ class _PhysicalExchangeScreenState extends ConsumerState<PhysicalExchangeScreen>
       );
       await _cameraController!.initialize();
       if (mounted) {
+        debugPrint('🎥 [Exchange] cámara OK, iniciando stream');
         setState(() => _isCameraInitialized = true);
         _startStream();
       }
-    } catch (_) {
+    } catch (e, st) {
+      debugPrint('❌ [Exchange] error inicializando cámara: $e\n$st');
       if (mounted) setState(() => _cameraError = true);
     } finally {
       _isInitializing = false;

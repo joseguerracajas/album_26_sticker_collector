@@ -8,6 +8,7 @@ import 'package:album_26_sticker_collector/features/catalog/domain/sticker.model
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/presentation/scanner_screen.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
+import 'package:album_26_sticker_collector/features/inventory/presentation/camera_coordinator.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -663,6 +664,7 @@ class _ScannerLookupTabState extends ConsumerState<_ScannerLookupTab>
   bool _isProcessing = false;
   bool _cameraError = false;
   bool _isInitializing = false;
+  Future<void>? _shutdownFuture;
   bool _sheetOpen = false;
 
   final int _requiredConsensus = 3;
@@ -697,28 +699,74 @@ class _ScannerLookupTabState extends ConsumerState<_ScannerLookupTab>
   }
 
   Future<void> _shutdownCamera() async {
+    debugPrint('🎥 [Lookup] _shutdownCamera: inicio');
     _isInitializing = false;
     final controller = _cameraController;
     _cameraController = null;
+    _shutdownFuture = null;
     if (mounted) {
       setState(() {
         _isCameraInitialized = false;
         _cameraError = false;
       });
     }
-    try {
-      if (controller?.value.isStreamingImages ?? false) {
-        await controller?.stopImageStream();
+    // Encadenar sobre cualquier shutdown previo en vuelo (de esta u otra screen)
+    final prev = CameraCoordinator.shutdownFuture;
+    final f = Future<void>(() async {
+      if (prev != null) await prev;
+      try {
+        if (controller?.value.isStreamingImages ?? false) {
+          debugPrint('🎥 [Lookup] stopImageStream...');
+          await controller?.stopImageStream();
+        }
+      } catch (e) {
+        debugPrint('🎥 [Lookup] error en stopImageStream: $e');
       }
-    } catch (_) {}
-    try {
-      await controller?.dispose();
-    } catch (_) {}
+      try {
+        debugPrint('🎥 [Lookup] dispose...');
+        await controller?.dispose();
+        debugPrint('🎥 [Lookup] dispose completado');
+      } catch (e) {
+        debugPrint('🎥 [Lookup] error en dispose: $e');
+      }
+    });
+    _shutdownFuture = f;
+    CameraCoordinator.shutdownFuture = f;
+    await f;
+    if (_shutdownFuture == f) _shutdownFuture = null;
+    if (CameraCoordinator.shutdownFuture == f)
+      CameraCoordinator.shutdownFuture = null;
+    debugPrint('🎥 [Lookup] _shutdownCamera: fin');
   }
 
   Future<void> _initCamera() async {
-    if (_isInitializing || _isCameraInitialized) return;
+    debugPrint('🎥 [Lookup] _initCamera llamado');
+    // Ceder el event loop para que cualquier _shutdownCamera pendiente
+    // (del screen saliente) pueda arrancar y registrar su Future global.
+    await Future.delayed(Duration.zero);
+    // Esperar cualquier dispose en curso (esta screen u otras)
+    final globalPending = CameraCoordinator.shutdownFuture;
+    if (globalPending != null) {
+      debugPrint('🎥 [Lookup] esperando shutdown global...');
+      await globalPending;
+      debugPrint('🎥 [Lookup] shutdown global finalizado');
+    }
+    if (!mounted) {
+      debugPrint('🎥 [Lookup] no mounted tras espera');
+      return;
+    }
+    if (!ref.read(lookupTabActiveProvider)) {
+      debugPrint('🎥 [Lookup] tab ya no activo');
+      return;
+    }
+    if (_isInitializing || _isCameraInitialized) {
+      debugPrint(
+        '🎥 [Lookup] ya inicializando/inicializado: $_isInitializing/$_isCameraInitialized',
+      );
+      return;
+    }
     _isInitializing = true;
+    debugPrint('🎥 [Lookup] iniciando cámara...');
     try {
       final cameras = await availableCameras();
       final back = cameras.firstWhere(
@@ -732,10 +780,12 @@ class _ScannerLookupTabState extends ConsumerState<_ScannerLookupTab>
       );
       await _cameraController!.initialize();
       if (mounted) {
+        debugPrint('🎥 [Lookup] cámara OK, iniciando stream');
         setState(() => _isCameraInitialized = true);
         _startStream();
       }
-    } catch (_) {
+    } catch (e, st) {
+      debugPrint('❌ [Lookup] error inicializando cámara: $e\n$st');
       if (mounted) setState(() => _cameraError = true);
     } finally {
       _isInitializing = false;
