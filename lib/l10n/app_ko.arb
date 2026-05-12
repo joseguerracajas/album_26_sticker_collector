@@ -1,7 +1,7 @@
 {
   "@@locale": "ko",
-  "appTitle": "앨범 26",
-  "authWelcomeTitle": "앨범 26에 오신 것을 환영합니다",
+  "appTitle": "Sticker Album 2026",
+  "authWelcomeTitle": "Sticker Album 2026에 오신 것을 환영합니다",
   "authEmailLabel": "이메일",
   "authPasswordLabel": "비밀번호",
   "authLoginButton": "로그인",
@@ -21,7 +21,6 @@
       "message": {}
     }
   },
-
   "authErrorInvalidCredentials": "이메일 또는 비밀번호가 잘못되었습니다. 정보를 확인하고 다시 시도해주세요.",
   "authErrorEmailNotConfirmed": "이메일이 아직 확인되지 않았습니다. 받은 편지함을 확인해주세요.",
   "authErrorUserAlreadyRegistered": "해당 이메일로 이미 계정이 존재합니다.",
@@ -57,7 +56,7 @@
       "message": {}
     }
   },
-  "homeTitle": "내 앨범 26",
+  "homeTitle": "Sticker Album 2026",
   "homeProfileTooltip": "내 프로필",
   "drawerSignIn": "로그인",
   "homeShareAll": "전체 목록 공유",
@@ -127,12 +126,13 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *앨범 26 교환 목록* 🏆",
+  "shareHeader": "⚽ *Sticker Album 2026 교환 목록* 🏆",
   "shareMissingSectionTitle": "❌ *없는 것:*",
   "shareDuplicatesSectionTitle": "🔁 *중복:*",
   "shareNoneMissing": "없음! 😎",
   "shareNoDuplicates": "중복 없음 😅",
   "shareLetsTrade": "교환하실래요? 👀🔥",
+  "shareDownloadLink": "📲 {appName} 앱 다운로드\nhttps://onelink.to/5adrft?olbm=1",
   "shareSeparator": "--------------------------",
   "forgotPasswordTitle": "계정 복구",
   "forgotPasswordDescription": "이메일을 입력하시면 비밀번호 재설정을 위한 6자리 코드를 보내드립니다.",
@@ -153,7 +153,6 @@
   "forgotPasswordSavePasswordButton": "비밀번호 저장",
   "forgotPasswordPasswordUpdatedSuccess": "비밀번호가 성공적으로 업데이트되었습니다! 🏆",
   "validationEmailInvalid": "이메일 주소가 유효하지 않습니다.",
-
   "paywallTitle": "광고 없이 즐기세요",
   "paywallSubtitle": "모든 기능은 무료로 이용할 수 있습니다. Pro로 중단 없이 모든 것을 즐기세요.",
   "paywallBenefitScanner": "전면 광고 없는 스캐너",
@@ -181,7 +180,6 @@
   "paywallGuestTitle": "구독하려면 로그인",
   "paywallGuestBody": "Pro는 계정에 연결됩니다. 모든 기능을 잠금 해제하려면 로그인하거나 계정을 만드세요.",
   "paywallGuestSignInButton": "로그인",
-
   "scannerDemoRemaining": "무료 스캔 {count}회 남음",
   "@scannerDemoRemaining": {
     "placeholders": {
@@ -191,15 +189,12 @@
   "scannerDemoFinishedTitle": "5회의 무료 스캔을 모두 사용했습니다",
   "scannerDemoFinishedSubtitle": "무제한 스티커 스캔과 광고 없는 경험을 위해 구독하세요.",
   "scannerDemoUnlockButton": "Pro 플랜 보기",
-
   "adDialogTitle": "무료 콘텐츠",
   "adDialogBody": "계속하려면 짧은 광고를 보거나 Pro를 구독하고 광고를 영원히 잊으세요.",
   "adDialogWatchAd": "광고 보기",
   "adDialogGetPro": "Pro 가져오기",
   "adDialogNotNow": "나중에",
-
   "scannerCameraInitError": "카메라를 초기화할 수 없습니다. 앱에 카메라 권한이  있는지 확인하세요.",
-
   "variantSheetTitle": "앨범 변형",
   "variantSheetInventoryNote": "변형을 변경해도 인벤토리는 유지됩니다. 이미 보유한 스티커는 계속 기록됩니다.",
   "variantSheetLoadError": "변형 로드 오류: {error}",
@@ -218,31 +213,15 @@
       "name": {}
     }
   },
-
   "profileDeleteAccountButton": "계정 삭제",
   "profileDeleteAccountTitle": "계정을 삭제하시겠습니까?",
   "profileDeleteAccountMessage": "이 작업은 영구적입니다. 모든 데이터가 삭제되며 콜렉션을 복구할 수 없습니다.",
   "profileDeleteAccountConfirmButton": "영구 삭제",
   "profileDeleteAccountSuccess": "계정이 삭제되었습니다.",
   "profileDeleteAccountError": "계정 삭제 중 오류가 발생했습니다. 다시 시도해 주세요.",
-
   "paywallPrivacyPolicy": "개인정보 처리방침",
   "paywallTermsOfUse": "이용약관",
   "paywallLegalDisclaimer": "구독하면 이용약관 및 개인정보 처리방침에 동의하는 것입니다.",
-
-  "tutorialSkip": "건너뛰기",
-  "tutorialTapToContinue": "계속하려면 어디든 탭하세요",
-  "tutorialStep1Title": "전체 진행 상황",
-  "tutorialStep1Body": "여기서 수집한 스티커 수와 완성 비율을 확인할 수 있습니다. 계속 수집하세요!",
-  "tutorialStep2Title": "팀 검색",
-  "tutorialStep2Body": "국가나 팀 이름을 입력해 목록을 즉시 필터링하세요.",
-  "tutorialStep3Title": "메인 메뉴",
-  "tutorialStep3Body": "프로필에 접근하거나 앨범 버전을 변경하고 더 많은 옵션을 탐색하세요.",
-  "tutorialStep4Title": "스티커 스캔",
-  "tutorialStep4Body": "카메라를 사용해 실물 스티커 뒷면을 스캔하고 앨범에 자동으로 추가하세요.",
-  "tutorialStep5Title": "목록 공유",
-  "tutorialStep5Body": "부족하거나 중복된 스티커 목록을 내보내 친구들과 교환하세요.",
-
   "tutorialSkip": "건너뛰기",
   "tutorialTapToContinue": "계속하려면 어디든 탭하세요",
   "tutorialStep1Title": "전체 진행 상황",
@@ -255,42 +234,6 @@
   "tutorialStep4Body": "카메라로 스티커를 스캔해 앨범에 자동으로 추가하세요.",
   "tutorialStep5Title": "목록 공유",
   "tutorialStep5Body": "부족하거나 중복된 스티커 목록을 내보내 친구들과 교환하세요.",
-
-  "tutorialSkip": "건너뛰기",
-  "tutorialTapToContinue": "계속하려면 어디든 탭하세요",
-  "tutorialStep1Title": "전체 진행 상황",
-  "tutorialStep1Body": "수집한 스티커 수를 확인하세요. 계속 수집하세요!",
-  "tutorialStep2Title": "팀 검색",
-  "tutorialStep2Body": "국가나 팀 이름을 입력해 목록을 필터링하세요.",
-  "tutorialStep3Title": "메인 메뉴",
-  "tutorialStep3Body": "프로필 접근과 앨범 버전 변경이 가능합니다.",
-  "tutorialStep4Title": "스티커 스캔",
-  "tutorialStep4Body": "카메라로 스티커를 스캔해 앨범에 자동으로 추가하세요.",
-  "tutorialStep5Title": "목록 공유",
-  "tutorialStep5Body": "부족하거나 중복된 스티커 목록을 내보내 친구들과 교환하세요.",
-
-  "tutorialSkip": "건너뛰기",
-  "tutorialTapToContinue": "계속하려면 어디든 탭하세요",
-  "tutorialStep1Title": "전체 진행 상황",
-  "tutorialStep1Body": "수집한 스티커 수를 확인하세요. 계속 수집하세요!",
-  "tutorialStep2Title": "팀 검색",
-  "tutorialStep2Body": "국가나 팀 이름을 입력해 목록을 필터링하세요.",
-  "tutorialStep3Title": "메인 메뉴",
-  "tutorialStep3Body": "프로필 접근과 앨범 버전 변경이 가능합니다.",
-  "tutorialStep4Title": "스티커 스캔",
-  "tutorialStep4Body": "카메라로 스티커를 스캔해 앨범에 자동으로 추가하세요.",
-  "tutorialStep5Title": "목록 공유",
-  "tutorialStep5Body": "부족하거나 중복된 스티커 목록을 내보내 친구들과 교환하세요.",
-
-  "globalTutorialStep1Title": "컬렉션 필터링",
-  "globalTutorialStep1Body": "이 버튼을 사용하여 모든 스티커, 없는 것만 또는 중복된 것만 볼 수 있습니다. 교환 정리에 안성맞춤!",
-  "globalTutorialStep2Title": "스티커 검색",
-  "globalTutorialStep2Body": "국가 이름, 코드 또는 스티커 번호를 입력하여 빠르게 찾으세요.",
-  "globalTutorialStep3Title": "탭하여 표시",
-  "globalTutorialStep3Body": "회색 스티커를 한 번 탭하면 앨범에 추가됩니다(금색이 됩니다). 이미 가지고 있고 다시 탭하면 제거 확인을 요청합니다.",
-  "globalTutorialStep4Title": "길게 누르면 더 많은 옵션",
-  "globalTutorialStep4Body": "스티커를 길게 눌러 각 변형(Normal, Gold, Legend…)의 복사본 수를 관리하고 중복 인벤토리를 업데이트하세요.",
-
   "globalTutorialStep1Title": "컬렉션 필터링",
   "globalTutorialStep1Body": "이 버튼을 사용하여 모든 스티커, 없는 것만 또는 중복된 것만 볼 수 있습니다. 교환 정리에 안성맞춤!",
   "globalTutorialStep2Title": "스티커 검색",
@@ -308,16 +251,6 @@
   "categoryTutorialStep3Title": "탭하여 표시",
   "categoryTutorialStep3Body": "회색 스티커를 탭하면 앨범에 추가됩니다(금색으로 변함). 이미 있는데 다시 탭하면 삭제 확인이 표시됩니다.",
   "categoryTutorialStep4Title": "길게 눌러 더 많은 옵션",
-  "categoryTutorialStep4Body": "스티커를 길게 누르면 각 변형(Normal, Gold, Legend…)의 보유 수량을 관리할 수 있습니다.",
-  "tutorialStep6Title": "카테고리 탐색",
-  "tutorialStep6Body": "국가나 팀을 탭하여 스티커를 확인하세요. 이미 가진 것을 표시하고 중복을 관리할 수 있습니다.",
-  "categoryTutorialStep1Title": "스티커 필터링",
-  "categoryTutorialStep1Body": "이 버튼으로 모든 스티커, 없는 것만 또는 중복만 볼 수 있습니다.",
-  "categoryTutorialStep2Title": "스티커 검색",
-  "categoryTutorialStep2Body": "국가명, 코드 또는 번호를 입력하여 빠르게 찾으세요.",
-  "categoryTutorialStep3Title": "탭하여 표시",
-  "categoryTutorialStep3Body": "회색 스티커를 탭하면 앨범에 추가됩니다(금색으로 변함). 이미 있는데 다시 탭하면 삭제 확인이 표시됩니다.",
-  "categoryTutorialStep4Title": "길게 눌러 더 많은 옵션",
   "categoryTutorialStep4Body": "스티커를 길게 누르면 각 변형(Normal, Gold, Legend)의 보유 수량을 관리할 수 있습니다.",
   "drawerReplayTutorial": "튜토리얼 다시 보기",
   "variantTutorialTitle": "지역을 선택하세요",
@@ -325,7 +258,6 @@
   "drawerLegalNotice": "법적 고지",
   "legalNoticeTitle": "법적 고지",
   "legalNoticeBody": "이 앱은 비공식 팩 제작물이며 어떠한 공식 축구 조직, 스티커 제조업체 또는 축구 토너먼트의 공식 파트너와도 제휴, 보증 또는 연결되어 있지 않습니다. 모든 상표는 해당 소유자의 재산입니다.",
-
   "statsTitle": "통계",
   "statsTotalLabel": "합계",
   "statsCollectedLabel": "수집됨",
@@ -340,18 +272,18 @@
   "statsCategoryPickerSearch": "카테고리 검색...",
   "statsCategoryPickerSelected": "{count}개 선택됨",
   "@statsCategoryPickerSelected": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "statsCategoryPickerAll": "모든 카테고리",
   "statsCategoryPickerClear": "지우기",
-
   "statsSortTooltip": "정렬",
   "statsSortByName": "카테고리",
   "statsSortByProgressDesc": "진행률 높은 순",
   "statsSortByProgressAsc": "진행률 낙은 순",
   "statsSortByMissing": "부족 많은 순",
   "statsSortByDuplicates": "중복 많은 순",
-
   "drawerLookup": "스티커 조회",
   "lookupScreenTitle": "스티커 조회",
   "lookupTabManual": "수동",
@@ -363,18 +295,18 @@
   "lookupStatusCollected": "보유 중 ✓",
   "lookupStatusDuplicates": "{count}개 중복 🔁",
   "@lookupStatusDuplicates": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "lookupQtyLabel": "내 인벤토리 수량",
   "lookupScannerHint": "스티커를 중앙에 맞춰 인식",
-
   "lookupTutorialStep1Title": "두 가지 검색 방법",
   "lookupTutorialStep1Body": "코드를 입력하려면 수동 탭, 카메라로 스캔하려면 스캔너 탭을 사용하세요.",
   "lookupTutorialStep2Title": "코드 입력",
   "lookupTutorialStep2Body": "앨범에 표시된 코드(ECU 10 또는 ARG 5 등)를 입력하고 검색 버튼을 누르세요.",
   "lookupTutorialStep3Title": "확인 및 관리",
   "lookupTutorialStep3Body": "스티커가 없는지 있는지 확인할 수 있습니다. + 및 – 버튼으로 인벤토리를 즐시 업데이트하세요.",
-
   "scanBadgeNew": "새로운",
   "scanBadgeRepeated": "중복",
   "navAlbum": "앨범",

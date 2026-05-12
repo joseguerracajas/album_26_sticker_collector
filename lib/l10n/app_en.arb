@@ -1,7 +1,7 @@
 {
   "@@locale": "en",
-  "appTitle": "Album 2026",
-  "authWelcomeTitle": "Welcome to Album 2026",
+  "appTitle": "Sticker Album 2026",
+  "authWelcomeTitle": "Welcome to Sticker Album 2026",
   "authEmailLabel": "Email",
   "authPasswordLabel": "Password",
   "authLoginButton": "SIGN IN",
@@ -21,7 +21,6 @@
       "message": {}
     }
   },
-
   "authErrorInvalidCredentials": "Incorrect email or password. Please check your details and try again.",
   "authErrorEmailNotConfirmed": "Your email has not been confirmed yet. Please check your inbox.",
   "authErrorUserAlreadyRegistered": "An account with that email already exists.",
@@ -57,7 +56,7 @@
       "message": {}
     }
   },
-  "homeTitle": "My Album 2026",
+  "homeTitle": "Sticker Album 2026",
   "homeProfileTooltip": "My Profile",
   "drawerSignIn": "Sign In",
   "homeShareAll": "Share Full List",
@@ -127,12 +126,13 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *Album 2026 SWAP LIST* 🏆",
+  "shareHeader": "⚽ *Sticker Album 2026 SWAP LIST* 🏆",
   "shareMissingSectionTitle": "❌ *MISSING:*",
   "shareDuplicatesSectionTitle": "🔁 *DUPLICATES:*",
   "shareNoneMissing": "None! 😎",
   "shareNoDuplicates": "No duplicates 😅",
   "shareLetsTrade": "Want to trade? 👀🔥",
+  "shareDownloadLink": "📲 Download the {appName} app\nhttps://onelink.to/5adrft?olbm=1",
   "shareSeparator": "--------------------------",
   "forgotPasswordTitle": "Recover Account",
   "forgotPasswordDescription": "Enter your email and we'll send you a 6-digit code to reset your password.",
@@ -153,7 +153,6 @@
   "forgotPasswordSavePasswordButton": "SAVE PASSWORD",
   "forgotPasswordPasswordUpdatedSuccess": "Password updated successfully! 🏆",
   "validationEmailInvalid": "The email address is not valid.",
-
   "paywallTitle": "Enjoy without ads",
   "paywallSubtitle": "All features are available for free. With Pro you enjoy everything without interruptions.",
   "paywallBenefitScanner": "Scanner without interstitial ads",
@@ -181,7 +180,6 @@
   "paywallGuestTitle": "Sign in to subscribe",
   "paywallGuestBody": "Pro is linked to your account. Sign in or create an account to unlock all features.",
   "paywallGuestSignInButton": "SIGN IN",
-
   "scannerDemoRemaining": "{count} free scans remaining",
   "@scannerDemoRemaining": {
     "placeholders": {
@@ -191,15 +189,12 @@
   "scannerDemoFinishedTitle": "You've used your 5 free scans",
   "scannerDemoFinishedSubtitle": "Subscribe to scan unlimited stickers and enjoy an ad-free experience.",
   "scannerDemoUnlockButton": "View Pro Plans",
-
   "adDialogTitle": "Free content",
   "adDialogBody": "To continue, watch a short ad or subscribe to Pro and forget about ads forever.",
   "adDialogWatchAd": "Watch ad",
   "adDialogGetPro": "Get Pro",
   "adDialogNotNow": "Not now",
-
   "scannerCameraInitError": "Could not initialize the camera. Make sure the app has camera permission.",
-
   "variantSheetTitle": "Album variant",
   "variantSheetInventoryNote": "Your inventory is preserved when you change variant. The stickers you already have remain registered.",
   "variantSheetLoadError": "Error loading variants: {error}",
@@ -218,14 +213,12 @@
       "name": {}
     }
   },
-
   "profileDeleteAccountButton": "Delete account",
   "profileDeleteAccountTitle": "Delete your account?",
   "profileDeleteAccountMessage": "This action is permanent. All your data will be deleted and you won't be able to recover your collection.",
   "profileDeleteAccountConfirmButton": "Delete permanently",
   "profileDeleteAccountSuccess": "Your account has been deleted.",
   "profileDeleteAccountError": "Error deleting account. Please try again.",
-
   "tutorialSkip": "Skip",
   "tutorialTapToContinue": "Tap anywhere to continue",
   "tutorialStep1Title": "Your global progress",
@@ -238,7 +231,6 @@
   "tutorialStep4Body": "Use the camera to scan the back of your physical stickers and add them automatically to your album.",
   "tutorialStep5Title": "Share your list",
   "tutorialStep5Body": "Export your missing or duplicate sticker list to trade with friends.",
-
   "globalTutorialStep1Title": "Filter your collection",
   "globalTutorialStep1Body": "Use these buttons to see all your stickers, only the missing ones, or only your duplicates. Perfect for organising trades!",
   "globalTutorialStep2Title": "Search for a sticker",
@@ -247,20 +239,9 @@
   "globalTutorialStep3Body": "A single tap on a grey sticker adds it to your album (turns golden). If you already have it and tap again, you'll be asked to confirm removal.",
   "globalTutorialStep4Title": "Long press for more options",
   "globalTutorialStep4Body": "Long press a sticker to manage how many copies you have of each variant (Normal, Gold, Legend…) and update your duplicate inventory.",
-
   "paywallPrivacyPolicy": "Privacy Policy",
   "paywallTermsOfUse": "Terms of Use",
   "paywallLegalDisclaimer": "By subscribing you agree to our Terms of Use and Privacy Policy.",
-  "tutorialStep6Title": "Explore a category",
-  "tutorialStep6Body": "Tap any country or team to see its stickers. There you can mark the ones you already have and manage your duplicates.",
-  "categoryTutorialStep1Title": "Filter stickers",
-  "categoryTutorialStep1Body": "Use these buttons to see all stickers in this category, only the missing ones, or only duplicates.",
-  "categoryTutorialStep2Title": "Search for a sticker",
-  "categoryTutorialStep2Body": "Type the country name, code, or sticker number to find it quickly.",
-  "categoryTutorialStep3Title": "Tap to mark",
-  "categoryTutorialStep3Body": "Tapping a grey sticker adds it to your album (turns gold). If you already have it and tap again, you'll be asked to confirm removing it.",
-  "categoryTutorialStep4Title": "Long press for more options",
-  "categoryTutorialStep4Body": "Long pressing a sticker lets you manage how many copies you have of each variant (Normal, Gold, Legend…) and update your duplicates inventory.",
   "tutorialStep6Title": "Explore a category",
   "tutorialStep6Body": "Tap any country or team to see its stickers. There you can mark the ones you already have and manage your duplicates.",
   "categoryTutorialStep1Title": "Filter stickers",
@@ -277,7 +258,6 @@
   "drawerLegalNotice": "Legal Notice",
   "legalNoticeTitle": "Legal Notice",
   "legalNoticeBody": "This application is an unofficial fan creation and is not affiliated with, endorsed by, or connected to any official football organization, sticker manufacturer, or any official partner of the football tournament. All trademarks are the property of their respective owners.",
-
   "statsTitle": "Statistics",
   "statsTotalLabel": "Total",
   "statsCollectedLabel": "Collected",
@@ -292,18 +272,18 @@
   "statsCategoryPickerSearch": "Search category...",
   "statsCategoryPickerSelected": "{count} selected",
   "@statsCategoryPickerSelected": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "statsCategoryPickerAll": "All categories",
   "statsCategoryPickerClear": "Clear",
-
   "statsSortTooltip": "Sort",
   "statsSortByName": "Category",
   "statsSortByProgressDesc": "Most progress first",
   "statsSortByProgressAsc": "Least progress first",
   "statsSortByMissing": "Most missing first",
   "statsSortByDuplicates": "Most duplicates first",
-
   "tradeHubTitle": "Sticker Trading",
   "tradeHubMyCode": "My trade code",
   "tradeHubCodeCopied": "Code copied to clipboard",
@@ -344,13 +324,17 @@
   "tradeFindPartnerFound": "User found!",
   "tradeFindPartnerCode": "Code: {code}",
   "@tradeFindPartnerCode": {
-    "placeholders": { "code": {} }
+    "placeholders": {
+      "code": {}
+    }
   },
   "tradeFindSendBtn": "Send trade request",
   "tradeFindSending": "Sending…",
   "tradeFindRequestSent": "Request sent to {name}! Wait for their response.",
   "@tradeFindRequestSent": {
-    "placeholders": { "name": {} }
+    "placeholders": {
+      "name": {}
+    }
   },
   "tradeNegTitle": "Negotiation",
   "tradeNegMyOfferTab": "My offer",
@@ -360,13 +344,17 @@
   "tradeNegAutoHint": "Auto mode: shows your duplicates. Switch to Manual to customise.",
   "tradeNegSelectedCount": "{count} sticker(s) selected",
   "@tradeNegSelectedCount": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "tradeNegNoStickers": "You have no stickers to offer.",
   "tradeNegPartnerWaiting": "The other collector hasn't selected their stickers yet.",
   "tradeNegOfferLabel": "You'll offer {count} sticker(s)",
   "@tradeNegOfferLabel": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "tradeNegConfirmBtn": "Confirm my offer",
   "tradeNegSaving": "Saving…",
@@ -378,20 +366,29 @@
   "tradeNegQtyPickerTitle": "How many to offer?",
   "tradeNegQtyPickerHint": "You have {total} copies. Max to offer: {max}.",
   "@tradeNegQtyPickerHint": {
-    "placeholders": { "total": {}, "max": {} }
+    "placeholders": {
+      "total": {},
+      "max": {}
+    }
   },
   "tradeNegOfferedQtyBadge": "Offering {qty}",
   "@tradeNegOfferedQtyBadge": {
-    "placeholders": { "qty": {} }
+    "placeholders": {
+      "qty": {}
+    }
   },
   "tradeNegPartnerOfferUpdated": "The other collector updated their sticker offer.",
   "tradeNegTotalItems": "{count} item(s) total",
   "@tradeNegTotalItems": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "tradeNegReceivingCount": "{count} sticker(s) you'll receive",
   "@tradeNegReceivingCount": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "tradeDeliveryTitle": "Confirm receipt",
   "tradeDeliveryInstruction": "Mark the stickers you physically received",
@@ -400,20 +397,32 @@
   "tradeDeliveryNotReceived": "Not received",
   "tradeDeliveryAllReceived": "You received all stickers ({received}/{total})",
   "@tradeDeliveryAllReceived": {
-    "placeholders": { "received": {}, "total": {} }
+    "placeholders": {
+      "received": {},
+      "total": {}
+    }
   },
   "tradeDeliveryPartial": "{received} of {total} marked · {pending} will return to the other collector.",
   "@tradeDeliveryPartial": {
-    "placeholders": { "received": {}, "total": {}, "pending": {} }
+    "placeholders": {
+      "received": {},
+      "total": {},
+      "pending": {}
+    }
   },
   "tradeDeliveryConfirmTitle": "Confirm receipt",
   "tradeDeliveryConfirmMsg": "{received} sticker(s) will be added to your album.\n{pending} unmarked sticker(s) will return to the other collector.",
   "@tradeDeliveryConfirmMsg": {
-    "placeholders": { "received": {}, "pending": {} }
+    "placeholders": {
+      "received": {},
+      "pending": {}
+    }
   },
   "tradeDeliverySuccess": "{count} sticker(s) added to your album! 🏆",
   "@tradeDeliverySuccess": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "tradeHistoryTitle": "Trade history",
   "tradeHistoryEmpty": "No trades yet",
@@ -426,11 +435,15 @@
   "tradeHistoryReceivedLabel": "Received",
   "tradeHistoryDelivered": "{count} delivered",
   "@tradeHistoryDelivered": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "tradeHistoryStickerCount": "{count} sticker(s)",
   "@tradeHistoryStickerCount": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "tradeDrawerTitle": "Trade stickers",
   "tradeDrawerActiveBadge": "ACTIVE",
@@ -441,10 +454,8 @@
   "tradeErrorCodeLength": "The code must be exactly 6 digits.",
   "tradeErrorActiveExists": "You already have an active trade. Complete or cancel it first.",
   "tradeErrorNoConnection": "This feature requires an internet connection.",
-
   "tradeRejectBtn": "Reject request",
   "tradeDrawerRequestBadge": "REQUEST",
-
   "drawerPhysicalExchange": "Exchange",
   "physicalExchangeScreenTitle": "Physical Exchange",
   "drawerLookup": "Search",
@@ -459,7 +470,9 @@
   "lookupStatusCollected": "You have it ✓",
   "lookupStatusDuplicates": "{count} duplicate(s) 🔁",
   "@lookupStatusDuplicates": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "lookupQtyLabel": "Quantity in your inventory",
   "lookupScannerHint": "Center the sticker to identify it",
@@ -467,9 +480,17 @@
   "lookupScannerOpenCamera": "Scan stickers",
   "lookupScannerViewResults": "View results",
   "lookupScannerSaveSuccess": "{count} sticker(s) added to inventory",
-  "@lookupScannerSaveSuccess": { "placeholders": { "count": {} } },
+  "@lookupScannerSaveSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "lookupScannerScannedCount": "{count} scanned",
-  "@lookupScannerScannedCount": { "placeholders": { "count": {} } },
+  "@lookupScannerScannedCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "lookupScannerNewLabel": "new",
   "lookupScannerDuplicatesLabel": "duplicates",
   "lookupScannerResetTooltip": "Reset session",
@@ -478,19 +499,29 @@
   "lookupScannerResetConfirmBtn": "Reset",
   "lookupScannerEmptyHint": "Point the camera at the stickers",
   "lookupScannerMissingSection": "Missing ({count})",
-  "@lookupScannerMissingSection": { "placeholders": { "count": {} } },
+  "@lookupScannerMissingSection": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "lookupScannerAddSelected": "Add {count}",
-  "@lookupScannerAddSelected": { "placeholders": { "count": {} } },
+  "@lookupScannerAddSelected": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "lookupScannerDuplicatesSection": "Duplicates ({count})",
-  "@lookupScannerDuplicatesSection": { "placeholders": { "count": {} } },
-
+  "@lookupScannerDuplicatesSection": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "lookupTutorialStep1Title": "Two ways to search",
   "lookupTutorialStep1Body": "Use the Manual tab to type the sticker code (e.g. ECU 10), or the Scanner tab to point the camera directly.",
   "lookupTutorialStep2Title": "Enter the code",
   "lookupTutorialStep2Body": "Type the sticker code as it appears in the album, e.g. ECU 10 or ARG 5, then tap Search.",
   "lookupTutorialStep3Title": "Check and manage",
   "lookupTutorialStep3Body": "You'll see if the sticker is missing, collected, or how many duplicates you have. Use the + and – buttons to update your inventory instantly.",
-
   "scanBadgeNew": "New",
   "scanBadgeRepeated": "Duplicate",
   "navAlbum": "Album",

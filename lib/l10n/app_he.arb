@@ -1,7 +1,7 @@
 {
   "@@locale": "he",
-  "appTitle": "אלבום 26",
-  "authWelcomeTitle": "ברוך הבא לאלבום 26",
+  "appTitle": "Sticker Album 2026",
+  "authWelcomeTitle": "ברוך הבא ל-Sticker Album 2026",
   "authEmailLabel": "דוא\"ל",
   "authPasswordLabel": "סיסמה",
   "authLoginButton": "התחברות",
@@ -21,7 +21,6 @@
       "message": {}
     }
   },
-
   "authErrorInvalidCredentials": "דוא\"ל או סיסמה שגויים. בדוק את הפרטים ונסה שוב.",
   "authErrorEmailNotConfirmed": "הדוא\"ל שלך טרם אושר. בדוק את תיבת הדואר הנכנס.",
   "authErrorUserAlreadyRegistered": "כבר קיים חשבון עם דוא\"ל זה.",
@@ -57,7 +56,7 @@
       "message": {}
     }
   },
-  "homeTitle": "האלבום שלי 26",
+  "homeTitle": "Sticker Album 2026",
   "homeProfileTooltip": "הפרופיל שלי",
   "drawerSignIn": "התחבר",
   "homeShareAll": "שתף רשימה מלאה",
@@ -127,12 +126,13 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *רשימת החלפות אלבום 26* 🏆",
+  "shareHeader": "⚽ *רשימת החלפות Sticker Album 2026* 🏆",
   "shareMissingSectionTitle": "❌ *חסרים:*",
   "shareDuplicatesSectionTitle": "🔁 *כפולות:*",
   "shareNoneMissing": "אין! 😎",
   "shareNoDuplicates": "אין כפולות 😅",
   "shareLetsTrade": "רוצה להחליף? 👀🔥",
+  "shareDownloadLink": "📲 הורד את האפליקציה של {appName}\nhttps://onelink.to/5adrft?olbm=1",
   "shareSeparator": "--------------------------",
   "forgotPasswordTitle": "שחזור חשבון",
   "forgotPasswordDescription": "הזן את כתובת הדוא\"ל שלך ונשלח לך קוד בן 6 ספרות לאיפוס הסיסמה.",
@@ -153,7 +153,6 @@
   "forgotPasswordSavePasswordButton": "שמור סיסמה",
   "forgotPasswordPasswordUpdatedSuccess": "הסיסמה עודכנה בהצלחה! 🏆",
   "validationEmailInvalid": "כתובת האימייל אינה תקינה.",
-
   "paywallTitle": "תהנה ללא פרסומות",
   "paywallSubtitle": "כל התכונות זמינות בחינם. עם Pro תהנה מהכל ללא הפרעות.",
   "paywallBenefitScanner": "סורק ללא מודעות interstitial",
@@ -181,7 +180,6 @@
   "paywallGuestTitle": "התחבר כדי להירשם",
   "paywallGuestBody": "Pro מקושר לחשבון שלך. התחבר או צור חשבון כדי לפתוח את כל התכונות.",
   "paywallGuestSignInButton": "התחברות",
-
   "scannerDemoRemaining": "{count} סריקות חינמיות נותרו",
   "@scannerDemoRemaining": {
     "placeholders": {
@@ -191,15 +189,12 @@
   "scannerDemoFinishedTitle": "השתמשת ב-5 הסריקות החינמיות שלך",
   "scannerDemoFinishedSubtitle": "הירשם לסריקת מדבקות ללא הגבלה ולחוויה ללא פרסומות.",
   "scannerDemoUnlockButton": "הצג תוכניות Pro",
-
   "adDialogTitle": "תוכן חינמי",
   "adDialogBody": "כדי להמשיך, צפה במודעה קצרה או הירשם ל-Pro ושכח מפרסומות לנצח.",
   "adDialogWatchAd": "צפה במודעה",
   "adDialogGetPro": "קבל Pro",
   "adDialogNotNow": "לא עכשיו",
-
   "scannerCameraInitError": "לא ניתן לאתחל את המצלמה. ודא שלאפליקציה יש הרשאת גישה למצלמה.",
-
   "variantSheetTitle": "גרסת האלבום",
   "variantSheetInventoryNote": "המלאי שלך נשמר בעת החלפת גרסה. המדבקות שכבר יש לך נשארות רשומות.",
   "variantSheetLoadError": "שגיאה בטעינת הגרסאות: {error}",
@@ -218,31 +213,15 @@
       "name": {}
     }
   },
-
   "profileDeleteAccountButton": "מחק חשבון",
   "profileDeleteAccountTitle": "למחוק את החשבון שלך?",
   "profileDeleteAccountMessage": "פעולה זו היא קבועה. כל הנתונים שלך יימחקו ולא תוכל לשחזר את האוסף שלך.",
   "profileDeleteAccountConfirmButton": "מחק לצמיתות",
   "profileDeleteAccountSuccess": "החשבון שלך נמחק.",
   "profileDeleteAccountError": "שגיאה במחיקת החשבון. נסה שוב.",
-
   "paywallPrivacyPolicy": "מדיניות פרטיות",
   "paywallTermsOfUse": "תנאי שימוש",
   "paywallLegalDisclaimer": "על ידי מנוי, אתה מסכים לתנאי השימוש ולמדיניות הפרטיות שלנו.",
-
-  "tutorialSkip": "דלג",
-  "tutorialTapToContinue": "הקש בכל מקום כדי להמשיך",
-  "tutorialStep1Title": "ההתקדמות הכוללת שלך",
-  "tutorialStep1Body": "כאן תראה כמה מדבקות אספת ואת אחוז ההשלמה שלך. המשך לאסוף!",
-  "tutorialStep2Title": "חפש קבוצות",
-  "tutorialStep2Body": "הקלד שם מדינה או קבוצה לסינון מיידי של הרשימה.",
-  "tutorialStep3Title": "תפריט ראשי",
-  "tutorialStep3Body": "גש לפרופיל שלך, שנה גרסת אלבום וגלה אפשרויות נוספות.",
-  "tutorialStep4Title": "סרוק מדבקות",
-  "tutorialStep4Body": "השתמש במצלמה לסריקת גב המדבקות הפיזיות שלך והוספתן אוטומטית לאלבום.",
-  "tutorialStep5Title": "שתף רשימה",
-  "tutorialStep5Body": "ייצא את רשימת המדבקות החסרות או הכפולות להחלפה עם חברים.",
-
   "tutorialSkip": "דלג",
   "tutorialTapToContinue": "הקש בכל מקום כדי להמשיך",
   "tutorialStep1Title": "ההתקדמות הכוללת שלך",
@@ -255,42 +234,6 @@
   "tutorialStep4Body": "השתמש במצלמה לסריקת מדבקות והוספתן אוטומטית.",
   "tutorialStep5Title": "שתף רשימה",
   "tutorialStep5Body": "ייצא את רשימת המדבקות החסרות או הכפולות להחלפה.",
-
-  "tutorialSkip": "דלג",
-  "tutorialTapToContinue": "הקש בכל מקום כדי להמשיך",
-  "tutorialStep1Title": "ההתקדמות הכוללת שלך",
-  "tutorialStep1Body": "ראה כמה מדבקות אספת. המשך לאסוף!",
-  "tutorialStep2Title": "חפש קבוצות",
-  "tutorialStep2Body": "הקלד שם מדינה או קבוצה לסינון הרשימה.",
-  "tutorialStep3Title": "תפריט ראשי",
-  "tutorialStep3Body": "גש לפרופיל שלך ושנה גרסת אלבום.",
-  "tutorialStep4Title": "סרוק מדבקות",
-  "tutorialStep4Body": "השתמש במצלמה לסריקת מדבקות והוספתן אוטומטית.",
-  "tutorialStep5Title": "שתף רשימה",
-  "tutorialStep5Body": "ייצא את רשימת המדבקות החסרות או הכפולות להחלפה.",
-
-  "tutorialSkip": "דלג",
-  "tutorialTapToContinue": "הקש בכל מקום כדי להמשיך",
-  "tutorialStep1Title": "ההתקדמות הכוללת שלך",
-  "tutorialStep1Body": "ראה כמה מדבקות אספת. המשך לאסוף!",
-  "tutorialStep2Title": "חפש קבוצות",
-  "tutorialStep2Body": "הקלד שם מדינה או קבוצה לסינון הרשימה.",
-  "tutorialStep3Title": "תפריט ראשי",
-  "tutorialStep3Body": "גש לפרופיל שלך ושנה גרסת אלבום.",
-  "tutorialStep4Title": "סרוק מדבקות",
-  "tutorialStep4Body": "השתמש במצלמה לסריקת מדבקות והוספתן אוטומטית.",
-  "tutorialStep5Title": "שתף רשימה",
-  "tutorialStep5Body": "ייצא את רשימת המדבקות החסרות או הכפולות להחלפה.",
-
-  "globalTutorialStep1Title": "סנן את האוסף",
-  "globalTutorialStep1Body": "השתמש בכפתורים כדי לראות את כל המדבקות, רק החסרות או רק הכפולות. מושלם לארגון החלפות!",
-  "globalTutorialStep2Title": "חפש מדבקה",
-  "globalTutorialStep2Body": "הקלד שם מדינה, קוד או מספר מדבקה כדי למצוא אותה במהירות.",
-  "globalTutorialStep3Title": "הקש כדי לסמן",
-  "globalTutorialStep3Body": "הקשה אחת על מדבקה אפורה מוסיפה אותה לאלבום שלך (הופכת לזהובה). אם כבר יש לך ותקיש שוב, תתבקש לאשר הסרה.",
-  "globalTutorialStep4Title": "לחיצה ארוכה לאפשרויות נוספות",
-  "globalTutorialStep4Body": "החזק מדבקה לחוצה כדי לנהל כמה עותקים יש לך מכל גרסה (Normal, Gold, Legend…) ולעדכן את מלאי הכפולות.",
-
   "globalTutorialStep1Title": "סנן את האוסף",
   "globalTutorialStep1Body": "השתמש בכפתורים כדי לראות את כל המדבקות, רק החסרות או רק הכפולות. מושלם לארגון החלפות!",
   "globalTutorialStep2Title": "חפש מדבקה",
@@ -308,16 +251,6 @@
   "categoryTutorialStep3Title": "הקש לסימון",
   "categoryTutorialStep3Body": "הקשה על מדבקה אפורה מוסיפה אותה לאלבום (הופכת לזהב). אם כבר יש לך ותקיש שוב, תתבקש לאשר הסרה.",
   "categoryTutorialStep4Title": "לחץ לחיצה ארוכה לאפשרויות נוספות",
-  "categoryTutorialStep4Body": "לחיצה ארוכה מאפשרת לנהל כמה עותקים יש לך מכל גרסה (Normal, Gold, Legend…).",
-  "tutorialStep6Title": "חקור קטגוריה",
-  "tutorialStep6Body": "הקש על כל מדינה או קבוצה כדי לראות את המדבקות שלה. שם תוכל לסמן מה שכבר יש לך ולנהל כפולים.",
-  "categoryTutorialStep1Title": "סנן מדבקות",
-  "categoryTutorialStep1Body": "השתמש בכפתורים האלה כדי לראות את כל המדבקות, רק את החסרות או רק את הכפולות.",
-  "categoryTutorialStep2Title": "חפש מדבקה",
-  "categoryTutorialStep2Body": "הקלד שם מדינה, קוד או מספר מדבקה כדי למצוא אותה במהירות.",
-  "categoryTutorialStep3Title": "הקש לסימון",
-  "categoryTutorialStep3Body": "הקשה על מדבקה אפורה מוסיפה אותה לאלבום (הופכת לזהב). אם כבר יש לך ותקיש שוב, תתבקש לאשר הסרה.",
-  "categoryTutorialStep4Title": "לחץ לחיצה ארוכה לאפשרויות נוספות",
   "categoryTutorialStep4Body": "לחיצה ארוכה מאפשרת לנהל כמה עותקים יש לך מכל גרסה (Normal, Gold, Legend).",
   "drawerReplayTutorial": "לצפות בהדרכה מחדש",
   "variantTutorialTitle": "בחר את האזור שלך",
@@ -325,7 +258,6 @@
   "drawerLegalNotice": "הודעה משפטית",
   "legalNoticeTitle": "הודעה משפטית",
   "legalNoticeBody": "אפליקציה זו היא יצירה לא רשמית של מעריצים ואינה קשורה, נתמכת או מחוברת לאף ארגון כדורגל רשמי, יצרן מדבקות או שותף רשמי של הטורניר. כל הסימנים המסחריים הם רכושם של בעליהם המתאימים.",
-
   "statsTitle": "סטטיסטיקות",
   "statsTotalLabel": "סה\"כ",
   "statsCollectedLabel": "נאספו",
@@ -340,18 +272,18 @@
   "statsCategoryPickerSearch": "חפש קטגוריה...",
   "statsCategoryPickerSelected": "{count} נבחרו",
   "@statsCategoryPickerSelected": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "statsCategoryPickerAll": "כל הקטגוריות",
   "statsCategoryPickerClear": "נקה",
-
   "statsSortTooltip": "מיין",
   "statsSortByName": "קטגוריה",
   "statsSortByProgressDesc": "הכי מתקדמת קודם",
   "statsSortByProgressAsc": "הכי פחות מתקדמת קודם",
   "statsSortByMissing": "הכי חסרה קודם",
   "statsSortByDuplicates": "הכי כפולה קודם",
-
   "drawerLookup": "בדיקת מדבקה",
   "lookupScreenTitle": "בדיקת מדבקה",
   "lookupTabManual": "ידני",
@@ -363,18 +295,18 @@
   "lookupStatusCollected": "כבר יש לך ✓",
   "lookupStatusDuplicates": "{count} כפול/ים 🔁",
   "@lookupStatusDuplicates": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "lookupQtyLabel": "כמות במלאי שלך",
   "lookupScannerHint": "מרכז את המדבקה לזיהוי",
-
   "lookupTutorialStep1Title": "שתי דרכי חיפוש",
   "lookupTutorialStep1Body": "השתמש בכרטייה ידנית להקלדת קוד או בכרטיית הסורק לסריקה ישירה.",
   "lookupTutorialStep2Title": "הכנס את הקוד",
   "lookupTutorialStep2Body": "הקלד את קוד המדבקה כפי שמופיע באלבום, לדוגמה ECU 10 או ARG 5.",
   "lookupTutorialStep3Title": "בדוק ונהל",
   "lookupTutorialStep3Body": "תראה אם המדבקה חסרה או קיימת. בלחצני + ו– תוכל לעדכן את המלאי מיד.",
-
   "scanBadgeNew": "חדש",
   "scanBadgeRepeated": "כפול",
   "navAlbum": "אלבום",

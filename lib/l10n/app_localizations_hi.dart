@@ -9,10 +9,10 @@ class AppLocalizationsHi extends AppLocalizations {
   AppLocalizationsHi([String locale = 'hi']) : super(locale);
 
   @override
-  String get appTitle => 'एल्बम 26';
+  String get appTitle => 'Sticker Album 2026';
 
   @override
-  String get authWelcomeTitle => 'एल्बम 26 में आपका स्वागत है';
+  String get authWelcomeTitle => 'Sticker Album 2026 में आपका स्वागत है';
 
   @override
   String get authEmailLabel => 'ईमेल';
@@ -167,7 +167,7 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get homeTitle => 'मेरा एल्बम 26';
+  String get homeTitle => 'Sticker Album 2026';
 
   @override
   String get homeProfileTooltip => 'मेरी प्रोफ़ाइल';
@@ -281,7 +281,7 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get shareHeader => '⚽ *एल्बम 26 अदला-बदली सूची* 🏆';
+  String get shareHeader => '⚽ *Sticker Album 2026 अदला-बदली सूची* 🏆';
 
   @override
   String get shareMissingSectionTitle => '❌ *गायब:*';
@@ -297,6 +297,11 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get shareLetsTrade => 'अदला-बदली करना चाहते हैं? 👀🔥';
+
+  @override
+  String shareDownloadLink(String appName) {
+    return '📲 $appName ऐप डाउनलोड करें\nhttps://onelink.to/5adrft?olbm=1';
+  }
 
   @override
   String get shareSeparator => '--------------------------';

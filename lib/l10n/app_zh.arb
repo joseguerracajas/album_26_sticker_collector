@@ -1,7 +1,7 @@
 {
   "@@locale": "zh",
-  "appTitle": "球星贴纸册 26",
-  "authWelcomeTitle": "欢迎来到球星贴纸册 26",
+  "appTitle": "Sticker Album 2026",
+  "authWelcomeTitle": "欢迎来到 Sticker Album 2026",
   "authEmailLabel": "电子邮件",
   "authPasswordLabel": "密码",
   "authLoginButton": "登录",
@@ -21,7 +21,6 @@
       "message": {}
     }
   },
-
   "authErrorInvalidCredentials": "电子邮件或密码不正确。请检查您的信息并重试。",
   "authErrorEmailNotConfirmed": "您的电子邮件尚未确认。请检查您的收件箱。",
   "authErrorUserAlreadyRegistered": "该电子邮件地址已存在账号。",
@@ -57,7 +56,7 @@
       "message": {}
     }
   },
-  "homeTitle": "我的贴纸册 26",
+  "homeTitle": "Sticker Album 2026",
   "homeProfileTooltip": "我的个人资料",
   "drawerSignIn": "登录",
   "homeShareAll": "分享完整列表",
@@ -127,12 +126,13 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *球星贴纸册 26 交换列表* 🏆",
+  "shareHeader": "⚽ *Sticker Album 2026 交换列表* 🏆",
   "shareMissingSectionTitle": "❌ *缺少的：*",
   "shareDuplicatesSectionTitle": "🔁 *重复的：*",
   "shareNoneMissing": "一张不缺！😎",
   "shareNoDuplicates": "没有重复 😅",
   "shareLetsTrade": "想要交换吗？👀🔥",
+  "shareDownloadLink": "📲 下载 {appName} 应用\nhttps://onelink.to/5adrft?olbm=1",
   "shareSeparator": "--------------------------",
   "forgotPasswordTitle": "恢复账号",
   "forgotPasswordDescription": "请输入您的电子邮件，我们将发送 6 位数验证码以重置密码。",
@@ -153,7 +153,6 @@
   "forgotPasswordSavePasswordButton": "保存密码",
   "forgotPasswordPasswordUpdatedSuccess": "密码更新成功！🏆",
   "validationEmailInvalid": "电子邮件地址无效。",
-
   "paywallTitle": "无广告体验",
   "paywallSubtitle": "所有功能均可免费使用。购买 Pro 享受无中断体验。",
   "paywallBenefitScanner": "扫描器无插屏广告",
@@ -181,7 +180,6 @@
   "paywallGuestTitle": "登录以订阅",
   "paywallGuestBody": "Pro 与您的账号绑定。请登录或创建账号以解锁所有功能。",
   "paywallGuestSignInButton": "登录",
-
   "scannerDemoRemaining": "剩余 {count} 次免费扫描",
   "@scannerDemoRemaining": {
     "placeholders": {
@@ -191,15 +189,12 @@
   "scannerDemoFinishedTitle": "您已使用完 5 次免费扫描",
   "scannerDemoFinishedSubtitle": "订阅以无限扫描贴纸并享受无广告体验。",
   "scannerDemoUnlockButton": "查看 Pro 计划",
-
   "adDialogTitle": "免费内容",
   "adDialogBody": "若要继续，请观看一则短广告，或订阅 Pro 永远告别广告。",
   "adDialogWatchAd": "观看广告",
   "adDialogGetPro": "获取 Pro",
   "adDialogNotNow": "暂不",
-
   "scannerCameraInitError": "无法初始化摄像头。请确保应用拥有摄像头权限。",
-
   "variantSheetTitle": "相册版本",
   "variantSheetInventoryNote": "更换版本时，您的收藏将被保留。您已有的贴纸仍会保持记录。",
   "variantSheetLoadError": "加载版本时出错：{error}",
@@ -218,31 +213,15 @@
       "name": {}
     }
   },
-
   "profileDeleteAccountButton": "删除账户",
   "profileDeleteAccountTitle": "删除您的账户？",
   "profileDeleteAccountMessage": "此操作是永久性的。您的所有数据将被删除，您将无法恢复您的收藏。",
   "profileDeleteAccountConfirmButton": "永久删除",
   "profileDeleteAccountSuccess": "您的账户已被删除。",
   "profileDeleteAccountError": "删除账户时出错。请重试。",
-
   "paywallPrivacyPolicy": "隐私政策",
   "paywallTermsOfUse": "使用条款",
   "paywallLegalDisclaimer": "订阅即表示您同意我们的使用条款和隐私政策。",
-
-  "tutorialSkip": "跳过",
-  "tutorialTapToContinue": "点击任意位置继续",
-  "tutorialStep1Title": "你的整体进度",
-  "tutorialStep1Body": "在这里查看你收集了多少贴纸以及完成百分比。继续收集吧！",
-  "tutorialStep2Title": "搜索队伍",
-  "tutorialStep2Body": "输入国家或队伍名称，即时筛选列表。",
-  "tutorialStep3Title": "主菜单",
-  "tutorialStep3Body": "访问你的个人资料，切换专辑版本，探索更多选项。",
-  "tutorialStep4Title": "扫描贴纸",
-  "tutorialStep4Body": "使用相机扫描实体贴纸背面，将其自动添加到你的专辑中。",
-  "tutorialStep5Title": "分享列表",
-  "tutorialStep5Body": "导出你缺少或重复的贴纸列表，与朋友交换。",
-
   "tutorialSkip": "跳过",
   "tutorialTapToContinue": "点击任意位置继续",
   "tutorialStep1Title": "你的整体进度",
@@ -255,42 +234,6 @@
   "tutorialStep4Body": "使用相机扫描实体贴纸并自动添加到你的专辑中。",
   "tutorialStep5Title": "分享列表",
   "tutorialStep5Body": "导出你缺少或重复的贴纸列表，与朋友交换。",
-
-  "tutorialSkip": "跳过",
-  "tutorialTapToContinue": "点击任意位置继续",
-  "tutorialStep1Title": "你的整体进度",
-  "tutorialStep1Body": "在这里查看你收集了多少贴纸。继续收集吧！",
-  "tutorialStep2Title": "搜索队伍",
-  "tutorialStep2Body": "输入国家或队伍名称，即时筛选列表。",
-  "tutorialStep3Title": "主菜单",
-  "tutorialStep3Body": "访问你的个人资料，切换专辑版本。",
-  "tutorialStep4Title": "扫描贴纸",
-  "tutorialStep4Body": "使用相机扫描实体贴纸并自动添加到你的专辑中。",
-  "tutorialStep5Title": "分享列表",
-  "tutorialStep5Body": "导出你缺少或重复的贴纸列表，与朋友交换。",
-
-  "tutorialSkip": "跳过",
-  "tutorialTapToContinue": "点击任意位置继续",
-  "tutorialStep1Title": "你的整体进度",
-  "tutorialStep1Body": "在这里查看你收集了多少贴纸。继续收集吧！",
-  "tutorialStep2Title": "搜索队伍",
-  "tutorialStep2Body": "输入国家或队伍名称，即时筛选列表。",
-  "tutorialStep3Title": "主菜单",
-  "tutorialStep3Body": "访问你的个人资料，切换专辑版本。",
-  "tutorialStep4Title": "扫描贴纸",
-  "tutorialStep4Body": "使用相机扫描实体贴纸并自动添加到你的专辑中。",
-  "tutorialStep5Title": "分享列表",
-  "tutorialStep5Body": "导出你缺少或重复的贴纸列表，与朋友交换。",
-
-  "globalTutorialStep1Title": "筛选收藏",
-  "globalTutorialStep1Body": "使用这些按钮查看所有贴纸、仅缺少的或仅重复的。非常适合组织交换！",
-  "globalTutorialStep2Title": "搜索贴纸",
-  "globalTutorialStep2Body": "输入国家名称、代码或贴纸编号快速找到它。",
-  "globalTutorialStep3Title": "点击标记",
-  "globalTutorialStep3Body": "单击灰色贴纸将其添加到您的相册（变成金色）。如果您已经拥有并再次点击，将要求确认删除。",
-  "globalTutorialStep4Title": "长按查看更多选项",
-  "globalTutorialStep4Body": "长按贴纸可以管理每种变体（Normal、Gold、Legend…）的副本数量并更新重复库存。",
-
   "globalTutorialStep1Title": "筛选收藏",
   "globalTutorialStep1Body": "使用这些按钮查看所有贴纸、仅缺少的或仅重复的。非常适合组织交换！",
   "globalTutorialStep2Title": "搜索贴纸",
@@ -308,16 +251,6 @@
   "categoryTutorialStep3Title": "点击标记",
   "categoryTutorialStep3Body": "点击灰色贴纸将其添加到相册（变为金色）。如果已有并再次点击，将要求确认删除。",
   "categoryTutorialStep4Title": "长按获取更多选项",
-  "categoryTutorialStep4Body": "长按贴纸可以管理每种变体（Normal, Gold, Legend…）的副本数量。",
-  "tutorialStep6Title": "探索分类",
-  "tutorialStep6Body": "点击任意国家或球队查看贴纸。在那里可以标记已有的，并管理重复贴纸。",
-  "categoryTutorialStep1Title": "筛选贴纸",
-  "categoryTutorialStep1Body": "使用这些按钮查看所有贴纸、仅缺少的或仅重复的。",
-  "categoryTutorialStep2Title": "搜索贴纸",
-  "categoryTutorialStep2Body": "输入国家名称、代码或贴纸编号以快速找到它。",
-  "categoryTutorialStep3Title": "点击标记",
-  "categoryTutorialStep3Body": "点击灰色贴纸将其添加到相册（变为金色）。如果已有并再次点击，将要求确认删除。",
-  "categoryTutorialStep4Title": "长按获取更多选项",
   "categoryTutorialStep4Body": "长按贴纸可以管理每种变体（Normal, Gold, Legend）的副本数量。",
   "drawerReplayTutorial": "重新查看教程",
   "variantTutorialTitle": "选择您的地区",
@@ -325,7 +258,6 @@
   "drawerLegalNotice": "法律声明",
   "legalNoticeTitle": "法律声明",
   "legalNoticeBody": "此应用程序是非官方的球迷创作，与任何官方足球组织、贴纸制造商或足球锦标赛的官方合作伙伴均无关联、认可或连接。所有商标均为其各自所有者的财产。",
-
   "statsTitle": "统计",
   "statsTotalLabel": "总计",
   "statsCollectedLabel": "已收集",
@@ -340,18 +272,18 @@
   "statsCategoryPickerSearch": "搜索类别...",
   "statsCategoryPickerSelected": "已选{count}项",
   "@statsCategoryPickerSelected": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "statsCategoryPickerAll": "所有类别",
   "statsCategoryPickerClear": "清除",
-
   "statsSortTooltip": "排序",
   "statsSortByName": "分类",
   "statsSortByProgressDesc": "进度最多优先",
   "statsSortByProgressAsc": "进度最少优先",
   "statsSortByMissing": "缺少最多优先",
   "statsSortByDuplicates": "重复最多优先",
-
   "drawerLookup": "贴纸查询",
   "lookupScreenTitle": "贴纸查询",
   "lookupTabManual": "手动",
@@ -363,18 +295,18 @@
   "lookupStatusCollected": "已拥有 ✓",
   "lookupStatusDuplicates": "{count} 张重复 🔁",
   "@lookupStatusDuplicates": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "lookupQtyLabel": "您库存中的数量",
   "lookupScannerHint": "将贴纸居中以识别",
-
   "lookupTutorialStep1Title": "两种搜索方式",
   "lookupTutorialStep1Body": "使用“手动”选项卡输入贴纸代码，或使用“扫描仪”选项卡直接指向摄像头。",
   "lookupTutorialStep2Title": "输入代码",
   "lookupTutorialStep2Body": "按相册中显示的格式输入贴纸代码，如 ECU 10 或 ARG 5，然后点击搜索。",
   "lookupTutorialStep3Title": "查询并管理",
   "lookupTutorialStep3Body": "您可以看到贴纸是否缺少或已收集。使用 + 和 – 按钮即刻更新库存。",
-
   "scanBadgeNew": "新增",
   "scanBadgeRepeated": "重复",
   "navAlbum": "相册",

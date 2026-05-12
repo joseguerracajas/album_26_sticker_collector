@@ -1,7 +1,7 @@
 {
   "@@locale": "hi",
-  "appTitle": "एल्बम 26",
-  "authWelcomeTitle": "एल्बम 26 में आपका स्वागत है",
+  "appTitle": "Sticker Album 2026",
+  "authWelcomeTitle": "Sticker Album 2026 में आपका स्वागत है",
   "authEmailLabel": "ईमेल",
   "authPasswordLabel": "पासवर्ड",
   "authLoginButton": "साइन इन करें",
@@ -21,7 +21,6 @@
       "message": {}
     }
   },
-
   "authErrorInvalidCredentials": "गलत ईमेल या पासवर्ड। अपनी जानकारी जांचें और पुनः प्रयास करें।",
   "authErrorEmailNotConfirmed": "आपका ईमेल अभी तक पुष्टि नहीं हुआ है। अपना इनबॉक्स जांचें।",
   "authErrorUserAlreadyRegistered": "उस ईमेल से पहले से एक खाता मौजूद है।",
@@ -57,7 +56,7 @@
       "message": {}
     }
   },
-  "homeTitle": "मेरा एल्बम 26",
+  "homeTitle": "Sticker Album 2026",
   "homeProfileTooltip": "मेरी प्रोफ़ाइल",
   "drawerSignIn": "साइन इन",
   "homeShareAll": "पूरी सूची शेयर करें",
@@ -127,12 +126,13 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *एल्बम 26 अदला-बदली सूची* 🏆",
+  "shareHeader": "⚽ *Sticker Album 2026 अदला-बदली सूची* 🏆",
   "shareMissingSectionTitle": "❌ *गायब:*",
   "shareDuplicatesSectionTitle": "🔁 *डुप्लिकेट:*",
   "shareNoneMissing": "कुछ नहीं! 😎",
   "shareNoDuplicates": "कोई डुप्लिकेट नहीं 😅",
   "shareLetsTrade": "अदला-बदली करना चाहते हैं? 👀🔥",
+  "shareDownloadLink": "📲 {appName} ऐप डाउनलोड करें\nhttps://onelink.to/5adrft?olbm=1",
   "shareSeparator": "--------------------------",
   "forgotPasswordTitle": "खाता पुनर्प्राप्त करें",
   "forgotPasswordDescription": "अपना ईमेल दर्ज करें और हम आपको पासवर्ड रीसेट करने के लिए 6 अंकों का कोड भेजेंगे।",
@@ -153,7 +153,6 @@
   "forgotPasswordSavePasswordButton": "पासवर्ड सहेजें",
   "forgotPasswordPasswordUpdatedSuccess": "पासवर्ड सफलतापूर्वक अपडेट किया गया! 🏆",
   "validationEmailInvalid": "ईमेल पता अमान्य है।",
-
   "paywallTitle": "विज्ञापन के बिना आनंद लें",
   "paywallSubtitle": "सभी सुविधाएं मुफ्त में उपलब्ध हैं। Pro के साथ बिना रुकावट के सब कुछ आनंद लें।",
   "paywallBenefitScanner": "इंटरस्टिशियल विज्ञापनों के बिना स्कैनर",
@@ -181,7 +180,6 @@
   "paywallGuestTitle": "सदस्यता लेने के लिए साइन इन करें",
   "paywallGuestBody": "Pro आपके खाते से जुड़ा है। सभी सुविधाएं अनलॉक करने के लिए साइन इन करें या खाता बनाएं।",
   "paywallGuestSignInButton": "साइन इन करें",
-
   "scannerDemoRemaining": "{count} मुफ्त स्कैन शेष",
   "@scannerDemoRemaining": {
     "placeholders": {
@@ -191,15 +189,12 @@
   "scannerDemoFinishedTitle": "आपने अपने 5 मुफ्त स्कैन उपयोग कर लिए",
   "scannerDemoFinishedSubtitle": "असीमित स्टिकर स्कैन और विज्ञापन-मुक्त अनुभव के लिए सदस्यता लें।",
   "scannerDemoUnlockButton": "Pro प्लान देखें",
-
   "adDialogTitle": "मुफ्त सामग्री",
   "adDialogBody": "जारी रखने के लिए, एक छोटा विज्ञापन देखें या Pro की सदस्यता लें और विज्ञापनों को हमेशा के लिए भूल जाएं।",
   "adDialogWatchAd": "विज्ञापन देखें",
   "adDialogGetPro": "Pro प्राप्त करें",
   "adDialogNotNow": "अभी नहीं",
-
   "scannerCameraInitError": "कैमरा प्रारंभ नहीं हो सका। सुनिश्चित करें कि ऐप के पास कैमरा अनुमति है।",
-
   "variantSheetTitle": "एल्बम वेरिएंट",
   "variantSheetInventoryNote": "वेरिएंट बदलने पर आपकी इन्वेंटरी सुरक्षित रहती है। जो स्टिकर आपके पास पहले से हैं वे दर्ज रहते हैं।",
   "variantSheetLoadError": "वेरिएंट लोड करने में त्रुटि: {error}",
@@ -218,44 +213,15 @@
       "name": {}
     }
   },
-
   "profileDeleteAccountButton": "खाता हटाएं",
   "profileDeleteAccountTitle": "अपना खाता हटाएं?",
   "profileDeleteAccountMessage": "यह क्रिया स्थायी है. आपका सारा डेटा हटा दिया जाएगा और आप अपना संग्रह वापस नहीं पा सकेंगे.",
   "profileDeleteAccountConfirmButton": "स्थायी रूप से हटाएं",
   "profileDeleteAccountSuccess": "आपका खाता हटा दिया गया है.",
   "profileDeleteAccountError": "खाता हटाने में त्रुटि. कृपया पुनः प्रयास करें.",
-
   "paywallPrivacyPolicy": "गोपनीयता नीति",
   "paywallTermsOfUse": "उपयोग की शर्तें",
   "paywallLegalDisclaimer": "सदस्यता लेकर आप हमारी उपयोग की शर्तों और गोपनीयता नीति से सहमत होते हैं.",
-
-  "tutorialSkip": "छोड़ें",
-  "tutorialTapToContinue": "जारी रखने के लिए कहीं भी टैप करें",
-  "tutorialStep1Title": "आपकी वैश्विक प्रगति",
-  "tutorialStep1Body": "यहाँ देखें आपने कितने स्टिकर इकट्ठे किए हैं और आपका पूर्णता प्रतिशत क्या है। इकट्ठा करते रहें!",
-  "tutorialStep2Title": "टीमें खोजें",
-  "tutorialStep2Body": "सूची को तुरंत फ़िल्टर करने के लिए किसी देश या टीम का नाम टाइप करें।",
-  "tutorialStep3Title": "मुख्य मेनू",
-  "tutorialStep3Body": "अपनी प्रोफ़ाइल तक पहुँचें, एल्बम वेरिएंट बदलें और अधिक विकल्प देखें।",
-  "tutorialStep4Title": "स्टिकर स्कैन करें",
-  "tutorialStep4Body": "अपने भौतिक स्टिकर के पीछे की ओर स्कैन करने और उन्हें अपने एल्बम में स्वचालित रूप से जोड़ने के लिए कैमरा उपयोग करें।",
-  "tutorialStep5Title": "सूची साझा करें",
-  "tutorialStep5Body": "दोस्तों के साथ एक्सचेंज करने के लिए अपनी गुम या डुप्लीकेट स्टिकर सूची निर्यात करें।",
-
-  "tutorialSkip": "छोड़ें",
-  "tutorialTapToContinue": "जारी रखने के लिए कहीं भी टैप करें",
-  "tutorialStep1Title": "आपकी वैश्विक प्रगति",
-  "tutorialStep1Body": "यहाँ देखें आपने कितने स्टिकर इकट्ठे किए हैं। इकट्ठा करते रहें!",
-  "tutorialStep2Title": "टीमें खोजें",
-  "tutorialStep2Body": "सूची फ़िल्टर करने के लिए देश या टीम का नाम टाइप करें।",
-  "tutorialStep3Title": "मुख्य मेनू",
-  "tutorialStep3Body": "अपनी प्रोफ़ाइल तक पहुँचें और एल्बम वेरिएंट बदलें।",
-  "tutorialStep4Title": "स्टिकर स्कैन करें",
-  "tutorialStep4Body": "स्टिकर स्कैन करने और स्वचालित रूप से जोड़ने के लिए कैमरा उपयोग करें।",
-  "tutorialStep5Title": "सूची साझा करें",
-  "tutorialStep5Body": "गुम या डुप्लीकेट स्टिकर सूची एक्सचेंज के लिए निर्यात करें।",
-
   "tutorialSkip": "छोड़ें",
   "tutorialTapToContinue": "जारी रखने के लिए कहीं भी टैप करें",
   "tutorialStep1Title": "आपकी वैश्विक प्रगति",
@@ -268,29 +234,6 @@
   "tutorialStep4Body": "स्टिकर स्कैन करने और जोड़ने के लिए कैमरा उपयोग करें।",
   "tutorialStep5Title": "सूची साझा करें",
   "tutorialStep5Body": "गुम या डुप्लीकेट स्टिकर सूची एक्सचेंज के लिए निर्यात करें।",
-
-  "tutorialSkip": "छोड़ें",
-  "tutorialTapToContinue": "जारी रखने के लिए कहीं भी टैप करें",
-  "tutorialStep1Title": "आपकी वैश्विक प्रगति",
-  "tutorialStep1Body": "यहाँ देखें आपने कितने स्टिकर इकट्ठे किए हैं। इकट्ठा करते रहें!",
-  "tutorialStep2Title": "टीमें खोजें",
-  "tutorialStep2Body": "सूची फ़िल्टर करने के लिए देश या टीम का नाम टाइप करें।",
-  "tutorialStep3Title": "मुख्य मेनू",
-  "tutorialStep3Body": "अपनी प्रोफ़ाइल तक पहुँचें और एल्बम वेरिएंट बदलें।",
-  "tutorialStep4Title": "स्टिकर स्कैन करें",
-  "tutorialStep4Body": "स्टिकर स्कैन करने और जोड़ने के लिए कैमरा उपयोग करें।",
-  "tutorialStep5Title": "सूची साझा करें",
-  "tutorialStep5Body": "गुम या डुप्लीकेट स्टिकर सूची एक्सचेंज के लिए निर्यात करें।",
-
-  "globalTutorialStep1Title": "कलेक्शन फ़िल्टर करें",
-  "globalTutorialStep1Body": "सभी स्टिकर, केवल गुम या केवल डुप्लीकेट देखने के लिए इन बटन का उपयोग करें। ट्रेड के लिए बिल्कुल सही!",
-  "globalTutorialStep2Title": "स्टिकर खोजें",
-  "globalTutorialStep2Body": "देश का नाम, कोड या स्टिकर नंबर टाइप करें और इसे जल्दी खोजें।",
-  "globalTutorialStep3Title": "मार्क करने के लिए टैप करें",
-  "globalTutorialStep3Body": "किसी ग्रे स्टिकर पर एक टैप उसे आपके एल्बम में जोड़ता है (सुनहरा हो जाता है)। यदि आपके पास पहले से है और दोबारा टैप करते हैं, तो हटाने की पुष्टि मांगी जाएगी।",
-  "globalTutorialStep4Title": "अधिक विकल्पों के लिए देर तक दबाएँ",
-  "globalTutorialStep4Body": "प्रत्येक वेरिएंट (Normal, Gold, Legend…) की कितनी प्रतियाँ हैं, यह प्रबंधित करने और डुप्लीकेट इन्वेंटरी अपडेट करने के लिए किसी स्टिकर को देर तक दबाएँ।",
-
   "globalTutorialStep1Title": "कलेक्शन फ़िल्टर करें",
   "globalTutorialStep1Body": "सभी स्टिकर, केवल गुम या केवल डुप्लीकेट देखने के लिए इन बटन का उपयोग करें। ट्रेड के लिए बिल्कुल सही!",
   "globalTutorialStep2Title": "स्टिकर खोजें",
@@ -308,16 +251,6 @@
   "categoryTutorialStep3Title": "चिह्नित करने के लिए टैप करें",
   "categoryTutorialStep3Body": "ग्रे स्टिकर पर टैप करने से वह एल्बम में जुड़ जाता है (सुनहरा हो जाता है)। यदि पहले से है और फिर टैप करते हैं, हटाने की पुष्टि माँगी जाएगी।",
   "categoryTutorialStep4Title": "अधिक विकल्पों के लिए दबाए रखें",
-  "categoryTutorialStep4Body": "स्टिकर को देर तक दबाने पर प्रत्येक वेरिएंट (Normal, Gold, Legend…) की कितनी प्रतियाँ हैं, यह प्रबंधित कर सकते हैं।",
-  "tutorialStep6Title": "श्रेणी एक्सप्लोर करें",
-  "tutorialStep6Body": "स्टिकर देखने के लिए किसी भी देश या टीम पर टैप करें। वहाँ आप जो पहले से हैं उन्हें चिह्नित कर सकते हैं और डुप्लीकेट प्रबंधित कर सकते हैं।",
-  "categoryTutorialStep1Title": "स्टिकर फ़िल्टर करें",
-  "categoryTutorialStep1Body": "सभी स्टिकर, केवल गायब या केवल डुप्लीकेट देखने के लिए इन बटन का उपयोग करें।",
-  "categoryTutorialStep2Title": "स्टिकर खोजें",
-  "categoryTutorialStep2Body": "देश का नाम, कोड या स्टिकर नंबर टाइप करें ताकि इसे जल्दी से ढूंढा जा सके।",
-  "categoryTutorialStep3Title": "चिह्नित करने के लिए टैप करें",
-  "categoryTutorialStep3Body": "ग्रे स्टिकर पर टैप करने से वह एल्बम में जुड़ जाता है (सुनहरा हो जाता है)। यदि पहले से है और फिर टैप करते हैं, हटाने की पुष्टि माँगी जाएगी।",
-  "categoryTutorialStep4Title": "अधिक विकल्पों के लिए दबाए रखें",
   "categoryTutorialStep4Body": "स्टिकर को देर तक दबाने पर प्रत्येक वेरिएंट (Normal, Gold, Legend) की कितनी प्रतियाँ हैं, यह प्रबंधित कर सकते हैं।",
   "drawerReplayTutorial": "ट्यूटोरियल फिर से देखें",
   "variantTutorialTitle": "अपना क्षेत्र चुनें",
@@ -325,7 +258,6 @@
   "drawerLegalNotice": "कानूनी सूचना",
   "legalNoticeTitle": "कानूनी सूचना",
   "legalNoticeBody": "यह ऐप एक अनौपचारिक प्रशंसक रचना है और किसी भी आधिकारिक फुटबॉल संगठन, स्टिकर निर्माता या फुटबॉल टूर्नामेंट के किसी आधिकारिक भागीदार से संबद्ध, समर्थित या जुड़ी नहीं है। सभी ट्रेडमार्क उनके संबंधित स्वामियों की संपत्ति हैं।",
-
   "statsTitle": "आँकड़े",
   "statsTotalLabel": "कुल",
   "statsCollectedLabel": "संग्रहित",
@@ -340,18 +272,18 @@
   "statsCategoryPickerSearch": "श्रेणी खोजें...",
   "statsCategoryPickerSelected": "{count} चुनी गई",
   "@statsCategoryPickerSelected": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "statsCategoryPickerAll": "सभी श्रेणियाँ",
   "statsCategoryPickerClear": "साफ करें",
-
   "statsSortTooltip": "क्रमबद्ध",
   "statsSortByName": "श्रेणी",
   "statsSortByProgressDesc": "अधिक प्रगति पहले",
   "statsSortByProgressAsc": "कम प्रगति पहले",
   "statsSortByMissing": "अधिक लापता पहले",
   "statsSortByDuplicates": "अधिक दोहराव पहले",
-
   "drawerLookup": "स्टिकर खोजें",
   "lookupScreenTitle": "स्टिकर खोजें",
   "lookupTabManual": "मैन्युअल",
@@ -363,18 +295,18 @@
   "lookupStatusCollected": "आपके पास है ✓",
   "lookupStatusDuplicates": "{count} डुप्लीकेट 🔁",
   "@lookupStatusDuplicates": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "lookupQtyLabel": "आपके इन्वेंट्री में मात्रा",
   "lookupScannerHint": "स्टिकर को पहचानने के लिए बीच में रखें",
-
   "lookupTutorialStep1Title": "दो खोज विधियाँ",
   "lookupTutorialStep1Body": "कोड टाइप करने के लिए मैन्युअल टैब या स्कैन करने के लिए स्कैनर टैब का उपयोग करें।",
   "lookupTutorialStep2Title": "कोड दर्ज करें",
   "lookupTutorialStep2Body": "आल्बम में दिखने वाला स्टिकर कोड टाइप करें, जैसे ECU 10 या ARG 5, फिर खोजें दबाएं।",
   "lookupTutorialStep3Title": "जांचें और प्रबंधित करें",
   "lookupTutorialStep3Body": "आप देखेंगे कि स्टिकर गायब है या संग्रहीत। + और – बटनों से इन्वेंट्री अपडेट करें।",
-
   "scanBadgeNew": "नया",
   "scanBadgeRepeated": "दोहराया",
   "navAlbum": "एल्बम",

@@ -112,6 +112,7 @@ class _AppShellState extends ConsumerState<AppShell> {
         mainAxisSize: MainAxisSize.min,
         children: [
           const AdBannerWidget(),
+          Divider(height: 1, color: Colors.amber),
           BottomNavigationBar(
             currentIndex: _currentIndex,
             onTap: _onNavTap,

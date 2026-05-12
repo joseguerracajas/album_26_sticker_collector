@@ -1,7 +1,7 @@
 {
   "@@locale": "it",
-  "appTitle": "Album 2026",
-  "authWelcomeTitle": "Benvenuto su Album 2026",
+  "appTitle": "Sticker Album 2026",
+  "authWelcomeTitle": "Benvenuto su Sticker Album 2026",
   "authEmailLabel": "Email",
   "authPasswordLabel": "Password",
   "authLoginButton": "ACCEDI",
@@ -21,7 +21,6 @@
       "message": {}
     }
   },
-
   "authErrorInvalidCredentials": "Email o password errati. Verifica i tuoi dati e riprova.",
   "authErrorEmailNotConfirmed": "La tua email non è ancora stata confermata. Controlla la tua casella di posta.",
   "authErrorUserAlreadyRegistered": "Esiste già un account con questa email.",
@@ -57,7 +56,7 @@
       "message": {}
     }
   },
-  "homeTitle": "Il Mio Album 2026",
+  "homeTitle": "Sticker Album 2026",
   "homeProfileTooltip": "Il Mio Profilo",
   "drawerSignIn": "Accedi",
   "homeShareAll": "Condividi Lista Completa",
@@ -127,12 +126,13 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *LISTA SCAMBI Album 2026* 🏆",
+  "shareHeader": "⚽ *LISTA SCAMBI Sticker Album 2026* 🏆",
   "shareMissingSectionTitle": "❌ *MANCANTI:*",
   "shareDuplicatesSectionTitle": "🔁 *DOPPIONI:*",
   "shareNoneMissing": "Nessuno! 😎",
   "shareNoDuplicates": "Nessun doppione 😅",
   "shareLetsTrade": "Vuoi scambiare? 👀🔥",
+  "shareDownloadLink": "📲 Scarica l'app di {appName}\nhttps://onelink.to/5adrft?olbm=1",
   "shareSeparator": "--------------------------",
   "forgotPasswordTitle": "Recupera Account",
   "forgotPasswordDescription": "Inserisci la tua email e ti invieremo un codice di 6 cifre per reimpostare la password.",
@@ -153,7 +153,6 @@
   "forgotPasswordSavePasswordButton": "SALVA PASSWORD",
   "forgotPasswordPasswordUpdatedSuccess": "Password aggiornata con successo! 🏆",
   "validationEmailInvalid": "L'indirizzo email non è valido.",
-
   "paywallTitle": "Goditi l'app senza pubblicità",
   "paywallSubtitle": "Tutte le funzioni sono gratuite. Con Pro godi di tutto senza interruzioni.",
   "paywallBenefitScanner": "Scanner senza annunci interstitial",
@@ -181,7 +180,6 @@
   "paywallGuestTitle": "Accedi per abbonarti",
   "paywallGuestBody": "Pro è collegato al tuo account. Accedi o crea un account per sbloccare tutte le funzioni.",
   "paywallGuestSignInButton": "ACCEDI",
-
   "scannerDemoRemaining": "{count} scansioni gratuite rimanenti",
   "@scannerDemoRemaining": {
     "placeholders": {
@@ -191,15 +189,12 @@
   "scannerDemoFinishedTitle": "Hai usato le tue 5 scansioni gratuite",
   "scannerDemoFinishedSubtitle": "Abbonati per scansionare figurine illimitate e vivere un'esperienza senza pubblicità.",
   "scannerDemoUnlockButton": "Vedi Piani Pro",
-
   "adDialogTitle": "Contenuto gratuito",
   "adDialogBody": "Per continuare, guarda un breve annuncio o abbonati a Pro e dimentica la pubblicità per sempre.",
   "adDialogWatchAd": "Guarda annuncio",
   "adDialogGetPro": "Ottieni Pro",
   "adDialogNotNow": "Non ora",
-
   "scannerCameraInitError": "Impossibile inizializzare la fotocamera. Assicurati che l'app abbia il permesso di accedere alla fotocamera.",
-
   "variantSheetTitle": "Variante dell'album",
   "variantSheetInventoryNote": "Il tuo inventario viene conservato quando cambi variante. Le figurine che hai già continuano ad essere registrate.",
   "variantSheetLoadError": "Errore nel caricamento delle varianti: {error}",
@@ -218,31 +213,15 @@
       "name": {}
     }
   },
-
   "profileDeleteAccountButton": "Elimina account",
   "profileDeleteAccountTitle": "Eliminare il tuo account?",
   "profileDeleteAccountMessage": "Questa azione è permanente. Tutti i tuoi dati verranno eliminati e non potrai recuperare la tua collezione.",
   "profileDeleteAccountConfirmButton": "Elimina definitivamente",
   "profileDeleteAccountSuccess": "Il tuo account è stato eliminato.",
   "profileDeleteAccountError": "Errore durante l'eliminazione dell'account. Riprova.",
-
   "paywallPrivacyPolicy": "Informativa sulla privacy",
   "paywallTermsOfUse": "Termini di utilizzo",
   "paywallLegalDisclaimer": "Abbonandoti accetti i nostri Termini di utilizzo e la nostra Informativa sulla privacy.",
-
-  "tutorialSkip": "Salta",
-  "tutorialTapToContinue": "Tocca ovunque per continuare",
-  "tutorialStep1Title": "Il tuo progresso globale",
-  "tutorialStep1Body": "Qui vedi quante figurine hai collezionato e la percentuale di completamento. Continua!",
-  "tutorialStep2Title": "Cerca squadre",
-  "tutorialStep2Body": "Digita il nome di un paese o squadra per filtrare la lista istantaneamente.",
-  "tutorialStep3Title": "Menu principale",
-  "tutorialStep3Body": "Accedi al tuo profilo, cambia la variante dell'album ed esplora altre opzioni.",
-  "tutorialStep4Title": "Scansiona figurine",
-  "tutorialStep4Body": "Usa la fotocamera per scansionare il retro delle tue figurine fisiche e aggiungerle automaticamente.",
-  "tutorialStep5Title": "Condividi la lista",
-  "tutorialStep5Body": "Esporta la tua lista di figurine mancanti o duplicate per scambiarle con gli amici.",
-
   "tutorialSkip": "Salta",
   "tutorialTapToContinue": "Tocca ovunque per continuare",
   "tutorialStep1Title": "Il tuo progresso globale",
@@ -255,42 +234,6 @@
   "tutorialStep4Body": "Usa la fotocamera per scansionare figurine fisiche e aggiungerle automaticamente.",
   "tutorialStep5Title": "Condividi la lista",
   "tutorialStep5Body": "Esporta la tua lista di figurine mancanti o duplicate per scambiarle.",
-
-  "tutorialSkip": "Salta",
-  "tutorialTapToContinue": "Tocca ovunque per continuare",
-  "tutorialStep1Title": "Il tuo progresso globale",
-  "tutorialStep1Body": "Vedi quante figurine hai collezionato. Continua!",
-  "tutorialStep2Title": "Cerca squadre",
-  "tutorialStep2Body": "Digita il nome di un paese o squadra per filtrare la lista.",
-  "tutorialStep3Title": "Menu principale",
-  "tutorialStep3Body": "Accedi al tuo profilo e cambia la variante dell'album.",
-  "tutorialStep4Title": "Scansiona figurine",
-  "tutorialStep4Body": "Usa la fotocamera per scansionare figurine fisiche e aggiungerle automaticamente.",
-  "tutorialStep5Title": "Condividi la lista",
-  "tutorialStep5Body": "Esporta la tua lista di figurine mancanti o duplicate per scambiarle.",
-
-  "tutorialSkip": "Salta",
-  "tutorialTapToContinue": "Tocca ovunque per continuare",
-  "tutorialStep1Title": "Il tuo progresso globale",
-  "tutorialStep1Body": "Vedi quante figurine hai collezionato. Continua!",
-  "tutorialStep2Title": "Cerca squadre",
-  "tutorialStep2Body": "Digita il nome di un paese o squadra per filtrare la lista.",
-  "tutorialStep3Title": "Menu principale",
-  "tutorialStep3Body": "Accedi al tuo profilo e cambia la variante dell'album.",
-  "tutorialStep4Title": "Scansiona figurine",
-  "tutorialStep4Body": "Usa la fotocamera per scansionare figurine fisiche e aggiungerle automaticamente.",
-  "tutorialStep5Title": "Condividi la lista",
-  "tutorialStep5Body": "Esporta la tua lista di figurine mancanti o duplicate per scambiarle.",
-
-  "globalTutorialStep1Title": "Filtra la tua raccolta",
-  "globalTutorialStep1Body": "Usa questi pulsanti per vedere tutte le tue figurine, solo quelle mancanti o solo i doppioni. Perfetto per organizzare gli scambi!",
-  "globalTutorialStep2Title": "Cerca una figurina",
-  "globalTutorialStep2Body": "Digita il nome del paese, il codice o il numero della figurina per trovarla rapidamente.",
-  "globalTutorialStep3Title": "Tocca per segnare",
-  "globalTutorialStep3Body": "Un tocco su una figurina grigia la aggiunge al tuo album (diventa dorata). Se ce l'hai già e la tocchi di nuovo, ti verrà chiesta conferma per rimuoverla.",
-  "globalTutorialStep4Title": "Premi a lungo per più opzioni",
-  "globalTutorialStep4Body": "Tieni premuta una figurina per gestire quante copie hai di ogni variante (Normal, Gold, Legend…) e aggiornare il tuo inventario dei doppioni.",
-
   "globalTutorialStep1Title": "Filtra la tua raccolta",
   "globalTutorialStep1Body": "Usa questi pulsanti per vedere tutte le tue figurine, solo quelle mancanti o solo i doppioni. Perfetto per organizzare gli scambi!",
   "globalTutorialStep2Title": "Cerca una figurina",
@@ -299,16 +242,6 @@
   "globalTutorialStep3Body": "Un tocco su una figurina grigia la aggiunge al tuo album (diventa dorata). Se la tocchi di nuovo, ti verrà chiesta conferma per rimuoverla.",
   "globalTutorialStep4Title": "Premi a lungo per più opzioni",
   "globalTutorialStep4Body": "Tieni premuta una figurina per gestire quante copie hai di ogni variante (Normal, Gold, Legend...).",
-  "tutorialStep6Title": "Esplora una categoria",
-  "tutorialStep6Body": "Tocca un paese o una squadra per vedere le sue figurine. Lì puoi segnare quelle che hai già e gestire i duplicati.",
-  "categoryTutorialStep1Title": "Filtra le figurine",
-  "categoryTutorialStep1Body": "Usa questi pulsanti per vedere tutte le figurine, solo quelle mancanti o solo i doppioni.",
-  "categoryTutorialStep2Title": "Cerca una figurina",
-  "categoryTutorialStep2Body": "Digita il nome del paese, il codice o il numero della figurina per trovarla rapidamente.",
-  "categoryTutorialStep3Title": "Tocca per segnare",
-  "categoryTutorialStep3Body": "Toccare una figurina grigia la aggiunge all'album (diventa dorata). Se ce l'hai già e tocchi di nuovo, ti verrà chiesta conferma per rimuoverla.",
-  "categoryTutorialStep4Title": "Tieni premuto per più opzioni",
-  "categoryTutorialStep4Body": "Tenere premuta una figurina permette di gestire quante copie hai di ogni variante (Normal, Gold, Legend…).",
   "tutorialStep6Title": "Esplora una categoria",
   "tutorialStep6Body": "Tocca un paese o una squadra per vedere le sue figurine. Li puoi segnare quelle che hai gia e gestire i duplicati.",
   "categoryTutorialStep1Title": "Filtra le figurine",
@@ -325,7 +258,6 @@
   "drawerLegalNotice": "Note Legali",
   "legalNoticeTitle": "Note Legali",
   "legalNoticeBody": "Questa applicazione è una creazione non ufficiale di fan e non è affiliata, approvata o collegata a qualsiasi organizzazione calcistica ufficiale, produttore di figurine o partner ufficiale del torneo di calcio. Tutti i marchi registrati sono di proprietà dei rispettivi titolari.",
-
   "statsTitle": "Statistiche",
   "statsTotalLabel": "Totale",
   "statsCollectedLabel": "Raccolte",
@@ -340,18 +272,18 @@
   "statsCategoryPickerSearch": "Cerca categoria...",
   "statsCategoryPickerSelected": "{count} selezionate",
   "@statsCategoryPickerSelected": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "statsCategoryPickerAll": "Tutte le categorie",
   "statsCategoryPickerClear": "Cancella",
-
   "statsSortTooltip": "Ordina",
   "statsSortByName": "Categoria",
   "statsSortByProgressDesc": "Maggior progresso prima",
   "statsSortByProgressAsc": "Minor progresso prima",
   "statsSortByMissing": "Più mancanti prima",
   "statsSortByDuplicates": "Più doppioni prima",
-
   "drawerLookup": "Cerca figurina",
   "lookupScreenTitle": "Cerca figurina",
   "lookupTabManual": "Manuale",
@@ -363,18 +295,18 @@
   "lookupStatusCollected": "Ce l'hai già ✓",
   "lookupStatusDuplicates": "{count} doppione/i 🔁",
   "@lookupStatusDuplicates": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "lookupQtyLabel": "Quantità nel tuo inventario",
   "lookupScannerHint": "Centra la figurina per identificarla",
-
   "lookupTutorialStep1Title": "Due modi per cercare",
   "lookupTutorialStep1Body": "Usa la scheda Manuale per inserire il codice della figurina o la scheda Scanner per puntare la fotocamera.",
   "lookupTutorialStep2Title": "Inserisci il codice",
   "lookupTutorialStep2Body": "Digita il codice della figurina come appare nell'album, es. ECU 10 o ARG 5, poi tocca Cerca.",
   "lookupTutorialStep3Title": "Consulta e gestisci",
   "lookupTutorialStep3Body": "Vedrai se la figurina manca o ce l'hai già. Con i pulsanti + e – puoi aggiornare il tuo inventario all'istante.",
-
   "scanBadgeNew": "Nuovo",
   "scanBadgeRepeated": "Duplicato",
   "navAlbum": "Album",

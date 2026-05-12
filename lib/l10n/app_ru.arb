@@ -1,7 +1,7 @@
 {
   "@@locale": "ru",
-  "appTitle": "Альбом 26",
-  "authWelcomeTitle": "Добро пожаловать в Альбом 26",
+  "appTitle": "Sticker Album 2026",
+  "authWelcomeTitle": "Добро пожаловать в Sticker Album 2026",
   "authEmailLabel": "Электронная почта",
   "authPasswordLabel": "Пароль",
   "authLoginButton": "ВОЙТИ",
@@ -21,7 +21,6 @@
       "message": {}
     }
   },
-
   "authErrorInvalidCredentials": "Неверная почта или пароль. Проверьте данные и попробуйте снова.",
   "authErrorEmailNotConfirmed": "Ваша почта ещё не подтверждена. Проверьте папку входящих.",
   "authErrorUserAlreadyRegistered": "Аккаунт с этой электронной почтой уже существует.",
@@ -57,7 +56,7 @@
       "message": {}
     }
   },
-  "homeTitle": "Мой альбом 26",
+  "homeTitle": "Sticker Album 2026",
   "homeProfileTooltip": "Мой профиль",
   "drawerSignIn": "Войти",
   "homeShareAll": "Поделиться полным списком",
@@ -127,12 +126,13 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *СПИСОК ОБМЕНА АЛЬБОМ 26* 🏆",
+  "shareHeader": "⚽ *СПИСОК ОБМЕНА STICKER ALBUM 2026* 🏆",
   "shareMissingSectionTitle": "❌ *ОТСУТСТВУЮЩИЕ:*",
   "shareDuplicatesSectionTitle": "🔁 *ДУБЛИКАТЫ:*",
   "shareNoneMissing": "Ни одной! 😎",
   "shareNoDuplicates": "Нет дубликатов 😅",
   "shareLetsTrade": "Хотите обменяться? 👀🔥",
+  "shareDownloadLink": "📲 Скачать приложение {appName}\nhttps://onelink.to/5adrft?olbm=1",
   "shareSeparator": "--------------------------",
   "forgotPasswordTitle": "Восстановить аккаунт",
   "forgotPasswordDescription": "Введите вашу почту и мы отправим 6-значный код для сброса пароля.",
@@ -153,7 +153,6 @@
   "forgotPasswordSavePasswordButton": "СОХРАНИТЬ ПАРОЛЬ",
   "forgotPasswordPasswordUpdatedSuccess": "Пароль успешно обновлён! 🏆",
   "validationEmailInvalid": "Адрес электронной почты недействителен.",
-
   "paywallTitle": "Наслаждайтесь без рекламы",
   "paywallSubtitle": "Все функции доступны бесплатно. С Pro наслаждайтесь всем без перебоев.",
   "paywallBenefitScanner": "Сканер без межстраничной рекламы",
@@ -181,7 +180,6 @@
   "paywallGuestTitle": "Войдите, чтобы подписаться",
   "paywallGuestBody": "Pro привязан к вашему аккаунту. Войдите или создайте аккаунт, чтобы разблокировать все функции.",
   "paywallGuestSignInButton": "ВОЙТИ",
-
   "scannerDemoRemaining": "Осталось {count} бесплатных сканирований",
   "@scannerDemoRemaining": {
     "placeholders": {
@@ -191,15 +189,12 @@
   "scannerDemoFinishedTitle": "Вы использовали свои 5 бесплатных сканирований",
   "scannerDemoFinishedSubtitle": "Подпишитесь для неограниченного сканирования наклеек и работы без рекламы.",
   "scannerDemoUnlockButton": "Просмотреть планы Pro",
-
   "adDialogTitle": "Бесплатный контент",
   "adDialogBody": "Чтобы продолжить, посмотрите короткую рекламу или подпишитесь на Pro и забудьте о рекламе навсегда.",
   "adDialogWatchAd": "Смотреть рекламу",
   "adDialogGetPro": "Получить Pro",
   "adDialogNotNow": "Не сейчас",
-
   "scannerCameraInitError": "Не удалось инициализировать камеру. Убедитесь, что приложение имеет разрешение на использование камеры.",
-
   "variantSheetTitle": "Вариант альбома",
   "variantSheetInventoryNote": "Ваш инвентарь сохраняется при смене варианта. Наклейки, которые у вас уже есть, остаются зарегистрированными.",
   "variantSheetLoadError": "Ошибка загрузки вариантов: {error}",
@@ -218,44 +213,15 @@
       "name": {}
     }
   },
-
   "profileDeleteAccountButton": "Удалить аккаунт",
   "profileDeleteAccountTitle": "Удалить аккаунт?",
   "profileDeleteAccountMessage": "Это действие необратимо. Все данные будут удалены, и вы не сможете восстановить коллекцию.",
   "profileDeleteAccountConfirmButton": "Удалить навсегда",
   "profileDeleteAccountSuccess": "Ваш аккаунт удалён.",
   "profileDeleteAccountError": "Ошибка при удалении аккаунта. Попробуйте ещё раз.",
-
   "paywallPrivacyPolicy": "Политика конфиденциальности",
   "paywallTermsOfUse": "Условия использования",
   "paywallLegalDisclaimer": "Подписываясь, вы принимаете наши Условия использования и Политику конфиденциальности.",
-
-  "tutorialSkip": "Пропустить",
-  "tutorialTapToContinue": "Нажмите в любом месте, чтобы продолжить",
-  "tutorialStep1Title": "Ваш общий прогресс",
-  "tutorialStep1Body": "Здесь вы видите, сколько наклеек собрали и процент завершения. Продолжайте коллекционировать!",
-  "tutorialStep2Title": "Поиск команд",
-  "tutorialStep2Body": "Введите название страны или команды, чтобы мгновенно отфильтровать список.",
-  "tutorialStep3Title": "Главное меню",
-  "tutorialStep3Body": "Откройте профиль, смените вариант альбома и изучите другие параметры.",
-  "tutorialStep4Title": "Сканирование наклеек",
-  "tutorialStep4Body": "Используйте камеру для сканирования оборотной стороны наклеек и автоматического добавления их в альбом.",
-  "tutorialStep5Title": "Поделиться списком",
-  "tutorialStep5Body": "Экспортируйте список недостающих или дублирующихся наклеек для обмена с друзьями.",
-
-  "tutorialSkip": "Пропустить",
-  "tutorialTapToContinue": "Нажмите в любом месте, чтобы продолжить",
-  "tutorialStep1Title": "Ваш общий прогресс",
-  "tutorialStep1Body": "Здесь видно, сколько наклеек вы собрали. Продолжайте!",
-  "tutorialStep2Title": "Поиск команд",
-  "tutorialStep2Body": "Введите название страны или команды для фильтрации списка.",
-  "tutorialStep3Title": "Главное меню",
-  "tutorialStep3Body": "Откройте профиль и смените вариант альбома.",
-  "tutorialStep4Title": "Сканирование наклеек",
-  "tutorialStep4Body": "Используйте камеру для сканирования и добавления наклеек автоматически.",
-  "tutorialStep5Title": "Поделиться списком",
-  "tutorialStep5Body": "Экспортируйте список недостающих или дублирующихся наклеек для обмена.",
-
   "tutorialSkip": "Пропустить",
   "tutorialTapToContinue": "Нажмите в любом месте, чтобы продолжить",
   "tutorialStep1Title": "Ваш общий прогресс",
@@ -268,29 +234,6 @@
   "tutorialStep4Body": "Используйте камеру для сканирования и добавления наклеек автоматически.",
   "tutorialStep5Title": "Поделиться списком",
   "tutorialStep5Body": "Экспортируйте список недостающих или дублирующихся наклеек для обмена.",
-
-  "tutorialSkip": "Пропустить",
-  "tutorialTapToContinue": "Нажмите в любом месте, чтобы продолжить",
-  "tutorialStep1Title": "Ваш общий прогресс",
-  "tutorialStep1Body": "Здесь видно, сколько наклеек вы собрали. Продолжайте!",
-  "tutorialStep2Title": "Поиск команд",
-  "tutorialStep2Body": "Введите название страны или команды для фильтрации.",
-  "tutorialStep3Title": "Главное меню",
-  "tutorialStep3Body": "Откройте профиль и смените вариант альбома.",
-  "tutorialStep4Title": "Сканирование наклеек",
-  "tutorialStep4Body": "Используйте камеру для сканирования и добавления наклеек автоматически.",
-  "tutorialStep5Title": "Поделиться списком",
-  "tutorialStep5Body": "Экспортируйте список недостающих или дублирующихся наклеек для обмена.",
-
-  "globalTutorialStep1Title": "Фильтр коллекции",
-  "globalTutorialStep1Body": "Используйте эти кнопки, чтобы просматривать все наклейки, только недостающие или только дублирующиеся. Идеально для организации обменов!",
-  "globalTutorialStep2Title": "Поиск наклейки",
-  "globalTutorialStep2Body": "Введите название страны, код или номер наклейки, чтобы быстро её найти.",
-  "globalTutorialStep3Title": "Нажмите, чтобы отметить",
-  "globalTutorialStep3Body": "Одно нажатие на серую наклейку добавляет её в альбом (становится золотой). Если вы уже её имеете и нажмёте снова, будет запрошено подтверждение удаления.",
-  "globalTutorialStep4Title": "Долгое нажатие для доп. опций",
-  "globalTutorialStep4Body": "Удерживайте наклейку, чтобы управлять количеством копий каждого варианта (Normal, Gold, Legend…) и обновлять инвентарь дубликатов.",
-
   "globalTutorialStep1Title": "Фильтр коллекции",
   "globalTutorialStep1Body": "Используйте эти кнопки, чтобы просматривать все наклейки, только недостающие или только дублирующиеся. Идеально для организации обменов!",
   "globalTutorialStep2Title": "Поиск наклейки",
@@ -299,16 +242,6 @@
   "globalTutorialStep3Body": "Одно нажатие на серую наклейку добавляет её в альбом (становится золотой). Повторное нажатие запросит подтверждение удаления.",
   "globalTutorialStep4Title": "Долгое нажатие для доп. опций",
   "globalTutorialStep4Body": "Удерживайте наклейку, чтобы управлять количеством копий каждого варианта (Normal, Gold, Legend...).",
-  "tutorialStep6Title": "Исследуйте категорию",
-  "tutorialStep6Body": "Нажмите на любую страну или команду, чтобы увидеть её наклейки. Там вы можете отмечать уже имеющиеся и управлять дубликатами.",
-  "categoryTutorialStep1Title": "Фильтрация наклеек",
-  "categoryTutorialStep1Body": "Используйте эти кнопки, чтобы увидеть все наклейки, только недостающие или только дубликаты.",
-  "categoryTutorialStep2Title": "Поиск наклейки",
-  "categoryTutorialStep2Body": "Введите название страны, код или номер наклейки, чтобы быстро её найти.",
-  "categoryTutorialStep3Title": "Нажмите для отметки",
-  "categoryTutorialStep3Body": "Нажатие на серую наклейку добавляет её в альбом (становится золотой). Если она уже есть, повторное нажатие попросит подтверждение удаления.",
-  "categoryTutorialStep4Title": "Удерживайте для доп. опций",
-  "categoryTutorialStep4Body": "Удерживание наклейки позволяет управлять количеством копий каждого варианта (Normal, Gold, Legend…).",
   "tutorialStep6Title": "Issleduyte kategoriju",
   "tutorialStep6Body": "Nazhimite na ljubuju stranu ili komandu, chtoby uvidet ee naklejki. Tam vy mozhete otmechat uzhe imejushhiesja i upravljat dublikatami.",
   "categoryTutorialStep1Title": "Filtracija naklejok",
@@ -325,7 +258,6 @@
   "drawerLegalNotice": "Правовое уведомление",
   "legalNoticeTitle": "Правовое уведомление",
   "legalNoticeBody": "Это приложение является неофициальным фанатским проектом и не связано, не поддержано и не аффилировано ни с какой официальной футбольной организацией, производителем наклеек или официальным партнёром футбольного турнира. Все товарные знаки являются собственностью соответствующих владельцев.",
-
   "statsTitle": "Статистика",
   "statsTotalLabel": "Всего",
   "statsCollectedLabel": "Собрано",
@@ -340,18 +272,18 @@
   "statsCategoryPickerSearch": "Поиск категории...",
   "statsCategoryPickerSelected": "{count} выбрано",
   "@statsCategoryPickerSelected": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "statsCategoryPickerAll": "Все категории",
   "statsCategoryPickerClear": "Очистить",
-
   "statsSortTooltip": "Сортировка",
   "statsSortByName": "Категория",
   "statsSortByProgressDesc": "Наибольший прогресс сначала",
   "statsSortByProgressAsc": "Наименьший прогресс сначала",
   "statsSortByMissing": "Больше всего отсутствует сначала",
   "statsSortByDuplicates": "Больше всего дублей сначала",
-
   "drawerLookup": "Поиск наклейки",
   "lookupScreenTitle": "Поиск наклейки",
   "lookupTabManual": "Вручную",
@@ -363,18 +295,18 @@
   "lookupStatusCollected": "Уже есть ✓",
   "lookupStatusDuplicates": "{count} дубликат(а/ов) 🔁",
   "@lookupStatusDuplicates": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "lookupQtyLabel": "Количество в вашем инвентаре",
   "lookupScannerHint": "Поместите наклейку в центр для распознавания",
-
   "lookupTutorialStep1Title": "Два способа поиска",
   "lookupTutorialStep1Body": "Используйте вкладку «Вручную» для ввода кода или «Сканер» для съёмки камерой.",
   "lookupTutorialStep2Title": "Введите код",
   "lookupTutorialStep2Body": "Напечатайте код наклейки как в альбоме, например ECU 10 или ARG 5, затем нажмите Найти.",
   "lookupTutorialStep3Title": "Проверьте и управляйте",
   "lookupTutorialStep3Body": "Вы увидите, есть ли наклейка или её не хватает. Кнопками + и – можно мгновенно обновить инвентарь.",
-
   "scanBadgeNew": "Новая",
   "scanBadgeRepeated": "Дубликат",
   "navAlbum": "Альбом",

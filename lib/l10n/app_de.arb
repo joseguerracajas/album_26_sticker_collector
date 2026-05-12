@@ -1,7 +1,7 @@
 {
   "@@locale": "de",
-  "appTitle": "Album 2026",
-  "authWelcomeTitle": "Willkommen bei Album 2026",
+  "appTitle": "Sticker Album 2026",
+  "authWelcomeTitle": "Willkommen bei Sticker Album 2026",
   "authEmailLabel": "E-Mail",
   "authPasswordLabel": "Passwort",
   "authLoginButton": "ANMELDEN",
@@ -21,7 +21,6 @@
       "message": {}
     }
   },
-
   "authErrorInvalidCredentials": "Falsche E-Mail oder falsches Passwort. Überprüfe deine Daten und versuche es erneut.",
   "authErrorEmailNotConfirmed": "Deine E-Mail wurde noch nicht bestätigt. Überprüfe deinen Posteingang.",
   "authErrorUserAlreadyRegistered": "Es existiert bereits ein Konto mit dieser E-Mail-Adresse.",
@@ -57,7 +56,7 @@
       "message": {}
     }
   },
-  "homeTitle": "Mein Album 2026",
+  "homeTitle": "Sticker Album 2026",
   "homeProfileTooltip": "Mein Profil",
   "drawerSignIn": "Anmelden",
   "homeShareAll": "Vollständige Liste teilen",
@@ -127,12 +126,13 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *TAUSCH-LISTE Album 2026* 🏆",
+  "shareHeader": "⚽ *TAUSCH-LISTE Sticker Album 2026* 🏆",
   "shareMissingSectionTitle": "❌ *FEHLEND:*",
   "shareDuplicatesSectionTitle": "🔁 *DOPPELTE:*",
   "shareNoneMissing": "Keine! 😎",
   "shareNoDuplicates": "Keine Doppelten 😅",
   "shareLetsTrade": "Möchtest du tauschen? 👀🔥",
+  "shareDownloadLink": "📲 {appName}-App herunterladen\nhttps://onelink.to/5adrft?olbm=1",
   "shareSeparator": "--------------------------",
   "forgotPasswordTitle": "Konto wiederherstellen",
   "forgotPasswordDescription": "Gib deine E-Mail ein und wir senden dir einen 6-stelligen Code zum Zurücksetzen deines Passworts.",
@@ -153,7 +153,6 @@
   "forgotPasswordSavePasswordButton": "PASSWORT SPEICHERN",
   "forgotPasswordPasswordUpdatedSuccess": "Passwort erfolgreich aktualisiert! 🏆",
   "validationEmailInvalid": "Die E-Mail-Adresse ist ungültig.",
-
   "paywallTitle": "Ohne Werbung genießen",
   "paywallSubtitle": "Alle Funktionen sind kostenlos verfügbar. Mit Pro genießt du alles ohne Unterbrechungen.",
   "paywallBenefitScanner": "Scanner ohne Interstitial-Anzeigen",
@@ -181,7 +180,6 @@
   "paywallGuestTitle": "Anmelden, um zu abonnieren",
   "paywallGuestBody": "Pro ist mit deinem Konto verknüpft. Melde dich an oder erstelle ein Konto, um alle Funktionen freizuschalten.",
   "paywallGuestSignInButton": "ANMELDEN",
-
   "scannerDemoRemaining": "{count} kostenlose Scans verbleibend",
   "@scannerDemoRemaining": {
     "placeholders": {
@@ -191,15 +189,12 @@
   "scannerDemoFinishedTitle": "Du hast deine 5 kostenlosen Scans verwendet",
   "scannerDemoFinishedSubtitle": "Abonniere, um unbegrenzt Sticker zu scannen und werbefrei zu genießen.",
   "scannerDemoUnlockButton": "Pro-Pläne ansehen",
-
   "adDialogTitle": "Kostenloser Inhalt",
   "adDialogBody": "Um fortzufahren, sieh dir eine kurze Werbung an oder abonniere Pro und vergiss Werbung für immer.",
   "adDialogWatchAd": "Werbung ansehen",
   "adDialogGetPro": "Pro holen",
   "adDialogNotNow": "Nicht jetzt",
-
   "scannerCameraInitError": "Die Kamera konnte nicht initialisiert werden. Stelle sicher, dass die App Kamerazugriff hat.",
-
   "variantSheetTitle": "Album-Variante",
   "variantSheetInventoryNote": "Dein Inventar bleibt beim Variantenwechsel erhalten. Die Sticker, die du bereits hast, bleiben registriert.",
   "variantSheetLoadError": "Fehler beim Laden der Varianten: {error}",
@@ -218,44 +213,15 @@
       "name": {}
     }
   },
-
   "profileDeleteAccountButton": "Konto löschen",
   "profileDeleteAccountTitle": "Konto löschen?",
   "profileDeleteAccountMessage": "Diese Aktion ist dauerhaft. Alle deine Daten werden gelöscht und du kannst deine Sammlung nicht wiederherstellen.",
   "profileDeleteAccountConfirmButton": "Endgültig löschen",
   "profileDeleteAccountSuccess": "Dein Konto wurde gelöscht.",
   "profileDeleteAccountError": "Fehler beim Löschen des Kontos. Bitte versuche es erneut.",
-
   "paywallPrivacyPolicy": "Datenschutzrichtlinie",
   "paywallTermsOfUse": "Nutzungsbedingungen",
   "paywallLegalDisclaimer": "Durch das Abonnieren stimmst du unseren Nutzungsbedingungen und der Datenschutzrichtlinie zu.",
-
-  "tutorialSkip": "Überspringen",
-  "tutorialTapToContinue": "Tippe irgendwo, um fortzufahren",
-  "tutorialStep1Title": "Dein globaler Fortschritt",
-  "tutorialStep1Body": "Hier siehst du, wie viele Sticker du gesammelt hast und deinen Abschlussgrad. Weiter sammeln!",
-  "tutorialStep2Title": "Teams suchen",
-  "tutorialStep2Body": "Tippe einen Land- oder Teamnamen ein, um die Liste sofort zu filtern.",
-  "tutorialStep3Title": "Hauptmenü",
-  "tutorialStep3Body": "Greife auf dein Profil zu, wechsle Album-Varianten und erkunde weitere Optionen.",
-  "tutorialStep4Title": "Sticker scannen",
-  "tutorialStep4Body": "Nutze die Kamera, um die Rückseite deiner physischen Sticker zu scannen und sie automatisch zum Album hinzuzufügen.",
-  "tutorialStep5Title": "Liste teilen",
-  "tutorialStep5Body": "Exportiere deine fehlenden oder doppelten Sticker, um sie mit Freunden zu tauschen.",
-
-  "tutorialSkip": "Überspringen",
-  "tutorialTapToContinue": "Tippe irgendwo, um fortzufahren",
-  "tutorialStep1Title": "Dein globaler Fortschritt",
-  "tutorialStep1Body": "Hier siehst du, wie viele Sticker du gesammelt hast. Weiter sammeln!",
-  "tutorialStep2Title": "Teams suchen",
-  "tutorialStep2Body": "Tippe einen Land- oder Teamnamen ein, um die Liste sofort zu filtern.",
-  "tutorialStep3Title": "Hauptmenü",
-  "tutorialStep3Body": "Greife auf dein Profil zu und wechsle Album-Varianten.",
-  "tutorialStep4Title": "Sticker scannen",
-  "tutorialStep4Body": "Nutze die Kamera, um Sticker zu scannen und automatisch hinzuzufügen.",
-  "tutorialStep5Title": "Liste teilen",
-  "tutorialStep5Body": "Exportiere deine fehlenden oder doppelten Sticker zum Tauschen.",
-
   "tutorialSkip": "Überspringen",
   "tutorialTapToContinue": "Tippe irgendwo, um fortzufahren",
   "tutorialStep1Title": "Dein globaler Fortschritt",
@@ -268,29 +234,6 @@
   "tutorialStep4Body": "Nutze die Kamera, um Sticker zu scannen und automatisch hinzuzufügen.",
   "tutorialStep5Title": "Liste teilen",
   "tutorialStep5Body": "Exportiere deine fehlenden oder doppelten Sticker zum Tauschen.",
-
-  "tutorialSkip": "Überspringen",
-  "tutorialTapToContinue": "Tippe irgendwo, um fortzufahren",
-  "tutorialStep1Title": "Dein globaler Fortschritt",
-  "tutorialStep1Body": "Hier siehst du, wie viele Sticker du gesammelt hast. Weiter sammeln!",
-  "tutorialStep2Title": "Teams suchen",
-  "tutorialStep2Body": "Tippe einen Land- oder Teamnamen ein, um die Liste zu filtern.",
-  "tutorialStep3Title": "Hauptmenü",
-  "tutorialStep3Body": "Greife auf dein Profil zu und wechsle Album-Varianten.",
-  "tutorialStep4Title": "Sticker scannen",
-  "tutorialStep4Body": "Nutze die Kamera, um Sticker zu scannen und automatisch hinzuzufügen.",
-  "tutorialStep5Title": "Liste teilen",
-  "tutorialStep5Body": "Exportiere deine fehlenden oder doppelten Sticker zum Tauschen.",
-
-  "globalTutorialStep1Title": "Sammlung filtern",
-  "globalTutorialStep1Body": "Nutze diese Schaltflächen, um alle Sticker, nur die fehlenden oder nur die doppelten anzuzeigen. Ideal zum Organisieren von Tauschangeboten!",
-  "globalTutorialStep2Title": "Sticker suchen",
-  "globalTutorialStep2Body": "Tippe den Ländernamen, den Code oder die Stickernummer ein, um ihn schnell zu finden.",
-  "globalTutorialStep3Title": "Tippen zum Markieren",
-  "globalTutorialStep3Body": "Ein Tippen auf einen grauen Sticker fügt ihn zu deinem Album hinzu (wird golden). Wenn du ihn erneut antippst, wirst du um Bestätigung gebeten, ihn zu entfernen.",
-  "globalTutorialStep4Title": "Lang drücken für mehr Optionen",
-  "globalTutorialStep4Body": "Halte einen Sticker gedrückt, um zu verwalten, wie viele Exemplare du von jeder Variante (Normal, Gold, Legend…) hast und dein Duplikat-Inventar zu aktualisieren.",
-
   "globalTutorialStep1Title": "Sammlung filtern",
   "globalTutorialStep1Body": "Nutze diese Schaltflächen, um alle Sticker, nur die fehlenden oder nur die doppelten anzuzeigen. Ideal zum Organisieren von Tauschangeboten!",
   "globalTutorialStep2Title": "Sticker suchen",
@@ -299,16 +242,6 @@
   "globalTutorialStep3Body": "Ein Tippen auf einen grauen Sticker fügt ihn zu deinem Album hinzu (wird golden). Wenn du ihn erneut antippst, wirst du um Bestätigung gebeten, ihn zu entfernen.",
   "globalTutorialStep4Title": "Lang drücken für mehr Optionen",
   "globalTutorialStep4Body": "Halte einen Sticker gedrückt, um zu verwalten, wie viele Exemplare du von jeder Variante (Normal, Gold, Legend...) hast.",
-  "tutorialStep6Title": "Kategorie erkunden",
-  "tutorialStep6Body": "Tippe auf ein Land oder Team, um seine Sticker zu sehen. Dort kannst du vorhandene markieren und doppelte Sticker verwalten.",
-  "categoryTutorialStep1Title": "Sticker filtern",
-  "categoryTutorialStep1Body": "Nutze diese Schaltflächen, um alle Sticker, nur fehlende oder nur doppelte Sticker zu sehen.",
-  "categoryTutorialStep2Title": "Sticker suchen",
-  "categoryTutorialStep2Body": "Tippe den Ländernamen, Code oder die Stickernummer ein, um ihn schnell zu finden.",
-  "categoryTutorialStep3Title": "Antippen zum Markieren",
-  "categoryTutorialStep3Body": "Ein Tipp auf einen grauen Sticker fügt ihn deinem Album hinzu (wird gold). Wenn du ihn bereits hast und erneut tippst, wirst du gefragt, ob du ihn entfernen möchtest.",
-  "categoryTutorialStep4Title": "Lang drücken für weitere Optionen",
-  "categoryTutorialStep4Body": "Langes Drücken erlaubt dir, die Anzahl der Exemplare jeder Variante (Normal, Gold, Legend…) zu verwalten.",
   "tutorialStep6Title": "Kategorie erkunden",
   "tutorialStep6Body": "Tippe auf ein Land oder Team, um seine Sticker zu sehen. Dort kannst du vorhandene markieren und doppelte Sticker verwalten.",
   "categoryTutorialStep1Title": "Sticker filtern",
@@ -325,7 +258,6 @@
   "drawerLegalNotice": "Rechtlicher Hinweis",
   "legalNoticeTitle": "Rechtlicher Hinweis",
   "legalNoticeBody": "Diese Anwendung ist eine inoffizielle Fan-Erstellung und steht in keiner Verbindung zu einer offiziellen Fußballorganisation, einem Stickerhersteller oder einem offiziellen Partner des Fußballturniers, wird von diesen nicht unterstützt oder genehmigt. Alle Markenzeichen sind Eigentum der jeweiligen Inhaber.",
-
   "statsTitle": "Statistiken",
   "statsTotalLabel": "Gesamt",
   "statsCollectedLabel": "Gesammelt",
@@ -340,18 +272,18 @@
   "statsCategoryPickerSearch": "Kategorie suchen...",
   "statsCategoryPickerSelected": "{count} ausgewählt",
   "@statsCategoryPickerSelected": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "statsCategoryPickerAll": "Alle Kategorien",
   "statsCategoryPickerClear": "Löschen",
-
   "statsSortTooltip": "Sortieren",
   "statsSortByName": "Kategorie",
   "statsSortByProgressDesc": "Meisten Fortschritt zuerst",
   "statsSortByProgressAsc": "Wenigsten Fortschritt zuerst",
   "statsSortByMissing": "Meisten Fehlenden zuerst",
   "statsSortByDuplicates": "Meisten Duplikate zuerst",
-
   "drawerLookup": "Sticker abfragen",
   "lookupScreenTitle": "Sticker abfragen",
   "lookupTabManual": "Manuell",
@@ -363,18 +295,18 @@
   "lookupStatusCollected": "Hast du ✓",
   "lookupStatusDuplicates": "{count} Duplikat(e) 🔁",
   "@lookupStatusDuplicates": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "lookupQtyLabel": "Menge in deinem Inventar",
   "lookupScannerHint": "Sticker zentrieren, um ihn zu erkennen",
-
   "lookupTutorialStep1Title": "Zwei Suchmethoden",
   "lookupTutorialStep1Body": "Nutze den Tab \"Manuell\" zum Eingeben des Sticker-Codes oder den Tab \"Scanner\" zum direkten Scannen.",
   "lookupTutorialStep2Title": "Code eingeben",
   "lookupTutorialStep2Body": "Gib den Sticker-Code ein, wie er im Album erscheint, z.B. ECU 10 oder ARG 5, und tippe auf Suchen.",
   "lookupTutorialStep3Title": "Prüfen und verwalten",
   "lookupTutorialStep3Body": "Du siehst ob der Sticker fehlt oder schon vorhanden ist. Mit + und – kannst du dein Inventar sofort aktualisieren.",
-
   "scanBadgeNew": "Neu",
   "scanBadgeRepeated": "Doppelt",
   "navAlbum": "Album",

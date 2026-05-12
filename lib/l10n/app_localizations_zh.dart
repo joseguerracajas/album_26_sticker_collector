@@ -9,10 +9,10 @@ class AppLocalizationsZh extends AppLocalizations {
   AppLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
-  String get appTitle => '球星贴纸册 26';
+  String get appTitle => 'Sticker Album 2026';
 
   @override
-  String get authWelcomeTitle => '欢迎来到球星贴纸册 26';
+  String get authWelcomeTitle => '欢迎来到 Sticker Album 2026';
 
   @override
   String get authEmailLabel => '电子邮件';
@@ -151,7 +151,7 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get homeTitle => '我的贴纸册 26';
+  String get homeTitle => 'Sticker Album 2026';
 
   @override
   String get homeProfileTooltip => '我的个人资料';
@@ -264,7 +264,7 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get shareHeader => '⚽ *球星贴纸册 26 交换列表* 🏆';
+  String get shareHeader => '⚽ *Sticker Album 2026 交换列表* 🏆';
 
   @override
   String get shareMissingSectionTitle => '❌ *缺少的：*';
@@ -280,6 +280,11 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get shareLetsTrade => '想要交换吗？👀🔥';
+
+  @override
+  String shareDownloadLink(String appName) {
+    return '📲 下载 $appName 应用\nhttps://onelink.to/5adrft?olbm=1';
+  }
 
   @override
   String get shareSeparator => '--------------------------';

@@ -131,13 +131,13 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In es, this message translates to:
-  /// **'Álbum 26'**
+  /// **'Sticker Album 2026'**
   String get appTitle;
 
   /// No description provided for @authWelcomeTitle.
   ///
   /// In es, this message translates to:
-  /// **'Bienvenido a Álbum 26'**
+  /// **'Bienvenido a Sticker Album 2026'**
   String get authWelcomeTitle;
 
   /// No description provided for @authEmailLabel.
@@ -407,7 +407,7 @@ abstract class AppLocalizations {
   /// No description provided for @homeTitle.
   ///
   /// In es, this message translates to:
-  /// **'Mi Álbum 26'**
+  /// **'Sticker Album 2026'**
   String get homeTitle;
 
   /// No description provided for @homeProfileTooltip.
@@ -605,7 +605,7 @@ abstract class AppLocalizations {
   /// No description provided for @shareHeader.
   ///
   /// In es, this message translates to:
-  /// **'⚽ *INTERCAMBIO ÁLBUM 26* 🏆'**
+  /// **'⚽ *INTERCAMBIO STICKER ALBUM 2026* 🏆'**
   String get shareHeader;
 
   /// No description provided for @shareMissingSectionTitle.
@@ -637,6 +637,12 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'¿Cambiamos? 👀🔥'**
   String get shareLetsTrade;
+
+  /// No description provided for @shareDownloadLink.
+  ///
+  /// In es, this message translates to:
+  /// **'📲 Descargar la app de {appName}\nhttps://onelink.to/5adrft?olbm=1'**
+  String shareDownloadLink(String appName);
 
   /// No description provided for @shareSeparator.
   ///

@@ -9,10 +9,10 @@ class AppLocalizationsKo extends AppLocalizations {
   AppLocalizationsKo([String locale = 'ko']) : super(locale);
 
   @override
-  String get appTitle => '앨범 26';
+  String get appTitle => 'Sticker Album 2026';
 
   @override
-  String get authWelcomeTitle => '앨범 26에 오신 것을 환영합니다';
+  String get authWelcomeTitle => 'Sticker Album 2026에 오신 것을 환영합니다';
 
   @override
   String get authEmailLabel => '이메일';
@@ -154,7 +154,7 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get homeTitle => '내 앨범 26';
+  String get homeTitle => 'Sticker Album 2026';
 
   @override
   String get homeProfileTooltip => '내 프로필';
@@ -267,7 +267,7 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get shareHeader => '⚽ *앨범 26 교환 목록* 🏆';
+  String get shareHeader => '⚽ *Sticker Album 2026 교환 목록* 🏆';
 
   @override
   String get shareMissingSectionTitle => '❌ *없는 것:*';
@@ -283,6 +283,11 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get shareLetsTrade => '교환하실래요? 👀🔥';
+
+  @override
+  String shareDownloadLink(String appName) {
+    return '📲 $appName 앱 다운로드\nhttps://onelink.to/5adrft?olbm=1';
+  }
 
   @override
   String get shareSeparator => '--------------------------';

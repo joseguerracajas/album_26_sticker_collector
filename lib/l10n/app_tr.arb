@@ -1,7 +1,7 @@
 {
   "@@locale": "tr",
-  "appTitle": "Albüm 26",
-  "authWelcomeTitle": "Albüm 26'ya Hoş Geldiniz",
+  "appTitle": "Sticker Album 2026",
+  "authWelcomeTitle": "Sticker Album 2026'ya Hoş Geldiniz",
   "authEmailLabel": "E-posta",
   "authPasswordLabel": "Şifre",
   "authLoginButton": "GİRİŞ YAP",
@@ -21,7 +21,6 @@
       "message": {}
     }
   },
-
   "authErrorInvalidCredentials": "Yanlış e-posta veya şifre. Bilgilerini kontrol edip tekrar dene.",
   "authErrorEmailNotConfirmed": "E-postanız henüz onaylanmamış. Gelen kutunuzu kontrol edin.",
   "authErrorUserAlreadyRegistered": "Bu e-posta ile zaten bir hesap mevcut.",
@@ -57,7 +56,7 @@
       "message": {}
     }
   },
-  "homeTitle": "Albümüm 26",
+  "homeTitle": "Sticker Album 2026",
   "homeProfileTooltip": "Profilim",
   "drawerSignIn": "Giriş Yap",
   "homeShareAll": "Tam Listeyi Paylaş",
@@ -127,12 +126,13 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *ALBÜM 26 TAKAS LİSTESİ* 🏆",
+  "shareHeader": "⚽ *STICKER ALBUM 2026 TAKAS LİSTESİ* 🏆",
   "shareMissingSectionTitle": "❌ *EKSİKLER:*",
   "shareDuplicatesSectionTitle": "🔁 *KOPYALAR:*",
   "shareNoneMissing": "Yok! 😎",
   "shareNoDuplicates": "Kopya yok 😅",
   "shareLetsTrade": "Takas yapmak ister misin? 👀🔥",
+  "shareDownloadLink": "📲 {appName} uygulamasını indir\nhttps://onelink.to/5adrft?olbm=1",
   "shareSeparator": "--------------------------",
   "forgotPasswordTitle": "Hesabı Kurtar",
   "forgotPasswordDescription": "E-posta adresinizi girin, şifrenizi sıfırlamak için 6 haneli bir kod gönderelim.",
@@ -153,7 +153,6 @@
   "forgotPasswordSavePasswordButton": "ŞİFREYİ KAYDET",
   "forgotPasswordPasswordUpdatedSuccess": "Şifre başarıyla güncellendi! 🏆",
   "validationEmailInvalid": "E-posta adresi geçerli değil.",
-
   "paywallTitle": "Reklamsız Keyfini Çıkar",
   "paywallSubtitle": "Tüm özellikler ücretsiz. Pro ile her şeyi kesintisiz kullanırsınız.",
   "paywallBenefitScanner": "Geçiş reklamları olmadan tarayıcı",
@@ -181,7 +180,6 @@
   "paywallGuestTitle": "Abone olmak için giriş yapın",
   "paywallGuestBody": "Pro hesabınıza bağlıdır. Tüm özelliklerin kilidini açmak için giriş yapın veya hesap oluşturun.",
   "paywallGuestSignInButton": "GİRİŞ YAP",
-
   "scannerDemoRemaining": "{count} ücretsiz tarama kaldı",
   "@scannerDemoRemaining": {
     "placeholders": {
@@ -191,15 +189,12 @@
   "scannerDemoFinishedTitle": "5 ücretsiz taramanızı kullandınız",
   "scannerDemoFinishedSubtitle": "Sınırsız sticker taramak ve reklamsız deneyim için abone olun.",
   "scannerDemoUnlockButton": "Pro Planlarını Görüntüle",
-
   "adDialogTitle": "Ücretsiz içerik",
   "adDialogBody": "Devam etmek için kısa bir reklam izleyin veya Pro'ya abone olun ve reklamları sonsuza dek unutun.",
   "adDialogWatchAd": "Reklam izle",
   "adDialogGetPro": "Pro Al",
   "adDialogNotNow": "Şimdi değil",
-
   "scannerCameraInitError": "Kamera başlatılamadı. Uygulamanın kamera iznine sahip olduğundan emin olun.",
-
   "variantSheetTitle": "Albüm varyantı",
   "variantSheetInventoryNote": "Varyant değiştirdiğinizde envanteriniz korunur. Zaten sahip olduğunuz çıkartmalar kayıtlı kalır.",
   "variantSheetLoadError": "Varyantlar yüklenirken hata: {error}",
@@ -218,44 +213,15 @@
       "name": {}
     }
   },
-
   "profileDeleteAccountButton": "Hesabı sil",
   "profileDeleteAccountTitle": "Hesabınızı silmek istiyor musunuz?",
   "profileDeleteAccountMessage": "Bu işlem kalıcıdır. Tüm verileriniz silinecek ve koleksiyonunuzu kurtaramazsınız.",
   "profileDeleteAccountConfirmButton": "Kalıcı olarak sil",
   "profileDeleteAccountSuccess": "Hesabınız silindi.",
   "profileDeleteAccountError": "Hesap silinirken hata oluştu. Tekrar deneyin.",
-
   "paywallPrivacyPolicy": "Gizlilik Politikası",
   "paywallTermsOfUse": "Kullanım Koşulları",
   "paywallLegalDisclaimer": "Abone olarak Kullanım Koşullarını ve Gizlilik Politikasını kabul etmiş olursunuz.",
-
-  "tutorialSkip": "Atla",
-  "tutorialTapToContinue": "Devam etmek için herhangi bir yere dokun",
-  "tutorialStep1Title": "Genel ilerlemeniz",
-  "tutorialStep1Body": "Buradan kaç çıkartma topladığınızı ve tamamlama yüzdenizi görebilirsiniz. Toplamaya devam edin!",
-  "tutorialStep2Title": "Takım ara",
-  "tutorialStep2Body": "Listeyi anında filtrelemek için bir ülke veya takım adı yazın.",
-  "tutorialStep3Title": "Ana menü",
-  "tutorialStep3Body": "Profilinize erişin, albüm varyantını değiştirin ve daha fazla seçeneği keşfedin.",
-  "tutorialStep4Title": "Çıkartma tara",
-  "tutorialStep4Body": "Fiziksel çıkartmalarınızın arkasını taramak ve otomatik olarak eklemek için kamerayı kullanın.",
-  "tutorialStep5Title": "Listeyi paylaş",
-  "tutorialStep5Body": "Arkadaşlarınızla takas yapmak için eksik veya fazla çıkartma listenizi dışa aktarın.",
-
-  "tutorialSkip": "Atla",
-  "tutorialTapToContinue": "Devam etmek için herhangi bir yere dokun",
-  "tutorialStep1Title": "Genel ilerlemeniz",
-  "tutorialStep1Body": "Kac cikartma topladığınızı burada görebilirsiniz. Toplamaya devam edin!",
-  "tutorialStep2Title": "Takim ara",
-  "tutorialStep2Body": "Listeyi filtrelemek için bir ülke veya takim adi yazin.",
-  "tutorialStep3Title": "Ana menu",
-  "tutorialStep3Body": "Profilinize erisin ve albüm varyantini degistirin.",
-  "tutorialStep4Title": "Cikartma tara",
-  "tutorialStep4Body": "Cikartmalari taramak ve otomatik eklemek için kamerayi kullanin.",
-  "tutorialStep5Title": "Listeyi paylas",
-  "tutorialStep5Body": "Eksik veya fazla cikartma listenizi takas icin disa aktarin.",
-
   "tutorialSkip": "Atla",
   "tutorialTapToContinue": "Devam etmek için herhangi bir yere dokun",
   "tutorialStep1Title": "Genel ilerlemeniz",
@@ -268,29 +234,6 @@
   "tutorialStep4Body": "Cikartmalari taramak ve otomatik eklemek için kamerayi kullanin.",
   "tutorialStep5Title": "Listeyi paylas",
   "tutorialStep5Body": "Eksik veya fazla cikartma listenizi takas icin disa aktarin.",
-
-  "tutorialSkip": "Atla",
-  "tutorialTapToContinue": "Devam etmek için herhangi bir yere dokun",
-  "tutorialStep1Title": "Genel ilerlemeniz",
-  "tutorialStep1Body": "Kac cikartma topladıgınızı burada görebilirsiniz. Devam edin!",
-  "tutorialStep2Title": "Takim ara",
-  "tutorialStep2Body": "Listeyi filtrelemek için bir ülke veya takim adi yazin.",
-  "tutorialStep3Title": "Ana menu",
-  "tutorialStep3Body": "Profilinize erisin ve albüm varyantini degistirin.",
-  "tutorialStep4Title": "Cikartma tara",
-  "tutorialStep4Body": "Cikartmalari taramak ve otomatik eklemek için kamerayi kullanin.",
-  "tutorialStep5Title": "Listeyi paylas",
-  "tutorialStep5Body": "Eksik veya fazla cikartma listenizi takas icin disa aktarin.",
-
-  "globalTutorialStep1Title": "Koleksiyonu filtrele",
-  "globalTutorialStep1Body": "Tüm cikartmalarini, yalnizca eksikleri veya yalnizca fazlalari görmek için bu düğmeleri kullan. Takas düzenlemek için mükemmel!",
-  "globalTutorialStep2Title": "Cikartma ara",
-  "globalTutorialStep2Body": "Ülke adini, kodu veya cikartma numarasini yaz ve hizla bul.",
-  "globalTutorialStep3Title": "Isaretlemek için dokun",
-  "globalTutorialStep3Body": "Gri bir cikartmaya bir dokunma onu albüme ekler (altinlasir). Zaten varsa ve tekrar dokunursan kaldirma onay istenir.",
-  "globalTutorialStep4Title": "Daha fazla secenek için uzun bas",
-  "globalTutorialStep4Body": "Her varyanttan (Normal, Gold, Legend...) kac kopya oldugunu yönetmek ve fazla envanterini güncellemek için bir cikartmaya uzun bas.",
-
   "globalTutorialStep1Title": "Koleksiyonu filtrele",
   "globalTutorialStep1Body": "Tüm cikartmalarini, yalnizca eksikleri veya yalnizca fazlalari görmek için bu düğmeleri kullan. Takas düzenlemek için mükemmel!",
   "globalTutorialStep2Title": "Cikartma ara",
@@ -299,16 +242,6 @@
   "globalTutorialStep3Body": "Gri bir cikartmaya bir dokunma onu albüme ekler (altinlasir). Tekrar dokunursan kaldirma onay istenir.",
   "globalTutorialStep4Title": "Daha fazla secenek için uzun bas",
   "globalTutorialStep4Body": "Her varyanttan (Normal, Gold, Legend...) kac kopya oldugunu yönetmek için bir cikartmaya uzun bas.",
-  "tutorialStep6Title": "Kategori keşfet",
-  "tutorialStep6Body": "Çıkartmalarını görmek için herhangi bir ülke veya takıma dokun. Orada sahip olduklarını işaretleyebilir ve fazlalıklarını yönetebilirsin.",
-  "categoryTutorialStep1Title": "Çıkartmaları filtrele",
-  "categoryTutorialStep1Body": "Tüm çıkartmaları, yalnızca eksikleri veya yalnızca fazlalıkları görmek için bu düğmeleri kullan.",
-  "categoryTutorialStep2Title": "Çıkartma ara",
-  "categoryTutorialStep2Body": "Hızlıca bulmak için ülke adını, kodu veya çıkartma numarasını yaz.",
-  "categoryTutorialStep3Title": "İşaretlemek için dokun",
-  "categoryTutorialStep3Body": "Gri bir çıkartmaya dokunmak onu albüme ekler (altın olur). Zaten varsa ve tekrar dokunursan, kaldırmayı onaylaman istenecek.",
-  "categoryTutorialStep4Title": "Daha fazla seçenek için uzun bas",
-  "categoryTutorialStep4Body": "Bir çıkartmayı uzun basarak her varyantın (Normal, Gold, Legend…) kaç kopyasına sahip olduğunu yönetebilirsin.",
   "tutorialStep6Title": "Kategori kesf et",
   "tutorialStep6Body": "Cikartmalarini gormek icin herhangi bir ulke veya takima dokun. Orada sahip olduklarini isaretleyebilir ve fazlaligini yonetebilirsin.",
   "categoryTutorialStep1Title": "Cikartmalari filtrele",
@@ -325,7 +258,6 @@
   "drawerLegalNotice": "Yasal Bildirim",
   "legalNoticeTitle": "Yasal Bildirim",
   "legalNoticeBody": "Bu uygulama resmi olmayan bir hayran yapıtıdır ve herhangi bir resmi futbol organizasyonu, çıkartma üreticisi veya futbol turnuvasının resmi ortağıyla bağlantılı, onaylı veya ilişkilendirilmiş değildir. Tüm ticari markalar ilgili sahiplerinin mülkiyetindedir.",
-
   "statsTitle": "İstatistikler",
   "statsTotalLabel": "Toplam",
   "statsCollectedLabel": "Toplanmış",
@@ -340,18 +272,18 @@
   "statsCategoryPickerSearch": "Kategori ara...",
   "statsCategoryPickerSelected": "{count} seçildi",
   "@statsCategoryPickerSelected": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "statsCategoryPickerAll": "Tüm kategoriler",
   "statsCategoryPickerClear": "Temizle",
-
   "statsSortTooltip": "Sırala",
   "statsSortByName": "Kategori",
   "statsSortByProgressDesc": "En fazla ilerleme önce",
   "statsSortByProgressAsc": "En az ilerleme önce",
   "statsSortByMissing": "En fazla eksik önce",
   "statsSortByDuplicates": "En fazla tekrar önce",
-
   "drawerLookup": "Çıkartma sorgula",
   "lookupScreenTitle": "Çıkartma sorgula",
   "lookupTabManual": "Manuel",
@@ -363,18 +295,18 @@
   "lookupStatusCollected": "Zaten var ✓",
   "lookupStatusDuplicates": "{count} yinelenen 🔁",
   "@lookupStatusDuplicates": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "lookupQtyLabel": "Envanterinizdeki miktar",
   "lookupScannerHint": "Tanımlamak için çıkartmayı ortala",
-
   "lookupTutorialStep1Title": "İki arama yöntemi",
   "lookupTutorialStep1Body": "Kodu girmek için Manuel sekmesini veya kamerayı kullanmak için Tarayıcı sekmesini kullanın.",
   "lookupTutorialStep2Title": "Kodu girin",
   "lookupTutorialStep2Body": "Albumde göründüğü gibi kodu girin, ör. ECU 10 veya ARG 5, ardından Ara'ya dokunun.",
   "lookupTutorialStep3Title": "Kontrol et ve yönet",
   "lookupTutorialStep3Body": "Çıkartmanın eksik mi yoksa mevcut mu olduğunu göreceksiniz. + ve – düğmeleriyle envanterinizi anında güncelleyebilirsiniz.",
-
   "scanBadgeNew": "Yeni",
   "scanBadgeRepeated": "Tekrar",
   "navAlbum": "Albüm",

@@ -1,7 +1,7 @@
 {
   "@@locale": "pl",
-  "appTitle": "Album 2026",
-  "authWelcomeTitle": "Witaj w Albumie 26",
+  "appTitle": "Sticker Album 2026",
+  "authWelcomeTitle": "Witaj w Sticker Album 2026",
   "authEmailLabel": "E-mail",
   "authPasswordLabel": "Hasło",
   "authLoginButton": "ZALOGUJ SIĘ",
@@ -21,7 +21,6 @@
       "message": {}
     }
   },
-
   "authErrorInvalidCredentials": "Nieprawidłowy adres e-mail lub hasło. Sprawdź dane i spróbuj ponownie.",
   "authErrorEmailNotConfirmed": "Twój adres e-mail nie został jeszcze potwierdzony. Sprawdź skrzynkę odbiorczą.",
   "authErrorUserAlreadyRegistered": "Konto z tym adresem e-mail już istnieje.",
@@ -57,8 +56,10 @@
       "message": {}
     }
   },
-  "homeTitle": "Mój Album 2026",
-  "homeProfileTooltip": "Mój profil",  "drawerSignIn": "Zaloguj się",  "homeShareAll": "Udostępnij pełną listę",
+  "homeTitle": "Sticker Album 2026",
+  "homeProfileTooltip": "Mój profil",
+  "drawerSignIn": "Zaloguj się",
+  "homeShareAll": "Udostępnij pełną listę",
   "homeShareMissingOnly": "Tylko brakujące",
   "homeShareDuplicatesOnly": "Tylko duplikaty",
   "homeGlobalProgressTitle": "Ogólny postęp",
@@ -125,12 +126,13 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *LISTA WYMIAN Album 2026* 🏆",
+  "shareHeader": "⚽ *LISTA WYMIAN Sticker Album 2026* 🏆",
   "shareMissingSectionTitle": "❌ *BRAKUJĄCE:*",
   "shareDuplicatesSectionTitle": "🔁 *DUPLIKATY:*",
   "shareNoneMissing": "Żadnych! 😎",
   "shareNoDuplicates": "Brak duplikatów 😅",
   "shareLetsTrade": "Chcesz się wymienić? 👀🔥",
+  "shareDownloadLink": "📲 Pobierz aplikację {appName}\nhttps://onelink.to/5adrft?olbm=1",
   "shareSeparator": "--------------------------",
   "forgotPasswordTitle": "Odzyskaj konto",
   "forgotPasswordDescription": "Podaj swój adres e-mail, a wyślemy Ci 6-cyfrowy kod do zresetowania hasła.",
@@ -151,7 +153,6 @@
   "forgotPasswordSavePasswordButton": "ZAPISZ HASŁO",
   "forgotPasswordPasswordUpdatedSuccess": "Hasło zostało pomyślnie zaktualizowane! 🏆",
   "validationEmailInvalid": "Adres e-mail jest nieprawidłowy.",
-
   "paywallTitle": "Ciesz się bez reklam",
   "paywallSubtitle": "Wszystkie funkcje są dostępne bezpłatnie. Z Pro ciesz się wszystkim bez przerw.",
   "paywallBenefitScanner": "Skaner bez reklam pełnoekranowych",
@@ -179,7 +180,6 @@
   "paywallGuestTitle": "Zaloguj się, aby subskrybować",
   "paywallGuestBody": "Pro jest powiązany z Twoim kontem. Zaloguj się lub utwórz konto, aby odblokować wszystkie funkcje.",
   "paywallGuestSignInButton": "ZALOGUJ SIĘ",
-
   "scannerDemoRemaining": "Pozostało {count} darmowych skanowań",
   "@scannerDemoRemaining": {
     "placeholders": {
@@ -189,15 +189,12 @@
   "scannerDemoFinishedTitle": "Wykorzystałeś swoje 5 darmowych skanowań",
   "scannerDemoFinishedSubtitle": "Subskrybuj, aby skanować nieograniczoną liczbę naklejek i cieszyć się doświadczeniem bez reklam.",
   "scannerDemoUnlockButton": "Zobacz plany Pro",
-
   "adDialogTitle": "Darmowe treści",
   "adDialogBody": "Aby kontynuować, obejrzyj krótką reklamę lub subskrybuj Pro i zapomnij o reklamach na zawsze.",
   "adDialogWatchAd": "Obejrzyj reklamę",
   "adDialogGetPro": "Zdobądź Pro",
   "adDialogNotNow": "Nie teraz",
-
   "scannerCameraInitError": "Nie można zainicjować kamery. Upewnij się, że aplikacja ma uprawnienia do kamery.",
-
   "variantSheetTitle": "Wariant albumu",
   "variantSheetInventoryNote": "Twój ekwipunek jest zachowywany podczas zmiany wariantu. Naklejki, które już masz, pozostają zarejestrowane.",
   "variantSheetLoadError": "Błąd podczas ładowania wariantów: {error}",
@@ -216,31 +213,15 @@
       "name": {}
     }
   },
-
   "profileDeleteAccountButton": "Usuń konto",
   "profileDeleteAccountTitle": "Usunąć swoje konto?",
   "profileDeleteAccountMessage": "Ta czynność jest trwała. Wszystkie dane zostaną usunięte i nie będziesz mógł odzyskać swojej kolekcji.",
   "profileDeleteAccountConfirmButton": "Usuń na stałe",
   "profileDeleteAccountSuccess": "Twoje konto zostało usunięte.",
   "profileDeleteAccountError": "Błąd podczas usuwania konta. Spróbuj ponownie.",
-
   "paywallPrivacyPolicy": "Polityka prywatności",
   "paywallTermsOfUse": "Warunki użytkowania",
   "paywallLegalDisclaimer": "Subskrybując, akceptujesz nasze Warunki użytkowania i Politykę prywatności.",
-
-  "tutorialSkip": "Pomiń",
-  "tutorialTapToContinue": "Dotknij gdziekolwiek, aby kontynuować",
-  "tutorialStep1Title": "Twój globalny postęp",
-  "tutorialStep1Body": "Tutaj widzisz, ile naklejek zebrałeś i swój procent ukończenia. Kolekcjonuj dalej!",
-  "tutorialStep2Title": "Szukaj drużyn",
-  "tutorialStep2Body": "Wpisz nazwę kraju lub drużyny, aby natychmiast przefiltrować listę.",
-  "tutorialStep3Title": "Główne menu",
-  "tutorialStep3Body": "Przejdź do swojego profilu, zmień wariant albumu i odkryj więcej opcji.",
-  "tutorialStep4Title": "Skanuj naklejki",
-  "tutorialStep4Body": "Użyj kamery, aby zeskanować tył swoich fizycznych naklejek i automatycznie je dodać.",
-  "tutorialStep5Title": "Udostępnij listę",
-  "tutorialStep5Body": "Eksportuj listę brakujących lub zduplikowanych naklejek, aby wymieniać się z przyjaciółmi.",
-
   "tutorialSkip": "Pomiń",
   "tutorialTapToContinue": "Dotknij gdziekolwiek, aby kontynuować",
   "tutorialStep1Title": "Twój globalny postep",
@@ -253,42 +234,6 @@
   "tutorialStep4Body": "Uzyj kamery, aby skanowac naklejki i automatycznie je dodawac.",
   "tutorialStep5Title": "Udostepnij liste",
   "tutorialStep5Body": "Eksportuj liste brakujacych lub zduplikowanych naklejek do wymiany.",
-
-  "tutorialSkip": "Pomiń",
-  "tutorialTapToContinue": "Dotknij gdziekolwiek, aby kontynuować",
-  "tutorialStep1Title": "Twój globalny postep",
-  "tutorialStep1Body": "Tutaj widzisz, ile naklejek zebrales. Kolekcjonuj dalej!",
-  "tutorialStep2Title": "Szukaj druzyn",
-  "tutorialStep2Body": "Wpisz nazwe kraju lub druzyny, aby filtrowac liste.",
-  "tutorialStep3Title": "Glowne menu",
-  "tutorialStep3Body": "Przejdz do profilu i zmien wariant albumu.",
-  "tutorialStep4Title": "Skanuj naklejki",
-  "tutorialStep4Body": "Uzyj kamery, aby skanowac naklejki i automatycznie je dodawac.",
-  "tutorialStep5Title": "Udostepnij liste",
-  "tutorialStep5Body": "Eksportuj liste brakujacych lub zduplikowanych naklejek do wymiany.",
-
-  "tutorialSkip": "Pomiń",
-  "tutorialTapToContinue": "Dotknij gdziekolwiek, aby kontynuować",
-  "tutorialStep1Title": "Twój globalny postep",
-  "tutorialStep1Body": "Tutaj widzisz, ile naklejek zebrales. Kolekcjonuj dalej!",
-  "tutorialStep2Title": "Szukaj druzyn",
-  "tutorialStep2Body": "Wpisz nazwe kraju lub druzyny, aby filtrowac liste.",
-  "tutorialStep3Title": "Glowne menu",
-  "tutorialStep3Body": "Przejdz do profilu i zmien wariant albumu.",
-  "tutorialStep4Title": "Skanuj naklejki",
-  "tutorialStep4Body": "Uzyj kamery, aby skanowac naklejki i automatycznie je dodawac.",
-  "tutorialStep5Title": "Udostepnij liste",
-  "tutorialStep5Body": "Eksportuj liste brakujacych lub zduplikowanych naklejek do wymiany.",
-
-  "globalTutorialStep1Title": "Filtruj kolekcje",
-  "globalTutorialStep1Body": "Uzyj tych przyciskow, aby zobaczyc wszystkie naklejki, tylko brakujace lub tylko powtarzajace sie. Idealne do organizowania wymian!",
-  "globalTutorialStep2Title": "Szukaj naklejki",
-  "globalTutorialStep2Body": "Wpisz nazwe kraju, kod lub numer naklejki, aby szybko ja znalezc.",
-  "globalTutorialStep3Title": "Dotknij, aby oznaczyc",
-  "globalTutorialStep3Body": "Jedno dotknięcie szarej naklejki dodaje ja do albumu (staje sie zlota). Jesli juz ja masz i dotkniesz ponownie, zostaniesz poproszona o potwierdzenie usuniecia.",
-  "globalTutorialStep4Title": "Przytrzymaj dla wiekszych opcji",
-  "globalTutorialStep4Body": "Przytrzymaj naklejke, aby zarzadzac liczba kopii kazdego wariantu (Normal, Gold, Legend...) i aktualizowac swoj ekwipunek duplikatow.",
-
   "globalTutorialStep1Title": "Filtruj kolekcje",
   "globalTutorialStep1Body": "Uzyj tych przyciskow, aby zobaczyc wszystkie naklejki, tylko brakujace lub tylko powtarzajace sie. Idealne do organizowania wymian!",
   "globalTutorialStep2Title": "Szukaj naklejki",
@@ -297,16 +242,6 @@
   "globalTutorialStep3Body": "Jedno dotknięcie szarej naklejki dodaje ja do albumu (staje sie zlota). Jesli dotkniesz ponownie, zostaniesz poproszon o potwierdzenie usuniecia.",
   "globalTutorialStep4Title": "Przytrzymaj dla wiekszych opcji",
   "globalTutorialStep4Body": "Przytrzymaj naklejke, aby zarzadzac liczba kopii kazdego wariantu (Normal, Gold, Legend...).",
-  "tutorialStep6Title": "Przeglądaj kategorię",
-  "tutorialStep6Body": "Dotknij dowolnego kraju lub drużyny, aby zobaczyć jego naklejki. Tam możesz oznaczać te, które już masz i zarządzać duplikatami.",
-  "categoryTutorialStep1Title": "Filtruj naklejki",
-  "categoryTutorialStep1Body": "Użyj tych przycisków, aby zobaczyć wszystkie naklejki, tylko brakujące lub tylko duplikaty.",
-  "categoryTutorialStep2Title": "Szukaj naklejki",
-  "categoryTutorialStep2Body": "Wpisz nazwę kraju, kod lub numer naklejki, aby szybko ją znaleźć.",
-  "categoryTutorialStep3Title": "Dotknij, aby oznaczyć",
-  "categoryTutorialStep3Body": "Dotknięcie szarej naklejki dodaje ją do albumu (staje się złota). Jeśli już ją masz i dotkniesz ponownie, zostaniesz poproszony o potwierdzenie usunięcia.",
-  "categoryTutorialStep4Title": "Przytrzymaj, aby zobaczyć więcej opcji",
-  "categoryTutorialStep4Body": "Przytrzymanie naklejki pozwala zarządzać liczbą kopii każdego wariantu (Normal, Gold, Legend…).",
   "tutorialStep6Title": "Przegladaj kategorie",
   "tutorialStep6Body": "Dotknij dowolnego kraju lub druzyny, aby zobaczyc jego naklejki. Tam mozesz oznaczac te, ktore juz masz i zarzadzac duplikatami.",
   "categoryTutorialStep1Title": "Filtruj naklejki",
@@ -323,7 +258,6 @@
   "drawerLegalNotice": "Informacja Prawna",
   "legalNoticeTitle": "Informacja Prawna",
   "legalNoticeBody": "Ta aplikacja jest nieoficjalną twórczością fanów i nie jest powiązana, popierana ani połączona z żadną oficjalną organizacją piłkarską, producentem naklejek ani oficjalnym partnerem turnieju piłkarskiego. Wszystkie znaki towarowe są własnością ich odpowiednich właścicieli.",
-
   "statsTitle": "Statystyki",
   "statsTotalLabel": "Łącznie",
   "statsCollectedLabel": "Zebrane",
@@ -338,18 +272,18 @@
   "statsCategoryPickerSearch": "Szukaj kategorii...",
   "statsCategoryPickerSelected": "{count} wybranych",
   "@statsCategoryPickerSelected": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "statsCategoryPickerAll": "Wszystkie kategorie",
   "statsCategoryPickerClear": "Wyczyść",
-
   "statsSortTooltip": "Sortuj",
   "statsSortByName": "Kategoria",
   "statsSortByProgressDesc": "Największy postęp najpierw",
   "statsSortByProgressAsc": "Najmniejszy postęp najpierw",
   "statsSortByMissing": "Najwięcej brakujących najpierw",
   "statsSortByDuplicates": "Najwięcej duplikatów najpierw",
-
   "drawerLookup": "Wyszukaj naklejkę",
   "lookupScreenTitle": "Wyszukaj naklejkę",
   "lookupTabManual": "Ręcznie",
@@ -361,18 +295,18 @@
   "lookupStatusCollected": "Masz już ✓",
   "lookupStatusDuplicates": "{count} duplikat(y) 🔁",
   "@lookupStatusDuplicates": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "lookupQtyLabel": "Ilość w twoim ekwipunku",
   "lookupScannerHint": "Wyśrodkuj naklejkę, aby ją zidentyfikować",
-
   "lookupTutorialStep1Title": "Dwa sposoby wyszukiwania",
   "lookupTutorialStep1Body": "Użyj karty Ręcznie, aby wpisać kod naklejki, lub karty Skaner, aby użyć aparatu.",
   "lookupTutorialStep2Title": "Wpisz kod",
   "lookupTutorialStep2Body": "Wpisz kod naklejki tak, jak pojawia się w albumie, np. ECU 10 lub ARG 5, a następnie naciśnij Szukaj.",
   "lookupTutorialStep3Title": "Sprawdzaj i zarządzaj",
   "lookupTutorialStep3Body": "Zobaczysz, czy naklejka jest brakująca czy już masz. Przyciskami + i – możesz natychmiast zaktualizować swój ekwipunek.",
-
   "scanBadgeNew": "Nowa",
   "scanBadgeRepeated": "Duplikat",
   "navAlbum": "Album",

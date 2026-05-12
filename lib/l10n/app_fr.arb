@@ -1,7 +1,7 @@
 {
   "@@locale": "fr",
-  "appTitle": "Album 2026",
-  "authWelcomeTitle": "Bienvenue sur Album 2026",
+  "appTitle": "Sticker Album 2026",
+  "authWelcomeTitle": "Bienvenue sur Sticker Album 2026",
   "authEmailLabel": "E-mail",
   "authPasswordLabel": "Mot de passe",
   "authLoginButton": "SE CONNECTER",
@@ -21,7 +21,6 @@
       "message": {}
     }
   },
-
   "authErrorInvalidCredentials": "E-mail ou mot de passe incorrect. Vérifiez vos informations et réessayez.",
   "authErrorEmailNotConfirmed": "Votre e-mail n'a pas encore été confirmé. Vérifiez votre boîte de réception.",
   "authErrorUserAlreadyRegistered": "Un compte avec cet e-mail existe déjà.",
@@ -57,7 +56,7 @@
       "message": {}
     }
   },
-  "homeTitle": "Mon Album 2026",
+  "homeTitle": "Sticker Album 2026",
   "homeProfileTooltip": "Mon Profil",
   "drawerSignIn": "Se connecter",
   "homeShareAll": "Partager la liste complète",
@@ -127,12 +126,13 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *LISTE D'ÉCHANGE Album 2026* 🏆",
+  "shareHeader": "⚽ *LISTE D'ÉCHANGE Sticker Album 2026* 🏆",
   "shareMissingSectionTitle": "❌ *MANQUANTS :*",
   "shareDuplicatesSectionTitle": "🔁 *DOUBLONS :*",
   "shareNoneMissing": "Aucun ! 😎",
   "shareNoDuplicates": "Aucun doublon 😅",
   "shareLetsTrade": "Vous voulez échanger ? 👀🔥",
+  "shareDownloadLink": "📲 Télécharger l'app {appName}\nhttps://onelink.to/5adrft?olbm=1",
   "shareSeparator": "--------------------------",
   "forgotPasswordTitle": "Récupérer le compte",
   "forgotPasswordDescription": "Entrez votre e-mail et nous vous enverrons un code à 6 chiffres pour réinitialiser votre mot de passe.",
@@ -153,7 +153,6 @@
   "forgotPasswordSavePasswordButton": "ENREGISTRER LE MOT DE PASSE",
   "forgotPasswordPasswordUpdatedSuccess": "Mot de passe mis à jour avec succès ! 🏆",
   "validationEmailInvalid": "L'adresse e-mail n'est pas valide.",
-
   "paywallTitle": "Profitez sans publicité",
   "paywallSubtitle": "Toutes les fonctionnalités sont disponibles gratuitement. Avec Pro, profitez de tout sans interruptions.",
   "paywallBenefitScanner": "Scanner sans publicités interstitielles",
@@ -181,7 +180,6 @@
   "paywallGuestTitle": "Connectez-vous pour vous abonner",
   "paywallGuestBody": "Pro est lié à votre compte. Connectez-vous ou créez un compte pour débloquer toutes les fonctionnalités.",
   "paywallGuestSignInButton": "SE CONNECTER",
-
   "scannerDemoRemaining": "{count} scans gratuits restants",
   "@scannerDemoRemaining": {
     "placeholders": {
@@ -191,15 +189,12 @@
   "scannerDemoFinishedTitle": "Vous avez utilisé vos 5 scans gratuits",
   "scannerDemoFinishedSubtitle": "Abonnez-vous pour scanner des stickers illimités et profiter d'une expérience sans publicité.",
   "scannerDemoUnlockButton": "Voir les plans Pro",
-
   "adDialogTitle": "Contenu gratuit",
   "adDialogBody": "Pour continuer, regardez une courte publicité ou abonnez-vous à Pro et oubliez les publicités pour toujours.",
   "adDialogWatchAd": "Regarder la pub",
   "adDialogGetPro": "Obtenir Pro",
   "adDialogNotNow": "Pas maintenant",
-
   "scannerCameraInitError": "Impossible d'initialiser la caméra. Assurez-vous que l'application a la permission d'accéder à la caméra.",
-
   "variantSheetTitle": "Variante de l'album",
   "variantSheetInventoryNote": "Votre inventaire est conservé lorsque vous changez de variante. Les autocollants que vous avez déjà restent enregistrés.",
   "variantSheetLoadError": "Erreur lors du chargement des variantes : {error}",
@@ -218,31 +213,15 @@
       "name": {}
     }
   },
-
   "profileDeleteAccountButton": "Supprimer le compte",
   "profileDeleteAccountTitle": "Supprimer votre compte ?",
   "profileDeleteAccountMessage": "Cette action est permanente. Toutes vos données seront supprimées et vous ne pourrez pas récupérer votre collection.",
   "profileDeleteAccountConfirmButton": "Supprimer définitivement",
   "profileDeleteAccountSuccess": "Votre compte a été supprimé.",
   "profileDeleteAccountError": "Erreur lors de la suppression du compte. Réessayez.",
-
   "paywallPrivacyPolicy": "Politique de confidentialité",
   "paywallTermsOfUse": "Conditions d'utilisation",
   "paywallLegalDisclaimer": "En vous abonnant, vous acceptez nos Conditions d'utilisation et notre Politique de confidentialité.",
-
-  "tutorialSkip": "Passer",
-  "tutorialTapToContinue": "Appuie n'importe où pour continuer",
-  "tutorialStep1Title": "Ta progression globale",
-  "tutorialStep1Body": "Ici tu vois combien de stickers tu as collectés et ton pourcentage de complétion. Continue !",
-  "tutorialStep2Title": "Rechercher des équipes",
-  "tutorialStep2Body": "Tape un nom de pays ou d'équipe pour filtrer la liste instantanément.",
-  "tutorialStep3Title": "Menu principal",
-  "tutorialStep3Body": "Accède à ton profil, change la variante de l'album et explore plus d'options.",
-  "tutorialStep4Title": "Scanner des stickers",
-  "tutorialStep4Body": "Utilise la caméra pour scanner le dos de tes stickers physiques et les ajouter automatiquement.",
-  "tutorialStep5Title": "Partager ta liste",
-  "tutorialStep5Body": "Exporte ta liste de stickers manquants ou en double pour échanger avec des amis.",
-
   "tutorialSkip": "Passer",
   "tutorialTapToContinue": "Appuie n'importe où pour continuer",
   "tutorialStep1Title": "Ta progression globale",
@@ -255,42 +234,6 @@
   "tutorialStep4Body": "Utilise la caméra pour scanner et ajouter des stickers automatiquement.",
   "tutorialStep5Title": "Partager ta liste",
   "tutorialStep5Body": "Exporte ta liste de stickers manquants ou en double pour échanger.",
-
-  "tutorialSkip": "Passer",
-  "tutorialTapToContinue": "Appuie n'importe où pour continuer",
-  "tutorialStep1Title": "Ta progression globale",
-  "tutorialStep1Body": "Ici tu vois combien de stickers tu as collectés. Continue !",
-  "tutorialStep2Title": "Rechercher des équipes",
-  "tutorialStep2Body": "Tape un nom de pays ou d'équipe pour filtrer la liste.",
-  "tutorialStep3Title": "Menu principal",
-  "tutorialStep3Body": "Accède à ton profil et change la variante de l'album.",
-  "tutorialStep4Title": "Scanner des stickers",
-  "tutorialStep4Body": "Utilise la caméra pour scanner et ajouter des stickers automatiquement.",
-  "tutorialStep5Title": "Partager ta liste",
-  "tutorialStep5Body": "Exporte ta liste de stickers manquants ou en double pour échanger.",
-
-  "tutorialSkip": "Passer",
-  "tutorialTapToContinue": "Appuie n'importe où pour continuer",
-  "tutorialStep1Title": "Ta progression globale",
-  "tutorialStep1Body": "Ici tu vois combien de stickers tu as collectés. Continue !",
-  "tutorialStep2Title": "Rechercher des équipes",
-  "tutorialStep2Body": "Tape un nom de pays ou d'équipe pour filtrer la liste.",
-  "tutorialStep3Title": "Menu principal",
-  "tutorialStep3Body": "Accède à ton profil et change la variante de l'album.",
-  "tutorialStep4Title": "Scanner des stickers",
-  "tutorialStep4Body": "Utilise la caméra pour scanner et ajouter des stickers automatiquement.",
-  "tutorialStep5Title": "Partager ta liste",
-  "tutorialStep5Body": "Exporte ta liste de stickers manquants ou en double pour échanger.",
-
-  "globalTutorialStep1Title": "Filtrer ta collection",
-  "globalTutorialStep1Body": "Utilise ces boutons pour voir tous tes stickers, seulement les manquants ou seulement les doublons. Parfait pour organiser tes échanges !",
-  "globalTutorialStep2Title": "Rechercher un sticker",
-  "globalTutorialStep2Body": "Tape le nom du pays, le code ou le numéro du sticker pour le trouver rapidement.",
-  "globalTutorialStep3Title": "Toucher pour marquer",
-  "globalTutorialStep3Body": "Un simple toucher sur un sticker gris l'ajoute à ton album (il devient doré). Si tu l'as déjà et le retouches, une confirmation te sera demandée pour le retirer.",
-  "globalTutorialStep4Title": "Appui long pour plus d'options",
-  "globalTutorialStep4Body": "Maintiens un sticker appuyé pour gérer combien d'exemplaires tu possèdes de chaque variante (Normal, Gold, Legend…) et mettre à jour ton inventaire de doublons.",
-
   "globalTutorialStep1Title": "Filtrer ta collection",
   "globalTutorialStep1Body": "Utilise ces boutons pour voir tous tes stickers, seulement les manquants ou seulement les doublons. Parfait pour organiser tes échanges !",
   "globalTutorialStep2Title": "Rechercher un sticker",
@@ -299,16 +242,6 @@
   "globalTutorialStep3Body": "Un simple toucher sur un sticker gris l'ajoute à ton album (il devient doré). Si tu le retouches, une confirmation te sera demandée pour le retirer.",
   "globalTutorialStep4Title": "Appui long pour plus d'options",
   "globalTutorialStep4Body": "Maintiens un sticker appuyé pour gérer combien d'exemplaires tu possèdes de chaque variante (Normal, Gold, Legend...).",
-  "tutorialStep6Title": "Explorer une catégorie",
-  "tutorialStep6Body": "Appuyez sur un pays ou une équipe pour voir ses stickers. Vous pourrez y marquer ceux que vous avez et gérer vos doubles.",
-  "categoryTutorialStep1Title": "Filtrer les stickers",
-  "categoryTutorialStep1Body": "Utilisez ces boutons pour voir tous les stickers, uniquement ceux qu'il vous manque ou uniquement les doubles.",
-  "categoryTutorialStep2Title": "Rechercher un sticker",
-  "categoryTutorialStep2Body": "Tapez le nom du pays, le code ou le numéro du sticker pour le trouver rapidement.",
-  "categoryTutorialStep3Title": "Appuyer pour marquer",
-  "categoryTutorialStep3Body": "Appuyer sur un sticker gris l'ajoute à votre album (devient doré). Si vous l'avez déjà et appuyez à nouveau, il vous sera demandé de confirmer la suppression.",
-  "categoryTutorialStep4Title": "Appui long pour plus d'options",
-  "categoryTutorialStep4Body": "Un appui long vous permet de gérer le nombre d'exemplaires de chaque variante (Normal, Gold, Legend…).",
   "tutorialStep6Title": "Explorer une categorie",
   "tutorialStep6Body": "Appuyez sur un pays ou une equipe pour voir ses stickers. Vous pourrez y marquer ceux que vous avez et gerer vos doubles.",
   "categoryTutorialStep1Title": "Filtrer les stickers",
@@ -325,7 +258,6 @@
   "drawerLegalNotice": "Mentions Légales",
   "legalNoticeTitle": "Mentions Légales",
   "legalNoticeBody": "Cette application est une création non officielle de fans et n'est pas affiliée, approuvée ou connectée à toute organisation officielle de football, fabricant de vignettes ou partenaire officiel du tournoi de football. Toutes les marques déposées sont la propriété de leurs propriétaires respectifs.",
-
   "statsTitle": "Statistiques",
   "statsTotalLabel": "Total",
   "statsCollectedLabel": "Collectées",
@@ -340,18 +272,18 @@
   "statsCategoryPickerSearch": "Rechercher une catégorie...",
   "statsCategoryPickerSelected": "{count} sélectionnées",
   "@statsCategoryPickerSelected": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "statsCategoryPickerAll": "Toutes les catégories",
   "statsCategoryPickerClear": "Effacer",
-
   "statsSortTooltip": "Trier",
   "statsSortByName": "Catégorie",
   "statsSortByProgressDesc": "Plus avancée d’abord",
   "statsSortByProgressAsc": "Moins avancée d’abord",
   "statsSortByMissing": "Plus manquantes d’abord",
   "statsSortByDuplicates": "Plus de doublons d'abord",
-
   "drawerLookup": "Consulter un sticker",
   "lookupScreenTitle": "Consulter un sticker",
   "lookupTabManual": "Manuel",
@@ -363,18 +295,18 @@
   "lookupStatusCollected": "Déjà en ta possession ✓",
   "lookupStatusDuplicates": "{count} doublon(s) 🔁",
   "@lookupStatusDuplicates": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "lookupQtyLabel": "Quantité dans ton inventaire",
   "lookupScannerHint": "Centre le sticker pour l'identifier",
-
   "lookupTutorialStep1Title": "Deux façons de chercher",
   "lookupTutorialStep1Body": "Utilise l'onglet Manuel pour saisir le code du sticker ou l'onglet Scanner pour pointer la caméra directement.",
   "lookupTutorialStep2Title": "Saisis le code",
   "lookupTutorialStep2Body": "Tape le code du sticker tel qu'il apparaît dans l'album, par ex. ECU 10 ou ARG 5, puis appuie sur Rechercher.",
   "lookupTutorialStep3Title": "Consulte et gère",
   "lookupTutorialStep3Body": "Tu verras si le sticker manque ou est déjà collecté. Avec les boutons + et – tu peux mettre à jour ton inventaire instantanément.",
-
   "scanBadgeNew": "Nouveau",
   "scanBadgeRepeated": "Doublon",
   "navAlbum": "Album",

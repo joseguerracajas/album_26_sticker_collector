@@ -1,7 +1,7 @@
 {
   "@@locale": "es",
-  "appTitle": "Álbum 26",
-  "authWelcomeTitle": "Bienvenido a Álbum 26",
+  "appTitle": "Sticker Album 2026",
+  "authWelcomeTitle": "Bienvenido a Sticker Album 2026",
   "authEmailLabel": "Correo electrónico",
   "authPasswordLabel": "Contraseña",
   "authLoginButton": "INICIAR SESIÓN",
@@ -21,7 +21,6 @@
       "message": {}
     }
   },
-
   "authErrorInvalidCredentials": "Correo o contraseña incorrectos. Verifica tus datos e intenta de nuevo.",
   "authErrorEmailNotConfirmed": "Tu correo aún no ha sido confirmado. Revisa tu bandeja de entrada.",
   "authErrorUserAlreadyRegistered": "Ya existe una cuenta con ese correo electrónico.",
@@ -57,7 +56,7 @@
       "message": {}
     }
   },
-  "homeTitle": "Mi Álbum 26",
+  "homeTitle": "Sticker Album 2026",
   "homeProfileTooltip": "Mi Perfil",
   "drawerSignIn": "Iniciar Sesión",
   "homeShareAll": "Compartir Todo",
@@ -127,12 +126,20 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *INTERCAMBIO ÁLBUM 26* 🏆",
+  "shareHeader": "⚽ *INTERCAMBIO STICKER ALBUM 2026* 🏆",
   "shareMissingSectionTitle": "❌ *ME FALTAN:*",
   "shareDuplicatesSectionTitle": "🔁 *REPETIDAS:*",
   "shareNoneMissing": "¡Ninguno! 😎",
   "shareNoDuplicates": "Sin repetidas 😅",
   "shareLetsTrade": "¿Cambiamos? 👀🔥",
+  "shareDownloadLink": "📲 Descargar la app de {appName}\nhttps://onelink.to/5adrft?olbm=1",
+  "@shareDownloadLink": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
   "shareSeparator": "--------------------------",
   "forgotPasswordTitle": "Recuperar Cuenta",
   "forgotPasswordDescription": "Ingresa tu correo electrónico y te enviaremos un código de 6 dígitos para restablecer tu contraseña.",
@@ -153,7 +160,6 @@
   "forgotPasswordSavePasswordButton": "GUARDAR CONTRASEÑA",
   "forgotPasswordPasswordUpdatedSuccess": "¡Contraseña actualizada con éxito! 🏆",
   "validationEmailInvalid": "El correo electrónico no es válido.",
-
   "paywallTitle": "Disfruta sin publicidad",
   "paywallSubtitle": "Todas las funciones están disponibles gratis. Con Pro disfrutas de todo sin interrupciones.",
   "paywallBenefitScanner": "Escáner sin anuncios intermedios",
@@ -183,7 +189,6 @@
   "paywallGuestTitle": "Inicia sesión para suscribirte",
   "paywallGuestBody": "Pro está vinculado a tu cuenta. Inicia sesión o crea una cuenta para desbloquear todas las funciones.",
   "paywallGuestSignInButton": "INICIAR SESIÓN",
-
   "scannerDemoRemaining": "{count} escaneos gratis restantes",
   "@scannerDemoRemaining": {
     "placeholders": {
@@ -193,15 +198,12 @@
   "scannerDemoFinishedTitle": "Has usado tus 5 escaneos gratis",
   "scannerDemoFinishedSubtitle": "Suscríbete para escanear stickers ilimitados y disfrutar sin publicidad.",
   "scannerDemoUnlockButton": "Ver planes Pro",
-
   "adDialogTitle": "Contenido gratuito",
   "adDialogBody": "Para continuar, ve un breve anuncio o suscríbete a Pro y olvídate de la publicidad para siempre.",
   "adDialogWatchAd": "Ver anuncio",
   "adDialogGetPro": "Obtener Pro",
   "adDialogNotNow": "Ahora no",
-
   "scannerCameraInitError": "No se pudo inicializar la cámara. Verifica que la app tenga permiso de acceso a la cámara.",
-
   "variantSheetTitle": "Variante del álbum",
   "variantSheetInventoryNote": "Tu inventario se conserva al cambiar de variante. Los stickers que ya tienes siguen registrados.",
   "variantSheetLoadError": "Error cargando variantes: {error}",
@@ -220,18 +222,15 @@
       "name": {}
     }
   },
-
   "profileDeleteAccountButton": "Eliminar cuenta",
   "profileDeleteAccountTitle": "¿Eliminar tu cuenta?",
   "profileDeleteAccountMessage": "Esta acción es permanente. Se borrarán todos tus datos y no podrás recuperar tu colección.",
   "profileDeleteAccountConfirmButton": "Eliminar definitivamente",
   "profileDeleteAccountSuccess": "Tu cuenta ha sido eliminada.",
   "profileDeleteAccountError": "Error al eliminar la cuenta. Inténtalo de nuevo.",
-
   "paywallPrivacyPolicy": "Política de Privacidad",
   "paywallTermsOfUse": "Términos de Uso",
   "paywallLegalDisclaimer": "Al suscribirte aceptas nuestros Términos de Uso y Política de Privacidad.",
-
   "tutorialSkip": "Saltar",
   "tutorialTapToContinue": "Toca en cualquier lugar para continuar",
   "tutorialStep1Title": "Tu progreso global",
@@ -244,7 +243,6 @@
   "tutorialStep4Body": "Usa la cámara para escanear el dorso de tus stickers físicos y añadirlos automáticamente a tu álbum.",
   "tutorialStep5Title": "Comparte tu lista",
   "tutorialStep5Body": "Exporta tu lista de faltantes o repetidas para intercambiar stickers con amigos.",
-
   "globalTutorialStep1Title": "Filtra tu colección",
   "globalTutorialStep1Body": "Usa estos botones para ver todos tus stickers, solo los que te faltan o solo los repetidos. ¡Ideal para organizar intercambios!",
   "globalTutorialStep2Title": "Busca un sticker",
@@ -253,16 +251,6 @@
   "globalTutorialStep3Body": "Un toque sobre un sticker gris lo añade a tu álbum (se pone dorado). Si ya lo tienes y lo tocas de nuevo, te pedirá confirmación para quitarlo.",
   "globalTutorialStep4Title": "Mantén pulsado para más opciones",
   "globalTutorialStep4Body": "Si mantienes pulsado un sticker puedes gestionar cuántas copias tienes de cada variante (Normal, Gold, Legend…) y actualizar tu inventario de repetidas.",
-  "tutorialStep6Title": "Explora una categoría",
-  "tutorialStep6Body": "Toca cualquier país o equipo para ver sus stickers. Allí podrás marcar los que ya tienes y gestionar tus repetidos.",
-  "categoryTutorialStep1Title": "Filtra los stickers",
-  "categoryTutorialStep1Body": "Usa estos botones para ver todos los stickers de esta categoría, solo los que te faltan o solo los repetidos.",
-  "categoryTutorialStep2Title": "Busca un sticker",
-  "categoryTutorialStep2Body": "Escribe el nombre del país, el código o el número del sticker para encontrarlo rápidamente.",
-  "categoryTutorialStep3Title": "Toca para marcar",
-  "categoryTutorialStep3Body": "Un toque sobre un sticker gris lo añade a tu álbum (se pone dorado). Si ya lo tienes y lo tocas de nuevo, te pedirá confirmación para quitarlo.",
-  "categoryTutorialStep4Title": "Manten pulsado para mas opciones",
-  "categoryTutorialStep4Body": "Si mantienes pulsado un sticker puedes gestionar cuántas copias tienes de cada variante (Normal, Gold, Legend…) y actualizar tu inventario de repetidas.",
   "tutorialStep6Title": "Explora una categoria",
   "tutorialStep6Body": "Toca cualquier pais o equipo para ver sus stickers. Alli podras marcar los que ya tienes y gestionar tus repetidos.",
   "categoryTutorialStep1Title": "Filtra los stickers",
@@ -279,7 +267,6 @@
   "drawerLegalNotice": "Aviso Legal",
   "legalNoticeTitle": "Aviso Legal",
   "legalNoticeBody": "Esta aplicación es una creación de fans no oficial y no está afiliada, respaldada ni conectada con cualquier organización oficial de fútbol o fabricante de stickers o cualquier socio oficial del torneo de fútbol. Todas las marcas registradas son propiedad de sus respectivos dueños.",
-
   "statsTitle": "Estadísticas",
   "statsTotalLabel": "Total",
   "statsCollectedLabel": "Recolectados",
@@ -294,18 +281,18 @@
   "statsCategoryPickerSearch": "Buscar categoría...",
   "statsCategoryPickerSelected": "{count} seleccionadas",
   "@statsCategoryPickerSelected": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "statsCategoryPickerAll": "Todas las categorías",
   "statsCategoryPickerClear": "Limpiar",
-
   "statsSortTooltip": "Ordenar",
   "statsSortByName": "Categoría",
   "statsSortByProgressDesc": "Mayor progreso primero",
   "statsSortByProgressAsc": "Menor progreso primero",
   "statsSortByMissing": "Más faltantes primero",
   "statsSortByDuplicates": "Más repetidos primero",
-
   "tradeHubTitle": "Intercambio de stickers",
   "tradeHubMyCode": "Mi código de intercambio",
   "tradeHubCodeCopied": "Código copiado al portapapeles",
@@ -346,13 +333,17 @@
   "tradeFindPartnerFound": "¡Usuario encontrado!",
   "tradeFindPartnerCode": "Código: {code}",
   "@tradeFindPartnerCode": {
-    "placeholders": { "code": {} }
+    "placeholders": {
+      "code": {}
+    }
   },
   "tradeFindSendBtn": "Enviar solicitud de intercambio",
   "tradeFindSending": "Enviando…",
   "tradeFindRequestSent": "¡Solicitud enviada a {name}! Espera su respuesta.",
   "@tradeFindRequestSent": {
-    "placeholders": { "name": {} }
+    "placeholders": {
+      "name": {}
+    }
   },
   "tradeNegTitle": "Negociación",
   "tradeNegMyOfferTab": "Mi oferta",
@@ -362,13 +353,17 @@
   "tradeNegAutoHint": "Modo automático: se muestran tus repetidos. Cambia a Manual para personalizar.",
   "tradeNegSelectedCount": "{count} sticker(s) seleccionado(s)",
   "@tradeNegSelectedCount": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "tradeNegNoStickers": "No tienes stickers para ofrecer.",
   "tradeNegPartnerWaiting": "El otro coleccionista aún no ha seleccionado sus stickers.",
   "tradeNegOfferLabel": "Ofrecerás {count} sticker(s)",
   "@tradeNegOfferLabel": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "tradeNegConfirmBtn": "Confirmar mi oferta",
   "tradeNegSaving": "Guardando…",
@@ -380,20 +375,29 @@
   "tradeNegQtyPickerTitle": "¿Cuántos ofrecer?",
   "tradeNegQtyPickerHint": "Tienes {total} copias. Máx. a ofrecer: {max}.",
   "@tradeNegQtyPickerHint": {
-    "placeholders": { "total": {}, "max": {} }
+    "placeholders": {
+      "total": {},
+      "max": {}
+    }
   },
   "tradeNegOfferedQtyBadge": "Ofreciendo {qty}",
   "@tradeNegOfferedQtyBadge": {
-    "placeholders": { "qty": {} }
+    "placeholders": {
+      "qty": {}
+    }
   },
   "tradeNegPartnerOfferUpdated": "El otro coleccionista actualizó su oferta de stickers.",
   "tradeNegTotalItems": "{count} sticker(s) en total",
   "@tradeNegTotalItems": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "tradeNegReceivingCount": "{count} sticker(s) que vas a recibir",
   "@tradeNegReceivingCount": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "tradeDeliveryTitle": "Confirmar recepción",
   "tradeDeliveryInstruction": "Marca los stickers que recibiste físicamente",
@@ -402,20 +406,32 @@
   "tradeDeliveryNotReceived": "No recibido",
   "tradeDeliveryAllReceived": "Recibiste todos los stickers ({received}/{total})",
   "@tradeDeliveryAllReceived": {
-    "placeholders": { "received": {}, "total": {} }
+    "placeholders": {
+      "received": {},
+      "total": {}
+    }
   },
   "tradeDeliveryPartial": "{received} de {total} marcados · {pending} volverán al otro coleccionista.",
   "@tradeDeliveryPartial": {
-    "placeholders": { "received": {}, "total": {}, "pending": {} }
+    "placeholders": {
+      "received": {},
+      "total": {},
+      "pending": {}
+    }
   },
   "tradeDeliveryConfirmTitle": "Confirmar recepción",
   "tradeDeliveryConfirmMsg": "Se añadirán {received} sticker(s) a tu álbum.\n{pending} sticker(s) desmarcados volverán al otro coleccionista.",
   "@tradeDeliveryConfirmMsg": {
-    "placeholders": { "received": {}, "pending": {} }
+    "placeholders": {
+      "received": {},
+      "pending": {}
+    }
   },
   "tradeDeliverySuccess": "¡{count} sticker(s) añadidos a tu álbum! 🏆",
   "@tradeDeliverySuccess": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "tradeHistoryTitle": "Historial de intercambios",
   "tradeHistoryEmpty": "Sin intercambios todavía",
@@ -428,11 +444,15 @@
   "tradeHistoryReceivedLabel": "Recibiste",
   "tradeHistoryDelivered": "{count} entregado(s)",
   "@tradeHistoryDelivered": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "tradeHistoryStickerCount": "{count} sticker(s)",
   "@tradeHistoryStickerCount": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "tradeDrawerTitle": "Intercambiar stickers",
   "tradeDrawerActiveBadge": "ACTIVO",
@@ -443,10 +463,8 @@
   "tradeErrorCodeLength": "El código debe tener exactamente 6 dígitos.",
   "tradeErrorActiveExists": "Ya tienes un intercambio activo. Completa o cancela el actual primero.",
   "tradeErrorNoConnection": "Esta función requiere conexión a internet.",
-
   "tradeRejectBtn": "Rechazar solicitud",
   "tradeDrawerRequestBadge": "SOLICITUD",
-
   "drawerPhysicalExchange": "Intercambio",
   "physicalExchangeScreenTitle": "Intercambio Físico",
   "drawerLookup": "Buscar",
@@ -461,7 +479,9 @@
   "lookupStatusCollected": "Ya lo tienes ✓",
   "lookupStatusDuplicates": "{count} repetido(s) 🔁",
   "@lookupStatusDuplicates": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "lookupQtyLabel": "Cantidad en tu inventario",
   "lookupScannerHint": "Centra el sticker para identificarlo",
@@ -469,9 +489,17 @@
   "lookupScannerOpenCamera": "Escanear stickers",
   "lookupScannerViewResults": "Ver resultados",
   "lookupScannerSaveSuccess": "{count} sticker(s) agregado(s) al inventario",
-  "@lookupScannerSaveSuccess": { "placeholders": { "count": {} } },
+  "@lookupScannerSaveSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "lookupScannerScannedCount": "{count} escaneados",
-  "@lookupScannerScannedCount": { "placeholders": { "count": {} } },
+  "@lookupScannerScannedCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "lookupScannerNewLabel": "nuevos",
   "lookupScannerDuplicatesLabel": "repetidos",
   "lookupScannerResetTooltip": "Reiniciar sesión",
@@ -480,19 +508,29 @@
   "lookupScannerResetConfirmBtn": "Reiniciar",
   "lookupScannerEmptyHint": "Apunta la cámara a los stickers",
   "lookupScannerMissingSection": "Me faltan ({count})",
-  "@lookupScannerMissingSection": { "placeholders": { "count": {} } },
+  "@lookupScannerMissingSection": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "lookupScannerAddSelected": "Agregar {count}",
-  "@lookupScannerAddSelected": { "placeholders": { "count": {} } },
+  "@lookupScannerAddSelected": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "lookupScannerDuplicatesSection": "Repetidos ({count})",
-  "@lookupScannerDuplicatesSection": { "placeholders": { "count": {} } },
-
+  "@lookupScannerDuplicatesSection": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "lookupTutorialStep1Title": "Dos formas de buscar",
   "lookupTutorialStep1Body": "Usa la pestaña Manual para ingresar el código del sticker (ej. ECU 10), o la pestaña Escáner para apuntar la cámara directamente.",
   "lookupTutorialStep2Title": "Ingresa el código",
   "lookupTutorialStep2Body": "Escribe el código del sticker tal como aparece en el álbum, por ejemplo ECU 10 o ARG 5, y pulsa Buscar.",
   "lookupTutorialStep3Title": "Consulta y gestiona",
   "lookupTutorialStep3Body": "Verás si el sticker está faltando o ya lo tienes o cuántos repetidos llevas. Con los botones + y – puedes actualizar tu inventario al instante.",
-
   "scanBadgeNew": "Nuevo",
   "scanBadgeRepeated": "Repetido",
   "navAlbum": "Álbum",

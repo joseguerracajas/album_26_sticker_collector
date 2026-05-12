@@ -1,7 +1,7 @@
 {
   "@@locale": "nl",
-  "appTitle": "Album 2026",
-  "authWelcomeTitle": "Welkom bij Album 2026",
+  "appTitle": "Sticker Album 2026",
+  "authWelcomeTitle": "Welkom bij Sticker Album 2026",
   "authEmailLabel": "E-mail",
   "authPasswordLabel": "Wachtwoord",
   "authLoginButton": "INLOGGEN",
@@ -21,7 +21,6 @@
       "message": {}
     }
   },
-
   "authErrorInvalidCredentials": "Onjuist e-mailadres of wachtwoord. Controleer je gegevens en probeer het opnieuw.",
   "authErrorEmailNotConfirmed": "Je e-mail is nog niet bevestigd. Controleer je inbox.",
   "authErrorUserAlreadyRegistered": "Er bestaat al een account met dat e-mailadres.",
@@ -57,8 +56,10 @@
       "message": {}
     }
   },
-  "homeTitle": "Mijn Album 2026",
-  "homeProfileTooltip": "Mijn profiel",  "drawerSignIn": "Inloggen",  "homeShareAll": "Volledige lijst delen",
+  "homeTitle": "Sticker Album 2026",
+  "homeProfileTooltip": "Mijn profiel",
+  "drawerSignIn": "Inloggen",
+  "homeShareAll": "Volledige lijst delen",
   "homeShareMissingOnly": "Alleen ontbrekende",
   "homeShareDuplicatesOnly": "Alleen duplicaten",
   "homeGlobalProgressTitle": "Algemene voortgang",
@@ -125,12 +126,13 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *RUILLIJST Album 2026* 🏆",
+  "shareHeader": "⚽ *RUILLIJST Sticker Album 2026* 🏆",
   "shareMissingSectionTitle": "❌ *ONTBREKEND:*",
   "shareDuplicatesSectionTitle": "🔁 *DUPLICATEN:*",
   "shareNoneMissing": "Geen! 😎",
   "shareNoDuplicates": "Geen duplicaten 😅",
   "shareLetsTrade": "Wil je ruilen? 👀🔥",
+  "shareDownloadLink": "📲 Download de {appName}-app\nhttps://onelink.to/5adrft?olbm=1",
   "shareSeparator": "--------------------------",
   "forgotPasswordTitle": "Account herstellen",
   "forgotPasswordDescription": "Voer je e-mail in en we sturen je een 6-cijferige code om je wachtwoord opnieuw in te stellen.",
@@ -151,7 +153,6 @@
   "forgotPasswordSavePasswordButton": "WACHTWOORD OPSLAAN",
   "forgotPasswordPasswordUpdatedSuccess": "Wachtwoord succesvol bijgewerkt! 🏆",
   "validationEmailInvalid": "Het e-mailadres is ongeldig.",
-
   "paywallTitle": "Geniet zonder advertenties",
   "paywallSubtitle": "Alle functies zijn gratis beschikbaar. Met Pro geniet je van alles zonder onderbrekingen.",
   "paywallBenefitScanner": "Scanner zonder interstitiële advertenties",
@@ -179,7 +180,6 @@
   "paywallGuestTitle": "Log in om te abonneren",
   "paywallGuestBody": "Pro is gekoppeld aan je account. Log in of maak een account aan om alle functies te ontgrendelen.",
   "paywallGuestSignInButton": "INLOGGEN",
-
   "scannerDemoRemaining": "{count} gratis scans resterend",
   "@scannerDemoRemaining": {
     "placeholders": {
@@ -189,15 +189,12 @@
   "scannerDemoFinishedTitle": "Je hebt je 5 gratis scans gebruikt",
   "scannerDemoFinishedSubtitle": "Abonneer je om onbeperkt stickers te scannen en een advertentievrije ervaring te hebben.",
   "scannerDemoUnlockButton": "Pro-plannen bekijken",
-
   "adDialogTitle": "Gratis content",
   "adDialogBody": "Om door te gaan, bekijk een korte advertentie of abonneer je op Pro en vergeet advertenties voor altijd.",
   "adDialogWatchAd": "Advertentie bekijken",
   "adDialogGetPro": "Pro halen",
   "adDialogNotNow": "Niet nu",
-
   "scannerCameraInitError": "Kon de camera niet initialiseren. Zorg ervoor dat de app cameratoegang heeft.",
-
   "variantSheetTitle": "Albumvariant",
   "variantSheetInventoryNote": "Uw inventaris blijft behouden bij het wisselen van variant. De stickers die u al heeft, blijven geregistreerd.",
   "variantSheetLoadError": "Fout bij het laden van varianten: {error}",
@@ -216,31 +213,15 @@
       "name": {}
     }
   },
-
   "profileDeleteAccountButton": "Account verwijderen",
   "profileDeleteAccountTitle": "Je account verwijderen?",
   "profileDeleteAccountMessage": "Deze actie is permanent. Al je gegevens worden verwijderd en je kunt je collectie niet terugkrijgen.",
   "profileDeleteAccountConfirmButton": "Definitief verwijderen",
   "profileDeleteAccountSuccess": "Je account is verwijderd.",
   "profileDeleteAccountError": "Fout bij het verwijderen van het account. Probeer het opnieuw.",
-
   "paywallPrivacyPolicy": "Privacybeleid",
   "paywallTermsOfUse": "Gebruiksvoorwaarden",
   "paywallLegalDisclaimer": "Door te abonneren ga je akkoord met onze Gebruiksvoorwaarden en ons Privacybeleid.",
-
-  "tutorialSkip": "Overslaan",
-  "tutorialTapToContinue": "Tik ergens om door te gaan",
-  "tutorialStep1Title": "Je globale voortgang",
-  "tutorialStep1Body": "Hier zie je hoeveel stickers je hebt verzameld en je voltooiingspercentage. Blijf verzamelen!",
-  "tutorialStep2Title": "Teams zoeken",
-  "tutorialStep2Body": "Typ een land- of teamnaam om de lijst direct te filteren.",
-  "tutorialStep3Title": "Hoofdmenu",
-  "tutorialStep3Body": "Ga naar je profiel, wissel van albumvariant en ontdek meer opties.",
-  "tutorialStep4Title": "Stickers scannen",
-  "tutorialStep4Body": "Gebruik de camera om de achterkant van je fysieke stickers te scannen en ze automatisch toe te voegen.",
-  "tutorialStep5Title": "Lijst delen",
-  "tutorialStep5Body": "Exporteer je lijst met ontbrekende of dubbele stickers om te ruilen met vrienden.",
-
   "tutorialSkip": "Overslaan",
   "tutorialTapToContinue": "Tik ergens om door te gaan",
   "tutorialStep1Title": "Je globale voortgang",
@@ -253,42 +234,6 @@
   "tutorialStep4Body": "Gebruik de camera om stickers te scannen en automatisch toe te voegen.",
   "tutorialStep5Title": "Lijst delen",
   "tutorialStep5Body": "Exporteer je lijst met ontbrekende of dubbele stickers om te ruilen.",
-
-  "tutorialSkip": "Overslaan",
-  "tutorialTapToContinue": "Tik ergens om door te gaan",
-  "tutorialStep1Title": "Je globale voortgang",
-  "tutorialStep1Body": "Zie hoeveel stickers je hebt verzameld. Blijf verzamelen!",
-  "tutorialStep2Title": "Teams zoeken",
-  "tutorialStep2Body": "Typ een land- of teamnaam om de lijst direct te filteren.",
-  "tutorialStep3Title": "Hoofdmenu",
-  "tutorialStep3Body": "Ga naar je profiel en wissel van albumvariant.",
-  "tutorialStep4Title": "Stickers scannen",
-  "tutorialStep4Body": "Gebruik de camera om stickers te scannen en automatisch toe te voegen.",
-  "tutorialStep5Title": "Lijst delen",
-  "tutorialStep5Body": "Exporteer je lijst met ontbrekende of dubbele stickers om te ruilen.",
-
-  "tutorialSkip": "Overslaan",
-  "tutorialTapToContinue": "Tik ergens om door te gaan",
-  "tutorialStep1Title": "Je globale voortgang",
-  "tutorialStep1Body": "Zie hoeveel stickers je hebt verzameld. Blijf verzamelen!",
-  "tutorialStep2Title": "Teams zoeken",
-  "tutorialStep2Body": "Typ een land- of teamnaam om de lijst direct te filteren.",
-  "tutorialStep3Title": "Hoofdmenu",
-  "tutorialStep3Body": "Ga naar je profiel en wissel van albumvariant.",
-  "tutorialStep4Title": "Stickers scannen",
-  "tutorialStep4Body": "Gebruik de camera om stickers te scannen en automatisch toe te voegen.",
-  "tutorialStep5Title": "Lijst delen",
-  "tutorialStep5Body": "Exporteer je lijst met ontbrekende of dubbele stickers om te ruilen.",
-
-  "globalTutorialStep1Title": "Verzameling filteren",
-  "globalTutorialStep1Body": "Gebruik deze knoppen om alle stickers, alleen de ontbrekende of alleen de dubbele te zien. Perfect om ruilhandel te organiseren!",
-  "globalTutorialStep2Title": "Zoek een sticker",
-  "globalTutorialStep2Body": "Typ de landnaam, de code of het stickernummer om deze snel te vinden.",
-  "globalTutorialStep3Title": "Tikken om te markeren",
-  "globalTutorialStep3Body": "Eén tik op een grijze sticker voegt hem toe aan je album (wordt goud). Als je hem al hebt en opnieuw tikt, wordt om bevestiging gevraagd om hem te verwijderen.",
-  "globalTutorialStep4Title": "Lang indrukken voor meer opties",
-  "globalTutorialStep4Body": "Houd een sticker ingedrukt om te beheren hoeveel exemplaren je hebt van elke variant (Normal, Gold, Legend…) en je duplicatenvoorraad bij te werken.",
-
   "globalTutorialStep1Title": "Verzameling filteren",
   "globalTutorialStep1Body": "Gebruik deze knoppen om alle stickers, alleen de ontbrekende of alleen de dubbele te zien. Perfect om ruilhandel te organiseren!",
   "globalTutorialStep2Title": "Zoek een sticker",
@@ -306,16 +251,6 @@
   "categoryTutorialStep3Title": "Tik om te markeren",
   "categoryTutorialStep3Body": "Tikken op een grijze sticker voegt hem toe aan je album (wordt goud). Als je hem al hebt en opnieuw tikt, wordt je gevraagd om de verwijdering te bevestigen.",
   "categoryTutorialStep4Title": "Lang indrukken voor meer opties",
-  "categoryTutorialStep4Body": "Lang indrukken van een sticker laat je beheren hoeveel exemplaren je hebt van elke variant (Normal, Gold, Legend…).",
-  "tutorialStep6Title": "Verken een categorie",
-  "tutorialStep6Body": "Tik op een land of team om zijn stickers te zien. Daar kun je de stickers die je al hebt markeren en je dubbele beheren.",
-  "categoryTutorialStep1Title": "Stickers filteren",
-  "categoryTutorialStep1Body": "Gebruik deze knoppen om alle stickers, alleen ontbrekende of alleen dubbele stickers te zien.",
-  "categoryTutorialStep2Title": "Zoek een sticker",
-  "categoryTutorialStep2Body": "Typ de naam van het land, de code of het nummer van de sticker om hem snel te vinden.",
-  "categoryTutorialStep3Title": "Tik om te markeren",
-  "categoryTutorialStep3Body": "Tikken op een grijze sticker voegt hem toe aan je album (wordt goud). Als je hem al hebt en opnieuw tikt, wordt je gevraagd om de verwijdering te bevestigen.",
-  "categoryTutorialStep4Title": "Lang indrukken voor meer opties",
   "categoryTutorialStep4Body": "Lang indrukken van een sticker laat je beheren hoeveel exemplaren je hebt van elke variant (Normal, Gold, Legend).",
   "drawerReplayTutorial": "Tutorial opnieuw bekijken",
   "variantTutorialTitle": "Selecteer je regio",
@@ -323,7 +258,6 @@
   "drawerLegalNotice": "Juridische Kennisgeving",
   "legalNoticeTitle": "Juridische Kennisgeving",
   "legalNoticeBody": "Deze applicatie is een niet-officiële fan-creatie en is niet gelieerd aan, goedgekeurd door of verbonden met enige officiële voetbalorganisatie, stickerproducent of officiële partner van het voetbaltoernooi. Alle handelsmerken zijn eigendom van hun respectieve eigenaren.",
-
   "statsTitle": "Statistieken",
   "statsTotalLabel": "Totaal",
   "statsCollectedLabel": "Verzameld",
@@ -338,18 +272,18 @@
   "statsCategoryPickerSearch": "Categorie zoeken...",
   "statsCategoryPickerSelected": "{count} geselecteerd",
   "@statsCategoryPickerSelected": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "statsCategoryPickerAll": "Alle categorieën",
   "statsCategoryPickerClear": "Wissen",
-
   "statsSortTooltip": "Sorteren",
   "statsSortByName": "Categorie",
   "statsSortByProgressDesc": "Meeste voortgang eerst",
   "statsSortByProgressAsc": "Minste voortgang eerst",
   "statsSortByMissing": "Meest ontbrekend eerst",
   "statsSortByDuplicates": "Meeste duplicaten eerst",
-
   "drawerLookup": "Sticker opzoeken",
   "lookupScreenTitle": "Sticker opzoeken",
   "lookupTabManual": "Handmatig",
@@ -361,18 +295,18 @@
   "lookupStatusCollected": "Je hebt hem al ✓",
   "lookupStatusDuplicates": "{count} duplicaat/dubbel 🔁",
   "@lookupStatusDuplicates": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "lookupQtyLabel": "Aantal in jouw inventaris",
   "lookupScannerHint": "Centreer de sticker om hem te herkennen",
-
   "lookupTutorialStep1Title": "Twee zoekmanieren",
   "lookupTutorialStep1Body": "Gebruik het tabblad Handmatig om de stickercode in te voeren of het tabblad Scanner om de camera te richten.",
   "lookupTutorialStep2Title": "Voer de code in",
   "lookupTutorialStep2Body": "Typ de stickercode zoals die in het album staat, bijv. ECU 10 of ARG 5, en tik op Zoeken.",
   "lookupTutorialStep3Title": "Controleer en beheer",
   "lookupTutorialStep3Body": "Je ziet of de sticker ontbreekt of al in je bezit is. Met + en – kun je je inventaris direct bijwerken.",
-
   "scanBadgeNew": "Nieuw",
   "scanBadgeRepeated": "Dubbel",
   "navAlbum": "Album",

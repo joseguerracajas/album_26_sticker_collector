@@ -1,7 +1,7 @@
 {
   "@@locale": "ja",
-  "appTitle": "アルバム26",
-  "authWelcomeTitle": "アルバム26へようこそ",
+  "appTitle": "Sticker Album 2026",
+  "authWelcomeTitle": "Sticker Album 2026へようこそ",
   "authEmailLabel": "メールアドレス",
   "authPasswordLabel": "パスワード",
   "authLoginButton": "ログイン",
@@ -21,7 +21,6 @@
       "message": {}
     }
   },
-
   "authErrorInvalidCredentials": "メールアドレスまたはパスワードが間違っています。詳細を確認して再試行してください。",
   "authErrorEmailNotConfirmed": "メールアドレスがまだ確認されていません。受信トレイを確認してください。",
   "authErrorUserAlreadyRegistered": "そのメールアドレスで既にアカウントが存在します。",
@@ -57,7 +56,7 @@
       "message": {}
     }
   },
-  "homeTitle": "マイアルバム26",
+  "homeTitle": "Sticker Album 2026",
   "homeProfileTooltip": "マイプロフィール",
   "drawerSignIn": "サインイン",
   "homeShareAll": "完全なリストを共有",
@@ -127,12 +126,13 @@
       "message": {}
     }
   },
-  "shareHeader": "⚽ *アルバム26 交換リスト* 🏆",
+  "shareHeader": "⚽ *Sticker Album 2026 交換リスト* 🏆",
   "shareMissingSectionTitle": "❌ *不足:*",
   "shareDuplicatesSectionTitle": "🔁 *重複:*",
   "shareNoneMissing": "なし！😎",
   "shareNoDuplicates": "重複なし 😅",
   "shareLetsTrade": "交換しませんか？👀🔥",
+  "shareDownloadLink": "📲 {appName}アプリをダウンロード\nhttps://onelink.to/5adrft?olbm=1",
   "shareSeparator": "--------------------------",
   "forgotPasswordTitle": "アカウントを回復",
   "forgotPasswordDescription": "メールアドレスを入力してください。パスワードをリセットするための6桁のコードを送信します。",
@@ -153,7 +153,6 @@
   "forgotPasswordSavePasswordButton": "パスワードを保存",
   "forgotPasswordPasswordUpdatedSuccess": "パスワードが正常に更新されました！🏆",
   "validationEmailInvalid": "メールアドレスが無効です。",
-
   "paywallTitle": "広告なしで楽しむ",
   "paywallSubtitle": "すべての機能は無料でご利用いただけます。Proで中断なく全機能をお楽しみください。",
   "paywallBenefitScanner": "インタースティシャル広告なしのスキャナー",
@@ -181,7 +180,6 @@
   "paywallGuestTitle": "購読するにはログイン",
   "paywallGuestBody": "Proはアカウントにリンクされています。全機能をアンロックするにはログインまたはアカウント作成してください。",
   "paywallGuestSignInButton": "ログイン",
-
   "scannerDemoRemaining": "無料スキャン残り{count}回",
   "@scannerDemoRemaining": {
     "placeholders": {
@@ -191,15 +189,12 @@
   "scannerDemoFinishedTitle": "5回の無料スキャンを使い切りました",
   "scannerDemoFinishedSubtitle": "無制限のシールスキャンと広告なし体験のために購読してください。",
   "scannerDemoUnlockButton": "Proプランを見る",
-
   "adDialogTitle": "無料コンテンツ",
   "adDialogBody": "続行するには短い広告を見るか、Proに購読して広告を永遠に忘れてください。",
   "adDialogWatchAd": "広告を見る",
   "adDialogGetPro": "Proを取得",
   "adDialogNotNow": "今はしない",
-
   "scannerCameraInitError": "カメラを初期化できませんでした。アプリにカメラのア クセス許可があることを確認してください。",
-
   "variantSheetTitle": "アルバムのバリアント",
   "variantSheetInventoryNote": "バリアントを変更してもインベントリは保持されます。すでに持っているステッカーは引き続き記録されます。",
   "variantSheetLoadError": "バリアントの読み込みエラー: {error}",
@@ -218,31 +213,15 @@
       "name": {}
     }
   },
-
   "profileDeleteAccountButton": "アカウントを削除",
   "profileDeleteAccountTitle": "アカウントを削除しますか？",
   "profileDeleteAccountMessage": "この操作は永久的です。すべてのデータが削除され、コレクションを元に戻すことはできません。",
   "profileDeleteAccountConfirmButton": "完全に削除する",
   "profileDeleteAccountSuccess": "アカウントが削除されました。",
   "profileDeleteAccountError": "アカウントの削除中にエラーが発生しました。もう一度お試しください。",
-
   "paywallPrivacyPolicy": "プライバシーポリシー",
   "paywallTermsOfUse": "利用規約",
   "paywallLegalDisclaimer": "サブスクライブすることで、利用規約とプライバシーポリシーに同意したことになります。",
-
-  "tutorialSkip": "スキップ",
-  "tutorialTapToContinue": "続けるには画面をタップしてください",
-  "tutorialStep1Title": "全体の進捗",
-  "tutorialStep1Body": "集めたシールの数と完成率をここで確認できます。集め続けましょう！",
-  "tutorialStep2Title": "チームを検索",
-  "tutorialStep2Body": "国名やチーム名を入力してリストを絞り込みます。",
-  "tutorialStep3Title": "メインメニュー",
-  "tutorialStep3Body": "プロフィールへのアクセス、アルバムのバリエーション変更などができます。",
-  "tutorialStep4Title": "シールをスキャン",
-  "tutorialStep4Body": "カメラを使って物理的なシールの裏面をスキャンし、自動でアルバムに追加します。",
-  "tutorialStep5Title": "リストを共有",
-  "tutorialStep5Body": "不足しているシールや重複しているシールのリストをエクスポートして友達と交換しましょう。",
-
   "tutorialSkip": "スキップ",
   "tutorialTapToContinue": "続けるには画面をタップしてください",
   "tutorialStep1Title": "全体の進捗",
@@ -255,42 +234,6 @@
   "tutorialStep4Body": "カメラを使ってシールをスキャンし、自動でアルバムに追加します。",
   "tutorialStep5Title": "リストを共有",
   "tutorialStep5Body": "不足や重複しているシールのリストをエクスポートして友達と交換しましょう。",
-
-  "tutorialSkip": "スキップ",
-  "tutorialTapToContinue": "続けるには画面をタップしてください",
-  "tutorialStep1Title": "全体の進捗",
-  "tutorialStep1Body": "集めたシールの数と完成率を確認できます。集め続けましょう！",
-  "tutorialStep2Title": "チームを検索",
-  "tutorialStep2Body": "国名やチーム名を入力してリストを絞り込みます。",
-  "tutorialStep3Title": "メインメニュー",
-  "tutorialStep3Body": "プロフィールへのアクセスとアルバムのバリエーション変更ができます。",
-  "tutorialStep4Title": "シールをスキャン",
-  "tutorialStep4Body": "カメラを使ってシールをスキャンし、自動でアルバムに追加します。",
-  "tutorialStep5Title": "リストを共有",
-  "tutorialStep5Body": "不足や重複しているシールのリストをエクスポートして友達と交換しましょう。",
-
-  "tutorialSkip": "スキップ",
-  "tutorialTapToContinue": "続けるには画面をタップしてください",
-  "tutorialStep1Title": "全体の進捗",
-  "tutorialStep1Body": "集めたシールの数と完成率を確認できます。集め続けましょう！",
-  "tutorialStep2Title": "チームを検索",
-  "tutorialStep2Body": "国名やチーム名を入力してリストを絞り込みます。",
-  "tutorialStep3Title": "メインメニュー",
-  "tutorialStep3Body": "プロフィールへのアクセスとアルバムのバリエーション変更ができます。",
-  "tutorialStep4Title": "シールをスキャン",
-  "tutorialStep4Body": "カメラを使ってシールをスキャンし、自動でアルバムに追加します。",
-  "tutorialStep5Title": "リストを共有",
-  "tutorialStep5Body": "不足や重複しているシールのリストをエクスポートして友達と交換しましょう。",
-
-  "globalTutorialStep1Title": "コレクションを絞り込む",
-  "globalTutorialStep1Body": "このボタンでシール全体、不足しているもの、または重複しているものだけを表示できます。交換の整理に最適です！",
-  "globalTutorialStep2Title": "シールを検索",
-  "globalTutorialStep2Body": "国名、コード、またはシール番号を入力して素早く見つけます。",
-  "globalTutorialStep3Title": "タップしてマーク",
-  "globalTutorialStep3Body": "灰色のシールを1回タップするとアルバムに追加されます（金色になります）。すでに持っていて再度タップすると、削除の確認が求められます。",
-  "globalTutorialStep4Title": "長押しで詳細オプション",
-  "globalTutorialStep4Body": "シールを長押しすると、各バリアント（Normal、Gold、Legend…）の所持数を管理し、重複在庫を更新できます。",
-
   "globalTutorialStep1Title": "コレクションを絞り込む",
   "globalTutorialStep1Body": "このボタンでシール全体、不足しているもの、または重複しているものだけを表示できます。交換の整理に最適です！",
   "globalTutorialStep2Title": "シールを検索",
@@ -308,16 +251,6 @@
   "categoryTutorialStep3Title": "タップしてマーク",
   "categoryTutorialStep3Body": "グレーのステッカーをタップするとアルバムに追加されます（ゴールドになります）。既に持っている場合は削除確認が表示されます。",
   "categoryTutorialStep4Title": "長押しで詳細オプション",
-  "categoryTutorialStep4Body": "長押しで各バリアント（Normal, Gold, Legend…）の所持数を管理できます。",
-  "tutorialStep6Title": "カテゴリを探索する",
-  "tutorialStep6Body": "国やチームをタップしてステッカーを確認しましょう。そこで持っているものをマークし、重複を管理できます。",
-  "categoryTutorialStep1Title": "ステッカーを絞り込む",
-  "categoryTutorialStep1Body": "このボタンで、全てのステッカー・未収集のみ・重複のみを表示できます。",
-  "categoryTutorialStep2Title": "ステッカーを検索する",
-  "categoryTutorialStep2Body": "国名・コード・番号を入力して素早く見つけましょう。",
-  "categoryTutorialStep3Title": "タップしてマーク",
-  "categoryTutorialStep3Body": "グレーのステッカーをタップするとアルバムに追加されます（ゴールドになります）。既に持っている場合は削除確認が表示されます。",
-  "categoryTutorialStep4Title": "長押しで詳細オプション",
   "categoryTutorialStep4Body": "長押しで各バリアント（Normal, Gold, Legend）の所持数を管理できます。",
   "drawerReplayTutorial": "チュートリアルをもう一度見る",
   "variantTutorialTitle": "地域を選択してください",
@@ -325,7 +258,6 @@
   "drawerLegalNotice": "法的表示",
   "legalNoticeTitle": "法的表示",
   "legalNoticeBody": "このアプリはファンによる非公式な作品であり、いかなる公式サッカー組織、ステッカーメーカー、またはサッカートーナメントの公式パートナーとも提携、承認、または接続されていません。すべての商標はそれぞれの所有者の財産です。",
-
   "statsTitle": "統計",
   "statsTotalLabel": "合計",
   "statsCollectedLabel": "収集済み",
@@ -340,18 +272,18 @@
   "statsCategoryPickerSearch": "カテゴリを検索...",
   "statsCategoryPickerSelected": "{count}選択中",
   "@statsCategoryPickerSelected": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "statsCategoryPickerAll": "すべてのカテゴリ",
   "statsCategoryPickerClear": "クリア",
-
   "statsSortTooltip": "並び替え",
   "statsSortByName": "カテゴリー順",
   "statsSortByProgressDesc": "進捗の高い順",
   "statsSortByProgressAsc": "進捗の低い順",
   "statsSortByMissing": "不足枚数順",
   "statsSortByDuplicates": "重複枚数順",
-
   "drawerLookup": "ステッカー検索",
   "lookupScreenTitle": "ステッカー検索",
   "lookupTabManual": "手動",
@@ -363,18 +295,18 @@
   "lookupStatusCollected": "持っている ✓",
   "lookupStatusDuplicates": "{count}枚重複 🔁",
   "@lookupStatusDuplicates": {
-    "placeholders": { "count": {} }
+    "placeholders": {
+      "count": {}
+    }
   },
   "lookupQtyLabel": "在庫数",
   "lookupScannerHint": "ステッカーを中央に合わせて識別する",
-
   "lookupTutorialStep1Title": "2つの検索方法",
   "lookupTutorialStep1Body": "コードを入力するには手動タブ、カメラでスキャンするにはスキャナータブを使います。",
   "lookupTutorialStep2Title": "コードを入力",
   "lookupTutorialStep2Body": "アルバムに表示されるコード（例：ECU 10やARG 5）を入力し、検索をタップします。",
   "lookupTutorialStep3Title": "確認と管理",
   "lookupTutorialStep3Body": "ステッカーが未収集か収集済みか表示されます。+と–ボタンで在庫を即座に更新できます。",
-
   "scanBadgeNew": "新しい",
   "scanBadgeRepeated": "重複",
   "navAlbum": "アルバム",

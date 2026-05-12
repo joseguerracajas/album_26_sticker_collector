@@ -9,10 +9,10 @@ class AppLocalizationsFr extends AppLocalizations {
   AppLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
-  String get appTitle => 'Album 2026';
+  String get appTitle => 'Sticker Album 2026';
 
   @override
-  String get authWelcomeTitle => 'Bienvenue sur Album 2026';
+  String get authWelcomeTitle => 'Bienvenue sur Sticker Album 2026';
 
   @override
   String get authEmailLabel => 'E-mail';
@@ -170,7 +170,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get homeTitle => 'Mon Album 2026';
+  String get homeTitle => 'Sticker Album 2026';
 
   @override
   String get homeProfileTooltip => 'Mon Profil';
@@ -283,7 +283,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get shareHeader => '⚽ *LISTE D\'ÉCHANGE Album 2026* 🏆';
+  String get shareHeader => '⚽ *LISTE D\'ÉCHANGE Sticker Album 2026* 🏆';
 
   @override
   String get shareMissingSectionTitle => '❌ *MANQUANTS :*';
@@ -299,6 +299,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get shareLetsTrade => 'Vous voulez échanger ? 👀🔥';
+
+  @override
+  String shareDownloadLink(String appName) {
+    return '📲 Télécharger l\'app $appName\nhttps://onelink.to/5adrft?olbm=1';
+  }
 
   @override
   String get shareSeparator => '--------------------------';

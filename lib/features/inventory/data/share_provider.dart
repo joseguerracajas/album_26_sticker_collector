@@ -101,6 +101,7 @@ class ShareNotifier extends Notifier<bool> {
       }
 
       mensaje += '\n${l10n.shareLetsTrade}';
+      mensaje += '\n\n${l10n.shareDownloadLink(l10n.appTitle)}';
 
       await SharePlus.instance.share(ShareParams(text: mensaje));
     } catch (e) {
