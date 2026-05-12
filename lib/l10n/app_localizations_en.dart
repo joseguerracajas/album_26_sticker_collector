@@ -563,7 +563,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tutorialStep5Body =>
-      'Export your missing or duplicate sticker list to trade with friends.';
+      'Tap the button to open the menu: export \"All\" stickers, only \"Missing\" ones, or only \"Duplicates\". Great for coordinating trades with friends.';
 
   @override
   String get globalTutorialStep1Title => 'Filter your collection';
@@ -599,6 +599,41 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get tutorialStep6Body =>
       'Tap any country or team to see its stickers. There you can mark the ones you already have and manage your duplicates.';
+
+  @override
+  String get tutorialNavAlbumTitle => 'Album';
+
+  @override
+  String get tutorialNavAlbumBody =>
+      'Your main album. Here you can see all countries and teams, mark your stickers, and track your global progress.';
+
+  @override
+  String get tutorialNavScannerTitle => 'Scanner';
+
+  @override
+  String get tutorialNavScannerBody =>
+      'Scan the back of your physical stickers with the camera. The app recognises them automatically and adds them to your collection. You can also remove duplicates!';
+
+  @override
+  String get tutorialNavExchangeTitle => 'Exchange';
+
+  @override
+  String get tutorialNavExchangeBody =>
+      'Scan another collector\'s stickers to find out which ones you are missing and which ones you can offer in return. Perfect for face-to-face trading.';
+
+  @override
+  String get tutorialNavLookupTitle => 'Search';
+
+  @override
+  String get tutorialNavLookupBody =>
+      'Look up any sticker by its code or number. You can search by typing it in or scanning it directly.';
+
+  @override
+  String get tutorialNavStatsTitle => 'Statistics';
+
+  @override
+  String get tutorialNavStatsBody =>
+      'Analyse your progress by category: completion percentage, missing, and duplicates. Sort and filter any way you like.';
 
   @override
   String get categoryTutorialStep1Title => 'Filter stickers';

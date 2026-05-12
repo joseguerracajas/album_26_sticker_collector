@@ -122,18 +122,6 @@ class _StickerLookupScreenState extends ConsumerState<StickerLookupScreen>
           ),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            tooltip: l10n.lookupScannerOpenTooltip,
-            icon: const Icon(
-              Icons.qr_code_scanner_rounded,
-              color: Colors.amber,
-            ),
-            onPressed: () => Navigator.of(
-              context,
-            ).push(MaterialPageRoute(builder: (_) => const ScannerScreen())),
-          ),
-        ],
         bottom: TabBar(
           key: tutorialLookupTabBarKey,
           controller: _tabController,

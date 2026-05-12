@@ -1109,7 +1109,7 @@ abstract class AppLocalizations {
   /// No description provided for @tutorialStep5Body.
   ///
   /// In es, this message translates to:
-  /// **'Exporta tu lista de faltantes o repetidas para intercambiar stickers con amigos.'**
+  /// **'Toca el botón para abrir el menú: exporta \"Todos\" los stickers, solo los \"Faltantes\" o solo los \"Repetidos\". Ideal para coordinar intercambios con amigos.'**
   String get tutorialStep5Body;
 
   /// No description provided for @globalTutorialStep1Title.
@@ -1171,6 +1171,66 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Toca cualquier pais o equipo para ver sus stickers. Alli podras marcar los que ya tienes y gestionar tus repetidos.'**
   String get tutorialStep6Body;
+
+  /// No description provided for @tutorialNavAlbumTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Álbum'**
+  String get tutorialNavAlbumTitle;
+
+  /// No description provided for @tutorialNavAlbumBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu álbum principal. Aquí ves todos los países y equipos, marcas tus stickers y ves tu progreso global.'**
+  String get tutorialNavAlbumBody;
+
+  /// No description provided for @tutorialNavScannerTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Escáner'**
+  String get tutorialNavScannerTitle;
+
+  /// No description provided for @tutorialNavScannerBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Escanea el dorso de tus stickers físicos con la cámara. La app los reconoce automáticamente y los añade a tu colección. ¡También puedes quitar repetidos!'**
+  String get tutorialNavScannerBody;
+
+  /// No description provided for @tutorialNavExchangeTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Intercambio'**
+  String get tutorialNavExchangeTitle;
+
+  /// No description provided for @tutorialNavExchangeBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Escanea los stickers de otro coleccionista para saber cuáles te faltan y cuáles puedes ofrecerle a cambio. Perfecto para intercambios cara a cara.'**
+  String get tutorialNavExchangeBody;
+
+  /// No description provided for @tutorialNavLookupTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar'**
+  String get tutorialNavLookupTitle;
+
+  /// No description provided for @tutorialNavLookupBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Consulta cualquier sticker por su código o número. Puedes buscarlo escribiéndolo o escaneándolo directamente.'**
+  String get tutorialNavLookupBody;
+
+  /// No description provided for @tutorialNavStatsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Estadísticas'**
+  String get tutorialNavStatsTitle;
+
+  /// No description provided for @tutorialNavStatsBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Analiza tu progreso por categoría: porcentaje completado, faltantes y repetidos. Ordena y filtra como quieras.'**
+  String get tutorialNavStatsBody;
 
   /// No description provided for @categoryTutorialStep1Title.
   ///

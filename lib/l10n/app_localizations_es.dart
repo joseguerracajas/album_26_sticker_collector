@@ -571,7 +571,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get tutorialStep5Body =>
-      'Exporta tu lista de faltantes o repetidas para intercambiar stickers con amigos.';
+      'Toca el botón para abrir el menú: exporta \"Todos\" los stickers, solo los \"Faltantes\" o solo los \"Repetidos\". Ideal para coordinar intercambios con amigos.';
 
   @override
   String get globalTutorialStep1Title => 'Filtra tu colección';
@@ -607,6 +607,41 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get tutorialStep6Body =>
       'Toca cualquier pais o equipo para ver sus stickers. Alli podras marcar los que ya tienes y gestionar tus repetidos.';
+
+  @override
+  String get tutorialNavAlbumTitle => 'Álbum';
+
+  @override
+  String get tutorialNavAlbumBody =>
+      'Tu álbum principal. Aquí ves todos los países y equipos, marcas tus stickers y ves tu progreso global.';
+
+  @override
+  String get tutorialNavScannerTitle => 'Escáner';
+
+  @override
+  String get tutorialNavScannerBody =>
+      'Escanea el dorso de tus stickers físicos con la cámara. La app los reconoce automáticamente y los añade a tu colección. ¡También puedes quitar repetidos!';
+
+  @override
+  String get tutorialNavExchangeTitle => 'Intercambio';
+
+  @override
+  String get tutorialNavExchangeBody =>
+      'Escanea los stickers de otro coleccionista para saber cuáles te faltan y cuáles puedes ofrecerle a cambio. Perfecto para intercambios cara a cara.';
+
+  @override
+  String get tutorialNavLookupTitle => 'Buscar';
+
+  @override
+  String get tutorialNavLookupBody =>
+      'Consulta cualquier sticker por su código o número. Puedes buscarlo escribiéndolo o escaneándolo directamente.';
+
+  @override
+  String get tutorialNavStatsTitle => 'Estadísticas';
+
+  @override
+  String get tutorialNavStatsBody =>
+      'Analiza tu progreso por categoría: porcentaje completado, faltantes y repetidos. Ordena y filtra como quieras.';
 
   @override
   String get categoryTutorialStep1Title => 'Filtra los stickers';

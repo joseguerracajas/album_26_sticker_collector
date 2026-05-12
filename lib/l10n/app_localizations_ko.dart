@@ -574,6 +574,41 @@ class AppLocalizationsKo extends AppLocalizations {
       '국가나 팀을 탭하여 스티커를 확인하세요. 이미 가진 것을 표시하고 중복을 관리할 수 있습니다.';
 
   @override
+  String get tutorialNavAlbumTitle => 'Álbum';
+
+  @override
+  String get tutorialNavAlbumBody =>
+      'Tu álbum principal. Aquí ves todos los países y equipos, marcas tus stickers y ves tu progreso global.';
+
+  @override
+  String get tutorialNavScannerTitle => 'Escáner';
+
+  @override
+  String get tutorialNavScannerBody =>
+      'Escanea el dorso de tus stickers físicos con la cámara. La app los reconoce automáticamente y los añade a tu colección. ¡También puedes quitar repetidos!';
+
+  @override
+  String get tutorialNavExchangeTitle => 'Intercambio';
+
+  @override
+  String get tutorialNavExchangeBody =>
+      'Escanea los stickers de otro coleccionista para saber cuáles te faltan y cuáles puedes ofrecerle a cambio. Perfecto para intercambios cara a cara.';
+
+  @override
+  String get tutorialNavLookupTitle => 'Buscar';
+
+  @override
+  String get tutorialNavLookupBody =>
+      'Consulta cualquier sticker por su código o número. Puedes buscarlo escribiéndolo o escaneándolo directamente.';
+
+  @override
+  String get tutorialNavStatsTitle => 'Estadísticas';
+
+  @override
+  String get tutorialNavStatsBody =>
+      'Analiza tu progreso por categoría: porcentaje completado, faltantes y repetidos. Ordena y filtra como quieras.';
+
+  @override
   String get categoryTutorialStep1Title => '스티커 필터링';
 
   @override

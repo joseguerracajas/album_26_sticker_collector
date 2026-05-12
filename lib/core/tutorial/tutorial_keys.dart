@@ -72,3 +72,16 @@ final GlobalKey tutorialStatsGlobalKey = GlobalKey(
 final GlobalKey tutorialStatsFilterKey = GlobalKey(
   debugLabel: 'tutorialStatsFilter',
 );
+
+// ── AppShell – BottomNavigationBar ────────────────────────────────────────────
+final GlobalKey tutorialNavAlbumKey = GlobalKey(debugLabel: 'tutorialNavAlbum');
+final GlobalKey tutorialNavScannerKey = GlobalKey(
+  debugLabel: 'tutorialNavScanner',
+);
+final GlobalKey tutorialNavExchangeKey = GlobalKey(
+  debugLabel: 'tutorialNavExchange',
+);
+final GlobalKey tutorialNavLookupKey = GlobalKey(
+  debugLabel: 'tutorialNavLookup',
+);
+final GlobalKey tutorialNavStatsKey = GlobalKey(debugLabel: 'tutorialNavStats');

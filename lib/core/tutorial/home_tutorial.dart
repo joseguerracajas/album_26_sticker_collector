@@ -129,6 +129,111 @@ class HomeTutorial {
           ),
         ],
       ),
+
+      // 6 ─ Nav: Álbum
+      TargetFocus(
+        identify: 'nav_album',
+        keyTarget: tutorialNavAlbumKey,
+        shape: ShapeLightFocus.RRect,
+        radius: 8,
+        paddingFocus: isTablet ? 20.0 : 10.0,
+        enableOverlayTab: true,
+        contents: [
+          TargetContent(
+            align: ContentAlign.top,
+            child: _CoachContent(
+              icon: Icons.style_rounded,
+              title: l10n.tutorialNavAlbumTitle,
+              body: l10n.tutorialNavAlbumBody,
+              isTablet: isTablet,
+            ),
+          ),
+        ],
+      ),
+
+      // 7 ─ Nav: Escáner
+      TargetFocus(
+        identify: 'nav_scanner',
+        keyTarget: tutorialNavScannerKey,
+        shape: ShapeLightFocus.RRect,
+        radius: 8,
+        paddingFocus: isTablet ? 20.0 : 10.0,
+        enableOverlayTab: true,
+        contents: [
+          TargetContent(
+            align: ContentAlign.top,
+            child: _CoachContent(
+              icon: Icons.document_scanner_outlined,
+              title: l10n.tutorialNavScannerTitle,
+              body: l10n.tutorialNavScannerBody,
+              isTablet: isTablet,
+            ),
+          ),
+        ],
+      ),
+
+      // 8 ─ Nav: Intercambio
+      TargetFocus(
+        identify: 'nav_exchange',
+        keyTarget: tutorialNavExchangeKey,
+        shape: ShapeLightFocus.RRect,
+        radius: 8,
+        paddingFocus: isTablet ? 20.0 : 10.0,
+        enableOverlayTab: true,
+        contents: [
+          TargetContent(
+            align: ContentAlign.top,
+            child: _CoachContent(
+              icon: Icons.swap_horiz_rounded,
+              title: l10n.tutorialNavExchangeTitle,
+              body: l10n.tutorialNavExchangeBody,
+              isTablet: isTablet,
+            ),
+          ),
+        ],
+      ),
+
+      // 9 ─ Nav: Buscar
+      TargetFocus(
+        identify: 'nav_lookup',
+        keyTarget: tutorialNavLookupKey,
+        shape: ShapeLightFocus.RRect,
+        radius: 8,
+        paddingFocus: isTablet ? 20.0 : 10.0,
+        enableOverlayTab: true,
+        contents: [
+          TargetContent(
+            align: ContentAlign.top,
+            child: _CoachContent(
+              icon: Icons.manage_search_rounded,
+              title: l10n.tutorialNavLookupTitle,
+              body: l10n.tutorialNavLookupBody,
+              isTablet: isTablet,
+            ),
+          ),
+        ],
+      ),
+
+      // 10 ─ Nav: Estadísticas
+      TargetFocus(
+        identify: 'nav_stats',
+        keyTarget: tutorialNavStatsKey,
+        shape: ShapeLightFocus.RRect,
+        radius: 8,
+        paddingFocus: isTablet ? 20.0 : 10.0,
+        enableOverlayTab: true,
+        contents: [
+          TargetContent(
+            align: ContentAlign.top,
+            child: _CoachContent(
+              icon: Icons.bar_chart_rounded,
+              title: l10n.tutorialNavStatsTitle,
+              body: l10n.tutorialNavStatsBody,
+              isTablet: isTablet,
+            ),
+          ),
+        ],
+      ),
     ];
 
     late final TutorialCoachMark tutorial;

@@ -1,5 +1,6 @@
 // Archivo: lib/features/catalog/presentation/app_shell.dart
 
+import 'package:album_26_sticker_collector/core/tutorial/tutorial_keys.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/home_screen.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/statistics_screen.dart';
 import 'package:album_26_sticker_collector/features/inventory/presentation/physical_exchange_screen.dart';
@@ -128,23 +129,43 @@ class _AppShellState extends ConsumerState<AppShell> {
             unselectedFontSize: 11,
             items: [
               BottomNavigationBarItem(
-                icon: const Icon(Icons.style_rounded),
+                icon: SizedBox(
+                  key: tutorialNavAlbumKey,
+                  child: const Icon(Icons.style_rounded),
+                ),
+                activeIcon: const Icon(Icons.style_rounded),
                 label: l10n.navAlbum,
               ),
               BottomNavigationBarItem(
-                icon: const Icon(Icons.document_scanner_outlined),
+                icon: SizedBox(
+                  key: tutorialNavScannerKey,
+                  child: const Icon(Icons.document_scanner_outlined),
+                ),
+                activeIcon: const Icon(Icons.document_scanner_outlined),
                 label: l10n.navScanner,
               ),
               BottomNavigationBarItem(
-                icon: const Icon(Icons.swap_horiz_rounded),
+                icon: SizedBox(
+                  key: tutorialNavExchangeKey,
+                  child: const Icon(Icons.swap_horiz_rounded),
+                ),
+                activeIcon: const Icon(Icons.swap_horiz_rounded),
                 label: l10n.drawerPhysicalExchange,
               ),
               BottomNavigationBarItem(
-                icon: const Icon(Icons.manage_search_rounded),
+                icon: SizedBox(
+                  key: tutorialNavLookupKey,
+                  child: const Icon(Icons.manage_search_rounded),
+                ),
+                activeIcon: const Icon(Icons.manage_search_rounded),
                 label: l10n.drawerLookup,
               ),
               BottomNavigationBarItem(
-                icon: const Icon(Icons.bar_chart_rounded),
+                icon: SizedBox(
+                  key: tutorialNavStatsKey,
+                  child: const Icon(Icons.bar_chart_rounded),
+                ),
+                activeIcon: const Icon(Icons.bar_chart_rounded),
                 label: l10n.drawerStats,
               ),
             ],

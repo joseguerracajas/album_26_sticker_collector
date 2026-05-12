@@ -150,7 +150,6 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
               elevation: 0,
               centerTitle: true,
               iconTheme: const IconThemeData(color: Colors.amber),
-              actions: const [ShareMenuButton()],
             ),
             body: RefreshIndicator(
               color: Colors.amber,
