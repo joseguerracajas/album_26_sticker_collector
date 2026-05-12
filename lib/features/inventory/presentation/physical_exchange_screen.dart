@@ -111,14 +111,7 @@ class _PhysicalExchangeScreenState extends ConsumerState<PhysicalExchangeScreen>
 
   Future<void> _shutdownCamera() async {
     _isInitializing = false;
-    try {
-      if (_cameraController?.value.isStreamingImages ?? false) {
-        await _cameraController?.stopImageStream();
-      }
-    } catch (_) {}
-    try {
-      await _cameraController?.dispose();
-    } catch (_) {}
+    final controller = _cameraController;
     _cameraController = null;
     if (mounted) {
       setState(() {
@@ -126,6 +119,14 @@ class _PhysicalExchangeScreenState extends ConsumerState<PhysicalExchangeScreen>
         _cameraError = false;
       });
     }
+    try {
+      if (controller?.value.isStreamingImages ?? false) {
+        await controller?.stopImageStream();
+      }
+    } catch (_) {}
+    try {
+      await controller?.dispose();
+    } catch (_) {}
   }
 
   Future<void> _initCamera() async {
@@ -673,39 +674,6 @@ class _PhysicalExchangeScreenState extends ConsumerState<PhysicalExchangeScreen>
 
     return Scaffold(
       backgroundColor: const Color(0xFF121212),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: Text(
-          l10n.physicalExchangeScreenTitle,
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.amber),
-        // actions: [
-        //   TextButton.icon(
-        //     onPressed: () => Navigator.push(
-        //       context,
-        //       MaterialPageRoute(builder: (_) => const TradeHubScreen()),
-        //     ),
-        //     icon: const Icon(
-        //       Icons.swap_horiz_rounded,
-        //       color: Colors.amber,
-        //       size: 18,
-        //     ),
-        //     label: Text(
-        //       l10n.physicalExchangeVirtualBtn,
-        //       style: const TextStyle(
-        //         color: Colors.amber,
-        //         fontWeight: FontWeight.bold,
-        //       ),
-        //     ),
-        //   ),
-        // ],
-      ),
       body: _buildBody(context, l10n),
     );
   }

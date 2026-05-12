@@ -106,14 +106,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
 
   Future<void> _shutdownCamera() async {
     _isInitializing = false;
-    try {
-      if (_cameraController?.value.isStreamingImages ?? false) {
-        await _cameraController?.stopImageStream();
-      }
-    } catch (_) {}
-    try {
-      await _cameraController?.dispose();
-    } catch (_) {}
+    final controller = _cameraController;
     _cameraController = null;
     if (mounted) {
       setState(() {
@@ -121,6 +114,14 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
         _cameraError = false;
       });
     }
+    try {
+      if (controller?.value.isStreamingImages ?? false) {
+        await controller?.stopImageStream();
+      }
+    } catch (_) {}
+    try {
+      await controller?.dispose();
+    } catch (_) {}
   }
 
   Future<void> _initializeCamera() async {
