@@ -277,18 +277,13 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
   }
 
   /// Devuelve el texto de prueba gratuita si el producto la tiene configurada.
+  /// Usa directamente el priceString de la tienda (localizado por el SO).
   String? _trialLabel(Package pkg) {
     try {
       final intro = pkg.storeProduct.introductoryPrice;
       if (intro == null || intro.price != 0) return null;
-      final n = intro.periodNumberOfUnits;
-      final unit = intro.periodUnit;
-      if (unit == PeriodUnit.day) {
-        return '$n día${n == 1 ? '' : 's'} gratis';
-      } else if (unit == PeriodUnit.week) {
-        return '$n semana${n == 1 ? '' : 's'} gratis';
-      }
-      return intro.priceString;
+      return intro
+          .priceString; // "Free", "Gratis", etc. según locale del dispositivo
     } catch (_) {
       return null;
     }
