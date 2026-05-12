@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import 'package:album_26_sticker_collector/core/tutorial/exchange_tutorial.dart';
+import 'package:album_26_sticker_collector/core/tutorial/tutorial_keys.dart';
+import 'package:album_26_sticker_collector/core/tutorial/tutorial_service.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/catalog_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/sticker.model.dart';
@@ -79,6 +82,9 @@ class _PhysicalExchangeScreenState extends ConsumerState<PhysicalExchangeScreen>
   String? _overlayLabel;
   bool _overlayIsNew = true;
 
+  // ── Tutorial ──────────────────────────────────────────────────────────────
+  bool _tutorialScheduled = false;
+
   @override
   void initState() {
     super.initState();
@@ -87,6 +93,16 @@ class _PhysicalExchangeScreenState extends ConsumerState<PhysicalExchangeScreen>
     _loadEmojiCache();
     // La cámara se inicia de forma perezosa cuando el tab se activa
     // (evita el fallo de CameraPreview dentro de Offstage del IndexedStack)
+  }
+
+  Future<void> _maybeShowExchangeTutorial() async {
+    if (_tutorialScheduled || !mounted) return;
+    _tutorialScheduled = true;
+    // Delay para que la cámara y la UI estén completamente renderizadas
+    await Future.delayed(const Duration(milliseconds: 600));
+    if (!mounted) return;
+    final done = await TutorialService.isExchangeTutorialDone();
+    if (!done && mounted) ExchangeTutorial.show(context);
   }
 
   Future<void> _loadCache() async {
@@ -717,6 +733,7 @@ class _PhysicalExchangeScreenState extends ConsumerState<PhysicalExchangeScreen>
       if (!mounted) return;
       if (isActive) {
         _initCamera();
+        _maybeShowExchangeTutorial();
       } else {
         _shutdownCamera();
       }
@@ -778,6 +795,7 @@ class _PhysicalExchangeScreenState extends ConsumerState<PhysicalExchangeScreen>
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
+                key: tutorialExchangeFrameKey,
                 width: 220,
                 height: 280,
                 decoration: BoxDecoration(
@@ -806,6 +824,7 @@ class _PhysicalExchangeScreenState extends ConsumerState<PhysicalExchangeScreen>
           left: 0,
           right: 0,
           child: Container(
+            key: tutorialExchangeBottomBarKey,
             padding: const EdgeInsets.fromLTRB(16, 10, 16, 20),
             decoration: const BoxDecoration(
               gradient: LinearGradient(

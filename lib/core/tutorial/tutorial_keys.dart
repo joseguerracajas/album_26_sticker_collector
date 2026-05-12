@@ -48,3 +48,27 @@ final GlobalKey tutorialLookupSearchFieldKey = GlobalKey(
 final GlobalKey tutorialLookupSearchButtonKey = GlobalKey(
   debugLabel: 'tutorialLookupSearchButton',
 );
+
+// ── ScannerScreen (pestaña escaneo) ──────────────────────────────────────────
+final GlobalKey tutorialScannerModeKey = GlobalKey(
+  debugLabel: 'tutorialScannerMode',
+);
+final GlobalKey tutorialScannerFrameKey = GlobalKey(
+  debugLabel: 'tutorialScannerFrame',
+);
+
+// ── PhysicalExchangeScreen ────────────────────────────────────────────────────
+final GlobalKey tutorialExchangeFrameKey = GlobalKey(
+  debugLabel: 'tutorialExchangeFrame',
+);
+final GlobalKey tutorialExchangeBottomBarKey = GlobalKey(
+  debugLabel: 'tutorialExchangeBottomBar',
+);
+
+// ── StatisticsScreen ──────────────────────────────────────────────────────────
+final GlobalKey tutorialStatsGlobalKey = GlobalKey(
+  debugLabel: 'tutorialStatsGlobal',
+);
+final GlobalKey tutorialStatsFilterKey = GlobalKey(
+  debugLabel: 'tutorialStatsFilter',
+);

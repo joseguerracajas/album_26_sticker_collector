@@ -11,6 +11,9 @@ class TutorialService {
   static const _keyLookupTutorialDone = 'tutorial_lookup_v1';
   // Compartido entre GlobalCollectionScreen y CategoryDetailScreen
   static const _keyStickerGridTutorialDone = 'tutorial_sticker_grid_v1';
+  static const _keyScannerTutorialDone = 'tutorial_scanner_v1';
+  static const _keyExchangeTutorialDone = 'tutorial_exchange_v1';
+  static const _keyStatsTutorialDone = 'tutorial_stats_v1';
 
   // ── Home tutorial ─────────────────────────────────────────────────────────
   static Future<bool> isHomeTutorialDone() async {
@@ -67,6 +70,39 @@ class TutorialService {
     await prefs.setBool(_keyStickerGridTutorialDone, true);
   }
 
+  // ── Scanner tab tutorial ──────────────────────────────────────────────────
+  static Future<bool> isScannerTutorialDone() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_keyScannerTutorialDone) ?? false;
+  }
+
+  static Future<void> markScannerTutorialDone() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyScannerTutorialDone, true);
+  }
+
+  // ── Exchange tutorial ─────────────────────────────────────────────────────
+  static Future<bool> isExchangeTutorialDone() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_keyExchangeTutorialDone) ?? false;
+  }
+
+  static Future<void> markExchangeTutorialDone() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyExchangeTutorialDone, true);
+  }
+
+  // ── Statistics tutorial ───────────────────────────────────────────────────
+  static Future<bool> isStatsTutorialDone() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_keyStatsTutorialDone) ?? false;
+  }
+
+  static Future<void> markStatsTutorialDone() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyStatsTutorialDone, true);
+  }
+
   /// Para development/testing: resetea todos los tutoriales.
   static Future<void> resetAll() async {
     final prefs = await SharedPreferences.getInstance();
@@ -75,5 +111,8 @@ class TutorialService {
     await prefs.remove(_keyCategoryTutorialDone);
     await prefs.remove(_keyLookupTutorialDone);
     await prefs.remove(_keyStickerGridTutorialDone);
+    await prefs.remove(_keyScannerTutorialDone);
+    await prefs.remove(_keyExchangeTutorialDone);
+    await prefs.remove(_keyStatsTutorialDone);
   }
 }

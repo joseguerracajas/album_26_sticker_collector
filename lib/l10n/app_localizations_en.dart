@@ -632,6 +632,48 @@ class AppLocalizationsEn extends AppLocalizations {
   String get drawerReplayTutorial => 'Replay tutorial';
 
   @override
+  String get scannerTutorialStep1Title => 'Scan mode';
+
+  @override
+  String get scannerTutorialStep1Body =>
+      'Choose Add to register new stickers, or Remove Duplicates to take extras out of your inventory.';
+
+  @override
+  String get scannerTutorialStep2Title => 'Aim at the sticker';
+
+  @override
+  String get scannerTutorialStep2Body =>
+      'Hold the back of a sticker inside the frame. The app detects the code automatically and adds it to your album. A notification will appear with the result.';
+
+  @override
+  String get exchangeTutorialStep1Title => 'Scan your friend\'s stickers';
+
+  @override
+  String get exchangeTutorialStep1Body =>
+      'Point the camera at the back of another collector\'s stickers. The app sorts which ones you are missing and which ones you already have.';
+
+  @override
+  String get exchangeTutorialStep2Title => 'Missing and duplicates';
+
+  @override
+  String get exchangeTutorialStep2Body =>
+      'Here you can see in real time how many new stickers you found and how many you already had. Tap View results to see the full list and save the ones you are missing.';
+
+  @override
+  String get statsTutorialStep1Title => 'Your global progress';
+
+  @override
+  String get statsTutorialStep1Body =>
+      'This card shows how many unique stickers you have out of the total album. Aim for 100%! Pull down to refresh.';
+
+  @override
+  String get statsTutorialStep2Title => 'Filter by category';
+
+  @override
+  String get statsTutorialStep2Body =>
+      'Tap these chips to see stats for a specific country or team. You can select multiple at once to compare.';
+
+  @override
   String get variantTutorialTitle => 'Select your region';
 
   @override

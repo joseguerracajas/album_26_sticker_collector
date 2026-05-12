@@ -1,4 +1,7 @@
 import 'dart:io';
+import 'package:album_26_sticker_collector/core/tutorial/scanner_tutorial.dart';
+import 'package:album_26_sticker_collector/core/tutorial/tutorial_keys.dart';
+import 'package:album_26_sticker_collector/core/tutorial/tutorial_service.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/catalog_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/sticker.model.dart';
@@ -68,6 +71,9 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
   // --- MODO DE ESCANEO ---
   bool _isRemoveMode = false;
 
+  // --- TUTORIAL ---
+  bool _tutorialScheduled = false;
+
   @override
   void initState() {
     super.initState();
@@ -76,6 +82,16 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
     _loadStickerMeta();
     // La cámara se inicia de forma perezosa cuando el tab se activa
     // (evita el fallo de CameraPreview dentro de Offstage del IndexedStack)
+  }
+
+  Future<void> _maybeShowScannerTutorial() async {
+    if (_tutorialScheduled || !mounted) return;
+    _tutorialScheduled = true;
+    // Pequeño delay para que la cámara termine de renderizarse
+    await Future.delayed(const Duration(milliseconds: 600));
+    if (!mounted) return;
+    final done = await TutorialService.isScannerTutorialDone();
+    if (!done && mounted) ScannerTutorial.show(context);
   }
 
   Future<void> _loadStickerMeta() async {
@@ -472,6 +488,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
       if (!mounted) return;
       if (isActive) {
         _initializeCamera();
+        _maybeShowScannerTutorial();
       } else {
         _shutdownCamera();
       }
@@ -516,7 +533,10 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
             top: 70,
             left: 20,
             right: 20,
-            child: _buildModeToggle(context, l10n),
+            child: Container(
+              key: tutorialScannerModeKey,
+              child: _buildModeToggle(context, l10n),
+            ),
           ),
 
           // 4. Botón Flotante para ver la bandeja de escaneo (modo AGREGAR)
@@ -747,6 +767,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
       children: [
         // 🔥 MIRA MÁS PEQUEÑA (240x320)
         Container(
+          key: tutorialScannerFrameKey,
           width: 240,
           height: 320,
           decoration: BoxDecoration(

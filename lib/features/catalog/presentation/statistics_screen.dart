@@ -2,6 +2,9 @@
 
 import 'dart:math' as math;
 
+import 'package:album_26_sticker_collector/core/tutorial/statistics_tutorial.dart';
+import 'package:album_26_sticker_collector/core/tutorial/tutorial_keys.dart';
+import 'package:album_26_sticker_collector/core/tutorial/tutorial_service.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/sync_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/category.model.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/app_bar_actions.dart';
@@ -12,6 +15,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+// ---------------------------------------------------------------------------
+// Provider de activación de pestaña (igual que scanner/exchange/lookup)
+// ---------------------------------------------------------------------------
+class _StatisticsTabActiveNotifier extends Notifier<bool> {
+  @override
+  bool build() => false;
+
+  void setActive(bool value) => state = value;
+}
+
+final statisticsTabActiveProvider =
+    NotifierProvider<_StatisticsTabActiveNotifier, bool>(
+      _StatisticsTabActiveNotifier.new,
+    );
 
 // ---------------------------------------------------------------------------
 // Estado local de la pantalla
@@ -74,6 +92,17 @@ class StatisticsScreen extends ConsumerStatefulWidget {
 class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
   double _pointerDownX = 0;
   final ScrollController _scrollController = ScrollController();
+  bool _tutorialScheduled = false;
+
+  Future<void> _maybeShowStatsTutorial() async {
+    if (_tutorialScheduled || !mounted) return;
+    _tutorialScheduled = true;
+    // Delay para que el CustomScrollView termine de renderizar sus slivers
+    await Future.delayed(const Duration(milliseconds: 500));
+    if (!mounted) return;
+    final done = await TutorialService.isStatsTutorialDone();
+    if (!done && mounted) StatisticsTutorial.show(context);
+  }
 
   @override
   void dispose() {
@@ -89,6 +118,11 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
     final categoryStatsAsync = ref.watch(categoryStatsProvider);
     final totalAsync = ref.watch(totalStickersCountProvider);
     final uniqueCollected = ref.watch(uniqueCollectedProvider);
+
+    // Lanza el tutorial cuando el tab se activa por primera vez
+    ref.listen<bool>(statisticsTabActiveProvider, (_, isActive) {
+      if (isActive) _maybeShowStatsTutorial();
+    });
 
     return PrimaryScrollController(
       controller: _scrollController,
@@ -129,11 +163,14 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
                 slivers: [
                   // 1. Sección global de progreso (tarjeta dorada)
                   SliverToBoxAdapter(
-                    child: _GlobalProgressCard(
-                      totalAsync: totalAsync,
-                      uniqueCollected: uniqueCollected,
-                      categoryStatsAsync: categoryStatsAsync,
-                      l10n: l10n,
+                    child: Container(
+                      key: tutorialStatsGlobalKey,
+                      child: _GlobalProgressCard(
+                        totalAsync: totalAsync,
+                        uniqueCollected: uniqueCollected,
+                        categoryStatsAsync: categoryStatsAsync,
+                        l10n: l10n,
+                      ),
                     ),
                   ),
 
@@ -144,10 +181,13 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
                     error: (e, s) =>
                         const SliverToBoxAdapter(child: SizedBox.shrink()),
                     data: (stats) => SliverToBoxAdapter(
-                      child: _CategoryFilterChips(
-                        categories: stats.map((s) => s.category).toList(),
-                        selectedIds: selectedCategoryIds,
-                        l10n: l10n,
+                      child: Container(
+                        key: tutorialStatsFilterKey,
+                        child: _CategoryFilterChips(
+                          categories: stats.map((s) => s.category).toList(),
+                          selectedIds: selectedCategoryIds,
+                          l10n: l10n,
+                        ),
                       ),
                     ),
                   ),

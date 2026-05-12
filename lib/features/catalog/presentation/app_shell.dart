@@ -54,6 +54,10 @@ class _AppShellState extends ConsumerState<AppShell> {
     if (_currentIndex == 3 || index == 3) {
       ref.read(lookupTabActiveProvider.notifier).setActive(index == 3);
     }
+    // Tab 4: Estadísticas
+    if (_currentIndex == 4 || index == 4) {
+      ref.read(statisticsTabActiveProvider.notifier).setActive(index == 4);
+    }
 
     setState(() => _currentIndex = index);
   }

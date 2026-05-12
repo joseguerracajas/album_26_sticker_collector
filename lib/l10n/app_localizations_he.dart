@@ -618,6 +618,48 @@ class AppLocalizationsHe extends AppLocalizations {
   String get drawerReplayTutorial => 'לצפות בהדרכה מחדש';
 
   @override
+  String get scannerTutorialStep1Title => 'Modo de escaneo';
+
+  @override
+  String get scannerTutorialStep1Body =>
+      'Elige Agregar para registrar stickers nuevos, o Quitar repetidos para eliminar del inventario los que ya tienes de más.';
+
+  @override
+  String get scannerTutorialStep2Title => 'Apunta al sticker';
+
+  @override
+  String get scannerTutorialStep2Body =>
+      'Coloca el dorso del sticker dentro del marco. La app detecta el código automáticamente y lo añade a tu álbum. Verás una notificación en pantalla con el resultado.';
+
+  @override
+  String get exchangeTutorialStep1Title => 'Escanea los stickers de tu amigo';
+
+  @override
+  String get exchangeTutorialStep1Body =>
+      'Apunta la cámara al dorso de los stickers de otro coleccionista. La app clasifica cuáles te faltan y cuáles ya tienes repetidos.';
+
+  @override
+  String get exchangeTutorialStep2Title => 'Faltantes y repetidos';
+
+  @override
+  String get exchangeTutorialStep2Body =>
+      'Aquí verás en tiempo real cuántos stickers nuevos encontraste y cuántos ya tenías. Toca Ver resultados para ver la lista completa y guardar los que te faltan.';
+
+  @override
+  String get statsTutorialStep1Title => 'Tu progreso global';
+
+  @override
+  String get statsTutorialStep1Body =>
+      'Esta tarjeta muestra cuántos stickers únicos tienes del total del álbum. ¡Apunta al 100%! Desliza hacia abajo para actualizar.';
+
+  @override
+  String get statsTutorialStep2Title => 'Filtra por categoría';
+
+  @override
+  String get statsTutorialStep2Body =>
+      'Toca estos chips para ver las estadísticas de un país o equipo concreto. Puedes seleccionar varios a la vez para comparar.';
+
+  @override
   String get variantTutorialTitle => 'בחר את האזור שלך';
 
   @override

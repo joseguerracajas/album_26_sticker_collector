@@ -1226,6 +1226,78 @@ abstract class AppLocalizations {
   /// **'Ver tutorial de nuevo'**
   String get drawerReplayTutorial;
 
+  /// No description provided for @scannerTutorialStep1Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Modo de escaneo'**
+  String get scannerTutorialStep1Title;
+
+  /// No description provided for @scannerTutorialStep1Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Elige Agregar para registrar stickers nuevos, o Quitar repetidos para eliminar del inventario los que ya tienes de más.'**
+  String get scannerTutorialStep1Body;
+
+  /// No description provided for @scannerTutorialStep2Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Apunta al sticker'**
+  String get scannerTutorialStep2Title;
+
+  /// No description provided for @scannerTutorialStep2Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Coloca el dorso del sticker dentro del marco. La app detecta el código automáticamente y lo añade a tu álbum. Verás una notificación en pantalla con el resultado.'**
+  String get scannerTutorialStep2Body;
+
+  /// No description provided for @exchangeTutorialStep1Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Escanea los stickers de tu amigo'**
+  String get exchangeTutorialStep1Title;
+
+  /// No description provided for @exchangeTutorialStep1Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Apunta la cámara al dorso de los stickers de otro coleccionista. La app clasifica cuáles te faltan y cuáles ya tienes repetidos.'**
+  String get exchangeTutorialStep1Body;
+
+  /// No description provided for @exchangeTutorialStep2Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Faltantes y repetidos'**
+  String get exchangeTutorialStep2Title;
+
+  /// No description provided for @exchangeTutorialStep2Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Aquí verás en tiempo real cuántos stickers nuevos encontraste y cuántos ya tenías. Toca Ver resultados para ver la lista completa y guardar los que te faltan.'**
+  String get exchangeTutorialStep2Body;
+
+  /// No description provided for @statsTutorialStep1Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu progreso global'**
+  String get statsTutorialStep1Title;
+
+  /// No description provided for @statsTutorialStep1Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Esta tarjeta muestra cuántos stickers únicos tienes del total del álbum. ¡Apunta al 100%! Desliza hacia abajo para actualizar.'**
+  String get statsTutorialStep1Body;
+
+  /// No description provided for @statsTutorialStep2Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Filtra por categoría'**
+  String get statsTutorialStep2Title;
+
+  /// No description provided for @statsTutorialStep2Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca estos chips para ver las estadísticas de un país o equipo concreto. Puedes seleccionar varios a la vez para comparar.'**
+  String get statsTutorialStep2Body;
+
   /// No description provided for @variantTutorialTitle.
   ///
   /// In es, this message translates to:

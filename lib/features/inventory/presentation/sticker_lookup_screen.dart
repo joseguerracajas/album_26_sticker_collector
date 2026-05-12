@@ -48,6 +48,9 @@ class _StickerLookupScreenState extends ConsumerState<StickerLookupScreen>
   // Cache: "ECU10" -> Sticker
   Map<String, Sticker>? _stickerCache;
 
+  // Tutorial: se lanza solo al activar el tab, no en el build inicial
+  bool _tutorialScheduled = false;
+
   @override
   void initState() {
     super.initState();
@@ -58,11 +61,18 @@ class _StickerLookupScreenState extends ConsumerState<StickerLookupScreen>
       }
     });
     _loadCache();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      if (!mounted) return;
-      final done = await TutorialService.isLookupTutorialDone();
-      if (!done && mounted) LookupTutorial.show(context);
-    });
+    // El tutorial se lanza desde el listener de lookupTabActiveProvider
+    // para evitar que se muestre mientras este tab está en offstage.
+  }
+
+  Future<void> _maybeShowLookupTutorial() async {
+    if (_tutorialScheduled || !mounted) return;
+    _tutorialScheduled = true;
+    // Pequeño delay para que TabBar y campos terminen de renderizarse
+    await Future.delayed(const Duration(milliseconds: 400));
+    if (!mounted) return;
+    final done = await TutorialService.isLookupTutorialDone();
+    if (!done && mounted) LookupTutorial.show(context);
   }
 
   Future<void> _loadCache() async {
@@ -92,6 +102,11 @@ class _StickerLookupScreenState extends ConsumerState<StickerLookupScreen>
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+
+    // Lanza el tutorial solo cuando el tab de Buscar se activa por primera vez
+    ref.listen<bool>(lookupTabActiveProvider, (_, isActive) {
+      if (isActive) _maybeShowLookupTutorial();
+    });
 
     return Scaffold(
       backgroundColor: const Color(0xFF121212),

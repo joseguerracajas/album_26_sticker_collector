@@ -1,6 +1,8 @@
-// Archivo: lib/core/tutorial/home_tutorial.dart
+// Archivo: lib/core/tutorial/exchange_tutorial.dart
 //
-// Construye y lanza el tutorial interactivo de la HomeScreen.
+// Tutorial interactivo de la PhysicalExchangeScreen.
+// Explica: el marco de escaneo y la barra inferior con contadores y resultados.
+// Se lanza la primera vez que el usuario activa la pestaña de intercambio.
 
 import 'package:album_26_sticker_collector/core/tutorial/tutorial_keys.dart';
 import 'package:album_26_sticker_collector/core/tutorial/tutorial_service.dart';
@@ -8,122 +10,51 @@ import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
-class HomeTutorial {
-  /// Lanza el tutorial. Llama desde un addPostFrameCallback.
+class ExchangeTutorial {
+  /// Lanza el tutorial. Llama desde el listener de [exchangeTabActiveProvider].
   static void show(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final size = MediaQuery.sizeOf(context);
-
-    // En iPad (ancho ≥ 600) usamos más padding y alineación diferente para el AppBar.
     final isTablet = size.width >= 600;
     final focusPadding = isTablet ? 20.0 : 10.0;
-    // Los botones del AppBar están arriba: en tablet el texto queda mejor abajo;
-    // en phone también queda bien abajo. Pero si el botón está muy cerca del borde
-    // superior, usamos bottom en ambos casos.
-    final appBarContentAlign = ContentAlign.bottom;
 
     final targets = <TargetFocus>[
-      // 1 ─ Tarjeta de progreso global
+      // 1 ─ Marco de escaneo (viewfinder del intercambio)
       TargetFocus(
-        identify: 'progress_card',
-        keyTarget: tutorialProgressCardKey,
+        identify: 'exchange_frame',
+        keyTarget: tutorialExchangeFrameKey,
         shape: ShapeLightFocus.RRect,
-        radius: 24,
-        paddingFocus: focusPadding,
+        radius: 12,
+        paddingFocus: isTablet ? 24.0 : 12.0,
         enableOverlayTab: true,
         contents: [
           TargetContent(
             align: ContentAlign.bottom,
             child: _CoachContent(
-              icon: Icons.bar_chart_rounded,
-              title: l10n.tutorialStep1Title,
-              body: l10n.tutorialStep1Body,
+              icon: Icons.swap_horiz_rounded,
+              title: l10n.exchangeTutorialStep1Title,
+              body: l10n.exchangeTutorialStep1Body,
               isTablet: isTablet,
             ),
           ),
         ],
       ),
 
-      // 2 ─ Buscador de equipos
+      // 2 ─ Barra inferior: contadores + botón Ver resultados
       TargetFocus(
-        identify: 'search_bar',
-        keyTarget: tutorialSearchBarKey,
+        identify: 'exchange_bottom_bar',
+        keyTarget: tutorialExchangeBottomBarKey,
         shape: ShapeLightFocus.RRect,
-        radius: 15,
-        paddingFocus: focusPadding,
-        enableOverlayTab: true,
-        contents: [
-          TargetContent(
-            align: ContentAlign.bottom,
-            child: _CoachContent(
-              icon: Icons.search,
-              title: l10n.tutorialStep2Title,
-              body: l10n.tutorialStep2Body,
-              isTablet: isTablet,
-            ),
-          ),
-        ],
-      ),
-
-      // 3 ─ Menú lateral (hamburguesa)
-      TargetFocus(
-        identify: 'drawer_button',
-        keyTarget: tutorialDrawerKey,
-        shape: ShapeLightFocus.RRect,
-        radius: 8,
-        // En tablet los botones del AppBar son más grandes visualmente;
-        // aumentamos el padding para que el resaltado se vea bien.
-        paddingFocus: isTablet ? 28.0 : 14.0,
-        enableOverlayTab: true,
-        contents: [
-          TargetContent(
-            align: appBarContentAlign,
-            child: _CoachContent(
-              icon: Icons.menu,
-              title: l10n.tutorialStep3Title,
-              body: l10n.tutorialStep3Body,
-              isTablet: isTablet,
-            ),
-          ),
-        ],
-      ),
-
-      // 4 ─ Botón compartir
-      TargetFocus(
-        identify: 'share_button',
-        keyTarget: tutorialShareKey,
-        shape: ShapeLightFocus.RRect,
-        radius: 8,
-        paddingFocus: isTablet ? 28.0 : 14.0,
-        enableOverlayTab: true,
-        contents: [
-          TargetContent(
-            align: appBarContentAlign,
-            child: _CoachContent(
-              icon: Icons.share,
-              title: l10n.tutorialStep5Title,
-              body: l10n.tutorialStep5Body,
-              isTablet: isTablet,
-            ),
-          ),
-        ],
-      ),
-
-      // 5 ─ Primera categoría – invita a explorarla
-      TargetFocus(
-        identify: 'category_tile',
-        keyTarget: tutorialCategoryTileKey,
-        shape: ShapeLightFocus.RRect,
-        radius: 16,
+        radius: 12,
         paddingFocus: focusPadding,
         enableOverlayTab: true,
         contents: [
           TargetContent(
             align: ContentAlign.top,
             child: _CoachContent(
-              icon: Icons.flag_rounded,
-              title: l10n.tutorialStep6Title,
-              body: l10n.tutorialStep6Body,
+              icon: Icons.list_alt_rounded,
+              title: l10n.exchangeTutorialStep2Title,
+              body: l10n.exchangeTutorialStep2Body,
               isTablet: isTablet,
             ),
           ),
@@ -146,9 +77,9 @@ class HomeTutorial {
       focusAnimationDuration: const Duration(milliseconds: 350),
       unFocusAnimationDuration: const Duration(milliseconds: 350),
       onClickOverlay: (_) => tutorial.next(),
-      onFinish: TutorialService.markHomeTutorialDone,
+      onFinish: TutorialService.markExchangeTutorialDone,
       onSkip: () {
-        TutorialService.markHomeTutorialDone();
+        TutorialService.markExchangeTutorialDone();
         return true;
       },
     )..show(context: context);
@@ -217,8 +148,6 @@ class _CoachContent extends StatelessWidget {
       ],
     );
 
-    // En tablet limitamos el ancho para que el texto no se estire
-    // por toda la pantalla ancha del iPad.
     if (isTablet) {
       return ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 480),
