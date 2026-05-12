@@ -1198,6 +1198,42 @@ class AppLocalizationsIt extends AppLocalizations {
   String get scanBadgeRepeated => 'Duplicato';
 
   @override
+  String get scannerModeAdd => 'Aggiungi figurine';
+
+  @override
+  String get scannerModeRemoveDuplicates => 'Rimuovi doppioni';
+
+  @override
+  String get scannerRemoveModeHint =>
+      'Centra la figurina doppione da rimuovere';
+
+  @override
+  String get removeDuplicatesTitle => 'Doppioni da rimuovere';
+
+  @override
+  String get removeDuplicatesEmpty => 'Nessun doppione scansionato ancora';
+
+  @override
+  String removeDuplicatesSavedSuccess(Object count) {
+    return '$count doppioni rimossi dall\'inventario 🗑️';
+  }
+
+  @override
+  String removeDuplicatesSaveError(Object message) {
+    return 'Errore durante il salvataggio: $message';
+  }
+
+  @override
+  String removeDuplicatesLimitWarning(Object label) {
+    return 'Nessun altro doppione da rimuovere per $label';
+  }
+
+  @override
+  String removeDuplicatesReviewButton(Object count) {
+    return 'Rivedi $count da rimuovere';
+  }
+
+  @override
   String get navAlbum => 'Album';
 
   @override

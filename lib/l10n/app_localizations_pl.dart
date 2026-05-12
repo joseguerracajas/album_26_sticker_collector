@@ -1197,6 +1197,42 @@ class AppLocalizationsPl extends AppLocalizations {
   String get scanBadgeRepeated => 'Duplikat';
 
   @override
+  String get scannerModeAdd => 'Dodaj naklejki';
+
+  @override
+  String get scannerModeRemoveDuplicates => 'Usuń duplikaty';
+
+  @override
+  String get scannerRemoveModeHint => 'Wyśrodkuj duplikat do usunięcia';
+
+  @override
+  String get removeDuplicatesTitle => 'Duplikaty do usunięcia';
+
+  @override
+  String get removeDuplicatesEmpty =>
+      'Nie zeskanowano jeszcze żadnych duplikatów';
+
+  @override
+  String removeDuplicatesSavedSuccess(Object count) {
+    return 'Usunięto $count duplikatów z ekwipunku 🗑️';
+  }
+
+  @override
+  String removeDuplicatesSaveError(Object message) {
+    return 'Błąd przy zapisie: $message';
+  }
+
+  @override
+  String removeDuplicatesLimitWarning(Object label) {
+    return 'Brak więcej duplikatów do usunięcia dla $label';
+  }
+
+  @override
+  String removeDuplicatesReviewButton(Object count) {
+    return 'Sprawdź $count do usunięcia';
+  }
+
+  @override
   String get navAlbum => 'Album';
 
   @override

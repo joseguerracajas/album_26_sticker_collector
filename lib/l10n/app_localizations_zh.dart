@@ -1148,6 +1148,41 @@ class AppLocalizationsZh extends AppLocalizations {
   String get scanBadgeRepeated => '重复';
 
   @override
+  String get scannerModeAdd => '添加贴纸';
+
+  @override
+  String get scannerModeRemoveDuplicates => '移除重复';
+
+  @override
+  String get scannerRemoveModeHint => '将重复贴纸居中以移除';
+
+  @override
+  String get removeDuplicatesTitle => '待移除的重复贴纸';
+
+  @override
+  String get removeDuplicatesEmpty => '尚未扫描任何重复贴纸';
+
+  @override
+  String removeDuplicatesSavedSuccess(Object count) {
+    return '已从库存移除 $count 张重复贴纸 🗑️';
+  }
+
+  @override
+  String removeDuplicatesSaveError(Object message) {
+    return '保存出错：$message';
+  }
+
+  @override
+  String removeDuplicatesLimitWarning(Object label) {
+    return '$label 没有更多重复可移除';
+  }
+
+  @override
+  String removeDuplicatesReviewButton(Object count) {
+    return '查看 $count 个待移除';
+  }
+
+  @override
   String get navAlbum => '相册';
 
   @override

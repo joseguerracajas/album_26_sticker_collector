@@ -309,6 +309,35 @@
   "lookupTutorialStep3Body": "Vedrai se la figurina manca o ce l'hai già. Con i pulsanti + e – puoi aggiornare il tuo inventario all'istante.",
   "scanBadgeNew": "Nuovo",
   "scanBadgeRepeated": "Duplicato",
+  "scannerModeAdd": "Aggiungi figurine",
+  "scannerModeRemoveDuplicates": "Rimuovi doppioni",
+  "scannerRemoveModeHint": "Centra la figurina doppione da rimuovere",
+  "removeDuplicatesTitle": "Doppioni da rimuovere",
+  "removeDuplicatesEmpty": "Nessun doppione scansionato ancora",
+  "removeDuplicatesSavedSuccess": "{count} doppioni rimossi dall'inventario 🗑️",
+  "@removeDuplicatesSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "removeDuplicatesSaveError": "Errore durante il salvataggio: {message}",
+  "@removeDuplicatesSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "removeDuplicatesLimitWarning": "Nessun altro doppione da rimuovere per {label}",
+  "@removeDuplicatesLimitWarning": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "removeDuplicatesReviewButton": "Rivedi {count} da rimuovere",
+  "@removeDuplicatesReviewButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "navAlbum": "Album",
   "navScanner": "Scanner"
 }

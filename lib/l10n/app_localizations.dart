@@ -2192,6 +2192,60 @@ abstract class AppLocalizations {
   /// **'Repetido'**
   String get scanBadgeRepeated;
 
+  /// No description provided for @scannerModeAdd.
+  ///
+  /// In es, this message translates to:
+  /// **'Agregar stickers'**
+  String get scannerModeAdd;
+
+  /// No description provided for @scannerModeRemoveDuplicates.
+  ///
+  /// In es, this message translates to:
+  /// **'Quitar repetidos'**
+  String get scannerModeRemoveDuplicates;
+
+  /// No description provided for @scannerRemoveModeHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Centra el sticker repetido a quitar'**
+  String get scannerRemoveModeHint;
+
+  /// No description provided for @removeDuplicatesTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Repetidos a quitar'**
+  String get removeDuplicatesTitle;
+
+  /// No description provided for @removeDuplicatesEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'No has escaneado repetidos aún'**
+  String get removeDuplicatesEmpty;
+
+  /// No description provided for @removeDuplicatesSavedSuccess.
+  ///
+  /// In es, this message translates to:
+  /// **'{count} repetidos quitados del inventario 🗑️'**
+  String removeDuplicatesSavedSuccess(Object count);
+
+  /// No description provided for @removeDuplicatesSaveError.
+  ///
+  /// In es, this message translates to:
+  /// **'Error al guardar: {message}'**
+  String removeDuplicatesSaveError(Object message);
+
+  /// No description provided for @removeDuplicatesLimitWarning.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya quitaste todos los repetidos de {label}'**
+  String removeDuplicatesLimitWarning(Object label);
+
+  /// No description provided for @removeDuplicatesReviewButton.
+  ///
+  /// In es, this message translates to:
+  /// **'Revisar {count} a quitar'**
+  String removeDuplicatesReviewButton(Object count);
+
   /// No description provided for @navAlbum.
   ///
   /// In es, this message translates to:

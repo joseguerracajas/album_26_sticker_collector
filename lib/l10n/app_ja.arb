@@ -309,6 +309,35 @@
   "lookupTutorialStep3Body": "ステッカーが未収集か収集済みか表示されます。+と–ボタンで在庫を即座に更新できます。",
   "scanBadgeNew": "新しい",
   "scanBadgeRepeated": "重複",
+  "scannerModeAdd": "ステッカー追加",
+  "scannerModeRemoveDuplicates": "重複を削除",
+  "scannerRemoveModeHint": "削除する重複ステッカーを中央に合わせる",
+  "removeDuplicatesTitle": "削除する重複",
+  "removeDuplicatesEmpty": "まだ重複はスキャンされていません",
+  "removeDuplicatesSavedSuccess": "在庫から{count}枚の重複を削除しました 🗑️",
+  "@removeDuplicatesSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "removeDuplicatesSaveError": "保存エラー: {message}",
+  "@removeDuplicatesSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "removeDuplicatesLimitWarning": "{label}の重複はこれ以上削除できません",
+  "@removeDuplicatesLimitWarning": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "removeDuplicatesReviewButton": "{count}件削除確認",
+  "@removeDuplicatesReviewButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "navAlbum": "アルバム",
   "navScanner": "スキャナー"
 }

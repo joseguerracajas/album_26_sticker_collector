@@ -1200,6 +1200,41 @@ class AppLocalizationsRu extends AppLocalizations {
   String get scanBadgeRepeated => 'Дубликат';
 
   @override
+  String get scannerModeAdd => 'Добавить наклейки';
+
+  @override
+  String get scannerModeRemoveDuplicates => 'Убрать дубликаты';
+
+  @override
+  String get scannerRemoveModeHint => 'Наведите на дубликат для удаления';
+
+  @override
+  String get removeDuplicatesTitle => 'Дубликаты для удаления';
+
+  @override
+  String get removeDuplicatesEmpty => 'Дубликаты ещё не отсканированы';
+
+  @override
+  String removeDuplicatesSavedSuccess(Object count) {
+    return '$count дубликата удалено из инвентаря 🗑️';
+  }
+
+  @override
+  String removeDuplicatesSaveError(Object message) {
+    return 'Ошибка при сохранении: $message';
+  }
+
+  @override
+  String removeDuplicatesLimitWarning(Object label) {
+    return 'Нет больше дубликатов для $label';
+  }
+
+  @override
+  String removeDuplicatesReviewButton(Object count) {
+    return 'Проверить $count для удаления';
+  }
+
+  @override
   String get navAlbum => 'Альбом';
 
   @override

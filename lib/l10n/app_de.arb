@@ -309,6 +309,35 @@
   "lookupTutorialStep3Body": "Du siehst ob der Sticker fehlt oder schon vorhanden ist. Mit + und – kannst du dein Inventar sofort aktualisieren.",
   "scanBadgeNew": "Neu",
   "scanBadgeRepeated": "Doppelt",
+  "scannerModeAdd": "Sticker hinzufügen",
+  "scannerModeRemoveDuplicates": "Doppelte entfernen",
+  "scannerRemoveModeHint": "Doppelten Sticker zum Entfernen zentrieren",
+  "removeDuplicatesTitle": "Doppelte zum Entfernen",
+  "removeDuplicatesEmpty": "Noch keine Doppelten gescannt",
+  "removeDuplicatesSavedSuccess": "{count} Doppelte aus dem Inventar entfernt 🗑️",
+  "@removeDuplicatesSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "removeDuplicatesSaveError": "Fehler beim Speichern: {message}",
+  "@removeDuplicatesSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "removeDuplicatesLimitWarning": "Keine weiteren Doppelten für {label}",
+  "@removeDuplicatesLimitWarning": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "removeDuplicatesReviewButton": "{count} zum Entfernen prüfen",
+  "@removeDuplicatesReviewButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "navAlbum": "Album",
   "navScanner": "Scanner"
 }

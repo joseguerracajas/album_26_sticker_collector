@@ -1194,6 +1194,41 @@ class AppLocalizationsTr extends AppLocalizations {
   String get scanBadgeRepeated => 'Tekrar';
 
   @override
+  String get scannerModeAdd => 'Çıkartma ekle';
+
+  @override
+  String get scannerModeRemoveDuplicates => 'Tekrarları kaldır';
+
+  @override
+  String get scannerRemoveModeHint => 'Kaldırılacak tekrar çıkartmayı ortala';
+
+  @override
+  String get removeDuplicatesTitle => 'Kaldırılacak tekrarlar';
+
+  @override
+  String get removeDuplicatesEmpty => 'Henüz tekrar taranmadı';
+
+  @override
+  String removeDuplicatesSavedSuccess(Object count) {
+    return '$count tekrar envanterden kaldırıldı 🗑️';
+  }
+
+  @override
+  String removeDuplicatesSaveError(Object message) {
+    return 'Kaydetme hatası: $message';
+  }
+
+  @override
+  String removeDuplicatesLimitWarning(Object label) {
+    return '$label için kaldırılacak tekrar kalmadı';
+  }
+
+  @override
+  String removeDuplicatesReviewButton(Object count) {
+    return 'Kaldırılacak $count kişiyi incele';
+  }
+
+  @override
   String get navAlbum => 'Albüm';
 
   @override

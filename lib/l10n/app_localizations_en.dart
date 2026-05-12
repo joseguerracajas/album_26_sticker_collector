@@ -1186,6 +1186,41 @@ class AppLocalizationsEn extends AppLocalizations {
   String get scanBadgeRepeated => 'Duplicate';
 
   @override
+  String get scannerModeAdd => 'Add stickers';
+
+  @override
+  String get scannerModeRemoveDuplicates => 'Remove duplicates';
+
+  @override
+  String get scannerRemoveModeHint => 'Center the duplicate sticker to remove';
+
+  @override
+  String get removeDuplicatesTitle => 'Duplicates to remove';
+
+  @override
+  String get removeDuplicatesEmpty => 'No duplicates scanned yet';
+
+  @override
+  String removeDuplicatesSavedSuccess(Object count) {
+    return '$count duplicates removed from inventory 🗑️';
+  }
+
+  @override
+  String removeDuplicatesSaveError(Object message) {
+    return 'Error while saving: $message';
+  }
+
+  @override
+  String removeDuplicatesLimitWarning(Object label) {
+    return 'No more duplicates to remove for $label';
+  }
+
+  @override
+  String removeDuplicatesReviewButton(Object count) {
+    return 'Review $count to remove';
+  }
+
+  @override
   String get navAlbum => 'Album';
 
   @override

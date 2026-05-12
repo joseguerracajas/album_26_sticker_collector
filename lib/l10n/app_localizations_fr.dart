@@ -1200,6 +1200,41 @@ class AppLocalizationsFr extends AppLocalizations {
   String get scanBadgeRepeated => 'Doublon';
 
   @override
+  String get scannerModeAdd => 'Ajouter des stickers';
+
+  @override
+  String get scannerModeRemoveDuplicates => 'Retirer les doublons';
+
+  @override
+  String get scannerRemoveModeHint => 'Centre le sticker doublon à retirer';
+
+  @override
+  String get removeDuplicatesTitle => 'Doublons à retirer';
+
+  @override
+  String get removeDuplicatesEmpty => 'Aucun doublon scanné pour l\'instant';
+
+  @override
+  String removeDuplicatesSavedSuccess(Object count) {
+    return '$count doublons retirés de l\'inventaire 🗑️';
+  }
+
+  @override
+  String removeDuplicatesSaveError(Object message) {
+    return 'Erreur lors de la sauvegarde : $message';
+  }
+
+  @override
+  String removeDuplicatesLimitWarning(Object label) {
+    return 'Plus de doublons à retirer pour $label';
+  }
+
+  @override
+  String removeDuplicatesReviewButton(Object count) {
+    return 'Revoir $count à retirer';
+  }
+
+  @override
   String get navAlbum => 'Album';
 
   @override

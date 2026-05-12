@@ -524,6 +524,35 @@
   "lookupTutorialStep3Body": "You'll see if the sticker is missing, collected, or how many duplicates you have. Use the + and – buttons to update your inventory instantly.",
   "scanBadgeNew": "New",
   "scanBadgeRepeated": "Duplicate",
+  "scannerModeAdd": "Add stickers",
+  "scannerModeRemoveDuplicates": "Remove duplicates",
+  "scannerRemoveModeHint": "Center the duplicate sticker to remove",
+  "removeDuplicatesTitle": "Duplicates to remove",
+  "removeDuplicatesEmpty": "No duplicates scanned yet",
+  "removeDuplicatesSavedSuccess": "{count} duplicates removed from inventory 🗑️",
+  "@removeDuplicatesSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "removeDuplicatesSaveError": "Error while saving: {message}",
+  "@removeDuplicatesSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "removeDuplicatesLimitWarning": "No more duplicates to remove for {label}",
+  "@removeDuplicatesLimitWarning": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "removeDuplicatesReviewButton": "Review {count} to remove",
+  "@removeDuplicatesReviewButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "navAlbum": "Album",
   "navScanner": "Scanner"
 }

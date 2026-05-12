@@ -1186,6 +1186,41 @@ class AppLocalizationsAr extends AppLocalizations {
   String get scanBadgeRepeated => 'مكرر';
 
   @override
+  String get scannerModeAdd => 'إضافة ملصقات';
+
+  @override
+  String get scannerModeRemoveDuplicates => 'إزالة المكررات';
+
+  @override
+  String get scannerRemoveModeHint => 'ضع الملصق المكرر في المنتصف للإزالة';
+
+  @override
+  String get removeDuplicatesTitle => 'المكررات للإزالة';
+
+  @override
+  String get removeDuplicatesEmpty => 'لم يتم مسح أي مكررات بعد';
+
+  @override
+  String removeDuplicatesSavedSuccess(Object count) {
+    return 'تمت إزالة $count مكرر من المخزون 🗑️';
+  }
+
+  @override
+  String removeDuplicatesSaveError(Object message) {
+    return 'خطأ في الحفظ: $message';
+  }
+
+  @override
+  String removeDuplicatesLimitWarning(Object label) {
+    return 'لا مزيد من المكررات لإزالتها: $label';
+  }
+
+  @override
+  String removeDuplicatesReviewButton(Object count) {
+    return 'مراجعة $count للإزالة';
+  }
+
+  @override
   String get navAlbum => 'الألبوم';
 
   @override

@@ -1162,6 +1162,41 @@ class AppLocalizationsJa extends AppLocalizations {
   String get scanBadgeRepeated => '重複';
 
   @override
+  String get scannerModeAdd => 'ステッカー追加';
+
+  @override
+  String get scannerModeRemoveDuplicates => '重複を削除';
+
+  @override
+  String get scannerRemoveModeHint => '削除する重複ステッカーを中央に合わせる';
+
+  @override
+  String get removeDuplicatesTitle => '削除する重複';
+
+  @override
+  String get removeDuplicatesEmpty => 'まだ重複はスキャンされていません';
+
+  @override
+  String removeDuplicatesSavedSuccess(Object count) {
+    return '在庫から$count枚の重複を削除しました 🗑️';
+  }
+
+  @override
+  String removeDuplicatesSaveError(Object message) {
+    return '保存エラー: $message';
+  }
+
+  @override
+  String removeDuplicatesLimitWarning(Object label) {
+    return '$labelの重複はこれ以上削除できません';
+  }
+
+  @override
+  String removeDuplicatesReviewButton(Object count) {
+    return '$count件削除確認';
+  }
+
+  @override
   String get navAlbum => 'アルバム';
 
   @override

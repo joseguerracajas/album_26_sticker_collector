@@ -1200,6 +1200,41 @@ class AppLocalizationsEs extends AppLocalizations {
   String get scanBadgeRepeated => 'Repetido';
 
   @override
+  String get scannerModeAdd => 'Agregar stickers';
+
+  @override
+  String get scannerModeRemoveDuplicates => 'Quitar repetidos';
+
+  @override
+  String get scannerRemoveModeHint => 'Centra el sticker repetido a quitar';
+
+  @override
+  String get removeDuplicatesTitle => 'Repetidos a quitar';
+
+  @override
+  String get removeDuplicatesEmpty => 'No has escaneado repetidos aún';
+
+  @override
+  String removeDuplicatesSavedSuccess(Object count) {
+    return '$count repetidos quitados del inventario 🗑️';
+  }
+
+  @override
+  String removeDuplicatesSaveError(Object message) {
+    return 'Error al guardar: $message';
+  }
+
+  @override
+  String removeDuplicatesLimitWarning(Object label) {
+    return 'Ya quitaste todos los repetidos de $label';
+  }
+
+  @override
+  String removeDuplicatesReviewButton(Object count) {
+    return 'Revisar $count a quitar';
+  }
+
+  @override
   String get navAlbum => 'Álbum';
 
   @override

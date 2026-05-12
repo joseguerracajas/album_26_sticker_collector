@@ -309,6 +309,35 @@
   "lookupTutorialStep3Body": "תראה אם המדבקה חסרה או קיימת. בלחצני + ו– תוכל לעדכן את המלאי מיד.",
   "scanBadgeNew": "חדש",
   "scanBadgeRepeated": "כפול",
+  "scannerModeAdd": "הוסף מדבקות",
+  "scannerModeRemoveDuplicates": "הסר כפולים",
+  "scannerRemoveModeHint": "מרכז את המדבקה הכפולה להסרה",
+  "removeDuplicatesTitle": "כפולים להסרה",
+  "removeDuplicatesEmpty": "טרם נסרקו כפולים",
+  "removeDuplicatesSavedSuccess": "הוסרו {count} כפולים מהמלאי 🗑️",
+  "@removeDuplicatesSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "removeDuplicatesSaveError": "שגיאה בשמירה: {message}",
+  "@removeDuplicatesSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "removeDuplicatesLimitWarning": "אין עוד כפולים להסרה עבור {label}",
+  "@removeDuplicatesLimitWarning": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "removeDuplicatesReviewButton": "סקור {count} להסרה",
+  "@removeDuplicatesReviewButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "navAlbum": "אלבום",
   "navScanner": "סורק"
 }

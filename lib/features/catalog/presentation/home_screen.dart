@@ -678,12 +678,15 @@ class _AppDrawer extends ConsumerWidget {
                     fit: BoxFit.contain,
                   ),
                   const SizedBox(width: 14),
-                  Text(
-                    l10n.appTitle,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: Text(
+                      l10n.appTitle,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],

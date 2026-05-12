@@ -309,6 +309,35 @@
   "lookupTutorialStep3Body": "您可以看到贴纸是否缺少或已收集。使用 + 和 – 按钮即刻更新库存。",
   "scanBadgeNew": "新增",
   "scanBadgeRepeated": "重复",
+  "scannerModeAdd": "添加贴纸",
+  "scannerModeRemoveDuplicates": "移除重复",
+  "scannerRemoveModeHint": "将重复贴纸居中以移除",
+  "removeDuplicatesTitle": "待移除的重复贴纸",
+  "removeDuplicatesEmpty": "尚未扫描任何重复贴纸",
+  "removeDuplicatesSavedSuccess": "已从库存移除 {count} 张重复贴纸 🗑️",
+  "@removeDuplicatesSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "removeDuplicatesSaveError": "保存出错：{message}",
+  "@removeDuplicatesSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "removeDuplicatesLimitWarning": "{label} 没有更多重复可移除",
+  "@removeDuplicatesLimitWarning": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "removeDuplicatesReviewButton": "查看 {count} 个待移除",
+  "@removeDuplicatesReviewButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "navAlbum": "相册",
   "navScanner": "扫描仪"
 }

@@ -309,6 +309,35 @@
   "lookupTutorialStep3Body": "Você verá se a figurinha está faltando ou já tem. Com + e – você pode atualizar seu inventário na hora.",
   "scanBadgeNew": "Novo",
   "scanBadgeRepeated": "Repetido",
+  "scannerModeAdd": "Adicionar figurinhas",
+  "scannerModeRemoveDuplicates": "Remover repetidas",
+  "scannerRemoveModeHint": "Centre a figurinha repetida a remover",
+  "removeDuplicatesTitle": "Repetidas a remover",
+  "removeDuplicatesEmpty": "Nenhuma repetida escaneada ainda",
+  "removeDuplicatesSavedSuccess": "{count} repetidas removidas do inventário 🗑️",
+  "@removeDuplicatesSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "removeDuplicatesSaveError": "Erro ao salvar: {message}",
+  "@removeDuplicatesSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "removeDuplicatesLimitWarning": "Sem mais repetidas para remover: {label}",
+  "@removeDuplicatesLimitWarning": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "removeDuplicatesReviewButton": "Revisar {count} a remover",
+  "@removeDuplicatesReviewButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "navAlbum": "Álbum",
   "navScanner": "Scanner"
 }

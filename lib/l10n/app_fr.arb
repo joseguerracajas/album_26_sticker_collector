@@ -309,6 +309,35 @@
   "lookupTutorialStep3Body": "Tu verras si le sticker manque ou est déjà collecté. Avec les boutons + et – tu peux mettre à jour ton inventaire instantanément.",
   "scanBadgeNew": "Nouveau",
   "scanBadgeRepeated": "Doublon",
+  "scannerModeAdd": "Ajouter des stickers",
+  "scannerModeRemoveDuplicates": "Retirer les doublons",
+  "scannerRemoveModeHint": "Centre le sticker doublon à retirer",
+  "removeDuplicatesTitle": "Doublons à retirer",
+  "removeDuplicatesEmpty": "Aucun doublon scanné pour l'instant",
+  "removeDuplicatesSavedSuccess": "{count} doublons retirés de l'inventaire 🗑️",
+  "@removeDuplicatesSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "removeDuplicatesSaveError": "Erreur lors de la sauvegarde : {message}",
+  "@removeDuplicatesSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "removeDuplicatesLimitWarning": "Plus de doublons à retirer pour {label}",
+  "@removeDuplicatesLimitWarning": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "removeDuplicatesReviewButton": "Revoir {count} à retirer",
+  "@removeDuplicatesReviewButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "navAlbum": "Album",
   "navScanner": "Scanner"
 }

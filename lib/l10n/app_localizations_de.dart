@@ -1202,6 +1202,42 @@ class AppLocalizationsDe extends AppLocalizations {
   String get scanBadgeRepeated => 'Doppelt';
 
   @override
+  String get scannerModeAdd => 'Sticker hinzufügen';
+
+  @override
+  String get scannerModeRemoveDuplicates => 'Doppelte entfernen';
+
+  @override
+  String get scannerRemoveModeHint =>
+      'Doppelten Sticker zum Entfernen zentrieren';
+
+  @override
+  String get removeDuplicatesTitle => 'Doppelte zum Entfernen';
+
+  @override
+  String get removeDuplicatesEmpty => 'Noch keine Doppelten gescannt';
+
+  @override
+  String removeDuplicatesSavedSuccess(Object count) {
+    return '$count Doppelte aus dem Inventar entfernt 🗑️';
+  }
+
+  @override
+  String removeDuplicatesSaveError(Object message) {
+    return 'Fehler beim Speichern: $message';
+  }
+
+  @override
+  String removeDuplicatesLimitWarning(Object label) {
+    return 'Keine weiteren Doppelten für $label';
+  }
+
+  @override
+  String removeDuplicatesReviewButton(Object count) {
+    return '$count zum Entfernen prüfen';
+  }
+
+  @override
   String get navAlbum => 'Album';
 
   @override

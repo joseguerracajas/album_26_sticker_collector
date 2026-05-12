@@ -309,6 +309,35 @@
   "lookupTutorialStep3Body": "میبینید این استیکر کم دارید یا نه. با دکمه‌های + و – موجودی را به‌روز کنید.",
   "scanBadgeNew": "جدید",
   "scanBadgeRepeated": "تکراری",
+  "scannerModeAdd": "افزودن استیکر",
+  "scannerModeRemoveDuplicates": "حذف تکراری‌ها",
+  "scannerRemoveModeHint": "استیکر تکراری را برای حذف وسط قرار دهید",
+  "removeDuplicatesTitle": "تکراری‌های برای حذف",
+  "removeDuplicatesEmpty": "هنوز تکراری اسکن نشده",
+  "removeDuplicatesSavedSuccess": "{count} تکراری از موجودی حذف شد 🗑️",
+  "@removeDuplicatesSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "removeDuplicatesSaveError": "خطا در ذخیره: {message}",
+  "@removeDuplicatesSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "removeDuplicatesLimitWarning": "دیگر تکراری برای حذف {label} وجود ندارد",
+  "@removeDuplicatesLimitWarning": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "removeDuplicatesReviewButton": "بررسی {count} برای حذف",
+  "@removeDuplicatesReviewButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "navAlbum": "آلبوم",
   "navScanner": "اسکنر"
 }

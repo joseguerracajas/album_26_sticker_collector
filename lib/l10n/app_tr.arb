@@ -309,6 +309,35 @@
   "lookupTutorialStep3Body": "Çıkartmanın eksik mi yoksa mevcut mu olduğunu göreceksiniz. + ve – düğmeleriyle envanterinizi anında güncelleyebilirsiniz.",
   "scanBadgeNew": "Yeni",
   "scanBadgeRepeated": "Tekrar",
+  "scannerModeAdd": "Çıkartma ekle",
+  "scannerModeRemoveDuplicates": "Tekrarları kaldır",
+  "scannerRemoveModeHint": "Kaldırılacak tekrar çıkartmayı ortala",
+  "removeDuplicatesTitle": "Kaldırılacak tekrarlar",
+  "removeDuplicatesEmpty": "Henüz tekrar taranmadı",
+  "removeDuplicatesSavedSuccess": "{count} tekrar envanterden kaldırıldı 🗑️",
+  "@removeDuplicatesSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "removeDuplicatesSaveError": "Kaydetme hatası: {message}",
+  "@removeDuplicatesSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "removeDuplicatesLimitWarning": "{label} için kaldırılacak tekrar kalmadı",
+  "@removeDuplicatesLimitWarning": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "removeDuplicatesReviewButton": "Kaldırılacak {count} kişiyi incele",
+  "@removeDuplicatesReviewButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "navAlbum": "Albüm",
   "navScanner": "Tarayıcı"
 }

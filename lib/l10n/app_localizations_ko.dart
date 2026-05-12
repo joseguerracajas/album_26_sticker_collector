@@ -1163,6 +1163,41 @@ class AppLocalizationsKo extends AppLocalizations {
   String get scanBadgeRepeated => '중복';
 
   @override
+  String get scannerModeAdd => '스티커 추가';
+
+  @override
+  String get scannerModeRemoveDuplicates => '중복 제거';
+
+  @override
+  String get scannerRemoveModeHint => '제거할 중복 스티커를 중앙에 맞추세요';
+
+  @override
+  String get removeDuplicatesTitle => '제거할 중복';
+
+  @override
+  String get removeDuplicatesEmpty => '아직 중복을 스캔하지 않았습니다';
+
+  @override
+  String removeDuplicatesSavedSuccess(Object count) {
+    return '인벤토리에서 $count개 중복 제거됨 🗑️';
+  }
+
+  @override
+  String removeDuplicatesSaveError(Object message) {
+    return '저장 오류: $message';
+  }
+
+  @override
+  String removeDuplicatesLimitWarning(Object label) {
+    return '$label에 제거할 중복이 없습니다';
+  }
+
+  @override
+  String removeDuplicatesReviewButton(Object count) {
+    return '$count개 제거 검토';
+  }
+
+  @override
   String get navAlbum => '앨범';
 
   @override

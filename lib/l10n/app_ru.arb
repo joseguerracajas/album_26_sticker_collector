@@ -309,6 +309,35 @@
   "lookupTutorialStep3Body": "Вы увидите, есть ли наклейка или её не хватает. Кнопками + и – можно мгновенно обновить инвентарь.",
   "scanBadgeNew": "Новая",
   "scanBadgeRepeated": "Дубликат",
+  "scannerModeAdd": "Добавить наклейки",
+  "scannerModeRemoveDuplicates": "Убрать дубликаты",
+  "scannerRemoveModeHint": "Наведите на дубликат для удаления",
+  "removeDuplicatesTitle": "Дубликаты для удаления",
+  "removeDuplicatesEmpty": "Дубликаты ещё не отсканированы",
+  "removeDuplicatesSavedSuccess": "{count} дубликата удалено из инвентаря 🗑️",
+  "@removeDuplicatesSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "removeDuplicatesSaveError": "Ошибка при сохранении: {message}",
+  "@removeDuplicatesSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "removeDuplicatesLimitWarning": "Нет больше дубликатов для {label}",
+  "@removeDuplicatesLimitWarning": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "removeDuplicatesReviewButton": "Проверить {count} для удаления",
+  "@removeDuplicatesReviewButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "navAlbum": "Альбом",
   "navScanner": "Сканер"
 }

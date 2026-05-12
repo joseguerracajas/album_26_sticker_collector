@@ -1197,6 +1197,41 @@ class AppLocalizationsFa extends AppLocalizations {
   String get scanBadgeRepeated => 'تکراری';
 
   @override
+  String get scannerModeAdd => 'افزودن استیکر';
+
+  @override
+  String get scannerModeRemoveDuplicates => 'حذف تکراری‌ها';
+
+  @override
+  String get scannerRemoveModeHint => 'استیکر تکراری را برای حذف وسط قرار دهید';
+
+  @override
+  String get removeDuplicatesTitle => 'تکراری‌های برای حذف';
+
+  @override
+  String get removeDuplicatesEmpty => 'هنوز تکراری اسکن نشده';
+
+  @override
+  String removeDuplicatesSavedSuccess(Object count) {
+    return '$count تکراری از موجودی حذف شد 🗑️';
+  }
+
+  @override
+  String removeDuplicatesSaveError(Object message) {
+    return 'خطا در ذخیره: $message';
+  }
+
+  @override
+  String removeDuplicatesLimitWarning(Object label) {
+    return 'دیگر تکراری برای حذف $label وجود ندارد';
+  }
+
+  @override
+  String removeDuplicatesReviewButton(Object count) {
+    return 'بررسی $count برای حذف';
+  }
+
+  @override
   String get navAlbum => 'آلبوم';
 
   @override

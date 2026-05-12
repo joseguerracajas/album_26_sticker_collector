@@ -1177,6 +1177,41 @@ class AppLocalizationsHe extends AppLocalizations {
   String get scanBadgeRepeated => 'כפול';
 
   @override
+  String get scannerModeAdd => 'הוסף מדבקות';
+
+  @override
+  String get scannerModeRemoveDuplicates => 'הסר כפולים';
+
+  @override
+  String get scannerRemoveModeHint => 'מרכז את המדבקה הכפולה להסרה';
+
+  @override
+  String get removeDuplicatesTitle => 'כפולים להסרה';
+
+  @override
+  String get removeDuplicatesEmpty => 'טרם נסרקו כפולים';
+
+  @override
+  String removeDuplicatesSavedSuccess(Object count) {
+    return 'הוסרו $count כפולים מהמלאי 🗑️';
+  }
+
+  @override
+  String removeDuplicatesSaveError(Object message) {
+    return 'שגיאה בשמירה: $message';
+  }
+
+  @override
+  String removeDuplicatesLimitWarning(Object label) {
+    return 'אין עוד כפולים להסרה עבור $label';
+  }
+
+  @override
+  String removeDuplicatesReviewButton(Object count) {
+    return 'סקור $count להסרה';
+  }
+
+  @override
   String get navAlbum => 'אלבום';
 
   @override

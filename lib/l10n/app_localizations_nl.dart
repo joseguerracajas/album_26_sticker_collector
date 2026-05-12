@@ -1198,6 +1198,42 @@ class AppLocalizationsNl extends AppLocalizations {
   String get scanBadgeRepeated => 'Dubbel';
 
   @override
+  String get scannerModeAdd => 'Stickers toevoegen';
+
+  @override
+  String get scannerModeRemoveDuplicates => 'Dubbele verwijderen';
+
+  @override
+  String get scannerRemoveModeHint =>
+      'Centreer de dubbele sticker om te verwijderen';
+
+  @override
+  String get removeDuplicatesTitle => 'Dubbele te verwijderen';
+
+  @override
+  String get removeDuplicatesEmpty => 'Nog geen dubbele gescand';
+
+  @override
+  String removeDuplicatesSavedSuccess(Object count) {
+    return '$count dubbele verwijderd uit inventaris 🗑️';
+  }
+
+  @override
+  String removeDuplicatesSaveError(Object message) {
+    return 'Fout bij opslaan: $message';
+  }
+
+  @override
+  String removeDuplicatesLimitWarning(Object label) {
+    return 'Geen dubbele meer te verwijderen voor $label';
+  }
+
+  @override
+  String removeDuplicatesReviewButton(Object count) {
+    return '$count te verwijderen bekijken';
+  }
+
+  @override
   String get navAlbum => 'Album';
 
   @override

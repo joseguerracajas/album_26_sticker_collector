@@ -533,6 +533,35 @@
   "lookupTutorialStep3Body": "Verás si el sticker está faltando o ya lo tienes o cuántos repetidos llevas. Con los botones + y – puedes actualizar tu inventario al instante.",
   "scanBadgeNew": "Nuevo",
   "scanBadgeRepeated": "Repetido",
+  "scannerModeAdd": "Agregar stickers",
+  "scannerModeRemoveDuplicates": "Quitar repetidos",
+  "scannerRemoveModeHint": "Centra el sticker repetido a quitar",
+  "removeDuplicatesTitle": "Repetidos a quitar",
+  "removeDuplicatesEmpty": "No has escaneado repetidos aún",
+  "removeDuplicatesSavedSuccess": "{count} repetidos quitados del inventario 🗑️",
+  "@removeDuplicatesSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "removeDuplicatesSaveError": "Error al guardar: {message}",
+  "@removeDuplicatesSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "removeDuplicatesLimitWarning": "Ya quitaste todos los repetidos de {label}",
+  "@removeDuplicatesLimitWarning": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "removeDuplicatesReviewButton": "Revisar {count} a quitar",
+  "@removeDuplicatesReviewButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "navAlbum": "Álbum",
   "navScanner": "Escáner"
 }

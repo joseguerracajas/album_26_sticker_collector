@@ -309,6 +309,35 @@
   "lookupTutorialStep3Body": "Zobaczysz, czy naklejka jest brakująca czy już masz. Przyciskami + i – możesz natychmiast zaktualizować swój ekwipunek.",
   "scanBadgeNew": "Nowa",
   "scanBadgeRepeated": "Duplikat",
+  "scannerModeAdd": "Dodaj naklejki",
+  "scannerModeRemoveDuplicates": "Usuń duplikaty",
+  "scannerRemoveModeHint": "Wyśrodkuj duplikat do usunięcia",
+  "removeDuplicatesTitle": "Duplikaty do usunięcia",
+  "removeDuplicatesEmpty": "Nie zeskanowano jeszcze żadnych duplikatów",
+  "removeDuplicatesSavedSuccess": "Usunięto {count} duplikatów z ekwipunku 🗑️",
+  "@removeDuplicatesSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "removeDuplicatesSaveError": "Błąd przy zapisie: {message}",
+  "@removeDuplicatesSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "removeDuplicatesLimitWarning": "Brak więcej duplikatów do usunięcia dla {label}",
+  "@removeDuplicatesLimitWarning": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "removeDuplicatesReviewButton": "Sprawdź {count} do usunięcia",
+  "@removeDuplicatesReviewButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "navAlbum": "Album",
   "navScanner": "Skaner"
 }

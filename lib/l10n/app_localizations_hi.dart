@@ -1193,6 +1193,42 @@ class AppLocalizationsHi extends AppLocalizations {
   String get scanBadgeRepeated => 'दोहराया';
 
   @override
+  String get scannerModeAdd => 'स्टिकर जोड़ें';
+
+  @override
+  String get scannerModeRemoveDuplicates => 'डुप्लिकेट हटाएं';
+
+  @override
+  String get scannerRemoveModeHint =>
+      'हटाने के लिए डुप्लिकेट स्टिकर को बीच में रखें';
+
+  @override
+  String get removeDuplicatesTitle => 'हटाने के लिए डुप्लिकेट';
+
+  @override
+  String get removeDuplicatesEmpty => 'अभी तक कोई डुप्लिकेट स्कैन नहीं हुआ';
+
+  @override
+  String removeDuplicatesSavedSuccess(Object count) {
+    return 'इन्वेंट्री से $count डुप्लिकेट हटाए 🗑️';
+  }
+
+  @override
+  String removeDuplicatesSaveError(Object message) {
+    return 'सहेजने में त्रुटि: $message';
+  }
+
+  @override
+  String removeDuplicatesLimitWarning(Object label) {
+    return '$label के लिए और डुप्लिकेट नहीं हटाए जा सकते';
+  }
+
+  @override
+  String removeDuplicatesReviewButton(Object count) {
+    return 'हटाने के लिए $count देखें';
+  }
+
+  @override
   String get navAlbum => 'एल्बम';
 
   @override

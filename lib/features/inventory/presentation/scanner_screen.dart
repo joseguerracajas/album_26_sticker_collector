@@ -4,7 +4,9 @@ import 'package:album_26_sticker_collector/features/catalog/data/stickers_provid
 import 'package:album_26_sticker_collector/features/catalog/domain/sticker.model.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/pending_scans_sheet.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
+import 'package:album_26_sticker_collector/features/inventory/data/pending_remove_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/pending_scans_provider.dart';
+import 'package:album_26_sticker_collector/features/inventory/presentation/remove_duplicates_sheet.dart';
 import 'package:album_26_sticker_collector/features/monetization/data/ads_provider.dart';
 import 'package:album_26_sticker_collector/features/monetization/data/subscription_provider.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
@@ -62,6 +64,9 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
   // --- OVERLAY DE NOTIFICACIÓN ---
   String? _overlayLabel;
   bool _overlayIsNew = true;
+
+  // --- MODO DE ESCANEO ---
+  bool _isRemoveMode = false;
 
   @override
   void initState() {
@@ -289,23 +294,67 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
           _cooldownMap[code] = DateTime.now();
           _consensusMap.remove(code);
 
-          // Validación primero: intersticial cada 8 cromos (solo usuarios free)
-          final isSubscribed =
-              ref.read(subscriptionProvider).asData?.value.isSubscribed ??
-              false;
-          if (!isSubscribed && mounted) {
-            final canProceed = await ref
-                .read(adServiceProvider)
-                .onStickerScanned(isSubscribed: isSubscribed, context: context);
-            if (!canProceed) continue; // gate bloqueado → no registrar
-          }
+          if (!_isRemoveMode) {
+            // MODO AGREGAR: intersticial cada 8 cromos (solo usuarios free)
+            final isSubscribed =
+                ref.read(subscriptionProvider).asData?.value.isSubscribed ??
+                false;
+            if (!isSubscribed && mounted) {
+              final canProceed = await ref
+                  .read(adServiceProvider)
+                  .onStickerScanned(
+                    isSubscribed: isSubscribed,
+                    context: context,
+                  );
+              if (!canProceed) continue; // gate bloqueado → no registrar
+            }
+            ref.read(pendingScansProvider.notifier).addSticker(code);
+          } else {
+            // MODO QUITAR: validar límite de repetidos
+            final inventoryQty =
+                (ref.read(inventoryProvider).asData?.value[code] ?? {}).values
+                    .fold(0, (s, q) => s + q);
+            final pendingQty = ref.read(pendingRemoveProvider)[code] ?? 0;
+            final maxRemovable = (inventoryQty - 1).clamp(0, inventoryQty);
 
-          ref.read(pendingScansProvider.notifier).addSticker(code);
+            if (maxRemovable <= 0 || pendingQty >= maxRemovable) {
+              if (mounted) {
+                final sticker = _stickerById?[code];
+                final emoji = sticker != null
+                    ? (_emojiCache[sticker.categoryId] ?? '')
+                    : '';
+                final label = sticker != null
+                    ? '$emoji ${sticker.categoryId} ${sticker.stickerCode}'
+                    : code;
+                final l10n = AppLocalizations.of(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      l10n.removeDuplicatesLimitWarning(label),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    backgroundColor: Colors.orangeAccent,
+                    behavior: SnackBarBehavior.floating,
+                    duration: const Duration(seconds: 2),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                );
+              }
+              continue;
+            }
+            ref.read(pendingRemoveProvider.notifier).addSticker(code);
+          }
 
           // Overlay de notificación
           if (mounted) {
             final sticker = _stickerById?[code];
             final isNew =
+                !_isRemoveMode &&
                 !_scannedThisSession.contains(code) &&
                 ((ref.read(inventoryProvider).asData?.value[code] ?? {}).values
                         .fold(0, (s, q) => s + q) ==
@@ -451,61 +500,127 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
           // 2. El diseño del marco (La mira)
           _buildScannerOverlay(context),
 
-          // 3. Botón Flotante para ver la bandeja de escaneo
+          // 3. Toggle de modo (Agregar / Quitar repetidos)
           Positioned(
-            bottom: 50,
+            top: 50,
             left: 20,
             right: 20,
-            child: Consumer(
-              builder: (context, ref, child) {
-                final escaneados = ref.watch(pendingScansProvider);
-
-                if (escaneados.isEmpty) return const SizedBox.shrink();
-
-                final totalCromos = escaneados.values.fold(
-                  0,
-                  (sum, count) => sum + count,
-                );
-
-                return ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.amber,
-                    foregroundColor: Colors.black,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    elevation: 8,
-                  ),
-                  icon: const Icon(Icons.fact_check_outlined, size: 26),
-                  label: Text(
-                    l10n.scannerViewScannedButton(totalCromos),
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  onPressed: () {
-                    HapticFeedback.lightImpact();
-                    _cameraController?.stopImageStream();
-                    showModalBottomSheet(
-                      context: context,
-                      backgroundColor: Colors.transparent,
-                      isScrollControlled: true,
-                      builder: (context) => const PendingScansSheet(),
-                    ).whenComplete(() {
-                      if (mounted &&
-                          (_cameraController?.value.isInitialized ?? false) &&
-                          !(_cameraController?.value.isStreamingImages ??
-                              true)) {
-                        _startImageStream();
-                      }
-                    });
-                  },
-                );
-              },
-            ),
+            child: _buildModeToggle(context, l10n),
           ),
+
+          // 4. Botón Flotante para ver la bandeja de escaneo (modo AGREGAR)
+          if (!_isRemoveMode)
+            Positioned(
+              bottom: 50,
+              left: 20,
+              right: 20,
+              child: Consumer(
+                builder: (context, ref, child) {
+                  final escaneados = ref.watch(pendingScansProvider);
+
+                  if (escaneados.isEmpty) return const SizedBox.shrink();
+
+                  final totalCromos = escaneados.values.fold(
+                    0,
+                    (sum, count) => sum + count,
+                  );
+
+                  return ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.amber,
+                      foregroundColor: Colors.black,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      elevation: 8,
+                    ),
+                    icon: const Icon(Icons.fact_check_outlined, size: 26),
+                    label: Text(
+                      l10n.scannerViewScannedButton(totalCromos),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    onPressed: () {
+                      HapticFeedback.lightImpact();
+                      _cameraController?.stopImageStream();
+                      showModalBottomSheet(
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        isScrollControlled: true,
+                        builder: (context) => const PendingScansSheet(),
+                      ).whenComplete(() {
+                        if (mounted &&
+                            (_cameraController?.value.isInitialized ?? false) &&
+                            !(_cameraController?.value.isStreamingImages ??
+                                true)) {
+                          _startImageStream();
+                        }
+                      });
+                    },
+                  );
+                },
+              ),
+            ),
+
+          // 4b. Botón Flotante para ver bandeja de quitar (modo QUITAR)
+          if (_isRemoveMode)
+            Positioned(
+              bottom: 50,
+              left: 20,
+              right: 20,
+              child: Consumer(
+                builder: (context, ref, child) {
+                  final pendingRemove = ref.watch(pendingRemoveProvider);
+
+                  if (pendingRemove.isEmpty) return const SizedBox.shrink();
+
+                  final totalCromos = pendingRemove.values.fold(
+                    0,
+                    (sum, count) => sum + count,
+                  );
+
+                  return ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orangeAccent,
+                      foregroundColor: Colors.black,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      elevation: 8,
+                    ),
+                    icon: const Icon(Icons.remove_circle_outline, size: 26),
+                    label: Text(
+                      l10n.removeDuplicatesReviewButton(totalCromos),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    onPressed: () {
+                      HapticFeedback.lightImpact();
+                      _cameraController?.stopImageStream();
+                      showModalBottomSheet(
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        isScrollControlled: true,
+                        builder: (context) => const RemoveDuplicatesSheet(),
+                      ).whenComplete(() {
+                        if (mounted &&
+                            (_cameraController?.value.isInitialized ?? false) &&
+                            !(_cameraController?.value.isStreamingImages ??
+                                true)) {
+                          _startImageStream();
+                        }
+                      });
+                    },
+                  );
+                },
+              ),
+            ),
 
           // 5. Overlay de notificación de escaneo
           if (_overlayLabel != null)
@@ -570,8 +685,51 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
     );
   }
 
+  Widget _buildModeToggle(BuildContext context, AppLocalizations l10n) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.black.withValues(alpha: 0.65),
+        borderRadius: BorderRadius.circular(30),
+      ),
+      padding: const EdgeInsets.all(4),
+      child: Row(
+        children: [
+          Expanded(
+            child: _ModeToggleOption(
+              label: l10n.scannerModeAdd,
+              icon: Icons.add_circle_outline,
+              isSelected: !_isRemoveMode,
+              selectedColor: Colors.amber,
+              onTap: () {
+                if (_isRemoveMode) {
+                  HapticFeedback.selectionClick();
+                  setState(() => _isRemoveMode = false);
+                }
+              },
+            ),
+          ),
+          Expanded(
+            child: _ModeToggleOption(
+              label: l10n.scannerModeRemoveDuplicates,
+              icon: Icons.remove_circle_outline,
+              isSelected: _isRemoveMode,
+              selectedColor: Colors.orangeAccent,
+              onTap: () {
+                if (!_isRemoveMode) {
+                  HapticFeedback.selectionClick();
+                  setState(() => _isRemoveMode = true);
+                }
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildScannerOverlay(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final borderColor = _isRemoveMode ? Colors.orangeAccent : Colors.amber;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -581,7 +739,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
           width: 240,
           height: 320,
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.amber, width: 3),
+            border: Border.all(color: borderColor, width: 3),
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
@@ -594,16 +752,70 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
         ),
         const SizedBox(height: 24),
         Text(
-          l10n.scannerOverlayHint,
+          _isRemoveMode ? l10n.scannerRemoveModeHint : l10n.scannerOverlayHint,
           textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: Colors.white,
+          style: TextStyle(
+            color: _isRemoveMode ? Colors.orangeAccent : Colors.white,
             fontSize: 16,
             fontWeight: FontWeight.bold,
-            shadows: [Shadow(color: Colors.black, blurRadius: 10)],
+            shadows: const [Shadow(color: Colors.black, blurRadius: 10)],
           ),
         ),
       ],
+    );
+  }
+}
+
+class _ModeToggleOption extends StatelessWidget {
+  const _ModeToggleOption({
+    required this.label,
+    required this.icon,
+    required this.isSelected,
+    required this.selectedColor,
+    required this.onTap,
+  });
+
+  final String label;
+  final IconData icon;
+  final bool isSelected;
+  final Color selectedColor;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+        decoration: BoxDecoration(
+          color: isSelected ? selectedColor : Colors.transparent,
+          borderRadius: BorderRadius.circular(26),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              size: 16,
+              color: isSelected ? Colors.black : Colors.white70,
+            ),
+            const SizedBox(width: 4),
+            Flexible(
+              child: Text(
+                label,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: isSelected ? Colors.black : Colors.white70,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

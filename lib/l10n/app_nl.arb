@@ -309,6 +309,35 @@
   "lookupTutorialStep3Body": "Je ziet of de sticker ontbreekt of al in je bezit is. Met + en – kun je je inventaris direct bijwerken.",
   "scanBadgeNew": "Nieuw",
   "scanBadgeRepeated": "Dubbel",
+  "scannerModeAdd": "Stickers toevoegen",
+  "scannerModeRemoveDuplicates": "Dubbele verwijderen",
+  "scannerRemoveModeHint": "Centreer de dubbele sticker om te verwijderen",
+  "removeDuplicatesTitle": "Dubbele te verwijderen",
+  "removeDuplicatesEmpty": "Nog geen dubbele gescand",
+  "removeDuplicatesSavedSuccess": "{count} dubbele verwijderd uit inventaris 🗑️",
+  "@removeDuplicatesSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "removeDuplicatesSaveError": "Fout bij opslaan: {message}",
+  "@removeDuplicatesSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "removeDuplicatesLimitWarning": "Geen dubbele meer te verwijderen voor {label}",
+  "@removeDuplicatesLimitWarning": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "removeDuplicatesReviewButton": "{count} te verwijderen bekijken",
+  "@removeDuplicatesReviewButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "navAlbum": "Album",
   "navScanner": "Scanner"
 }

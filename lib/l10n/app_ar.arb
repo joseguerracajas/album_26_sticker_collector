@@ -309,6 +309,35 @@
   "lookupTutorialStep3Body": "سترى إذا كان الملصق مفقوداً أو موجوداً. استخدم زري + و – لتحديث مخزونك.",
   "scanBadgeNew": "جديد",
   "scanBadgeRepeated": "مكرر",
+  "scannerModeAdd": "إضافة ملصقات",
+  "scannerModeRemoveDuplicates": "إزالة المكررات",
+  "scannerRemoveModeHint": "ضع الملصق المكرر في المنتصف للإزالة",
+  "removeDuplicatesTitle": "المكررات للإزالة",
+  "removeDuplicatesEmpty": "لم يتم مسح أي مكررات بعد",
+  "removeDuplicatesSavedSuccess": "تمت إزالة {count} مكرر من المخزون 🗑️",
+  "@removeDuplicatesSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "removeDuplicatesSaveError": "خطأ في الحفظ: {message}",
+  "@removeDuplicatesSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "removeDuplicatesLimitWarning": "لا مزيد من المكررات لإزالتها: {label}",
+  "@removeDuplicatesLimitWarning": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "removeDuplicatesReviewButton": "مراجعة {count} للإزالة",
+  "@removeDuplicatesReviewButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "navAlbum": "الألبوم",
   "navScanner": "الماسح"
 }

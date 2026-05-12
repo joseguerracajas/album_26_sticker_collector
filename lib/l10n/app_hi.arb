@@ -309,6 +309,35 @@
   "lookupTutorialStep3Body": "आप देखेंगे कि स्टिकर गायब है या संग्रहीत। + और – बटनों से इन्वेंट्री अपडेट करें।",
   "scanBadgeNew": "नया",
   "scanBadgeRepeated": "दोहराया",
+  "scannerModeAdd": "स्टिकर जोड़ें",
+  "scannerModeRemoveDuplicates": "डुप्लिकेट हटाएं",
+  "scannerRemoveModeHint": "हटाने के लिए डुप्लिकेट स्टिकर को बीच में रखें",
+  "removeDuplicatesTitle": "हटाने के लिए डुप्लिकेट",
+  "removeDuplicatesEmpty": "अभी तक कोई डुप्लिकेट स्कैन नहीं हुआ",
+  "removeDuplicatesSavedSuccess": "इन्वेंट्री से {count} डुप्लिकेट हटाए 🗑️",
+  "@removeDuplicatesSavedSuccess": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "removeDuplicatesSaveError": "सहेजने में त्रुटि: {message}",
+  "@removeDuplicatesSaveError": {
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "removeDuplicatesLimitWarning": "{label} के लिए और डुप्लिकेट नहीं हटाए जा सकते",
+  "@removeDuplicatesLimitWarning": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "removeDuplicatesReviewButton": "हटाने के लिए {count} देखें",
+  "@removeDuplicatesReviewButton": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "navAlbum": "एल्बम",
   "navScanner": "स्कैनर"
 }

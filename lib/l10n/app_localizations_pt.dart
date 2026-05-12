@@ -1195,6 +1195,41 @@ class AppLocalizationsPt extends AppLocalizations {
   String get scanBadgeRepeated => 'Repetido';
 
   @override
+  String get scannerModeAdd => 'Adicionar figurinhas';
+
+  @override
+  String get scannerModeRemoveDuplicates => 'Remover repetidas';
+
+  @override
+  String get scannerRemoveModeHint => 'Centre a figurinha repetida a remover';
+
+  @override
+  String get removeDuplicatesTitle => 'Repetidas a remover';
+
+  @override
+  String get removeDuplicatesEmpty => 'Nenhuma repetida escaneada ainda';
+
+  @override
+  String removeDuplicatesSavedSuccess(Object count) {
+    return '$count repetidas removidas do inventário 🗑️';
+  }
+
+  @override
+  String removeDuplicatesSaveError(Object message) {
+    return 'Erro ao salvar: $message';
+  }
+
+  @override
+  String removeDuplicatesLimitWarning(Object label) {
+    return 'Sem mais repetidas para remover: $label';
+  }
+
+  @override
+  String removeDuplicatesReviewButton(Object count) {
+    return 'Revisar $count a remover';
+  }
+
+  @override
   String get navAlbum => 'Álbum';
 
   @override
