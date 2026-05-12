@@ -681,7 +681,6 @@ class _AppDrawer extends ConsumerWidget {
                   Expanded(
                     child: Text(
                       l10n.appTitle,
-                      overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20,

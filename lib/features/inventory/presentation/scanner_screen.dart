@@ -502,7 +502,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
 
           // 3. Toggle de modo (Agregar / Quitar repetidos)
           Positioned(
-            top: 50,
+            top: 70,
             left: 20,
             right: 20,
             child: _buildModeToggle(context, l10n),
@@ -625,7 +625,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
           // 5. Overlay de notificación de escaneo
           if (_overlayLabel != null)
             Positioned(
-              top: 110,
+              top: 130,
               left: 24,
               right: 24,
               child: AnimatedOpacity(
