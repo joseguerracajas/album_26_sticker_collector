@@ -7,6 +7,8 @@ import 'package:album_26_sticker_collector/features/catalog/data/stickers_provid
 import 'package:album_26_sticker_collector/features/catalog/domain/sticker.model.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/presentation/scanner_screen.dart';
+import 'package:album_26_sticker_collector/features/monetization/data/ads_provider.dart';
+import 'package:album_26_sticker_collector/features/monetization/data/subscription_provider.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:album_26_sticker_collector/features/inventory/presentation/camera_coordinator.dart';
 import 'package:camera/camera.dart';
@@ -852,6 +854,16 @@ class _ScannerLookupTabState extends ConsumerState<_ScannerLookupTab>
           _consensusMap.remove(code);
 
           if (!mounted) return;
+
+          // Gate Pro: misma lógica y contador compartido que Scanner e Intercambio
+          final isSubscribed =
+              ref.read(subscriptionProvider).asData?.value.isSubscribed ??
+              false;
+          final canProceed = await ref
+              .read(adServiceProvider)
+              .onStickerScanned(isSubscribed: isSubscribed, context: context);
+          if (!canProceed || !mounted) return;
+
           HapticFeedback.mediumImpact();
           _showStickerSheet(sticker);
           return;

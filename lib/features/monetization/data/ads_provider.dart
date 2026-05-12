@@ -301,17 +301,20 @@ class AdService {
 
     if (!context.mounted) return;
     final watchAd = await showPreAdDialog(context);
-    if (watchAd != true) return; // null = "Ahora no", false = "Obtener Pro"
+    if (watchAd == null) return; // "Ahora no"
+    if (watchAd == false)
+      return; // "Obtener Pro" → el paywall ya se abrió dentro de showPreAdDialog
 
+    // "Ver anuncio": intentar rewarded, fallback a interstitial si no está listo
     if (!_rewardedReady || _rewardedAd == null) {
-      // Si no hay ad listo, ejecutamos igual (no penalizamos al usuario)
+      if (_interstitialReady && _interstitialAd != null && context.mounted) {
+        await showInterstitial(context: context, isSubscribed: false);
+      }
       await onRewarded();
       preloadRewarded();
       return;
     }
 
-    // Completer que resuelve cuando el ad se descarta completamente.
-    // Usamos bool: true = reward ganado (o fallo al mostrar), false = cerró sin ganar.
     final completer = Completer<bool>();
     bool rewardEarned = false;
 
@@ -328,7 +331,6 @@ class AdService {
         _rewardedAd = null;
         _rewardedReady = false;
         preloadRewarded();
-        // Recompensamos igual si el ad falla al mostrarse
         if (!completer.isCompleted) completer.complete(true);
       },
     );
@@ -338,7 +340,6 @@ class AdService {
         onUserEarnedReward: (ad, reward) => rewardEarned = true,
       );
     } catch (_) {
-      // Si show() lanza, completamos igual para no bloquear
       if (!completer.isCompleted) completer.complete(true);
     }
 

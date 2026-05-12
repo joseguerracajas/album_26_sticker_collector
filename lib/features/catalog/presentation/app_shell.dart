@@ -6,6 +6,7 @@ import 'package:album_26_sticker_collector/features/inventory/presentation/physi
 import 'package:album_26_sticker_collector/features/inventory/presentation/scanner_screen.dart';
 import 'package:album_26_sticker_collector/features/inventory/presentation/sticker_lookup_screen.dart';
 import 'package:album_26_sticker_collector/features/monetization/data/ads_provider.dart';
+import 'package:album_26_sticker_collector/features/monetization/data/subscription_provider.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,6 +31,17 @@ class _AppShellState extends ConsumerState<AppShell> {
   void _onNavTap(int index) {
     if (_currentIndex == index) return;
 
+    if (index == 1) {
+      // El escáner es funcionalidad Pro: mostrar gate antes de entrar
+      _handleScannerTap();
+      return;
+    }
+
+    _switchTab(index);
+  }
+
+  /// Cambia de tab actualizando los providers de cámara.
+  void _switchTab(int index) {
     // Tab 1: Escáner
     if (_currentIndex == 1 || index == 1) {
       ref.read(scannerTabActiveProvider.notifier).setActive(index == 1);
@@ -44,6 +56,41 @@ class _AppShellState extends ConsumerState<AppShell> {
     }
 
     setState(() => _currentIndex = index);
+  }
+
+  /// Gate Pro para el tab Escáner: delega en showRewarded que maneja diálogo y anuncio.
+  Future<void> _handleScannerTap() async {
+    final isSubscribed =
+        ref.read(subscriptionProvider).asData?.value.isSubscribed ?? false;
+
+    if (isSubscribed) {
+      _switchTab(1);
+      return;
+    }
+
+    if (!mounted) return;
+
+    // showRewarded muestra el diálogo (ver anuncio / pro / ahora no)
+    // y reproduce el ad. Si el usuario elige "Ahora no", no hace nada
+    // → nos quedamos en el tab actual (no navegamos al scanner).
+    bool wentToScanner = false;
+    await ref
+        .read(adServiceProvider)
+        .showRewarded(
+          context: context,
+          isSubscribed: false,
+          onRewarded: () async {
+            // onRewarded se llama cuando el ad termina o es suscriptor
+            // En este punto ya podemos ir al scanner
+            wentToScanner = true;
+          },
+        );
+
+    // Si el usuario eligió "Ahora no", wentToScanner sigue false
+    // y no navegamos. Si eligió ver anuncio o pro, navegamos.
+    if (wentToScanner && mounted) {
+      _switchTab(1);
+    }
   }
 
   @override
