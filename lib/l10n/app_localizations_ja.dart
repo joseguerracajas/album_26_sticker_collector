@@ -1148,4 +1148,10 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get scanBadgeRepeated => '重複';
+
+  @override
+  String get navAlbum => 'アルバム';
+
+  @override
+  String get navScanner => 'スキャナー';
 }

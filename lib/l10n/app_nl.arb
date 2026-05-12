@@ -374,5 +374,7 @@
   "lookupTutorialStep3Body": "Je ziet of de sticker ontbreekt of al in je bezit is. Met + en – kun je je inventaris direct bijwerken.",
 
   "scanBadgeNew": "Nieuw",
-  "scanBadgeRepeated": "Dubbel"
+  "scanBadgeRepeated": "Dubbel",
+  "navAlbum": "Album",
+  "navScanner": "Scanner"
 }

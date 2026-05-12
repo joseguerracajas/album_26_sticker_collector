@@ -376,5 +376,7 @@
   "lookupTutorialStep3Body": "Vedrai se la figurina manca o ce l'hai già. Con i pulsanti + e – puoi aggiornare il tuo inventario all'istante.",
 
   "scanBadgeNew": "Nuovo",
-  "scanBadgeRepeated": "Duplicato"
+  "scanBadgeRepeated": "Duplicato",
+  "navAlbum": "Album",
+  "navScanner": "Scanner"
 }

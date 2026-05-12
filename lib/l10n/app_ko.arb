@@ -376,5 +376,7 @@
   "lookupTutorialStep3Body": "스티커가 없는지 있는지 확인할 수 있습니다. + 및 – 버튼으로 인벤토리를 즐시 업데이트하세요.",
 
   "scanBadgeNew": "새로운",
-  "scanBadgeRepeated": "중복"
+  "scanBadgeRepeated": "중복",
+  "navAlbum": "앨범",
+  "navScanner": "스캐너"
 }

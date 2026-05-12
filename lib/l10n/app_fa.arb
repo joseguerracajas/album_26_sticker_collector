@@ -376,5 +376,7 @@
   "lookupTutorialStep3Body": "میبینید این استیکر کم دارید یا نه. با دکمه‌های + و – موجودی را به‌روز کنید.",
 
   "scanBadgeNew": "جدید",
-  "scanBadgeRepeated": "تکراری"
+  "scanBadgeRepeated": "تکراری",
+  "navAlbum": "آلبوم",
+  "navScanner": "اسکنر"
 }

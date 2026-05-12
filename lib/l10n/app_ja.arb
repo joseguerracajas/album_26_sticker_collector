@@ -376,5 +376,7 @@
   "lookupTutorialStep3Body": "ステッカーが未収集か収集済みか表示されます。+と–ボタンで在庫を即座に更新できます。",
 
   "scanBadgeNew": "新しい",
-  "scanBadgeRepeated": "重複"
+  "scanBadgeRepeated": "重複",
+  "navAlbum": "アルバム",
+  "navScanner": "スキャナー"
 }

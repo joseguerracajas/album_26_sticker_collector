@@ -1186,4 +1186,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get scanBadgeRepeated => 'Дубликат';
+
+  @override
+  String get navAlbum => 'Альбом';
+
+  @override
+  String get navScanner => 'Сканер';
 }

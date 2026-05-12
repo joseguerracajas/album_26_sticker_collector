@@ -376,5 +376,7 @@
   "lookupTutorialStep3Body": "您可以看到贴纸是否缺少或已收集。使用 + 和 – 按钮即刻更新库存。",
 
   "scanBadgeNew": "新增",
-  "scanBadgeRepeated": "重复"
+  "scanBadgeRepeated": "重复",
+  "navAlbum": "相册",
+  "navScanner": "扫描仪"
 }

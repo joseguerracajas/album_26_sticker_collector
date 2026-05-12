@@ -376,5 +376,7 @@
   "lookupTutorialStep3Body": "Você verá se o cromo está faltando ou já tem. Com + e – você pode atualizar seu inventário na hora.",
 
   "scanBadgeNew": "Novo",
-  "scanBadgeRepeated": "Repetido"
+  "scanBadgeRepeated": "Repetido",
+  "navAlbum": "Álbum",
+  "navScanner": "Scanner"
 }

@@ -374,5 +374,7 @@
   "lookupTutorialStep3Body": "Zobaczysz, czy naklejka jest brakująca czy już masz. Przyciskami + i – możesz natychmiast zaktualizować swój ekwipunek.",
 
   "scanBadgeNew": "Nowa",
-  "scanBadgeRepeated": "Duplikat"
+  "scanBadgeRepeated": "Duplikat",
+  "navAlbum": "Album",
+  "navScanner": "Skaner"
 }

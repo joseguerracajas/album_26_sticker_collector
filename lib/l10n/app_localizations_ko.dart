@@ -1149,4 +1149,10 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get scanBadgeRepeated => '중복';
+
+  @override
+  String get navAlbum => '앨범';
+
+  @override
+  String get navScanner => '스캐너';
 }

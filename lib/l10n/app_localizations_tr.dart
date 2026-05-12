@@ -1180,4 +1180,10 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get scanBadgeRepeated => 'Tekrar';
+
+  @override
+  String get navAlbum => 'Albüm';
+
+  @override
+  String get navScanner => 'Tarayıcı';
 }

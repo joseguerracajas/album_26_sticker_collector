@@ -376,5 +376,7 @@
   "lookupTutorialStep3Body": "Çıkartmanın eksik mi yoksa mevcut mu olduğunu göreceksiniz. + ve – düğmeleriyle envanterinizi anında güncelleyebilirsiniz.",
 
   "scanBadgeNew": "Yeni",
-  "scanBadgeRepeated": "Tekrar"
+  "scanBadgeRepeated": "Tekrar",
+  "navAlbum": "Albüm",
+  "navScanner": "Tarayıcı"
 }

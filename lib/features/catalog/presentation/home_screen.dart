@@ -11,7 +11,6 @@ import 'package:album_26_sticker_collector/features/catalog/data/stickers_provid
 import 'package:album_26_sticker_collector/features/catalog/data/sync_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/global_collection_screen.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/legal_notice_screen.dart';
-import 'package:album_26_sticker_collector/features/catalog/presentation/statistics_screen.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/animated_expand_container.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/app_bar_actions.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/category_avatar.dart';
@@ -19,9 +18,6 @@ import 'package:album_26_sticker_collector/features/catalog/presentation/widgets
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/variant_selector_sheet.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/stats_provider.dart';
-import 'package:album_26_sticker_collector/features/monetization/data/ads_provider.dart';
-import 'package:album_26_sticker_collector/features/inventory/presentation/physical_exchange_screen.dart';
-import 'package:album_26_sticker_collector/features/inventory/presentation/sticker_lookup_screen.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -146,13 +142,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
             ),
           ),
-          actions: const [
-            ScannerIconButton(showTutorialKey: true),
-            ShareMenuButton(showTutorialKey: true),
-          ],
+          actions: const [ShareMenuButton(showTutorialKey: true)],
         ),
         drawer: const _AppDrawer(),
-        bottomNavigationBar: const AdBannerWidget(),
         body: RefreshIndicator(
           color: Colors.amber,
           backgroundColor: const Color(0xFF1E1E1E),
@@ -754,84 +746,6 @@ class _AppDrawer extends ConsumerWidget {
                 Navigator.pop(context);
                 HapticFeedback.selectionClick();
                 VariantSelectorSheet.show(context);
-              },
-            ),
-
-            // Opción: Intercambio
-            const Divider(color: Color(0xFF2A2A2A)),
-            ListTile(
-              leading: const Icon(
-                Icons.swap_horiz_rounded,
-                color: Colors.amber,
-              ),
-              title: Text(
-                l10n.drawerPhysicalExchange,
-                style: const TextStyle(color: Colors.white),
-              ),
-              trailing: const Icon(
-                Icons.chevron_right,
-                color: Colors.white24,
-                size: 18,
-              ),
-              onTap: () {
-                Navigator.pop(context);
-                HapticFeedback.lightImpact();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const PhysicalExchangeScreen(),
-                  ),
-                );
-              },
-            ),
-
-            // Opción: Buscar cromo
-            const Divider(color: Color(0xFF2A2A2A)),
-            ListTile(
-              leading: const Icon(
-                Icons.manage_search_rounded,
-                color: Colors.amber,
-              ),
-              title: Text(
-                l10n.drawerLookup,
-                style: const TextStyle(color: Colors.white),
-              ),
-              trailing: const Icon(
-                Icons.chevron_right,
-                color: Colors.white24,
-                size: 18,
-              ),
-              onTap: () {
-                Navigator.pop(context);
-                HapticFeedback.lightImpact();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const StickerLookupScreen(),
-                  ),
-                );
-              },
-            ),
-
-            const Divider(color: Color(0xFF2A2A2A)),
-            ListTile(
-              leading: const Icon(Icons.bar_chart_rounded, color: Colors.amber),
-              title: Text(
-                l10n.drawerStats,
-                style: const TextStyle(color: Colors.white),
-              ),
-              trailing: const Icon(
-                Icons.chevron_right,
-                color: Colors.white24,
-                size: 18,
-              ),
-              onTap: () {
-                Navigator.pop(context);
-                HapticFeedback.lightImpact();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const StatisticsScreen()),
-                );
               },
             ),
 

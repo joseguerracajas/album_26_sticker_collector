@@ -376,5 +376,7 @@
   "lookupTutorialStep3Body": "Du siehst ob der Sticker fehlt oder schon vorhanden ist. Mit + und – kannst du dein Inventar sofort aktualisieren.",
 
   "scanBadgeNew": "Neu",
-  "scanBadgeRepeated": "Doppelt"
+  "scanBadgeRepeated": "Doppelt",
+  "navAlbum": "Album",
+  "navScanner": "Scanner"
 }

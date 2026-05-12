@@ -492,5 +492,7 @@
   "lookupTutorialStep3Body": "Verás si el cromo está faltando o ya lo tienes o cuántos repetidos llevas. Con los botones + y – puedes actualizar tu inventario al instante.",
 
   "scanBadgeNew": "Nuevo",
-  "scanBadgeRepeated": "Repetido"
+  "scanBadgeRepeated": "Repetido",
+  "navAlbum": "Álbum",
+  "navScanner": "Escáner"
 }

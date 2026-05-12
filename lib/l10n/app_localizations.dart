@@ -2173,6 +2173,18 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Repetido'**
   String get scanBadgeRepeated;
+
+  /// No description provided for @navAlbum.
+  ///
+  /// In es, this message translates to:
+  /// **'Álbum'**
+  String get navAlbum;
+
+  /// No description provided for @navScanner.
+  ///
+  /// In es, this message translates to:
+  /// **'Escáner'**
+  String get navScanner;
 }
 
 class _AppLocalizationsDelegate

@@ -1183,4 +1183,10 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get scanBadgeRepeated => 'Duplikat';
+
+  @override
+  String get navAlbum => 'Album';
+
+  @override
+  String get navScanner => 'Skaner';
 }

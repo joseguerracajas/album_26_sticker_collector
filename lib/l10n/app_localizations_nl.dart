@@ -1184,4 +1184,10 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get scanBadgeRepeated => 'Dubbel';
+
+  @override
+  String get navAlbum => 'Album';
+
+  @override
+  String get navScanner => 'Scanner';
 }

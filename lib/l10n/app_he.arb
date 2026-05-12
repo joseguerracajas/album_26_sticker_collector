@@ -376,5 +376,7 @@
   "lookupTutorialStep3Body": "תראה אם המדבקה חסרה או קיימת. בלחצני + ו– תוכל לעדכן את המלאי מיד.",
 
   "scanBadgeNew": "חדש",
-  "scanBadgeRepeated": "כפול"
+  "scanBadgeRepeated": "כפול",
+  "navAlbum": "אלבום",
+  "navScanner": "סורק"
 }

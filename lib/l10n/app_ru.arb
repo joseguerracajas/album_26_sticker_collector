@@ -376,5 +376,7 @@
   "lookupTutorialStep3Body": "Вы увидите, есть ли наклейка или её не хватает. Кнопками + и – можно мгновенно обновить инвентарь.",
 
   "scanBadgeNew": "Новая",
-  "scanBadgeRepeated": "Дубликат"
+  "scanBadgeRepeated": "Дубликат",
+  "navAlbum": "Альбом",
+  "navScanner": "Сканер"
 }

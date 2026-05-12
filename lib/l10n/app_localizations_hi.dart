@@ -1179,4 +1179,10 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get scanBadgeRepeated => 'दोहराया';
+
+  @override
+  String get navAlbum => 'एल्बम';
+
+  @override
+  String get navScanner => 'स्कैनर';
 }

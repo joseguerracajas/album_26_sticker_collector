@@ -1163,4 +1163,10 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get scanBadgeRepeated => 'כפול';
+
+  @override
+  String get navAlbum => 'אלבום';
+
+  @override
+  String get navScanner => 'סורק';
 }

@@ -1,5 +1,5 @@
 import 'package:album_26_sticker_collector/brick/app_repository.dart';
-import 'package:album_26_sticker_collector/features/catalog/presentation/home_screen.dart';
+import 'package:album_26_sticker_collector/features/catalog/presentation/app_shell.dart';
 import 'package:album_26_sticker_collector/features/monetization/data/ads_provider.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -103,7 +103,7 @@ class MainApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const HomeScreen(),
+      home: const AppShell(),
     );
   }
 }

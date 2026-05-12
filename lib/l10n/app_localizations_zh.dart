@@ -1134,4 +1134,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get scanBadgeRepeated => '重复';
+
+  @override
+  String get navAlbum => '相册';
+
+  @override
+  String get navScanner => '扫描仪';
 }

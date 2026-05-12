@@ -7,7 +7,6 @@ import 'package:album_26_sticker_collector/features/catalog/domain/category.mode
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/app_bar_actions.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/sticker_stat_row.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/stats_provider.dart';
-import 'package:album_26_sticker_collector/features/monetization/data/ads_provider.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -115,9 +114,10 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
               ),
               backgroundColor: Colors.transparent,
               elevation: 0,
-              actions: const [ScannerIconButton(), ShareMenuButton()],
+              centerTitle: true,
+              iconTheme: const IconThemeData(color: Colors.amber),
+              actions: const [ShareMenuButton()],
             ),
-            bottomNavigationBar: const AdBannerWidget(),
             body: RefreshIndicator(
               color: Colors.amber,
               backgroundColor: const Color(0xFF1E1E1E),

@@ -1173,4 +1173,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get scanBadgeRepeated => 'Duplicate';
+
+  @override
+  String get navAlbum => 'Album';
+
+  @override
+  String get navScanner => 'Scanner';
 }

@@ -1186,4 +1186,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get scanBadgeRepeated => 'Doublon';
+
+  @override
+  String get navAlbum => 'Album';
+
+  @override
+  String get navScanner => 'Scanner';
 }

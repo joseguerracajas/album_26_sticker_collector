@@ -376,5 +376,7 @@
   "lookupTutorialStep3Body": "आप देखेंगे कि स्टिकर गायब है या संग्रहीत। + और – बटनों से इन्वेंट्री अपडेट करें।",
 
   "scanBadgeNew": "नया",
-  "scanBadgeRepeated": "दोहराया"
+  "scanBadgeRepeated": "दोहराया",
+  "navAlbum": "एल्बम",
+  "navScanner": "स्कैनर"
 }

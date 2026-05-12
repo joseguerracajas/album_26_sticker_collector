@@ -82,6 +82,7 @@ class _StickerLookupScreenState extends ConsumerState<StickerLookupScreen>
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.amber),
         title: Text(
           l10n.lookupScreenTitle,
           style: const TextStyle(
@@ -95,7 +96,7 @@ class _StickerLookupScreenState extends ConsumerState<StickerLookupScreen>
             tooltip: l10n.lookupScannerOpenTooltip,
             icon: const Icon(
               Icons.qr_code_scanner_rounded,
-              color: Colors.white,
+              color: Colors.amber,
             ),
             onPressed: () => Navigator.of(
               context,
@@ -181,14 +182,8 @@ class _ManualLookupTabState extends ConsumerState<_ManualLookupTab> {
     super.dispose();
   }
 
-  void _search() {
-    FocusScope.of(context).unfocus();
-    final letters = _lettersCtrl.text.trim();
-    final numbers = _numbersDigits.trim();
+  Sticker? _findBestMatch(String letters, String numbers) {
     final input = '$letters$numbers';
-    if (input.isEmpty) return;
-
-    final l10n = AppLocalizations.of(context);
     Sticker? sticker = widget.findSticker(input);
 
     // Intentar sin cero inicial (p. ej. "ECU05" → "ECU5")
@@ -197,22 +192,44 @@ class _ManualLookupTabState extends ConsumerState<_ManualLookupTab> {
       if (trimmed != input) sticker = widget.findSticker(trimmed);
     }
 
+    // Intentar con cero inicial (p. ej. "ECU5" → "ECU05")
     if (sticker == null) {
-      setState(() {
-        _errorMessage = l10n.lookupStickerNotFound;
-        _foundSticker = null;
-      });
-      HapticFeedback.mediumImpact();
+      final padded = '$letters${numbers.padLeft(2, '0')}';
+      if (padded != input) sticker = widget.findSticker(padded);
+    }
+
+    return sticker;
+  }
+
+  /// Búsqueda en vivo: no borra los campos ni quita el foco.
+  void _autoSearch() {
+    final letters = _lettersCtrl.text.trim();
+    final numbers = _numbersDigits.trim();
+
+    if (letters.isEmpty || numbers.isEmpty) {
+      if (_foundSticker != null || _errorMessage != null) {
+        setState(() {
+          _foundSticker = null;
+          _errorMessage = null;
+        });
+      }
       return;
     }
 
-    _lettersCtrl.clear();
-    _numbersCtrl.clear();
+    final l10n = AppLocalizations.of(context);
+    final sticker = _findBestMatch(letters, numbers);
+
     setState(() {
-      _errorMessage = null;
       _foundSticker = sticker;
+      _errorMessage = sticker == null ? l10n.lookupStickerNotFound : null;
     });
-    HapticFeedback.mediumImpact();
+    if (sticker != null) HapticFeedback.lightImpact();
+  }
+
+  /// Búsqueda manual (submit/botón): igual pero quita el foco.
+  void _search() {
+    FocusScope.of(context).unfocus();
+    _autoSearch();
   }
 
   void _clearFields() {
@@ -245,7 +262,7 @@ class _ManualLookupTabState extends ConsumerState<_ManualLookupTab> {
       filled: true,
       fillColor: const Color(0xFF1E1E1E),
       counterText: '',
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: BorderSide.none,
@@ -280,7 +297,7 @@ class _ManualLookupTabState extends ConsumerState<_ManualLookupTab> {
                 // Campo letras (3 chars)
                 SizedBox(
                   width: 136,
-                  height: 64,
+                  height: 72,
                   child: TextField(
                     controller: _lettersCtrl,
                     focusNode: _lettersFocus,
@@ -300,6 +317,7 @@ class _ManualLookupTabState extends ConsumerState<_ManualLookupTab> {
                     ],
                     onChanged: (value) {
                       if (value.length == 3) _numbersFocus.requestFocus();
+                      _autoSearch();
                     },
                     onSubmitted: (_) => _search(),
                     decoration: _boxDecoration(hint: 'ARG'),
@@ -311,7 +329,7 @@ class _ManualLookupTabState extends ConsumerState<_ManualLookupTab> {
                 // Campo números (2 chars)
                 SizedBox(
                   width: 100,
-                  height: 64,
+                  height: 72,
                   child: TextField(
                     controller: _numbersCtrl,
                     focusNode: _numbersFocus,
@@ -343,8 +361,7 @@ class _ManualLookupTabState extends ConsumerState<_ManualLookupTab> {
                         _lettersFocus.requestFocus();
                         return;
                       }
-                      final digits = value.replaceAll(_sentinel, '');
-                      if (digits.length == 2) _search();
+                      _autoSearch();
                     },
                     onSubmitted: (_) => _search(),
                     decoration: _boxDecoration(hint: '17'),
@@ -357,7 +374,7 @@ class _ManualLookupTabState extends ConsumerState<_ManualLookupTab> {
                 SizedBox(
                   key: tutorialLookupSearchButtonKey,
                   width: 48,
-                  height: 64,
+                  height: 72,
                   child: Material(
                     color: const Color(0xFF1E1E1E),
                     borderRadius: BorderRadius.circular(12),

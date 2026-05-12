@@ -376,5 +376,7 @@
   "lookupTutorialStep3Body": "سترى إذا كان الملصق مفقوداً أو موجوداً. استخدم زري + و – لتحديث مخزونك.",
 
   "scanBadgeNew": "جديد",
-  "scanBadgeRepeated": "مكرر"
+  "scanBadgeRepeated": "مكرر",
+  "navAlbum": "الألبوم",
+  "navScanner": "الماسح"
 }

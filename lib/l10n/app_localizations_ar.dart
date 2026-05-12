@@ -1172,4 +1172,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get scanBadgeRepeated => 'مكرر';
+
+  @override
+  String get navAlbum => 'الألبوم';
+
+  @override
+  String get navScanner => 'الماسح';
 }

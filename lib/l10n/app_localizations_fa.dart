@@ -1183,4 +1183,10 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get scanBadgeRepeated => 'تکراری';
+
+  @override
+  String get navAlbum => 'آلبوم';
+
+  @override
+  String get navScanner => 'اسکنر';
 }
