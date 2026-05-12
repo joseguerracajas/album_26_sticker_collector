@@ -373,5 +373,8 @@
   "lookupTutorialStep2Title": "输入代码",
   "lookupTutorialStep2Body": "按相册中显示的格式输入贴纸代码，如 ECU 10 或 ARG 5，然后点击搜索。",
   "lookupTutorialStep3Title": "查询并管理",
-  "lookupTutorialStep3Body": "您可以看到贴纸是否缺少或已收集。使用 + 和 – 按钮即刻更新库存。"
+  "lookupTutorialStep3Body": "您可以看到贴纸是否缺少或已收集。使用 + 和 – 按钮即刻更新库存。",
+
+  "scanBadgeNew": "新增",
+  "scanBadgeRepeated": "重复"
 }

@@ -391,12 +391,20 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
                   ),
                   onPressed: () {
                     HapticFeedback.lightImpact();
+                    _cameraController?.stopImageStream();
                     showModalBottomSheet(
                       context: context,
                       backgroundColor: Colors.transparent,
                       isScrollControlled: true,
                       builder: (context) => const PendingScansSheet(),
-                    );
+                    ).whenComplete(() {
+                      if (mounted &&
+                          (_cameraController?.value.isInitialized ?? false) &&
+                          !(_cameraController?.value.isStreamingImages ??
+                              true)) {
+                        _startImageStream();
+                      }
+                    });
                   },
                 );
               },
@@ -446,7 +454,9 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Text(
-                          _overlayIsNew ? 'Nuevo' : 'Repetido',
+                          _overlayIsNew
+                              ? l10n.scanBadgeNew
+                              : l10n.scanBadgeRepeated,
                           style: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,

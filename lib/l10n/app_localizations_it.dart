@@ -1178,4 +1178,10 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get lookupTutorialStep3Body =>
       'Vedrai se la figurina manca o ce l\'hai già. Con i pulsanti + e – puoi aggiornare il tuo inventario all\'istante.';
+
+  @override
+  String get scanBadgeNew => 'Nuovo';
+
+  @override
+  String get scanBadgeRepeated => 'Duplicato';
 }

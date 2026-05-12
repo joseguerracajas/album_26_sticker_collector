@@ -373,5 +373,8 @@
   "lookupTutorialStep2Title": "Kodu girin",
   "lookupTutorialStep2Body": "Albumde göründüğü gibi kodu girin, ör. ECU 10 veya ARG 5, ardından Ara'ya dokunun.",
   "lookupTutorialStep3Title": "Kontrol et ve yönet",
-  "lookupTutorialStep3Body": "Çıkartmanın eksik mi yoksa mevcut mu olduğunu göreceksiniz. + ve – düğmeleriyle envanterinizi anında güncelleyebilirsiniz."
+  "lookupTutorialStep3Body": "Çıkartmanın eksik mi yoksa mevcut mu olduğunu göreceksiniz. + ve – düğmeleriyle envanterinizi anında güncelleyebilirsiniz.",
+
+  "scanBadgeNew": "Yeni",
+  "scanBadgeRepeated": "Tekrar"
 }

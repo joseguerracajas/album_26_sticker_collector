@@ -371,5 +371,8 @@
   "lookupTutorialStep2Title": "Wpisz kod",
   "lookupTutorialStep2Body": "Wpisz kod naklejki tak, jak pojawia się w albumie, np. ECU 10 lub ARG 5, a następnie naciśnij Szukaj.",
   "lookupTutorialStep3Title": "Sprawdzaj i zarządzaj",
-  "lookupTutorialStep3Body": "Zobaczysz, czy naklejka jest brakująca czy już masz. Przyciskami + i – możesz natychmiast zaktualizować swój ekwipunek."
+  "lookupTutorialStep3Body": "Zobaczysz, czy naklejka jest brakująca czy już masz. Przyciskami + i – możesz natychmiast zaktualizować swój ekwipunek.",
+
+  "scanBadgeNew": "Nowa",
+  "scanBadgeRepeated": "Duplikat"
 }

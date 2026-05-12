@@ -1166,4 +1166,10 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get lookupTutorialStep3Body =>
       'سترى إذا كان الملصق مفقوداً أو موجوداً. استخدم زري + و – لتحديث مخزونك.';
+
+  @override
+  String get scanBadgeNew => 'جديد';
+
+  @override
+  String get scanBadgeRepeated => 'مكرر';
 }

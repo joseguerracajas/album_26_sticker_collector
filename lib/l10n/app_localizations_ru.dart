@@ -1180,4 +1180,10 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get lookupTutorialStep3Body =>
       'Вы увидите, есть ли наклейка или её не хватает. Кнопками + и – можно мгновенно обновить инвентарь.';
+
+  @override
+  String get scanBadgeNew => 'Новая';
+
+  @override
+  String get scanBadgeRepeated => 'Дубликат';
 }

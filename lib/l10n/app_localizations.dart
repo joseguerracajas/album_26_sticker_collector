@@ -2159,8 +2159,20 @@ abstract class AppLocalizations {
   /// No description provided for @lookupTutorialStep3Body.
   ///
   /// In es, this message translates to:
-  /// **'Verás si el cromo te falta, ya lo tienes o cuántos repetidos llevas. Con los botones + y – puedes actualizar tu inventario al instante.'**
+  /// **'Verás si el cromo está faltando o ya lo tienes o cuántos repetidos llevas. Con los botones + y – puedes actualizar tu inventario al instante.'**
   String get lookupTutorialStep3Body;
+
+  /// No description provided for @scanBadgeNew.
+  ///
+  /// In es, this message translates to:
+  /// **'Nuevo'**
+  String get scanBadgeNew;
+
+  /// No description provided for @scanBadgeRepeated.
+  ///
+  /// In es, this message translates to:
+  /// **'Repetido'**
+  String get scanBadgeRepeated;
 }
 
 class _AppLocalizationsDelegate

@@ -1128,4 +1128,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get lookupTutorialStep3Body => '您可以看到贴纸是否缺少或已收集。使用 + 和 – 按钮即刻更新库存。';
+
+  @override
+  String get scanBadgeNew => '新增';
+
+  @override
+  String get scanBadgeRepeated => '重复';
 }

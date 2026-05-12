@@ -1173,4 +1173,10 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get lookupTutorialStep3Body =>
       'आप देखेंगे कि स्टिकर गायब है या संग्रहीत। + और – बटनों से इन्वेंट्री अपडेट करें।';
+
+  @override
+  String get scanBadgeNew => 'नया';
+
+  @override
+  String get scanBadgeRepeated => 'दोहराया';
 }

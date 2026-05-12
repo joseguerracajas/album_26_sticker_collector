@@ -373,5 +373,8 @@
   "lookupTutorialStep2Title": "कोड दर्ज करें",
   "lookupTutorialStep2Body": "आल्बम में दिखने वाला स्टिकर कोड टाइप करें, जैसे ECU 10 या ARG 5, फिर खोजें दबाएं।",
   "lookupTutorialStep3Title": "जांचें और प्रबंधित करें",
-  "lookupTutorialStep3Body": "आप देखेंगे कि स्टिकर गायब है या संग्रहीत। + और – बटनों से इन्वेंट्री अपडेट करें।"
+  "lookupTutorialStep3Body": "आप देखेंगे कि स्टिकर गायब है या संग्रहीत। + और – बटनों से इन्वेंट्री अपडेट करें।",
+
+  "scanBadgeNew": "नया",
+  "scanBadgeRepeated": "दोहराया"
 }

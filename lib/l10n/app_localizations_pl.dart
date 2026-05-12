@@ -1177,4 +1177,10 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get lookupTutorialStep3Body =>
       'Zobaczysz, czy naklejka jest brakująca czy już masz. Przyciskami + i – możesz natychmiast zaktualizować swój ekwipunek.';
+
+  @override
+  String get scanBadgeNew => 'Nowa';
+
+  @override
+  String get scanBadgeRepeated => 'Duplikat';
 }

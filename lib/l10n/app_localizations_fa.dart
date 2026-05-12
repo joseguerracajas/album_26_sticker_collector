@@ -1177,4 +1177,10 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get lookupTutorialStep3Body =>
       'میبینید این استیکر کم دارید یا نه. با دکمه‌های + و – موجودی را به‌روز کنید.';
+
+  @override
+  String get scanBadgeNew => 'جدید';
+
+  @override
+  String get scanBadgeRepeated => 'تکراری';
 }

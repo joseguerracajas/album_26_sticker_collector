@@ -1178,4 +1178,10 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get lookupTutorialStep3Body =>
       'Je ziet of de sticker ontbreekt of al in je bezit is. Met + en – kun je je inventaris direct bijwerken.';
+
+  @override
+  String get scanBadgeNew => 'Nieuw';
+
+  @override
+  String get scanBadgeRepeated => 'Dubbel';
 }

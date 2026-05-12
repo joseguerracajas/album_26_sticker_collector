@@ -373,5 +373,8 @@
   "lookupTutorialStep2Title": "Code eingeben",
   "lookupTutorialStep2Body": "Gib den Sticker-Code ein, wie er im Album erscheint, z.B. ECU 10 oder ARG 5, und tippe auf Suchen.",
   "lookupTutorialStep3Title": "Prüfen und verwalten",
-  "lookupTutorialStep3Body": "Du siehst ob der Sticker fehlt oder schon vorhanden ist. Mit + und – kannst du dein Inventar sofort aktualisieren."
+  "lookupTutorialStep3Body": "Du siehst ob der Sticker fehlt oder schon vorhanden ist. Mit + und – kannst du dein Inventar sofort aktualisieren.",
+
+  "scanBadgeNew": "Neu",
+  "scanBadgeRepeated": "Doppelt"
 }

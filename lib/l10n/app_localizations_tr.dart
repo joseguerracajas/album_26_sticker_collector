@@ -1174,4 +1174,10 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get lookupTutorialStep3Body =>
       'Çıkartmanın eksik mi yoksa mevcut mu olduğunu göreceksiniz. + ve – düğmeleriyle envanterinizi anında güncelleyebilirsiniz.';
+
+  @override
+  String get scanBadgeNew => 'Yeni';
+
+  @override
+  String get scanBadgeRepeated => 'Tekrar';
 }

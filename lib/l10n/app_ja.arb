@@ -373,5 +373,8 @@
   "lookupTutorialStep2Title": "コードを入力",
   "lookupTutorialStep2Body": "アルバムに表示されるコード（例：ECU 10やARG 5）を入力し、検索をタップします。",
   "lookupTutorialStep3Title": "確認と管理",
-  "lookupTutorialStep3Body": "ステッカーが未収集か収集済みか表示されます。+と–ボタンで在庫を即座に更新できます。"
+  "lookupTutorialStep3Body": "ステッカーが未収集か収集済みか表示されます。+と–ボタンで在庫を即座に更新できます。",
+
+  "scanBadgeNew": "新しい",
+  "scanBadgeRepeated": "重複"
 }

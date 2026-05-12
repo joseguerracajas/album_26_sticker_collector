@@ -1180,4 +1180,10 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get lookupTutorialStep3Body =>
       'Tu verras si le sticker manque ou est déjà collecté. Avec les boutons + et – tu peux mettre à jour ton inventaire instantanément.';
+
+  @override
+  String get scanBadgeNew => 'Nouveau';
+
+  @override
+  String get scanBadgeRepeated => 'Doublon';
 }

@@ -850,7 +850,9 @@ class _PhysicalExchangeScreenState extends ConsumerState<PhysicalExchangeScreen>
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(
-                        _overlayIsNew ? 'Nuevo' : 'Repetido',
+                        _overlayIsNew
+                            ? l10n.scanBadgeNew
+                            : l10n.scanBadgeRepeated,
                         style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,

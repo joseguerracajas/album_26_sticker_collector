@@ -373,5 +373,8 @@
   "lookupTutorialStep2Title": "أدخل الرمز",
   "lookupTutorialStep2Body": "اكتب رمز الملصق كما يظهر في الألبوم، مثل ECU 10 أو ARG 5.",
   "lookupTutorialStep3Title": "استعرض وأدر",
-  "lookupTutorialStep3Body": "سترى إذا كان الملصق مفقوداً أو موجوداً. استخدم زري + و – لتحديث مخزونك."
+  "lookupTutorialStep3Body": "سترى إذا كان الملصق مفقوداً أو موجوداً. استخدم زري + و – لتحديث مخزونك.",
+
+  "scanBadgeNew": "جديد",
+  "scanBadgeRepeated": "مكرر"
 }

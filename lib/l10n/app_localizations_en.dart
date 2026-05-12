@@ -1167,4 +1167,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get lookupTutorialStep3Body =>
       'You\'ll see if the sticker is missing, collected, or how many duplicates you have. Use the + and – buttons to update your inventory instantly.';
+
+  @override
+  String get scanBadgeNew => 'New';
+
+  @override
+  String get scanBadgeRepeated => 'Duplicate';
 }

@@ -489,5 +489,8 @@
   "lookupTutorialStep2Title": "Enter the code",
   "lookupTutorialStep2Body": "Type the sticker code as it appears in the album, e.g. ECU 10 or ARG 5, then tap Search.",
   "lookupTutorialStep3Title": "Check and manage",
-  "lookupTutorialStep3Body": "You'll see if the sticker is missing, collected, or how many duplicates you have. Use the + and – buttons to update your inventory instantly."
+  "lookupTutorialStep3Body": "You'll see if the sticker is missing, collected, or how many duplicates you have. Use the + and – buttons to update your inventory instantly.",
+
+  "scanBadgeNew": "New",
+  "scanBadgeRepeated": "Duplicate"
 }

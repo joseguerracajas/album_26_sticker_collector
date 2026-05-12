@@ -1179,5 +1179,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get lookupTutorialStep3Body =>
-      'Verás si el cromo te falta, ya lo tienes o cuántos repetidos llevas. Con los botones + y – puedes actualizar tu inventario al instante.';
+      'Verás si el cromo está faltando o ya lo tienes o cuántos repetidos llevas. Con los botones + y – puedes actualizar tu inventario al instante.';
+
+  @override
+  String get scanBadgeNew => 'Nuevo';
+
+  @override
+  String get scanBadgeRepeated => 'Repetido';
 }

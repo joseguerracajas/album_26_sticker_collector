@@ -1175,4 +1175,10 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get lookupTutorialStep3Body =>
       'Você verá se o cromo está faltando ou já tem. Com + e – você pode atualizar seu inventário na hora.';
+
+  @override
+  String get scanBadgeNew => 'Novo';
+
+  @override
+  String get scanBadgeRepeated => 'Repetido';
 }

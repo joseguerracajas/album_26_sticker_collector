@@ -1157,4 +1157,10 @@ class AppLocalizationsHe extends AppLocalizations {
   @override
   String get lookupTutorialStep3Body =>
       'תראה אם המדבקה חסרה או קיימת. בלחצני + ו– תוכל לעדכן את המלאי מיד.';
+
+  @override
+  String get scanBadgeNew => 'חדש';
+
+  @override
+  String get scanBadgeRepeated => 'כפול';
 }

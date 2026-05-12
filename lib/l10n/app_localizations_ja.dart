@@ -1142,4 +1142,10 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get lookupTutorialStep3Body =>
       'ステッカーが未収集か収集済みか表示されます。+と–ボタンで在庫を即座に更新できます。';
+
+  @override
+  String get scanBadgeNew => '新しい';
+
+  @override
+  String get scanBadgeRepeated => '重複';
 }

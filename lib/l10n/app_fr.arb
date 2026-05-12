@@ -373,5 +373,8 @@
   "lookupTutorialStep2Title": "Saisis le code",
   "lookupTutorialStep2Body": "Tape le code du sticker tel qu'il apparaît dans l'album, par ex. ECU 10 ou ARG 5, puis appuie sur Rechercher.",
   "lookupTutorialStep3Title": "Consulte et gère",
-  "lookupTutorialStep3Body": "Tu verras si le sticker manque ou est déjà collecté. Avec les boutons + et – tu peux mettre à jour ton inventaire instantanément."
+  "lookupTutorialStep3Body": "Tu verras si le sticker manque ou est déjà collecté. Avec les boutons + et – tu peux mettre à jour ton inventaire instantanément.",
+
+  "scanBadgeNew": "Nouveau",
+  "scanBadgeRepeated": "Doublon"
 }

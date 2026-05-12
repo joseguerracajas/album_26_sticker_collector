@@ -489,5 +489,8 @@
   "lookupTutorialStep2Title": "Ingresa el código",
   "lookupTutorialStep2Body": "Escribe el código del cromo tal como aparece en el álbum, por ejemplo ECU 10 o ARG 5, y pulsa Buscar.",
   "lookupTutorialStep3Title": "Consulta y gestiona",
-  "lookupTutorialStep3Body": "Verás si el cromo te falta, ya lo tienes o cuántos repetidos llevas. Con los botones + y – puedes actualizar tu inventario al instante."
+  "lookupTutorialStep3Body": "Verás si el cromo está faltando o ya lo tienes o cuántos repetidos llevas. Con los botones + y – puedes actualizar tu inventario al instante.",
+
+  "scanBadgeNew": "Nuevo",
+  "scanBadgeRepeated": "Repetido"
 }

@@ -373,5 +373,8 @@
   "lookupTutorialStep2Title": "הכנס את הקוד",
   "lookupTutorialStep2Body": "הקלד את קוד המדבקה כפי שמופיע באלבום, לדוגמה ECU 10 או ARG 5.",
   "lookupTutorialStep3Title": "בדוק ונהל",
-  "lookupTutorialStep3Body": "תראה אם המדבקה חסרה או קיימת. בלחצני + ו– תוכל לעדכן את המלאי מיד."
+  "lookupTutorialStep3Body": "תראה אם המדבקה חסרה או קיימת. בלחצני + ו– תוכל לעדכן את המלאי מיד.",
+
+  "scanBadgeNew": "חדש",
+  "scanBadgeRepeated": "כפול"
 }

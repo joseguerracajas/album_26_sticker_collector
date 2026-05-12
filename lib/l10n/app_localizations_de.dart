@@ -1182,4 +1182,10 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get lookupTutorialStep3Body =>
       'Du siehst ob der Sticker fehlt oder schon vorhanden ist. Mit + und – kannst du dein Inventar sofort aktualisieren.';
+
+  @override
+  String get scanBadgeNew => 'Neu';
+
+  @override
+  String get scanBadgeRepeated => 'Doppelt';
 }

@@ -25,6 +25,7 @@ class _PendingScansSheetState extends ConsumerState<PendingScansSheet> {
     // Construir mapa stickerId → label formateado "emoji CAT CODE"
     final stickersAsync = ref.watch(allStickersProvider);
     final categoriesAsync = ref.watch(categoriesProvider);
+    final inventory = ref.watch(inventoryProvider).asData?.value ?? {};
     final Map<String, String> labelMap = {};
     stickersAsync.whenData((stickers) {
       categoriesAsync.whenData((cats) {
@@ -96,6 +97,13 @@ class _PendingScansSheetState extends ConsumerState<PendingScansSheet> {
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
+                        ),
+                      ),
+                      subtitle: _ScanStatusBadge(
+                        quantity: quantity,
+                        inventoryQty: (inventory[code] ?? {}).values.fold(
+                          0,
+                          (s, q) => s + q,
                         ),
                       ),
                       trailing: Row(
@@ -240,6 +248,76 @@ class _PendingScansSheetState extends ConsumerState<PendingScansSheet> {
                         fontSize: 16,
                       ),
                     ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ScanStatusBadge extends StatelessWidget {
+  const _ScanStatusBadge({required this.quantity, required this.inventoryQty});
+
+  final int quantity;
+  final int inventoryQty;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final isNewInInventory = inventoryQty == 0;
+    final isRepeatedInSession = quantity > 1 || inventoryQty > 0;
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (isNewInInventory) ...[
+          _Badge(
+            label: l10n.scanBadgeNew,
+            icon: Icons.add,
+            color: Colors.greenAccent,
+          ),
+          if (isRepeatedInSession) const SizedBox(width: 6),
+        ],
+        if (isRepeatedInSession)
+          _Badge(
+            label: l10n.scanBadgeRepeated,
+            icon: Icons.copy_rounded,
+            color: Colors.redAccent,
+          ),
+      ],
+    );
+  }
+}
+
+class _Badge extends StatelessWidget {
+  const _Badge({required this.label, required this.icon, required this.color});
+
+  final String label;
+  final IconData icon;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.15),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: color, width: 1),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, color: color, size: 12),
+          const SizedBox(width: 3),
+          Text(
+            label,
+            style: TextStyle(
+              color: color,
+              fontSize: 11,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ],

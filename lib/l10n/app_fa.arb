@@ -373,5 +373,8 @@
   "lookupTutorialStep2Title": "کد را وارد کنید",
   "lookupTutorialStep2Body": "کد استیکر را مثل ECU 10 وارد کنید و جستجو را بزنید.",
   "lookupTutorialStep3Title": "بررسی و مدیریت",
-  "lookupTutorialStep3Body": "میبینید این استیکر کم دارید یا نه. با دکمه‌های + و – موجودی را به‌روز کنید."
+  "lookupTutorialStep3Body": "میبینید این استیکر کم دارید یا نه. با دکمه‌های + و – موجودی را به‌روز کنید.",
+
+  "scanBadgeNew": "جدید",
+  "scanBadgeRepeated": "تکراری"
 }

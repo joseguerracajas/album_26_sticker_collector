@@ -1143,4 +1143,10 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get lookupTutorialStep3Body =>
       '스티커가 없는지 있는지 확인할 수 있습니다. + 및 – 버튼으로 인벤토리를 즐시 업데이트하세요.';
+
+  @override
+  String get scanBadgeNew => '새로운';
+
+  @override
+  String get scanBadgeRepeated => '중복';
 }

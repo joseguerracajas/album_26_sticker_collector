@@ -373,5 +373,8 @@
   "lookupTutorialStep2Title": "Введите код",
   "lookupTutorialStep2Body": "Напечатайте код наклейки как в альбоме, например ECU 10 или ARG 5, затем нажмите Найти.",
   "lookupTutorialStep3Title": "Проверьте и управляйте",
-  "lookupTutorialStep3Body": "Вы увидите, есть ли наклейка или её не хватает. Кнопками + и – можно мгновенно обновить инвентарь."
+  "lookupTutorialStep3Body": "Вы увидите, есть ли наклейка или её не хватает. Кнопками + и – можно мгновенно обновить инвентарь.",
+
+  "scanBadgeNew": "Новая",
+  "scanBadgeRepeated": "Дубликат"
 }

@@ -373,5 +373,8 @@
   "lookupTutorialStep2Title": "Inserisci il codice",
   "lookupTutorialStep2Body": "Digita il codice della figurina come appare nell'album, es. ECU 10 o ARG 5, poi tocca Cerca.",
   "lookupTutorialStep3Title": "Consulta e gestisci",
-  "lookupTutorialStep3Body": "Vedrai se la figurina manca o ce l'hai già. Con i pulsanti + e – puoi aggiornare il tuo inventario all'istante."
+  "lookupTutorialStep3Body": "Vedrai se la figurina manca o ce l'hai già. Con i pulsanti + e – puoi aggiornare il tuo inventario all'istante.",
+
+  "scanBadgeNew": "Nuovo",
+  "scanBadgeRepeated": "Duplicato"
 }
