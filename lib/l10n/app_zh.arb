@@ -350,5 +350,28 @@
   "statsSortByProgressDesc": "进度最多优先",
   "statsSortByProgressAsc": "进度最少优先",
   "statsSortByMissing": "缺少最多优先",
-  "statsSortByDuplicates": "重复最多优先"
+  "statsSortByDuplicates": "重复最多优先",
+
+  "drawerLookup": "贴纸查询",
+  "lookupScreenTitle": "贴纸查询",
+  "lookupTabManual": "手动",
+  "lookupTabScanner": "扫描仪",
+  "lookupSearchHint": "例如: ECU 10, ARG 5, FRA 1...",
+  "lookupSearchButton": "搜索",
+  "lookupStickerNotFound": "未找到该代码的贴纸。",
+  "lookupStatusMissing": "未收集",
+  "lookupStatusCollected": "已拥有 ✓",
+  "lookupStatusDuplicates": "{count} 张重复 🔁",
+  "@lookupStatusDuplicates": {
+    "placeholders": { "count": {} }
+  },
+  "lookupQtyLabel": "您库存中的数量",
+  "lookupScannerHint": "将贴纸居中以识别",
+
+  "lookupTutorialStep1Title": "两种搜索方式",
+  "lookupTutorialStep1Body": "使用“手动”选项卡输入贴纸代码，或使用“扫描仪”选项卡直接指向摄像头。",
+  "lookupTutorialStep2Title": "输入代码",
+  "lookupTutorialStep2Body": "按相册中显示的格式输入贴纸代码，如 ECU 10 或 ARG 5，然后点击搜索。",
+  "lookupTutorialStep3Title": "查询并管理",
+  "lookupTutorialStep3Body": "您可以看到贴纸是否缺少或已收集。使用 + 和 – 按钮即刻更新库存。"
 }

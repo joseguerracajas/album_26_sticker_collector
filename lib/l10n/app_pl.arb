@@ -348,5 +348,28 @@
   "statsSortByProgressDesc": "Największy postęp najpierw",
   "statsSortByProgressAsc": "Najmniejszy postęp najpierw",
   "statsSortByMissing": "Najwięcej brakujących najpierw",
-  "statsSortByDuplicates": "Najwięcej duplikatów najpierw"
+  "statsSortByDuplicates": "Najwięcej duplikatów najpierw",
+
+  "drawerLookup": "Wyszukaj naklejkę",
+  "lookupScreenTitle": "Wyszukaj naklejkę",
+  "lookupTabManual": "Ręcznie",
+  "lookupTabScanner": "Skaner",
+  "lookupSearchHint": "Np.: ECU 10, ARG 5, FRA 1...",
+  "lookupSearchButton": "Szukaj",
+  "lookupStickerNotFound": "Nie znaleziono naklejki z tym kodem.",
+  "lookupStatusMissing": "Brakuje",
+  "lookupStatusCollected": "Masz już ✓",
+  "lookupStatusDuplicates": "{count} duplikat(y) 🔁",
+  "@lookupStatusDuplicates": {
+    "placeholders": { "count": {} }
+  },
+  "lookupQtyLabel": "Ilość w twoim ekwipunku",
+  "lookupScannerHint": "Wyśrodkuj naklejkę, aby ją zidentyfikować",
+
+  "lookupTutorialStep1Title": "Dwa sposoby wyszukiwania",
+  "lookupTutorialStep1Body": "Użyj karty Ręcznie, aby wpisać kod naklejki, lub karty Skaner, aby użyć aparatu.",
+  "lookupTutorialStep2Title": "Wpisz kod",
+  "lookupTutorialStep2Body": "Wpisz kod naklejki tak, jak pojawia się w albumie, np. ECU 10 lub ARG 5, a następnie naciśnij Szukaj.",
+  "lookupTutorialStep3Title": "Sprawdzaj i zarządzaj",
+  "lookupTutorialStep3Body": "Zobaczysz, czy naklejka jest brakująca czy już masz. Przyciskami + i – możesz natychmiast zaktualizować swój ekwipunek."
 }

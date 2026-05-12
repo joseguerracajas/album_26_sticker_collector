@@ -1053,4 +1053,63 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get tradeDrawerRequestBadge => 'SOLICITUD';
+
+  @override
+  String get drawerLookup => 'Wyszukaj naklejkę';
+
+  @override
+  String get lookupScreenTitle => 'Wyszukaj naklejkę';
+
+  @override
+  String get lookupTabManual => 'Ręcznie';
+
+  @override
+  String get lookupTabScanner => 'Skaner';
+
+  @override
+  String get lookupSearchHint => 'Np.: ECU 10, ARG 5, FRA 1...';
+
+  @override
+  String get lookupSearchButton => 'Szukaj';
+
+  @override
+  String get lookupStickerNotFound => 'Nie znaleziono naklejki z tym kodem.';
+
+  @override
+  String get lookupStatusMissing => 'Brakuje';
+
+  @override
+  String get lookupStatusCollected => 'Masz już ✓';
+
+  @override
+  String lookupStatusDuplicates(Object count) {
+    return '$count duplikat(y) 🔁';
+  }
+
+  @override
+  String get lookupQtyLabel => 'Ilość w twoim ekwipunku';
+
+  @override
+  String get lookupScannerHint => 'Wyśrodkuj naklejkę, aby ją zidentyfikować';
+
+  @override
+  String get lookupTutorialStep1Title => 'Dwa sposoby wyszukiwania';
+
+  @override
+  String get lookupTutorialStep1Body =>
+      'Użyj karty Ręcznie, aby wpisać kod naklejki, lub karty Skaner, aby użyć aparatu.';
+
+  @override
+  String get lookupTutorialStep2Title => 'Wpisz kod';
+
+  @override
+  String get lookupTutorialStep2Body =>
+      'Wpisz kod naklejki tak, jak pojawia się w albumie, np. ECU 10 lub ARG 5, a następnie naciśnij Szukaj.';
+
+  @override
+  String get lookupTutorialStep3Title => 'Sprawdzaj i zarządzaj';
+
+  @override
+  String get lookupTutorialStep3Body =>
+      'Zobaczysz, czy naklejka jest brakująca czy już masz. Przyciskami + i – możesz natychmiast zaktualizować swój ekwipunek.';
 }

@@ -350,5 +350,28 @@
   "statsSortByProgressDesc": "הכי מתקדמת קודם",
   "statsSortByProgressAsc": "הכי פחות מתקדמת קודם",
   "statsSortByMissing": "הכי חסרה קודם",
-  "statsSortByDuplicates": "הכי כפולה קודם"
+  "statsSortByDuplicates": "הכי כפולה קודם",
+
+  "drawerLookup": "בדיקת מדבקה",
+  "lookupScreenTitle": "בדיקת מדבקה",
+  "lookupTabManual": "ידני",
+  "lookupTabScanner": "סורק",
+  "lookupSearchHint": "לדוגמה: ECU 10, ARG 5, FRA 1...",
+  "lookupSearchButton": "חיפוש",
+  "lookupStickerNotFound": "לא נמצאה מדבקה עם הקוד הזה.",
+  "lookupStatusMissing": "חסר",
+  "lookupStatusCollected": "כבר יש לך ✓",
+  "lookupStatusDuplicates": "{count} כפול/ים 🔁",
+  "@lookupStatusDuplicates": {
+    "placeholders": { "count": {} }
+  },
+  "lookupQtyLabel": "כמות במלאי שלך",
+  "lookupScannerHint": "מרכז את המדבקה לזיהוי",
+
+  "lookupTutorialStep1Title": "שתי דרכי חיפוש",
+  "lookupTutorialStep1Body": "השתמש בכרטייה ידנית להקלדת קוד או בכרטיית הסורק לסריקה ישירה.",
+  "lookupTutorialStep2Title": "הכנס את הקוד",
+  "lookupTutorialStep2Body": "הקלד את קוד המדבקה כפי שמופיע באלבום, לדוגמה ECU 10 או ARG 5.",
+  "lookupTutorialStep3Title": "בדוק ונהל",
+  "lookupTutorialStep3Body": "תראה אם המדבקה חסרה או קיימת. בלחצני + ו– תוכל לעדכן את המלאי מיד."
 }

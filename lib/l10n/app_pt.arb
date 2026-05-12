@@ -350,5 +350,28 @@
   "statsSortByProgressDesc": "Maior progresso primeiro",
   "statsSortByProgressAsc": "Menor progresso primeiro",
   "statsSortByMissing": "Mais faltantes primeiro",
-  "statsSortByDuplicates": "Mais repetidos primeiro"
+  "statsSortByDuplicates": "Mais repetidos primeiro",
+
+  "drawerLookup": "Consultar cromo",
+  "lookupScreenTitle": "Consultar cromo",
+  "lookupTabManual": "Manual",
+  "lookupTabScanner": "Scanner",
+  "lookupSearchHint": "Ex.: ECU 10, ARG 5, FRA 1...",
+  "lookupSearchButton": "Buscar",
+  "lookupStickerNotFound": "Nenhum cromo encontrado com esse código.",
+  "lookupStatusMissing": "Está faltando",
+  "lookupStatusCollected": "Você já tem ✓",
+  "lookupStatusDuplicates": "{count} repetido(s) 🔁",
+  "@lookupStatusDuplicates": {
+    "placeholders": { "count": {} }
+  },
+  "lookupQtyLabel": "Quantidade no seu inventário",
+  "lookupScannerHint": "Centralize o cromo para identificá-lo",
+
+  "lookupTutorialStep1Title": "Duas formas de buscar",
+  "lookupTutorialStep1Body": "Use a aba Manual para digitar o código do cromo ou a aba Scanner para apontar a câmera diretamente.",
+  "lookupTutorialStep2Title": "Digite o código",
+  "lookupTutorialStep2Body": "Escreva o código do cromo como aparece no álbum, ex. ECU 10 ou ARG 5, e toque em Buscar.",
+  "lookupTutorialStep3Title": "Consulte e gerencie",
+  "lookupTutorialStep3Body": "Você verá se o cromo está faltando ou já tem. Com + e – você pode atualizar seu inventário na hora."
 }

@@ -1,8 +1,7 @@
-// Archivo: lib/core/tutorial/category_detail_tutorial.dart
+// Archivo: lib/core/tutorial/lookup_tutorial.dart
 //
-// Tutorial interactivo de CategoryDetailScreen.
-// Explica: filtros (Todos/Faltantes/Repetidas), búsqueda,
-// tap simple (marcar/desmarcar) y long press (gestión de copias).
+// Tutorial interactivo de StickerLookupScreen.
+// Explica: pestañas (manual vs escáner), campo de código y botón buscar.
 
 import 'package:album_26_sticker_collector/core/tutorial/tutorial_keys.dart';
 import 'package:album_26_sticker_collector/core/tutorial/tutorial_service.dart';
@@ -10,7 +9,7 @@ import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
-class CategoryDetailTutorial {
+class LookupTutorial {
   /// Lanza el tutorial. Llama desde un addPostFrameCallback.
   static void show(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -19,84 +18,63 @@ class CategoryDetailTutorial {
     final focusPadding = isTablet ? 20.0 : 10.0;
 
     final targets = <TargetFocus>[
-      // 1 ─ Barra de filtros (Todos / Faltantes / Repetidas)
+      // 1 ─ Barra de pestañas (Manual / Escáner)
       TargetFocus(
-        identify: 'cat_filter_bar',
-        keyTarget: tutorialFilterBarKey,
+        identify: 'lookup_tab_bar',
+        keyTarget: tutorialLookupTabBarKey,
         shape: ShapeLightFocus.RRect,
-        radius: 12,
+        radius: 8,
+        paddingFocus: isTablet ? 24.0 : 12.0,
+        enableOverlayTab: true,
+        contents: [
+          TargetContent(
+            align: ContentAlign.bottom,
+            child: _CoachContent(
+              icon: Icons.tab_rounded,
+              title: l10n.lookupTutorialStep1Title,
+              body: l10n.lookupTutorialStep1Body,
+              isTablet: isTablet,
+            ),
+          ),
+        ],
+      ),
+
+      // 2 ─ Campo de código
+      TargetFocus(
+        identify: 'lookup_search_field',
+        keyTarget: tutorialLookupSearchFieldKey,
+        shape: ShapeLightFocus.RRect,
+        radius: 16,
         paddingFocus: focusPadding,
         enableOverlayTab: true,
         contents: [
           TargetContent(
             align: ContentAlign.bottom,
             child: _CoachContent(
-              icon: Icons.filter_list_rounded,
-              title: l10n.categoryTutorialStep1Title,
-              body: l10n.categoryTutorialStep1Body,
+              icon: Icons.keyboard_rounded,
+              title: l10n.lookupTutorialStep2Title,
+              body: l10n.lookupTutorialStep2Body,
               isTablet: isTablet,
             ),
           ),
         ],
       ),
 
-      // 2 ─ Buscador de cromos
+      // 3 ─ Botón buscar
       TargetFocus(
-        identify: 'cat_sticker_search',
-        keyTarget: tutorialStickerSearchKey,
+        identify: 'lookup_search_button',
+        keyTarget: tutorialLookupSearchButtonKey,
         shape: ShapeLightFocus.RRect,
-        radius: 12,
+        radius: 16,
         paddingFocus: focusPadding,
         enableOverlayTab: true,
         contents: [
           TargetContent(
-            align: ContentAlign.bottom,
+            align: ContentAlign.top,
             child: _CoachContent(
-              icon: Icons.search,
-              title: l10n.categoryTutorialStep2Title,
-              body: l10n.categoryTutorialStep2Body,
-              isTablet: isTablet,
-            ),
-          ),
-        ],
-      ),
-
-      // 3 ─ Tap simple en una card (marcar / desmarcar)
-      TargetFocus(
-        identify: 'cat_sticker_card_tap',
-        keyTarget: tutorialStickerCardKey,
-        shape: ShapeLightFocus.RRect,
-        radius: 8,
-        paddingFocus: isTablet ? 18.0 : 8.0,
-        enableOverlayTab: true,
-        contents: [
-          TargetContent(
-            align: ContentAlign.bottom,
-            child: _CoachContent(
-              icon: Icons.touch_app_rounded,
-              title: l10n.categoryTutorialStep3Title,
-              body: l10n.categoryTutorialStep3Body,
-              isTablet: isTablet,
-            ),
-          ),
-        ],
-      ),
-
-      // 4 ─ Long press (gestión de copias / variantes)
-      TargetFocus(
-        identify: 'cat_sticker_card_longpress',
-        keyTarget: tutorialStickerCardKey,
-        shape: ShapeLightFocus.RRect,
-        radius: 8,
-        paddingFocus: isTablet ? 18.0 : 8.0,
-        enableOverlayTab: true,
-        contents: [
-          TargetContent(
-            align: ContentAlign.bottom,
-            child: _CoachContent(
-              icon: Icons.pan_tool_rounded,
-              title: l10n.categoryTutorialStep4Title,
-              body: l10n.categoryTutorialStep4Body,
+              icon: Icons.manage_search_rounded,
+              title: l10n.lookupTutorialStep3Title,
+              body: l10n.lookupTutorialStep3Body,
               isTablet: isTablet,
             ),
           ),
@@ -105,9 +83,6 @@ class CategoryDetailTutorial {
     ];
 
     late final TutorialCoachMark tutorial;
-    // Protege el step de long press: el primer tap que llega es el propagado
-    // del step anterior (mismo widget target). Lo bloqueamos 400ms.
-    bool longPressReady = false;
     tutorial = TutorialCoachMark(
       targets: targets,
       colorShadow: Colors.black,
@@ -121,22 +96,10 @@ class CategoryDetailTutorial {
       paddingFocus: focusPadding,
       focusAnimationDuration: const Duration(milliseconds: 350),
       unFocusAnimationDuration: const Duration(milliseconds: 350),
-      onClickOverlay: (target) {
-        if (target.identify == 'cat_sticker_card_longpress') {
-          if (longPressReady) {
-            tutorial.next();
-          } else {
-            Future.delayed(const Duration(milliseconds: 400), () {
-              longPressReady = true;
-            });
-          }
-          return;
-        }
-        tutorial.next();
-      },
-      onFinish: TutorialService.markStickerGridTutorialDone,
+      onClickOverlay: (_) => tutorial.next(),
+      onFinish: TutorialService.markLookupTutorialDone,
       onSkip: () {
-        TutorialService.markStickerGridTutorialDone();
+        TutorialService.markLookupTutorialDone();
         return true;
       },
     )..show(context: context);
@@ -164,7 +127,7 @@ class _CoachContent extends StatelessWidget {
     final bodySize = isTablet ? 15.0 : 14.0;
     final iconSize = isTablet ? 32.0 : 28.0;
 
-    final content = Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -204,13 +167,5 @@ class _CoachContent extends StatelessWidget {
         ),
       ],
     );
-
-    if (isTablet) {
-      return ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 480),
-        child: content,
-      );
-    }
-    return content;
   }
 }

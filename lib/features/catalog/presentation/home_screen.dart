@@ -22,6 +22,7 @@ import 'package:album_26_sticker_collector/features/inventory/data/stats_provide
 import 'package:album_26_sticker_collector/features/monetization/data/ads_provider.dart';
 import 'package:album_26_sticker_collector/features/trade/data/trade_provider.dart';
 import 'package:album_26_sticker_collector/features/trade/presentation/trade_hub_screen.dart';
+import 'package:album_26_sticker_collector/features/inventory/presentation/sticker_lookup_screen.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -760,6 +761,35 @@ class _AppDrawer extends ConsumerWidget {
             // Opción: Intercambiar cromos
             const Divider(color: Color(0xFF2A2A2A)),
             const _TradeDrawerTile(),
+
+            // Opción: Consultar cromo
+            const Divider(color: Color(0xFF2A2A2A)),
+            ListTile(
+              leading: const Icon(
+                Icons.manage_search_rounded,
+                color: Colors.amber,
+              ),
+              title: Text(
+                l10n.drawerLookup,
+                style: const TextStyle(color: Colors.white),
+              ),
+              trailing: const Icon(
+                Icons.chevron_right,
+                color: Colors.white24,
+                size: 18,
+              ),
+              onTap: () {
+                Navigator.pop(context);
+                HapticFeedback.lightImpact();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const StickerLookupScreen(),
+                  ),
+                );
+              },
+            ),
+
             const Divider(color: Color(0xFF2A2A2A)),
             ListTile(
               leading: const Icon(Icons.bar_chart_rounded, color: Colors.amber),

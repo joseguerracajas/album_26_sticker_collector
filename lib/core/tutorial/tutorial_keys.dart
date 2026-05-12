@@ -37,3 +37,14 @@ final GlobalKey tutorialStickerSearchKey = GlobalKey(
 final GlobalKey tutorialStickerCardKey = GlobalKey(
   debugLabel: 'tutorialStickerCard',
 );
+
+// ── StickerLookupScreen ───────────────────────────────────────────────────────
+final GlobalKey tutorialLookupTabBarKey = GlobalKey(
+  debugLabel: 'tutorialLookupTabBar',
+);
+final GlobalKey tutorialLookupSearchFieldKey = GlobalKey(
+  debugLabel: 'tutorialLookupSearchField',
+);
+final GlobalKey tutorialLookupSearchButtonKey = GlobalKey(
+  debugLabel: 'tutorialLookupSearchButton',
+);

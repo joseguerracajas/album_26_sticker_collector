@@ -350,5 +350,28 @@
   "statsSortByProgressDesc": "진행률 높은 순",
   "statsSortByProgressAsc": "진행률 낙은 순",
   "statsSortByMissing": "부족 많은 순",
-  "statsSortByDuplicates": "중복 많은 순"
+  "statsSortByDuplicates": "중복 많은 순",
+
+  "drawerLookup": "스티커 조회",
+  "lookupScreenTitle": "스티커 조회",
+  "lookupTabManual": "수동",
+  "lookupTabScanner": "스캐너",
+  "lookupSearchHint": "예: ECU 10, ARG 5, FRA 1...",
+  "lookupSearchButton": "검색",
+  "lookupStickerNotFound": "해당 코드의 스티커를 찾을 수 없습니다.",
+  "lookupStatusMissing": "없음",
+  "lookupStatusCollected": "보유 중 ✓",
+  "lookupStatusDuplicates": "{count}개 중복 🔁",
+  "@lookupStatusDuplicates": {
+    "placeholders": { "count": {} }
+  },
+  "lookupQtyLabel": "내 인벤토리 수량",
+  "lookupScannerHint": "스티커를 중앙에 맞춰 인식",
+
+  "lookupTutorialStep1Title": "두 가지 검색 방법",
+  "lookupTutorialStep1Body": "코드를 입력하려면 수동 탭, 카메라로 스캔하려면 스캔너 탭을 사용하세요.",
+  "lookupTutorialStep2Title": "코드 입력",
+  "lookupTutorialStep2Body": "앨범에 표시된 코드(ECU 10 또는 ARG 5 등)를 입력하고 검색 버튼을 누르세요.",
+  "lookupTutorialStep3Title": "확인 및 관리",
+  "lookupTutorialStep3Body": "스티커가 없는지 있는지 확인할 수 있습니다. + 및 – 버튼으로 인벤토리를 즐시 업데이트하세요."
 }

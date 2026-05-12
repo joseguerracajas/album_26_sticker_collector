@@ -350,5 +350,28 @@
   "statsSortByProgressDesc": "अधिक प्रगति पहले",
   "statsSortByProgressAsc": "कम प्रगति पहले",
   "statsSortByMissing": "अधिक लापता पहले",
-  "statsSortByDuplicates": "अधिक दोहराव पहले"
+  "statsSortByDuplicates": "अधिक दोहराव पहले",
+
+  "drawerLookup": "स्टिकर खोजें",
+  "lookupScreenTitle": "स्टिकर खोजें",
+  "lookupTabManual": "मैन्युअल",
+  "lookupTabScanner": "स्कैनर",
+  "lookupSearchHint": "जैसे: ECU 10, ARG 5, FRA 1...",
+  "lookupSearchButton": "खोजें",
+  "lookupStickerNotFound": "उस कोड से कोई स्टिकर नहीं मिला।",
+  "lookupStatusMissing": "नहीं है",
+  "lookupStatusCollected": "आपके पास है ✓",
+  "lookupStatusDuplicates": "{count} डुप्लीकेट 🔁",
+  "@lookupStatusDuplicates": {
+    "placeholders": { "count": {} }
+  },
+  "lookupQtyLabel": "आपके इन्वेंट्री में मात्रा",
+  "lookupScannerHint": "स्टिकर को पहचानने के लिए बीच में रखें",
+
+  "lookupTutorialStep1Title": "दो खोज विधियाँ",
+  "lookupTutorialStep1Body": "कोड टाइप करने के लिए मैन्युअल टैब या स्कैन करने के लिए स्कैनर टैब का उपयोग करें।",
+  "lookupTutorialStep2Title": "कोड दर्ज करें",
+  "lookupTutorialStep2Body": "आल्बम में दिखने वाला स्टिकर कोड टाइप करें, जैसे ECU 10 या ARG 5, फिर खोजें दबाएं।",
+  "lookupTutorialStep3Title": "जांचें और प्रबंधित करें",
+  "lookupTutorialStep3Body": "आप देखेंगे कि स्टिकर गायब है या संग्रहीत। + और – बटनों से इन्वेंट्री अपडेट करें।"
 }

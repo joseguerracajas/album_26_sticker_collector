@@ -1019,4 +1019,63 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get tradeDrawerRequestBadge => 'SOLICITUD';
+
+  @override
+  String get drawerLookup => '스티커 조회';
+
+  @override
+  String get lookupScreenTitle => '스티커 조회';
+
+  @override
+  String get lookupTabManual => '수동';
+
+  @override
+  String get lookupTabScanner => '스캐너';
+
+  @override
+  String get lookupSearchHint => '예: ECU 10, ARG 5, FRA 1...';
+
+  @override
+  String get lookupSearchButton => '검색';
+
+  @override
+  String get lookupStickerNotFound => '해당 코드의 스티커를 찾을 수 없습니다.';
+
+  @override
+  String get lookupStatusMissing => '없음';
+
+  @override
+  String get lookupStatusCollected => '보유 중 ✓';
+
+  @override
+  String lookupStatusDuplicates(Object count) {
+    return '$count개 중복 🔁';
+  }
+
+  @override
+  String get lookupQtyLabel => '내 인벤토리 수량';
+
+  @override
+  String get lookupScannerHint => '스티커를 중앙에 맞춰 인식';
+
+  @override
+  String get lookupTutorialStep1Title => '두 가지 검색 방법';
+
+  @override
+  String get lookupTutorialStep1Body =>
+      '코드를 입력하려면 수동 탭, 카메라로 스캔하려면 스캔너 탭을 사용하세요.';
+
+  @override
+  String get lookupTutorialStep2Title => '코드 입력';
+
+  @override
+  String get lookupTutorialStep2Body =>
+      '앨범에 표시된 코드(ECU 10 또는 ARG 5 등)를 입력하고 검색 버튼을 누르세요.';
+
+  @override
+  String get lookupTutorialStep3Title => '확인 및 관리';
+
+  @override
+  String get lookupTutorialStep3Body =>
+      '스티커가 없는지 있는지 확인할 수 있습니다. + 및 – 버튼으로 인벤토리를 즐시 업데이트하세요.';
 }

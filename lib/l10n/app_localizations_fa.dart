@@ -1053,4 +1053,63 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get tradeDrawerRequestBadge => 'SOLICITUD';
+
+  @override
+  String get drawerLookup => 'جستجوی استیکر';
+
+  @override
+  String get lookupScreenTitle => 'جستجوی استیکر';
+
+  @override
+  String get lookupTabManual => 'دستی';
+
+  @override
+  String get lookupTabScanner => 'اسکنر';
+
+  @override
+  String get lookupSearchHint => 'مثلاً: ECU 10، ARG 5، FRA 1...';
+
+  @override
+  String get lookupSearchButton => 'جستجو';
+
+  @override
+  String get lookupStickerNotFound => 'هیچ استیکری با این کد یافت نشد.';
+
+  @override
+  String get lookupStatusMissing => 'ندارید';
+
+  @override
+  String get lookupStatusCollected => 'دارید ✓';
+
+  @override
+  String lookupStatusDuplicates(Object count) {
+    return '$count تکراری 🔁';
+  }
+
+  @override
+  String get lookupQtyLabel => 'تعداد در موجودی شما';
+
+  @override
+  String get lookupScannerHint => 'استیکر را در مرکز قرار دهید تا شناسایی شود';
+
+  @override
+  String get lookupTutorialStep1Title => 'دو روش جستجو';
+
+  @override
+  String get lookupTutorialStep1Body =>
+      'از تب دستی برای وارد کردن کد، یا از تب اسکنر برای استفاده استفاده کنید.';
+
+  @override
+  String get lookupTutorialStep2Title => 'کد را وارد کنید';
+
+  @override
+  String get lookupTutorialStep2Body =>
+      'کد استیکر را مثل ECU 10 وارد کنید و جستجو را بزنید.';
+
+  @override
+  String get lookupTutorialStep3Title => 'بررسی و مدیریت';
+
+  @override
+  String get lookupTutorialStep3Body =>
+      'میبینید این استیکر کم دارید یا نه. با دکمه‌های + و – موجودی را به‌روز کنید.';
 }

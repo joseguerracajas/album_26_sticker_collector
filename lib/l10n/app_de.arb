@@ -350,5 +350,28 @@
   "statsSortByProgressDesc": "Meisten Fortschritt zuerst",
   "statsSortByProgressAsc": "Wenigsten Fortschritt zuerst",
   "statsSortByMissing": "Meisten Fehlenden zuerst",
-  "statsSortByDuplicates": "Meisten Duplikate zuerst"
+  "statsSortByDuplicates": "Meisten Duplikate zuerst",
+
+  "drawerLookup": "Sticker abfragen",
+  "lookupScreenTitle": "Sticker abfragen",
+  "lookupTabManual": "Manuell",
+  "lookupTabScanner": "Scanner",
+  "lookupSearchHint": "z.B.: ECU 10, ARG 5, FRA 1...",
+  "lookupSearchButton": "Suchen",
+  "lookupStickerNotFound": "Kein Sticker mit diesem Code gefunden.",
+  "lookupStatusMissing": "Fehlt",
+  "lookupStatusCollected": "Hast du ✓",
+  "lookupStatusDuplicates": "{count} Duplikat(e) 🔁",
+  "@lookupStatusDuplicates": {
+    "placeholders": { "count": {} }
+  },
+  "lookupQtyLabel": "Menge in deinem Inventar",
+  "lookupScannerHint": "Sticker zentrieren, um ihn zu erkennen",
+
+  "lookupTutorialStep1Title": "Zwei Suchmethoden",
+  "lookupTutorialStep1Body": "Nutze den Tab \"Manuell\" zum Eingeben des Sticker-Codes oder den Tab \"Scanner\" zum direkten Scannen.",
+  "lookupTutorialStep2Title": "Code eingeben",
+  "lookupTutorialStep2Body": "Gib den Sticker-Code ein, wie er im Album erscheint, z.B. ECU 10 oder ARG 5, und tippe auf Suchen.",
+  "lookupTutorialStep3Title": "Prüfen und verwalten",
+  "lookupTutorialStep3Body": "Du siehst ob der Sticker fehlt oder schon vorhanden ist. Mit + und – kannst du dein Inventar sofort aktualisieren."
 }

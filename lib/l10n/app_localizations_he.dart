@@ -1033,4 +1033,63 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get tradeDrawerRequestBadge => 'SOLICITUD';
+
+  @override
+  String get drawerLookup => 'בדיקת מדבקה';
+
+  @override
+  String get lookupScreenTitle => 'בדיקת מדבקה';
+
+  @override
+  String get lookupTabManual => 'ידני';
+
+  @override
+  String get lookupTabScanner => 'סורק';
+
+  @override
+  String get lookupSearchHint => 'לדוגמה: ECU 10, ARG 5, FRA 1...';
+
+  @override
+  String get lookupSearchButton => 'חיפוש';
+
+  @override
+  String get lookupStickerNotFound => 'לא נמצאה מדבקה עם הקוד הזה.';
+
+  @override
+  String get lookupStatusMissing => 'חסר';
+
+  @override
+  String get lookupStatusCollected => 'כבר יש לך ✓';
+
+  @override
+  String lookupStatusDuplicates(Object count) {
+    return '$count כפול/ים 🔁';
+  }
+
+  @override
+  String get lookupQtyLabel => 'כמות במלאי שלך';
+
+  @override
+  String get lookupScannerHint => 'מרכז את המדבקה לזיהוי';
+
+  @override
+  String get lookupTutorialStep1Title => 'שתי דרכי חיפוש';
+
+  @override
+  String get lookupTutorialStep1Body =>
+      'השתמש בכרטייה ידנית להקלדת קוד או בכרטיית הסורק לסריקה ישירה.';
+
+  @override
+  String get lookupTutorialStep2Title => 'הכנס את הקוד';
+
+  @override
+  String get lookupTutorialStep2Body =>
+      'הקלד את קוד המדבקה כפי שמופיע באלבום, לדוגמה ECU 10 או ARG 5.';
+
+  @override
+  String get lookupTutorialStep3Title => 'בדוק ונהל';
+
+  @override
+  String get lookupTutorialStep3Body =>
+      'תראה אם המדבקה חסרה או קיימת. בלחצני + ו– תוכל לעדכן את המלאי מיד.';
 }

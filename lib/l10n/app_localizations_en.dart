@@ -1043,4 +1043,63 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tradeDrawerRequestBadge => 'REQUEST';
+
+  @override
+  String get drawerLookup => 'Sticker Lookup';
+
+  @override
+  String get lookupScreenTitle => 'Sticker Lookup';
+
+  @override
+  String get lookupTabManual => 'Manual';
+
+  @override
+  String get lookupTabScanner => 'Scanner';
+
+  @override
+  String get lookupSearchHint => 'E.g.: ECU 10, ARG 5, FRA 1...';
+
+  @override
+  String get lookupSearchButton => 'Search';
+
+  @override
+  String get lookupStickerNotFound => 'No sticker found with that code.';
+
+  @override
+  String get lookupStatusMissing => 'Missing';
+
+  @override
+  String get lookupStatusCollected => 'You have it ✓';
+
+  @override
+  String lookupStatusDuplicates(Object count) {
+    return '$count duplicate(s) 🔁';
+  }
+
+  @override
+  String get lookupQtyLabel => 'Quantity in your inventory';
+
+  @override
+  String get lookupScannerHint => 'Center the sticker to identify it';
+
+  @override
+  String get lookupTutorialStep1Title => 'Two ways to search';
+
+  @override
+  String get lookupTutorialStep1Body =>
+      'Use the Manual tab to type the sticker code (e.g. ECU 10), or the Scanner tab to point the camera directly.';
+
+  @override
+  String get lookupTutorialStep2Title => 'Enter the code';
+
+  @override
+  String get lookupTutorialStep2Body =>
+      'Type the sticker code as it appears in the album, e.g. ECU 10 or ARG 5, then tap Search.';
+
+  @override
+  String get lookupTutorialStep3Title => 'Check and manage';
+
+  @override
+  String get lookupTutorialStep3Body =>
+      'You\'ll see if the sticker is missing, collected, or how many duplicates you have. Use the + and – buttons to update your inventory instantly.';
 }

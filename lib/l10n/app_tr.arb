@@ -350,5 +350,28 @@
   "statsSortByProgressDesc": "En fazla ilerleme önce",
   "statsSortByProgressAsc": "En az ilerleme önce",
   "statsSortByMissing": "En fazla eksik önce",
-  "statsSortByDuplicates": "En fazla tekrar önce"
+  "statsSortByDuplicates": "En fazla tekrar önce",
+
+  "drawerLookup": "Çıkartma sorgula",
+  "lookupScreenTitle": "Çıkartma sorgula",
+  "lookupTabManual": "Manuel",
+  "lookupTabScanner": "Tarayıcı",
+  "lookupSearchHint": "Ör.: ECU 10, ARG 5, FRA 1...",
+  "lookupSearchButton": "Ara",
+  "lookupStickerNotFound": "Bu kodla çıkartma bulunamadı.",
+  "lookupStatusMissing": "Eksik",
+  "lookupStatusCollected": "Zaten var ✓",
+  "lookupStatusDuplicates": "{count} yinelenen 🔁",
+  "@lookupStatusDuplicates": {
+    "placeholders": { "count": {} }
+  },
+  "lookupQtyLabel": "Envanterinizdeki miktar",
+  "lookupScannerHint": "Tanımlamak için çıkartmayı ortala",
+
+  "lookupTutorialStep1Title": "İki arama yöntemi",
+  "lookupTutorialStep1Body": "Kodu girmek için Manuel sekmesini veya kamerayı kullanmak için Tarayıcı sekmesini kullanın.",
+  "lookupTutorialStep2Title": "Kodu girin",
+  "lookupTutorialStep2Body": "Albumde göründüğü gibi kodu girin, ör. ECU 10 veya ARG 5, ardından Ara'ya dokunun.",
+  "lookupTutorialStep3Title": "Kontrol et ve yönet",
+  "lookupTutorialStep3Body": "Çıkartmanın eksik mi yoksa mevcut mu olduğunu göreceksiniz. + ve – düğmeleriyle envanterinizi anında güncelleyebilirsiniz."
 }

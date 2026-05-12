@@ -350,5 +350,28 @@
   "statsSortByProgressDesc": "Maggior progresso prima",
   "statsSortByProgressAsc": "Minor progresso prima",
   "statsSortByMissing": "Più mancanti prima",
-  "statsSortByDuplicates": "Più doppioni prima"
+  "statsSortByDuplicates": "Più doppioni prima",
+
+  "drawerLookup": "Cerca figurina",
+  "lookupScreenTitle": "Cerca figurina",
+  "lookupTabManual": "Manuale",
+  "lookupTabScanner": "Scanner",
+  "lookupSearchHint": "Es.: ECU 10, ARG 5, FRA 1...",
+  "lookupSearchButton": "Cerca",
+  "lookupStickerNotFound": "Nessuna figurina trovata con quel codice.",
+  "lookupStatusMissing": "Mancante",
+  "lookupStatusCollected": "Ce l'hai già ✓",
+  "lookupStatusDuplicates": "{count} doppione/i 🔁",
+  "@lookupStatusDuplicates": {
+    "placeholders": { "count": {} }
+  },
+  "lookupQtyLabel": "Quantità nel tuo inventario",
+  "lookupScannerHint": "Centra la figurina per identificarla",
+
+  "lookupTutorialStep1Title": "Due modi per cercare",
+  "lookupTutorialStep1Body": "Usa la scheda Manuale per inserire il codice della figurina o la scheda Scanner per puntare la fotocamera.",
+  "lookupTutorialStep2Title": "Inserisci il codice",
+  "lookupTutorialStep2Body": "Digita il codice della figurina come appare nell'album, es. ECU 10 o ARG 5, poi tocca Cerca.",
+  "lookupTutorialStep3Title": "Consulta e gestisci",
+  "lookupTutorialStep3Body": "Vedrai se la figurina manca o ce l'hai già. Con i pulsanti + e – puoi aggiornare il tuo inventario all'istante."
 }

@@ -709,7 +709,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get statsSortByMissing => 'Plus manquantes d’abord';
 
   @override
-  String get statsSortByDuplicates => 'Plus de doublons d’abord';
+  String get statsSortByDuplicates => 'Plus de doublons d\'abord';
 
   @override
   String get tradeHubTitle => 'Intercambio de Cromos';
@@ -1056,4 +1056,63 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get tradeDrawerRequestBadge => 'SOLICITUD';
+
+  @override
+  String get drawerLookup => 'Consulter un sticker';
+
+  @override
+  String get lookupScreenTitle => 'Consulter un sticker';
+
+  @override
+  String get lookupTabManual => 'Manuel';
+
+  @override
+  String get lookupTabScanner => 'Scanner';
+
+  @override
+  String get lookupSearchHint => 'Ex. : ECU 10, ARG 5, FRA 1...';
+
+  @override
+  String get lookupSearchButton => 'Rechercher';
+
+  @override
+  String get lookupStickerNotFound => 'Aucun sticker trouvé avec ce code.';
+
+  @override
+  String get lookupStatusMissing => 'Manquant';
+
+  @override
+  String get lookupStatusCollected => 'Déjà en ta possession ✓';
+
+  @override
+  String lookupStatusDuplicates(Object count) {
+    return '$count doublon(s) 🔁';
+  }
+
+  @override
+  String get lookupQtyLabel => 'Quantité dans ton inventaire';
+
+  @override
+  String get lookupScannerHint => 'Centre le sticker pour l\'identifier';
+
+  @override
+  String get lookupTutorialStep1Title => 'Deux façons de chercher';
+
+  @override
+  String get lookupTutorialStep1Body =>
+      'Utilise l\'onglet Manuel pour saisir le code du sticker ou l\'onglet Scanner pour pointer la caméra directement.';
+
+  @override
+  String get lookupTutorialStep2Title => 'Saisis le code';
+
+  @override
+  String get lookupTutorialStep2Body =>
+      'Tape le code du sticker tel qu\'il apparaît dans l\'album, par ex. ECU 10 ou ARG 5, puis appuie sur Rechercher.';
+
+  @override
+  String get lookupTutorialStep3Title => 'Consulte et gère';
+
+  @override
+  String get lookupTutorialStep3Body =>
+      'Tu verras si le sticker manque ou est déjà collecté. Avec les boutons + et – tu peux mettre à jour ton inventaire instantanément.';
 }

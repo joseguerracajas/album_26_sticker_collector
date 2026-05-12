@@ -1053,4 +1053,64 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tradeDrawerRequestBadge => 'SOLICITUD';
+
+  @override
+  String get drawerLookup => 'Cerca figurina';
+
+  @override
+  String get lookupScreenTitle => 'Cerca figurina';
+
+  @override
+  String get lookupTabManual => 'Manuale';
+
+  @override
+  String get lookupTabScanner => 'Scanner';
+
+  @override
+  String get lookupSearchHint => 'Es.: ECU 10, ARG 5, FRA 1...';
+
+  @override
+  String get lookupSearchButton => 'Cerca';
+
+  @override
+  String get lookupStickerNotFound =>
+      'Nessuna figurina trovata con quel codice.';
+
+  @override
+  String get lookupStatusMissing => 'Mancante';
+
+  @override
+  String get lookupStatusCollected => 'Ce l\'hai già ✓';
+
+  @override
+  String lookupStatusDuplicates(Object count) {
+    return '$count doppione/i 🔁';
+  }
+
+  @override
+  String get lookupQtyLabel => 'Quantità nel tuo inventario';
+
+  @override
+  String get lookupScannerHint => 'Centra la figurina per identificarla';
+
+  @override
+  String get lookupTutorialStep1Title => 'Due modi per cercare';
+
+  @override
+  String get lookupTutorialStep1Body =>
+      'Usa la scheda Manuale per inserire il codice della figurina o la scheda Scanner per puntare la fotocamera.';
+
+  @override
+  String get lookupTutorialStep2Title => 'Inserisci il codice';
+
+  @override
+  String get lookupTutorialStep2Body =>
+      'Digita il codice della figurina come appare nell\'album, es. ECU 10 o ARG 5, poi tocca Cerca.';
+
+  @override
+  String get lookupTutorialStep3Title => 'Consulta e gestisci';
+
+  @override
+  String get lookupTutorialStep3Body =>
+      'Vedrai se la figurina manca o ce l\'hai già. Con i pulsanti + e – puoi aggiornare il tuo inventario all\'istante.';
 }

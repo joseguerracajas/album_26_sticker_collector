@@ -350,5 +350,28 @@
   "statsSortByProgressDesc": "الأعلى تقدماً أولاً",
   "statsSortByProgressAsc": "الأدنى تقدماً أولاً",
   "statsSortByMissing": "الأكثر نقصاً أولاً",
-  "statsSortByDuplicates": "الأكثر تكراراً أولاً"
+  "statsSortByDuplicates": "الأكثر تكراراً أولاً",
+
+  "drawerLookup": "البحث عن ملصق",
+  "lookupScreenTitle": "البحث عن ملصق",
+  "lookupTabManual": "يدوي",
+  "lookupTabScanner": "ماسح ضوئي",
+  "lookupSearchHint": "مثال: ECU 10، ARG 5، FRA 1...",
+  "lookupSearchButton": "بحث",
+  "lookupStickerNotFound": "لم يُعثر على أي ملصق بهذا الرمز.",
+  "lookupStatusMissing": "مفقود",
+  "lookupStatusCollected": "لديك بالفعل ✓",
+  "lookupStatusDuplicates": "{count} مكرر(ات) 🔁",
+  "@lookupStatusDuplicates": {
+    "placeholders": { "count": {} }
+  },
+  "lookupQtyLabel": "الكمية في مخزونك",
+  "lookupScannerHint": "ضع الملصق في المنتصف للتعرف عليه",
+
+  "lookupTutorialStep1Title": "طريقتان للبحث",
+  "lookupTutorialStep1Body": "استخدم تبويب يدوي لإدخال رمز الملصق، أو تبويب الماسح لتوجيه الكاميرا.",
+  "lookupTutorialStep2Title": "أدخل الرمز",
+  "lookupTutorialStep2Body": "اكتب رمز الملصق كما يظهر في الألبوم، مثل ECU 10 أو ARG 5.",
+  "lookupTutorialStep3Title": "استعرض وأدر",
+  "lookupTutorialStep3Body": "سترى إذا كان الملصق مفقوداً أو موجوداً. استخدم زري + و – لتحديث مخزونك."
 }

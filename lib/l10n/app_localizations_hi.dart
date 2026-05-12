@@ -1049,4 +1049,63 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get tradeDrawerRequestBadge => 'SOLICITUD';
+
+  @override
+  String get drawerLookup => 'स्टिकर खोजें';
+
+  @override
+  String get lookupScreenTitle => 'स्टिकर खोजें';
+
+  @override
+  String get lookupTabManual => 'मैन्युअल';
+
+  @override
+  String get lookupTabScanner => 'स्कैनर';
+
+  @override
+  String get lookupSearchHint => 'जैसे: ECU 10, ARG 5, FRA 1...';
+
+  @override
+  String get lookupSearchButton => 'खोजें';
+
+  @override
+  String get lookupStickerNotFound => 'उस कोड से कोई स्टिकर नहीं मिला।';
+
+  @override
+  String get lookupStatusMissing => 'नहीं है';
+
+  @override
+  String get lookupStatusCollected => 'आपके पास है ✓';
+
+  @override
+  String lookupStatusDuplicates(Object count) {
+    return '$count डुप्लीकेट 🔁';
+  }
+
+  @override
+  String get lookupQtyLabel => 'आपके इन्वेंट्री में मात्रा';
+
+  @override
+  String get lookupScannerHint => 'स्टिकर को पहचानने के लिए बीच में रखें';
+
+  @override
+  String get lookupTutorialStep1Title => 'दो खोज विधियाँ';
+
+  @override
+  String get lookupTutorialStep1Body =>
+      'कोड टाइप करने के लिए मैन्युअल टैब या स्कैन करने के लिए स्कैनर टैब का उपयोग करें।';
+
+  @override
+  String get lookupTutorialStep2Title => 'कोड दर्ज करें';
+
+  @override
+  String get lookupTutorialStep2Body =>
+      'आल्बम में दिखने वाला स्टिकर कोड टाइप करें, जैसे ECU 10 या ARG 5, फिर खोजें दबाएं।';
+
+  @override
+  String get lookupTutorialStep3Title => 'जांचें और प्रबंधित करें';
+
+  @override
+  String get lookupTutorialStep3Body =>
+      'आप देखेंगे कि स्टिकर गायब है या संग्रहीत। + और – बटनों से इन्वेंट्री अपडेट करें।';
 }

@@ -1006,4 +1006,61 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get tradeDrawerRequestBadge => 'SOLICITUD';
+
+  @override
+  String get drawerLookup => '贴纸查询';
+
+  @override
+  String get lookupScreenTitle => '贴纸查询';
+
+  @override
+  String get lookupTabManual => '手动';
+
+  @override
+  String get lookupTabScanner => '扫描仪';
+
+  @override
+  String get lookupSearchHint => '例如: ECU 10, ARG 5, FRA 1...';
+
+  @override
+  String get lookupSearchButton => '搜索';
+
+  @override
+  String get lookupStickerNotFound => '未找到该代码的贴纸。';
+
+  @override
+  String get lookupStatusMissing => '未收集';
+
+  @override
+  String get lookupStatusCollected => '已拥有 ✓';
+
+  @override
+  String lookupStatusDuplicates(Object count) {
+    return '$count 张重复 🔁';
+  }
+
+  @override
+  String get lookupQtyLabel => '您库存中的数量';
+
+  @override
+  String get lookupScannerHint => '将贴纸居中以识别';
+
+  @override
+  String get lookupTutorialStep1Title => '两种搜索方式';
+
+  @override
+  String get lookupTutorialStep1Body => '使用“手动”选项卡输入贴纸代码，或使用“扫描仪”选项卡直接指向摄像头。';
+
+  @override
+  String get lookupTutorialStep2Title => '输入代码';
+
+  @override
+  String get lookupTutorialStep2Body =>
+      '按相册中显示的格式输入贴纸代码，如 ECU 10 或 ARG 5，然后点击搜索。';
+
+  @override
+  String get lookupTutorialStep3Title => '查询并管理';
+
+  @override
+  String get lookupTutorialStep3Body => '您可以看到贴纸是否缺少或已收集。使用 + 和 – 按钮即刻更新库存。';
 }

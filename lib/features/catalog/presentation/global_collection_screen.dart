@@ -60,9 +60,11 @@ class _GlobalCollectionScreenState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted) return;
-      final done = await TutorialService.isGlobalTutorialDone();
+      final done = await TutorialService.isStickerGridTutorialDone();
       if (!done && mounted) {
-        GlobalCollectionTutorial.show(context);
+        // Esperar a que los cromos carguen y se renderice la primera card
+        await Future.delayed(const Duration(milliseconds: 700));
+        if (mounted) GlobalCollectionTutorial.show(context);
       }
     });
   }

@@ -348,5 +348,28 @@
   "statsSortByProgressDesc": "Meeste voortgang eerst",
   "statsSortByProgressAsc": "Minste voortgang eerst",
   "statsSortByMissing": "Meest ontbrekend eerst",
-  "statsSortByDuplicates": "Meeste duplicaten eerst"
+  "statsSortByDuplicates": "Meeste duplicaten eerst",
+
+  "drawerLookup": "Sticker opzoeken",
+  "lookupScreenTitle": "Sticker opzoeken",
+  "lookupTabManual": "Handmatig",
+  "lookupTabScanner": "Scanner",
+  "lookupSearchHint": "Bijv.: ECU 10, ARG 5, FRA 1...",
+  "lookupSearchButton": "Zoeken",
+  "lookupStickerNotFound": "Geen sticker gevonden met die code.",
+  "lookupStatusMissing": "Ontbreekt",
+  "lookupStatusCollected": "Je hebt hem al ✓",
+  "lookupStatusDuplicates": "{count} duplicaat/dubbel 🔁",
+  "@lookupStatusDuplicates": {
+    "placeholders": { "count": {} }
+  },
+  "lookupQtyLabel": "Aantal in jouw inventaris",
+  "lookupScannerHint": "Centreer de sticker om hem te herkennen",
+
+  "lookupTutorialStep1Title": "Twee zoekmanieren",
+  "lookupTutorialStep1Body": "Gebruik het tabblad Handmatig om de stickercode in te voeren of het tabblad Scanner om de camera te richten.",
+  "lookupTutorialStep2Title": "Voer de code in",
+  "lookupTutorialStep2Body": "Typ de stickercode zoals die in het album staat, bijv. ECU 10 of ARG 5, en tik op Zoeken.",
+  "lookupTutorialStep3Title": "Controleer en beheer",
+  "lookupTutorialStep3Body": "Je ziet of de sticker ontbreekt of al in je bezit is. Met + en – kun je je inventaris direct bijwerken."
 }

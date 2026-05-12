@@ -1042,4 +1042,63 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get tradeDrawerRequestBadge => 'SOLICITUD';
+
+  @override
+  String get drawerLookup => 'البحث عن ملصق';
+
+  @override
+  String get lookupScreenTitle => 'البحث عن ملصق';
+
+  @override
+  String get lookupTabManual => 'يدوي';
+
+  @override
+  String get lookupTabScanner => 'ماسح ضوئي';
+
+  @override
+  String get lookupSearchHint => 'مثال: ECU 10، ARG 5، FRA 1...';
+
+  @override
+  String get lookupSearchButton => 'بحث';
+
+  @override
+  String get lookupStickerNotFound => 'لم يُعثر على أي ملصق بهذا الرمز.';
+
+  @override
+  String get lookupStatusMissing => 'مفقود';
+
+  @override
+  String get lookupStatusCollected => 'لديك بالفعل ✓';
+
+  @override
+  String lookupStatusDuplicates(Object count) {
+    return '$count مكرر(ات) 🔁';
+  }
+
+  @override
+  String get lookupQtyLabel => 'الكمية في مخزونك';
+
+  @override
+  String get lookupScannerHint => 'ضع الملصق في المنتصف للتعرف عليه';
+
+  @override
+  String get lookupTutorialStep1Title => 'طريقتان للبحث';
+
+  @override
+  String get lookupTutorialStep1Body =>
+      'استخدم تبويب يدوي لإدخال رمز الملصق، أو تبويب الماسح لتوجيه الكاميرا.';
+
+  @override
+  String get lookupTutorialStep2Title => 'أدخل الرمز';
+
+  @override
+  String get lookupTutorialStep2Body =>
+      'اكتب رمز الملصق كما يظهر في الألبوم، مثل ECU 10 أو ARG 5.';
+
+  @override
+  String get lookupTutorialStep3Title => 'استعرض وأدر';
+
+  @override
+  String get lookupTutorialStep3Body =>
+      'سترى إذا كان الملصق مفقوداً أو موجوداً. استخدم زري + و – لتحديث مخزونك.';
 }

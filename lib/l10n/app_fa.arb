@@ -350,5 +350,28 @@
   "statsSortByProgressDesc": "بیشترین پیشرفت اول",
   "statsSortByProgressAsc": "کمترین پیشرفت اول",
   "statsSortByMissing": "بیشترین کمبود اول",
-  "statsSortByDuplicates": "بیشترین تکرار اول"
+  "statsSortByDuplicates": "بیشترین تکرار اول",
+
+  "drawerLookup": "جستجوی استیکر",
+  "lookupScreenTitle": "جستجوی استیکر",
+  "lookupTabManual": "دستی",
+  "lookupTabScanner": "اسکنر",
+  "lookupSearchHint": "مثلاً: ECU 10، ARG 5، FRA 1...",
+  "lookupSearchButton": "جستجو",
+  "lookupStickerNotFound": "هیچ استیکری با این کد یافت نشد.",
+  "lookupStatusMissing": "ندارید",
+  "lookupStatusCollected": "دارید ✓",
+  "lookupStatusDuplicates": "{count} تکراری 🔁",
+  "@lookupStatusDuplicates": {
+    "placeholders": { "count": {} }
+  },
+  "lookupQtyLabel": "تعداد در موجودی شما",
+  "lookupScannerHint": "استیکر را در مرکز قرار دهید تا شناسایی شود",
+
+  "lookupTutorialStep1Title": "دو روش جستجو",
+  "lookupTutorialStep1Body": "از تب دستی برای وارد کردن کد، یا از تب اسکنر برای استفاده استفاده کنید.",
+  "lookupTutorialStep2Title": "کد را وارد کنید",
+  "lookupTutorialStep2Body": "کد استیکر را مثل ECU 10 وارد کنید و جستجو را بزنید.",
+  "lookupTutorialStep3Title": "بررسی و مدیریت",
+  "lookupTutorialStep3Body": "میبینید این استیکر کم دارید یا نه. با دکمه‌های + و – موجودی را به‌روز کنید."
 }

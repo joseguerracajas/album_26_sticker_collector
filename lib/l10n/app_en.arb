@@ -443,5 +443,28 @@
   "tradeErrorNoConnection": "This feature requires an internet connection.",
 
   "tradeRejectBtn": "Reject request",
-  "tradeDrawerRequestBadge": "REQUEST"
+  "tradeDrawerRequestBadge": "REQUEST",
+
+  "drawerLookup": "Sticker Lookup",
+  "lookupScreenTitle": "Sticker Lookup",
+  "lookupTabManual": "Manual",
+  "lookupTabScanner": "Scanner",
+  "lookupSearchHint": "E.g.: ECU 10, ARG 5, FRA 1...",
+  "lookupSearchButton": "Search",
+  "lookupStickerNotFound": "No sticker found with that code.",
+  "lookupStatusMissing": "Missing",
+  "lookupStatusCollected": "You have it ✓",
+  "lookupStatusDuplicates": "{count} duplicate(s) 🔁",
+  "@lookupStatusDuplicates": {
+    "placeholders": { "count": {} }
+  },
+  "lookupQtyLabel": "Quantity in your inventory",
+  "lookupScannerHint": "Center the sticker to identify it",
+
+  "lookupTutorialStep1Title": "Two ways to search",
+  "lookupTutorialStep1Body": "Use the Manual tab to type the sticker code (e.g. ECU 10), or the Scanner tab to point the camera directly.",
+  "lookupTutorialStep2Title": "Enter the code",
+  "lookupTutorialStep2Body": "Type the sticker code as it appears in the album, e.g. ECU 10 or ARG 5, then tap Search.",
+  "lookupTutorialStep3Title": "Check and manage",
+  "lookupTutorialStep3Body": "You'll see if the sticker is missing, collected, or how many duplicates you have. Use the + and – buttons to update your inventory instantly."
 }

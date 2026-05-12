@@ -104,6 +104,9 @@ class GlobalCollectionTutorial {
     ];
 
     late final TutorialCoachMark tutorial;
+    // Protege el step de long press: el primer tap que llega es el propagado
+    // del step anterior (mismo widget target). Lo bloqueamos 400ms.
+    bool longPressReady = false;
     tutorial = TutorialCoachMark(
       targets: targets,
       colorShadow: Colors.black,
@@ -117,10 +120,23 @@ class GlobalCollectionTutorial {
       paddingFocus: focusPadding,
       focusAnimationDuration: const Duration(milliseconds: 350),
       unFocusAnimationDuration: const Duration(milliseconds: 350),
-      onClickOverlay: (_) => tutorial.next(),
-      onFinish: TutorialService.markGlobalTutorialDone,
+      onClickOverlay: (target) {
+        if (target.identify == 'sticker_card_longpress') {
+          if (longPressReady) {
+            tutorial.next();
+          } else {
+            // Primer tap = propagado del step anterior. Habilitar tras 400ms.
+            Future.delayed(const Duration(milliseconds: 400), () {
+              longPressReady = true;
+            });
+          }
+          return;
+        }
+        tutorial.next();
+      },
+      onFinish: TutorialService.markStickerGridTutorialDone,
       onSkip: () {
-        TutorialService.markGlobalTutorialDone();
+        TutorialService.markStickerGridTutorialDone();
         return true;
       },
     )..show(context: context);

@@ -350,5 +350,28 @@
   "statsSortByProgressDesc": "Наибольший прогресс сначала",
   "statsSortByProgressAsc": "Наименьший прогресс сначала",
   "statsSortByMissing": "Больше всего отсутствует сначала",
-  "statsSortByDuplicates": "Больше всего дублей сначала"
+  "statsSortByDuplicates": "Больше всего дублей сначала",
+
+  "drawerLookup": "Поиск наклейки",
+  "lookupScreenTitle": "Поиск наклейки",
+  "lookupTabManual": "Вручную",
+  "lookupTabScanner": "Сканер",
+  "lookupSearchHint": "Напр.: ECU 10, ARG 5, FRA 1...",
+  "lookupSearchButton": "Найти",
+  "lookupStickerNotFound": "Наклейка с таким кодом не найдена.",
+  "lookupStatusMissing": "Отсутствует",
+  "lookupStatusCollected": "Уже есть ✓",
+  "lookupStatusDuplicates": "{count} дубликат(а/ов) 🔁",
+  "@lookupStatusDuplicates": {
+    "placeholders": { "count": {} }
+  },
+  "lookupQtyLabel": "Количество в вашем инвентаре",
+  "lookupScannerHint": "Поместите наклейку в центр для распознавания",
+
+  "lookupTutorialStep1Title": "Два способа поиска",
+  "lookupTutorialStep1Body": "Используйте вкладку «Вручную» для ввода кода или «Сканер» для съёмки камерой.",
+  "lookupTutorialStep2Title": "Введите код",
+  "lookupTutorialStep2Body": "Напечатайте код наклейки как в альбоме, например ECU 10 или ARG 5, затем нажмите Найти.",
+  "lookupTutorialStep3Title": "Проверьте и управляйте",
+  "lookupTutorialStep3Body": "Вы увидите, есть ли наклейка или её не хватает. Кнопками + и – можно мгновенно обновить инвентарь."
 }

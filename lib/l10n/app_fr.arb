@@ -350,5 +350,28 @@
   "statsSortByProgressDesc": "Plus avancée d’abord",
   "statsSortByProgressAsc": "Moins avancée d’abord",
   "statsSortByMissing": "Plus manquantes d’abord",
-  "statsSortByDuplicates": "Plus de doublons d’abord"
+  "statsSortByDuplicates": "Plus de doublons d'abord",
+
+  "drawerLookup": "Consulter un sticker",
+  "lookupScreenTitle": "Consulter un sticker",
+  "lookupTabManual": "Manuel",
+  "lookupTabScanner": "Scanner",
+  "lookupSearchHint": "Ex. : ECU 10, ARG 5, FRA 1...",
+  "lookupSearchButton": "Rechercher",
+  "lookupStickerNotFound": "Aucun sticker trouvé avec ce code.",
+  "lookupStatusMissing": "Manquant",
+  "lookupStatusCollected": "Déjà en ta possession ✓",
+  "lookupStatusDuplicates": "{count} doublon(s) 🔁",
+  "@lookupStatusDuplicates": {
+    "placeholders": { "count": {} }
+  },
+  "lookupQtyLabel": "Quantité dans ton inventaire",
+  "lookupScannerHint": "Centre le sticker pour l'identifier",
+
+  "lookupTutorialStep1Title": "Deux façons de chercher",
+  "lookupTutorialStep1Body": "Utilise l'onglet Manuel pour saisir le code du sticker ou l'onglet Scanner pour pointer la caméra directement.",
+  "lookupTutorialStep2Title": "Saisis le code",
+  "lookupTutorialStep2Body": "Tape le code du sticker tel qu'il apparaît dans l'album, par ex. ECU 10 ou ARG 5, puis appuie sur Rechercher.",
+  "lookupTutorialStep3Title": "Consulte et gère",
+  "lookupTutorialStep3Body": "Tu verras si le sticker manque ou est déjà collecté. Avec les boutons + et – tu peux mettre à jour ton inventaire instantanément."
 }

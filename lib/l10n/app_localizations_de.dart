@@ -1058,4 +1058,63 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get tradeDrawerRequestBadge => 'SOLICITUD';
+
+  @override
+  String get drawerLookup => 'Sticker abfragen';
+
+  @override
+  String get lookupScreenTitle => 'Sticker abfragen';
+
+  @override
+  String get lookupTabManual => 'Manuell';
+
+  @override
+  String get lookupTabScanner => 'Scanner';
+
+  @override
+  String get lookupSearchHint => 'z.B.: ECU 10, ARG 5, FRA 1...';
+
+  @override
+  String get lookupSearchButton => 'Suchen';
+
+  @override
+  String get lookupStickerNotFound => 'Kein Sticker mit diesem Code gefunden.';
+
+  @override
+  String get lookupStatusMissing => 'Fehlt';
+
+  @override
+  String get lookupStatusCollected => 'Hast du ✓';
+
+  @override
+  String lookupStatusDuplicates(Object count) {
+    return '$count Duplikat(e) 🔁';
+  }
+
+  @override
+  String get lookupQtyLabel => 'Menge in deinem Inventar';
+
+  @override
+  String get lookupScannerHint => 'Sticker zentrieren, um ihn zu erkennen';
+
+  @override
+  String get lookupTutorialStep1Title => 'Zwei Suchmethoden';
+
+  @override
+  String get lookupTutorialStep1Body =>
+      'Nutze den Tab \"Manuell\" zum Eingeben des Sticker-Codes oder den Tab \"Scanner\" zum direkten Scannen.';
+
+  @override
+  String get lookupTutorialStep2Title => 'Code eingeben';
+
+  @override
+  String get lookupTutorialStep2Body =>
+      'Gib den Sticker-Code ein, wie er im Album erscheint, z.B. ECU 10 oder ARG 5, und tippe auf Suchen.';
+
+  @override
+  String get lookupTutorialStep3Title => 'Prüfen und verwalten';
+
+  @override
+  String get lookupTutorialStep3Body =>
+      'Du siehst ob der Sticker fehlt oder schon vorhanden ist. Mit + und – kannst du dein Inventar sofort aktualisieren.';
 }

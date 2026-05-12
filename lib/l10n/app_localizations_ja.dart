@@ -1018,4 +1018,63 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get tradeDrawerRequestBadge => 'SOLICITUD';
+
+  @override
+  String get drawerLookup => 'ステッカー検索';
+
+  @override
+  String get lookupScreenTitle => 'ステッカー検索';
+
+  @override
+  String get lookupTabManual => '手動';
+
+  @override
+  String get lookupTabScanner => 'スキャナー';
+
+  @override
+  String get lookupSearchHint => '例: ECU 10, ARG 5, FRA 1...';
+
+  @override
+  String get lookupSearchButton => '検索';
+
+  @override
+  String get lookupStickerNotFound => 'そのコードのステッカーは見つかりませんでした。';
+
+  @override
+  String get lookupStatusMissing => '持っていない';
+
+  @override
+  String get lookupStatusCollected => '持っている ✓';
+
+  @override
+  String lookupStatusDuplicates(Object count) {
+    return '$count枚重複 🔁';
+  }
+
+  @override
+  String get lookupQtyLabel => '在庫数';
+
+  @override
+  String get lookupScannerHint => 'ステッカーを中央に合わせて識別する';
+
+  @override
+  String get lookupTutorialStep1Title => '2つの検索方法';
+
+  @override
+  String get lookupTutorialStep1Body =>
+      'コードを入力するには手動タブ、カメラでスキャンするにはスキャナータブを使います。';
+
+  @override
+  String get lookupTutorialStep2Title => 'コードを入力';
+
+  @override
+  String get lookupTutorialStep2Body =>
+      'アルバムに表示されるコード（例：ECU 10やARG 5）を入力し、検索をタップします。';
+
+  @override
+  String get lookupTutorialStep3Title => '確認と管理';
+
+  @override
+  String get lookupTutorialStep3Body =>
+      'ステッカーが未収集か収集済みか表示されます。+と–ボタンで在庫を即座に更新できます。';
 }

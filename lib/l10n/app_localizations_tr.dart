@@ -1050,4 +1050,63 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get tradeDrawerRequestBadge => 'SOLICITUD';
+
+  @override
+  String get drawerLookup => 'Çıkartma sorgula';
+
+  @override
+  String get lookupScreenTitle => 'Çıkartma sorgula';
+
+  @override
+  String get lookupTabManual => 'Manuel';
+
+  @override
+  String get lookupTabScanner => 'Tarayıcı';
+
+  @override
+  String get lookupSearchHint => 'Ör.: ECU 10, ARG 5, FRA 1...';
+
+  @override
+  String get lookupSearchButton => 'Ara';
+
+  @override
+  String get lookupStickerNotFound => 'Bu kodla çıkartma bulunamadı.';
+
+  @override
+  String get lookupStatusMissing => 'Eksik';
+
+  @override
+  String get lookupStatusCollected => 'Zaten var ✓';
+
+  @override
+  String lookupStatusDuplicates(Object count) {
+    return '$count yinelenen 🔁';
+  }
+
+  @override
+  String get lookupQtyLabel => 'Envanterinizdeki miktar';
+
+  @override
+  String get lookupScannerHint => 'Tanımlamak için çıkartmayı ortala';
+
+  @override
+  String get lookupTutorialStep1Title => 'İki arama yöntemi';
+
+  @override
+  String get lookupTutorialStep1Body =>
+      'Kodu girmek için Manuel sekmesini veya kamerayı kullanmak için Tarayıcı sekmesini kullanın.';
+
+  @override
+  String get lookupTutorialStep2Title => 'Kodu girin';
+
+  @override
+  String get lookupTutorialStep2Body =>
+      'Albumde göründüğü gibi kodu girin, ör. ECU 10 veya ARG 5, ardından Ara\'ya dokunun.';
+
+  @override
+  String get lookupTutorialStep3Title => 'Kontrol et ve yönet';
+
+  @override
+  String get lookupTutorialStep3Body =>
+      'Çıkartmanın eksik mi yoksa mevcut mu olduğunu göreceksiniz. + ve – düğmeleriyle envanterinizi anında güncelleyebilirsiniz.';
 }

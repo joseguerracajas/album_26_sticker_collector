@@ -1054,4 +1054,63 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get tradeDrawerRequestBadge => 'SOLICITUD';
+
+  @override
+  String get drawerLookup => 'Sticker opzoeken';
+
+  @override
+  String get lookupScreenTitle => 'Sticker opzoeken';
+
+  @override
+  String get lookupTabManual => 'Handmatig';
+
+  @override
+  String get lookupTabScanner => 'Scanner';
+
+  @override
+  String get lookupSearchHint => 'Bijv.: ECU 10, ARG 5, FRA 1...';
+
+  @override
+  String get lookupSearchButton => 'Zoeken';
+
+  @override
+  String get lookupStickerNotFound => 'Geen sticker gevonden met die code.';
+
+  @override
+  String get lookupStatusMissing => 'Ontbreekt';
+
+  @override
+  String get lookupStatusCollected => 'Je hebt hem al ✓';
+
+  @override
+  String lookupStatusDuplicates(Object count) {
+    return '$count duplicaat/dubbel 🔁';
+  }
+
+  @override
+  String get lookupQtyLabel => 'Aantal in jouw inventaris';
+
+  @override
+  String get lookupScannerHint => 'Centreer de sticker om hem te herkennen';
+
+  @override
+  String get lookupTutorialStep1Title => 'Twee zoekmanieren';
+
+  @override
+  String get lookupTutorialStep1Body =>
+      'Gebruik het tabblad Handmatig om de stickercode in te voeren of het tabblad Scanner om de camera te richten.';
+
+  @override
+  String get lookupTutorialStep2Title => 'Voer de code in';
+
+  @override
+  String get lookupTutorialStep2Body =>
+      'Typ de stickercode zoals die in het album staat, bijv. ECU 10 of ARG 5, en tik op Zoeken.';
+
+  @override
+  String get lookupTutorialStep3Title => 'Controleer en beheer';
+
+  @override
+  String get lookupTutorialStep3Body =>
+      'Je ziet of de sticker ontbreekt of al in je bezit is. Met + en – kun je je inventaris direct bijwerken.';
 }

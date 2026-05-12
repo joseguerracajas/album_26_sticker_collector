@@ -1050,4 +1050,64 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get tradeDrawerRequestBadge => 'SOLICITUD';
+
+  @override
+  String get drawerLookup => 'Consultar cromo';
+
+  @override
+  String get lookupScreenTitle => 'Consultar cromo';
+
+  @override
+  String get lookupTabManual => 'Manual';
+
+  @override
+  String get lookupTabScanner => 'Scanner';
+
+  @override
+  String get lookupSearchHint => 'Ex.: ECU 10, ARG 5, FRA 1...';
+
+  @override
+  String get lookupSearchButton => 'Buscar';
+
+  @override
+  String get lookupStickerNotFound =>
+      'Nenhum cromo encontrado com esse código.';
+
+  @override
+  String get lookupStatusMissing => 'Está faltando';
+
+  @override
+  String get lookupStatusCollected => 'Você já tem ✓';
+
+  @override
+  String lookupStatusDuplicates(Object count) {
+    return '$count repetido(s) 🔁';
+  }
+
+  @override
+  String get lookupQtyLabel => 'Quantidade no seu inventário';
+
+  @override
+  String get lookupScannerHint => 'Centralize o cromo para identificá-lo';
+
+  @override
+  String get lookupTutorialStep1Title => 'Duas formas de buscar';
+
+  @override
+  String get lookupTutorialStep1Body =>
+      'Use a aba Manual para digitar o código do cromo ou a aba Scanner para apontar a câmera diretamente.';
+
+  @override
+  String get lookupTutorialStep2Title => 'Digite o código';
+
+  @override
+  String get lookupTutorialStep2Body =>
+      'Escreva o código do cromo como aparece no álbum, ex. ECU 10 ou ARG 5, e toque em Buscar.';
+
+  @override
+  String get lookupTutorialStep3Title => 'Consulte e gerencie';
+
+  @override
+  String get lookupTutorialStep3Body =>
+      'Você verá se o cromo está faltando ou já tem. Com + e – você pode atualizar seu inventário na hora.';
 }

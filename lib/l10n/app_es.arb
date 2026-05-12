@@ -443,5 +443,28 @@
   "tradeErrorNoConnection": "Esta función requiere conexión a internet.",
 
   "tradeRejectBtn": "Rechazar solicitud",
-  "tradeDrawerRequestBadge": "SOLICITUD"
+  "tradeDrawerRequestBadge": "SOLICITUD",
+
+  "drawerLookup": "Consultar Cromo",
+  "lookupScreenTitle": "Consultar Cromo",
+  "lookupTabManual": "Manual",
+  "lookupTabScanner": "Escáner",
+  "lookupSearchHint": "Ej: ECU 10, ARG 5, FRA 1...",
+  "lookupSearchButton": "Buscar",
+  "lookupStickerNotFound": "No se encontró ningún cromo con ese código.",
+  "lookupStatusMissing": "Te falta",
+  "lookupStatusCollected": "Ya lo tienes ✓",
+  "lookupStatusDuplicates": "{count} repetido(s) 🔁",
+  "@lookupStatusDuplicates": {
+    "placeholders": { "count": {} }
+  },
+  "lookupQtyLabel": "Cantidad en tu inventario",
+  "lookupScannerHint": "Centra el cromo para identificarlo",
+
+  "lookupTutorialStep1Title": "Dos formas de buscar",
+  "lookupTutorialStep1Body": "Usa la pestaña Manual para ingresar el código del cromo (ej. ECU 10), o la pestaña Escáner para apuntar la cámara directamente.",
+  "lookupTutorialStep2Title": "Ingresa el código",
+  "lookupTutorialStep2Body": "Escribe el código del cromo tal como aparece en el álbum, por ejemplo ECU 10 o ARG 5, y pulsa Buscar.",
+  "lookupTutorialStep3Title": "Consulta y gestiona",
+  "lookupTutorialStep3Body": "Verás si el cromo te falta, ya lo tienes o cuántos repetidos llevas. Con los botones + y – puedes actualizar tu inventario al instante."
 }

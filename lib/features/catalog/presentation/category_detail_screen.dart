@@ -28,8 +28,12 @@ class _CategoryDetailScreenState extends ConsumerState<CategoryDetailScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted) return;
-      final done = await TutorialService.isCategoryTutorialDone();
-      if (!done && mounted) CategoryDetailTutorial.show(context);
+      final done = await TutorialService.isStickerGridTutorialDone();
+      if (!done && mounted) {
+        // Esperar a que los cromos carguen y se renderice la primera card
+        await Future.delayed(const Duration(milliseconds: 600));
+        if (mounted) CategoryDetailTutorial.show(context);
+      }
     });
   }
 

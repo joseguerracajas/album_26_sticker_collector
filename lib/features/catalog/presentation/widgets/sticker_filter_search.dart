@@ -62,9 +62,9 @@ class _StickerFilterSearchState extends ConsumerState<StickerFilterSearch> {
       children: [
         // BOTONES DE FILTRO
         Padding(
-          key: tutorialFilterBarKey,
           padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
           child: SizedBox(
+            key: tutorialFilterBarKey,
             width: double.infinity,
             child: SegmentedButton<FilterOption>(
               style: SegmentedButton.styleFrom(
@@ -95,9 +95,9 @@ class _StickerFilterSearchState extends ConsumerState<StickerFilterSearch> {
 
         // BUSCADOR
         Padding(
-          key: tutorialStickerSearchKey,
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: TextField(
+            key: tutorialStickerSearchKey,
             controller: _searchController,
             autocorrect: false,
             enableSuggestions: true,

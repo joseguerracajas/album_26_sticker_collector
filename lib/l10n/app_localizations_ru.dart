@@ -1055,4 +1055,64 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get tradeDrawerRequestBadge => 'SOLICITUD';
+
+  @override
+  String get drawerLookup => 'Поиск наклейки';
+
+  @override
+  String get lookupScreenTitle => 'Поиск наклейки';
+
+  @override
+  String get lookupTabManual => 'Вручную';
+
+  @override
+  String get lookupTabScanner => 'Сканер';
+
+  @override
+  String get lookupSearchHint => 'Напр.: ECU 10, ARG 5, FRA 1...';
+
+  @override
+  String get lookupSearchButton => 'Найти';
+
+  @override
+  String get lookupStickerNotFound => 'Наклейка с таким кодом не найдена.';
+
+  @override
+  String get lookupStatusMissing => 'Отсутствует';
+
+  @override
+  String get lookupStatusCollected => 'Уже есть ✓';
+
+  @override
+  String lookupStatusDuplicates(Object count) {
+    return '$count дубликат(а/ов) 🔁';
+  }
+
+  @override
+  String get lookupQtyLabel => 'Количество в вашем инвентаре';
+
+  @override
+  String get lookupScannerHint =>
+      'Поместите наклейку в центр для распознавания';
+
+  @override
+  String get lookupTutorialStep1Title => 'Два способа поиска';
+
+  @override
+  String get lookupTutorialStep1Body =>
+      'Используйте вкладку «Вручную» для ввода кода или «Сканер» для съёмки камерой.';
+
+  @override
+  String get lookupTutorialStep2Title => 'Введите код';
+
+  @override
+  String get lookupTutorialStep2Body =>
+      'Напечатайте код наклейки как в альбоме, например ECU 10 или ARG 5, затем нажмите Найти.';
+
+  @override
+  String get lookupTutorialStep3Title => 'Проверьте и управляйте';
+
+  @override
+  String get lookupTutorialStep3Body =>
+      'Вы увидите, есть ли наклейка или её не хватает. Кнопками + и – можно мгновенно обновить инвентарь.';
 }

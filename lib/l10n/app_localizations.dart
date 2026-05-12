@@ -1945,6 +1945,114 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'SOLICITUD'**
   String get tradeDrawerRequestBadge;
+
+  /// No description provided for @drawerLookup.
+  ///
+  /// In es, this message translates to:
+  /// **'Consultar Cromo'**
+  String get drawerLookup;
+
+  /// No description provided for @lookupScreenTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Consultar Cromo'**
+  String get lookupScreenTitle;
+
+  /// No description provided for @lookupTabManual.
+  ///
+  /// In es, this message translates to:
+  /// **'Manual'**
+  String get lookupTabManual;
+
+  /// No description provided for @lookupTabScanner.
+  ///
+  /// In es, this message translates to:
+  /// **'Escáner'**
+  String get lookupTabScanner;
+
+  /// No description provided for @lookupSearchHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Ej: ECU 10, ARG 5, FRA 1...'**
+  String get lookupSearchHint;
+
+  /// No description provided for @lookupSearchButton.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar'**
+  String get lookupSearchButton;
+
+  /// No description provided for @lookupStickerNotFound.
+  ///
+  /// In es, this message translates to:
+  /// **'No se encontró ningún cromo con ese código.'**
+  String get lookupStickerNotFound;
+
+  /// No description provided for @lookupStatusMissing.
+  ///
+  /// In es, this message translates to:
+  /// **'Te falta'**
+  String get lookupStatusMissing;
+
+  /// No description provided for @lookupStatusCollected.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya lo tienes ✓'**
+  String get lookupStatusCollected;
+
+  /// No description provided for @lookupStatusDuplicates.
+  ///
+  /// In es, this message translates to:
+  /// **'{count} repetido(s) 🔁'**
+  String lookupStatusDuplicates(Object count);
+
+  /// No description provided for @lookupQtyLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Cantidad en tu inventario'**
+  String get lookupQtyLabel;
+
+  /// No description provided for @lookupScannerHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Centra el cromo para identificarlo'**
+  String get lookupScannerHint;
+
+  /// No description provided for @lookupTutorialStep1Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Dos formas de buscar'**
+  String get lookupTutorialStep1Title;
+
+  /// No description provided for @lookupTutorialStep1Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Usa la pestaña Manual para ingresar el código del cromo (ej. ECU 10), o la pestaña Escáner para apuntar la cámara directamente.'**
+  String get lookupTutorialStep1Body;
+
+  /// No description provided for @lookupTutorialStep2Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa el código'**
+  String get lookupTutorialStep2Title;
+
+  /// No description provided for @lookupTutorialStep2Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe el código del cromo tal como aparece en el álbum, por ejemplo ECU 10 o ARG 5, y pulsa Buscar.'**
+  String get lookupTutorialStep2Body;
+
+  /// No description provided for @lookupTutorialStep3Title.
+  ///
+  /// In es, this message translates to:
+  /// **'Consulta y gestiona'**
+  String get lookupTutorialStep3Title;
+
+  /// No description provided for @lookupTutorialStep3Body.
+  ///
+  /// In es, this message translates to:
+  /// **'Verás si el cromo te falta, ya lo tienes o cuántos repetidos llevas. Con los botones + y – puedes actualizar tu inventario al instante.'**
+  String get lookupTutorialStep3Body;
 }
 
 class _AppLocalizationsDelegate
