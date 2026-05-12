@@ -1089,6 +1089,52 @@ class AppLocalizationsHi extends AppLocalizations {
   String get lookupScannerHint => 'स्टिकर को पहचानने के लिए बीच में रखें';
 
   @override
+  String get lookupScannerOpenTooltip => 'Abrir escáner';
+
+  @override
+  String get lookupScannerOpenCamera => 'Escanear stickers';
+
+  @override
+  String get lookupScannerViewResults => 'Ver resultados';
+
+  @override
+  String lookupScannerSaveSuccess(Object count) {
+    return '$count cromo(s) agregado(s) al inventario';
+  }
+
+  @override
+  String lookupScannerScannedCount(Object count) {
+    return '$count escaneados';
+  }
+
+  @override
+  String get lookupScannerNewLabel => 'nuevos';
+
+  @override
+  String get lookupScannerDuplicatesLabel => 'repetidos';
+
+  @override
+  String get lookupScannerResetTooltip => 'Reiniciar sesión';
+
+  @override
+  String get lookupScannerEmptyHint => 'Apunta la cámara a los stickers';
+
+  @override
+  String lookupScannerMissingSection(Object count) {
+    return 'Me faltan ($count)';
+  }
+
+  @override
+  String lookupScannerAddSelected(Object count) {
+    return 'Agregar $count';
+  }
+
+  @override
+  String lookupScannerDuplicatesSection(Object count) {
+    return 'Repetidos ($count)';
+  }
+
+  @override
   String get lookupTutorialStep1Title => 'दो खोज विधियाँ';
 
   @override

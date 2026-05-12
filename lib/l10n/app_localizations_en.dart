@@ -1083,6 +1083,52 @@ class AppLocalizationsEn extends AppLocalizations {
   String get lookupScannerHint => 'Center the sticker to identify it';
 
   @override
+  String get lookupScannerOpenTooltip => 'Open scanner';
+
+  @override
+  String get lookupScannerOpenCamera => 'Scan stickers';
+
+  @override
+  String get lookupScannerViewResults => 'View results';
+
+  @override
+  String lookupScannerSaveSuccess(Object count) {
+    return '$count sticker(s) added to inventory';
+  }
+
+  @override
+  String lookupScannerScannedCount(Object count) {
+    return '$count scanned';
+  }
+
+  @override
+  String get lookupScannerNewLabel => 'new';
+
+  @override
+  String get lookupScannerDuplicatesLabel => 'duplicates';
+
+  @override
+  String get lookupScannerResetTooltip => 'Reset session';
+
+  @override
+  String get lookupScannerEmptyHint => 'Point the camera at the stickers';
+
+  @override
+  String lookupScannerMissingSection(Object count) {
+    return 'Missing ($count)';
+  }
+
+  @override
+  String lookupScannerAddSelected(Object count) {
+    return 'Add $count';
+  }
+
+  @override
+  String lookupScannerDuplicatesSection(Object count) {
+    return 'Duplicates ($count)';
+  }
+
+  @override
   String get lookupTutorialStep1Title => 'Two ways to search';
 
   @override

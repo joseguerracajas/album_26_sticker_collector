@@ -3,9 +3,11 @@ import 'dart:io';
 import 'package:album_26_sticker_collector/core/tutorial/lookup_tutorial.dart';
 import 'package:album_26_sticker_collector/core/tutorial/tutorial_keys.dart';
 import 'package:album_26_sticker_collector/core/tutorial/tutorial_service.dart';
+import 'package:album_26_sticker_collector/features/catalog/data/catalog_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/sticker.model.dart';
-import 'package:album_26_sticker_collector/features/inventory/presentation/widgets/sticker_info_sheet.dart';
+import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
+import 'package:album_26_sticker_collector/features/inventory/presentation/scanner_screen.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +37,11 @@ class _StickerLookupScreenState extends ConsumerState<StickerLookupScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+    _tabController.addListener(() {
+      if (_tabController.indexIsChanging) {
+        FocusManager.instance.primaryFocus?.unfocus();
+      }
+    });
     _loadCache();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted) return;
@@ -84,10 +91,18 @@ class _StickerLookupScreenState extends ConsumerState<StickerLookupScreen>
           ),
         ),
         centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.close, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+        actions: [
+          IconButton(
+            tooltip: l10n.lookupScannerOpenTooltip,
+            icon: const Icon(
+              Icons.qr_code_scanner_rounded,
+              color: Colors.white,
+            ),
+            onPressed: () => Navigator.of(
+              context,
+            ).push(MaterialPageRoute(builder: (_) => const ScannerScreen())),
+          ),
+        ],
         bottom: TabBar(
           key: tutorialLookupTabBarKey,
           controller: _tabController,
@@ -124,31 +139,127 @@ class _ManualLookupTab extends ConsumerStatefulWidget {
 }
 
 class _ManualLookupTabState extends ConsumerState<_ManualLookupTab> {
-  final TextEditingController _controller = TextEditingController();
+  final TextEditingController _lettersCtrl = TextEditingController();
+  final TextEditingController _numbersCtrl = TextEditingController();
+  final FocusNode _lettersFocus = FocusNode();
+  final FocusNode _numbersFocus = FocusNode();
   String? _errorMessage;
+  Sticker? _foundSticker;
+
+  static const _sentinel = '\u200b';
+
+  @override
+  void initState() {
+    super.initState();
+    // El centinela permite detectar backspace en teclado soft:
+    // cuando el usuario borra el centinela el campo queda vacío
+    // y onChanged dispara con '', lo que indica backspace en campo vacío.
+    _numbersFocus.addListener(_onNumbersFocusChange);
+  }
+
+  void _onNumbersFocusChange() {
+    if (_numbersFocus.hasFocus) _ensureSentinel();
+  }
+
+  void _ensureSentinel() {
+    if (!_numbersCtrl.text.startsWith(_sentinel)) {
+      final current = _numbersCtrl.text;
+      _numbersCtrl.value = TextEditingValue(
+        text: '$_sentinel$current',
+        selection: TextSelection.collapsed(offset: 1 + current.length),
+      );
+    }
+  }
+
+  String get _numbersDigits => _numbersCtrl.text.replaceAll(_sentinel, '');
 
   @override
   void dispose() {
-    _controller.dispose();
+    _lettersCtrl.dispose();
+    _numbersCtrl.dispose();
+    _lettersFocus.dispose();
+    _numbersFocus.dispose();
     super.dispose();
   }
 
   void _search() {
-    final input = _controller.text.trim();
+    FocusScope.of(context).unfocus();
+    final letters = _lettersCtrl.text.trim();
+    final numbers = _numbersDigits.trim();
+    final input = '$letters$numbers';
     if (input.isEmpty) return;
 
-    final sticker = widget.findSticker(input);
     final l10n = AppLocalizations.of(context);
+    Sticker? sticker = widget.findSticker(input);
+
+    // Intentar sin cero inicial (p. ej. "ECU05" → "ECU5")
+    if (sticker == null) {
+      final trimmed = '$letters${numbers.replaceFirst(RegExp(r'^0+'), '')}';
+      if (trimmed != input) sticker = widget.findSticker(trimmed);
+    }
 
     if (sticker == null) {
-      setState(() => _errorMessage = l10n.lookupStickerNotFound);
+      setState(() {
+        _errorMessage = l10n.lookupStickerNotFound;
+        _foundSticker = null;
+      });
       HapticFeedback.mediumImpact();
       return;
     }
 
-    setState(() => _errorMessage = null);
+    _lettersCtrl.clear();
+    _numbersCtrl.clear();
+    setState(() {
+      _errorMessage = null;
+      _foundSticker = sticker;
+    });
     HapticFeedback.mediumImpact();
-    StickerInfoSheet.show(context, sticker);
+  }
+
+  void _clearFields() {
+    _lettersCtrl.clear();
+    // Limpia dígitos pero mantiene el centinela si el campo tiene foco
+    _numbersCtrl.value = _numbersFocus.hasFocus
+        ? TextEditingValue(
+            text: _sentinel,
+            selection: const TextSelection.collapsed(offset: 1),
+          )
+        : TextEditingValue.empty;
+    setState(() {
+      _errorMessage = null;
+      _foundSticker = null;
+    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _lettersFocus.requestFocus();
+    });
+  }
+
+  InputDecoration _boxDecoration({required String hint}) {
+    return InputDecoration(
+      hintText: hint,
+      hintStyle: const TextStyle(
+        color: Colors.white24,
+        fontSize: 26,
+        fontWeight: FontWeight.bold,
+        letterSpacing: 12,
+      ),
+      filled: true,
+      fillColor: const Color(0xFF1E1E1E),
+      counterText: '',
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide.none,
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: const BorderSide(color: Colors.white24, width: 1.5),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: const BorderSide(color: Colors.amber, width: 2),
+      ),
+    );
   }
 
   @override
@@ -157,46 +268,115 @@ class _ManualLookupTabState extends ConsumerState<_ManualLookupTab> {
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
-      child: Padding(
+      child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Campo de texto
-            TextField(
+            // Dos inputs: letras [ARG] + números [17]
+            Row(
               key: tutorialLookupSearchFieldKey,
-              controller: _controller,
-              style: const TextStyle(color: Colors.white, fontSize: 18),
-              textCapitalization: TextCapitalization.characters,
-              onSubmitted: (_) => _search(),
-              decoration: InputDecoration(
-                hintText: l10n.lookupSearchHint,
-                hintStyle: const TextStyle(color: Colors.white38),
-                filled: true,
-                fillColor: const Color(0xFF1E1E1E),
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 16,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Campo letras (3 chars)
+                SizedBox(
+                  width: 136,
+                  height: 64,
+                  child: TextField(
+                    controller: _lettersCtrl,
+                    focusNode: _lettersFocus,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 10,
+                    ),
+                    textCapitalization: TextCapitalization.characters,
+                    keyboardType: TextInputType.text,
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(3),
+                      FilteringTextInputFormatter.allow(RegExp(r'[A-Za-z]')),
+                      _UpperCaseFormatter(),
+                    ],
+                    onChanged: (value) {
+                      if (value.length == 3) _numbersFocus.requestFocus();
+                    },
+                    onSubmitted: (_) => _search(),
+                    decoration: _boxDecoration(hint: 'ARG'),
+                  ),
                 ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  borderSide: BorderSide.none,
+
+                const SizedBox(width: 20),
+
+                // Campo números (2 chars)
+                SizedBox(
+                  width: 100,
+                  height: 64,
+                  child: TextField(
+                    controller: _numbersCtrl,
+                    focusNode: _numbersFocus,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 10,
+                    ),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      // 1 centinela + 2 dígitos = 3
+                      LengthLimitingTextInputFormatter(3),
+                      FilteringTextInputFormatter.allow(RegExp(r'[\u200b\d]')),
+                    ],
+                    onChanged: (value) {
+                      if (!value.startsWith(_sentinel)) {
+                        // El centinela fue borrado: backspace en campo vacío
+                        if (_lettersCtrl.text.isNotEmpty) {
+                          final t = _lettersCtrl.text;
+                          _lettersCtrl.value = TextEditingValue(
+                            text: t.substring(0, t.length - 1),
+                            selection: TextSelection.collapsed(
+                              offset: t.length - 1,
+                            ),
+                          );
+                        }
+                        _lettersFocus.requestFocus();
+                        return;
+                      }
+                      final digits = value.replaceAll(_sentinel, '');
+                      if (digits.length == 2) _search();
+                    },
+                    onSubmitted: (_) => _search(),
+                    decoration: _boxDecoration(hint: '17'),
+                  ),
                 ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  borderSide: const BorderSide(color: Colors.amber, width: 2),
+
+                const SizedBox(width: 12),
+
+                // Botón limpiar
+                SizedBox(
+                  key: tutorialLookupSearchButtonKey,
+                  width: 48,
+                  height: 64,
+                  child: Material(
+                    color: const Color(0xFF1E1E1E),
+                    borderRadius: BorderRadius.circular(12),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(12),
+                      onTap: _clearFields,
+                      child: const Icon(
+                        Icons.backspace_outlined,
+                        color: Colors.white38,
+                        size: 22,
+                      ),
+                    ),
+                  ),
                 ),
-                suffixIcon: IconButton(
-                  icon: const Icon(Icons.clear, color: Colors.white38),
-                  onPressed: () {
-                    _controller.clear();
-                    setState(() => _errorMessage = null);
-                  },
-                ),
-              ),
+              ],
             ),
 
-            const SizedBox(height: 16),
+            const SizedBox(height: 20),
 
             // Mensaje de error
             if (_errorMessage != null)
@@ -208,59 +388,218 @@ class _ManualLookupTabState extends ConsumerState<_ManualLookupTab> {
                 ),
               ),
 
-            // Botón buscar
-            SizedBox(
-              key: tutorialLookupSearchButtonKey,
-              width: double.infinity,
-              child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.amber,
-                  foregroundColor: Colors.black,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  elevation: 4,
-                ),
-                icon: const Icon(Icons.search_rounded, size: 22),
-                label: Text(
-                  l10n.lookupSearchButton,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                onPressed: _search,
+            // Resultado inline
+            if (_foundSticker != null)
+              _InlineStickerCard(sticker: _foundSticker!, l10n: l10n),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ─── Tarjeta de resultado inline ──────────────────────────────────────────────
+
+class _InlineStickerCard extends ConsumerWidget {
+  const _InlineStickerCard({required this.sticker, required this.l10n});
+
+  final Sticker sticker;
+  final AppLocalizations l10n;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final inventoryAsync = ref.watch(inventoryProvider);
+    final stickerInventory =
+        inventoryAsync.asData?.value[sticker.id] ?? const {};
+    final totalQty = stickerInventory.values.fold(0, (sum, q) => sum + q);
+    final stickerLabel = '${sticker.categoryId} ${sticker.stickerCode}';
+
+    // Colores del chip de estado
+    final Color statusColor;
+    final String statusLabel;
+    final IconData statusIcon;
+    if (totalQty == 0) {
+      statusColor = Colors.redAccent;
+      statusLabel = l10n.lookupStatusMissing;
+      statusIcon = Icons.search_off_rounded;
+    } else if (totalQty == 1) {
+      statusColor = Colors.green;
+      statusLabel = l10n.lookupStatusCollected;
+      statusIcon = Icons.check_circle_outline_rounded;
+    } else {
+      statusColor = Colors.blue.shade300;
+      statusLabel = l10n.lookupStatusDuplicates(totalQty - 1);
+      statusIcon = Icons.content_copy_rounded;
+    }
+
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 300),
+      child: Container(
+        key: ValueKey(sticker.id),
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 28),
+        decoration: BoxDecoration(
+          color: const Color(0xFF1E1E1E),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: Colors.white12),
+        ),
+        child: Column(
+          children: [
+            // Código
+            Text(
+              stickerLabel,
+              style: const TextStyle(
+                color: Colors.amber,
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.2,
               ),
             ),
 
-            const SizedBox(height: 40),
+            // Descripción
+            if (sticker.description != null && sticker.description!.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: 6),
+                child: Text(
+                  sticker.description!,
+                  style: const TextStyle(color: Colors.white60, fontSize: 14),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
 
-            // Hint visual
-            Center(
-              child: Column(
+            const SizedBox(height: 24),
+
+            // Chip de estado
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 250),
+              padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 12),
+              decoration: BoxDecoration(
+                color: statusColor.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(40),
+                border: Border.all(
+                  color: statusColor.withValues(alpha: 0.4),
+                  width: 1.5,
+                ),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(
-                    Icons.manage_search_rounded,
-                    color: Colors.white12,
-                    size: 72,
-                  ),
-                  const SizedBox(height: 12),
+                  Icon(statusIcon, color: statusColor, size: 22),
+                  const SizedBox(width: 10),
                   Text(
-                    'ECU 10  ·  ARG 5  ·  FRA 1',
-                    style: const TextStyle(
-                      color: Colors.white24,
-                      fontSize: 13,
-                      letterSpacing: 1,
+                    statusLabel,
+                    style: TextStyle(
+                      color: statusColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17,
                     ),
                   ),
                 ],
               ),
             ),
+
+            const SizedBox(height: 28),
+
+            // Controles +/-
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _CircleBtn(
+                  icon: Icons.remove_rounded,
+                  color: totalQty > 0 ? Colors.redAccent : Colors.grey.shade700,
+                  enabled: totalQty > 0,
+                  onTap: () {
+                    HapticFeedback.lightImpact();
+                    ref
+                        .read(inventoryProvider.notifier)
+                        .updateVariantQuantity(sticker.id, 'normal', -1);
+                  },
+                ),
+                const SizedBox(width: 32),
+                Text(
+                  '$totalQty',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 48,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(width: 32),
+                _CircleBtn(
+                  icon: Icons.add_rounded,
+                  color: Colors.amber,
+                  enabled: true,
+                  onTap: () {
+                    HapticFeedback.lightImpact();
+                    ref
+                        .read(inventoryProvider.notifier)
+                        .updateVariantQuantity(sticker.id, 'normal', 1);
+                  },
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 8),
+            Text(
+              l10n.lookupQtyLabel,
+              style: const TextStyle(color: Colors.white38, fontSize: 12),
+            ),
           ],
         ),
       ),
     );
+  }
+}
+
+class _CircleBtn extends StatelessWidget {
+  const _CircleBtn({
+    required this.icon,
+    required this.color,
+    required this.enabled,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final Color color;
+  final bool enabled;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: enabled ? onTap : null,
+      child: Container(
+        width: 56,
+        height: 56,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: color.withValues(alpha: enabled ? 0.15 : 0.06),
+          border: Border.all(
+            color: color.withValues(alpha: enabled ? 0.5 : 0.2),
+            width: 1.5,
+          ),
+        ),
+        child: Icon(
+          icon,
+          color: enabled ? color : Colors.grey.shade700,
+          size: 30,
+        ),
+      ),
+    );
+  }
+}
+
+// ─── Formatter ────────────────────────────────────────────────────────────────
+
+class _UpperCaseFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    return newValue.copyWith(text: newValue.text.toUpperCase());
   }
 }
 
@@ -285,9 +624,8 @@ class _ScannerLookupTabState extends ConsumerState<_ScannerLookupTab>
   bool _isCameraInitialized = false;
   bool _isProcessing = false;
   bool _cameraError = false;
-  bool _sheetOpen = false;
 
-  // Sistema de consenso (igual que el escáner principal)
+  // Sistema de consenso
   final int _requiredConsensus = 3;
   final Map<String, int> _consensusMap = {};
   final Map<String, DateTime> _cooldownMap = {};
@@ -299,11 +637,35 @@ class _ScannerLookupTabState extends ConsumerState<_ScannerLookupTab>
     DeviceOrientation.landscapeRight: 270,
   };
 
+  // ── Batch scan state ──────────────────────────────────────────────────────
+  // Códigos normalizados ya registrados en esta sesión (unicidad)
+  final Set<String> _scannedCodes = {};
+  // Stickers que me faltan (no los tengo en inventario, primera vez escaneados)
+  final List<Sticker> _missing = [];
+  // Stickers repetidos (deduplicados por código)
+  final Map<String, Sticker> _duplicatesMap = {};
+  // IDs seleccionados para agregar al inventario en masa
+  final Set<String> _selectedMissing = {};
+  // Guardando en inventario
+  bool _isSaving = false;
+  // Cache categoryId → emoji
+  Map<String, String> _emojiCache = {};
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     _initCamera();
+    _loadEmojiCache();
+  }
+
+  Future<void> _loadEmojiCache() async {
+    final cats = await ref.read(categoriesProvider.future);
+    if (mounted) {
+      setState(() {
+        _emojiCache = {for (final c in cats) c.id: c.emoji};
+      });
+    }
   }
 
   Future<void> _initCamera() async {
@@ -330,7 +692,7 @@ class _ScannerLookupTabState extends ConsumerState<_ScannerLookupTab>
 
   void _startStream() {
     _cameraController?.startImageStream((image) async {
-      if (_isProcessing || _sheetOpen) return;
+      if (_isProcessing) return;
       _isProcessing = true;
       await _processFrame(image);
       _isProcessing = false;
@@ -345,7 +707,6 @@ class _ScannerLookupTabState extends ConsumerState<_ScannerLookupTab>
       final result = await _textRecognizer.processImage(inputImage);
       final rawGlobal = result.text.toUpperCase();
 
-      // Escudo anti-trampas
       if (!rawGlobal.contains('PANINI') && !rawGlobal.contains('FIFA')) {
         _consensusMap.clear();
         return;
@@ -367,10 +728,7 @@ class _ScannerLookupTabState extends ConsumerState<_ScannerLookupTab>
         final blockText = block.text.toUpperCase();
         for (final match in regex.allMatches(blockText)) {
           final raw = match.group(0)!.toUpperCase().replaceAll(' ', '');
-          // El cache usa la clave tal cual → la búsqueda en findSticker la normaliza
-          if (widget.findSticker(raw) != null) {
-            codesInFrame.add(raw);
-          }
+          if (widget.findSticker(raw) != null) codesInFrame.add(raw);
         }
       }
 
@@ -392,16 +750,90 @@ class _ScannerLookupTabState extends ConsumerState<_ScannerLookupTab>
           _consensusMap.remove(code);
 
           if (!mounted) return;
-          HapticFeedback.heavyImpact();
-
-          _sheetOpen = true;
-          await StickerInfoSheet.show(context, sticker);
-          if (mounted) _sheetOpen = false;
+          await _handleScannedSticker(sticker);
         }
       }
-    } catch (_) {
-      // Ignorar errores de OCR silenciosamente
+    } catch (_) {}
+  }
+
+  Future<void> _handleScannedSticker(Sticker sticker) async {
+    final normalizedCode = '${sticker.categoryId}${sticker.stickerCode}'
+        .toUpperCase()
+        .replaceAll(' ', '');
+
+    if (_scannedCodes.contains(normalizedCode)) {
+      // Ya escaneado esta sesión → duplicado sin importar inventario
+      if (mounted) setState(() => _duplicatesMap[normalizedCode] = sticker);
+      await _doubleHaptic();
+      return;
     }
+
+    _scannedCodes.add(normalizedCode);
+
+    // Primera vez en sesión: consultar inventario
+    final inventory = ref.read(inventoryProvider).asData?.value ?? {};
+    final qty = (inventory[sticker.id] ?? {}).values.fold(0, (s, q) => s + q);
+
+    if (qty == 0) {
+      if (mounted)
+        setState(() {
+          _missing.add(sticker);
+          _selectedMissing.add(sticker.id);
+        });
+      HapticFeedback.mediumImpact(); // vibración simple → me falta
+    } else {
+      if (mounted) setState(() => _duplicatesMap[normalizedCode] = sticker);
+      await _doubleHaptic(); // doble vibración → repetido
+    }
+  }
+
+  Future<void> _doubleHaptic() async {
+    HapticFeedback.heavyImpact();
+    await Future.delayed(const Duration(milliseconds: 150));
+    if (mounted) HapticFeedback.heavyImpact();
+  }
+
+  Future<void> _addSelectedToInventory() async {
+    if (_isSaving) return;
+    setState(() => _isSaving = true);
+    try {
+      final toAdd = _missing
+          .where((s) => _selectedMissing.contains(s.id))
+          .toList();
+      for (final sticker in toAdd) {
+        await ref
+            .read(inventoryProvider.notifier)
+            .updateVariantQuantity(sticker.id, 'normal', 1);
+      }
+      setState(() {
+        _missing.removeWhere((s) => _selectedMissing.contains(s.id));
+        _selectedMissing.clear();
+      });
+      if (mounted) {
+        final l10n = AppLocalizations.of(context);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(l10n.lookupScannerSaveSuccess(toAdd.length)),
+            backgroundColor: Colors.greenAccent.shade700,
+            behavior: SnackBarBehavior.floating,
+            duration: const Duration(seconds: 2),
+          ),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isSaving = false);
+    }
+  }
+
+  void _clearSession() {
+    setState(() {
+      _scannedCodes.clear();
+      _missing.clear();
+      _duplicatesMap.clear();
+      _selectedMissing.clear();
+      _consensusMap.clear();
+      _cooldownMap.clear();
+    });
   }
 
   InputImage? _buildInputImage(CameraImage image) {
@@ -478,46 +910,509 @@ class _ScannerLookupTabState extends ConsumerState<_ScannerLookupTab>
     }
 
     return Stack(
-      fit: StackFit.expand,
       children: [
-        CameraPreview(_cameraController!),
-        _buildOverlay(context, l10n),
+        // ── Cámara a pantalla completa ───────────────────────────────────────
+        Positioned.fill(
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final previewAspect = _cameraController!.value.aspectRatio;
+              double w = constraints.maxWidth;
+              double h = constraints.maxHeight;
+              if (w / h < previewAspect) {
+                w = h * previewAspect;
+              } else {
+                h = w / previewAspect;
+              }
+              return OverflowBox(
+                maxWidth: w,
+                maxHeight: h,
+                alignment: Alignment.center,
+                child: CameraPreview(_cameraController!),
+              );
+            },
+          ),
+        ),
+
+        // ── Marco de apuntado ────────────────────────────────────────────────
+        Center(
+          child: Container(
+            width: 220,
+            height: 280,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.amber, width: 2.5),
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+        ),
+
+        // ── Hint ─────────────────────────────────────────────────────────────
+        Positioned(
+          bottom: 108,
+          left: 0,
+          right: 0,
+          child: Text(
+            l10n.lookupScannerHint,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              shadows: [Shadow(color: Colors.black, blurRadius: 10)],
+            ),
+          ),
+        ),
+
+        // ── Barra inferior con stats + botón resultados ──────────────────────
+        Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: Container(
+            padding: const EdgeInsets.fromLTRB(16, 10, 16, 20),
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [Colors.black87, Colors.transparent],
+              ),
+            ),
+            child: Row(
+              children: [
+                _StatBadge(
+                  count: _missing.length,
+                  label: l10n.lookupScannerNewLabel,
+                  color: Colors.greenAccent,
+                ),
+                const SizedBox(width: 8),
+                _StatBadge(
+                  count: _duplicatesMap.length,
+                  label: l10n.lookupScannerDuplicatesLabel,
+                  color: Colors.amber,
+                ),
+                const Spacer(),
+                GestureDetector(
+                  onTap: _clearSession,
+                  child: Tooltip(
+                    message: l10n.lookupScannerResetTooltip,
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.black45,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: const Icon(
+                        Icons.refresh_rounded,
+                        color: Colors.white70,
+                        size: 20,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.amber,
+                    foregroundColor: Colors.black,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 10,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                  ),
+                  icon: const Icon(Icons.list_alt_rounded, size: 18),
+                  label: Text(
+                    l10n.lookupScannerViewResults,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
+                  onPressed: () => _openResultsSheet(context, l10n),
+                ),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
 
-  Widget _buildOverlay(BuildContext context, AppLocalizations l10n) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        // Marco de apuntado
-        Container(
-          width: 240,
-          height: 320,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.amber, width: 3),
-            borderRadius: BorderRadius.circular(12),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.3),
-                spreadRadius: 2,
-                blurRadius: 15,
+  void _openResultsSheet(BuildContext context, AppLocalizations l10n) {
+    // Pausar el stream mientras el sheet está abierto
+    _cameraController?.stopImageStream();
+
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (_) => StatefulBuilder(
+        builder: (ctx, setSheetState) {
+          return DraggableScrollableSheet(
+            initialChildSize: 0.6,
+            minChildSize: 0.35,
+            maxChildSize: 0.92,
+            expand: false,
+            builder: (_, scrollController) => Container(
+              decoration: const BoxDecoration(
+                color: Color(0xFF1A1A1A),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
               ),
-            ],
+              child: Column(
+                children: [
+                  // Handle + header
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: Container(
+                      width: 40,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade700,
+                        borderRadius: BorderRadius.circular(2),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+                    child: Row(
+                      children: [
+                        Text(
+                          l10n.lookupScannerScannedCount(_scannedCodes.length),
+                          style: const TextStyle(
+                            color: Colors.white54,
+                            fontSize: 13,
+                          ),
+                        ),
+                        const Spacer(),
+                        _StatBadge(
+                          count: _missing.length,
+                          label: l10n.lookupScannerNewLabel,
+                          color: Colors.greenAccent,
+                        ),
+                        const SizedBox(width: 8),
+                        _StatBadge(
+                          count: _duplicatesMap.length,
+                          label: l10n.lookupScannerDuplicatesLabel,
+                          color: Colors.amber,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Divider(color: Colors.white12, height: 1),
+                  // Lista de resultados
+                  Expanded(
+                    child: _missing.isEmpty && _duplicatesMap.isEmpty
+                        ? Center(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(
+                                  Icons.document_scanner_outlined,
+                                  color: Colors.white12,
+                                  size: 56,
+                                ),
+                                const SizedBox(height: 10),
+                                Text(
+                                  l10n.lookupScannerEmptyHint,
+                                  style: const TextStyle(
+                                    color: Colors.white24,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        : ListView(
+                            controller: scrollController,
+                            padding: const EdgeInsets.only(bottom: 24),
+                            children: [
+                              // ─ Me faltan ───────────────────────────────────
+                              if (_missing.isNotEmpty) ...[
+                                _ResultSectionHeader(
+                                  icon: Icons.bookmark_add_outlined,
+                                  title: l10n.lookupScannerMissingSection(
+                                    _missing.length,
+                                  ),
+                                  color: Colors.greenAccent,
+                                  trailing: _selectedMissing.isNotEmpty
+                                      ? TextButton.icon(
+                                          style: TextButton.styleFrom(
+                                            backgroundColor: Colors.greenAccent
+                                                .withValues(alpha: 0.15),
+                                            foregroundColor: Colors.greenAccent,
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 12,
+                                              vertical: 4,
+                                            ),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                            ),
+                                          ),
+                                          icon: _isSaving
+                                              ? const SizedBox(
+                                                  width: 14,
+                                                  height: 14,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                        strokeWidth: 2,
+                                                        color:
+                                                            Colors.greenAccent,
+                                                      ),
+                                                )
+                                              : const Icon(
+                                                  Icons.add_rounded,
+                                                  size: 16,
+                                                ),
+                                          label: Text(
+                                            l10n.lookupScannerAddSelected(
+                                              _selectedMissing.length,
+                                            ),
+                                            style: const TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          onPressed: _isSaving
+                                              ? null
+                                              : () async {
+                                                  await _addSelectedToInventory();
+                                                  setSheetState(() {});
+                                                },
+                                        )
+                                      : null,
+                                ),
+                                ..._missing.map(
+                                  (s) => _MissingTile(
+                                    sticker: s,
+                                    emoji: _emojiCache[s.categoryId] ?? '',
+                                    isSelected: _selectedMissing.contains(s.id),
+                                    onToggle: (selected) {
+                                      setState(() {
+                                        if (selected) {
+                                          _selectedMissing.add(s.id);
+                                        } else {
+                                          _selectedMissing.remove(s.id);
+                                        }
+                                      });
+                                      setSheetState(() {});
+                                    },
+                                  ),
+                                ),
+                              ],
+
+                              // ─ Repetidos ───────────────────────────────────
+                              if (_duplicatesMap.isNotEmpty) ...[
+                                _ResultSectionHeader(
+                                  icon: Icons.copy_rounded,
+                                  title: l10n.lookupScannerDuplicatesSection(
+                                    _duplicatesMap.length,
+                                  ),
+                                  color: Colors.amber,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                    vertical: 8,
+                                  ),
+                                  child: Wrap(
+                                    spacing: 8,
+                                    runSpacing: 8,
+                                    children: _duplicatesMap.values
+                                        .map(
+                                          (s) => Container(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 12,
+                                              vertical: 6,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color: Colors.amber.withValues(
+                                                alpha: 0.1,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              border: Border.all(
+                                                color: Colors.amber.withValues(
+                                                  alpha: 0.3,
+                                                ),
+                                              ),
+                                            ),
+                                            child: Text(
+                                              '${_emojiCache[s.categoryId] ?? ''} ${s.categoryId} ${s.stickerCode}',
+                                              style: const TextStyle(
+                                                color: Colors.amber,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13,
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                        .toList(),
+                                  ),
+                                ),
+                              ],
+                            ],
+                          ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    ).whenComplete(() {
+      // Reanudar el stream al cerrar el sheet
+      if (mounted &&
+          (_cameraController?.value.isInitialized ?? false) &&
+          !(_cameraController?.value.isStreamingImages ?? true)) {
+        _startStream();
+      }
+    });
+  }
+}
+
+// ─── Widgets auxiliares del scanner ───────────────────────────────────────────
+
+class _StatBadge extends StatelessWidget {
+  const _StatBadge({
+    required this.count,
+    required this.label,
+    required this.color,
+  });
+
+  final int count;
+  final String label;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          '$count',
+          style: TextStyle(
+            color: color,
+            fontWeight: FontWeight.bold,
+            fontSize: 14,
           ),
         ),
-        const SizedBox(height: 24),
+        const SizedBox(width: 3),
         Text(
-          l10n.lookupScannerHint,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-            shadows: [Shadow(color: Colors.black, blurRadius: 10)],
-          ),
+          label,
+          style: const TextStyle(color: Colors.white38, fontSize: 12),
         ),
       ],
+    );
+  }
+}
+
+class _ResultSectionHeader extends StatelessWidget {
+  const _ResultSectionHeader({
+    required this.icon,
+    required this.title,
+    required this.color,
+    this.trailing,
+  });
+
+  final IconData icon;
+  final String title;
+  final Color color;
+  final Widget? trailing;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
+      child: Row(
+        children: [
+          Icon(icon, color: color, size: 18),
+          const SizedBox(width: 8),
+          Text(
+            title,
+            style: TextStyle(
+              color: color,
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+            ),
+          ),
+          const Spacer(),
+          if (trailing != null) trailing!,
+        ],
+      ),
+    );
+  }
+}
+
+class _MissingTile extends StatelessWidget {
+  const _MissingTile({
+    required this.sticker,
+    required this.emoji,
+    required this.isSelected,
+    required this.onToggle,
+  });
+
+  final Sticker sticker;
+  final String emoji;
+  final bool isSelected;
+  final ValueChanged<bool> onToggle;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => onToggle(!isSelected),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? Colors.greenAccent.withValues(alpha: 0.07)
+              : Colors.transparent,
+          border: Border(
+            bottom: BorderSide(color: Colors.white.withValues(alpha: 0.05)),
+          ),
+        ),
+        child: Row(
+          children: [
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              width: 22,
+              height: 22,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: isSelected ? Colors.greenAccent : Colors.transparent,
+                border: Border.all(
+                  color: isSelected ? Colors.greenAccent : Colors.white24,
+                  width: 1.5,
+                ),
+              ),
+              child: isSelected
+                  ? const Icon(Icons.check, color: Colors.black, size: 14)
+                  : null,
+            ),
+            const SizedBox(width: 12),
+            Text(
+              '$emoji ${sticker.categoryId} ${sticker.stickerCode}',
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+              ),
+            ),
+            if (sticker.description != null &&
+                sticker.description!.isNotEmpty) ...[
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  sticker.description!,
+                  style: const TextStyle(color: Colors.white38, fontSize: 13),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ],
+        ),
+      ),
     );
   }
 }

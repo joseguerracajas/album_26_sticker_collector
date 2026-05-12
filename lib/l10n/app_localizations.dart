@@ -2018,6 +2018,78 @@ abstract class AppLocalizations {
   /// **'Centra el cromo para identificarlo'**
   String get lookupScannerHint;
 
+  /// No description provided for @lookupScannerOpenTooltip.
+  ///
+  /// In es, this message translates to:
+  /// **'Abrir escáner'**
+  String get lookupScannerOpenTooltip;
+
+  /// No description provided for @lookupScannerOpenCamera.
+  ///
+  /// In es, this message translates to:
+  /// **'Escanear stickers'**
+  String get lookupScannerOpenCamera;
+
+  /// No description provided for @lookupScannerViewResults.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver resultados'**
+  String get lookupScannerViewResults;
+
+  /// No description provided for @lookupScannerSaveSuccess.
+  ///
+  /// In es, this message translates to:
+  /// **'{count} cromo(s) agregado(s) al inventario'**
+  String lookupScannerSaveSuccess(Object count);
+
+  /// No description provided for @lookupScannerScannedCount.
+  ///
+  /// In es, this message translates to:
+  /// **'{count} escaneados'**
+  String lookupScannerScannedCount(Object count);
+
+  /// No description provided for @lookupScannerNewLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'nuevos'**
+  String get lookupScannerNewLabel;
+
+  /// No description provided for @lookupScannerDuplicatesLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'repetidos'**
+  String get lookupScannerDuplicatesLabel;
+
+  /// No description provided for @lookupScannerResetTooltip.
+  ///
+  /// In es, this message translates to:
+  /// **'Reiniciar sesión'**
+  String get lookupScannerResetTooltip;
+
+  /// No description provided for @lookupScannerEmptyHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Apunta la cámara a los stickers'**
+  String get lookupScannerEmptyHint;
+
+  /// No description provided for @lookupScannerMissingSection.
+  ///
+  /// In es, this message translates to:
+  /// **'Me faltan ({count})'**
+  String lookupScannerMissingSection(Object count);
+
+  /// No description provided for @lookupScannerAddSelected.
+  ///
+  /// In es, this message translates to:
+  /// **'Agregar {count}'**
+  String lookupScannerAddSelected(Object count);
+
+  /// No description provided for @lookupScannerDuplicatesSection.
+  ///
+  /// In es, this message translates to:
+  /// **'Repetidos ({count})'**
+  String lookupScannerDuplicatesSection(Object count);
+
   /// No description provided for @lookupTutorialStep1Title.
   ///
   /// In es, this message translates to:
