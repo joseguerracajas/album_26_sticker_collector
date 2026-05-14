@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:album_26_sticker_collector/core/utils/rating_service.dart';
 import 'package:album_26_sticker_collector/core/tutorial/scanner_tutorial.dart';
 import 'package:album_26_sticker_collector/core/tutorial/tutorial_keys.dart';
 import 'package:album_26_sticker_collector/core/tutorial/tutorial_service.dart';
@@ -34,7 +35,8 @@ final scannerTabActiveProvider =
     );
 
 class ScannerScreen extends ConsumerStatefulWidget {
-  const ScannerScreen({super.key});
+  final bool standalone;
+  const ScannerScreen({super.key, this.standalone = false});
 
   @override
   ConsumerState<ScannerScreen> createState() => _ScannerScreenState();
@@ -81,7 +83,16 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
     _loadValidIdsCache();
     _loadStickerMeta();
     // La cámara se inicia de forma perezosa cuando el tab se activa
-    // (evita el fallo de CameraPreview dentro de Offstage del IndexedStack)
+    // (evita el fallo de CameraPreview dentro de Offstage del IndexedStack).
+    // En modo standalone (Navigator.push), se inicia directamente.
+    if (widget.standalone) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          _initializeCamera();
+          _maybeShowScannerTutorial();
+        }
+      });
+    }
   }
 
   Future<void> _maybeShowScannerTutorial() async {
@@ -184,7 +195,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
       debugPrint('🎥 [Scanner] no mounted tras espera');
       return;
     }
-    if (!ref.read(scannerTabActiveProvider)) {
+    if (!widget.standalone && !ref.read(scannerTabActiveProvider)) {
       debugPrint('🎥 [Scanner] tab ya no activo');
       return;
     }
@@ -325,6 +336,7 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
               if (!canProceed) continue; // gate bloqueado → no registrar
             }
             ref.read(pendingScansProvider.notifier).addSticker(code);
+            RatingService.trackScanAndMaybePrompt();
           } else {
             // MODO QUITAR: validar límite de repetidos
             final inventoryQty =
@@ -474,6 +486,9 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
 
   @override
   void dispose() {
+    if (widget.standalone) {
+      _shutdownCamera();
+    }
     _cameraController?.dispose();
     _textRecognizer.close();
     super.dispose();
@@ -483,16 +498,19 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
 
-    // Inicia la cámara al entrar al tab, la libera completamente al salir
-    ref.listen<bool>(scannerTabActiveProvider, (_, isActive) {
-      if (!mounted) return;
-      if (isActive) {
-        _initializeCamera();
-        _maybeShowScannerTutorial();
-      } else {
-        _shutdownCamera();
-      }
-    });
+    // Inicia la cámara al entrar al tab, la libera completamente al salir.
+    // En modo standalone la cámara se maneja desde initState/dispose.
+    if (!widget.standalone) {
+      ref.listen<bool>(scannerTabActiveProvider, (_, isActive) {
+        if (!mounted) return;
+        if (isActive) {
+          _initializeCamera();
+          _maybeShowScannerTutorial();
+        } else {
+          _shutdownCamera();
+        }
+      });
+    }
 
     if (_cameraError) {
       return Scaffold(
@@ -528,9 +546,24 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
           // 2. El diseño del marco (La mira)
           _buildScannerOverlay(context),
 
+          // 2b. Botón de retroceso (solo en modo standalone)
+          if (widget.standalone)
+            Positioned(
+              top: MediaQuery.of(context).padding.top + 8,
+              left: 8,
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back, color: Colors.white),
+                style: IconButton.styleFrom(
+                  backgroundColor: Colors.black54,
+                  shape: const CircleBorder(),
+                ),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ),
+
           // 3. Toggle de modo (Agregar / Quitar repetidos)
           Positioned(
-            top: 70,
+            top: MediaQuery.of(context).padding.top + 60,
             left: 20,
             right: 20,
             child: Container(

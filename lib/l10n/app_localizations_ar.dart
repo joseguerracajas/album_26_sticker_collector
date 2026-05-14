@@ -662,6 +662,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get drawerReplayTutorial => 'إعادة مشاهدة الدليل';
 
   @override
+  String get drawerRateApp => 'قيّم تطبيقنا';
+
+  @override
   String get scannerTutorialStep1Title => 'Modo de escaneo';
 
   @override

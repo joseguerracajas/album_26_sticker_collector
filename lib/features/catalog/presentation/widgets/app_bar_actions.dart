@@ -39,7 +39,9 @@ class ScannerIconButton extends ConsumerWidget {
                 if (context.mounted) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => const ScannerScreen()),
+                    MaterialPageRoute(
+                      builder: (_) => const ScannerScreen(standalone: true),
+                    ),
                   );
                 }
               },

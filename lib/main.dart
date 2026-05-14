@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:album_26_sticker_collector/core/widgets/custom_upgrade_alert.dart';
+import 'package:upgrader/upgrader.dart';
 
 final supabase = Supabase.instance.client;
 final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
@@ -56,6 +58,23 @@ class MainApp extends StatelessWidget {
           elevation: 0,
         ),
 
+        // AlertDialog (upgrader y cualquier otro diálogo de la app)
+        dialogTheme: DialogThemeData(
+          backgroundColor: const Color(0xFF1E1E1E),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          titleTextStyle: const TextStyle(
+            color: Colors.amber,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+          contentTextStyle: const TextStyle(
+            color: Colors.white70,
+            fontSize: 14,
+          ),
+        ),
+
         // 1. Puntero y selección de texto (Dorado)
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: Colors.amber,
@@ -103,7 +122,13 @@ class MainApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const AppShell(),
+      home: CustomUpgradeAlert(
+        upgrader: Upgrader(
+          debugDisplayAlways: true, // TODO: quitar antes de producción
+          durationUntilAlertAgain: const Duration(days: 1),
+        ),
+        child: const AppShell(),
+      ),
     );
   }
 }

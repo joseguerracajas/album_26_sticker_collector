@@ -6,7 +6,7 @@ import 'package:album_26_sticker_collector/core/utils/supabase_error_mapper.dart
 import 'package:album_26_sticker_collector/features/auth/data/auth_provider.dart';
 import 'package:album_26_sticker_collector/features/auth/data/guest_session_provider.dart';
 import 'package:album_26_sticker_collector/features/auth/presentation/forgot_password_screen.dart';
-import 'package:album_26_sticker_collector/features/catalog/presentation/home_screen.dart';
+import 'package:album_26_sticker_collector/features/catalog/presentation/app_shell.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -114,7 +114,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
       if (mounted) {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
+          MaterialPageRoute(builder: (context) => const AppShell()),
         );
       }
     } catch (e) {
@@ -156,7 +156,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
       if (mounted) {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
+          MaterialPageRoute(builder: (context) => const AppShell()),
         );
       }
     } catch (e) {

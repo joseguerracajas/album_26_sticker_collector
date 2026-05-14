@@ -670,6 +670,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get drawerReplayTutorial => 'Egitimi tekrar izle';
 
   @override
+  String get drawerRateApp => 'Uygulamamızı değerlendirin';
+
+  @override
   String get scannerTutorialStep1Title => 'Modo de escaneo';
 
   @override

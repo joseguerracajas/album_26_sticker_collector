@@ -669,6 +669,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get drawerReplayTutorial => 'ट्यूटोरियल फिर से देखें';
 
   @override
+  String get drawerRateApp => 'हमारे ऐप को रेट करें';
+
+  @override
   String get scannerTutorialStep1Title => 'Modo de escaneo';
 
   @override

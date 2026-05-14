@@ -673,6 +673,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get drawerReplayTutorial => 'Powtorz samouczek';
 
   @override
+  String get drawerRateApp => 'Oceń naszą aplikację';
+
+  @override
   String get scannerTutorialStep1Title => 'Modo de escaneo';
 
   @override

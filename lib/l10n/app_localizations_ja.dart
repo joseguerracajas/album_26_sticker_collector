@@ -638,6 +638,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get drawerReplayTutorial => 'チュートリアルをもう一度見る';
 
   @override
+  String get drawerRateApp => 'アプリを評価する';
+
+  @override
   String get scannerTutorialStep1Title => 'Modo de escaneo';
 
   @override

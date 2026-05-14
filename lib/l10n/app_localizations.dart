@@ -1286,6 +1286,12 @@ abstract class AppLocalizations {
   /// **'Ver tutorial de nuevo'**
   String get drawerReplayTutorial;
 
+  /// No description provided for @drawerRateApp.
+  ///
+  /// In es, this message translates to:
+  /// **'Califica nuestra app'**
+  String get drawerRateApp;
+
   /// No description provided for @scannerTutorialStep1Title.
   ///
   /// In es, this message translates to:

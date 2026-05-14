@@ -639,6 +639,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get drawerReplayTutorial => '튜토리얼 다시 보기';
 
   @override
+  String get drawerRateApp => '앱 평가하기';
+
+  @override
   String get scannerTutorialStep1Title => 'Modo de escaneo';
 
   @override

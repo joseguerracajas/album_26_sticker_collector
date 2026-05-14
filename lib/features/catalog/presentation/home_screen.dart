@@ -3,6 +3,7 @@
 import 'package:album_26_sticker_collector/core/tutorial/home_tutorial.dart';
 import 'package:album_26_sticker_collector/core/tutorial/tutorial_keys.dart';
 import 'package:album_26_sticker_collector/core/tutorial/tutorial_service.dart';
+import 'package:album_26_sticker_collector/core/utils/rating_service.dart';
 import 'package:album_26_sticker_collector/features/auth/presentation/auth_screen.dart';
 import 'package:album_26_sticker_collector/features/auth/presentation/profile_screen.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/album_variant_provider.dart';
@@ -748,6 +749,22 @@ class _AppDrawer extends ConsumerWidget {
                 Navigator.pop(context);
                 HapticFeedback.selectionClick();
                 VariantSelectorSheet.show(context);
+              },
+            ),
+
+            const Divider(color: Color(0xFF2A2A2A)),
+
+            // Opción: Califica nuestra app
+            ListTile(
+              leading: const Icon(Icons.star_rounded, color: Colors.amber),
+              title: Text(
+                l10n.drawerRateApp,
+                style: const TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+                HapticFeedback.lightImpact();
+                RatingService.openStoreListing();
               },
             ),
 

@@ -672,6 +672,9 @@ class AppLocalizationsFa extends AppLocalizations {
   String get drawerReplayTutorial => 'مرور آموزش مجدد';
 
   @override
+  String get drawerRateApp => 'برنامه ما را ارزیابی کنید';
+
+  @override
   String get scannerTutorialStep1Title => 'Modo de escaneo';
 
   @override

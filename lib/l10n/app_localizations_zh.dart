@@ -626,6 +626,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get drawerReplayTutorial => '重新查看教程';
 
   @override
+  String get drawerRateApp => '评价我们的应用';
+
+  @override
   String get scannerTutorialStep1Title => 'Modo de escaneo';
 
   @override

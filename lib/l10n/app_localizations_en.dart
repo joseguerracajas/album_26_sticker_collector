@@ -667,6 +667,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get drawerReplayTutorial => 'Replay tutorial';
 
   @override
+  String get drawerRateApp => 'Rate our app';
+
+  @override
   String get scannerTutorialStep1Title => 'Scan mode';
 
   @override

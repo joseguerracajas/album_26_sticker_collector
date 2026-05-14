@@ -675,6 +675,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get drawerReplayTutorial => 'Povtorit obuchenie';
 
   @override
+  String get drawerRateApp => 'Оцените наше приложение';
+
+  @override
   String get scannerTutorialStep1Title => 'Modo de escaneo';
 
   @override
