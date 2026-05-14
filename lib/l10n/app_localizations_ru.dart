@@ -401,10 +401,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get paywallPackageSixMonth => 'Каждые 6 месяцев';
 
   @override
-  String get paywallBestOption => 'Mejor opción';
+  String get paywallBestOption => 'Лучший вариант';
 
   @override
-  String get paywallStartFreeTrial => 'Comenzar prueba gratis';
+  String get paywallStartFreeTrial => 'Начать бесплатный пробный период';
+
+  @override
+  String paywallFreeTrial(int days) {
+    return 'Бесплатный пробный период $days дней';
+  }
 
   @override
   String get paywallRestorePurchases => 'Восстановить покупки';

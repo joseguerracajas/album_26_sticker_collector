@@ -171,6 +171,14 @@
   "paywallPackageTwoMonth": "Каждые 2 месяца",
   "paywallPackageThreeMonth": "Каждые 3 месяца",
   "paywallPackageSixMonth": "Каждые 6 месяцев",
+  "paywallBestOption": "Лучший вариант",
+  "paywallStartFreeTrial": "Начать бесплатный пробный период",
+  "paywallFreeTrial": "Бесплатный пробный период {days} дней",
+  "@paywallFreeTrial": {
+    "placeholders": {
+      "days": {"type": "int"}
+    }
+  },
   "paywallRestorePurchases": "Восстановить покупки",
   "paywallCancelAnytime": "Отмена в любое время. Без обязательств.",
   "paywallLoadError": "Не удалось загрузить планы. Проверьте подключение.",

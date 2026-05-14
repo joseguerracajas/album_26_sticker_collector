@@ -171,6 +171,14 @@
   "paywallPackageTwoMonth": "Every 2 months",
   "paywallPackageThreeMonth": "Every 3 months",
   "paywallPackageSixMonth": "Every 6 months",
+  "paywallBestOption": "Best option",
+  "paywallStartFreeTrial": "Start free trial",
+  "paywallFreeTrial": "Free trial for {days} days",
+  "@paywallFreeTrial": {
+    "placeholders": {
+      "days": {"type": "int"}
+    }
+  },
   "paywallRestorePurchases": "Restore purchases",
   "paywallCancelAnytime": "Cancel anytime. No commitments.",
   "paywallLoadError": "Could not load plans. Check your connection.",

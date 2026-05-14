@@ -406,6 +406,11 @@ class AppLocalizationsEs extends AppLocalizations {
   String get paywallStartFreeTrial => 'Comenzar prueba gratis';
 
   @override
+  String paywallFreeTrial(int days) {
+    return 'Prueba gratuita de $days días';
+  }
+
+  @override
   String get paywallRestorePurchases => 'Restaurar compras';
 
   @override

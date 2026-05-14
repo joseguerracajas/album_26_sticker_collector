@@ -386,10 +386,15 @@ class AppLocalizationsHe extends AppLocalizations {
   String get paywallPackageSixMonth => 'כל 6 חודשים';
 
   @override
-  String get paywallBestOption => 'Mejor opción';
+  String get paywallBestOption => 'האפשרות הטובה ביותר';
 
   @override
-  String get paywallStartFreeTrial => 'Comenzar prueba gratis';
+  String get paywallStartFreeTrial => 'התחל ניסיון חינם';
+
+  @override
+  String paywallFreeTrial(int days) {
+    return 'ניסיון חינם של $days ימים';
+  }
 
   @override
   String get paywallRestorePurchases => 'שחזור רכישות';

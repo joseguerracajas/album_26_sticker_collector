@@ -171,6 +171,14 @@
   "paywallPackageTwoMonth": "كل شهرين",
   "paywallPackageThreeMonth": "كل 3 أشهر",
   "paywallPackageSixMonth": "كل 6 أشهر",
+  "paywallBestOption": "الخيار الأفضل",
+  "paywallStartFreeTrial": "بدء الفترة التجريبية المجانية",
+  "paywallFreeTrial": "تجربة مجانية لمدة {days} أيام",
+  "@paywallFreeTrial": {
+    "placeholders": {
+      "days": {"type": "int"}
+    }
+  },
   "paywallRestorePurchases": "استعادة المشتريات",
   "paywallCancelAnytime": "إلغاء في أي وقت. بدون التزامات.",
   "paywallLoadError": "تعذّر تحميل الخطط. تحقق من اتصالك.",

@@ -398,10 +398,15 @@ class AppLocalizationsFa extends AppLocalizations {
   String get paywallPackageSixMonth => 'هر ۶ ماه';
 
   @override
-  String get paywallBestOption => 'Mejor opción';
+  String get paywallBestOption => 'بهترین گزینه';
 
   @override
-  String get paywallStartFreeTrial => 'Comenzar prueba gratis';
+  String get paywallStartFreeTrial => 'شروع دوره آزمایشی رایگان';
+
+  @override
+  String paywallFreeTrial(int days) {
+    return 'آزمایش رایگان $days روزه';
+  }
 
   @override
   String get paywallRestorePurchases => 'بازیابی خریدها';

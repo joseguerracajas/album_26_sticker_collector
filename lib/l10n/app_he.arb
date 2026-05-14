@@ -171,6 +171,14 @@
   "paywallPackageTwoMonth": "כל חודשיים",
   "paywallPackageThreeMonth": "כל 3 חודשים",
   "paywallPackageSixMonth": "כל 6 חודשים",
+  "paywallBestOption": "האפשרות הטובה ביותר",
+  "paywallStartFreeTrial": "התחל ניסיון חינם",
+  "paywallFreeTrial": "ניסיון חינם של {days} ימים",
+  "@paywallFreeTrial": {
+    "placeholders": {
+      "days": {"type": "int"}
+    }
+  },
   "paywallRestorePurchases": "שחזור רכישות",
   "paywallCancelAnytime": "בטל בכל עת. ללא התחייבות.",
   "paywallLoadError": "לא ניתן לטעון את התוכניות. בדוק את החיבור שלך.",

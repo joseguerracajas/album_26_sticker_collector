@@ -8,6 +8,22 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+// Convierte la unidad y número de períodos de la prueba gratuita a días.
+int _trialToDays(IntroductoryPrice intro) {
+  switch (intro.periodUnit) {
+    case PeriodUnit.day:
+      return intro.periodNumberOfUnits;
+    case PeriodUnit.week:
+      return intro.periodNumberOfUnits * 7;
+    case PeriodUnit.month:
+      return intro.periodNumberOfUnits * 30;
+    case PeriodUnit.year:
+      return intro.periodNumberOfUnits * 365;
+    default:
+      return 0;
+  }
+}
+
 class PaywallScreen extends ConsumerStatefulWidget {
   const PaywallScreen({super.key});
 
@@ -276,14 +292,15 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
     );
   }
 
-  /// Devuelve el texto de prueba gratuita si el producto la tiene configurada.
-  /// Usa directamente el priceString de la tienda (localizado por el SO).
-  String? _trialLabel(Package pkg) {
+  /// Devuelve el texto de prueba gratuita localizado con el número de días.
+  /// Retorna null si el producto no tiene prueba gratuita gratuita configurada.
+  String? _trialLabel(Package pkg, AppLocalizations l10n) {
     try {
       final intro = pkg.storeProduct.introductoryPrice;
       if (intro == null || intro.price != 0) return null;
-      return intro
-          .priceString; // "Free", "Gratis", etc. según locale del dispositivo
+      final days = _trialToDays(intro);
+      if (days <= 0) return null;
+      return l10n.paywallFreeTrial(days);
     } catch (_) {
       return null;
     }
@@ -303,7 +320,7 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
         final isAnnual = pkg.packageType == PackageType.annual;
         final price = pkg.storeProduct.priceString;
         final title = _packageTitle(pkg, l10n);
-        final trial = _trialLabel(pkg);
+        final trial = _trialLabel(pkg, l10n);
 
         final card = GestureDetector(
           onTap: () => setState(() => _selectedPackage = pkg),
@@ -484,7 +501,7 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
 
     final price = _selectedPackage?.storeProduct.priceString ?? '';
     final trial = _selectedPackage != null
-        ? _trialLabel(_selectedPackage!)
+        ? _trialLabel(_selectedPackage!, l10n)
         : null;
     final label = trial != null
         ? l10n.paywallStartFreeTrial

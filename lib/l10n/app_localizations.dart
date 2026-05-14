@@ -824,6 +824,12 @@ abstract class AppLocalizations {
   /// **'Comenzar prueba gratis'**
   String get paywallStartFreeTrial;
 
+  /// No description provided for @paywallFreeTrial.
+  ///
+  /// In es, this message translates to:
+  /// **'Prueba gratuita de {days} días'**
+  String paywallFreeTrial(int days);
+
   /// No description provided for @paywallRestorePurchases.
   ///
   /// In es, this message translates to:

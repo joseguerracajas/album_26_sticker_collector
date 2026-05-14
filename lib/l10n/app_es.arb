@@ -180,6 +180,12 @@
   "paywallPackageSixMonth": "Semestral",
   "paywallBestOption": "Mejor opción",
   "paywallStartFreeTrial": "Comenzar prueba gratis",
+  "paywallFreeTrial": "Prueba gratuita de {days} días",
+  "@paywallFreeTrial": {
+    "placeholders": {
+      "days": {"type": "int"}
+    }
+  },
   "paywallRestorePurchases": "Restaurar compras",
   "paywallCancelAnytime": "Cancela cuando quieras. Sin compromisos.",
   "paywallLoadError": "No se pudieron cargar los planes. Verifica tu conexión.",

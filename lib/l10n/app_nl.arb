@@ -171,6 +171,14 @@
   "paywallPackageTwoMonth": "Elke 2 maanden",
   "paywallPackageThreeMonth": "Elke 3 maanden",
   "paywallPackageSixMonth": "Elke 6 maanden",
+  "paywallBestOption": "Beste optie",
+  "paywallStartFreeTrial": "Gratis proefperiode starten",
+  "paywallFreeTrial": "{days} dagen gratis uitproberen",
+  "@paywallFreeTrial": {
+    "placeholders": {
+      "days": {"type": "int"}
+    }
+  },
   "paywallRestorePurchases": "Aankopen herstellen",
   "paywallCancelAnytime": "Op elk moment opzeggen. Geen verplichtingen.",
   "paywallLoadError": "Kon plannen niet laden. Controleer je verbinding.",

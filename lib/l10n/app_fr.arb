@@ -171,6 +171,14 @@
   "paywallPackageTwoMonth": "Tous les 2 mois",
   "paywallPackageThreeMonth": "Tous les 3 mois",
   "paywallPackageSixMonth": "Tous les 6 mois",
+  "paywallBestOption": "Meilleure option",
+  "paywallStartFreeTrial": "Commencer l'essai gratuit",
+  "paywallFreeTrial": "Essai gratuit de {days} jours",
+  "@paywallFreeTrial": {
+    "placeholders": {
+      "days": {"type": "int"}
+    }
+  },
   "paywallRestorePurchases": "Restaurer les achats",
   "paywallCancelAnytime": "Annulez à tout moment. Sans engagement.",
   "paywallLoadError": "Impossible de charger les plans. Vérifiez votre connexion.",

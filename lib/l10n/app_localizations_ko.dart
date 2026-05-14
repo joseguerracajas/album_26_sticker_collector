@@ -380,10 +380,15 @@ class AppLocalizationsKo extends AppLocalizations {
   String get paywallPackageSixMonth => '6개월마다';
 
   @override
-  String get paywallBestOption => 'Mejor opción';
+  String get paywallBestOption => '최고의 선택';
 
   @override
-  String get paywallStartFreeTrial => 'Comenzar prueba gratis';
+  String get paywallStartFreeTrial => '무료 체험 시작';
+
+  @override
+  String paywallFreeTrial(int days) {
+    return '$days일 무료 체험';
+  }
 
   @override
   String get paywallRestorePurchases => '구매 복원';

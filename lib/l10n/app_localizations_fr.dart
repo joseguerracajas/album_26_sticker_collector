@@ -401,10 +401,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get paywallPackageSixMonth => 'Tous les 6 mois';
 
   @override
-  String get paywallBestOption => 'Mejor opción';
+  String get paywallBestOption => 'Meilleure option';
 
   @override
-  String get paywallStartFreeTrial => 'Comenzar prueba gratis';
+  String get paywallStartFreeTrial => 'Commencer l\'essai gratuit';
+
+  @override
+  String paywallFreeTrial(int days) {
+    return 'Essai gratuit de $days jours';
+  }
 
   @override
   String get paywallRestorePurchases => 'Restaurer les achats';

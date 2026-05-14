@@ -171,6 +171,14 @@
   "paywallPackageTwoMonth": "Her 2 ayda bir",
   "paywallPackageThreeMonth": "Her 3 ayda bir",
   "paywallPackageSixMonth": "Her 6 ayda bir",
+  "paywallBestOption": "En iyi seçenek",
+  "paywallStartFreeTrial": "Ücretsiz denemeyi başlat",
+  "paywallFreeTrial": "{days} günlük ücretsiz deneme",
+  "@paywallFreeTrial": {
+    "placeholders": {
+      "days": {"type": "int"}
+    }
+  },
   "paywallRestorePurchases": "Satın alımları geri yükle",
   "paywallCancelAnytime": "İstediğinizde iptal edin. Taahhüt yok.",
   "paywallLoadError": "Planlar yüklenemedi. Bağlantınızı kontrol edin.",

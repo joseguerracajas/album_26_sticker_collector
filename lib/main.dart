@@ -123,10 +123,7 @@ class MainApp extends StatelessWidget {
         ),
       ),
       home: CustomUpgradeAlert(
-        upgrader: Upgrader(
-          debugDisplayAlways: true, // TODO: quitar antes de producción
-          durationUntilAlertAgain: const Duration(days: 1),
-        ),
+        upgrader: Upgrader(durationUntilAlertAgain: const Duration(days: 1)),
         child: const AppShell(),
       ),
     );

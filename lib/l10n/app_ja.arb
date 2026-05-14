@@ -171,6 +171,14 @@
   "paywallPackageTwoMonth": "2ヶ月ごと",
   "paywallPackageThreeMonth": "3ヶ月ごと",
   "paywallPackageSixMonth": "6ヶ月ごと",
+  "paywallBestOption": "ベストオプション",
+  "paywallStartFreeTrial": "無料トライアルを開始",
+  "paywallFreeTrial": "{days}日間無料トライアル",
+  "@paywallFreeTrial": {
+    "placeholders": {
+      "days": {"type": "int"}
+    }
+  },
   "paywallRestorePurchases": "購入を復元",
   "paywallCancelAnytime": "いつでもキャンセル可能。コミットメント不要。",
   "paywallLoadError": "プランを読み込めませんでした。接続を確認してください。",

@@ -171,6 +171,14 @@
   "paywallPackageTwoMonth": "هر ۲ ماه",
   "paywallPackageThreeMonth": "هر ۳ ماه",
   "paywallPackageSixMonth": "هر ۶ ماه",
+  "paywallBestOption": "بهترین گزینه",
+  "paywallStartFreeTrial": "شروع دوره آزمایشی رایگان",
+  "paywallFreeTrial": "آزمایش رایگان {days} روزه",
+  "@paywallFreeTrial": {
+    "placeholders": {
+      "days": {"type": "int"}
+    }
+  },
   "paywallRestorePurchases": "بازیابی خریدها",
   "paywallCancelAnytime": "هر زمان لغو کنید. بدون تعهد.",
   "paywallLoadError": "بارگذاری طرح‌ها امکان‌پذیر نیست. اتصال خود را بررسی کنید.",

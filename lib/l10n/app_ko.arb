@@ -171,6 +171,14 @@
   "paywallPackageTwoMonth": "2개월마다",
   "paywallPackageThreeMonth": "3개월마다",
   "paywallPackageSixMonth": "6개월마다",
+  "paywallBestOption": "최고의 선택",
+  "paywallStartFreeTrial": "무료 체험 시작",
+  "paywallFreeTrial": "{days}일 무료 체험",
+  "@paywallFreeTrial": {
+    "placeholders": {
+      "days": {"type": "int"}
+    }
+  },
   "paywallRestorePurchases": "구매 복원",
   "paywallCancelAnytime": "언제든지 취소 가능. 약정 없음.",
   "paywallLoadError": "플랜을 불러올 수 없습니다. 연결을 확인해주세요.",
