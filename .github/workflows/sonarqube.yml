@@ -33,11 +33,11 @@ jobs:
         run: flutter pub get
 
       - name: "🔎 Flutter Analyze"
-        run: flutter analyze --no-fatal-infos > flutter_analyze_report.txt 2>&1 || true
+        run: flutter analyze --no-fatal-infos 2>&1 | tee flutter_analyze_report.txt
 
       - name: "🧪 Run tests with coverage"
         run: |
-          flutter test --coverage --machine > test_report.json 2>&1 || true
+          flutter test --coverage --machine 2>&1 | tee test_report.json
 
       - name: "📊 SonarQube Scan"
         uses: SonarSource/sonarqube-scan-action@v5

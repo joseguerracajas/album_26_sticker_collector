@@ -51,6 +51,8 @@ jobs:
 
       - name: "📋 Generate User Stories"
         id: generate
+        env:
+          FEATURE_INPUT: ${{ github.event.inputs.feature_description || github.event.issue.body }}
         run: |
           echo "## 🔵 Product Manager Agent Output" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
@@ -61,7 +63,7 @@ jobs:
           echo "- UI Flow Description" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Feature Request:" >> $GITHUB_STEP_SUMMARY
-          echo "${{ github.event.inputs.feature_description || github.event.issue.body }}" >> $GITHUB_STEP_SUMMARY
+          printf '%s\n' "$FEATURE_INPUT" >> $GITHUB_STEP_SUMMARY
 
       - name: "📝 Create Stories PR"
         run: |
