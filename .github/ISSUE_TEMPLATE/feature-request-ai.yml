@@ -1,0 +1,79 @@
+name: "🤖 Feature Request (AI Pipeline)"
+description: "Request a new feature to be built by the AI Agent Pipeline"
+title: "[AI Pipeline] "
+labels: ["ai-pipeline", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🤖 AI Agent Pipeline — Feature Request
+        
+        Describe your feature idea below. The AI pipeline will:
+        1. 🔵 Generate user stories (Product Manager Agent)
+        2. 🟢 Generate backend changes (Backend Agent)
+        3. 🟡 Generate frontend code (Frontend Agent)
+        4. 🔴 Configure CI/CD (DevOps Agent)
+        5. 🟣 Run quality analysis (QA Agent)
+        
+        **You (the orchestrator) will approve each stage before it proceeds.**
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: "📝 Feature Description"
+      description: "Describe what you want to build in natural language"
+      placeholder: |
+        Example: "Quiero agregar un sistema de logros donde los usuarios
+        reciban badges cuando completen todos los cromos de un país o 
+        categoría. Los logros deben mostrarse en el perfil del usuario."
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: "🔍 Additional Context"
+      description: "Any extra details, mockups, or references"
+      placeholder: |
+        - Reference to similar features
+        - Design mockups or wireframes
+        - Priority or timeline expectations
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "⚡ Priority"
+      options:
+        - "🔴 High — Needed ASAP"
+        - "🟡 Medium — Next sprint"
+        - "🟢 Low — Nice to have"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: "📐 Estimated Scope"
+      options:
+        - "Small — UI only, no backend changes"
+        - "Medium — New screen + backend changes"
+        - "Large — New feature with multiple screens + backend + offline"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: areas
+    attributes:
+      label: "🏗️ Areas Affected"
+      options:
+        - label: "Database / Supabase schema"
+        - label: "Edge Functions"
+        - label: "UI / Flutter screens"
+        - label: "Offline sync (Brick models)"
+        - label: "Authentication"
+        - label: "Trading system"
+        - label: "OCR / Camera"
+        - label: "Monetization"
+        - label: "Localization (i18n)"
