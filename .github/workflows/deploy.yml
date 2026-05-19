@@ -1,0 +1,177 @@
+# =============================================================================
+# 🚀 Build & Deploy Pipeline
+# =============================================================================
+# Builds the Flutter app for Android and iOS, deploys Supabase changes.
+# Triggered on merge to main or manual dispatch.
+# =============================================================================
+
+name: "🚀 Build & Deploy"
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      deploy_target:
+        description: "What to deploy"
+        required: true
+        type: choice
+        options:
+          - all
+          - app-only
+          - supabase-only
+
+jobs:
+  # ===========================================================================
+  # Pre-deploy checks
+  # ===========================================================================
+  pre-checks:
+    name: "✅ Pre-deploy Checks"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "🎯 Setup Flutter"
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.11.3"
+          channel: "stable"
+          cache: true
+
+      - name: "📦 Install dependencies"
+        run: flutter pub get
+
+      - name: "🔎 Analyze"
+        run: flutter analyze
+
+      - name: "🧪 Test"
+        run: flutter test
+
+  # ===========================================================================
+  # Deploy Supabase
+  # ===========================================================================
+  deploy-supabase:
+    name: "🗄️ Deploy Supabase"
+    needs: pre-checks
+    if: |
+      github.event_name == 'push' || 
+      inputs.deploy_target == 'all' || 
+      inputs.deploy_target == 'supabase-only'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "🔧 Setup Supabase CLI"
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: "🗄️ Deploy Migrations"
+        run: |
+          supabase link --project-ref ${{ secrets.SUPABASE_PROJECT_REF }}
+          supabase db push
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+
+      - name: "⚡ Deploy Edge Functions"
+        run: |
+          supabase functions deploy --project-ref ${{ secrets.SUPABASE_PROJECT_REF }}
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+
+  # ===========================================================================
+  # Build Android
+  # ===========================================================================
+  build-android:
+    name: "🤖 Build Android"
+    needs: pre-checks
+    if: |
+      github.event_name == 'push' || 
+      inputs.deploy_target == 'all' || 
+      inputs.deploy_target == 'app-only'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "🎯 Setup Flutter"
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.11.3"
+          channel: "stable"
+          cache: true
+
+      - name: "☕ Setup Java"
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: "📦 Install dependencies"
+        run: flutter pub get
+
+      - name: "🏗️ Build App Bundle"
+        run: flutter build appbundle --release
+        env:
+          SIGNING_KEY: ${{ secrets.ANDROID_SIGNING_KEY }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          STORE_PASSWORD: ${{ secrets.ANDROID_STORE_PASSWORD }}
+
+      - name: "📤 Upload artifact"
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-release
+          path: build/app/outputs/bundle/release/app-release.aab
+
+  # ===========================================================================
+  # Build iOS
+  # ===========================================================================
+  build-ios:
+    name: "🍎 Build iOS"
+    needs: pre-checks
+    if: |
+      github.event_name == 'push' || 
+      inputs.deploy_target == 'all' || 
+      inputs.deploy_target == 'app-only'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "🎯 Setup Flutter"
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.11.3"
+          channel: "stable"
+          cache: true
+
+      - name: "📦 Install dependencies"
+        run: flutter pub get
+
+      - name: "🏗️ Build IPA"
+        run: flutter build ipa --release --no-codesign
+
+      - name: "📤 Upload artifact"
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-release
+          path: build/ios/ipa/*.ipa
+
+  # ===========================================================================
+  # Deploy Summary
+  # ===========================================================================
+  deploy-summary:
+    name: "📊 Deploy Summary"
+    needs: [deploy-supabase, build-android, build-ios]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: "📝 Summary"
+        run: |
+          echo "## 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Component | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Supabase Migrations | ${{ needs.deploy-supabase.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Android Build | ${{ needs.build-android.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| iOS Build | ${{ needs.build-ios.result }} |" >> $GITHUB_STEP_SUMMARY

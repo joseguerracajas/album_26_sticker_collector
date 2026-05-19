@@ -1,0 +1,62 @@
+# =============================================================================
+# 🤖 Copilot Agent Configuration
+# =============================================================================
+# This file configures GitHub Copilot to understand the multi-agent pipeline
+# and assist each agent with proper context.
+# =============================================================================
+
+agents:
+  product-manager:
+    description: "Generates user stories and acceptance criteria"
+    prompt_file: ".github/agents/product-manager.md"
+    triggers:
+      - label: "ai-pipeline"
+      - label: "needs-stories"
+
+  backend-developer:
+    description: "Generates Supabase migrations and RLS policies"
+    prompt_file: ".github/agents/backend-developer.md"
+    triggers:
+      - label: "needs-backend"
+
+  frontend-developer:
+    description: "Generates Flutter code (Brick, Riverpod, UI)"
+    prompt_file: ".github/agents/frontend-developer.md"
+    triggers:
+      - label: "needs-frontend"
+
+  devops-engineer:
+    description: "Manages CI/CD and deployment configuration"
+    prompt_file: ".github/agents/devops-engineer.md"
+    triggers:
+      - label: "needs-devops"
+
+  qa-engineer:
+    description: "Runs quality analysis and generates tests"
+    prompt_file: ".github/agents/qa-engineer.md"
+    triggers:
+      - label: "needs-qa"
+
+# Pipeline stages
+pipeline:
+  stages:
+    - name: "Product Manager"
+      agent: product-manager
+      approval_required: true
+      
+    - name: "Backend Developer"
+      agent: backend-developer
+      approval_required: true
+      
+    - name: "Frontend Developer"
+      agent: frontend-developer
+      approval_required: true
+      
+    - name: "DevOps Engineer"
+      agent: devops-engineer
+      approval_required: false
+      
+    - name: "QA Engineer"
+      agent: qa-engineer
+      approval_required: false
+      quality_gate: true
