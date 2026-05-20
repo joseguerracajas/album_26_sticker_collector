@@ -190,21 +190,12 @@ jobs:
           git push origin ${{ env.BRANCH_NAME }}
 
           if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
-            printf '## 🔵 Product Manager Agent — User Stories\n\n%s\n\n---\n🌿 Branch: [%s](%s)\n\n**Feedback commands:**\n- `/feedback: texto` — reescribe HU desde cero (cancela todo)\n- `/feedback-backend: texto` — re-corre solo el agente Backend\n- `/feedback-frontend: texto` — re-corre solo el agente Frontend\n' "$HU" "${{ env.BRANCH_NAME }}" "$BRANCH_URL" > /tmp/pm-comment.md
+            # Merge PM output + pipeline status into a single comment (avoids triggering an extra issue_comment run)
+            printf '## 🔵 Product Manager Agent — User Stories\n\n%s\n\n---\n🌿 Branch: [%s](%s)\n\n**Feedback commands:**\n- `/feedback: texto` — reescribe HU desde cero (cancela todo)\n- `/feedback-backend: texto` — re-corre solo el agente Backend\n- `/feedback-frontend: texto` — re-corre solo el agente Frontend\n\n---\n\n## 🤖 Pipeline Status\n\n| Stage | Status |\n|-------|--------|\n| 🔵 Product Manager | ✅ Done — review above |\n| 🟢 Backend Developer | ⏸️ Awaiting your approval |\n| 🟡 Frontend Developer | ⏸️ Awaiting approval |\n| 🔴 DevOps | ⏸️ Pending |\n| 🟣 QA Engineer | ⏸️ Pending |\n\n> Pipeline started by: @%s\n> Feature branch: `%s`\n' "$HU" "${{ env.BRANCH_NAME }}" "$BRANCH_URL" "${{ github.actor }}" "${{ env.BRANCH_NAME }}" > /tmp/pm-comment.md
             gh issue comment "${{ env.ISSUE_NUMBER }}" \
               --repo ${{ env.GH_REPO }} \
               --body-file /tmp/pm-comment.md
           fi
-
-      - name: "💬 Comment pipeline started"
-        if: github.event_name == 'issues'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          printf '## 🤖 AI Pipeline Started\n\n| Stage | Status |\n|-------|--------|\n| 🔵 Product Manager | ✅ Done — review above |\n| 🟢 Backend Developer | ⏸️ Awaiting your approval |\n| 🟡 Frontend Developer | ⏸️ Awaiting approval |\n| 🔴 DevOps | ⏸️ Pending |\n| 🟣 QA Engineer | ⏸️ Pending |\n\n> Pipeline started by: @%s\n> Feature branch: `%s`\n' "${{ github.actor }}" "${{ env.BRANCH_NAME }}" > /tmp/pipeline-started.md
-          gh issue comment ${{ env.ISSUE_NUMBER }} \
-            --repo ${{ env.GH_REPO }} \
-            --body-file /tmp/pipeline-started.md
 
   # ===========================================================================
   # Stage 2: Approval Gate — User Stories
