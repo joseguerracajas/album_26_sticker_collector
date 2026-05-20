@@ -6,7 +6,7 @@
 # Feedback loop: comment "/feedback: <text>" on the issue before each approval.
 # Generated code is committed to a feature branch; PR is created after QA.
 #
-# Flow: Issue → PM (HU) → Backend (Migrations) → Frontend (Code) → QA → PR → Deploy → Done
+# Flow: Issue ➔ PM (HU) ➔ Backend (Migrations) ➔ Frontend (Code) ➔ QA ➔ PR ➔ Deploy ➔ Done
 # =============================================================================
 
 name: "🤖 AI Agent Pipeline"
@@ -24,9 +24,8 @@ on:
         type: string
 
 concurrency:
-  # Bot comments (e.g. agent HU/summary posts) get a unique group so they never
-  # cancel a real pipeline run waiting at an approval gate.
-  group: ${{ (github.event_name == 'issue_comment' && github.event.comment.user.login == 'github-actions[bot]') && format('bot-noop-{0}', github.run_id) || format('ai-pipeline-{0}', github.event.issue.number || github.run_id) }}
+  # Crash-proof concurrency group. Safely handles events without comments or issues.
+  group: ${{ github.event.sender.login == 'github-actions[bot]' && format('bot-noop-{0}', github.run_id) || format('ai-pipeline-{0}', (github.event.issue != null && github.event.issue.number) || github.run_id) }}
   cancel-in-progress: true
 
 permissions:
@@ -36,8 +35,8 @@ permissions:
   repository-projects: write
 
 env:
-  BRANCH_NAME: ai/issue-${{ github.event.issue.number || github.run_id }}
-  ISSUE_NUMBER: ${{ github.event.issue.number || '' }}
+  BRANCH_NAME: ai/issue-${{ (github.event.issue != null && github.event.issue.number) || github.run_id }}
+  ISSUE_NUMBER: ${{ (github.event.issue != null && github.event.issue.number) || '' }}
   GH_REPO: ${{ github.repository }}
 
 jobs:
@@ -53,7 +52,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PROJECT_TOKEN || github.token }}
         run: |
-          ISSUE_NODE_ID="${{ github.event.issue.node_id }}"
+          ISSUE_NODE_ID="${{ (github.event.issue != null && github.event.issue.node_id) || '' }}"
 
           PROJECT_DATA=$(gh api graphql -f query='
             query {
@@ -83,7 +82,7 @@ jobs:
 
           gh api graphql -f query="mutation { updateProjectV2ItemFieldValue(input: { projectId: \"$PROJECT_ID\" itemId: \"$ITEM_ID\" fieldId: \"$STATUS_FIELD_ID\" value: { singleSelectOptionId: \"$TODO_ID\" } }) { projectV2Item { id } } }"
 
-          echo "✅ Issue #${{ github.event.issue.number }} added to Project Board as Todo"
+          echo "✅ Issue #${{ env.ISSUE_NUMBER }} added to Project Board as Todo"
 
   # ===========================================================================
   # Stage 1: Product Manager Agent — LLM generates User Stories
@@ -91,13 +90,11 @@ jobs:
   product-manager:
     name: "🔵 Product Manager Agent"
     if: |
-      (github.event_name == 'issues' &&
-        (github.event.action == 'labeled' || github.event.action == 'opened') &&
-        contains(github.event.issue.labels.*.name, 'ai-pipeline')) ||
-      (github.event_name == 'issue_comment' &&
-        startsWith(github.event.comment.body, '/feedback:') &&
-        contains(github.event.issue.labels.*.name, 'ai-pipeline')) ||
-      github.event_name == 'workflow_dispatch'
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.issue != null && contains(toJson(github.event.issue), 'ai-pipeline') && (
+        (github.event_name == 'issues' && (github.event.action == 'labeled' || github.event.action == 'opened')) ||
+        (github.event_name == 'issue_comment' && startsWith(github.event.comment != null && github.event.comment.body || '', '/feedback:'))
+      ))
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -119,7 +116,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PROJECT_TOKEN || github.token }}
         run: |
-          ISSUE_NODE_ID="${{ github.event.issue.node_id }}"
+          ISSUE_NODE_ID="${{ (github.event.issue != null && github.event.issue.node_id) || '' }}"
           PROJECT_DATA=$(gh api graphql -f query='
             query {
               user(login: "joseguerracajas") {
@@ -144,15 +141,14 @@ jobs:
           ITEM_DATA=$(gh api graphql -f query="mutation { addProjectV2ItemById(input: {projectId: \"$PROJECT_ID\", contentId: \"$ISSUE_NODE_ID\"}) { item { id } } }")
           ITEM_ID=$(echo "$ITEM_DATA" | jq -r '.data.addProjectV2ItemById.item.id')
           gh api graphql -f query="mutation { updateProjectV2ItemFieldValue(input: { projectId: \"$PROJECT_ID\" itemId: \"$ITEM_ID\" fieldId: \"$STATUS_FIELD_ID\" value: { singleSelectOptionId: \"$TODO_ID\" } }) { projectV2Item { id } } }"
-          echo "✅ Issue #${{ github.event.issue.number }} set to Todo on Project Board"
+          echo "✅ Issue #${{ env.ISSUE_NUMBER }} set to Todo on Project Board"
 
       - name: "🔵 Generate User Stories with LLM"
         env:
           GITHUB_TOKEN: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
-          FEATURE_INPUT: ${{ github.event.issue.body || inputs.feature_description }}
+          FEATURE_INPUT: ${{ (github.event.issue != null && github.event.issue.body) || inputs.feature_description }}
         run: |
-
           README=$(cat README.md | head -c 8000)
           AGENT_PROMPT=$(cat .github/agents/product-manager.md)
           ARB_CONTEXT=$(find lib/l10n -name "*.arb" 2>/dev/null | sort | \
@@ -189,7 +185,7 @@ jobs:
           mkdir -p docs/ai-output
           echo "$HU" > docs/ai-output/user-stories.md
           git add docs/ai-output/user-stories.md
-          git commit -m "docs: [PM Agent] user stories for issue #${{ env.ISSUE_NUMBER }} [skip ci]"
+          git commit -m "docs: [PM Agent] user stories for issue #${{ env.ISSUE_NUMBER }} [skip ci]" || echo "No changes to commit"
           git push origin ${{ env.BRANCH_NAME }}
 
           if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
@@ -229,7 +225,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PROJECT_TOKEN || github.token }}
         run: |
-          ISSUE_NODE_ID="${{ github.event.issue.node_id }}"
+          ISSUE_NODE_ID="${{ (github.event.issue != null && github.event.issue.node_id) || '' }}"
           PROJECT_DATA=$(gh api graphql -f query='
             query {
               user(login: "joseguerracajas") {
@@ -272,8 +268,9 @@ jobs:
       always() && (
         needs.approve-stories.result == 'success' ||
         (github.event_name == 'issue_comment' &&
-          startsWith(github.event.comment.body, '/feedback-backend:') &&
-          contains(github.event.issue.labels.*.name, 'ai-pipeline'))
+          startsWith(github.event.comment != null && github.event.comment.body || '', '/feedback-backend:') &&
+          github.event.issue != null &&
+          contains(toJson(github.event.issue), 'ai-pipeline'))
       )
     steps:
       - uses: actions/checkout@v4
@@ -395,8 +392,9 @@ jobs:
       always() && (
         needs.approve-backend.result == 'success' ||
         (github.event_name == 'issue_comment' &&
-          startsWith(github.event.comment.body, '/feedback-frontend:') &&
-          contains(github.event.issue.labels.*.name, 'ai-pipeline'))
+          startsWith(github.event.comment != null && github.event.comment.body || '', '/feedback-frontend:') &&
+          github.event.issue != null &&
+          contains(toJson(github.event.issue), 'ai-pipeline'))
       )
     steps:
       - uses: actions/checkout@v4
@@ -423,6 +421,31 @@ jobs:
             xargs -I{} sh -c 'echo "=== {} ==="; cat "{}"; echo ""' 2>/dev/null | head -c 3000 || echo "No ARB files")
           BRANCH_URL="https://github.com/${{ env.GH_REPO }}/tree/${{ env.BRANCH_NAME }}"
 
+          # ===================================================================
+          # 🔍 NUEVA LÓGICA: EXTRAER E INYECTAR CÓDIGO DEL ARCHIVO REAL A MODIFICAR
+          # ===================================================================
+          python3 -c "
+          import re, os
+          try:
+              with open('docs/ai-output/user-stories.md', 'r') as f:
+                  content = f.read()
+              paths = re.findall(r'lib/[a-zA-Z0-9_\-/]+\.dart', content)
+              paths = list(set(paths))
+              context_data = ''
+              for p in paths:
+                  if os.path.exists(p):
+                      with open(p, 'r') as src:
+                          context_data += f'### Existing File Current Content ({p}):\\n\`\`\`dart\\n{src.read()}\\n\`\`\`\\n\\n'
+                          print(f'✅ Inyectando contexto real para: {p}')
+              with open('/tmp/existing_code_context.txt', 'w') as out:
+                  out.write(context_data if context_data else 'No existing files explicitly identified for modification in this story.')
+          except Exception as e:
+              with open('/tmp/existing_code_context.txt', 'w') as out:
+                  out.write('Error gathering files context: ' + str(e))
+          "
+          EXISTING_CODE_CONTEXT=$(cat /tmp/existing_code_context.txt)
+          # ===================================================================
+
           EXISTING_FEATURE=$(find lib/features -name "*.dart" 2>/dev/null | sort | head -15 | \
             xargs -I{} sh -c 'echo "=== FILE: {} ==="; cat "{}"; echo ""' 2>/dev/null | head -c 8000 || echo "No existing features")
           EXISTING_FILES_LIST=$(find lib/features -name "*.dart" 2>/dev/null | sort | head -40 | tr '\n' ',' || echo "none")
@@ -434,13 +457,16 @@ jobs:
               --json comments \
               --jq '[.comments[] | select(.body | (startswith("/feedback-frontend:") or startswith("/feedback:"))) | .body | ltrimstr("/feedback-frontend:") | ltrimstr("/feedback:")] | last // ""' 2>/dev/null || echo "")
           fi
+
+          USER_MSG="## Approved User Stories\n\n${HU}"
           USER_MSG="${USER_MSG}\n\n## Backend Agent Output (Supabase Migrations Generated)\n\n${BACKEND_CONTEXT}"
           if [ -n "$FEEDBACK" ]; then
             USER_MSG="${USER_MSG}\n\n## Orchestrator Feedback — REWRITE your entire output incorporating this feedback\n\n${FEEDBACK}\n\n> Rewrite from scratch including the feedback above. Do not just append."
           fi
           USER_MSG="${USER_MSG}\n\n## Localization context (ARB files)\n\n${ARB_CONTEXT}"
+          USER_MSG="${USER_MSG}\n\n## Existing Files to Modify (Real Current Code)\n\n${EXISTING_CODE_CONTEXT}"
           USER_MSG="${USER_MSG}\n\n## Existing Dart Files in Project\n\n${EXISTING_FILES_LIST}"
-          USER_MSG="${USER_MSG}\n\n## Existing Feature Code (modify these files if referenced in stories)\n\n${EXISTING_FEATURE}"
+          USER_MSG="${USER_MSG}\n\n## Existing Feature Code (for structure patterns)\n\n${EXISTING_FEATURE}"
           USER_MSG="${USER_MSG}\n\n## Project Context (README)\n\n${README}"
           USER_MSG="${USER_MSG}\n\n---\nIMPORTANT: Respond ONLY with valid JSON (no markdown, no extra text):\n{\"files\": [{\"path\": \"lib/features/feature_name/data/models/my_model.dart\", \"content\": \"// Complete Dart file content here\"}], \"summary\": \"Brief description of all generated files\"}\nArchitecture rules:\n- Feature-based: lib/features/{name}/data/, domain/, presentation/\n- Use Brick for offline-first models\n- Use Riverpod for state management\n- Follow the patterns from existing features shown above"
 
@@ -476,7 +502,7 @@ jobs:
               os.makedirs(os.path.dirname(path), exist_ok=True)
               with open(path, 'w') as fp:
                   fp.write(f['content'])
-              print(f'Created: {path}')
+              print(f'Created/Modified: {path}')
           PYEOF
           echo "$LLM_JSON" | python3 /tmp/create_frontend_files.py
 
@@ -488,7 +514,7 @@ jobs:
           git push origin ${{ env.BRANCH_NAME }}
 
           if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
-            printf '## 🟡 Frontend Developer Agent — Flutter Code\n\n**Summary:** %s\n\n**Files generated:**\n%s\n\n---\n🌿 Branch: [%s](%s)\n\n**Feedback:** `/feedback-frontend: texto` para reescribir solo este paso.\n' "$SUMMARY" "$FILES_LIST" "${{ env.BRANCH_NAME }}" "$BRANCH_URL" > /tmp/frontend-comment.md
+            printf '## 🟡 Frontend Developer Agent — Flutter Code\n\n**Summary:** %s\n\n**Files generated / modified:**\n%s\n\n---\n> **To provide feedback before approving**, comment: `/feedback-frontend: your notes here`\n' "$SUMMARY" "$FILES_LIST" > /tmp/frontend-comment.md
             gh issue comment "${{ env.ISSUE_NUMBER }}" \
               --repo ${{ env.GH_REPO }} \
               --body-file /tmp/frontend-comment.md
