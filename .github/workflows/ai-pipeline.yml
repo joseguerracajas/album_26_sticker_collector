@@ -86,7 +86,8 @@ jobs:
   product-manager:
     name: "🔵 Product Manager Agent"
     if: |
-      (github.event_name == 'issues' && github.event.action == 'labeled' &&
+      (github.event_name == 'issues' &&
+        (github.event.action == 'labeled' || github.event.action == 'opened') &&
         contains(github.event.issue.labels.*.name, 'ai-pipeline')) ||
       github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
@@ -103,7 +104,7 @@ jobs:
           git checkout -b ${{ env.BRANCH_NAME }} 2>/dev/null || git checkout ${{ env.BRANCH_NAME }}
           git push -u origin ${{ env.BRANCH_NAME }} 2>/dev/null || true
 
-      - name: "📌 Move to In Progress on Project Board"
+      - name: "📌 Add to Project Board (Todo)"
         if: github.event_name == 'issues'
         env:
           GH_TOKEN: ${{ secrets.PROJECT_TOKEN }}
@@ -129,10 +130,11 @@ jobs:
           ')
           PROJECT_ID=$(echo "$PROJECT_DATA" | jq -r '.data.user.projectV2.id')
           STATUS_FIELD_ID=$(echo "$PROJECT_DATA" | jq -r '[.data.user.projectV2.fields.nodes[] | select(.name == "Status")] | .[0].id')
-          IN_PROGRESS_ID=$(echo "$PROJECT_DATA" | jq -r '[.data.user.projectV2.fields.nodes[] | select(.name == "Status")] | .[0].options[] | select(.name == "In Progress") | .id')
+          TODO_ID=$(echo "$PROJECT_DATA" | jq -r '[.data.user.projectV2.fields.nodes[] | select(.name == "Status")] | .[0].options[] | select(.name == "Todo") | .id')
           ITEM_DATA=$(gh api graphql -f query="mutation { addProjectV2ItemById(input: {projectId: \"$PROJECT_ID\", contentId: \"$ISSUE_NODE_ID\"}) { item { id } } }")
           ITEM_ID=$(echo "$ITEM_DATA" | jq -r '.data.addProjectV2ItemById.item.id')
-          gh api graphql -f query="mutation { updateProjectV2ItemFieldValue(input: { projectId: \"$PROJECT_ID\" itemId: \"$ITEM_ID\" fieldId: \"$STATUS_FIELD_ID\" value: { singleSelectOptionId: \"$IN_PROGRESS_ID\" } }) { projectV2Item { id } } }"
+          gh api graphql -f query="mutation { updateProjectV2ItemFieldValue(input: { projectId: \"$PROJECT_ID\" itemId: \"$ITEM_ID\" fieldId: \"$STATUS_FIELD_ID\" value: { singleSelectOptionId: \"$TODO_ID\" } }) { projectV2Item { id } } }"
+          echo "✅ Issue #${{ github.event.issue.number }} set to Todo on Project Board"
 
       - name: "🔵 Generate User Stories with LLM"
         env:
@@ -219,6 +221,43 @@ ${HU}
           echo "## 🟣 Approval Required — User Stories" >> $GITHUB_STEP_SUMMARY
           echo "Review the User Stories posted as an issue comment." >> $GITHUB_STEP_SUMMARY
           echo "To add feedback before approving, comment \`/feedback: ...\` on the issue." >> $GITHUB_STEP_SUMMARY
+
+      - name: "📌 Move to In Progress on Project Board"
+        if: env.ISSUE_NUMBER != ''
+        env:
+          GH_TOKEN: ${{ secrets.PROJECT_TOKEN }}
+        run: |
+          ISSUE_NODE_ID="${{ github.event.issue.node_id }}"
+          PROJECT_DATA=$(gh api graphql -f query='
+            query {
+              user(login: "joseguerracajas") {
+                projectV2(number: 1) {
+                  id
+                  fields(first: 20) {
+                    nodes {
+                      ... on ProjectV2SingleSelectField {
+                        id
+                        name
+                        options { id name }
+                      }
+                    }
+                  }
+                  items(first: 100) {
+                    nodes {
+                      id
+                      content { ... on Issue { id } }
+                    }
+                  }
+                }
+              }
+            }
+          ')
+          PROJECT_ID=$(echo "$PROJECT_DATA" | jq -r '.data.user.projectV2.id')
+          STATUS_FIELD_ID=$(echo "$PROJECT_DATA" | jq -r '[.data.user.projectV2.fields.nodes[] | select(.name == "Status")] | .[0].id')
+          IN_PROGRESS_ID=$(echo "$PROJECT_DATA" | jq -r '[.data.user.projectV2.fields.nodes[] | select(.name == "Status")] | .[0].options[] | select(.name == "In Progress") | .id')
+          ITEM_ID=$(echo "$PROJECT_DATA" | jq -r --arg ISSUE_ID "$ISSUE_NODE_ID" '.data.user.projectV2.items.nodes[] | select(.content.id == $ISSUE_ID) | .id')
+          gh api graphql -f query="mutation { updateProjectV2ItemFieldValue(input: { projectId: \"$PROJECT_ID\" itemId: \"$ITEM_ID\" fieldId: \"$STATUS_FIELD_ID\" value: { singleSelectOptionId: \"$IN_PROGRESS_ID\" } }) { projectV2Item { id } } }"
+          echo "✅ Issue #${{ env.ISSUE_NUMBER }} moved to In Progress after stories approved"
 
   # ===========================================================================
   # Stage 3: Backend Developer Agent — LLM generates Supabase changes
