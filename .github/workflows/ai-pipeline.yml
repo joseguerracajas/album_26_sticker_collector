@@ -150,8 +150,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
+          FEATURE_INPUT: ${{ github.event.issue.body || inputs.feature_description }}
         run: |
-          FEATURE_INPUT="${{ github.event.issue.body || inputs.feature_description }}"
 
           README=$(cat README.md | head -c 8000)
           AGENT_PROMPT=$(cat .github/agents/product-manager.md)
