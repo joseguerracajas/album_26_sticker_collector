@@ -190,7 +190,7 @@ jobs:
             fi
             COMBINED_PROMPT="${AGENT_PROMPT}\n\n${USER_MSG}"
             RESPONSE=$(curl -s -X POST \
-              "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${GEMINI_API_KEY}" \
+              "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}" \
               -H "Content-Type: application/json" \
               -d "$(jq -n --arg p "$COMBINED_PROMPT" '{contents:[{parts:[{text:$p}]}],generationConfig:{temperature:0.3,maxOutputTokens:4000}}')")
 
@@ -363,7 +363,7 @@ jobs:
             echo "🤖 Backend using Gemini 1.5 Pro"
             COMBINED_PROMPT="${AGENT_PROMPT}\n\n${USER_MSG}"
             RESPONSE=$(curl -s -X POST \
-              "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${GEMINI_API_KEY}" \
+              "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}" \
               -H "Content-Type: application/json" \
               -d "$(jq -n --arg p "$COMBINED_PROMPT" '{contents:[{parts:[{text:$p}]}],generationConfig:{temperature:0.2,maxOutputTokens:4000,responseMimeType:"application/json"}}')")
             LLM_OUTPUT=$(echo "$RESPONSE" | jq -r '.candidates[0].content.parts[0].text // "{}"')
@@ -550,7 +550,7 @@ jobs:
             echo "🤖 Frontend using Gemini 1.5 Pro"
             COMBINED_PROMPT="${AGENT_PROMPT}\n\n${USER_MSG}"
             RESPONSE=$(curl -s -X POST \
-              "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${GEMINI_API_KEY}" \
+              "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}" \
               -H "Content-Type: application/json" \
               -d "$(jq -n --arg p "$COMBINED_PROMPT" '{contents:[{parts:[{text:$p}]}],generationConfig:{temperature:0.2,maxOutputTokens:4000,responseMimeType:"application/json"}}')")
             LLM_OUTPUT=$(echo "$RESPONSE" | jq -r '.candidates[0].content.parts[0].text // ""')
@@ -566,19 +566,28 @@ jobs:
           fi
 
           if ! echo "$RESPONSE" | jq -e . >/dev/null 2>&1; then
-            echo "::error::API no devolvió JSON válido."
+            echo "::error::API no devolvió JSON válido. Raw response:"
+            echo "$RESPONSE" | head -c 2000
             exit 1
           fi
 
           API_ERROR=$(echo "$RESPONSE" | jq -r '.error.message // empty')
           if [ -n "$API_ERROR" ]; then
             echo "::error::API Error: $API_ERROR"
+            echo "Full response:"
+            echo "$RESPONSE" | jq . | head -c 2000
             exit 1
           fi
           if [ -z "$LLM_OUTPUT" ] || [ "$LLM_OUTPUT" = "null" ]; then
-            echo "::error::LLM devolvió vacío."
+            echo "::error::LLM devolvió vacío. Full response:"
+            echo "$RESPONSE" | jq . | head -c 2000
             exit 1
           fi
+          echo "✅ LLM output received ($(echo "$LLM_OUTPUT" | wc -c) chars)"
+          echo "--- First 500 chars of LLM_OUTPUT ---"
+          echo "$LLM_OUTPUT" | head -c 500
+          echo ""
+          echo "--- End preview ---"
 
           # Extracción y validación JSON blindada
           LLM_JSON=$(echo "$LLM_OUTPUT" | python3 -c "
