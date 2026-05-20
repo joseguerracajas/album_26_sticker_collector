@@ -24,7 +24,9 @@ on:
         type: string
 
 concurrency:
-  group: ai-pipeline-${{ github.event.issue.number || github.run_id }}
+  # Bot comments (e.g. agent HU/summary posts) get a unique group so they never
+  # cancel a real pipeline run waiting at an approval gate.
+  group: ${{ (github.event_name == 'issue_comment' && github.event.comment.user.login == 'github-actions[bot]') && format('bot-noop-{0}', github.run_id) || format('ai-pipeline-{0}', github.event.issue.number || github.run_id) }}
   cancel-in-progress: true
 
 permissions:
