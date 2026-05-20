@@ -169,7 +169,19 @@ jobs:
               '{model:"gpt-4o",messages:[{role:"system",content:$system},{role:"user",content:$user}],max_tokens:4000,temperature:0.3}'
             )")
 
-          HU=$(echo "$RESPONSE" | jq -r '.choices[0].message.content // "ERROR: No response from LLM"')
+          API_ERROR=$(echo "$RESPONSE" | jq -r '.error.message // ""')
+          if [ -n "$API_ERROR" ]; then
+            echo "❌ LLM API Error: $API_ERROR" >> $GITHUB_STEP_SUMMARY
+            echo "Full response: $RESPONSE" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+          HU=$(echo "$RESPONSE" | jq -r '.choices[0].message.content // ""')
+          if [ -z "$HU" ]; then
+            echo "❌ Empty LLM response. Full response:" >> $GITHUB_STEP_SUMMARY
+            echo "$RESPONSE" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
 
           mkdir -p docs/ai-output
           echo "$HU" > docs/ai-output/user-stories.md
