@@ -55,6 +55,32 @@ features/{feature_name}/
 - All user-facing strings go through l10n (ARB files)
 - Tests go in `test/` mirroring the `lib/` structure
 
+### Design System (MANDATORY — always follow these)
+
+**Colors:**
+- Background: `Color(0xFF121212)` (scaffold)
+- Surface/Cards/AppBar: `Color(0xFF1E1E1E)`
+- Primary accent: `Colors.amber` — used for highlights, CTAs, progress, icons
+- Text primary: `Colors.white`
+- Text secondary: `Colors.white70` / `Colors.grey`
+- Destructive: `Colors.red`
+
+**Theme rules (already set globally in `main.dart`):**
+- `ThemeData.dark()` base
+- `scaffoldBackgroundColor: Color(0xFF121212)`
+- `AppBarTheme: backgroundColor: Color(0xFF1E1E1E), elevation: 0`
+- `InputDecorationTheme`: filled with `Color(0xFF1E1E1E)`, no border at rest, amber `focusedBorder`, `borderRadius: 12`
+- `DialogTheme`: `Color(0xFF1E1E1E)` background, title in amber, content in `Colors.white70`
+- Text cursor and selection in amber
+
+**UI patterns:**
+- Cards: `Card(color: Color(0xFF1E1E1E), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)))`
+- Primary buttons: `ElevatedButton` with amber background, dark text
+- Secondary buttons: `OutlinedButton` with amber border
+- Loading: `CircularProgressIndicator(color: Colors.amber)`
+- SnackBars: use `scaffoldMessengerKey` from `main.dart`
+- Animations: `flutter_animate` for enter/exit transitions
+
 ### Existing Providers Pattern
 ```dart
 @riverpod
@@ -130,6 +156,9 @@ Produce files ready to be committed, following the project structure:
 8. Keep widgets small and composable
 9. Handle loading, error, and empty states
 10. Support both light and dark theme
+11. **READ the user stories carefully** — if a story says "modify", "update", or "add to" an existing screen or file, produce the FULL updated content of that existing file, not a new file. Never duplicate existing functionality.
+12. **Follow the design system** — always use `Color(0xFF121212)` background, `Color(0xFF1E1E1E)` surfaces, `Colors.amber` accent. Never use different colors unless explicitly required.
+13. If the user stories reference files already shown in "Existing Feature Structure", include those files with their **full updated content** in the output.
 
 ## Output Format (REQUIRED)
 

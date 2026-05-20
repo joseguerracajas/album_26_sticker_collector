@@ -103,9 +103,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git fetch origin
-          git checkout -b ${{ env.BRANCH_NAME }} origin/${{ env.BRANCH_NAME }} 2>/dev/null || \
-            git checkout -b ${{ env.BRANCH_NAME }}
-          git push -u origin ${{ env.BRANCH_NAME }} 2>/dev/null || true
+          git push origin --delete ${{ env.BRANCH_NAME }} 2>/dev/null || true
+          git checkout -b ${{ env.BRANCH_NAME }}
+          git push -u origin ${{ env.BRANCH_NAME }}
 
       - name: "📌 Add to Project Board (Todo)"
         if: github.event_name == 'issues'
@@ -148,6 +148,9 @@ jobs:
 
           README=$(cat README.md | head -c 8000)
           AGENT_PROMPT=$(cat .github/agents/product-manager.md)
+          ARB_CONTEXT=$(find lib/l10n -name "*.arb" 2>/dev/null | sort | \
+            xargs -I{} sh -c 'echo "=== {} ==="; cat "{}"; echo ""' 2>/dev/null | head -c 3000 || echo "No ARB files")
+          BRANCH_URL="https://github.com/${{ env.GH_REPO }}/tree/${{ env.BRANCH_NAME }}"
 
           FEEDBACK=""
           if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
@@ -158,7 +161,10 @@ jobs:
           fi
 
           USER_MSG="## Feature Request\n\n${FEATURE_INPUT}"
-          [ -n "$FEEDBACK" ] && USER_MSG="${USER_MSG}\n\n## Orchestrator Feedback\n\n${FEEDBACK}"
+          if [ -n "$FEEDBACK" ]; then
+            USER_MSG="${USER_MSG}\n\n## Orchestrator Feedback — REWRITE your entire output incorporating this feedback\n\n${FEEDBACK}\n\n> Rewrite from scratch including the feedback above. Do not just append."
+          fi
+          USER_MSG="${USER_MSG}\n\n## Localization context (ARB files)\n\n${ARB_CONTEXT}"
           USER_MSG="${USER_MSG}\n\n## Project Context (README)\n\n${README}"
 
           RESPONSE=$(curl -s -X POST \
@@ -180,7 +186,7 @@ jobs:
           git push origin ${{ env.BRANCH_NAME }}
 
           if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
-            printf '## 🔵 Product Manager Agent — User Stories\n\n%s\n\n---\n> **To provide feedback before approving**, comment: `/feedback: your notes here`\n> The next agent will incorporate your feedback.\n' "$HU" > /tmp/pm-comment.md
+            printf '## 🔵 Product Manager Agent — User Stories\n\n%s\n\n---\n🌿 Branch: [%s](%s)\n> **To provide feedback**, comment: `/feedback: your notes here` — the agent will **rewrite** the HU incorporating it.\n' "$HU" "${{ env.BRANCH_NAME }}" "$BRANCH_URL" > /tmp/pm-comment.md
             gh issue comment "${{ env.ISSUE_NUMBER }}" \
               --repo ${{ env.GH_REPO }} \
               --body-file /tmp/pm-comment.md
@@ -275,6 +281,9 @@ jobs:
           HU=$(cat docs/ai-output/user-stories.md 2>/dev/null || echo "No user stories found")
           MIGRATIONS=$(find supabase/migrations -name "*.sql" 2>/dev/null | sort | tail -5 | \
             xargs -I{} sh -c 'echo "### {}"; cat "{}"; echo ""' 2>/dev/null | head -c 3000 || echo "No existing migrations")
+          ARB_CONTEXT=$(find lib/l10n -name "*.arb" 2>/dev/null | sort | \
+            xargs -I{} sh -c 'echo "=== {} ==="; cat "{}"; echo ""' 2>/dev/null | head -c 2000 || echo "No ARB files")
+          BRANCH_URL="https://github.com/${{ env.GH_REPO }}/tree/${{ env.BRANCH_NAME }}"
 
           FEEDBACK=""
           if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
@@ -285,8 +294,11 @@ jobs:
           fi
 
           USER_MSG="## Approved User Stories\n\n${HU}"
-          [ -n "$FEEDBACK" ] && USER_MSG="${USER_MSG}\n\n## Orchestrator Feedback\n\n${FEEDBACK}"
+          if [ -n "$FEEDBACK" ]; then
+            USER_MSG="${USER_MSG}\n\n## Orchestrator Feedback — REWRITE your entire output incorporating this feedback\n\n${FEEDBACK}\n\n> Rewrite from scratch including the feedback above. Do not just append."
+          fi
           USER_MSG="${USER_MSG}\n\n## Existing Migrations (for context)\n\n${MIGRATIONS}"
+          USER_MSG="${USER_MSG}\n\n## Localization context (ARB files)\n\n${ARB_CONTEXT}"
           USER_MSG="${USER_MSG}\n\n## Project Context (README)\n\n${README}"
           USER_MSG="${USER_MSG}\n\n---\nIMPORTANT: Respond ONLY with valid JSON (no markdown, no extra text):\n{\"needs_migration\": true, \"files\": [{\"path\": \"supabase/migrations/YYYYMMDDHHMMSS_description.sql\", \"content\": \"-- SQL content here\"}], \"summary\": \"Brief description of what was generated\"}\nIf no changes needed, set needs_migration to false and files to []."
 
@@ -337,7 +349,7 @@ jobs:
           FILES_LIST=$(echo "$LLM_JSON" | jq -r '[.files[].path] | if length > 0 then "- " + join("\n- ") else "None" end' 2>/dev/null || echo "None")
 
           if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
-            printf '## 🟢 Backend Developer Agent — Supabase Changes\n\n**Summary:** %s\n**Needs migration:** %s\n\n**Files generated:**\n%s\n\n---\n> **To provide feedback before approving**, comment: `/feedback: your notes here`\n' "$SUMMARY" "$NEEDS_MIGRATION" "$FILES_LIST" > /tmp/backend-comment.md
+            printf '## 🟢 Backend Developer Agent — Supabase Changes\n\n**Summary:** %s\n**Needs migration:** %s\n\n**Files generated:**\n%s\n\n---\n🌿 Branch: [%s](%s)\n> **To provide feedback**, comment: `/feedback: your notes here` — the agent will **rewrite** the migrations incorporating it.\n' "$SUMMARY" "$NEEDS_MIGRATION" "$FILES_LIST" "${{ env.BRANCH_NAME }}" "$BRANCH_URL" > /tmp/backend-comment.md
             gh issue comment "${{ env.ISSUE_NUMBER }}" \
               --repo ${{ env.GH_REPO }} \
               --body-file /tmp/backend-comment.md
@@ -383,10 +395,16 @@ jobs:
           README=$(cat README.md | head -c 6000)
           AGENT_PROMPT=$(cat .github/agents/frontend-developer.md)
           HU=$(cat docs/ai-output/user-stories.md 2>/dev/null || echo "")
-          BACKEND_SUMMARY=$(cat docs/ai-output/backend-output.json 2>/dev/null | jq -r '.summary // "No backend changes"')
+          BACKEND_CONTEXT=$(cat docs/ai-output/backend-output.json 2>/dev/null | jq -r \
+            '"### Summary\n" + (.summary // "No changes") + "\n\n### Generated migrations\n" + ([.files[]? | "**" + .path + "**\n```sql\n" + .content + "\n```"] | join("\n\n"))' \
+            2>/dev/null || echo "No backend changes")
+          ARB_CONTEXT=$(find lib/l10n -name "*.arb" 2>/dev/null | sort | \
+            xargs -I{} sh -c 'echo "=== {} ==="; cat "{}"; echo ""' 2>/dev/null | head -c 3000 || echo "No ARB files")
+          BRANCH_URL="https://github.com/${{ env.GH_REPO }}/tree/${{ env.BRANCH_NAME }}"
 
-          EXISTING_FEATURE=$(find lib/features -name "*.dart" 2>/dev/null | head -8 | \
-            xargs -I{} sh -c 'echo "### {}"; head -40 "{}"; echo ""' 2>/dev/null | head -c 4000 || echo "No existing features")
+          EXISTING_FEATURE=$(find lib/features -name "*.dart" 2>/dev/null | sort | head -15 | \
+            xargs -I{} sh -c 'echo "=== FILE: {} ==="; cat "{}"; echo ""' 2>/dev/null | head -c 8000 || echo "No existing features")
+          EXISTING_FILES_LIST=$(find lib/features -name "*.dart" 2>/dev/null | sort | head -40 | tr '\n' ',' || echo "none")
 
           FEEDBACK=""
           if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
@@ -396,10 +414,14 @@ jobs:
               --jq '[.comments[] | select(.body | startswith("/feedback:")) | .body | ltrimstr("/feedback:")] | last // ""' 2>/dev/null || echo "")
           fi
 
-          USER_MSG="## Approved User Stories\n\n${HU}"
-          USER_MSG="${USER_MSG}\n\n## Backend Changes Summary\n\n${BACKEND_SUMMARY}"
-          [ -n "$FEEDBACK" ] && USER_MSG="${USER_MSG}\n\n## Orchestrator Feedback\n\n${FEEDBACK}"
-          USER_MSG="${USER_MSG}\n\n## Existing Feature Structure (for reference)\n\n${EXISTING_FEATURE}"
+          USER_MSG="## Approved User Stories (from PM Agent)\n\n${HU}"
+          USER_MSG="${USER_MSG}\n\n## Backend Agent Output (Supabase Migrations Generated)\n\n${BACKEND_CONTEXT}"
+          if [ -n "$FEEDBACK" ]; then
+            USER_MSG="${USER_MSG}\n\n## Orchestrator Feedback — REWRITE your entire output incorporating this feedback\n\n${FEEDBACK}\n\n> Rewrite from scratch including the feedback above. Do not just append."
+          fi
+          USER_MSG="${USER_MSG}\n\n## Localization context (ARB files)\n\n${ARB_CONTEXT}"
+          USER_MSG="${USER_MSG}\n\n## Existing Dart Files in Project\n\n${EXISTING_FILES_LIST}"
+          USER_MSG="${USER_MSG}\n\n## Existing Feature Code (modify these files if referenced in stories)\n\n${EXISTING_FEATURE}"
           USER_MSG="${USER_MSG}\n\n## Project Context (README)\n\n${README}"
           USER_MSG="${USER_MSG}\n\n---\nIMPORTANT: Respond ONLY with valid JSON (no markdown, no extra text):\n{\"files\": [{\"path\": \"lib/features/feature_name/data/models/my_model.dart\", \"content\": \"// Complete Dart file content here\"}], \"summary\": \"Brief description of all generated files\"}\nArchitecture rules:\n- Feature-based: lib/features/{name}/data/, domain/, presentation/\n- Use Brick for offline-first models\n- Use Riverpod for state management\n- Follow the patterns from existing features shown above"
 
@@ -447,7 +469,7 @@ jobs:
           git push origin ${{ env.BRANCH_NAME }}
 
           if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
-            printf '## 🟡 Frontend Developer Agent — Flutter Code\n\n**Summary:** %s\n\n**Files generated:**\n%s\n\n---\n> **To provide feedback before approving**, comment: `/feedback: your notes here`\n' "$SUMMARY" "$FILES_LIST" > /tmp/frontend-comment.md
+            printf '## 🟡 Frontend Developer Agent — Flutter Code\n\n**Summary:** %s\n\n**Files generated:**\n%s\n\n---\n🌿 Branch: [%s](%s)\n> **To provide feedback**, comment: `/feedback: your notes here` — the agent will **rewrite** the code incorporating it.\n' "$SUMMARY" "$FILES_LIST" "${{ env.BRANCH_NAME }}" "$BRANCH_URL" > /tmp/frontend-comment.md
             gh issue comment "${{ env.ISSUE_NUMBER }}" \
               --repo ${{ env.GH_REPO }} \
               --body-file /tmp/frontend-comment.md
