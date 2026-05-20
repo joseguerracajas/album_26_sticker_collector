@@ -471,6 +471,7 @@ jobs:
           MODELS_TOKEN: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
+          python3 -m pip install json-repair --quiet
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
@@ -600,24 +601,45 @@ jobs:
           echo ""
           echo "--- End preview ---"
 
-          # Extracción y validación JSON blindada
-          LLM_JSON=$(echo "$LLM_OUTPUT" | python3 -c "
+          # Extract and validate JSON (3-tier fallback: json.loads → json-repair → escape fix)
+          cat > /tmp/extract_frontend_json.py << 'PYEOF'
           import sys, json, re
+          try:
+              from json_repair import repair_json
+              HAS_REPAIR = True
+          except ImportError:
+              HAS_REPAIR = False
+
           text = sys.stdin.read()
           match = re.search(r'\{.*\}', text, re.DOTALL)
           if match:
+              json_str = match.group()
+              parsed = None
               try:
-                  parsed = json.loads(match.group())
-                  if 'files' not in parsed or not isinstance(parsed['files'], list):
-                      parsed['files'] = []
-                  if not parsed['files']:
+                  parsed = json.loads(json_str)
+              except json.JSONDecodeError:
+                  pass
+              if parsed is None and HAS_REPAIR:
+                  try:
+                      parsed = json.loads(repair_json(json_str))
+                  except Exception:
+                      pass
+              if parsed is None:
+                  try:
+                      fixed = re.sub(r'\\([^"\\/bfnrtu])', lambda m: m.group(1), json_str)
+                      parsed = json.loads(fixed)
+                  except json.JSONDecodeError as e:
+                      print(json.dumps({'files': [], 'summary': 'ERROR JSON Parse: ' + str(e)}))
+                      sys.exit(0)
+              if 'files' not in parsed or not isinstance(parsed['files'], list):
+                  parsed['files'] = []
+              if not parsed['files']:
                   parsed['summary'] = 'ERROR: LLM refused to write code and returned empty files array.'
-                  print(json.dumps(parsed))
-              except json.JSONDecodeError as e:
-                  print('{"files": [], "summary": "ERROR JSON Parse: ' + str(e) + '"}')
+              print(json.dumps(parsed))
           else:
-              print('{"files": [], "summary": "ERROR: Regex did not find JSON in LLM output."}')
-          ")
+              print(json.dumps({'files': [], 'summary': 'ERROR: Regex did not find JSON in LLM output.'}))
+          PYEOF
+          LLM_JSON=$(echo "$LLM_OUTPUT" | python3 /tmp/extract_frontend_json.py)
 
           echo "$LLM_JSON" > docs/ai-output/frontend-output.json
 
