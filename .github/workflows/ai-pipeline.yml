@@ -24,9 +24,20 @@ on:
         type: string
 
 concurrency:
-  # Bot comments (not slash commands) get a unique group so they never cancel waiting approval gates.
-  # Only slash commands (/feedback:, /approve, etc.) share the group and can cancel previous runs.
-  group: ${{ (github.event_name == 'issue_comment' && !startsWith(github.event.comment.body, '/')) && format('bot-noop-{0}', github.run_id) || format('ai-pipeline-{0}', (github.event.issue != null && github.event.issue.number) || github.run_id) }}
+  # Only "real" pipeline events share the issue-scoped group (and may cancel each other).
+  # Everything else (bot comments, unrelated label changes, etc.) gets a unique group so it never cancels a waiting approval.
+  # "Real" events: issue opened, issue labeled with `ai-pipeline`, slash-command comment (/feedback...), workflow_dispatch.
+  group: >-
+    ${{
+      (
+        github.event_name == 'workflow_dispatch' ||
+        (github.event_name == 'issues' && github.event.action == 'opened') ||
+        (github.event_name == 'issues' && github.event.action == 'labeled' && github.event.label.name == 'ai-pipeline') ||
+        (github.event_name == 'issue_comment' && startsWith(github.event.comment.body, '/'))
+      )
+      && format('ai-pipeline-{0}', (github.event.issue != null && github.event.issue.number) || github.run_id)
+      || format('noop-{0}', github.run_id)
+    }}
   cancel-in-progress: true
 
 permissions:
@@ -93,7 +104,8 @@ jobs:
     if: |
       github.event_name == 'workflow_dispatch' ||
       (github.event.issue != null && contains(toJson(github.event.issue), 'ai-pipeline') && (
-        (github.event_name == 'issues' && (github.event.action == 'labeled' || github.event.action == 'opened')) ||
+        (github.event_name == 'issues' && github.event.action == 'opened') ||
+        (github.event_name == 'issues' && github.event.action == 'labeled' && github.event.label.name == 'ai-pipeline') ||
         (github.event_name == 'issue_comment' && startsWith(github.event.comment != null && github.event.comment.body || '', '/feedback:'))
       ))
     runs-on: ubuntu-latest
