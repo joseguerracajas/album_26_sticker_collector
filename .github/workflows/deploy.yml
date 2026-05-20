@@ -165,6 +165,8 @@ jobs:
     needs: [deploy-supabase, build-android, build-ios]
     if: always()
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - name: "📝 Summary"
         run: |
@@ -175,3 +177,60 @@ jobs:
           echo "| Supabase Migrations | ${{ needs.deploy-supabase.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Android Build | ${{ needs.build-android.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "| iOS Build | ${{ needs.build-ios.result }} |" >> $GITHUB_STEP_SUMMARY
+
+      - name: "✅ Move In Progress issues to Done on Project Board"
+        if: |
+          needs.deploy-supabase.result == 'success' &&
+          needs.build-android.result == 'success' &&
+          needs.build-ios.result == 'success'
+        env:
+          GH_TOKEN: ${{ secrets.PROJECT_TOKEN }}
+        run: |
+          PROJECT_DATA=$(gh api graphql -f query='
+            query {
+              user(login: "joseguerracajas") {
+                projectV2(number: 1) {
+                  id
+                  fields(first: 20) {
+                    nodes {
+                      ... on ProjectV2SingleSelectField {
+                        id
+                        name
+                        options { id name }
+                      }
+                    }
+                  }
+                  items(first: 100) {
+                    nodes {
+                      id
+                      fieldValues(first: 20) {
+                        nodes {
+                          ... on ProjectV2ItemFieldSingleSelectValue {
+                            name
+                            field { ... on ProjectV2SingleSelectField { name } }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ')
+
+          PROJECT_ID=$(echo "$PROJECT_DATA" | jq -r '.data.user.projectV2.id')
+          STATUS_FIELD_ID=$(echo "$PROJECT_DATA" | jq -r '[.data.user.projectV2.fields.nodes[] | select(.name == "Status")] | .[0].id')
+          DONE_ID=$(echo "$PROJECT_DATA" | jq -r '[.data.user.projectV2.fields.nodes[] | select(.name == "Status")] | .[0].options[] | select(.name == "Done") | .id')
+
+          IN_PROGRESS_ITEMS=$(echo "$PROJECT_DATA" | jq -r '
+            .data.user.projectV2.items.nodes[] |
+            select(.fieldValues.nodes[] | select(.field.name == "Status" and .name == "In Progress")) |
+            .id
+          ')
+
+          for ITEM_ID in $IN_PROGRESS_ITEMS; do
+            gh api graphql -f query="mutation { updateProjectV2ItemFieldValue(input: { projectId: \"$PROJECT_ID\" itemId: \"$ITEM_ID\" fieldId: \"$STATUS_FIELD_ID\" value: { singleSelectOptionId: \"$DONE_ID\" } }) { projectV2Item { id } } }"
+            echo "✅ Item $ITEM_ID moved to Done"
+          done
+
+          echo "🎉 All In Progress items moved to Done after successful deploy"

@@ -130,3 +130,21 @@ Produce files ready to be committed, following the project structure:
 8. Keep widgets small and composable
 9. Handle loading, error, and empty states
 10. Support both light and dark theme
+
+## Output Format (REQUIRED)
+
+You are invoked by an automated pipeline. You MUST respond ONLY with valid JSON — no markdown, no explanations outside the JSON.
+
+```json
+{
+  "files": [
+    {
+      "path": "lib/features/feature_name/data/models/my_model.dart",
+      "content": "// Full Dart file content here"
+    }
+  ],
+  "summary": "One paragraph describing all generated files and their purpose"
+}
+```
+
+Generate complete, working Dart files. Follow the feature-based architecture: `lib/features/{name}/data/`, `domain/`, `presentation/` layers.

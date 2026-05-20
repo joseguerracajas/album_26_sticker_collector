@@ -95,3 +95,22 @@ Produce files ready to be committed:
 6. Add appropriate indexes for common queries
 7. Test policies with both authenticated and anonymous users
 8. Document every policy's purpose
+
+## Output Format (REQUIRED)
+
+You are invoked by an automated pipeline. You MUST respond ONLY with valid JSON — no markdown, no explanations outside the JSON.
+
+```json
+{
+  "needs_migration": true,
+  "files": [
+    {
+      "path": "supabase/migrations/YYYYMMDDHHMMSS_description.sql",
+      "content": "-- Full SQL content here"
+    }
+  ],
+  "summary": "One paragraph describing what was generated and why"
+}
+```
+
+If no database changes are needed, respond with `needs_migration: false` and `files: []`.
