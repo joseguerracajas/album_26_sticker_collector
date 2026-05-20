@@ -1,352 +1,38 @@
 {
   "@@locale": "he",
-  "appTitle": "Sticker Album 2026",
-  "authWelcomeTitle": "ברוך הבא ל-Sticker Album 2026",
-  "authEmailLabel": "דוא\"ל",
+  "appTitle": "אלבום מדבקות 2026",
+  "authWelcomeTitle": "ברוכים הבאים לאלבום מדבקות 2026",
+  "authEmailLabel": "אימייל",
   "authPasswordLabel": "סיסמה",
-  "authLoginButton": "התחברות",
+  "authLoginButton": "התחבר",
   "authContinueWith": "או המשך עם",
-  "authContinueGoogle": "המשך עם Google",
-  "authContinueApple": "המשך עם Apple",
+  "authContinueGoogle": "המשך עם גוגל",
+  "authContinueApple": "המשך עם אפל",
   "authContinueGuest": "המשך כאורח",
-  "authNoAccountRegister": "אין לך חשבון? הירשם",
-  "authForgotPassword": "שכחת את הסיסמה?",
-  "authResetPasswordEnterEmail": "הזן את הדוא\"ל שלך כדי לשחזר את הסיסמה.",
-  "authResetPasswordEmailSent": "שלחנו לך דוא\"ל לאיפוס הסיסמה.",
-  "authGuestMigratedSuccess": "ההתקדמות שלך כאורח הועברה בהצלחה לחשבון החדש שלך! 🏆",
-  "authGuestRemotePreserved": "ברוך שובך! האוסף שלך מהענן שוחזר וההתקדמות המקומית נמחקה.",
+  "authNoAccountRegister": "אין לך חשבון? הירשם עכשיו",
+  "authForgotPassword": "שכחת סיסמה?",
+  "authResetPasswordEnterEmail": "הכנס את האימייל שלך כדי לאפס את הסיסמה.",
+  "authResetPasswordEmailSent": "שלחנו לך אימייל לאיפוס סיסמה.",
+  "authGuestMigratedSuccess": "התקדמות האורח שלך הועברה בהצלחה לחשבונך החדש! 🏆",
+  "authGuestRemotePreserved": "ברוך הבא בחזרה! אוסף הענן שלך שוחזר והתקדמות האורח המקומית נמחקה.",
   "commonErrorWithMessage": "שגיאה: {message}",
   "@commonErrorWithMessage": {
     "placeholders": {
       "message": {}
     }
   },
-  "authErrorInvalidCredentials": "דוא\"ל או סיסמה שגויים. בדוק את הפרטים ונסה שוב.",
-  "authErrorEmailNotConfirmed": "הדוא\"ל שלך טרם אושר. בדוק את תיבת הדואר הנכנס.",
-  "authErrorUserAlreadyRegistered": "כבר קיים חשבון עם דוא\"ל זה.",
-  "authErrorWeakPassword": "הסיסמה חלשה מדי. השתמש לפחות ב-6 תווים.",
-  "authErrorInvalidEmail": "פורמט כתובת הדוא\"ל אינו חוקי.",
-  "authErrorTokenExpired": "הקוד פג תוקף או אינו חוקי. אנא בקש קוד חדש.",
-  "authErrorRateLimit": "יותר מדי ניסיונות. המתן רגע לפני שתנסה שוב.",
-  "authErrorNetworkError": "אין חיבור. בדוק את הרשת שלך ונסה שוב.",
-  "authErrorSessionExpired": "פג תוקף הפגישה שלך. אנא התחבר מחדש.",
-  "authErrorUnknown": "אירעה שגיאה בלתי צפויה. אנא נסה שוב.",
-  "registerTitle": "יצירת חשבון",
-  "registerFillAllFields": "אנא מלא את כל השדות.",
-  "registerEmailsDontMatch": "כתובות הדוא\"ל אינן תואמות.",
-  "registerPasswordsDontMatch": "הסיסמאות אינן תואמות.",
-  "registerPasswordMinLength": "הסיסמה חייבת להכיל לפחות 6 תווים.",
-  "registerAccountCreated": "החשבון נוצר בהצלחה! ⚽ אנא התחבר.",
-  "registerConfirmEmailLabel": "אישור דוא\"ל",
-  "registerConfirmPasswordLabel": "אישור סיסמה",
-  "registerSubmitButton": "הרשמה",
-  "profileTitle": "הפרופיל שלי",
-  "profileOfficialCollector": "אספן רשמי 🌟",
-  "profileChangePasswordButton": "עדכון סיסמה",
-  "profileChangePasswordTitle": "עדכון סיסמה",
-  "profileNewPasswordLabel": "סיסמה חדשה",
-  "profileConfirmNewPasswordLabel": "אישור סיסמה חדשה",
-  "profilePasswordUpdatedSuccess": "הסיסמה עודכנה בהצלחה.",
-  "profileLogoutButton": "התנתקות",
-  "profileLogoutSuccess": "התנתקת בהצלחה.",
-  "profileUnknownUser": "משתמש לא ידוע",
-  "profileLogoutError": "שגיאה בהתנתקות: {message}",
-  "@profileLogoutError": {
+  "authErrorInvalidCredentials": "אימייל או סיסמה לא חוקיים. אנא בדוק את פרטי הכניסה שלך ונסה שוב.",
+  "shareStatsTooltip": "שתף סטטיסטיקות",
+  "shareStatsMessage": "בדוק את התקדמות איסוף המדבקות שלי ב- {appName}! #StickerCollector",
+  "@shareStatsMessage": {
     "placeholders": {
-      "message": {}
+      "appName": {}
     }
   },
-  "homeTitle": "Sticker Album 2026",
-  "homeProfileTooltip": "הפרופיל שלי",
-  "drawerSignIn": "התחבר",
-  "homeShareAll": "שתף רשימה מלאה",
-  "homeShareMissingOnly": "חסרים בלבד",
-  "homeShareDuplicatesOnly": "כפולות בלבד",
-  "homeGlobalProgressTitle": "התקדמות כללית",
-  "homeCollectedCount": "{collected} מתוך {total} נאספו",
-  "@homeCollectedCount": {
-    "placeholders": {
-      "collected": {},
-      "total": {}
-    }
-  },
-  "homeViewFullCollection": "הצג אוסף מלא",
-  "homeTeamsTitle": "קבוצות",
-  "homeSearchTeamsHint": "חפש לפי מדינה או קבוצה...",
-  "homeNoResults": "לא נמצאו קבוצות",
-  "homeScanButton": "סרוק מדבקה",
-  "homeObtainedCount": "{collected} מתוך {total} התקבלו",
-  "@homeObtainedCount": {
-    "placeholders": {
-      "collected": {},
-      "total": {}
-    }
-  },
-  "homeProgressError": "שגיאה",
-  "globalCollectionTitle": "אוסף מלא",
-  "filterAll": "הכל",
-  "filterMissing": "חסרים",
-  "filterDuplicates": "כפולות",
-  "filterSearchHint": "חפש לפי מדינה, קוד או מספר...",
-  "stickerRemoveTitle": "להסיר מדבקה?",
-  "stickerRemoveConfirm": "האם אתה בטוח שברצונך להסיר את המדבקה {stickerLabel} מהאלבום שלך?",
-  "@stickerRemoveConfirm": {
-    "placeholders": {
-      "stickerLabel": {}
-    }
-  },
-  "commonCancel": "ביטול",
-  "commonRemove": "הסרה",
-  "commonDone": "סיום",
-  "gridNoResults": "לא נמצאו מדבקות.",
-  "scannerViewScannedButton": "סקור {count} מדבקות שנסרקו",
-  "@scannerViewScannedButton": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "scannerOverlayHint": "מקם את גב המדבקה כאן במרכז",
-  "pendingScansTitle": "מדבקות שנסרקו",
-  "pendingScansEmpty": "עדיין לא סרקת אף מדבקה",
-  "pendingScansItemLabel": "מדבקה: {code}",
-  "@pendingScansItemLabel": {
-    "placeholders": {
-      "code": {}
-    }
-  },
-  "pendingScansSavedSuccess": "{count} מדבקות נוספו לאלבום שלך! 🏆",
-  "@pendingScansSavedSuccess": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "pendingScansSaveError": "שגיאה בשמירה: {message}",
-  "@pendingScansSaveError": {
-    "placeholders": {
-      "message": {}
-    }
-  },
-  "shareHeader": "⚽ *רשימת החלפות Sticker Album 2026* 🏆",
-  "shareMissingSectionTitle": "❌ *חסרים:*",
-  "shareDuplicatesSectionTitle": "🔁 *כפולות:*",
-  "shareNoneMissing": "אין! 😎",
-  "shareNoDuplicates": "אין כפולות 😅",
-  "shareLetsTrade": "רוצה להחליף? 👀🔥",
-  "shareDownloadLink": "📲 הורד את האפליקציה של {appName}\nhttps://onelink.to/5adrft?olbm=1",
-  "shareSeparator": "--------------------------",
-  "forgotPasswordTitle": "שחזור חשבון",
-  "forgotPasswordDescription": "הזן את כתובת הדוא\"ל שלך ונשלח לך קוד בן 6 ספרות לאיפוס הסיסמה.",
-  "forgotPasswordEmailLabel": "דוא\"ל",
-  "forgotPasswordEmptyEmailError": "אנא הזן את כתובת הדוא\"ל שלך.",
-  "forgotPasswordCodeSentSuccess": "קוד נשלח. בדוק את תיבת הדואר הנכנס.",
-  "forgotPasswordSendCodeButton": "שלח קוד",
-  "forgotPasswordStep2Description": "הזן את הקוד ששלחנו ל-{email} והסיסמה החדשה שלך.",
-  "@forgotPasswordStep2Description": {
-    "placeholders": {
-      "email": {}
-    }
-  },
-  "forgotPasswordCodeInputLabel": "קוד בן 8 ספרות",
-  "forgotPasswordInvalidCodeError": "הקוד חייב להכיל בדיוק 6 ספרות.",
-  "forgotPasswordNewPasswordLabel": "סיסמה חדשה",
-  "forgotPasswordShortPasswordError": "הסיסמה חייבת להכיל לפחות 6 תווים.",
-  "forgotPasswordSavePasswordButton": "שמור סיסמה",
-  "forgotPasswordPasswordUpdatedSuccess": "הסיסמה עודכנה בהצלחה! 🏆",
-  "validationEmailInvalid": "כתובת האימייל אינה תקינה.",
-  "paywallTitle": "תהנה ללא פרסומות",
-  "paywallSubtitle": "כל התכונות זמינות בחינם. עם Pro תהנה מהכל ללא הפרעות.",
-  "paywallBenefitScanner": "סורק ללא מודעות interstitial",
-  "paywallBenefitNoAds": "ללא פרסומות",
-  "paywallBenefitSync": "סנכרון ענן כלול",
-  "paywallSubscribeButton": "הירשם · {price}",
-  "@paywallSubscribeButton": {
-    "placeholders": {
-      "price": {}
-    }
-  },
-  "paywallPackageMonthly": "חודשי",
-  "paywallPackageAnnual": "שנתי",
-  "paywallPackageWeekly": "שבועי",
-  "paywallPackageLifetime": "לכל החיים",
-  "paywallPackageTwoMonth": "כל חודשיים",
-  "paywallPackageThreeMonth": "כל 3 חודשים",
-  "paywallPackageSixMonth": "כל 6 חודשים",
-  "paywallBestOption": "האפשרות הטובה ביותר",
-  "paywallStartFreeTrial": "התחל ניסיון חינם",
-  "paywallFreeTrial": "ניסיון חינם של {days} ימים",
-  "@paywallFreeTrial": {
-    "placeholders": {
-      "days": {"type": "int"}
-    }
-  },
-  "paywallRestorePurchases": "שחזור רכישות",
-  "paywallCancelAnytime": "בטל בכל עת. ללא התחייבות.",
-  "paywallLoadError": "לא ניתן לטעון את התוכניות. בדוק את החיבור שלך.",
-  "paywallRetry": "נסה שוב",
-  "paywallPurchaseError": "הרכישה נכשלה. אנא נסה שוב.",
-  "paywallRestoreError": "לא ניתן לשחזר את הרכישות. אנא נסה שוב.",
-  "paywallGuestTitle": "התחבר כדי להירשם",
-  "paywallGuestBody": "Pro מקושר לחשבון שלך. התחבר או צור חשבון כדי לפתוח את כל התכונות.",
-  "paywallGuestSignInButton": "התחברות",
-  "scannerDemoRemaining": "{count} סריקות חינמיות נותרו",
-  "@scannerDemoRemaining": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "scannerDemoFinishedTitle": "השתמשת ב-5 הסריקות החינמיות שלך",
-  "scannerDemoFinishedSubtitle": "הירשם לסריקת מדבקות ללא הגבלה ולחוויה ללא פרסומות.",
-  "scannerDemoUnlockButton": "הצג תוכניות Pro",
-  "adDialogTitle": "תוכן חינמי",
-  "adDialogBody": "כדי להמשיך, צפה במודעה קצרה או הירשם ל-Pro ושכח מפרסומות לנצח.",
-  "adDialogWatchAd": "צפה במודעה",
-  "adDialogGetPro": "קבל Pro",
-  "adDialogNotNow": "לא עכשיו",
-  "scannerCameraInitError": "לא ניתן לאתחל את המצלמה. ודא שלאפליקציה יש הרשאת גישה למצלמה.",
-  "variantSheetTitle": "גרסת האלבום",
-  "variantSheetInventoryNote": "המלאי שלך נשמר בעת החלפת גרסה. המדבקות שכבר יש לך נשארות רשומות.",
-  "variantSheetLoadError": "שגיאה בטעינת הגרסאות: {error}",
-  "@variantSheetLoadError": {
+  "shareStatsError": "לא ניתן לשתף סטטיסטיקות: {error}",
+  "@shareStatsError": {
     "placeholders": {
       "error": {}
     }
-  },
-  "variantSheetEmpty": "אין גרסאות זמינות לאלבום זה.",
-  "variantSheetDefaultLabel": "גרסת ברירת מחדל",
-  "variantMandatoryTitle": "בחר את האזור שלך",
-  "variantMandatorySubtitle": "בחר את גרסת האלבום לאזורך.",
-  "variantChangedSuccess": "הגרסה שונתה ל-{name} ✅",
-  "@variantChangedSuccess": {
-    "placeholders": {
-      "name": {}
-    }
-  },
-  "profileDeleteAccountButton": "מחק חשבון",
-  "profileDeleteAccountTitle": "למחוק את החשבון שלך?",
-  "profileDeleteAccountMessage": "פעולה זו היא קבועה. כל הנתונים שלך יימחקו ולא תוכל לשחזר את האוסף שלך.",
-  "profileDeleteAccountConfirmButton": "מחק לצמיתות",
-  "profileDeleteAccountSuccess": "החשבון שלך נמחק.",
-  "profileDeleteAccountError": "שגיאה במחיקת החשבון. נסה שוב.",
-  "paywallPrivacyPolicy": "מדיניות פרטיות",
-  "paywallTermsOfUse": "תנאי שימוש",
-  "paywallLegalDisclaimer": "על ידי מנוי, אתה מסכים לתנאי השימוש ולמדיניות הפרטיות שלנו.",
-  "tutorialSkip": "דלג",
-  "tutorialTapToContinue": "הקש בכל מקום כדי להמשיך",
-  "tutorialStep1Title": "ההתקדמות הכוללת שלך",
-  "tutorialStep1Body": "ראה כמה מדבקות אספת. המשך לאסוף!",
-  "tutorialStep2Title": "חפש קבוצות",
-  "tutorialStep2Body": "הקלד שם מדינה או קבוצה לסינון הרשימה.",
-  "tutorialStep3Title": "תפריט ראשי",
-  "tutorialStep3Body": "גש לפרופיל שלך ושנה גרסת אלבום.",
-  "tutorialStep4Title": "סרוק מדבקות",
-  "tutorialStep4Body": "השתמש במצלמה לסריקת מדבקות והוספתן אוטומטית.",
-  "tutorialStep5Title": "שתף רשימה",
-  "tutorialStep5Body": "ייצא את רשימת המדבקות החסרות או הכפולות להחלפה.",
-  "globalTutorialStep1Title": "סנן את האוסף",
-  "globalTutorialStep1Body": "השתמש בכפתורים כדי לראות את כל המדבקות, רק החסרות או רק הכפולות. מושלם לארגון החלפות!",
-  "globalTutorialStep2Title": "חפש מדבקה",
-  "globalTutorialStep2Body": "הקלד שם מדינה, קוד או מספר מדבקה כדי למצוא אותה במהירות.",
-  "globalTutorialStep3Title": "הקש כדי לסמן",
-  "globalTutorialStep3Body": "הקשה אחת על מדבקה אפורה מוסיפה אותה לאלבום (הופכת לזהובה). הקשה נוספת תדרוש אישור הסרה.",
-  "globalTutorialStep4Title": "לחיצה ארוכה לאפשרויות נוספות",
-  "globalTutorialStep4Body": "החזק מדבקה לחוצה כדי לנהל כמה עותקים יש לך מכל גרסה (Normal, Gold, Legend...).",
-  "tutorialStep6Title": "חקור קטגוריה",
-  "tutorialStep6Body": "הקש על כל מדינה או קבוצה כדי לראות את המדבקות שלה. שם תוכל לסמן מה שכבר יש לך ולנהל כפולים.",
-  "categoryTutorialStep1Title": "סנן מדבקות",
-  "categoryTutorialStep1Body": "השתמש בכפתורים האלה כדי לראות את כל המדבקות, רק את החסרות או רק את הכפולות.",
-  "categoryTutorialStep2Title": "חפש מדבקה",
-  "categoryTutorialStep2Body": "הקלד שם מדינה, קוד או מספר מדבקה כדי למצוא אותה במהירות.",
-  "categoryTutorialStep3Title": "הקש לסימון",
-  "categoryTutorialStep3Body": "הקשה על מדבקה אפורה מוסיפה אותה לאלבום (הופכת לזהב). אם כבר יש לך ותקיש שוב, תתבקש לאשר הסרה.",
-  "categoryTutorialStep4Title": "לחץ לחיצה ארוכה לאפשרויות נוספות",
-  "categoryTutorialStep4Body": "לחיצה ארוכה מאפשרת לנהל כמה עותקים יש לך מכל גרסה (Normal, Gold, Legend).",
-  "drawerReplayTutorial": "לצפות בהדרכה מחדש",
-  "drawerRateApp": "דרג את האפליקציה שלנו",
-  "variantTutorialTitle": "בחר את האזור שלך",
-  "variantTutorialBody": "בחר את גרסת האלבום המתאימה למדינה או לאזור שלך. זה קובע אילו מדבקות וגרסאות (Normal, Gold, Legend) יופיעו באוסף שלך.",
-  "drawerLegalNotice": "הודעה משפטית",
-  "legalNoticeTitle": "הודעה משפטית",
-  "legalNoticeBody": "אפליקציה זו היא יצירה לא רשמית של מעריצים ואינה קשורה, נתמכת או מחוברת לאף ארגון כדורגל רשמי, יצרן מדבקות או שותף רשמי של הטורניר. כל הסימנים המסחריים הם רכושם של בעליהם המתאימים.",
-  "statsTitle": "סטטיסטיקות",
-  "statsTotalLabel": "סה\"כ",
-  "statsCollectedLabel": "נאספו",
-  "statsDuplicateCopiesLabel": "כפולים",
-  "statsCategoriesTitle": "לפי קטגוריה",
-  "statsAllCategories": "הכל",
-  "statsNoStatsYet": "אין נתונים עדיין. התחל לאסוף!",
-  "statsBestCategory": "הכי מתקדמת",
-  "statsWorstCategory": "הכי פחות מתקדמת",
-  "statsCompletedCategories": "הושלמו",
-  "drawerStats": "סטטיסטיקות",
-  "statsCategoryPickerSearch": "חפש קטגוריה...",
-  "statsCategoryPickerSelected": "{count} נבחרו",
-  "@statsCategoryPickerSelected": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "statsCategoryPickerAll": "כל הקטגוריות",
-  "statsCategoryPickerClear": "נקה",
-  "statsSortTooltip": "מיין",
-  "statsSortByName": "קטגוריה",
-  "statsSortByProgressDesc": "הכי מתקדמת קודם",
-  "statsSortByProgressAsc": "הכי פחות מתקדמת קודם",
-  "statsSortByMissing": "הכי חסרה קודם",
-  "statsSortByDuplicates": "הכי כפולה קודם",
-  "drawerLookup": "בדיקת מדבקה",
-  "lookupScreenTitle": "בדיקת מדבקה",
-  "lookupTabManual": "ידני",
-  "lookupTabScanner": "סורק",
-  "lookupSearchHint": "לדוגמה: ECU 10, ARG 5, FRA 1...",
-  "lookupSearchButton": "חיפוש",
-  "lookupStickerNotFound": "לא נמצאה מדבקה עם הקוד הזה.",
-  "lookupStatusMissing": "חסר",
-  "lookupStatusCollected": "כבר יש לך ✓",
-  "lookupStatusDuplicates": "{count} כפול/ים 🔁",
-  "@lookupStatusDuplicates": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "lookupQtyLabel": "כמות במלאי שלך",
-  "lookupScannerHint": "מרכז את המדבקה לזיהוי",
-  "lookupTutorialStep1Title": "שתי דרכי חיפוש",
-  "lookupTutorialStep1Body": "השתמש בכרטייה ידנית להקלדת קוד או בכרטיית הסורק לסריקה ישירה.",
-  "lookupTutorialStep2Title": "הכנס את הקוד",
-  "lookupTutorialStep2Body": "הקלד את קוד המדבקה כפי שמופיע באלבום, לדוגמה ECU 10 או ARG 5.",
-  "lookupTutorialStep3Title": "בדוק ונהל",
-  "lookupTutorialStep3Body": "תראה אם המדבקה חסרה או קיימת. בלחצני + ו– תוכל לעדכן את המלאי מיד.",
-  "scanBadgeNew": "חדש",
-  "scanBadgeRepeated": "כפול",
-  "scannerModeAdd": "הוסף מדבקות",
-  "scannerModeRemoveDuplicates": "הסר כפולים",
-  "scannerRemoveModeHint": "מרכז את המדבקה הכפולה להסרה",
-  "removeDuplicatesTitle": "כפולים להסרה",
-  "removeDuplicatesEmpty": "טרם נסרקו כפולים",
-  "removeDuplicatesSavedSuccess": "הוסרו {count} כפולים מהמלאי 🗑️",
-  "@removeDuplicatesSavedSuccess": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "removeDuplicatesSaveError": "שגיאה בשמירה: {message}",
-  "@removeDuplicatesSaveError": {
-    "placeholders": {
-      "message": {}
-    }
-  },
-  "removeDuplicatesLimitWarning": "ל{label} אין מדבקות כפולות",
-  "@removeDuplicatesLimitWarning": {
-    "placeholders": {
-      "label": {}
-    }
-  },
-  "removeDuplicatesReviewButton": "סקור {count} להסרה",
-  "@removeDuplicatesReviewButton": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "navAlbum": "אלבום",
-  "navScanner": "סורק"
+  }
 }

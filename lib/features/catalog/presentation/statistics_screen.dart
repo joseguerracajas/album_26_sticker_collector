@@ -6,7 +6,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:album_26_sticker_collector/core/constants/app_constants.dart';
 
 import 'package:album_26_sticker_collector/core/tutorial/statistics_tutorial.dart';
 import 'package:album_26_sticker_collector/core/tutorial/tutorial_keys.dart';
@@ -20,6 +19,7 @@ import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'dart:io'; // Import for File
 
 // ---------------------------------------------------------------------------
 // Provider de activación de pestaña (igual que scanner/exchange/lookup)
@@ -57,7 +57,7 @@ class _SelectedCategoryIdsNotifier extends Notifier<Set<String>?> {
 }
 
 final _selectedCategoryIdsProvider =
-    NotifierProvider<_SelectedCategoryIdsNotifier, Set<String>?>( 
+    NotifierProvider<_SelectedCategoryIdsNotifier, Set<String>?>(
       _SelectedCategoryIdsNotifier.new,
     );
 
@@ -121,12 +121,12 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
 
       final directory = await getTemporaryDirectory();
       final imagePath = '${directory.path}/statistics.png';
-      final file = await 
-          (await writeFile(imagePath, pngBytes)).writeAsBytes(pngBytes);
+      final file = File(imagePath);
+      await file.writeAsBytes(pngBytes);
 
       await Share.shareXFiles(
         [XFile(file.path)],
-        text: l10n.shareStatsMessage(AppConstants.appName),
+        text: l10n.shareStatsMessage(l10n.appTitle),
       );
     } catch (e) {
       if (mounted) {
@@ -1514,9 +1514,4 @@ class _CategoryStatCard extends StatelessWidget {
           curve: Curves.easeOut,
         );
   }
-}
-
-// Helper para escribir archivos temporales (para compartir)
-Future<File> writeFile(String path, Uint8List bytes) async {
-  return File(path).writeAsBytes(bytes);
 }

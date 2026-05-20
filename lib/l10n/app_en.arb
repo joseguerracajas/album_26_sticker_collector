@@ -21,15 +21,15 @@
       "message": {}
     }
   },
-  "authErrorInvalidCredentials": "Invalid email or password. Check your details and try again.",
-  "shareStatsTooltip": "Share collection statistics",
-  "shareStatsMessage": "Check out my progress in {appName}! I'm collecting all the stickers for the next big event. Join me! #StickerCollector #Album2026",
+  "authErrorInvalidCredentials": "Invalid email or password. Please check your credentials and try again.",
+  "shareStatsTooltip": "Share Statistics",
+  "shareStatsMessage": "Check out my sticker collecting progress in {appName}! #StickerCollector",
   "@shareStatsMessage": {
     "placeholders": {
       "appName": {}
     }
   },
-  "shareStatsError": "Failed to share statistics: {error}",
+  "shareStatsError": "Could not share statistics: {error}",
   "@shareStatsError": {
     "placeholders": {
       "error": {}

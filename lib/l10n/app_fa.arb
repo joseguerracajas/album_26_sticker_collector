@@ -1,352 +1,38 @@
 {
   "@@locale": "fa",
-  "appTitle": "Sticker Album 2026",
-  "authWelcomeTitle": "به Sticker Album 2026 خوش آمدید",
+  "appTitle": "آلبوم استیکر 2026",
+  "authWelcomeTitle": "به آلبوم استیکر 2026 خوش آمدید",
   "authEmailLabel": "ایمیل",
   "authPasswordLabel": "رمز عبور",
   "authLoginButton": "ورود",
   "authContinueWith": "یا ادامه با",
-  "authContinueGoogle": "ادامه با Google",
-  "authContinueApple": "ادامه با Apple",
+  "authContinueGoogle": "ادامه با گوگل",
+  "authContinueApple": "ادامه با اپل",
   "authContinueGuest": "ادامه به عنوان مهمان",
-  "authNoAccountRegister": "حساب ندارید؟ ثبت‌نام کنید",
-  "authForgotPassword": "رمز عبور را فراموش کردید؟",
-  "authResetPasswordEnterEmail": "ایمیل خود را برای بازیابی رمز عبور وارد کنید.",
-  "authResetPasswordEmailSent": "ایمیلی برای بازنشانی رمز عبور برای شما ارسال کردیم.",
-  "authGuestMigratedSuccess": "پیشرفت شما به عنوان مهمان با موفقیت به حساب جدیدتان منتقل شد! 🏆",
-  "authGuestRemotePreserved": "خوش برگشتید! مجموعه ابری شما بازیابی شد و پیشرفت محلی مهمان حذف شد.",
+  "authNoAccountRegister": "حساب کاربری ندارید؟ اکنون ثبت نام کنید",
+  "authForgotPassword": "رمز عبور را فراموش کرده اید؟",
+  "authResetPasswordEnterEmail": "ایمیل خود را برای بازنشانی رمز عبور وارد کنید.",
+  "authResetPasswordEmailSent": "ما یک ایمیل بازنشانی رمز عبور برای شما ارسال کرده ایم.",
+  "authGuestMigratedSuccess": "پیشرفت مهمان شما با موفقیت به حساب جدیدتان منتقل شد! 🏆",
+  "authGuestRemotePreserved": "خوش آمدید! مجموعه ابری شما بازیابی شد و پیشرفت مهمان محلی نادیده گرفته شد.",
   "commonErrorWithMessage": "خطا: {message}",
   "@commonErrorWithMessage": {
     "placeholders": {
       "message": {}
     }
   },
-  "authErrorInvalidCredentials": "ایمیل یا رمز عبور اشتباه است. اطلاعات خود را بررسی کرده و دوباره امتحان کنید.",
-  "authErrorEmailNotConfirmed": "ایمیل شما هنوز تأیید نشده است. صندوق ورودی خود را بررسی کنید.",
-  "authErrorUserAlreadyRegistered": "قبلاً یک حساب با این ایمیل وجود دارد.",
-  "authErrorWeakPassword": "رمز عبور خیلی ضعیف است. از حداقل ۶ کاراکتر استفاده کنید.",
-  "authErrorInvalidEmail": "فرمت آدرس ایمیل معتبر نیست.",
-  "authErrorTokenExpired": "کد منقضی شده یا نامعتبر است. لطفاً یک کد جدید درخواست کنید.",
-  "authErrorRateLimit": "تلاش‌های زیاد. لطفاً قبل از امتحان مجدد کمی صبر کنید.",
-  "authErrorNetworkError": "اتصال ندارید. شبکه خود را بررسی کرده و دوباره امتحان کنید.",
-  "authErrorSessionExpired": "جلسه شما منقضی شده است. لطفاً دوباره وارد شوید.",
-  "authErrorUnknown": "خطای غیرمنتظره‌ای رخ داد. لطفاً دوباره امتحان کنید.",
-  "registerTitle": "ایجاد حساب",
-  "registerFillAllFields": "لطفاً تمام فیلدها را پر کنید.",
-  "registerEmailsDontMatch": "ایمیل‌ها مطابقت ندارند.",
-  "registerPasswordsDontMatch": "رمزهای عبور مطابقت ندارند.",
-  "registerPasswordMinLength": "رمز عبور باید حداقل ۶ کاراکتر داشته باشد.",
-  "registerAccountCreated": "حساب با موفقیت ایجاد شد! ⚽ لطفاً وارد شوید.",
-  "registerConfirmEmailLabel": "تأیید ایمیل",
-  "registerConfirmPasswordLabel": "تأیید رمز عبور",
-  "registerSubmitButton": "ثبت‌نام",
-  "profileTitle": "پروفایل من",
-  "profileOfficialCollector": "کلکسیونر رسمی 🌟",
-  "profileChangePasswordButton": "به‌روزرسانی رمز عبور",
-  "profileChangePasswordTitle": "به‌روزرسانی رمز عبور",
-  "profileNewPasswordLabel": "رمز عبور جدید",
-  "profileConfirmNewPasswordLabel": "تأیید رمز عبور جدید",
-  "profilePasswordUpdatedSuccess": "رمز عبور با موفقیت به‌روزرسانی شد.",
-  "profileLogoutButton": "خروج",
-  "profileLogoutSuccess": "با موفقیت خارج شدید.",
-  "profileUnknownUser": "کاربر ناشناس",
-  "profileLogoutError": "خطا در خروج: {message}",
-  "@profileLogoutError": {
+  "authErrorInvalidCredentials": "ایمیل یا رمز عبور نامعتبر است. لطفاً اطلاعات خود را بررسی کرده و دوباره امتحان کنید.",
+  "shareStatsTooltip": "اشتراک گذاری آمار",
+  "shareStatsMessage": "پیشرفت جمع آوری استیکر من را در {appName} بررسی کنید! #StickerCollector",
+  "@shareStatsMessage": {
     "placeholders": {
-      "message": {}
+      "appName": {}
     }
   },
-  "homeTitle": "Sticker Album 2026",
-  "homeProfileTooltip": "پروفایل من",
-  "drawerSignIn": "ورود به حساب",
-  "homeShareAll": "اشتراک‌گذاری لیست کامل",
-  "homeShareMissingOnly": "فقط گم‌شده‌ها",
-  "homeShareDuplicatesOnly": "فقط تکراری‌ها",
-  "homeGlobalProgressTitle": "پیشرفت کلی",
-  "homeCollectedCount": "{collected} از {total} جمع‌آوری شده",
-  "@homeCollectedCount": {
-    "placeholders": {
-      "collected": {},
-      "total": {}
-    }
-  },
-  "homeViewFullCollection": "مشاهده مجموعه کامل",
-  "homeTeamsTitle": "تیم‌ها",
-  "homeSearchTeamsHint": "جستجو بر اساس کشور یا تیم...",
-  "homeNoResults": "تیمی یافت نشد",
-  "homeScanButton": "اسکن برچسب",
-  "homeObtainedCount": "{collected} از {total} به دست آمده",
-  "@homeObtainedCount": {
-    "placeholders": {
-      "collected": {},
-      "total": {}
-    }
-  },
-  "homeProgressError": "خطا",
-  "globalCollectionTitle": "مجموعه کامل",
-  "filterAll": "همه",
-  "filterMissing": "گم‌شده‌ها",
-  "filterDuplicates": "تکراری‌ها",
-  "filterSearchHint": "جستجو بر اساس کشور، کد یا شماره...",
-  "stickerRemoveTitle": "حذف برچسب؟",
-  "stickerRemoveConfirm": "آیا مطمئنید که می‌خواهید برچسب {stickerLabel} را از آلبوم خود حذف کنید؟",
-  "@stickerRemoveConfirm": {
-    "placeholders": {
-      "stickerLabel": {}
-    }
-  },
-  "commonCancel": "لغو",
-  "commonRemove": "حذف",
-  "commonDone": "تمام",
-  "gridNoResults": "برچسبی یافت نشد.",
-  "scannerViewScannedButton": "مرور {count} برچسب اسکن‌شده",
-  "@scannerViewScannedButton": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "scannerOverlayHint": "پشت برچسب را اینجا وسط قرار دهید",
-  "pendingScansTitle": "برچسب‌های اسکن‌شده",
-  "pendingScansEmpty": "هنوز هیچ برچسبی اسکن نکرده‌اید",
-  "pendingScansItemLabel": "برچسب: {code}",
-  "@pendingScansItemLabel": {
-    "placeholders": {
-      "code": {}
-    }
-  },
-  "pendingScansSavedSuccess": "{count} برچسب به آلبوم شما اضافه شد! 🏆",
-  "@pendingScansSavedSuccess": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "pendingScansSaveError": "خطا در ذخیره‌سازی: {message}",
-  "@pendingScansSaveError": {
-    "placeholders": {
-      "message": {}
-    }
-  },
-  "shareHeader": "⚽ *لیست تبادل Sticker Album 2026* 🏆",
-  "shareMissingSectionTitle": "❌ *گم‌شده‌ها:*",
-  "shareDuplicatesSectionTitle": "🔁 *تکراری‌ها:*",
-  "shareNoneMissing": "هیچ‌کدام! 😎",
-  "shareNoDuplicates": "تکراری ندارم 😅",
-  "shareLetsTrade": "می‌خواهید تبادل کنید؟ 👀🔥",
-  "shareDownloadLink": "📲 دانلود اپلیکیشن {appName}\nhttps://onelink.to/5adrft?olbm=1",
-  "shareSeparator": "--------------------------",
-  "forgotPasswordTitle": "بازیابی حساب",
-  "forgotPasswordDescription": "ایمیل خود را وارد کنید تا کد ۶ رقمی برای بازنشانی رمز عبور برایتان ارسال کنیم.",
-  "forgotPasswordEmailLabel": "ایمیل",
-  "forgotPasswordEmptyEmailError": "لطفاً آدرس ایمیل خود را وارد کنید.",
-  "forgotPasswordCodeSentSuccess": "کد ارسال شد. صندوق ورودی خود را بررسی کنید.",
-  "forgotPasswordSendCodeButton": "ارسال کد",
-  "forgotPasswordStep2Description": "کدی که به {email} ارسال کردیم و رمز عبور جدیدتان را وارد کنید.",
-  "@forgotPasswordStep2Description": {
-    "placeholders": {
-      "email": {}
-    }
-  },
-  "forgotPasswordCodeInputLabel": "کد ۸ رقمی",
-  "forgotPasswordInvalidCodeError": "کد باید دقیقاً ۶ رقم داشته باشد.",
-  "forgotPasswordNewPasswordLabel": "رمز عبور جدید",
-  "forgotPasswordShortPasswordError": "رمز عبور باید حداقل ۶ کاراکتر داشته باشد.",
-  "forgotPasswordSavePasswordButton": "ذخیره رمز عبور",
-  "forgotPasswordPasswordUpdatedSuccess": "رمز عبور با موفقیت به‌روزرسانی شد! 🏆",
-  "validationEmailInvalid": "آدرس ایمیل معتبر نیست.",
-  "paywallTitle": "بدون تبلیغات لذت ببرید",
-  "paywallSubtitle": "تمام ویژگی‌ها رایگان هستند. با Pro همه چیز را بدون وقفه لذت ببرید.",
-  "paywallBenefitScanner": "اسکنر بدون تبلیغات میانی",
-  "paywallBenefitNoAds": "بدون تبلیغات",
-  "paywallBenefitSync": "همگام‌سازی ابری شامل",
-  "paywallSubscribeButton": "اشتراک · {price}",
-  "@paywallSubscribeButton": {
-    "placeholders": {
-      "price": {}
-    }
-  },
-  "paywallPackageMonthly": "ماهانه",
-  "paywallPackageAnnual": "سالانه",
-  "paywallPackageWeekly": "هفتگی",
-  "paywallPackageLifetime": "مادام‌العمر",
-  "paywallPackageTwoMonth": "هر ۲ ماه",
-  "paywallPackageThreeMonth": "هر ۳ ماه",
-  "paywallPackageSixMonth": "هر ۶ ماه",
-  "paywallBestOption": "بهترین گزینه",
-  "paywallStartFreeTrial": "شروع دوره آزمایشی رایگان",
-  "paywallFreeTrial": "آزمایش رایگان {days} روزه",
-  "@paywallFreeTrial": {
-    "placeholders": {
-      "days": {"type": "int"}
-    }
-  },
-  "paywallRestorePurchases": "بازیابی خریدها",
-  "paywallCancelAnytime": "هر زمان لغو کنید. بدون تعهد.",
-  "paywallLoadError": "بارگذاری طرح‌ها امکان‌پذیر نیست. اتصال خود را بررسی کنید.",
-  "paywallRetry": "تلاش مجدد",
-  "paywallPurchaseError": "خرید ناموفق بود. لطفاً دوباره امتحان کنید.",
-  "paywallRestoreError": "بازیابی خریدها امکان‌پذیر نیست. لطفاً دوباره امتحان کنید.",
-  "paywallGuestTitle": "برای اشتراک وارد شوید",
-  "paywallGuestBody": "Pro به حساب شما مرتبط است. برای باز کردن همه ویژگی‌ها وارد شوید یا حساب ایجاد کنید.",
-  "paywallGuestSignInButton": "ورود",
-  "scannerDemoRemaining": "{count} اسکن رایگان باقی‌مانده",
-  "@scannerDemoRemaining": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "scannerDemoFinishedTitle": "۵ اسکن رایگان خود را استفاده کردید",
-  "scannerDemoFinishedSubtitle": "برای اسکن نامحدود برچسب و تجربه بدون تبلیغات اشتراک بگیرید.",
-  "scannerDemoUnlockButton": "مشاهده طرح‌های Pro",
-  "adDialogTitle": "محتوای رایگان",
-  "adDialogBody": "برای ادامه، یک تبلیغ کوتاه تماشا کنید یا در Pro مشترک شوید و تبلیغات را برای همیشه فراموش کنید.",
-  "adDialogWatchAd": "تماشای تبلیغ",
-  "adDialogGetPro": "دریافت Pro",
-  "adDialogNotNow": "نه الان",
-  "scannerCameraInitError": "دوربین قابل راه‌اندازی نیست. مطمئن شوید که برنامه دسترسی به دوربین را دارد.",
-  "variantSheetTitle": "نسخه آلبوم",
-  "variantSheetInventoryNote": "هنگام تغییر نسخه، موجودی شما حفظ می‌شود. استیکرهایی که دارید ثبت‌شده باقی می‌مانند.",
-  "variantSheetLoadError": "خطا در بارگذاری نسخه‌ها: {error}",
-  "@variantSheetLoadError": {
+  "shareStatsError": "امکان اشتراک گذاری آمار وجود ندارد: {error}",
+  "@shareStatsError": {
     "placeholders": {
       "error": {}
     }
-  },
-  "variantSheetEmpty": "هیچ نسخه‌ای برای این آلبوم موجود نیست.",
-  "variantSheetDefaultLabel": "نسخه پیش‌فرض",
-  "variantMandatoryTitle": "منطقه خود را انتخاب کنید",
-  "variantMandatorySubtitle": "نسخه آلبوم مناسب منطقه خود را انتخاب کنید.",
-  "variantChangedSuccess": "نسخه به {name} تغییر یافت ✅",
-  "@variantChangedSuccess": {
-    "placeholders": {
-      "name": {}
-    }
-  },
-  "profileDeleteAccountButton": "حذف حساب",
-  "profileDeleteAccountTitle": "حذف حساب شما؟",
-  "profileDeleteAccountMessage": "این عمل دائمی است. تمام داده‌های شما حذف خواهند شد و نمی‌توانید مجموعه‌تان را بازیابی کنید.",
-  "profileDeleteAccountConfirmButton": "حذف دائمی",
-  "profileDeleteAccountSuccess": "حساب شما حذف شد.",
-  "profileDeleteAccountError": "خطا در حذف حساب. دوباره امتحان کنید.",
-  "paywallPrivacyPolicy": "سیاست حریم خصوصی",
-  "paywallTermsOfUse": "شرایط استفاده",
-  "paywallLegalDisclaimer": "با اشتراک، شرایط استفاده و سیاست حریم خصوصی ما را می‌پذیرید.",
-  "tutorialSkip": "رد کردن",
-  "tutorialTapToContinue": "برای ادامه هر جایی را لمس کنید",
-  "tutorialStep1Title": "پیشرفت کلی شما",
-  "tutorialStep1Body": "اینجا تعداد برچسب‌های جمع‌آوری‌شده را می‌بینید. ادامه دهید!",
-  "tutorialStep2Title": "جستجوی تیم‌ها",
-  "tutorialStep2Body": "نام کشور یا تیمی را بنویسید تا فهرست فیلتر شود.",
-  "tutorialStep3Title": "منوی اصلی",
-  "tutorialStep3Body": "به پروفایل دسترسی پیدا کنید و نوع آلبوم را تغییر دهید.",
-  "tutorialStep4Title": "اسکن برچسب‌ها",
-  "tutorialStep4Body": "از دوربین برای اسکن و اضافه کردن خودکار برچسب‌ها استفاده کنید.",
-  "tutorialStep5Title": "اشتراک‌گذاری فهرست",
-  "tutorialStep5Body": "فهرست برچسب‌های ناقص یا تکراری را برای تبادل خروجی بگیرید.",
-  "globalTutorialStep1Title": "فیلتر مجموعه",
-  "globalTutorialStep1Body": "از این دکمه‌ها برای نمایش همه برچسب‌ها، فقط ناقص‌ها یا فقط تکراری‌ها استفاده کنید. ایده‌آل برای سازماندهی تبادل!",
-  "globalTutorialStep2Title": "جستجوی برچسب",
-  "globalTutorialStep2Body": "نام کشور، کد یا شماره برچسب را بنویسید تا سریع پیدا شود.",
-  "globalTutorialStep3Title": "برای علامت‌گذاری لمس کنید",
-  "globalTutorialStep3Body": "یک لمس روی برچسب خاکستری آن را به آلبوم اضافه می‌کند (طلایی می‌شود). لمس مجدد تأیید حذف خواسته می‌شود.",
-  "globalTutorialStep4Title": "فشار طولانی برای گزینه‌های بیشتر",
-  "globalTutorialStep4Body": "برچسب را نگه دارید تا تعداد نسخه‌های هر نوع (Normal, Gold, Legend...) را مدیریت کنید.",
-  "tutorialStep6Title": "دسته‌بندی را کاوش کنید",
-  "tutorialStep6Body": "روی هر کشور یا تیمی ضربه بزنید تا برچسب‌هایش را ببینید. آنجا می‌توانید آنچه دارید را علامت بزنید و تکراری‌ها را مدیریت کنید.",
-  "categoryTutorialStep1Title": "برچسب‌ها را فیلتر کنید",
-  "categoryTutorialStep1Body": "از این دکمه‌ها برای دیدن همه برچسب‌ها، فقط گم‌شده‌ها یا فقط تکراری‌ها استفاده کنید.",
-  "categoryTutorialStep2Title": "برچسب را جستجو کنید",
-  "categoryTutorialStep2Body": "نام کشور، کد یا شماره برچسب را تایپ کنید تا سریعاً پیدا شود.",
-  "categoryTutorialStep3Title": "برای علامت‌گذاری ضربه بزنید",
-  "categoryTutorialStep3Body": "ضربه زدن به یک برچسب خاکستری آن را به آلبوم اضافه می‌کند (طلایی می‌شود). اگر قبلاً آن را دارید، تأیید حذف درخواست می‌شود.",
-  "categoryTutorialStep4Title": "نگه دارید برای گزینه‌های بیشتر",
-  "categoryTutorialStep4Body": "نگه داشتن برچسب به شما امکان می‌دهد تعداد نسخه‌های هر نوع (Normal, Gold, Legend) را مدیریت کنید.",
-  "drawerReplayTutorial": "مرور آموزش مجدد",
-  "drawerRateApp": "برنامه ما را ارزیابی کنید",
-  "variantTutorialTitle": "منطقه خود را انتخاب کنید",
-  "variantTutorialBody": "نسخه آلبوم مربوط به کشور یا منطقه خود را انتخاب کنید. این تعیین می‌کند کدام برچسب‌ها و نوع‌ها (Normal, Gold, Legend) در مجموعه شما نمایش داده می‌شوند.",
-  "drawerLegalNotice": "اطلاعیه حقوقی",
-  "legalNoticeTitle": "اطلاعیه حقوقی",
-  "legalNoticeBody": "این اپلیکیشن یک اثر غیررسمی از طرفداران است و با هیچ سازمان رسمی فوتبال، سازنده برچسب، یا شریک رسمی مسابقات فوتبال وابستگی، تأیید یا ارتباطی ندارد. تمام علائم تجاری متعلق به صاحبان مربوطه آنها است.",
-  "statsTitle": "آمار",
-  "statsTotalLabel": "کل",
-  "statsCollectedLabel": "جمع‌آوری شده",
-  "statsDuplicateCopiesLabel": "تکراری‌ها",
-  "statsCategoriesTitle": "بر اساس دسته‌بندی",
-  "statsAllCategories": "همه",
-  "statsNoStatsYet": "هنوز داده‌ای وجود ندارد. شروع به جمع‌آوری کنید!",
-  "statsBestCategory": "بیشترین پیشرفت",
-  "statsWorstCategory": "کمترین پیشرفت",
-  "statsCompletedCategories": "کامل شده",
-  "drawerStats": "آمار",
-  "statsCategoryPickerSearch": "جستجوی دسته‌بندی...",
-  "statsCategoryPickerSelected": "{count} انتخاب شده",
-  "@statsCategoryPickerSelected": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "statsCategoryPickerAll": "همه دسته‌بندی‌ها",
-  "statsCategoryPickerClear": "پاک کردن",
-  "statsSortTooltip": "مرتب‌سازی",
-  "statsSortByName": "دسته‌بندی",
-  "statsSortByProgressDesc": "بیشترین پیشرفت اول",
-  "statsSortByProgressAsc": "کمترین پیشرفت اول",
-  "statsSortByMissing": "بیشترین کمبود اول",
-  "statsSortByDuplicates": "بیشترین تکرار اول",
-  "drawerLookup": "جستجوی استیکر",
-  "lookupScreenTitle": "جستجوی استیکر",
-  "lookupTabManual": "دستی",
-  "lookupTabScanner": "اسکنر",
-  "lookupSearchHint": "مثلاً: ECU 10، ARG 5، FRA 1...",
-  "lookupSearchButton": "جستجو",
-  "lookupStickerNotFound": "هیچ استیکری با این کد یافت نشد.",
-  "lookupStatusMissing": "ندارید",
-  "lookupStatusCollected": "دارید ✓",
-  "lookupStatusDuplicates": "{count} تکراری 🔁",
-  "@lookupStatusDuplicates": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "lookupQtyLabel": "تعداد در موجودی شما",
-  "lookupScannerHint": "استیکر را در مرکز قرار دهید تا شناسایی شود",
-  "lookupTutorialStep1Title": "دو روش جستجو",
-  "lookupTutorialStep1Body": "از تب دستی برای وارد کردن کد، یا از تب اسکنر برای استفاده استفاده کنید.",
-  "lookupTutorialStep2Title": "کد را وارد کنید",
-  "lookupTutorialStep2Body": "کد استیکر را مثل ECU 10 وارد کنید و جستجو را بزنید.",
-  "lookupTutorialStep3Title": "بررسی و مدیریت",
-  "lookupTutorialStep3Body": "میبینید این استیکر کم دارید یا نه. با دکمه‌های + و – موجودی را به‌روز کنید.",
-  "scanBadgeNew": "جدید",
-  "scanBadgeRepeated": "تکراری",
-  "scannerModeAdd": "افزودن استیکر",
-  "scannerModeRemoveDuplicates": "حذف تکراری‌ها",
-  "scannerRemoveModeHint": "استیکر تکراری را برای حذف وسط قرار دهید",
-  "removeDuplicatesTitle": "تکراری‌های برای حذف",
-  "removeDuplicatesEmpty": "هنوز تکراری اسکن نشده",
-  "removeDuplicatesSavedSuccess": "{count} تکراری از موجودی حذف شد 🗑️",
-  "@removeDuplicatesSavedSuccess": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "removeDuplicatesSaveError": "خطا در ذخیره: {message}",
-  "@removeDuplicatesSaveError": {
-    "placeholders": {
-      "message": {}
-    }
-  },
-  "removeDuplicatesLimitWarning": "{label} استیکر تکراری ندارد",
-  "@removeDuplicatesLimitWarning": {
-    "placeholders": {
-      "label": {}
-    }
-  },
-  "removeDuplicatesReviewButton": "بررسی {count} برای حذف",
-  "@removeDuplicatesReviewButton": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "navAlbum": "آلبوم",
-  "navScanner": "اسکنر"
+  }
 }

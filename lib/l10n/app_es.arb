@@ -9,9 +9,9 @@
   "authContinueGoogle": "Continuar con Google",
   "authContinueApple": "Continuar con Apple",
   "authContinueGuest": "Continuar como invitado",
-  "authNoAccountRegister": "¿No tienes una cuenta? Regístrate ahora",
+  "authNoAccountRegister": "¿No tienes cuenta? Regístrate ahora",
   "authForgotPassword": "¿Olvidaste tu contraseña?",
-  "authResetPasswordEnterEmail": "Introduce tu correo electrónico para restablecer tu contraseña.",
+  "authResetPasswordEnterEmail": "Ingresa tu correo electrónico para restablecer tu contraseña.",
   "authResetPasswordEmailSent": "Te hemos enviado un correo electrónico para restablecer tu contraseña.",
   "authGuestMigratedSuccess": "¡Tu progreso como invitado ha sido migrado exitosamente a tu nueva cuenta! 🏆",
   "authGuestRemotePreserved": "¡Bienvenido de nuevo! Tu colección en la nube ha sido restaurada y el progreso local de invitado descartado.",
@@ -21,15 +21,15 @@
       "message": {}
     }
   },
-  "authErrorInvalidCredentials": "Correo electrónico o contraseña incorrectos. Verifica tus datos e inténtalo de nuevo.",
-  "shareStatsTooltip": "Compartir estadísticas de colección",
-  "shareStatsMessage": "¡Mira mi progreso en {appName}! Estoy coleccionando todos los stickers para el próximo gran evento. ¡Únete a mí! #ColeccionistaDeStickers #Album2026",
+  "authErrorInvalidCredentials": "Correo electrónico o contraseña inválidos. Por favor, verifica tus credenciales e inténtalo de nuevo.",
+  "shareStatsTooltip": "Compartir estadísticas",
+  "shareStatsMessage": "¡Mira mi progreso en la colección de stickers en {appName}! #StickerCollector",
   "@shareStatsMessage": {
     "placeholders": {
       "appName": {}
     }
   },
-  "shareStatsError": "Error al compartir estadísticas: {error}",
+  "shareStatsError": "No se pudieron compartir las estadísticas: {error}",
   "@shareStatsError": {
     "placeholders": {
       "error": {}

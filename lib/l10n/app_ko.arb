@@ -1,7 +1,7 @@
 {
   "@@locale": "ko",
-  "appTitle": "Sticker Album 2026",
-  "authWelcomeTitle": "Sticker Album 2026에 오신 것을 환영합니다",
+  "appTitle": "스티커 앨범 2026",
+  "authWelcomeTitle": "스티커 앨범 2026에 오신 것을 환영합니다",
   "authEmailLabel": "이메일",
   "authPasswordLabel": "비밀번호",
   "authLoginButton": "로그인",
@@ -9,344 +9,30 @@
   "authContinueGoogle": "Google로 계속",
   "authContinueApple": "Apple로 계속",
   "authContinueGuest": "게스트로 계속",
-  "authNoAccountRegister": "계정이 없으신가요? 회원가입",
+  "authNoAccountRegister": "계정이 없으신가요? 지금 등록하세요",
   "authForgotPassword": "비밀번호를 잊으셨나요?",
-  "authResetPasswordEnterEmail": "비밀번호를 복구하려면 이메일을 입력하세요.",
-  "authResetPasswordEmailSent": "비밀번호 재설정 이메일을 발송했습니다.",
-  "authGuestMigratedSuccess": "게스트 진행 상황이 새 계정으로 성공적으로 이전되었습니다! 🏆",
-  "authGuestRemotePreserved": "돌아오신 것을 환영합니다! 클라우드 컬렉션이 복원되었으며 로컬 게스트 진행 상황은 삭제되었습니다.",
+  "authResetPasswordEnterEmail": "비밀번호를 재설정하려면 이메일을 입력하세요.",
+  "authResetPasswordEmailSent": "비밀번호 재설정 이메일을 보냈습니다.",
+  "authGuestMigratedSuccess": "게스트 진행 상황이 새 계정으로 성공적으로 마이그레이션되었습니다! 🏆",
+  "authGuestRemotePreserved": "다시 오신 것을 환영합니다! 클라우드 컬렉션이 복원되었으며 로컬 게스트 진행 상황은 폐기되었습니다.",
   "commonErrorWithMessage": "오류: {message}",
   "@commonErrorWithMessage": {
     "placeholders": {
       "message": {}
     }
   },
-  "authErrorInvalidCredentials": "이메일 또는 비밀번호가 잘못되었습니다. 정보를 확인하고 다시 시도해주세요.",
-  "authErrorEmailNotConfirmed": "이메일이 아직 확인되지 않았습니다. 받은 편지함을 확인해주세요.",
-  "authErrorUserAlreadyRegistered": "해당 이메일로 이미 계정이 존재합니다.",
-  "authErrorWeakPassword": "비밀번호가 너무 약합니다. 최소 6자 이상을 사용하세요.",
-  "authErrorInvalidEmail": "이메일 주소 형식이 올바르지 않습니다.",
-  "authErrorTokenExpired": "코드가 만료되었거나 유효하지 않습니다. 새 코드를 요청하세요.",
-  "authErrorRateLimit": "시도 횟수가 너무 많습니다. 잠시 후 다시 시도해주세요.",
-  "authErrorNetworkError": "연결이 없습니다. 네트워크를 확인하고 다시 시도해주세요.",
-  "authErrorSessionExpired": "세션이 만료되었습니다. 다시 로그인해주세요.",
-  "authErrorUnknown": "예기치 않은 오류가 발생했습니다. 다시 시도해주세요.",
-  "registerTitle": "계정 만들기",
-  "registerFillAllFields": "모든 필드를 입력해주세요.",
-  "registerEmailsDontMatch": "이메일 주소가 일치하지 않습니다.",
-  "registerPasswordsDontMatch": "비밀번호가 일치하지 않습니다.",
-  "registerPasswordMinLength": "비밀번호는 최소 6자 이상이어야 합니다.",
-  "registerAccountCreated": "계정이 성공적으로 생성되었습니다! ⚽ 로그인해주세요.",
-  "registerConfirmEmailLabel": "이메일 확인",
-  "registerConfirmPasswordLabel": "비밀번호 확인",
-  "registerSubmitButton": "회원가입",
-  "profileTitle": "내 프로필",
-  "profileOfficialCollector": "공식 컬렉터 🌟",
-  "profileChangePasswordButton": "비밀번호 업데이트",
-  "profileChangePasswordTitle": "비밀번호 업데이트",
-  "profileNewPasswordLabel": "새 비밀번호",
-  "profileConfirmNewPasswordLabel": "새 비밀번호 확인",
-  "profilePasswordUpdatedSuccess": "비밀번호가 성공적으로 업데이트되었습니다.",
-  "profileLogoutButton": "로그아웃",
-  "profileLogoutSuccess": "성공적으로 로그아웃되었습니다.",
-  "profileUnknownUser": "알 수 없는 사용자",
-  "profileLogoutError": "로그아웃 오류: {message}",
-  "@profileLogoutError": {
+  "authErrorInvalidCredentials": "잘못된 이메일 또는 비밀번호입니다. 자격 증명을 확인하고 다시 시도하십시오.",
+  "shareStatsTooltip": "통계 공유",
+  "shareStatsMessage": "{appName}에서 내 스티커 수집 진행 상황을 확인하세요! #StickerCollector",
+  "@shareStatsMessage": {
     "placeholders": {
-      "message": {}
+      "appName": {}
     }
   },
-  "homeTitle": "Sticker Album 2026",
-  "homeProfileTooltip": "내 프로필",
-  "drawerSignIn": "로그인",
-  "homeShareAll": "전체 목록 공유",
-  "homeShareMissingOnly": "없는 것만",
-  "homeShareDuplicatesOnly": "중복만",
-  "homeGlobalProgressTitle": "전체 진행 상황",
-  "homeCollectedCount": "{total}개 중 {collected}개 수집됨",
-  "@homeCollectedCount": {
-    "placeholders": {
-      "collected": {},
-      "total": {}
-    }
-  },
-  "homeViewFullCollection": "전체 컬렉션 보기",
-  "homeTeamsTitle": "팀",
-  "homeSearchTeamsHint": "국가 또는 팀으로 검색...",
-  "homeNoResults": "팀을 찾을 수 없습니다",
-  "homeScanButton": "스티커 스캔",
-  "homeObtainedCount": "{total}개 중 {collected}개 획득",
-  "@homeObtainedCount": {
-    "placeholders": {
-      "collected": {},
-      "total": {}
-    }
-  },
-  "homeProgressError": "오류",
-  "globalCollectionTitle": "전체 컬렉션",
-  "filterAll": "전체",
-  "filterMissing": "없는 것",
-  "filterDuplicates": "중복",
-  "filterSearchHint": "국가, 코드 또는 번호로 검색...",
-  "stickerRemoveTitle": "스티커를 제거하시겠습니까?",
-  "stickerRemoveConfirm": "앨범에서 스티커 {stickerLabel}을(를) 제거하시겠습니까?",
-  "@stickerRemoveConfirm": {
-    "placeholders": {
-      "stickerLabel": {}
-    }
-  },
-  "commonCancel": "취소",
-  "commonRemove": "제거",
-  "commonDone": "완료",
-  "gridNoResults": "스티커를 찾을 수 없습니다.",
-  "scannerViewScannedButton": "스캔된 스티커 {count}개 검토",
-  "@scannerViewScannedButton": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "scannerOverlayHint": "스티커 뒷면을 여기에 가운데 맞추세요",
-  "pendingScansTitle": "스캔된 스티커",
-  "pendingScansEmpty": "아직 스티커를 스캔하지 않았습니다",
-  "pendingScansItemLabel": "스티커: {code}",
-  "@pendingScansItemLabel": {
-    "placeholders": {
-      "code": {}
-    }
-  },
-  "pendingScansSavedSuccess": "스티커 {count}개가 앨범에 추가되었습니다! 🏆",
-  "@pendingScansSavedSuccess": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "pendingScansSaveError": "저장 오류: {message}",
-  "@pendingScansSaveError": {
-    "placeholders": {
-      "message": {}
-    }
-  },
-  "shareHeader": "⚽ *Sticker Album 2026 교환 목록* 🏆",
-  "shareMissingSectionTitle": "❌ *없는 것:*",
-  "shareDuplicatesSectionTitle": "🔁 *중복:*",
-  "shareNoneMissing": "없음! 😎",
-  "shareNoDuplicates": "중복 없음 😅",
-  "shareLetsTrade": "교환하실래요? 👀🔥",
-  "shareDownloadLink": "📲 {appName} 앱 다운로드\nhttps://onelink.to/5adrft?olbm=1",
-  "shareSeparator": "--------------------------",
-  "forgotPasswordTitle": "계정 복구",
-  "forgotPasswordDescription": "이메일을 입력하시면 비밀번호 재설정을 위한 6자리 코드를 보내드립니다.",
-  "forgotPasswordEmailLabel": "이메일",
-  "forgotPasswordEmptyEmailError": "이메일 주소를 입력해주세요.",
-  "forgotPasswordCodeSentSuccess": "코드가 전송되었습니다. 받은 편지함을 확인해주세요.",
-  "forgotPasswordSendCodeButton": "코드 전송",
-  "forgotPasswordStep2Description": "{email}로 보낸 코드와 새 비밀번호를 입력하세요.",
-  "@forgotPasswordStep2Description": {
-    "placeholders": {
-      "email": {}
-    }
-  },
-  "forgotPasswordCodeInputLabel": "8자리 코드",
-  "forgotPasswordInvalidCodeError": "코드는 정확히 6자리여야 합니다.",
-  "forgotPasswordNewPasswordLabel": "새 비밀번호",
-  "forgotPasswordShortPasswordError": "비밀번호는 최소 6자 이상이어야 합니다.",
-  "forgotPasswordSavePasswordButton": "비밀번호 저장",
-  "forgotPasswordPasswordUpdatedSuccess": "비밀번호가 성공적으로 업데이트되었습니다! 🏆",
-  "validationEmailInvalid": "이메일 주소가 유효하지 않습니다.",
-  "paywallTitle": "광고 없이 즐기세요",
-  "paywallSubtitle": "모든 기능은 무료로 이용할 수 있습니다. Pro로 중단 없이 모든 것을 즐기세요.",
-  "paywallBenefitScanner": "전면 광고 없는 스캐너",
-  "paywallBenefitNoAds": "광고 없음",
-  "paywallBenefitSync": "클라우드 동기화 포함",
-  "paywallSubscribeButton": "구독 · {price}",
-  "@paywallSubscribeButton": {
-    "placeholders": {
-      "price": {}
-    }
-  },
-  "paywallPackageMonthly": "월간",
-  "paywallPackageAnnual": "연간",
-  "paywallPackageWeekly": "주간",
-  "paywallPackageLifetime": "평생",
-  "paywallPackageTwoMonth": "2개월마다",
-  "paywallPackageThreeMonth": "3개월마다",
-  "paywallPackageSixMonth": "6개월마다",
-  "paywallBestOption": "최고의 선택",
-  "paywallStartFreeTrial": "무료 체험 시작",
-  "paywallFreeTrial": "{days}일 무료 체험",
-  "@paywallFreeTrial": {
-    "placeholders": {
-      "days": {"type": "int"}
-    }
-  },
-  "paywallRestorePurchases": "구매 복원",
-  "paywallCancelAnytime": "언제든지 취소 가능. 약정 없음.",
-  "paywallLoadError": "플랜을 불러올 수 없습니다. 연결을 확인해주세요.",
-  "paywallRetry": "다시 시도",
-  "paywallPurchaseError": "구매에 실패했습니다. 다시 시도해주세요.",
-  "paywallRestoreError": "구매를 복원할 수 없습니다. 다시 시도해주세요.",
-  "paywallGuestTitle": "구독하려면 로그인",
-  "paywallGuestBody": "Pro는 계정에 연결됩니다. 모든 기능을 잠금 해제하려면 로그인하거나 계정을 만드세요.",
-  "paywallGuestSignInButton": "로그인",
-  "scannerDemoRemaining": "무료 스캔 {count}회 남음",
-  "@scannerDemoRemaining": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "scannerDemoFinishedTitle": "5회의 무료 스캔을 모두 사용했습니다",
-  "scannerDemoFinishedSubtitle": "무제한 스티커 스캔과 광고 없는 경험을 위해 구독하세요.",
-  "scannerDemoUnlockButton": "Pro 플랜 보기",
-  "adDialogTitle": "무료 콘텐츠",
-  "adDialogBody": "계속하려면 짧은 광고를 보거나 Pro를 구독하고 광고를 영원히 잊으세요.",
-  "adDialogWatchAd": "광고 보기",
-  "adDialogGetPro": "Pro 가져오기",
-  "adDialogNotNow": "나중에",
-  "scannerCameraInitError": "카메라를 초기화할 수 없습니다. 앱에 카메라 권한이  있는지 확인하세요.",
-  "variantSheetTitle": "앨범 변형",
-  "variantSheetInventoryNote": "변형을 변경해도 인벤토리는 유지됩니다. 이미 보유한 스티커는 계속 기록됩니다.",
-  "variantSheetLoadError": "변형 로드 오류: {error}",
-  "@variantSheetLoadError": {
+  "shareStatsError": "통계를 공유할 수 없습니다: {error}",
+  "@shareStatsError": {
     "placeholders": {
       "error": {}
     }
-  },
-  "variantSheetEmpty": "이 앨범에 사용 가능한 변형이 없습니다.",
-  "variantSheetDefaultLabel": "기본 변형",
-  "variantMandatoryTitle": "지역 선택",
-  "variantMandatorySubtitle": "내 지역에 맞는 앨범 버전을 선택하세요.",
-  "variantChangedSuccess": "{name}(으)로 변경되었습니다 ✅",
-  "@variantChangedSuccess": {
-    "placeholders": {
-      "name": {}
-    }
-  },
-  "profileDeleteAccountButton": "계정 삭제",
-  "profileDeleteAccountTitle": "계정을 삭제하시겠습니까?",
-  "profileDeleteAccountMessage": "이 작업은 영구적입니다. 모든 데이터가 삭제되며 콜렉션을 복구할 수 없습니다.",
-  "profileDeleteAccountConfirmButton": "영구 삭제",
-  "profileDeleteAccountSuccess": "계정이 삭제되었습니다.",
-  "profileDeleteAccountError": "계정 삭제 중 오류가 발생했습니다. 다시 시도해 주세요.",
-  "paywallPrivacyPolicy": "개인정보 처리방침",
-  "paywallTermsOfUse": "이용약관",
-  "paywallLegalDisclaimer": "구독하면 이용약관 및 개인정보 처리방침에 동의하는 것입니다.",
-  "tutorialSkip": "건너뛰기",
-  "tutorialTapToContinue": "계속하려면 어디든 탭하세요",
-  "tutorialStep1Title": "전체 진행 상황",
-  "tutorialStep1Body": "수집한 스티커 수를 확인하세요. 계속 수집하세요!",
-  "tutorialStep2Title": "팀 검색",
-  "tutorialStep2Body": "국가나 팀 이름을 입력해 목록을 필터링하세요.",
-  "tutorialStep3Title": "메인 메뉴",
-  "tutorialStep3Body": "프로필 접근과 앨범 버전 변경이 가능합니다.",
-  "tutorialStep4Title": "스티커 스캔",
-  "tutorialStep4Body": "카메라로 스티커를 스캔해 앨범에 자동으로 추가하세요.",
-  "tutorialStep5Title": "목록 공유",
-  "tutorialStep5Body": "부족하거나 중복된 스티커 목록을 내보내 친구들과 교환하세요.",
-  "globalTutorialStep1Title": "컬렉션 필터링",
-  "globalTutorialStep1Body": "이 버튼을 사용하여 모든 스티커, 없는 것만 또는 중복된 것만 볼 수 있습니다. 교환 정리에 안성맞춤!",
-  "globalTutorialStep2Title": "스티커 검색",
-  "globalTutorialStep2Body": "국가 이름, 코드 또는 스티커 번호를 입력하여 빠르게 찾으세요.",
-  "globalTutorialStep3Title": "탭하여 표시",
-  "globalTutorialStep3Body": "회색 스티커를 한 번 탭하면 앨범에 추가됩니다(금색이 됩니다). 다시 탭하면 제거 확인을 요청합니다.",
-  "globalTutorialStep4Title": "길게 누르면 더 많은 옵션",
-  "globalTutorialStep4Body": "스티커를 길게 눌러 각 변형(Normal, Gold, Legend...)의 복사본 수를 관리하세요.",
-  "tutorialStep6Title": "카테고리 탐색",
-  "tutorialStep6Body": "국가나 팀을 탭하여 스티커를 확인하세요. 이미 가진 것을 표시하고 중복을 관리할 수 있습니다.",
-  "categoryTutorialStep1Title": "스티커 필터링",
-  "categoryTutorialStep1Body": "이 버튼으로 모든 스티커, 없는 것만 또는 중복만 볼 수 있습니다.",
-  "categoryTutorialStep2Title": "스티커 검색",
-  "categoryTutorialStep2Body": "국가명, 코드 또는 번호를 입력하여 빠르게 찾으세요.",
-  "categoryTutorialStep3Title": "탭하여 표시",
-  "categoryTutorialStep3Body": "회색 스티커를 탭하면 앨범에 추가됩니다(금색으로 변함). 이미 있는데 다시 탭하면 삭제 확인이 표시됩니다.",
-  "categoryTutorialStep4Title": "길게 눌러 더 많은 옵션",
-  "categoryTutorialStep4Body": "스티커를 길게 누르면 각 변형(Normal, Gold, Legend)의 보유 수량을 관리할 수 있습니다.",
-  "drawerReplayTutorial": "튜토리얼 다시 보기",
-  "drawerRateApp": "앱 평가하기",
-  "variantTutorialTitle": "지역을 선택하세요",
-  "variantTutorialBody": "본인의 국가나 지역에 맞는 앨범 버전을 선택하세요. 이것이 콜렉션에 표시될 스티커와 변형(Normal, Gold, Legend)을 결정합니다.",
-  "drawerLegalNotice": "법적 고지",
-  "legalNoticeTitle": "법적 고지",
-  "legalNoticeBody": "이 앱은 비공식 팩 제작물이며 어떠한 공식 축구 조직, 스티커 제조업체 또는 축구 토너먼트의 공식 파트너와도 제휴, 보증 또는 연결되어 있지 않습니다. 모든 상표는 해당 소유자의 재산입니다.",
-  "statsTitle": "통계",
-  "statsTotalLabel": "합계",
-  "statsCollectedLabel": "수집됨",
-  "statsDuplicateCopiesLabel": "중복",
-  "statsCategoriesTitle": "카테고리별",
-  "statsAllCategories": "전체",
-  "statsNoStatsYet": "아직 데이터 없음. 수집을 시작하세요!",
-  "statsBestCategory": "진행률 최고",
-  "statsWorstCategory": "진행률 최저",
-  "statsCompletedCategories": "완료됨",
-  "drawerStats": "통계",
-  "statsCategoryPickerSearch": "카테고리 검색...",
-  "statsCategoryPickerSelected": "{count}개 선택됨",
-  "@statsCategoryPickerSelected": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "statsCategoryPickerAll": "모든 카테고리",
-  "statsCategoryPickerClear": "지우기",
-  "statsSortTooltip": "정렬",
-  "statsSortByName": "카테고리",
-  "statsSortByProgressDesc": "진행률 높은 순",
-  "statsSortByProgressAsc": "진행률 낙은 순",
-  "statsSortByMissing": "부족 많은 순",
-  "statsSortByDuplicates": "중복 많은 순",
-  "drawerLookup": "스티커 조회",
-  "lookupScreenTitle": "스티커 조회",
-  "lookupTabManual": "수동",
-  "lookupTabScanner": "스캐너",
-  "lookupSearchHint": "예: ECU 10, ARG 5, FRA 1...",
-  "lookupSearchButton": "검색",
-  "lookupStickerNotFound": "해당 코드의 스티커를 찾을 수 없습니다.",
-  "lookupStatusMissing": "없음",
-  "lookupStatusCollected": "보유 중 ✓",
-  "lookupStatusDuplicates": "{count}개 중복 🔁",
-  "@lookupStatusDuplicates": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "lookupQtyLabel": "내 인벤토리 수량",
-  "lookupScannerHint": "스티커를 중앙에 맞춰 인식",
-  "lookupTutorialStep1Title": "두 가지 검색 방법",
-  "lookupTutorialStep1Body": "코드를 입력하려면 수동 탭, 카메라로 스캔하려면 스캔너 탭을 사용하세요.",
-  "lookupTutorialStep2Title": "코드 입력",
-  "lookupTutorialStep2Body": "앨범에 표시된 코드(ECU 10 또는 ARG 5 등)를 입력하고 검색 버튼을 누르세요.",
-  "lookupTutorialStep3Title": "확인 및 관리",
-  "lookupTutorialStep3Body": "스티커가 없는지 있는지 확인할 수 있습니다. + 및 – 버튼으로 인벤토리를 즐시 업데이트하세요.",
-  "scanBadgeNew": "새로운",
-  "scanBadgeRepeated": "중복",
-  "scannerModeAdd": "스티커 추가",
-  "scannerModeRemoveDuplicates": "중복 제거",
-  "scannerRemoveModeHint": "제거할 중복 스티커를 중앙에 맞추세요",
-  "removeDuplicatesTitle": "제거할 중복",
-  "removeDuplicatesEmpty": "아직 중복을 스캔하지 않았습니다",
-  "removeDuplicatesSavedSuccess": "인벤토리에서 {count}개 중복 제거됨 🗑️",
-  "@removeDuplicatesSavedSuccess": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "removeDuplicatesSaveError": "저장 오류: {message}",
-  "@removeDuplicatesSaveError": {
-    "placeholders": {
-      "message": {}
-    }
-  },
-  "removeDuplicatesLimitWarning": "{label}에 중복 스티커가 없습니다",
-  "@removeDuplicatesLimitWarning": {
-    "placeholders": {
-      "label": {}
-    }
-  },
-  "removeDuplicatesReviewButton": "{count}개 제거 검토",
-  "@removeDuplicatesReviewButton": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "navAlbum": "앨범",
-  "navScanner": "스캐너"
+  }
 }

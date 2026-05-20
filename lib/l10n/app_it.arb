@@ -1,352 +1,38 @@
 {
   "@@locale": "it",
-  "appTitle": "Sticker Album 2026",
-  "authWelcomeTitle": "Benvenuto su Sticker Album 2026",
+  "appTitle": "Album di Figurine 2026",
+  "authWelcomeTitle": "Benvenuto in Album di Figurine 2026",
   "authEmailLabel": "Email",
   "authPasswordLabel": "Password",
-  "authLoginButton": "ACCEDI",
-  "authContinueWith": "Oppure continua con",
+  "authLoginButton": "Accedi",
+  "authContinueWith": "O continua con",
   "authContinueGoogle": "Continua con Google",
   "authContinueApple": "Continua con Apple",
   "authContinueGuest": "Continua come ospite",
-  "authNoAccountRegister": "Non hai un account? Registrati",
-  "authForgotPassword": "Hai dimenticato la password?",
-  "authResetPasswordEnterEmail": "Inserisci la tua email per recuperare la password.",
+  "authNoAccountRegister": "Non hai un account? Registrati ora",
+  "authForgotPassword": "Password dimenticata?",
+  "authResetPasswordEnterEmail": "Inserisci la tua email per reimpostare la password.",
   "authResetPasswordEmailSent": "Ti abbiamo inviato un'email per reimpostare la password.",
-  "authGuestMigratedSuccess": "I tuoi progressi come ospite sono stati trasferiti con successo al tuo nuovo account! 🏆",
-  "authGuestRemotePreserved": "Bentornato! La tua collezione cloud è stata ripristinata e i progressi locali sono stati scartati.",
+  "authGuestMigratedSuccess": "Il tuo progresso come ospite è stato migrato con successo al tuo nuovo account! 🏆",
+  "authGuestRemotePreserved": "Bentornato! La tua collezione cloud è stata ripristinata e il progresso locale dell'ospite è stato scartato.",
   "commonErrorWithMessage": "Errore: {message}",
   "@commonErrorWithMessage": {
     "placeholders": {
       "message": {}
     }
   },
-  "authErrorInvalidCredentials": "Email o password errati. Verifica i tuoi dati e riprova.",
-  "authErrorEmailNotConfirmed": "La tua email non è ancora stata confermata. Controlla la tua casella di posta.",
-  "authErrorUserAlreadyRegistered": "Esiste già un account con questa email.",
-  "authErrorWeakPassword": "La password è troppo debole. Usa almeno 6 caratteri.",
-  "authErrorInvalidEmail": "Il formato dell'indirizzo email non è valido.",
-  "authErrorTokenExpired": "Il codice è scaduto o non è valido. Richiedine uno nuovo.",
-  "authErrorRateLimit": "Troppi tentativi. Attendi un momento prima di riprovare.",
-  "authErrorNetworkError": "Nessuna connessione. Controlla la rete e riprova.",
-  "authErrorSessionExpired": "La tua sessione è scaduta. Accedi di nuovo.",
-  "authErrorUnknown": "Si è verificato un errore imprevisto. Riprova.",
-  "registerTitle": "Crea Account",
-  "registerFillAllFields": "Compila tutti i campi.",
-  "registerEmailsDontMatch": "Le email non corrispondono.",
-  "registerPasswordsDontMatch": "Le password non corrispondono.",
-  "registerPasswordMinLength": "La password deve contenere almeno 6 caratteri.",
-  "registerAccountCreated": "Account creato con successo! ⚽ Accedi ora.",
-  "registerConfirmEmailLabel": "Conferma email",
-  "registerConfirmPasswordLabel": "Conferma password",
-  "registerSubmitButton": "REGISTRATI",
-  "profileTitle": "Il Mio Profilo",
-  "profileOfficialCollector": "Collezionista Ufficiale 🌟",
-  "profileChangePasswordButton": "Aggiorna password",
-  "profileChangePasswordTitle": "Aggiorna password",
-  "profileNewPasswordLabel": "Nuova password",
-  "profileConfirmNewPasswordLabel": "Conferma nuova password",
-  "profilePasswordUpdatedSuccess": "Password aggiornata con successo.",
-  "profileLogoutButton": "Esci",
-  "profileLogoutSuccess": "Hai effettuato il logout con successo.",
-  "profileUnknownUser": "Utente sconosciuto",
-  "profileLogoutError": "Errore durante il logout: {message}",
-  "@profileLogoutError": {
+  "authErrorInvalidCredentials": "Email o password non validi. Controlla le tue credenziali e riprova.",
+  "shareStatsTooltip": "Condividi statistiche",
+  "shareStatsMessage": "Dai un'occhiata ai miei progressi nella raccolta di figurine in {appName}! #StickerCollector",
+  "@shareStatsMessage": {
     "placeholders": {
-      "message": {}
+      "appName": {}
     }
   },
-  "homeTitle": "Sticker Album 2026",
-  "homeProfileTooltip": "Il Mio Profilo",
-  "drawerSignIn": "Accedi",
-  "homeShareAll": "Condividi Lista Completa",
-  "homeShareMissingOnly": "Solo Mancanti",
-  "homeShareDuplicatesOnly": "Solo Doppioni",
-  "homeGlobalProgressTitle": "Progresso Globale",
-  "homeCollectedCount": "{collected} di {total} raccolte",
-  "@homeCollectedCount": {
-    "placeholders": {
-      "collected": {},
-      "total": {}
-    }
-  },
-  "homeViewFullCollection": "Vedi Collezione Completa",
-  "homeTeamsTitle": "Squadre",
-  "homeSearchTeamsHint": "Cerca per paese o squadra...",
-  "homeNoResults": "Nessuna squadra trovata",
-  "homeScanButton": "Scansiona Figurina",
-  "homeObtainedCount": "{collected} di {total} ottenute",
-  "@homeObtainedCount": {
-    "placeholders": {
-      "collected": {},
-      "total": {}
-    }
-  },
-  "homeProgressError": "Errore",
-  "globalCollectionTitle": "Collezione Completa",
-  "filterAll": "Tutte",
-  "filterMissing": "Mancanti",
-  "filterDuplicates": "Doppioni",
-  "filterSearchHint": "Cerca per paese, codice o numero...",
-  "stickerRemoveTitle": "Rimuovere figurina?",
-  "stickerRemoveConfirm": "Sei sicuro di voler rimuovere la figurina {stickerLabel} dal tuo album?",
-  "@stickerRemoveConfirm": {
-    "placeholders": {
-      "stickerLabel": {}
-    }
-  },
-  "commonCancel": "Annulla",
-  "commonRemove": "Rimuovi",
-  "commonDone": "FATTO",
-  "gridNoResults": "Nessuna figurina trovata.",
-  "scannerViewScannedButton": "Rivedi {count} figurine scansionate",
-  "@scannerViewScannedButton": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "scannerOverlayHint": "Centra il retro della figurina qui",
-  "pendingScansTitle": "Figurine Scansionate",
-  "pendingScansEmpty": "Non hai ancora scansionato nessuna figurina",
-  "pendingScansItemLabel": "Figurina: {code}",
-  "@pendingScansItemLabel": {
-    "placeholders": {
-      "code": {}
-    }
-  },
-  "pendingScansSavedSuccess": "{count} figurine aggiunte al tuo album! 🏆",
-  "@pendingScansSavedSuccess": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "pendingScansSaveError": "Errore durante il salvataggio: {message}",
-  "@pendingScansSaveError": {
-    "placeholders": {
-      "message": {}
-    }
-  },
-  "shareHeader": "⚽ *LISTA SCAMBI Sticker Album 2026* 🏆",
-  "shareMissingSectionTitle": "❌ *MANCANTI:*",
-  "shareDuplicatesSectionTitle": "🔁 *DOPPIONI:*",
-  "shareNoneMissing": "Nessuno! 😎",
-  "shareNoDuplicates": "Nessun doppione 😅",
-  "shareLetsTrade": "Vuoi scambiare? 👀🔥",
-  "shareDownloadLink": "📲 Scarica l'app di {appName}\nhttps://onelink.to/5adrft?olbm=1",
-  "shareSeparator": "--------------------------",
-  "forgotPasswordTitle": "Recupera Account",
-  "forgotPasswordDescription": "Inserisci la tua email e ti invieremo un codice di 6 cifre per reimpostare la password.",
-  "forgotPasswordEmailLabel": "Email",
-  "forgotPasswordEmptyEmailError": "Inserisci la tua email.",
-  "forgotPasswordCodeSentSuccess": "Codice inviato. Controlla la tua casella di posta.",
-  "forgotPasswordSendCodeButton": "INVIA CODICE",
-  "forgotPasswordStep2Description": "Inserisci il codice che abbiamo inviato a {email} e la tua nuova password.",
-  "@forgotPasswordStep2Description": {
-    "placeholders": {
-      "email": {}
-    }
-  },
-  "forgotPasswordCodeInputLabel": "Codice a 8 cifre",
-  "forgotPasswordInvalidCodeError": "Il codice deve avere esattamente 6 cifre.",
-  "forgotPasswordNewPasswordLabel": "Nuova Password",
-  "forgotPasswordShortPasswordError": "La password deve contenere almeno 6 caratteri.",
-  "forgotPasswordSavePasswordButton": "SALVA PASSWORD",
-  "forgotPasswordPasswordUpdatedSuccess": "Password aggiornata con successo! 🏆",
-  "validationEmailInvalid": "L'indirizzo email non è valido.",
-  "paywallTitle": "Goditi l'app senza pubblicità",
-  "paywallSubtitle": "Tutte le funzioni sono gratuite. Con Pro godi di tutto senza interruzioni.",
-  "paywallBenefitScanner": "Scanner senza annunci interstitial",
-  "paywallBenefitNoAds": "Nessuna pubblicità",
-  "paywallBenefitSync": "Sincronizzazione cloud inclusa",
-  "paywallSubscribeButton": "Abbonati · {price}",
-  "@paywallSubscribeButton": {
-    "placeholders": {
-      "price": {}
-    }
-  },
-  "paywallPackageMonthly": "Mensile",
-  "paywallPackageAnnual": "Annuale",
-  "paywallPackageWeekly": "Settimanale",
-  "paywallPackageLifetime": "A vita",
-  "paywallPackageTwoMonth": "Ogni 2 mesi",
-  "paywallPackageThreeMonth": "Ogni 3 mesi",
-  "paywallPackageSixMonth": "Ogni 6 mesi",
-  "paywallBestOption": "Migliore opzione",
-  "paywallStartFreeTrial": "Inizia la prova gratuita",
-  "paywallFreeTrial": "Prova gratuita di {days} giorni",
-  "@paywallFreeTrial": {
-    "placeholders": {
-      "days": {"type": "int"}
-    }
-  },
-  "paywallRestorePurchases": "Ripristina acquisti",
-  "paywallCancelAnytime": "Annulla quando vuoi. Nessun impegno.",
-  "paywallLoadError": "Impossibile caricare i piani. Controlla la connessione.",
-  "paywallRetry": "Riprova",
-  "paywallPurchaseError": "Acquisto non riuscito. Riprova.",
-  "paywallRestoreError": "Impossibile ripristinare gli acquisti. Riprova.",
-  "paywallGuestTitle": "Accedi per abbonarti",
-  "paywallGuestBody": "Pro è collegato al tuo account. Accedi o crea un account per sbloccare tutte le funzioni.",
-  "paywallGuestSignInButton": "ACCEDI",
-  "scannerDemoRemaining": "{count} scansioni gratuite rimanenti",
-  "@scannerDemoRemaining": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "scannerDemoFinishedTitle": "Hai usato le tue 5 scansioni gratuite",
-  "scannerDemoFinishedSubtitle": "Abbonati per scansionare figurine illimitate e vivere un'esperienza senza pubblicità.",
-  "scannerDemoUnlockButton": "Vedi Piani Pro",
-  "adDialogTitle": "Contenuto gratuito",
-  "adDialogBody": "Per continuare, guarda un breve annuncio o abbonati a Pro e dimentica la pubblicità per sempre.",
-  "adDialogWatchAd": "Guarda annuncio",
-  "adDialogGetPro": "Ottieni Pro",
-  "adDialogNotNow": "Non ora",
-  "scannerCameraInitError": "Impossibile inizializzare la fotocamera. Assicurati che l'app abbia il permesso di accedere alla fotocamera.",
-  "variantSheetTitle": "Variante dell'album",
-  "variantSheetInventoryNote": "Il tuo inventario viene conservato quando cambi variante. Le figurine che hai già continuano ad essere registrate.",
-  "variantSheetLoadError": "Errore nel caricamento delle varianti: {error}",
-  "@variantSheetLoadError": {
+  "shareStatsError": "Impossibile condividere le statistiche: {error}",
+  "@shareStatsError": {
     "placeholders": {
       "error": {}
     }
-  },
-  "variantSheetEmpty": "Nessuna variante disponibile per questo album.",
-  "variantSheetDefaultLabel": "Variante predefinita",
-  "variantMandatoryTitle": "Scegli la tua regione",
-  "variantMandatorySubtitle": "Seleziona la versione dell'album per la tua regione.",
-  "variantChangedSuccess": "Variante cambiata in {name} ✅",
-  "@variantChangedSuccess": {
-    "placeholders": {
-      "name": {}
-    }
-  },
-  "profileDeleteAccountButton": "Elimina account",
-  "profileDeleteAccountTitle": "Eliminare il tuo account?",
-  "profileDeleteAccountMessage": "Questa azione è permanente. Tutti i tuoi dati verranno eliminati e non potrai recuperare la tua collezione.",
-  "profileDeleteAccountConfirmButton": "Elimina definitivamente",
-  "profileDeleteAccountSuccess": "Il tuo account è stato eliminato.",
-  "profileDeleteAccountError": "Errore durante l'eliminazione dell'account. Riprova.",
-  "paywallPrivacyPolicy": "Informativa sulla privacy",
-  "paywallTermsOfUse": "Termini di utilizzo",
-  "paywallLegalDisclaimer": "Abbonandoti accetti i nostri Termini di utilizzo e la nostra Informativa sulla privacy.",
-  "tutorialSkip": "Salta",
-  "tutorialTapToContinue": "Tocca ovunque per continuare",
-  "tutorialStep1Title": "Il tuo progresso globale",
-  "tutorialStep1Body": "Vedi quante figurine hai collezionato. Continua!",
-  "tutorialStep2Title": "Cerca squadre",
-  "tutorialStep2Body": "Digita il nome di un paese o squadra per filtrare la lista.",
-  "tutorialStep3Title": "Menu principale",
-  "tutorialStep3Body": "Accedi al tuo profilo e cambia la variante dell'album.",
-  "tutorialStep4Title": "Scansiona figurine",
-  "tutorialStep4Body": "Usa la fotocamera per scansionare figurine fisiche e aggiungerle automaticamente.",
-  "tutorialStep5Title": "Condividi la lista",
-  "tutorialStep5Body": "Esporta la tua lista di figurine mancanti o duplicate per scambiarle.",
-  "globalTutorialStep1Title": "Filtra la tua raccolta",
-  "globalTutorialStep1Body": "Usa questi pulsanti per vedere tutte le tue figurine, solo quelle mancanti o solo i doppioni. Perfetto per organizzare gli scambi!",
-  "globalTutorialStep2Title": "Cerca una figurina",
-  "globalTutorialStep2Body": "Digita il nome del paese, il codice o il numero della figurina per trovarla rapidamente.",
-  "globalTutorialStep3Title": "Tocca per segnare",
-  "globalTutorialStep3Body": "Un tocco su una figurina grigia la aggiunge al tuo album (diventa dorata). Se la tocchi di nuovo, ti verrà chiesta conferma per rimuoverla.",
-  "globalTutorialStep4Title": "Premi a lungo per più opzioni",
-  "globalTutorialStep4Body": "Tieni premuta una figurina per gestire quante copie hai di ogni variante (Normal, Gold, Legend...).",
-  "tutorialStep6Title": "Esplora una categoria",
-  "tutorialStep6Body": "Tocca un paese o una squadra per vedere le sue figurine. Li puoi segnare quelle che hai gia e gestire i duplicati.",
-  "categoryTutorialStep1Title": "Filtra le figurine",
-  "categoryTutorialStep1Body": "Usa questi pulsanti per vedere tutte le figurine, solo quelle mancanti o solo i doppioni.",
-  "categoryTutorialStep2Title": "Cerca una figurina",
-  "categoryTutorialStep2Body": "Digita il nome del paese, il codice o il numero della figurina per trovarla rapidamente.",
-  "categoryTutorialStep3Title": "Tocca per segnare",
-  "categoryTutorialStep3Body": "Toccare una figurina grigia la aggiunge all album (diventa dorata). Se ce l hai gia e tocchi di nuovo, ti verra chiesta conferma per rimuoverla.",
-  "categoryTutorialStep4Title": "Tieni premuto per piu opzioni",
-  "categoryTutorialStep4Body": "Tenere premuta una figurina permette di gestire quante copie hai di ogni variante (Normal, Gold, Legend).",
-  "drawerReplayTutorial": "Rivedere il tutorial",
-  "drawerRateApp": "Valuta la nostra app",
-  "variantTutorialTitle": "Seleziona la tua regione",
-  "variantTutorialBody": "Scegli la variante dell'album corrispondente al tuo paese o regione. Questo definisce quali figurine e varianti (Normal, Gold, Legend) appariranno nella tua collezione.",
-  "drawerLegalNotice": "Note Legali",
-  "legalNoticeTitle": "Note Legali",
-  "legalNoticeBody": "Questa applicazione è una creazione non ufficiale di fan e non è affiliata, approvata o collegata a qualsiasi organizzazione calcistica ufficiale, produttore di figurine o partner ufficiale del torneo di calcio. Tutti i marchi registrati sono di proprietà dei rispettivi titolari.",
-  "statsTitle": "Statistiche",
-  "statsTotalLabel": "Totale",
-  "statsCollectedLabel": "Raccolte",
-  "statsDuplicateCopiesLabel": "Duplicati",
-  "statsCategoriesTitle": "Per Categoria",
-  "statsAllCategories": "Tutte",
-  "statsNoStatsYet": "Nessun dato ancora. Inizia a collezionare!",
-  "statsBestCategory": "Maggior progresso",
-  "statsWorstCategory": "Minor progresso",
-  "statsCompletedCategories": "Completate",
-  "drawerStats": "Statistiche",
-  "statsCategoryPickerSearch": "Cerca categoria...",
-  "statsCategoryPickerSelected": "{count} selezionate",
-  "@statsCategoryPickerSelected": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "statsCategoryPickerAll": "Tutte le categorie",
-  "statsCategoryPickerClear": "Cancella",
-  "statsSortTooltip": "Ordina",
-  "statsSortByName": "Categoria",
-  "statsSortByProgressDesc": "Maggior progresso prima",
-  "statsSortByProgressAsc": "Minor progresso prima",
-  "statsSortByMissing": "Più mancanti prima",
-  "statsSortByDuplicates": "Più doppioni prima",
-  "drawerLookup": "Cerca figurina",
-  "lookupScreenTitle": "Cerca figurina",
-  "lookupTabManual": "Manuale",
-  "lookupTabScanner": "Scanner",
-  "lookupSearchHint": "Es.: ECU 10, ARG 5, FRA 1...",
-  "lookupSearchButton": "Cerca",
-  "lookupStickerNotFound": "Nessuna figurina trovata con quel codice.",
-  "lookupStatusMissing": "Mancante",
-  "lookupStatusCollected": "Ce l'hai già ✓",
-  "lookupStatusDuplicates": "{count} doppione/i 🔁",
-  "@lookupStatusDuplicates": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "lookupQtyLabel": "Quantità nel tuo inventario",
-  "lookupScannerHint": "Centra la figurina per identificarla",
-  "lookupTutorialStep1Title": "Due modi per cercare",
-  "lookupTutorialStep1Body": "Usa la scheda Manuale per inserire il codice della figurina o la scheda Scanner per puntare la fotocamera.",
-  "lookupTutorialStep2Title": "Inserisci il codice",
-  "lookupTutorialStep2Body": "Digita il codice della figurina come appare nell'album, es. ECU 10 o ARG 5, poi tocca Cerca.",
-  "lookupTutorialStep3Title": "Consulta e gestisci",
-  "lookupTutorialStep3Body": "Vedrai se la figurina manca o ce l'hai già. Con i pulsanti + e – puoi aggiornare il tuo inventario all'istante.",
-  "scanBadgeNew": "Nuovo",
-  "scanBadgeRepeated": "Duplicato",
-  "scannerModeAdd": "Aggiungi figurine",
-  "scannerModeRemoveDuplicates": "Rimuovi doppioni",
-  "scannerRemoveModeHint": "Centra la figurina doppione da rimuovere",
-  "removeDuplicatesTitle": "Doppioni da rimuovere",
-  "removeDuplicatesEmpty": "Nessun doppione scansionato ancora",
-  "removeDuplicatesSavedSuccess": "{count} doppioni rimossi dall'inventario 🗑️",
-  "@removeDuplicatesSavedSuccess": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "removeDuplicatesSaveError": "Errore durante il salvataggio: {message}",
-  "@removeDuplicatesSaveError": {
-    "placeholders": {
-      "message": {}
-    }
-  },
-  "removeDuplicatesLimitWarning": "{label} non ha figurine duplicate",
-  "@removeDuplicatesLimitWarning": {
-    "placeholders": {
-      "label": {}
-    }
-  },
-  "removeDuplicatesReviewButton": "Rivedi {count} da rimuovere",
-  "@removeDuplicatesReviewButton": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "navAlbum": "Album",
-  "navScanner": "Scanner"
+  }
 }

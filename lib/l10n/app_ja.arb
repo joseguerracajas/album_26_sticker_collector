@@ -1,7 +1,7 @@
 {
   "@@locale": "ja",
-  "appTitle": "Sticker Album 2026",
-  "authWelcomeTitle": "Sticker Album 2026へようこそ",
+  "appTitle": "ステッカーアルバム 2026",
+  "authWelcomeTitle": "ステッカーアルバム 2026へようこそ",
   "authEmailLabel": "メールアドレス",
   "authPasswordLabel": "パスワード",
   "authLoginButton": "ログイン",
@@ -9,344 +9,30 @@
   "authContinueGoogle": "Googleで続行",
   "authContinueApple": "Appleで続行",
   "authContinueGuest": "ゲストとして続行",
-  "authNoAccountRegister": "アカウントをお持ちでない方は登録",
+  "authNoAccountRegister": "アカウントをお持ちではありませんか？今すぐ登録",
   "authForgotPassword": "パスワードをお忘れですか？",
-  "authResetPasswordEnterEmail": "パスワードを回復するためにメールアドレスを入力してください。",
-  "authResetPasswordEmailSent": "パスワードのリセット用メールを送信しました。",
-  "authGuestMigratedSuccess": "ゲストの進捗が新しいアカウントに正常に転送されました！🏆",
-  "authGuestRemotePreserved": "お帰りなさい！クラウドコレクションが復元され、ローカルのゲスト進捗は削除されました。",
+  "authResetPasswordEnterEmail": "パスワードをリセットするためにメールアドレスを入力してください。",
+  "authResetPasswordEmailSent": "パスワードリセットメールを送信しました。",
+  "authGuestMigratedSuccess": "ゲストの進捗状況が新しいアカウントに正常に移行されました！🏆",
+  "authGuestRemotePreserved": "おかえりなさい！クラウドコレクションが復元され、ローカルのゲスト進捗状況は破棄されました。",
   "commonErrorWithMessage": "エラー: {message}",
   "@commonErrorWithMessage": {
     "placeholders": {
       "message": {}
     }
   },
-  "authErrorInvalidCredentials": "メールアドレスまたはパスワードが間違っています。詳細を確認して再試行してください。",
-  "authErrorEmailNotConfirmed": "メールアドレスがまだ確認されていません。受信トレイを確認してください。",
-  "authErrorUserAlreadyRegistered": "そのメールアドレスで既にアカウントが存在します。",
-  "authErrorWeakPassword": "パスワードが弱すぎます。少なくとも6文字以上を使用してください。",
-  "authErrorInvalidEmail": "メールアドレスの形式が無効です。",
-  "authErrorTokenExpired": "コードが期限切れまたは無効です。新しいコードをリクエストしてください。",
-  "authErrorRateLimit": "試行回数が多すぎます。しばらく待ってから再試行してください。",
-  "authErrorNetworkError": "接続がありません。ネットワークを確認して再試行してください。",
-  "authErrorSessionExpired": "セッションが期限切れです。再度ログインしてください。",
-  "authErrorUnknown": "予期しないエラーが発生しました。再試行してください。",
-  "registerTitle": "アカウントを作成",
-  "registerFillAllFields": "すべてのフィールドを入力してください。",
-  "registerEmailsDontMatch": "メールアドレスが一致しません。",
-  "registerPasswordsDontMatch": "パスワードが一致しません。",
-  "registerPasswordMinLength": "パスワードは少なくとも6文字以上にしてください。",
-  "registerAccountCreated": "アカウントが正常に作成されました！⚽ ログインしてください。",
-  "registerConfirmEmailLabel": "メールアドレスを確認",
-  "registerConfirmPasswordLabel": "パスワードを確認",
-  "registerSubmitButton": "登録",
-  "profileTitle": "マイプロフィール",
-  "profileOfficialCollector": "公式コレクター 🌟",
-  "profileChangePasswordButton": "パスワードを更新",
-  "profileChangePasswordTitle": "パスワードを更新",
-  "profileNewPasswordLabel": "新しいパスワード",
-  "profileConfirmNewPasswordLabel": "新しいパスワードを確認",
-  "profilePasswordUpdatedSuccess": "パスワードが正常に更新されました。",
-  "profileLogoutButton": "ログアウト",
-  "profileLogoutSuccess": "正常にログアウトしました。",
-  "profileUnknownUser": "不明なユーザー",
-  "profileLogoutError": "ログアウトエラー: {message}",
-  "@profileLogoutError": {
+  "authErrorInvalidCredentials": "無効なメールアドレスまたはパスワードです。認証情報を確認してもう一度お試しください。",
+  "shareStatsTooltip": "統計を共有",
+  "shareStatsMessage": "{appName}での私のステッカー収集の進捗状況をチェックしてください！ #StickerCollector",
+  "@shareStatsMessage": {
     "placeholders": {
-      "message": {}
+      "appName": {}
     }
   },
-  "homeTitle": "Sticker Album 2026",
-  "homeProfileTooltip": "マイプロフィール",
-  "drawerSignIn": "サインイン",
-  "homeShareAll": "完全なリストを共有",
-  "homeShareMissingOnly": "不足のみ",
-  "homeShareDuplicatesOnly": "重複のみ",
-  "homeGlobalProgressTitle": "全体の進捗",
-  "homeCollectedCount": "{total}枚中{collected}枚収集済み",
-  "@homeCollectedCount": {
-    "placeholders": {
-      "collected": {},
-      "total": {}
-    }
-  },
-  "homeViewFullCollection": "完全なコレクションを表示",
-  "homeTeamsTitle": "チーム",
-  "homeSearchTeamsHint": "国またはチームで検索...",
-  "homeNoResults": "チームが見つかりません",
-  "homeScanButton": "シールをスキャン",
-  "homeObtainedCount": "{total}枚中{collected}枚取得済み",
-  "@homeObtainedCount": {
-    "placeholders": {
-      "collected": {},
-      "total": {}
-    }
-  },
-  "homeProgressError": "エラー",
-  "globalCollectionTitle": "完全なコレクション",
-  "filterAll": "すべて",
-  "filterMissing": "不足",
-  "filterDuplicates": "重複",
-  "filterSearchHint": "国、コード、または番号で検索...",
-  "stickerRemoveTitle": "シールを削除しますか？",
-  "stickerRemoveConfirm": "シール {stickerLabel} をアルバムから削除してもよろしいですか？",
-  "@stickerRemoveConfirm": {
-    "placeholders": {
-      "stickerLabel": {}
-    }
-  },
-  "commonCancel": "キャンセル",
-  "commonRemove": "削除",
-  "commonDone": "完了",
-  "gridNoResults": "シールが見つかりません。",
-  "scannerViewScannedButton": "スキャンした{count}枚のシールを確認",
-  "@scannerViewScannedButton": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "scannerOverlayHint": "シールの裏面をここに中央に合わせてください",
-  "pendingScansTitle": "スキャン済みシール",
-  "pendingScansEmpty": "まだシールをスキャンしていません",
-  "pendingScansItemLabel": "シール: {code}",
-  "@pendingScansItemLabel": {
-    "placeholders": {
-      "code": {}
-    }
-  },
-  "pendingScansSavedSuccess": "{count}枚のシールがアルバムに追加されました！🏆",
-  "@pendingScansSavedSuccess": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "pendingScansSaveError": "保存エラー: {message}",
-  "@pendingScansSaveError": {
-    "placeholders": {
-      "message": {}
-    }
-  },
-  "shareHeader": "⚽ *Sticker Album 2026 交換リスト* 🏆",
-  "shareMissingSectionTitle": "❌ *不足:*",
-  "shareDuplicatesSectionTitle": "🔁 *重複:*",
-  "shareNoneMissing": "なし！😎",
-  "shareNoDuplicates": "重複なし 😅",
-  "shareLetsTrade": "交換しませんか？👀🔥",
-  "shareDownloadLink": "📲 {appName}アプリをダウンロード\nhttps://onelink.to/5adrft?olbm=1",
-  "shareSeparator": "--------------------------",
-  "forgotPasswordTitle": "アカウントを回復",
-  "forgotPasswordDescription": "メールアドレスを入力してください。パスワードをリセットするための6桁のコードを送信します。",
-  "forgotPasswordEmailLabel": "メールアドレス",
-  "forgotPasswordEmptyEmailError": "メールアドレスを入力してください。",
-  "forgotPasswordCodeSentSuccess": "コードを送信しました。受信トレイを確認してください。",
-  "forgotPasswordSendCodeButton": "コードを送信",
-  "forgotPasswordStep2Description": "{email} に送信したコードと新しいパスワードを入力してください。",
-  "@forgotPasswordStep2Description": {
-    "placeholders": {
-      "email": {}
-    }
-  },
-  "forgotPasswordCodeInputLabel": "8桁のコード",
-  "forgotPasswordInvalidCodeError": "コードは正確に6桁でなければなりません。",
-  "forgotPasswordNewPasswordLabel": "新しいパスワード",
-  "forgotPasswordShortPasswordError": "パスワードは少なくとも6文字以上にしてください。",
-  "forgotPasswordSavePasswordButton": "パスワードを保存",
-  "forgotPasswordPasswordUpdatedSuccess": "パスワードが正常に更新されました！🏆",
-  "validationEmailInvalid": "メールアドレスが無効です。",
-  "paywallTitle": "広告なしで楽しむ",
-  "paywallSubtitle": "すべての機能は無料でご利用いただけます。Proで中断なく全機能をお楽しみください。",
-  "paywallBenefitScanner": "インタースティシャル広告なしのスキャナー",
-  "paywallBenefitNoAds": "広告なし",
-  "paywallBenefitSync": "クラウド同期を含む",
-  "paywallSubscribeButton": "購読 · {price}",
-  "@paywallSubscribeButton": {
-    "placeholders": {
-      "price": {}
-    }
-  },
-  "paywallPackageMonthly": "月額",
-  "paywallPackageAnnual": "年額",
-  "paywallPackageWeekly": "週額",
-  "paywallPackageLifetime": "永久",
-  "paywallPackageTwoMonth": "2ヶ月ごと",
-  "paywallPackageThreeMonth": "3ヶ月ごと",
-  "paywallPackageSixMonth": "6ヶ月ごと",
-  "paywallBestOption": "ベストオプション",
-  "paywallStartFreeTrial": "無料トライアルを開始",
-  "paywallFreeTrial": "{days}日間無料トライアル",
-  "@paywallFreeTrial": {
-    "placeholders": {
-      "days": {"type": "int"}
-    }
-  },
-  "paywallRestorePurchases": "購入を復元",
-  "paywallCancelAnytime": "いつでもキャンセル可能。コミットメント不要。",
-  "paywallLoadError": "プランを読み込めませんでした。接続を確認してください。",
-  "paywallRetry": "再試行",
-  "paywallPurchaseError": "購入に失敗しました。再試行してください。",
-  "paywallRestoreError": "購入を復元できませんでした。再試行してください。",
-  "paywallGuestTitle": "購読するにはログイン",
-  "paywallGuestBody": "Proはアカウントにリンクされています。全機能をアンロックするにはログインまたはアカウント作成してください。",
-  "paywallGuestSignInButton": "ログイン",
-  "scannerDemoRemaining": "無料スキャン残り{count}回",
-  "@scannerDemoRemaining": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "scannerDemoFinishedTitle": "5回の無料スキャンを使い切りました",
-  "scannerDemoFinishedSubtitle": "無制限のシールスキャンと広告なし体験のために購読してください。",
-  "scannerDemoUnlockButton": "Proプランを見る",
-  "adDialogTitle": "無料コンテンツ",
-  "adDialogBody": "続行するには短い広告を見るか、Proに購読して広告を永遠に忘れてください。",
-  "adDialogWatchAd": "広告を見る",
-  "adDialogGetPro": "Proを取得",
-  "adDialogNotNow": "今はしない",
-  "scannerCameraInitError": "カメラを初期化できませんでした。アプリにカメラのア クセス許可があることを確認してください。",
-  "variantSheetTitle": "アルバムのバリアント",
-  "variantSheetInventoryNote": "バリアントを変更してもインベントリは保持されます。すでに持っているステッカーは引き続き記録されます。",
-  "variantSheetLoadError": "バリアントの読み込みエラー: {error}",
-  "@variantSheetLoadError": {
+  "shareStatsError": "統計を共有できませんでした: {error}",
+  "@shareStatsError": {
     "placeholders": {
       "error": {}
     }
-  },
-  "variantSheetEmpty": "このアルバムで利用可能なバリアントはありません。",
-  "variantSheetDefaultLabel": "デフォルトバリアント",
-  "variantMandatoryTitle": "地域を選んでください",
-  "variantMandatorySubtitle": "あなたの地域のアルバムバージョンを選択してください。",
-  "variantChangedSuccess": "{name} に変更しました ✅",
-  "@variantChangedSuccess": {
-    "placeholders": {
-      "name": {}
-    }
-  },
-  "profileDeleteAccountButton": "アカウントを削除",
-  "profileDeleteAccountTitle": "アカウントを削除しますか？",
-  "profileDeleteAccountMessage": "この操作は永久的です。すべてのデータが削除され、コレクションを元に戻すことはできません。",
-  "profileDeleteAccountConfirmButton": "完全に削除する",
-  "profileDeleteAccountSuccess": "アカウントが削除されました。",
-  "profileDeleteAccountError": "アカウントの削除中にエラーが発生しました。もう一度お試しください。",
-  "paywallPrivacyPolicy": "プライバシーポリシー",
-  "paywallTermsOfUse": "利用規約",
-  "paywallLegalDisclaimer": "サブスクライブすることで、利用規約とプライバシーポリシーに同意したことになります。",
-  "tutorialSkip": "スキップ",
-  "tutorialTapToContinue": "続けるには画面をタップしてください",
-  "tutorialStep1Title": "全体の進捗",
-  "tutorialStep1Body": "集めたシールの数と完成率を確認できます。集め続けましょう！",
-  "tutorialStep2Title": "チームを検索",
-  "tutorialStep2Body": "国名やチーム名を入力してリストを絞り込みます。",
-  "tutorialStep3Title": "メインメニュー",
-  "tutorialStep3Body": "プロフィールへのアクセスとアルバムのバリエーション変更ができます。",
-  "tutorialStep4Title": "シールをスキャン",
-  "tutorialStep4Body": "カメラを使ってシールをスキャンし、自動でアルバムに追加します。",
-  "tutorialStep5Title": "リストを共有",
-  "tutorialStep5Body": "不足や重複しているシールのリストをエクスポートして友達と交換しましょう。",
-  "globalTutorialStep1Title": "コレクションを絞り込む",
-  "globalTutorialStep1Body": "このボタンでシール全体、不足しているもの、または重複しているものだけを表示できます。交換の整理に最適です！",
-  "globalTutorialStep2Title": "シールを検索",
-  "globalTutorialStep2Body": "国名、コード、またはシール番号を入力して素早く見つけます。",
-  "globalTutorialStep3Title": "タップしてマーク",
-  "globalTutorialStep3Body": "灰色のシールを1回タップするとアルバムに追加されます（金色になります）。再度タップすると削除の確認が求められます。",
-  "globalTutorialStep4Title": "長押しで詳細オプション",
-  "globalTutorialStep4Body": "シールを長押しすると各バリアント（Normal、Gold、Legend...）の所持数を管理できます。",
-  "tutorialStep6Title": "カテゴリを探索する",
-  "tutorialStep6Body": "国やチームをタップしてステッカーを確認しましょう。そこで持っているものをマークし、重複を管理できます。",
-  "categoryTutorialStep1Title": "ステッカーを絞り込む",
-  "categoryTutorialStep1Body": "このボタンで、全てのステッカー・未収集のみ・重複のみを表示できます。",
-  "categoryTutorialStep2Title": "ステッカーを検索する",
-  "categoryTutorialStep2Body": "国名・コード・番号を入力して素早く見つけましょう。",
-  "categoryTutorialStep3Title": "タップしてマーク",
-  "categoryTutorialStep3Body": "グレーのステッカーをタップするとアルバムに追加されます（ゴールドになります）。既に持っている場合は削除確認が表示されます。",
-  "categoryTutorialStep4Title": "長押しで詳細オプション",
-  "categoryTutorialStep4Body": "長押しで各バリアント（Normal, Gold, Legend）の所持数を管理できます。",
-  "drawerReplayTutorial": "チュートリアルをもう一度見る",
-  "drawerRateApp": "アプリを評価する",
-  "variantTutorialTitle": "地域を選択してください",
-  "variantTutorialBody": "あなたの国や地域に合ったアルバムバリアントを選択してください。これにより、コレクションに表示されるステッカーとバリアント（Normal、Gold、Legend）が決まります。",
-  "drawerLegalNotice": "法的表示",
-  "legalNoticeTitle": "法的表示",
-  "legalNoticeBody": "このアプリはファンによる非公式な作品であり、いかなる公式サッカー組織、ステッカーメーカー、またはサッカートーナメントの公式パートナーとも提携、承認、または接続されていません。すべての商標はそれぞれの所有者の財産です。",
-  "statsTitle": "統計",
-  "statsTotalLabel": "合計",
-  "statsCollectedLabel": "収集済み",
-  "statsDuplicateCopiesLabel": "重複",
-  "statsCategoriesTitle": "カテゴリ別",
-  "statsAllCategories": "すべて",
-  "statsNoStatsYet": "データなし。集め始めよう！",
-  "statsBestCategory": "最も進んでいる",
-  "statsWorstCategory": "最も遅れている",
-  "statsCompletedCategories": "完了済み",
-  "drawerStats": "統計",
-  "statsCategoryPickerSearch": "カテゴリを検索...",
-  "statsCategoryPickerSelected": "{count}選択中",
-  "@statsCategoryPickerSelected": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "statsCategoryPickerAll": "すべてのカテゴリ",
-  "statsCategoryPickerClear": "クリア",
-  "statsSortTooltip": "並び替え",
-  "statsSortByName": "カテゴリー順",
-  "statsSortByProgressDesc": "進捗の高い順",
-  "statsSortByProgressAsc": "進捗の低い順",
-  "statsSortByMissing": "不足枚数順",
-  "statsSortByDuplicates": "重複枚数順",
-  "drawerLookup": "ステッカー検索",
-  "lookupScreenTitle": "ステッカー検索",
-  "lookupTabManual": "手動",
-  "lookupTabScanner": "スキャナー",
-  "lookupSearchHint": "例: ECU 10, ARG 5, FRA 1...",
-  "lookupSearchButton": "検索",
-  "lookupStickerNotFound": "そのコードのステッカーは見つかりませんでした。",
-  "lookupStatusMissing": "持っていない",
-  "lookupStatusCollected": "持っている ✓",
-  "lookupStatusDuplicates": "{count}枚重複 🔁",
-  "@lookupStatusDuplicates": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "lookupQtyLabel": "在庫数",
-  "lookupScannerHint": "ステッカーを中央に合わせて識別する",
-  "lookupTutorialStep1Title": "2つの検索方法",
-  "lookupTutorialStep1Body": "コードを入力するには手動タブ、カメラでスキャンするにはスキャナータブを使います。",
-  "lookupTutorialStep2Title": "コードを入力",
-  "lookupTutorialStep2Body": "アルバムに表示されるコード（例：ECU 10やARG 5）を入力し、検索をタップします。",
-  "lookupTutorialStep3Title": "確認と管理",
-  "lookupTutorialStep3Body": "ステッカーが未収集か収集済みか表示されます。+と–ボタンで在庫を即座に更新できます。",
-  "scanBadgeNew": "新しい",
-  "scanBadgeRepeated": "重複",
-  "scannerModeAdd": "ステッカー追加",
-  "scannerModeRemoveDuplicates": "重複を削除",
-  "scannerRemoveModeHint": "削除する重複ステッカーを中央に合わせる",
-  "removeDuplicatesTitle": "削除する重複",
-  "removeDuplicatesEmpty": "まだ重複はスキャンされていません",
-  "removeDuplicatesSavedSuccess": "在庫から{count}枚の重複を削除しました 🗑️",
-  "@removeDuplicatesSavedSuccess": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "removeDuplicatesSaveError": "保存エラー: {message}",
-  "@removeDuplicatesSaveError": {
-    "placeholders": {
-      "message": {}
-    }
-  },
-  "removeDuplicatesLimitWarning": "{label}には重複ステッカーがありません",
-  "@removeDuplicatesLimitWarning": {
-    "placeholders": {
-      "label": {}
-    }
-  },
-  "removeDuplicatesReviewButton": "{count}件削除確認",
-  "@removeDuplicatesReviewButton": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "navAlbum": "アルバム",
-  "navScanner": "スキャナー"
+  }
 }

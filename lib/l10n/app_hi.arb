@@ -1,350 +1,38 @@
 {
   "@@locale": "hi",
-  "appTitle": "Sticker Album 2026",
-  "authWelcomeTitle": "Sticker Album 2026 में आपका स्वागत है",
+  "appTitle": "स्टिकर एल्बम 2026",
+  "authWelcomeTitle": "स्टिकर एल्बम 2026 में आपका स्वागत है",
   "authEmailLabel": "ईमेल",
   "authPasswordLabel": "पासवर्ड",
-  "authLoginButton": "साइन इन करें",
+  "authLoginButton": "लॉग इन करें",
   "authContinueWith": "या इसके साथ जारी रखें",
   "authContinueGoogle": "Google के साथ जारी रखें",
   "authContinueApple": "Apple के साथ जारी रखें",
   "authContinueGuest": "अतिथि के रूप में जारी रखें",
-  "authNoAccountRegister": "खाता नहीं है? साइन अप करें",
+  "authNoAccountRegister": "खाता नहीं है? अभी रजिस्टर करें",
   "authForgotPassword": "पासवर्ड भूल गए?",
-  "authResetPasswordEnterEmail": "पासवर्ड पुनः प्राप्त करने के लिए अपना ईमेल दर्ज करें।",
-  "authResetPasswordEmailSent": "हमने आपके पासवर्ड को रीसेट करने के लिए एक ईमेल भेजा है।",
-  "authGuestMigratedSuccess": "आपकी अतिथि प्रगति सफलतापूर्वक आपके नए खाते में स्थानांतरित कर दी गई! 🏆",
-  "authGuestRemotePreserved": "वापस स्वागत है! आपका क्लाउड संग्रह पुनर्स्थापित कर दिया गया है और स्थानीय अतिथि प्रगति हटा दी गई है।",
+  "authResetPasswordEnterEmail": "अपना पासवर्ड रीसेट करने के लिए अपना ईमेल दर्ज करें।",
+  "authResetPasswordEmailSent": "हमने आपको एक पासवर्ड रीसेट ईमेल भेजा है।",
+  "authGuestMigratedSuccess": "आपकी अतिथि प्रगति सफलतापूर्वक आपके नए खाते में माइग्रेट कर दी गई है! 🏆",
+  "authGuestRemotePreserved": "वापस स्वागत है! आपका क्लाउड संग्रह बहाल कर दिया गया है और स्थानीय अतिथि प्रगति को छोड़ दिया गया है।",
   "commonErrorWithMessage": "त्रुटि: {message}",
   "@commonErrorWithMessage": {
     "placeholders": {
       "message": {}
     }
   },
-  "authErrorInvalidCredentials": "गलत ईमेल या पासवर्ड। अपनी जानकारी जांचें और पुनः प्रयास करें।",
-  "authErrorEmailNotConfirmed": "आपका ईमेल अभी तक पुष्टि नहीं हुआ है। अपना इनबॉक्स जांचें।",
-  "authErrorUserAlreadyRegistered": "उस ईमेल से पहले से एक खाता मौजूद है।",
-  "authErrorWeakPassword": "पासवर्ड बहुत कमजोर है। कम से कम 6 अक्षरों का उपयोग करें।",
-  "authErrorInvalidEmail": "ईमेल पते का प्रारूप मान्य नहीं है।",
-  "authErrorTokenExpired": "कोड समाप्त हो गया है या अमान्य है। कृपया नया कोड मांगें।",
-  "authErrorRateLimit": "बहुत अधिक प्रयास। पुनः प्रयास करने से पहले थोड़ी प्रतीक्षा करें।",
-  "authErrorNetworkError": "कोई कनेक्शन नहीं। अपना नेटवर्क जांचें और पुनः प्रयास करें।",
-  "authErrorSessionExpired": "आपका सत्र समाप्त हो गया है। कृपया फिर से साइन इन करें।",
-  "authErrorUnknown": "एक अप्रत्याशित त्रुटि हुई। कृपया पुनः प्रयास करें।",
-  "registerTitle": "खाता बनाएं",
-  "registerFillAllFields": "कृपया सभी फ़ील्ड भरें।",
-  "registerEmailsDontMatch": "ईमेल मेल नहीं खाते।",
-  "registerPasswordsDontMatch": "पासवर्ड मेल नहीं खाते।",
-  "registerPasswordMinLength": "पासवर्ड कम से कम 6 अक्षरों का होना चाहिए।",
-  "registerAccountCreated": "खाता सफलतापूर्वक बनाया गया! ⚽ कृपया साइन इन करें।",
-  "registerConfirmEmailLabel": "ईमेल की पुष्टि करें",
-  "registerConfirmPasswordLabel": "पासवर्ड की पुष्टि करें",
-  "registerSubmitButton": "साइन अप करें",
-  "profileTitle": "मेरी प्रोफ़ाइल",
-  "profileOfficialCollector": "आधिकारिक संग्रहकर्ता 🌟",
-  "profileChangePasswordButton": "पासवर्ड अपडेट करें",
-  "profileChangePasswordTitle": "पासवर्ड अपडेट करें",
-  "profileNewPasswordLabel": "नया पासवर्ड",
-  "profileConfirmNewPasswordLabel": "नए पासवर्ड की पुष्टि करें",
-  "profilePasswordUpdatedSuccess": "पासवर्ड सफलतापूर्वक अपडेट किया गया।",
-  "profileLogoutButton": "साइन आउट करें",
-  "profileLogoutSuccess": "आप सफलतापूर्वक साइन आउट हो गए।",
-  "profileUnknownUser": "अज्ञात उपयोगकर्ता",
-  "profileLogoutError": "साइन आउट करने में त्रुटि: {message}",
-  "@profileLogoutError": {
+  "authErrorInvalidCredentials": "अमान्य ईमेल या पासवर्ड। कृपया अपनी क्रेडेंशियल जांचें और पुनः प्रयास करें।",
+  "shareStatsTooltip": "सांख्यिकी साझा करें",
+  "shareStatsMessage": "{appName} में मेरी स्टिकर संग्रह प्रगति देखें! #StickerCollector",
+  "@shareStatsMessage": {
     "placeholders": {
-      "message": {}
+      "appName": {}
     }
   },
-  "homeTitle": "Sticker Album 2026",
-  "homeProfileTooltip": "मेरी प्रोफ़ाइल",
-  "drawerSignIn": "साइन इन",
-  "homeShareAll": "पूरी सूची शेयर करें",
-  "homeShareMissingOnly": "केवल गायब",
-  "homeShareDuplicatesOnly": "केवल डुप्लिकेट",
-  "homeGlobalProgressTitle": "समग्र प्रगति",
-  "homeCollectedCount": "{total} में से {collected} एकत्रित",
-  "@homeCollectedCount": {
-    "placeholders": {
-      "collected": {},
-      "total": {}
-    }
-  },
-  "homeViewFullCollection": "पूरा संग्रह देखें",
-  "homeTeamsTitle": "टीमें",
-  "homeSearchTeamsHint": "देश या टीम से खोजें...",
-  "homeNoResults": "कोई टीम नहीं मिली",
-  "homeScanButton": "स्टिकर स्कैन करें",
-  "homeObtainedCount": "{total} में से {collected} प्राप्त",
-  "@homeObtainedCount": {
-    "placeholders": {
-      "collected": {},
-      "total": {}
-    }
-  },
-  "homeProgressError": "त्रुटि",
-  "globalCollectionTitle": "पूरा संग्रह",
-  "filterAll": "सभी",
-  "filterMissing": "गायब",
-  "filterDuplicates": "डुप्लिकेट",
-  "filterSearchHint": "देश, कोड या नंबर से खोजें...",
-  "stickerRemoveTitle": "स्टिकर हटाएं?",
-  "stickerRemoveConfirm": "क्या आप अपने एल्बम से स्टिकर {stickerLabel} हटाना चाहते हैं?",
-  "@stickerRemoveConfirm": {
-    "placeholders": {
-      "stickerLabel": {}
-    }
-  },
-  "commonCancel": "रद्द करें",
-  "commonRemove": "हटाएं",
-  "commonDone": "हो गया",
-  "gridNoResults": "कोई स्टिकर नहीं मिला।",
-  "scannerViewScannedButton": "स्कैन किए गए {count} स्टिकर देखें",
-  "@scannerViewScannedButton": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "scannerOverlayHint": "यहाँ स्टिकर का पिछला हिस्सा केंद्र में रखें",
-  "pendingScansTitle": "स्कैन किए गए स्टिकर",
-  "pendingScansEmpty": "आपने अभी तक कोई स्टिकर स्कैन नहीं किया",
-  "pendingScansItemLabel": "स्टिकर: {code}",
-  "@pendingScansItemLabel": {
-    "placeholders": {
-      "code": {}
-    }
-  },
-  "pendingScansSavedSuccess": "{count} स्टिकर आपके एल्बम में जोड़े गए! 🏆",
-  "@pendingScansSavedSuccess": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "pendingScansSaveError": "सहेजने में त्रुटि: {message}",
-  "@pendingScansSaveError": {
-    "placeholders": {
-      "message": {}
-    }
-  },
-  "shareHeader": "⚽ *Sticker Album 2026 अदला-बदली सूची* 🏆",
-  "shareMissingSectionTitle": "❌ *गायब:*",
-  "shareDuplicatesSectionTitle": "🔁 *डुप्लिकेट:*",
-  "shareNoneMissing": "कुछ नहीं! 😎",
-  "shareNoDuplicates": "कोई डुप्लिकेट नहीं 😅",
-  "shareLetsTrade": "अदला-बदली करना चाहते हैं? 👀🔥",
-  "shareDownloadLink": "📲 {appName} ऐप डाउनलोड करें\nhttps://onelink.to/5adrft?olbm=1",
-  "shareSeparator": "--------------------------",
-  "forgotPasswordTitle": "खाता पुनर्प्राप्त करें",
-  "forgotPasswordDescription": "अपना ईमेल दर्ज करें और हम आपको पासवर्ड रीसेट करने के लिए 6 अंकों का कोड भेजेंगे।",
-  "forgotPasswordEmailLabel": "ईमेल",
-  "forgotPasswordEmptyEmailError": "कृपया अपना ईमेल पता दर्ज करें।",
-  "forgotPasswordCodeSentSuccess": "कोड भेजा गया। अपना इनबॉक्स जांचें।",
-  "forgotPasswordSendCodeButton": "कोड भेजें",
-  "forgotPasswordStep2Description": "वह कोड दर्ज करें जो हमने {email} पर भेजा है और अपना नया पासवर्ड।",
-  "@forgotPasswordStep2Description": {
-    "placeholders": {
-      "email": {}
-    }
-  },
-  "forgotPasswordCodeInputLabel": "8 अंकों का कोड",
-  "forgotPasswordInvalidCodeError": "कोड में ठीक 6 अंक होने चाहिए।",
-  "forgotPasswordNewPasswordLabel": "नया पासवर्ड",
-  "forgotPasswordShortPasswordError": "पासवर्ड कम से कम 6 अक्षरों का होना चाहिए।",
-  "forgotPasswordSavePasswordButton": "पासवर्ड सहेजें",
-  "forgotPasswordPasswordUpdatedSuccess": "पासवर्ड सफलतापूर्वक अपडेट किया गया! 🏆",
-  "validationEmailInvalid": "ईमेल पता अमान्य है।",
-  "paywallTitle": "विज्ञापन के बिना आनंद लें",
-  "paywallSubtitle": "सभी सुविधाएं मुफ्त में उपलब्ध हैं। Pro के साथ बिना रुकावट के सब कुछ आनंद लें।",
-  "paywallBenefitScanner": "इंटरस्टिशियल विज्ञापनों के बिना स्कैनर",
-  "paywallBenefitNoAds": "कोई विज्ञापन नहीं",
-  "paywallBenefitSync": "क्लाउड सिंक शामिल",
-  "paywallSubscribeButton": "सदस्यता लें · {price}",
-  "@paywallSubscribeButton": {
-    "placeholders": {
-      "price": {}
-    }
-  },
-  "paywallPackageMonthly": "मासिक",
-  "paywallPackageAnnual": "वार्षिक",
-  "paywallPackageWeekly": "साप्ताहिक",
-  "paywallPackageLifetime": "आजीवन",
-  "paywallPackageTwoMonth": "हर 2 महीने",
-  "paywallPackageThreeMonth": "हर 3 महीने",
-  "paywallPackageSixMonth": "हर 6 महीने",  "paywallBestOption": "सर्वश्रेष्ठ विकल्प",
-  "paywallStartFreeTrial": "निःशुल्क परीक्षण शुरू करें",
-  "paywallFreeTrial": "{days} दिनों का निःशुल्क परीक्षण",
-  "@paywallFreeTrial": {
-    "placeholders": {
-      "days": {"type": "int"}
-    }
-  },  "paywallRestorePurchases": "खरीदारी पुनर्स्थापित करें",
-  "paywallCancelAnytime": "कभी भी रद्द करें। कोई प्रतिबद्धता नहीं।",
-  "paywallLoadError": "प्लान लोड नहीं हो सके। अपना कनेक्शन जांचें।",
-  "paywallRetry": "पुनः प्रयास करें",
-  "paywallPurchaseError": "खरीदारी विफल। कृपया पुनः प्रयास करें।",
-  "paywallRestoreError": "खरीदारी पुनर्स्थापित नहीं हो सकी। कृपया पुनः प्रयास करें।",
-  "paywallGuestTitle": "सदस्यता लेने के लिए साइन इन करें",
-  "paywallGuestBody": "Pro आपके खाते से जुड़ा है। सभी सुविधाएं अनलॉक करने के लिए साइन इन करें या खाता बनाएं।",
-  "paywallGuestSignInButton": "साइन इन करें",
-  "scannerDemoRemaining": "{count} मुफ्त स्कैन शेष",
-  "@scannerDemoRemaining": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "scannerDemoFinishedTitle": "आपने अपने 5 मुफ्त स्कैन उपयोग कर लिए",
-  "scannerDemoFinishedSubtitle": "असीमित स्टिकर स्कैन और विज्ञापन-मुक्त अनुभव के लिए सदस्यता लें।",
-  "scannerDemoUnlockButton": "Pro प्लान देखें",
-  "adDialogTitle": "मुफ्त सामग्री",
-  "adDialogBody": "जारी रखने के लिए, एक छोटा विज्ञापन देखें या Pro की सदस्यता लें और विज्ञापनों को हमेशा के लिए भूल जाएं।",
-  "adDialogWatchAd": "विज्ञापन देखें",
-  "adDialogGetPro": "Pro प्राप्त करें",
-  "adDialogNotNow": "अभी नहीं",
-  "scannerCameraInitError": "कैमरा प्रारंभ नहीं हो सका। सुनिश्चित करें कि ऐप के पास कैमरा अनुमति है।",
-  "variantSheetTitle": "एल्बम वेरिएंट",
-  "variantSheetInventoryNote": "वेरिएंट बदलने पर आपकी इन्वेंटरी सुरक्षित रहती है। जो स्टिकर आपके पास पहले से हैं वे दर्ज रहते हैं।",
-  "variantSheetLoadError": "वेरिएंट लोड करने में त्रुटि: {error}",
-  "@variantSheetLoadError": {
+  "shareStatsError": "सांख्यिकी साझा नहीं की जा सकी: {error}",
+  "@shareStatsError": {
     "placeholders": {
       "error": {}
     }
-  },
-  "variantSheetEmpty": "इस एल्बम के लिए कोई वेरिएंट उपलब्ध नहीं है।",
-  "variantSheetDefaultLabel": "डिफ़ॉल्ट वेरिएंट",
-  "variantMandatoryTitle": "अपना क्षेत्र चुनें",
-  "variantMandatorySubtitle": "अपने क्षेत्र के लिए एल्बम संस्करण चुनें।",
-  "variantChangedSuccess": "वेरिएंट {name} में बदल गया ✅",
-  "@variantChangedSuccess": {
-    "placeholders": {
-      "name": {}
-    }
-  },
-  "profileDeleteAccountButton": "खाता हटाएं",
-  "profileDeleteAccountTitle": "अपना खाता हटाएं?",
-  "profileDeleteAccountMessage": "यह क्रिया स्थायी है. आपका सारा डेटा हटा दिया जाएगा और आप अपना संग्रह वापस नहीं पा सकेंगे.",
-  "profileDeleteAccountConfirmButton": "स्थायी रूप से हटाएं",
-  "profileDeleteAccountSuccess": "आपका खाता हटा दिया गया है.",
-  "profileDeleteAccountError": "खाता हटाने में त्रुटि. कृपया पुनः प्रयास करें.",
-  "paywallPrivacyPolicy": "गोपनीयता नीति",
-  "paywallTermsOfUse": "उपयोग की शर्तें",
-  "paywallLegalDisclaimer": "सदस्यता लेकर आप हमारी उपयोग की शर्तों और गोपनीयता नीति से सहमत होते हैं.",
-  "tutorialSkip": "छोड़ें",
-  "tutorialTapToContinue": "जारी रखने के लिए कहीं भी टैप करें",
-  "tutorialStep1Title": "आपकी वैश्विक प्रगति",
-  "tutorialStep1Body": "यहाँ देखें आपने कितने स्टिकर इकट्ठे किए हैं। इकट्ठा करते रहें!",
-  "tutorialStep2Title": "टीमें खोजें",
-  "tutorialStep2Body": "सूची फ़िल्टर करने के लिए देश या टीम का नाम टाइप करें।",
-  "tutorialStep3Title": "मुख्य मेनू",
-  "tutorialStep3Body": "अपनी प्रोफ़ाइल तक पहुँचें और एल्बम वेरिएंट बदलें।",
-  "tutorialStep4Title": "स्टिकर स्कैन करें",
-  "tutorialStep4Body": "स्टिकर स्कैन करने और जोड़ने के लिए कैमरा उपयोग करें।",
-  "tutorialStep5Title": "सूची साझा करें",
-  "tutorialStep5Body": "गुम या डुप्लीकेट स्टिकर सूची एक्सचेंज के लिए निर्यात करें।",
-  "globalTutorialStep1Title": "कलेक्शन फ़िल्टर करें",
-  "globalTutorialStep1Body": "सभी स्टिकर, केवल गुम या केवल डुप्लीकेट देखने के लिए इन बटन का उपयोग करें। ट्रेड के लिए बिल्कुल सही!",
-  "globalTutorialStep2Title": "स्टिकर खोजें",
-  "globalTutorialStep2Body": "देश का नाम, कोड या स्टिकर नंबर टाइप करें और इसे जल्दी खोजें।",
-  "globalTutorialStep3Title": "मार्क करने के लिए टैप करें",
-  "globalTutorialStep3Body": "ग्रे स्टिकर पर एक टैप उसे एल्बम में जोड़ता है (सुनहरा)। दोबारा टैप करने पर हटाने की पुष्टि मांगी जाएगी।",
-  "globalTutorialStep4Title": "अधिक विकल्पों के लिए देर तक दबाएँ",
-  "globalTutorialStep4Body": "प्रत्येक वेरिएंट (Normal, Gold, Legend...) की प्रतियाँ प्रबंधित करने के लिए स्टिकर को देर तक दबाएँ।",
-  "tutorialStep6Title": "श्रेणी एक्सप्लोर करें",
-  "tutorialStep6Body": "स्टिकर देखने के लिए किसी भी देश या टीम पर टैप करें। वहाँ आप जो पहले से हैं उन्हें चिह्नित कर सकते हैं और डुप्लीकेट प्रबंधित कर सकते हैं।",
-  "categoryTutorialStep1Title": "स्टिकर फ़िल्टर करें",
-  "categoryTutorialStep1Body": "सभी स्टिकर, केवल गायब या केवल डुप्लीकेट देखने के लिए इन बटन का उपयोग करें।",
-  "categoryTutorialStep2Title": "स्टिकर खोजें",
-  "categoryTutorialStep2Body": "देश का नाम, कोड या स्टिकर नंबर टाइप करें ताकि इसे जल्दी से ढूंढा जा सके।",
-  "categoryTutorialStep3Title": "चिह्नित करने के लिए टैप करें",
-  "categoryTutorialStep3Body": "ग्रे स्टिकर पर टैप करने से वह एल्बम में जुड़ जाता है (सुनहरा हो जाता है)। यदि पहले से है और फिर टैप करते हैं, हटाने की पुष्टि माँगी जाएगी।",
-  "categoryTutorialStep4Title": "अधिक विकल्पों के लिए दबाए रखें",
-  "categoryTutorialStep4Body": "स्टिकर को देर तक दबाने पर प्रत्येक वेरिएंट (Normal, Gold, Legend) की कितनी प्रतियाँ हैं, यह प्रबंधित कर सकते हैं।",
-  "drawerReplayTutorial": "ट्यूटोरियल फिर से देखें",
-  "drawerRateApp": "हमारे ऐप को रेट करें",
-  "variantTutorialTitle": "अपना क्षेत्र चुनें",
-  "variantTutorialBody": "वह एल्बम वेरिएंट चुनें जो आपके देश या क्षेत्र से मेल खाता हो। यह तय करता है कि आपकी कलेक्शन में कौन से स्टिकर और वेरिएंट (Normal, Gold, Legend) दिखाई देंगे।",
-  "drawerLegalNotice": "कानूनी सूचना",
-  "legalNoticeTitle": "कानूनी सूचना",
-  "legalNoticeBody": "यह ऐप एक अनौपचारिक प्रशंसक रचना है और किसी भी आधिकारिक फुटबॉल संगठन, स्टिकर निर्माता या फुटबॉल टूर्नामेंट के किसी आधिकारिक भागीदार से संबद्ध, समर्थित या जुड़ी नहीं है। सभी ट्रेडमार्क उनके संबंधित स्वामियों की संपत्ति हैं।",
-  "statsTitle": "आँकड़े",
-  "statsTotalLabel": "कुल",
-  "statsCollectedLabel": "संग्रहित",
-  "statsDuplicateCopiesLabel": "डुप्लीकेट",
-  "statsCategoriesTitle": "श्रेणी के अनुसार",
-  "statsAllCategories": "सभी",
-  "statsNoStatsYet": "अभी कोई डेटा नहीं। एकत्र करना शुरू करें!",
-  "statsBestCategory": "सबसे अधिक प्रगति",
-  "statsWorstCategory": "सबसे कम प्रगति",
-  "statsCompletedCategories": "पूर्ण",
-  "drawerStats": "आँकड़े",
-  "statsCategoryPickerSearch": "श्रेणी खोजें...",
-  "statsCategoryPickerSelected": "{count} चुनी गई",
-  "@statsCategoryPickerSelected": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "statsCategoryPickerAll": "सभी श्रेणियाँ",
-  "statsCategoryPickerClear": "साफ करें",
-  "statsSortTooltip": "क्रमबद्ध",
-  "statsSortByName": "श्रेणी",
-  "statsSortByProgressDesc": "अधिक प्रगति पहले",
-  "statsSortByProgressAsc": "कम प्रगति पहले",
-  "statsSortByMissing": "अधिक लापता पहले",
-  "statsSortByDuplicates": "अधिक दोहराव पहले",
-  "drawerLookup": "स्टिकर खोजें",
-  "lookupScreenTitle": "स्टिकर खोजें",
-  "lookupTabManual": "मैन्युअल",
-  "lookupTabScanner": "स्कैनर",
-  "lookupSearchHint": "जैसे: ECU 10, ARG 5, FRA 1...",
-  "lookupSearchButton": "खोजें",
-  "lookupStickerNotFound": "उस कोड से कोई स्टिकर नहीं मिला।",
-  "lookupStatusMissing": "नहीं है",
-  "lookupStatusCollected": "आपके पास है ✓",
-  "lookupStatusDuplicates": "{count} डुप्लीकेट 🔁",
-  "@lookupStatusDuplicates": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "lookupQtyLabel": "आपके इन्वेंट्री में मात्रा",
-  "lookupScannerHint": "स्टिकर को पहचानने के लिए बीच में रखें",
-  "lookupTutorialStep1Title": "दो खोज विधियाँ",
-  "lookupTutorialStep1Body": "कोड टाइप करने के लिए मैन्युअल टैब या स्कैन करने के लिए स्कैनर टैब का उपयोग करें।",
-  "lookupTutorialStep2Title": "कोड दर्ज करें",
-  "lookupTutorialStep2Body": "आल्बम में दिखने वाला स्टिकर कोड टाइप करें, जैसे ECU 10 या ARG 5, फिर खोजें दबाएं।",
-  "lookupTutorialStep3Title": "जांचें और प्रबंधित करें",
-  "lookupTutorialStep3Body": "आप देखेंगे कि स्टिकर गायब है या संग्रहीत। + और – बटनों से इन्वेंट्री अपडेट करें।",
-  "scanBadgeNew": "नया",
-  "scanBadgeRepeated": "दोहराया",
-  "scannerModeAdd": "स्टिकर जोड़ें",
-  "scannerModeRemoveDuplicates": "डुप्लिकेट हटाएं",
-  "scannerRemoveModeHint": "हटाने के लिए डुप्लिकेट स्टिकर को बीच में रखें",
-  "removeDuplicatesTitle": "हटाने के लिए डुप्लिकेट",
-  "removeDuplicatesEmpty": "अभी तक कोई डुप्लिकेट स्कैन नहीं हुआ",
-  "removeDuplicatesSavedSuccess": "इन्वेंट्री से {count} डुप्लिकेट हटाए 🗑️",
-  "@removeDuplicatesSavedSuccess": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "removeDuplicatesSaveError": "सहेजने में त्रुटि: {message}",
-  "@removeDuplicatesSaveError": {
-    "placeholders": {
-      "message": {}
-    }
-  },
-  "removeDuplicatesLimitWarning": "{label} में कोई डुप्लिकेट स्टिकर नहीं है",
-  "@removeDuplicatesLimitWarning": {
-    "placeholders": {
-      "label": {}
-    }
-  },
-  "removeDuplicatesReviewButton": "हटाने के लिए {count} देखें",
-  "@removeDuplicatesReviewButton": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "navAlbum": "एल्बम",
-  "navScanner": "स्कैनर"
+  }
 }
