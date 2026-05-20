@@ -24,14 +24,16 @@ on:
         type: string
 
 concurrency:
-  # Only "real" pipeline events share the issue-scoped group (and may cancel each other).
-  # Everything else (bot comments, unrelated label changes, etc.) gets a unique group so it never cancels a waiting approval.
-  # "Real" events: issue opened, issue labeled with `ai-pipeline`, slash-command comment (/feedback...), workflow_dispatch.
+  # Only ONE event type can start a real pipeline run for an issue:
+  #   - issues.labeled with the `ai-pipeline` label  (the canonical start trigger)
+  #   - issue_comment starting with `/`              (slash commands like /feedback:)
+  #   - workflow_dispatch                            (manual run)
+  # Everything else (issue opened, other labels added, bot comments) gets a unique
+  # noop group so it can never cancel a run that is waiting for approval.
   group: >-
     ${{
       (
         github.event_name == 'workflow_dispatch' ||
-        (github.event_name == 'issues' && github.event.action == 'opened') ||
         (github.event_name == 'issues' && github.event.action == 'labeled' && github.event.label.name == 'ai-pipeline') ||
         (github.event_name == 'issue_comment' && startsWith(github.event.comment.body, '/'))
       )
@@ -103,10 +105,9 @@ jobs:
     name: "🔵 Product Manager Agent"
     if: |
       github.event_name == 'workflow_dispatch' ||
-      (github.event.issue != null && contains(toJson(github.event.issue), 'ai-pipeline') && (
-        (github.event_name == 'issues' && github.event.action == 'opened') ||
+      (github.event.issue != null && (
         (github.event_name == 'issues' && github.event.action == 'labeled' && github.event.label.name == 'ai-pipeline') ||
-        (github.event_name == 'issue_comment' && startsWith(github.event.comment != null && github.event.comment.body || '', '/feedback:'))
+        (github.event_name == 'issue_comment' && contains(toJson(github.event.issue), 'ai-pipeline') && startsWith(github.event.comment != null && github.event.comment.body || '', '/feedback:'))
       ))
     runs-on: ubuntu-latest
     steps:
