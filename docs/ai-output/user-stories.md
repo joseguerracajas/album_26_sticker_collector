@@ -1,45 +1,88 @@
-Aquí tienes la especificación de la característica solicitada, siguiendo el formato y las reglas establecidas:
+Aquí tienes la propuesta para la nueva funcionalidad, siguiendo el formato y las reglas especificadas:
 
 ---
 
-# 🔵 Agente: Product Manager
+## 1. User Stories (Given/When/Then format)
 
-## Característica: Compartir Estadísticas de Colección
+### Historia de Usuario 1: Compartir estadísticas de colección
 
-### 1. User Stories (Given/When/Then format)
+AS A coleccionista de stickers
+I WANT TO compartir mis estadísticas de colección como una imagen atractiva
+SO THAT puedo mostrar mi progreso a mis amigos y la comunidad.
 
-**AS A** coleccionista de cromos
-**I WANT TO** compartir mis estadísticas de colección como una imagen atractiva
-**SO THAT** pueda mostrar mi progreso en redes sociales o pedir cromos a mis amigos.
+**Given** Estoy en la pantalla de "Estadísticas" y tengo datos de colección (stickers poseídos, faltantes, repetidos) para la variante geográfica seleccionada.
+**When** Toco el icono de compartir en la AppBar.
+**Then** Se genera una imagen PNG de alta calidad con mis estadísticas actuales y se abre el menú nativo para compartir del dispositivo, incluyendo un mensaje de texto predefinido.
 
-*   **Given** que he avanzado en mi colección de cromos (tengo cromos, faltantes o repetidos)
-*   **When** navego a la pantalla de "Estadísticas" y pulso el icono de compartir en la AppBar
-*   **Then** se genera una imagen con mis estadísticas actuales (porcentaje completado, cromos poseídos/faltantes, repetidos) y se abre el menú nativo para compartir la imagen junto con un mensaje predefinido.
+### Historia de Usuario 2: Estadísticas localizadas en la imagen
 
----
+AS A coleccionista de stickers
+I WANT TO compartir mis estadísticas en mi idioma preferido
+SO THAT la imagen compartida sea comprensible para mi audiencia.
 
-**AS A** coleccionista de cromos
-**I WANT TO** compartir mis estadísticas en mi idioma preferido
-**SO THAT** la información sea clara y comprensible para mi audiencia.
+**Given** Tengo configurado un idioma específico en la aplicación (ej. español) y estoy en la pantalla de "Estadísticas".
+**When** Toco el icono de compartir para generar la imagen de estadísticas.
+**Then** La imagen generada y el mensaje de compartir utilizan el idioma configurado en la aplicación, incluyendo el formato de números y texto.
 
-*   **Given** que mi aplicación está configurada en un idioma específico (ej. español)
-*   **When** genero la imagen de estadísticas y el mensaje para compartir
-*   **Then** todo el texto dentro de la imagen y el mensaje de compartir se muestra en español.
+### Historia de Usuario 3: Compartir estadísticas offline
 
----
+AS A coleccionista de stickers
+I WANT TO compartir mis estadísticas incluso sin conexión a internet
+SO THAT puedo mostrar mi progreso en cualquier momento.
 
-**AS A** coleccionista de cromos
-**I WANT TO** poder compartir mis estadísticas incluso sin conexión a internet
-**SO THAT** no dependo de la disponibilidad de red para mostrar mi progreso.
-
-*   **Given** que no tengo conexión a internet y he visitado la pantalla de "Estadísticas" previamente
-*   **When** navego a la pantalla de "Estadísticas" y pulso el icono de compartir en la AppBar
-*   **Then** se genera una imagen con mis estadísticas locales actuales y se abre el menú nativo para compartir (si el sistema operativo lo permite sin conexión).
+**Given** Estoy en la pantalla de "Estadísticas" sin conexión a internet y tengo datos de colección locales.
+**When** Toco el icono de compartir en la AppBar.
+**Then** Se genera una imagen PNG con mis estadísticas locales y se abre el menú nativo para compartir del dispositivo.
 
 ---
 
-**AS A** usuario invitado
-**I WANT TO** compartir mis estadísticas de colección
-**SO THAT** puedo mostrar mi progreso antes de decidir registrarme.
+## 2. Acceptance Criteria
 
-*   **
+*   El icono de compartir (color ámbar) debe estar presente en la AppBar de `lib/features/catalog/presentation/statistics_screen.dart`.
+*   Al tocar el icono de compartir, se debe invocar la hoja de compartir nativa del dispositivo (`share_plus`).
+*   El contenido compartido debe incluir:
+    *   Una imagen PNG de alta calidad.
+    *   Un mensaje de texto adjunto (localizado).
+*   La imagen PNG generada debe:
+    *   Mostrar el porcentaje de completitud general del usuario.
+    *   Mostrar el recuento de stickers poseídos.
+    *   Mostrar el recuento de stickers faltantes.
+    *   Mostrar el recuento de stickers repetidos.
+    *   Incluir el icono transparente de la aplicación (`assets/app_icon.png`).
+    *   Adherirse estrictamente al diseño, marca y estándares de color de la aplicación (fondo oscuro, acentos ámbar, tipografía).
+    *   Todo el texto dentro de la imagen debe estar localizado según la configuración de idioma actual de la aplicación.
+    *   Reflejar las estadísticas para la variante geográfica actualmente seleccionada por el usuario.
+*   La funcionalidad debe operar correctamente tanto para usuarios autenticados como para usuarios invitados, utilizando sus respectivos datos locales.
+*   La funcionalidad debe trabajar sin conexión, utilizando datos almacenados en caché localmente a través de los providers de Riverpod existentes y los repositorios de Brick.
+*   No se deben crear nuevas pantallas o archivos Flutter para esta funcionalidad; la implementación debe estar contenida dentro de `statistics_screen.dart` o, si es estrictamente necesario, en archivos de utilidad existentes que ya sean parte de la estructura del proyecto.
+*   Se deben reutilizar los providers de Riverpod existentes para acceder a las estadísticas de la colección.
+
+---
+
+## 3. Data Model Impact
+
+Dado que la descripción de la funcionalidad indica "UI only, no backend changes" y "reutilizar los providers de Riverpod existentes y los repositorios de Brick", no hay impacto en el modelo de datos.
+
+*   **Nuevas tablas/columnas en Supabase:** Ninguna.
+*   **Nuevos modelos Brick necesarios:** Ninguno.
+*   **Relaciones con modelos existentes:** Ninguna.
+
+La información necesaria para generar las estadísticas (stickers poseídos, faltantes, repetidos, porcentaje de completitud) ya se obtiene de los modelos `Sticker` y `Album` existentes a través de los providers de Riverpod que alimentan la `StatisticsScreen`.
+
+---
+
+## 4. UI Flow Description
+
+*   **Pantallas necesarias:** No se requieren nuevas pantallas. La pantalla `StatisticsScreen` (`lib/features/catalog/presentation/statistics_screen.dart`) será modificada.
+
+*   **Flujo de navegación:**
+    1.  El usuario navega a la pantalla "Estadísticas" (por ejemplo, desde la barra de navegación principal).
+    2.  En la pantalla "Estadísticas", el usuario visualiza el progreso de su colección (porcentaje de completitud, stickers poseídos, faltantes, repetidos).
+    3.  El usuario toca el nuevo icono de compartir (ámbar) ubicado en la AppBar de esta pantalla.
+    4.  La aplicación genera una representación visual (imagen PNG) de las estadísticas actuales.
+    5.  La aplicación invoca el menú nativo para compartir del dispositivo, presentando la imagen generada y un mensaje de texto localizado.
+    6.  El usuario selecciona una aplicación (ej. WhatsApp, Instagram, correo electrónico) para compartir el contenido.
+    7.  El usuario completa la acción de compartir dentro de la aplicación elegida.
+
+*   **Interacciones clave:**
+    *   **Tocar
