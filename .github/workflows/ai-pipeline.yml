@@ -159,6 +159,10 @@ jobs:
 
       - name: "🔵 Generate User Stories with LLM"
         env:
+          # MODELS_TOKEN: token con scope `models:read` para GitHub Models API.
+          # Usamos secrets.GITHUB_TOKEN (nativo del workflow) porque PROJECT_TOKEN puede ser un PAT
+          # con scopes solo para Project Board, sin acceso a Models.
+          MODELS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
           FEATURE_INPUT: ${{ (github.event.issue != null && github.event.issue.body) || inputs.feature_description }}
@@ -186,13 +190,21 @@ jobs:
 
           RESPONSE=$(curl -s -X POST \
             "https://models.inference.ai.azure.com/chat/completions" \
-            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Authorization: Bearer $MODELS_TOKEN" \
             -H "Content-Type: application/json" \
             -d "$(jq -n \
               --arg system "$AGENT_PROMPT" \
               --arg user "$USER_MSG" \
               '{model:"gpt-4o",messages:[{role:"system",content:$system},{role:"user",content:$user}],max_tokens:4000,temperature:0.3}'
             )")
+
+          # Diagnóstico: si la respuesta no es JSON válido, mostrar y abortar con mensaje claro.
+          if ! echo "$RESPONSE" | jq -e . >/dev/null 2>&1; then
+            echo "::error::GitHub Models API no devolvió JSON válido. Probable causa: token sin scope 'models:read' o rate limit."
+            echo "--- Respuesta cruda (primeros 1000 chars) ---"
+            echo "$RESPONSE" | head -c 1000
+            exit 1
+          fi
 
           HU=$(echo "$RESPONSE" | jq -r '.choices[0].message.content // "ERROR: No response from LLM"')
 
