@@ -60,85 +60,85 @@ jobs:
   # On Issue Created: Add to Project Board as Todo
   # ===========================================================================
   add-to-project:
-      name: "📋 Add Issue to Project Board (Todo)"
-      if: github.event_name == 'issues' && github.event.action == 'opened'
-      runs-on: ubuntu-latest
-      steps:
-        - name: "📌 Add to Project Board (Todo)"
-          env:
-            GH_TOKEN: ${{ secrets.PROJECT_TOKEN || github.token }}
-          run: |
-            # ... código original de add to project ...
+    name: "📋 Add Issue to Project Board (Todo)"
+    if: github.event_name == 'issues' && github.event.action == 'opened'
+    runs-on: ubuntu-latest
+    steps:
+      - name: "📌 Add to Project Board (Todo)"
+        env:
+          GH_TOKEN: ${{ secrets.PROJECT_TOKEN || github.token }}
+        run: |
+          # ... código original de add to project ...
 
-        - name: "🟡 Generate Flutter Code (OpenAI/GitHub Models API)"
-          if: env.USE_GEMINI != 'true'
-          env:
-            GITHUB_TOKEN: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
-            GH_TOKEN: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
-          run: |
-            # ...tu lógica actual para OpenAI/GitHub Models API (igual que antes)...
+      - name: "🟡 Generate Flutter Code (OpenAI/GitHub Models API)"
+        if: env.USE_GEMINI != 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          # ...tu lógica actual para OpenAI/GitHub Models API (igual que antes)...
 
-        - name: "🟡 Generate Flutter Code with Gemini 1.5 Pro (Google AI Studio)"
-          if: env.USE_GEMINI == 'true'
-          env:
-            GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          run: |
-            # ...step Gemini ya insertado antes...
-            USER_MSG="${USER_MSG}\n\n## Localization context (ARB files)\n\n${ARB_CONTEXT}"
-            USER_MSG="${USER_MSG}\n\n## Project Context (README)\n\n${README}"
+      - name: "🟡 Generate Flutter Code with Gemini 1.5 Pro (Google AI Studio)"
+        if: env.USE_GEMINI == 'true'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          # ...step Gemini ya insertado antes...
+          USER_MSG="${USER_MSG}\n\n## Localization context (ARB files)\n\n${ARB_CONTEXT}"
+          USER_MSG="${USER_MSG}\n\n## Project Context (README)\n\n${README}"
 
-            RESPONSE=$(curl -s -X POST \
-              "https://models.inference.ai.azure.com/chat/completions" \
-              -H "Authorization: Bearer $MODELS_TOKEN" \
-              -H "Content-Type: application/json" \
-              -d "$(jq -n \
-                --arg system "$AGENT_PROMPT" \
-                --arg user "$USER_MSG" \
-                '{model:"gpt-4o",messages:[{role:"system",content:$system},{role:"user",content:$user}],max_tokens:4000,temperature:0.3}'
-              )")
+          RESPONSE=$(curl -s -X POST \
+            "https://models.inference.ai.azure.com/chat/completions" \
+            -H "Authorization: Bearer $MODELS_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "$(jq -n \
+              --arg system "$AGENT_PROMPT" \
+              --arg user "$USER_MSG" \
+              '{model:"gpt-4o",messages:[{role:"system",content:$system},{role:"user",content:$user}],max_tokens:4000,temperature:0.3}'
+            )")
 
-            # Diagnóstico: si la respuesta no es JSON válido, mostrar y abortar con mensaje claro.
-            if ! echo "$RESPONSE" | jq -e . >/dev/null 2>&1; then
-              echo "::error::GitHub Models API no devolvió JSON válido. Probable causa: token sin scope 'models:read' o rate limit."
-              echo "--- Respuesta cruda (primeros 1000 chars) ---"
-              echo "$RESPONSE" | head -c 1000
-              exit 1
-            fi
+          # Diagnóstico: si la respuesta no es JSON válido, mostrar y abortar con mensaje claro.
+          if ! echo "$RESPONSE" | jq -e . >/dev/null 2>&1; then
+            echo "::error::GitHub Models API no devolvió JSON válido. Probable causa: token sin scope 'models:read' o rate limit."
+            echo "--- Respuesta cruda (primeros 1000 chars) ---"
+            echo "$RESPONSE" | head -c 1000
+            exit 1
+          fi
 
-            # Diagnóstico: detectar errores estructurados de la API y respuestas sin contenido.
-            API_ERROR=$(echo "$RESPONSE" | jq -r '.error.message // empty')
-            if [ -n "$API_ERROR" ]; then
-              echo "::error::GitHub Models API devolvió un error: $API_ERROR"
-              echo "--- Respuesta completa ---"
-              echo "$RESPONSE" | jq .
-              exit 1
-            fi
+          # Diagnóstico: detectar errores estructurados de la API y respuestas sin contenido.
+          API_ERROR=$(echo "$RESPONSE" | jq -r '.error.message // empty')
+          if [ -n "$API_ERROR" ]; then
+            echo "::error::GitHub Models API devolvió un error: $API_ERROR"
+            echo "--- Respuesta completa ---"
+            echo "$RESPONSE" | jq .
+            exit 1
+          fi
 
-            FINISH_REASON=$(echo "$RESPONSE" | jq -r '.choices[0].finish_reason // "unknown"')
-            HU=$(echo "$RESPONSE" | jq -r '.choices[0].message.content // ""')
-            if [ -z "$HU" ] || [ "$HU" = "null" ]; then
-              echo "::error::LLM devolvió contenido vacío. finish_reason=$FINISH_REASON"
-              echo "--- Respuesta completa ---"
-              echo "$RESPONSE" | jq .
-              exit 1
-            fi
+          FINISH_REASON=$(echo "$RESPONSE" | jq -r '.choices[0].finish_reason // "unknown"')
+          HU=$(echo "$RESPONSE" | jq -r '.choices[0].message.content // ""')
+          if [ -z "$HU" ] || [ "$HU" = "null" ]; then
+            echo "::error::LLM devolvió contenido vacío. finish_reason=$FINISH_REASON"
+            echo "--- Respuesta completa ---"
+            echo "$RESPONSE" | jq .
+            exit 1
+          fi
 
-            echo "✅ LLM respondió (finish_reason=$FINISH_REASON, $(echo "$HU" | wc -c) chars)"
+          echo "✅ LLM respondió (finish_reason=$FINISH_REASON, $(echo "$HU" | wc -c) chars)"
 
-            mkdir -p docs/ai-output
-            echo "$HU" > docs/ai-output/user-stories.md
-            git add docs/ai-output/user-stories.md
-            git commit -m "docs: [PM Agent] user stories for issue #${{ env.ISSUE_NUMBER }} [skip ci]" || echo "No changes to commit"
-            git push origin ${{ env.BRANCH_NAME }}
+          mkdir -p docs/ai-output
+          echo "$HU" > docs/ai-output/user-stories.md
+          git add docs/ai-output/user-stories.md
+          git commit -m "docs: [PM Agent] user stories for issue #${{ env.ISSUE_NUMBER }} [skip ci]" || echo "No changes to commit"
+          git push origin ${{ env.BRANCH_NAME }}
 
-            if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
-              # Merge PM output + pipeline status into a single comment (avoids triggering an extra issue_comment run)
-              printf '## 🔵 Product Manager Agent — User Stories\n\n%s\n\n---\n🌿 Branch: [%s](%s)\n\n**Feedback commands:**\n- `/feedback: texto` — reescribe HU desde cero (cancela todo)\n- `/feedback-backend: texto` — re-corre solo el agente Backend\n- `/feedback-frontend: texto` — re-corre solo el agente Frontend\n\n---\n\n## 🤖 Pipeline Status\n\n| Stage | Status |\n|-------|--------|\n| 🔵 Product Manager | ✅ Done — review above |\n| 🟢 Backend Developer | ⏸️ Awaiting your approval |\n| 🟡 Frontend Developer | ⏸️ Awaiting approval |\n| 🔴 DevOps | ⏸️ Pending |\n| 🟣 QA Engineer | ⏸️ Pending |\n\n> Pipeline started by: @%s\n> Feature branch: `%s`\n' "$HU" "${{ env.BRANCH_NAME }}" "$BRANCH_URL" "${{ github.actor }}" "${{ env.BRANCH_NAME }}" > /tmp/pm-comment.md
-              # Use the native GITHUB_TOKEN so the comment is posted as `github-actions[bot]`, not as the user's PAT identity.
-              GH_TOKEN="${{ secrets.GITHUB_TOKEN }}" gh issue comment "${{ env.ISSUE_NUMBER }}" \
-                --repo ${{ env.GH_REPO }} \
-                --body-file /tmp/pm-comment.md
-            fi
+          if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
+            # Merge PM output + pipeline status into a single comment (avoids triggering an extra issue_comment run)
+            printf '## 🔵 Product Manager Agent — User Stories\n\n%s\n\n---\n🌿 Branch: [%s](%s)\n\n**Feedback commands:**\n- `/feedback: texto` — reescribe HU desde cero (cancela todo)\n- `/feedback-backend: texto` — re-corre solo el agente Backend\n- `/feedback-frontend: texto` — re-corre solo el agente Frontend\n\n---\n\n## 🤖 Pipeline Status\n\n| Stage | Status |\n|-------|--------|\n| 🔵 Product Manager | ✅ Done — review above |\n| 🟢 Backend Developer | ⏸️ Awaiting your approval |\n| 🟡 Frontend Developer | ⏸️ Awaiting approval |\n| 🔴 DevOps | ⏸️ Pending |\n| 🟣 QA Engineer | ⏸️ Pending |\n\n> Pipeline started by: @%s\n> Feature branch: `%s`\n' "$HU" "${{ env.BRANCH_NAME }}" "$BRANCH_URL" "${{ github.actor }}" "${{ env.BRANCH_NAME }}" > /tmp/pm-comment.md
+            # Use the native GITHUB_TOKEN so the comment is posted as `github-actions[bot]`, not as the user's PAT identity.
+            GH_TOKEN="${{ secrets.GITHUB_TOKEN }}" gh issue comment "${{ env.ISSUE_NUMBER }}" \
+              --repo ${{ env.GH_REPO }} \
+              --body-file /tmp/pm-comment.md
+          fi
 
   # ===========================================================================
   # Stage 2: Approval Gate — User Stories
@@ -316,7 +316,7 @@ jobs:
           echo "Review the Supabase migrations posted as an issue comment." >> $GITHUB_STEP_SUMMARY
           echo "To add feedback before approving, comment \`/feedback: ...\` on the issue." >> $GITHUB_STEP_SUMMARY
 
-# ===========================================================================
+  # ===========================================================================
   # Stage 5: Frontend Developer Agent — LLM generates Flutter code
   # ===========================================================================
   frontend-developer:
@@ -416,7 +416,7 @@ jobs:
           USER_MSG="${USER_MSG}\n\n## Existing Files to Modify (Real Current Code)\n\n${EXISTING_CODE_CONTEXT}"
           USER_MSG="${USER_MSG}\n\n## Existing Dart Files\n\n${EXISTING_FILES_LIST}"
           USER_MSG="${USER_MSG}\n\n## Structure patterns\n\n${EXISTING_FEATURE}"
-          
+
           # LA CLAVE ESTÁ AQUÍ: Eliminar la vía de escape del array vacío
           USER_MSG="${USER_MSG}\n\n---\n⚡️ INSTRUCCIONES CRÍTICAS PARA EL FRONTEND AGENT:"
           USER_MSG="${USER_MSG}\n1. DEBES escribir y devolver el código Dart modificado para cumplir las Historias de Usuario."
@@ -503,7 +503,7 @@ jobs:
               --repo ${{ env.GH_REPO }} \
               --body-file /tmp/frontend-comment.md
           fi
-                 
+
   # ===========================================================================
   # Stage 6: Approval Gate — Frontend
   # ===========================================================================
