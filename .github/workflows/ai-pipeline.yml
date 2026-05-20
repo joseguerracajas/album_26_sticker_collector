@@ -115,8 +115,22 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
-          ref: ${{ env.BRANCH_NAME }}
+          token: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: "🌿 Ensure feature branch exists"
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          BRANCH="${{ env.BRANCH_NAME }}"
+          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+            echo "Branch $BRANCH already exists on origin — checking it out."
+            git fetch origin "$BRANCH"
+            git checkout -B "$BRANCH" "origin/$BRANCH"
+          else
+            echo "Branch $BRANCH does not exist — creating from current HEAD (main)."
+            git checkout -B "$BRANCH"
+            git push -u origin "$BRANCH"
+          fi
 
       - name: "🟡 Generate Flutter Code (OpenAI/GitHub Models API)"
         if: env.USE_GEMINI != 'true'
