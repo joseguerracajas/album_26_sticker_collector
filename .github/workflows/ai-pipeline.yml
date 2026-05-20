@@ -14,6 +14,8 @@ name: "🤖 AI Agent Pipeline"
 on:
   issues:
     types: [opened, labeled]
+  issue_comment:
+    types: [created]
   workflow_dispatch:
     inputs:
       feature_description:
@@ -23,7 +25,7 @@ on:
 
 concurrency:
   group: ai-pipeline-${{ github.event.issue.number || github.run_id }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 permissions:
   issues: write
@@ -89,6 +91,9 @@ jobs:
     if: |
       (github.event_name == 'issues' &&
         (github.event.action == 'labeled' || github.event.action == 'opened') &&
+        contains(github.event.issue.labels.*.name, 'ai-pipeline')) ||
+      (github.event_name == 'issue_comment' &&
+        startsWith(github.event.comment.body, '/feedback:') &&
         contains(github.event.issue.labels.*.name, 'ai-pipeline')) ||
       github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
