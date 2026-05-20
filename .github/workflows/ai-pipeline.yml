@@ -29,8 +29,7 @@ permissions:
   issues: write
   contents: write
   pull-requests: write
-  projects: write
-  pull-requests: write
+  repository-projects: write
 
 env:
   BRANCH_NAME: ai/issue-${{ github.event.issue.number || github.run_id }}
