@@ -600,8 +600,8 @@ jobs:
           echo ""
           echo "--- End preview ---"
 
-          # Extracción y validación JSON blindada
-          LLM_JSON=$(echo "$LLM_OUTPUT" | python3 -c "
+          # Extract and validate JSON — use heredoc to avoid shell quoting issues
+          cat > /tmp/extract_frontend_json.py << 'PYEOF'
           import sys, json, re
           text = sys.stdin.read()
           match = re.search(r'\{.*\}', text, re.DOTALL)
@@ -611,13 +611,14 @@ jobs:
                   if 'files' not in parsed or not isinstance(parsed['files'], list):
                       parsed['files'] = []
                   if not parsed['files']:
-                  parsed['summary'] = 'ERROR: LLM refused to write code and returned empty files array.'
+                      parsed['summary'] = 'ERROR: LLM refused to write code and returned empty files array.'
                   print(json.dumps(parsed))
               except json.JSONDecodeError as e:
-                  print('{"files": [], "summary": "ERROR JSON Parse: ' + str(e) + '"}')
+                  print(json.dumps({'files': [], 'summary': 'ERROR JSON Parse: ' + str(e)}))
           else:
-              print('{"files": [], "summary": "ERROR: Regex did not find JSON in LLM output."}')
-          ")
+              print(json.dumps({'files': [], 'summary': 'ERROR: Regex did not find JSON in LLM output.'}))
+          PYEOF
+          LLM_JSON=$(echo "$LLM_OUTPUT" | python3 /tmp/extract_frontend_json.py)
 
           echo "$LLM_JSON" > docs/ai-output/frontend-output.json
 
