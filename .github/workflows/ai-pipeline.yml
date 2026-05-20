@@ -471,6 +471,7 @@ jobs:
           MODELS_TOKEN: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
+          python3 -m pip install json-repair --quiet
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
@@ -603,6 +604,12 @@ jobs:
           # Extract and validate JSON — use heredoc to avoid shell quoting issues
           cat > /tmp/extract_frontend_json.py << 'PYEOF'
           import sys, json, re
+          try:
+              from json_repair import repair_json
+              HAS_REPAIR = True
+          except ImportError:
+              HAS_REPAIR = False
+
           text = sys.stdin.read()
           match = re.search(r'\{.*\}', text, re.DOTALL)
           if match:
