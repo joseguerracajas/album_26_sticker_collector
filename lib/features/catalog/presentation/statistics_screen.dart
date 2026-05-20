@@ -1,6 +1,12 @@
 // Archivo: lib/features/catalog/presentation/statistics_screen.dart
 
 import 'dart:math' as math;
+import 'dart:ui' as ui;
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
+import 'package:album_26_sticker_collector/core/constants/app_constants.dart';
 
 import 'package:album_26_sticker_collector/core/tutorial/statistics_tutorial.dart';
 import 'package:album_26_sticker_collector/core/tutorial/tutorial_keys.dart';
@@ -12,7 +18,6 @@ import 'package:album_26_sticker_collector/features/catalog/presentation/widgets
 import 'package:album_26_sticker_collector/features/inventory/data/stats_provider.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -52,7 +57,7 @@ class _SelectedCategoryIdsNotifier extends Notifier<Set<String>?> {
 }
 
 final _selectedCategoryIdsProvider =
-    NotifierProvider<_SelectedCategoryIdsNotifier, Set<String>?>(
+    NotifierProvider<_SelectedCategoryIdsNotifier, Set<String>?>( 
       _SelectedCategoryIdsNotifier.new,
     );
 
@@ -93,6 +98,7 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
   double _pointerDownX = 0;
   final ScrollController _scrollController = ScrollController();
   bool _tutorialScheduled = false;
+  final GlobalKey _shareImageKey = GlobalKey();
 
   Future<void> _maybeShowStatsTutorial() async {
     if (_tutorialScheduled || !mounted) return;
@@ -102,6 +108,36 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
     if (!mounted) return;
     final done = await TutorialService.isStatsTutorialDone();
     if (!done && mounted) StatisticsTutorial.show(context);
+  }
+
+  Future<void> _shareStatistics() async {
+    final l10n = AppLocalizations.of(context);
+    try {
+      final RenderRepaintBoundary boundary = _shareImageKey.currentContext!
+          .findRenderObject()! as RenderRepaintBoundary;
+      final ui.Image image = await boundary.toImage(pixelRatio: 3.0);
+      final ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+      final Uint8List pngBytes = byteData!.buffer.asUint8List();
+
+      final directory = await getTemporaryDirectory();
+      final imagePath = '${directory.path}/statistics.png';
+      final file = await 
+          (await writeFile(imagePath, pngBytes)).writeAsBytes(pngBytes);
+
+      await Share.shareXFiles(
+        [XFile(file.path)],
+        text: l10n.shareStatsMessage(AppConstants.appName),
+      );
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(l10n.shareStatsError(e.toString())),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
   }
 
   @override
@@ -150,149 +186,162 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
               elevation: 0,
               centerTitle: true,
               iconTheme: const IconThemeData(color: Colors.amber),
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.share_rounded, color: Colors.amber),
+                  onPressed: _shareStatistics,
+                  tooltip: l10n.shareStatsTooltip,
+                ),
+              ],
             ),
             body: RefreshIndicator(
               color: Colors.amber,
               backgroundColor: const Color(0xFF1E1E1E),
               onRefresh: ref.read(syncServiceProvider).refreshAll,
-              child: CustomScrollView(
-                key: const PageStorageKey('statistics_scroll'),
-                primary: true,
-                physics: const AlwaysScrollableScrollPhysics(),
-                slivers: [
-                  // 1. Sección global de progreso (tarjeta dorada)
-                  SliverToBoxAdapter(
-                    child: Container(
-                      key: tutorialStatsGlobalKey,
-                      child: _GlobalProgressCard(
-                        totalAsync: totalAsync,
-                        uniqueCollected: uniqueCollected,
-                        categoryStatsAsync: categoryStatsAsync,
-                        l10n: l10n,
-                      ),
-                    ),
-                  ),
-
-                  // 2. Chips de filtro por categoría
-                  categoryStatsAsync.when(
-                    loading: () =>
-                        const SliverToBoxAdapter(child: SizedBox.shrink()),
-                    error: (e, s) =>
-                        const SliverToBoxAdapter(child: SizedBox.shrink()),
-                    data: (stats) => SliverToBoxAdapter(
-                      child: Container(
-                        key: tutorialStatsFilterKey,
-                        child: _CategoryFilterChips(
-                          categories: stats.map((s) => s.category).toList(),
-                          selectedIds: selectedCategoryIds,
-                          l10n: l10n,
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  // 3. Lista de estadísticas por categoría
-                  categoryStatsAsync.when(
-                    loading: () => const SliverToBoxAdapter(
-                      child: Padding(
-                        padding: EdgeInsets.all(48),
-                        child: Center(
-                          child: CircularProgressIndicator(color: Colors.amber),
-                        ),
-                      ),
-                    ),
-                    error: (e, _) => SliverToBoxAdapter(
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(32),
-                          child: Text(
-                            l10n.commonErrorWithMessage(e),
-                            style: const TextStyle(color: Colors.redAccent),
+              child: RepaintBoundary(
+                key: _shareImageKey,
+                child: Container(
+                  color: const Color(0xFF121212), // Fondo para la imagen compartida
+                  child: CustomScrollView(
+                    key: const PageStorageKey('statistics_scroll'),
+                    primary: true,
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    slivers: [
+                      // 1. Sección global de progreso (tarjeta dorada)
+                      SliverToBoxAdapter(
+                        child: Container(
+                          key: tutorialStatsGlobalKey,
+                          child: _GlobalProgressCard(
+                            totalAsync: totalAsync,
+                            uniqueCollected: uniqueCollected,
+                            categoryStatsAsync: categoryStatsAsync,
+                            l10n: l10n,
                           ),
                         ),
                       ),
-                    ),
-                    data: (stats) {
-                      // Filtrar por categorías seleccionadas
-                      var filtered =
-                          (selectedCategoryIds == null ||
-                              selectedCategoryIds.isEmpty)
-                          ? stats
-                          : stats
-                                .where(
-                                  (s) => selectedCategoryIds.contains(
-                                    s.category.id,
-                                  ),
-                                )
-                                .toList();
 
-                      // Ordenar según la opción activa
-                      final toShow = [...filtered];
-                      switch (sortOrder) {
-                        case _StatsSortOrder.progressDesc:
-                          toShow.sort(
-                            (a, b) => b.percentage.compareTo(a.percentage),
-                          );
-                        case _StatsSortOrder.progressAsc:
-                          toShow.sort(
-                            (a, b) => a.percentage.compareTo(b.percentage),
-                          );
-                        case _StatsSortOrder.missingDesc:
-                          toShow.sort((a, b) => b.missing.compareTo(a.missing));
-                        case _StatsSortOrder.duplicatesDesc:
-                          toShow.sort(
-                            (a, b) =>
-                                b.duplicateCopies.compareTo(a.duplicateCopies),
-                          );
-                        case _StatsSortOrder.category:
-                          break;
-                      }
+                      // 2. Chips de filtro por categoría
+                      categoryStatsAsync.when(
+                        loading: () =>
+                            const SliverToBoxAdapter(child: SizedBox.shrink()),
+                        error: (e, s) =>
+                            const SliverToBoxAdapter(child: SizedBox.shrink()),
+                        data: (stats) => SliverToBoxAdapter(
+                          child: Container(
+                            key: tutorialStatsFilterKey,
+                            child: _CategoryFilterChips(
+                              categories: stats.map((s) => s.category).toList(),
+                              selectedIds: selectedCategoryIds,
+                              l10n: l10n,
+                            ),
+                          ),
+                        ),
+                      ),
 
-                      if (toShow.isEmpty) {
-                        return SliverToBoxAdapter(
+                      // 3. Lista de estadísticas por categoría
+                      categoryStatsAsync.when(
+                        loading: () => const SliverToBoxAdapter(
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 48),
+                            padding: EdgeInsets.all(48),
                             child: Center(
-                              child: Column(
-                                children: [
-                                  const Icon(
-                                    Icons.inbox_outlined,
-                                    color: Colors.white24,
-                                    size: 48,
-                                  ),
-                                  const SizedBox(height: 12),
-                                  Text(
-                                    l10n.statsNoStatsYet,
-                                    style: const TextStyle(
-                                      color: Colors.white38,
-                                      fontSize: 15,
-                                    ),
-                                  ),
-                                ],
+                              child: CircularProgressIndicator(color: Colors.amber),
+                            ),
+                          ),
+                        ),
+                        error: (e, _) => SliverToBoxAdapter(
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(32),
+                              child: Text(
+                                l10n.commonErrorWithMessage(e),
+                                style: const TextStyle(color: Colors.redAccent),
                               ),
                             ),
                           ),
-                        );
-                      }
-
-                      return SliverPadding(
-                        padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
-                        sliver: SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                            (context, index) => _CategoryStatCard(
-                              stats: toShow[index],
-                              index: index,
-                              l10n: l10n,
-                            ),
-                            childCount: toShow.length,
-                          ),
                         ),
-                      );
-                    },
-                  ),
+                        data: (stats) {
+                          // Filtrar por categorías seleccionadas
+                          var filtered =
+                              (selectedCategoryIds == null ||
+                                  selectedCategoryIds.isEmpty)
+                              ? stats
+                              : stats
+                                    .where(
+                                      (s) => selectedCategoryIds.contains(
+                                        s.category.id,
+                                      ),
+                                    )
+                                    .toList();
 
-                  const SliverToBoxAdapter(child: SizedBox(height: 16)),
-                ],
+                          // Ordenar según la opción activa
+                          final toShow = [...filtered];
+                          switch (sortOrder) {
+                            case _StatsSortOrder.progressDesc:
+                              toShow.sort(
+                                (a, b) => b.percentage.compareTo(a.percentage),
+                              );
+                            case _StatsSortOrder.progressAsc:
+                              toShow.sort(
+                                (a, b) => a.percentage.compareTo(b.percentage),
+                              );
+                            case _StatsSortOrder.missingDesc:
+                              toShow.sort((a, b) => b.missing.compareTo(a.missing));
+                            case _StatsSortOrder.duplicatesDesc:
+                              toShow.sort(
+                                (a, b) =>
+                                    b.duplicateCopies.compareTo(a.duplicateCopies),
+                              );
+                            case _StatsSortOrder.category:
+                              break;
+                          }
+
+                          if (toShow.isEmpty) {
+                            return SliverToBoxAdapter(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 48),
+                                child: Center(
+                                  child: Column(
+                                    children: [
+                                      const Icon(
+                                        Icons.inbox_outlined,
+                                        color: Colors.white24,
+                                        size: 48,
+                                      ),
+                                      const SizedBox(height: 12),
+                                      Text(
+                                        l10n.statsNoStatsYet,
+                                        style: const TextStyle(
+                                          color: Colors.white38,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+
+                          return SliverPadding(
+                            padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
+                            sliver: SliverList(
+                              delegate: SliverChildBuilderDelegate(
+                                (context, index) => _CategoryStatCard(
+                                  stats: toShow[index],
+                                  index: index,
+                                  l10n: l10n,
+                                ),
+                                childCount: toShow.length,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+
+                      const SliverToBoxAdapter(child: SizedBox(height: 16)),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
@@ -305,7 +354,7 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
 // ---------------------------------------------------------------------------
 // Tarjeta de progreso global
 // ---------------------------------------------------------------------------
-class _GlobalProgressCard extends StatelessWidget {
+class _GlobalProgressCard extends ConsumerWidget {
   final AsyncValue<int> totalAsync;
   final int uniqueCollected;
   final AsyncValue<List<CategoryStats>> categoryStatsAsync;
@@ -319,7 +368,7 @@ class _GlobalProgressCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
           padding: const EdgeInsets.fromLTRB(20, 12, 20, 8),
           child: Column(
@@ -337,7 +386,7 @@ class _GlobalProgressCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.amber.withValues(alpha: 0.35),
+                      color: Colors.amber.withOpacity(0.35),
                       blurRadius: 18,
                       offset: const Offset(0, 8),
                     ),
@@ -778,7 +827,7 @@ class _HighlightMiniCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color(0xFF1E1E1E),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: accentColor.withValues(alpha: 0.3), width: 1),
+        border: Border.all(color: accentColor.withOpacity(0.3), width: 1),
       ),
       child: Row(
         children: [
@@ -1032,10 +1081,10 @@ class _CategoryFilterChips extends ConsumerWidget {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.amber.withValues(alpha: 0.15),
+                      color: Colors.amber.withOpacity(0.15),
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
-                        color: Colors.amber.withValues(alpha: 0.5),
+                        color: Colors.amber.withOpacity(0.5),
                         width: 1,
                       ),
                     ),
@@ -1372,8 +1421,8 @@ class _CategoryStatCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(18),
               border: Border.all(
                 color: stats.percentage >= 1.0
-                    ? Colors.greenAccent.withValues(alpha: 0.3)
-                    : Colors.white.withValues(alpha: 0.04),
+                    ? Colors.greenAccent.withOpacity(0.3)
+                    : Colors.white.withOpacity(0.04),
                 width: 1,
               ),
             ),
@@ -1465,4 +1514,9 @@ class _CategoryStatCard extends StatelessWidget {
           curve: Curves.easeOut,
         );
   }
+}
+
+// Helper para escribir archivos temporales (para compartir)
+Future<File> writeFile(String path, Uint8List bytes) async {
+  return File(path).writeAsBytes(bytes);
 }
