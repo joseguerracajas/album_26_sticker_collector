@@ -23,9 +23,9 @@ on:
         description: "Describe the feature you want to build"
         required: true
         type: string
-  # El pipeline real se dispara solo con el label ai-pipeline
+  # The pipeline is only triggered by the ai-pipeline label
 
-# Solo cancela runs anteriores cuando es un comando de feedback explícito (no cancela cuando el bot comenta)
+# Only cancel previous runs when an explicit feedback command is posted (bot comments do not cancel)
 concurrency:
   group: ai-pipeline-${{ github.event.issue.number || github.run_id }}
   cancel-in-progress: >-
@@ -183,12 +183,12 @@ jobs:
           fi
           USER_MSG="${USER_MSG}\n\n## Localization context (ARB files)\n${ARB_CONTEXT}"
           USER_MSG="${USER_MSG}\n\n## Project Context (README)\n${README}"
-          USER_MSG="${USER_MSG}\n\n---\nResponde en español con las Historias de Usuario en formato Markdown."
+          USER_MSG="${USER_MSG}\n\n---\nRespond in Spanish with the User Stories in Markdown format."
 
           # --- Call LLM --------------------------------------------------------
           HU=""
           if [ "${{ env.USE_GEMINI }}" = "true" ]; then
-            echo "🤖 Using Gemini 1.5 Pro (Google AI Studio)"
+            echo "🤖 Using Gemini 2.5 Flash (Google AI Studio)"
             if [ -z "$GEMINI_API_KEY" ]; then
               echo "::error::GEMINI_API_KEY secret is not set."
               exit 1
@@ -248,7 +248,7 @@ jobs:
 
           # --- Post combined comment on issue ---------------------------------
           if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
-            printf '## 🔵 Product Manager Agent — User Stories\n\n%s\n\n---\n🌿 Branch: [%s](%s)\n\n**Feedback commands:**\n- `/feedback: texto` — reescribe HU desde cero (cancela todo)\n- `/feedback-backend: texto` — re-corre solo el agente Backend\n- `/feedback-frontend: texto` — re-corre solo el agente Frontend\n\n---\n\n## 🤖 Pipeline Status\n\n| Stage | Status |\n|-------|--------|\n| 🔵 Product Manager | ✅ Done — review above |\n| 🟢 Backend Developer | ⏸️ Awaiting your approval |\n| 🟡 Frontend Developer | ⏸️ Awaiting approval |\n| 🔴 DevOps | ⏸️ Pending |\n| 🟣 QA Engineer | ⏸️ Pending |\n\n> Pipeline started by: @%s\n> Feature branch: `%s`\n' "$HU" "${{ env.BRANCH_NAME }}" "$BRANCH_URL" "${{ github.actor }}" "${{ env.BRANCH_NAME }}" > /tmp/pm-comment.md
+            printf '## 🔵 Product Manager Agent — User Stories\n\n%s\n\n---\n🌿 Branch: [%s](%s)\n\n**Feedback commands:**\n- `/feedback: text` — rewrite user stories from scratch (restarts full pipeline)\n- `/feedback-backend: text` — re-run only the Backend agent\n- `/feedback-frontend: text` — re-run only the Frontend agent\n\n---\n\n## 🤖 Pipeline Status\n\n| Stage | Status |\n|-------|--------|\n| 🔵 Product Manager | ✅ Done — review above |\n| 🟢 Backend Developer | ⏸️ Awaiting your approval |\n| 🟡 Frontend Developer | ⏸️ Awaiting approval |\n| 🔴 DevOps | ⏸️ Pending |\n| 🟣 QA Engineer | ⏸️ Pending |\n\n> Pipeline started by: @%s\n> Feature branch: `%s`\n' "$HU" "${{ env.BRANCH_NAME }}" "$BRANCH_URL" "${{ github.actor }}" "${{ env.BRANCH_NAME }}" > /tmp/pm-comment.md
             GH_TOKEN="${{ secrets.GITHUB_TOKEN }}" gh issue comment "${{ env.ISSUE_NUMBER }}" \
               --repo ${{ env.GH_REPO }} \
               --body-file /tmp/pm-comment.md
@@ -420,7 +420,7 @@ jobs:
           FILES_LIST=$(echo "$LLM_JSON" | jq -r '[.files[].path] | if length > 0 then "- " + join("\n- ") else "None" end' 2>/dev/null || echo "None")
 
           if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
-            printf '## 🟢 Backend Developer Agent — Supabase Changes\n\n**Summary:** %s\n**Needs migration:** %s\n\n**Files generated:**\n%s\n\n---\n🌿 Branch: [%s](%s)\n\n**Feedback:** `/feedback-backend: texto` para reescribir solo este paso.\n' "$SUMMARY" "$NEEDS_MIGRATION" "$FILES_LIST" "${{ env.BRANCH_NAME }}" "$BRANCH_URL" > /tmp/backend-comment.md
+            printf '## 🟢 Backend Developer Agent — Supabase Changes\n\n**Summary:** %s\n**Needs migration:** %s\n\n**Files generated:**\n%s\n\n---\n🌿 Branch: [%s](%s)\n\n**Feedback:** `/feedback-backend: text` to rewrite only this stage.\n' "$SUMMARY" "$NEEDS_MIGRATION" "$FILES_LIST" "${{ env.BRANCH_NAME }}" "$BRANCH_URL" > /tmp/backend-comment.md
             GH_TOKEN="${{ secrets.GITHUB_TOKEN }}" gh issue comment "${{ env.ISSUE_NUMBER }}" \
               --repo ${{ env.GH_REPO }} \
               --body-file /tmp/backend-comment.md
@@ -474,7 +474,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # OPTIMIZACIÓN DE TOKENS: Reducimos el contexto secundario para dar espacio al archivo principal
+          # TOKEN OPTIMIZATION: Reduce secondary context to leave room for the main file
           README=$(cat README.md | head -c 2000)
           AGENT_PROMPT=$(cat .github/agents/frontend-developer.md)
           HU=$(cat docs/ai-output/user-stories.md 2>/dev/null || echo "")
@@ -486,7 +486,7 @@ jobs:
           BRANCH_URL="https://github.com/${{ env.GH_REPO }}/tree/${{ env.BRANCH_NAME }}"
 
           # ===================================================================
-          # 🔍 NUEVA LÓGICA: EXTRAER E INYECTAR CÓDIGO CON BÚSQUEDA DIFUSA
+          # 🔍 CONTEXT INJECTION: Extract and inject existing code with fuzzy search
           # ===================================================================
           python3 -c "
           import re, os
@@ -508,7 +508,7 @@ jobs:
                   if os.path.exists(actual_path) and os.path.isfile(actual_path):
                       with open(actual_path, 'r') as src:
                           context_data += f'### Existing File Current Content ({actual_path}):\n\`\`\`dart\n{src.read()}\n\`\`\`\n\n'
-                          print(f'✅ Contexto inyectado: {actual_path}')
+                          print(f'✅ Context injected: {actual_path}')
               with open('/tmp/existing_code_context.txt', 'w') as out:
                   out.write(context_data if context_data else 'No existing files identified.')
           except Exception as e:
@@ -518,7 +518,7 @@ jobs:
           EXISTING_CODE_CONTEXT=$(cat /tmp/existing_code_context.txt)
           # ===================================================================
 
-          # Mantenemos esto pequeño para evitar desbordamiento
+          # Keep this small to avoid token overflow
           EXISTING_FEATURE=$(find lib/features -name "*.dart" 2>/dev/null | sort | head -5 | \
             xargs -I{} sh -c 'echo "=== FILE: {} ==="; cat "{}"; echo ""' 2>/dev/null | head -c 1500 || echo "No existing features")
           EXISTING_FILES_LIST=$(find lib/features -name "*.dart" 2>/dev/null | sort | head -20 | tr '\n' ',' || echo "none")
@@ -532,7 +532,7 @@ jobs:
           fi
 
           # ===================================================================
-          # 🚀 RECONSTRUCCIÓN DEL PROMPT CON REGLAS ANTI-LAZINESS
+          # 🚀 PROMPT CONSTRUCTION WITH ANTI-LAZINESS RULES
           # ===================================================================
           USER_MSG="## Approved User Stories\n\n${HU}"
           USER_MSG="${USER_MSG}\n\n## Backend Agent Output\n\n${BACKEND_CONTEXT}"
@@ -544,15 +544,15 @@ jobs:
           USER_MSG="${USER_MSG}\n\n## Existing Dart Files\n\n${EXISTING_FILES_LIST}"
           USER_MSG="${USER_MSG}\n\n## Structure patterns\n\n${EXISTING_FEATURE}"
 
-          # LA CLAVE ESTÁ AQUÍ: Eliminar la vía de escape del array vacío
-          USER_MSG="${USER_MSG}\n\n---\n⚡️ INSTRUCCIONES CRÍTICAS PARA EL FRONTEND AGENT:"
-          USER_MSG="${USER_MSG}\n1. DEBES escribir y devolver el código Dart modificado para cumplir las Historias de Usuario."
-          USER_MSG="${USER_MSG}\n2. NUNCA devuelvas un array 'files' vacío. Tienes que implementar las vistas."
-          USER_MSG="${USER_MSG}\n3. Devuelve los archivos COMPLETOS, sin usar comentarios tipo '// resto del código' (escribe desde la línea 1 hasta el final)."
-          USER_MSG="${USER_MSG}\n4. Responde SOLO con un JSON válido con esta estructura exacta:"
-          USER_MSG="${USER_MSG}\n{\"files\": [{\"path\": \"ruta/al/archivo.dart\", \"content\": \"código fuente...\"}], \"summary\": \"Lo que hiciste...\"}"
+          # CRITICAL: Remove the escape hatch of returning an empty files array
+          USER_MSG="${USER_MSG}\n\n---\n⚡️ CRITICAL INSTRUCTIONS FOR THE FRONTEND AGENT:"
+          USER_MSG="${USER_MSG}\n1. You MUST write and return the modified Dart code to fulfill the User Stories."
+          USER_MSG="${USER_MSG}\n2. NEVER return an empty 'files' array. You must implement the views."
+          USER_MSG="${USER_MSG}\n3. Return COMPLETE files — no '// rest of code' shortcuts (write from line 1 to the end)."
+          USER_MSG="${USER_MSG}\n4. Respond ONLY with valid JSON using this exact structure:"
+          USER_MSG="${USER_MSG}\n{\"files\": [{\"path\": \"path/to/file.dart\", \"content\": \"source code...\"}], \"summary\": \"What you did...\"}"
 
-          # OPTIMIZACIÓN CRÍTICA: max_tokens: 4000 deja espacio de 4000 tokens para el Prompt de inyección
+          # CRITICAL OPTIMIZATION: max_tokens leaves budget for the injection prompt
           if [ "${{ env.USE_GEMINI }}" = "true" ]; then
             echo "🤖 Frontend using Gemini 2.5 Flash"
             COMBINED_PROMPT="${AGENT_PROMPT}\n\n${USER_MSG}"
@@ -577,7 +577,7 @@ jobs:
           fi
 
           if ! echo "$RESPONSE" | jq -e . >/dev/null 2>&1; then
-            echo "::error::API no devolvió JSON válido. Raw response:"
+            echo "::error::API did not return valid JSON. Raw response:"
             echo "$RESPONSE" | head -c 2000
             exit 1
           fi
@@ -590,7 +590,7 @@ jobs:
             exit 1
           fi
           if [ -z "$LLM_OUTPUT" ] || [ "$LLM_OUTPUT" = "null" ]; then
-            echo "::error::LLM devolvió vacío. Full response:"
+            echo "::error::LLM returned empty output. Full response:"
             echo "$RESPONSE" | jq . | head -c 2000
             exit 1
           fi
@@ -611,12 +611,12 @@ jobs:
                   if 'files' not in parsed or not isinstance(parsed['files'], list):
                       parsed['files'] = []
                   if not parsed['files']:
-                      parsed['summary'] = 'ERROR: El LLM se negó a escribir código y devolvió files vacío.'
+                  parsed['summary'] = 'ERROR: LLM refused to write code and returned empty files array.'
                   print(json.dumps(parsed))
               except json.JSONDecodeError as e:
-                  print('{\"files\": [], \"summary\": \"ERROR JSON Parse: ' + str(e) + '\"}')
+                  print('{"files": [], "summary": "ERROR JSON Parse: ' + str(e) + '"}')
           else:
-              print('{\"files\": [], \"summary\": \"ERROR: Regex no encontró JSON.\"}')
+              print('{"files": [], "summary": "ERROR: Regex did not find JSON in LLM output."}')
           ")
 
           echo "$LLM_JSON" > docs/ai-output/frontend-output.json
@@ -638,7 +638,7 @@ jobs:
 
           git add -A
           if git diff --cached --quiet; then
-            echo "⚠️ El Frontend Agent no modificó archivos."
+            echo "⚠️ Frontend Agent did not modify any files."
           else
             git commit -m "feat: [Frontend Agent] Flutter code for issue #${{ env.ISSUE_NUMBER }} [skip ci]"
             git push origin ${{ env.BRANCH_NAME }}
