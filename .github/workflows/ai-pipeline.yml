@@ -47,6 +47,7 @@ permissions:
   contents: write
   pull-requests: write
   repository-projects: write
+  models: read
 
 env:
   BRANCH_NAME: ai/issue-${{ (github.event.issue != null && github.event.issue.number) || github.run_id }}
@@ -160,9 +161,9 @@ jobs:
       - name: "🔵 Generate User Stories with LLM"
         env:
           # MODELS_TOKEN: token con scope `models:read` para GitHub Models API.
-          # Usamos secrets.GITHUB_TOKEN (nativo del workflow) porque PROJECT_TOKEN puede ser un PAT
-          # con scopes solo para Project Board, sin acceso a Models.
-          MODELS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Preferimos PROJECT_TOKEN (PAT del usuario, si tiene `Models: read` habilitado);
+          # fallback al GITHUB_TOKEN nativo (requiere permission `models: read` en el workflow).
+          MODELS_TOKEN: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
           FEATURE_INPUT: ${{ (github.event.issue != null && github.event.issue.body) || inputs.feature_description }}
@@ -206,7 +207,25 @@ jobs:
             exit 1
           fi
 
-          HU=$(echo "$RESPONSE" | jq -r '.choices[0].message.content // "ERROR: No response from LLM"')
+          # Diagnóstico: detectar errores estructurados de la API y respuestas sin contenido.
+          API_ERROR=$(echo "$RESPONSE" | jq -r '.error.message // empty')
+          if [ -n "$API_ERROR" ]; then
+            echo "::error::GitHub Models API devolvió un error: $API_ERROR"
+            echo "--- Respuesta completa ---"
+            echo "$RESPONSE" | jq .
+            exit 1
+          fi
+
+          FINISH_REASON=$(echo "$RESPONSE" | jq -r '.choices[0].finish_reason // "unknown"')
+          HU=$(echo "$RESPONSE" | jq -r '.choices[0].message.content // ""')
+          if [ -z "$HU" ] || [ "$HU" = "null" ]; then
+            echo "::error::LLM devolvió contenido vacío. finish_reason=$FINISH_REASON"
+            echo "--- Respuesta completa ---"
+            echo "$RESPONSE" | jq .
+            exit 1
+          fi
+
+          echo "✅ LLM respondió (finish_reason=$FINISH_REASON, $(echo "$HU" | wc -c) chars)"
 
           mkdir -p docs/ai-output
           echo "$HU" > docs/ai-output/user-stories.md
