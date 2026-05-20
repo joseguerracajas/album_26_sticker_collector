@@ -11,9 +11,10 @@
 
 name: "🤖 AI Agent Pipeline"
 
+
 on:
   issues:
-    types: [opened, labeled]
+    types: [opened]
   issue_comment:
     types: [created]
   workflow_dispatch:
@@ -22,25 +23,15 @@ on:
         description: "Describe the feature you want to build"
         required: true
         type: string
+  # El pipeline real se dispara solo con el label ai-pipeline
+  workflow_call:
 
+
+
+# Concurrency más permisivo: solo agrupa por issue/PR, no bloquea ejecuciones legítimas
 concurrency:
-  # Only ONE event type can start a real pipeline run for an issue:
-  #   - issues.labeled with the `ai-pipeline` label  (the canonical start trigger)
-  #   - issue_comment starting with `/`              (slash commands like /feedback:)
-  #   - workflow_dispatch                            (manual run)
-  # Everything else (issue opened, other labels added, bot comments) gets a unique
-  # noop group so it can never cancel a run that is waiting for approval.
-  group: >-
-    ${{
-      (
-        github.event_name == 'workflow_dispatch' ||
-        (github.event_name == 'issues' && github.event.action == 'labeled' && github.event.label.name == 'ai-pipeline') ||
-        (github.event_name == 'issue_comment' && startsWith(github.event.comment.body, '/'))
-      )
-      && format('ai-pipeline-{0}', (github.event.issue != null && github.event.issue.number) || github.run_id)
-      || format('noop-{0}', github.run_id)
-    }}
-  cancel-in-progress: true
+  group: ai-pipeline-${{ github.event.issue.number || github.run_id }}
+  cancel-in-progress: false
 
 permissions:
   issues: write
@@ -69,6 +60,21 @@ jobs:
           GH_TOKEN: ${{ secrets.PROJECT_TOKEN || github.token }}
         run: |
           # ... código original de add to project ...
+
+# Mover la lógica de generación de código al job product-manager (o el primero del pipeline real)
+  product-manager:
+    name: "🔵 Product Manager Agent"
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'issues' && github.event.action == 'labeled' && github.event.label.name == 'ai-pipeline') ||
+      (github.event_name == 'issue_comment' && startsWith(github.event.comment.body, '/'))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ env.BRANCH_NAME }}
 
       - name: "🟡 Generate Flutter Code (OpenAI/GitHub Models API)"
         if: env.USE_GEMINI != 'true'
@@ -132,9 +138,8 @@ jobs:
           git push origin ${{ env.BRANCH_NAME }}
 
           if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
-            # Merge PM output + pipeline status into a single comment (avoids triggering an extra issue_comment run)
+            # Merge PM output + pipeline status into a single comment (evita doble trigger)
             printf '## 🔵 Product Manager Agent — User Stories\n\n%s\n\n---\n🌿 Branch: [%s](%s)\n\n**Feedback commands:**\n- `/feedback: texto` — reescribe HU desde cero (cancela todo)\n- `/feedback-backend: texto` — re-corre solo el agente Backend\n- `/feedback-frontend: texto` — re-corre solo el agente Frontend\n\n---\n\n## 🤖 Pipeline Status\n\n| Stage | Status |\n|-------|--------|\n| 🔵 Product Manager | ✅ Done — review above |\n| 🟢 Backend Developer | ⏸️ Awaiting your approval |\n| 🟡 Frontend Developer | ⏸️ Awaiting approval |\n| 🔴 DevOps | ⏸️ Pending |\n| 🟣 QA Engineer | ⏸️ Pending |\n\n> Pipeline started by: @%s\n> Feature branch: `%s`\n' "$HU" "${{ env.BRANCH_NAME }}" "$BRANCH_URL" "${{ github.actor }}" "${{ env.BRANCH_NAME }}" > /tmp/pm-comment.md
-            # Use the native GITHUB_TOKEN so the comment is posted as `github-actions[bot]`, not as the user's PAT identity.
             GH_TOKEN="${{ secrets.GITHUB_TOKEN }}" gh issue comment "${{ env.ISSUE_NUMBER }}" \
               --repo ${{ env.GH_REPO }} \
               --body-file /tmp/pm-comment.md
