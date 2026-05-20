@@ -176,15 +176,10 @@ jobs:
           git push origin ${{ env.BRANCH_NAME }}
 
           if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
+            printf '## 🔵 Product Manager Agent — User Stories\n\n%s\n\n---\n> **To provide feedback before approving**, comment: `/feedback: your notes here`\n> The next agent will incorporate your feedback.\n' "$HU" > /tmp/pm-comment.md
             gh issue comment "${{ env.ISSUE_NUMBER }}" \
               --repo ${{ env.GH_REPO }} \
-              --body "## 🔵 Product Manager Agent — User Stories
-
-${HU}
-
----
-> **To provide feedback before approving**, comment: \`/feedback: your notes here\`
-> The next agent will incorporate your feedback."
+              --body-file /tmp/pm-comment.md
           fi
 
       - name: "💬 Comment pipeline started"
@@ -192,20 +187,10 @@ ${HU}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          printf '## 🤖 AI Pipeline Started\n\n| Stage | Status |\n|-------|--------|\n| 🔵 Product Manager | ✅ Done — review above |\n| 🟢 Backend Developer | ⏸️ Awaiting your approval |\n| 🟡 Frontend Developer | ⏸️ Awaiting approval |\n| 🔴 DevOps | ⏸️ Pending |\n| 🟣 QA Engineer | ⏸️ Pending |\n\n> Pipeline started by: @%s\n> Feature branch: `%s`\n' "${{ github.actor }}" "${{ env.BRANCH_NAME }}" > /tmp/pipeline-started.md
           gh issue comment ${{ env.ISSUE_NUMBER }} \
             --repo ${{ env.GH_REPO }} \
-            --body "## 🤖 AI Pipeline Started
-
-| Stage | Status |
-|-------|--------|
-| 🔵 Product Manager | ✅ Done — review above |
-| 🟢 Backend Developer | ⏸️ Awaiting your approval |
-| 🟡 Frontend Developer | ⏸️ Awaiting approval |
-| 🔴 DevOps | ⏸️ Pending |
-| 🟣 QA Engineer | ⏸️ Pending |
-
-> Pipeline started by: @${{ github.actor }}
-> Feature branch: \`${{ env.BRANCH_NAME }}\`"
+            --body-file /tmp/pipeline-started.md
 
   # ===========================================================================
   # Stage 2: Approval Gate — User Stories
@@ -298,19 +283,7 @@ ${HU}
           [ -n "$FEEDBACK" ] && USER_MSG="${USER_MSG}\n\n## Orchestrator Feedback\n\n${FEEDBACK}"
           USER_MSG="${USER_MSG}\n\n## Existing Migrations (for context)\n\n${MIGRATIONS}"
           USER_MSG="${USER_MSG}\n\n## Project Context (README)\n\n${README}"
-          USER_MSG="${USER_MSG}\n\n---
-IMPORTANT: Respond ONLY with valid JSON in this exact format (no markdown, no extra text):
-{
-  \"needs_migration\": true,
-  \"files\": [
-    {
-      \"path\": \"supabase/migrations/YYYYMMDDHHMMSS_description.sql\",
-      \"content\": \"-- SQL content here\"
-    }
-  ],
-  \"summary\": \"Brief description of what was generated\"
-}
-If no Supabase changes are needed, set needs_migration to false and files to []."
+          USER_MSG="${USER_MSG}\n\n---\nIMPORTANT: Respond ONLY with valid JSON (no markdown, no extra text):\n{\"needs_migration\": true, \"files\": [{\"path\": \"supabase/migrations/YYYYMMDDHHMMSS_description.sql\", \"content\": \"-- SQL content here\"}], \"summary\": \"Brief description of what was generated\"}\nIf no changes needed, set needs_migration to false and files to []."
 
           RESPONSE=$(curl -s -X POST \
             "https://models.inference.ai.azure.com/chat/completions" \
@@ -323,15 +296,16 @@ If no Supabase changes are needed, set needs_migration to false and files to [].
             )")
 
           LLM_OUTPUT=$(echo "$RESPONSE" | jq -r '.choices[0].message.content // "{}"')
-          LLM_JSON=$(echo "$LLM_OUTPUT" | python3 -c "
-import sys, json, re
-text = sys.stdin.read()
-match = re.search(r'\{.*\}', text, re.DOTALL)
-if match:
-    print(match.group())
-else:
-    print('{\"needs_migration\": false, \"files\": [], \"summary\": \"Could not parse LLM output\"}')
-")
+          LLM_JSON=$(echo "$LLM_OUTPUT" | python3 -c "$(cat <<'PYEOF'
+          import sys, json, re
+          text = sys.stdin.read()
+          match = re.search(r'\{.*\}', text, re.DOTALL)
+          if match:
+              print(match.group())
+          else:
+              print('{"needs_migration": false, "files": [], "summary": "Could not parse LLM output"}')
+          PYEOF
+          )")
 
           echo "$LLM_JSON" > docs/ai-output/backend-output.json
 
@@ -339,16 +313,17 @@ else:
           SUMMARY=$(echo "$LLM_JSON" | jq -r '.summary // "No changes needed"')
 
           if [ "$NEEDS_MIGRATION" = "true" ]; then
-            echo "$LLM_JSON" | python3 -c "
-import json, os, sys
-data = json.load(sys.stdin)
-for f in data.get('files', []):
-    path = f['path']
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, 'w') as fp:
-        fp.write(f['content'])
-    print(f'Created: {path}')
-"
+            cat > /tmp/create_backend_files.py << 'PYEOF'
+          import json, os, sys
+          data = json.load(sys.stdin)
+          for f in data.get('files', []):
+              path = f['path']
+              os.makedirs(os.path.dirname(path), exist_ok=True)
+              with open(path, 'w') as fp:
+                  fp.write(f['content'])
+              print(f'Created: {path}')
+          PYEOF
+            echo "$LLM_JSON" | python3 /tmp/create_backend_files.py
             git add -A
             git commit -m "feat: [Backend Agent] Supabase migrations for issue #${{ env.ISSUE_NUMBER }} [skip ci]"
             git push origin ${{ env.BRANCH_NAME }}
@@ -357,18 +332,10 @@ for f in data.get('files', []):
           FILES_LIST=$(echo "$LLM_JSON" | jq -r '[.files[].path] | if length > 0 then "- " + join("\n- ") else "None" end' 2>/dev/null || echo "None")
 
           if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
+            printf '## 🟢 Backend Developer Agent — Supabase Changes\n\n**Summary:** %s\n**Needs migration:** %s\n\n**Files generated:**\n%s\n\n---\n> **To provide feedback before approving**, comment: `/feedback: your notes here`\n' "$SUMMARY" "$NEEDS_MIGRATION" "$FILES_LIST" > /tmp/backend-comment.md
             gh issue comment "${{ env.ISSUE_NUMBER }}" \
               --repo ${{ env.GH_REPO }} \
-              --body "## 🟢 Backend Developer Agent — Supabase Changes
-
-**Summary:** ${SUMMARY}
-**Needs migration:** ${NEEDS_MIGRATION}
-
-**Files generated:**
-${FILES_LIST}
-
----
-> **To provide feedback before approving**, comment: \`/feedback: your notes here\`"
+              --body-file /tmp/backend-comment.md
           fi
 
   # ===========================================================================
@@ -428,22 +395,7 @@ ${FILES_LIST}
           [ -n "$FEEDBACK" ] && USER_MSG="${USER_MSG}\n\n## Orchestrator Feedback\n\n${FEEDBACK}"
           USER_MSG="${USER_MSG}\n\n## Existing Feature Structure (for reference)\n\n${EXISTING_FEATURE}"
           USER_MSG="${USER_MSG}\n\n## Project Context (README)\n\n${README}"
-          USER_MSG="${USER_MSG}\n\n---
-IMPORTANT: Respond ONLY with valid JSON in this exact format (no markdown, no extra text):
-{
-  \"files\": [
-    {
-      \"path\": \"lib/features/feature_name/data/models/my_model.dart\",
-      \"content\": \"// Complete Dart file content here\"
-    }
-  ],
-  \"summary\": \"Brief description of all generated files\"
-}
-Architecture rules:
-- Feature-based folders: lib/features/{name}/data/, domain/, presentation/
-- Use Brick for offline-first models
-- Use Riverpod for state management
-- Follow the patterns from existing features shown above"
+          USER_MSG="${USER_MSG}\n\n---\nIMPORTANT: Respond ONLY with valid JSON (no markdown, no extra text):\n{\"files\": [{\"path\": \"lib/features/feature_name/data/models/my_model.dart\", \"content\": \"// Complete Dart file content here\"}], \"summary\": \"Brief description of all generated files\"}\nArchitecture rules:\n- Feature-based: lib/features/{name}/data/, domain/, presentation/\n- Use Brick for offline-first models\n- Use Riverpod for state management\n- Follow the patterns from existing features shown above"
 
           RESPONSE=$(curl -s -X POST \
             "https://models.inference.ai.azure.com/chat/completions" \
@@ -456,28 +408,30 @@ Architecture rules:
             )")
 
           LLM_OUTPUT=$(echo "$RESPONSE" | jq -r '.choices[0].message.content // "{}"')
-          LLM_JSON=$(echo "$LLM_OUTPUT" | python3 -c "
-import sys, json, re
-text = sys.stdin.read()
-match = re.search(r'\{.*\}', text, re.DOTALL)
-if match:
-    print(match.group())
-else:
-    print('{\"files\": [], \"summary\": \"Could not parse LLM output\"}')
-")
+          LLM_JSON=$(echo "$LLM_OUTPUT" | python3 -c "$(cat <<'PYEOF'
+          import sys, json, re
+          text = sys.stdin.read()
+          match = re.search(r'\{.*\}', text, re.DOTALL)
+          if match:
+              print(match.group())
+          else:
+              print('{"files": [], "summary": "Could not parse LLM output"}')
+          PYEOF
+          )")
 
           echo "$LLM_JSON" > docs/ai-output/frontend-output.json
 
-          echo "$LLM_JSON" | python3 -c "
-import json, os, sys
-data = json.load(sys.stdin)
-for f in data.get('files', []):
-    path = f['path']
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, 'w') as fp:
-        fp.write(f['content'])
-    print(f'Created: {path}')
-"
+          cat > /tmp/create_frontend_files.py << 'PYEOF'
+          import json, os, sys
+          data = json.load(sys.stdin)
+          for f in data.get('files', []):
+              path = f['path']
+              os.makedirs(os.path.dirname(path), exist_ok=True)
+              with open(path, 'w') as fp:
+                  fp.write(f['content'])
+              print(f'Created: {path}')
+          PYEOF
+          echo "$LLM_JSON" | python3 /tmp/create_frontend_files.py
 
           SUMMARY=$(echo "$LLM_JSON" | jq -r '.summary // "No summary"')
           FILES_LIST=$(echo "$LLM_JSON" | jq -r '[.files[].path] | if length > 0 then "- " + join("\n- ") else "None" end' 2>/dev/null || echo "None")
@@ -487,17 +441,10 @@ for f in data.get('files', []):
           git push origin ${{ env.BRANCH_NAME }}
 
           if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
+            printf '## 🟡 Frontend Developer Agent — Flutter Code\n\n**Summary:** %s\n\n**Files generated:**\n%s\n\n---\n> **To provide feedback before approving**, comment: `/feedback: your notes here`\n' "$SUMMARY" "$FILES_LIST" > /tmp/frontend-comment.md
             gh issue comment "${{ env.ISSUE_NUMBER }}" \
               --repo ${{ env.GH_REPO }} \
-              --body "## 🟡 Frontend Developer Agent — Flutter Code
-
-**Summary:** ${SUMMARY}
-
-**Files generated:**
-${FILES_LIST}
-
----
-> **To provide feedback before approving**, comment: \`/feedback: your notes here\`"
+              --body-file /tmp/frontend-comment.md
           fi
 
   # ===========================================================================
@@ -571,17 +518,10 @@ ${FILES_LIST}
           ANALYZE=$(cat /tmp/analyze-output.txt | tail -8)
           TESTS=$(cat /tmp/test-output.txt | tail -10)
 
+          printf '## 🟣 QA Engineer Agent — Results\n\n```\nFlutter Analyze:\n%s\n\nTests:\n%s\n```\n' "$ANALYZE" "$TESTS" > /tmp/qa-comment.md
           gh issue comment "${{ env.ISSUE_NUMBER }}" \
             --repo ${{ env.GH_REPO }} \
-            --body "## 🟣 QA Engineer Agent — Results
-
-\`\`\`
-Flutter Analyze:
-${ANALYZE}
-
-Tests:
-${TESTS}
-\`\`\`"
+            --body-file /tmp/qa-comment.md
 
   # ===========================================================================
   # Stage 9: Quality Gate — Create PR for review
@@ -604,24 +544,10 @@ ${TESTS}
           HU=$(cat docs/ai-output/user-stories.md 2>/dev/null | head -60 || echo "See issue for details")
           ISSUE_REF="${{ env.ISSUE_NUMBER != '' && format('Closes #{0}', env.ISSUE_NUMBER) || '' }}"
 
+          printf '## 🤖 AI-Generated Feature\n\n%s\n\n## User Stories\n%s\n\n## What was generated\n- ✅ User Stories (PM Agent)\n- ✅ Supabase Migrations (Backend Agent)\n- ✅ Flutter Code — Brick, Riverpod, UI (Frontend Agent)\n- ✅ QA — Flutter analyze + tests\n\n---\n> This PR was generated by the AI Multi-Agent Pipeline.\n> Please review all files carefully before merging.\n' "$ISSUE_REF" "$HU" > /tmp/pr-body.md
           PR_URL=$(gh pr create \
             --title "feat: [AI Agent] feature for issue #${{ env.ISSUE_NUMBER }}" \
-            --body "## 🤖 AI-Generated Feature
-
-${ISSUE_REF}
-
-## User Stories
-${HU}
-
-## What was generated
-- ✅ User Stories (PM Agent)
-- ✅ Supabase Migrations (Backend Agent)
-- ✅ Flutter Code — Brick, Riverpod, UI (Frontend Agent)
-- ✅ QA — Flutter analyze + tests
-
----
-> This PR was generated by the AI Multi-Agent Pipeline.
-> Please review all files carefully before merging." \
+            --body-file /tmp/pr-body.md \
             --base main \
             --head ${{ env.BRANCH_NAME }} \
             --label "ai-generated" 2>&1 || echo "PR may already exist")
@@ -629,20 +555,8 @@ ${HU}
           echo "🔀 PR: $PR_URL" >> $GITHUB_STEP_SUMMARY
 
           if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
+            printf '## ✅ AI Pipeline Completed\n\n| Stage | Status |\n|-------|--------|\n| 🔵 Product Manager | ✅ Done |\n| 🟢 Backend Developer | ✅ Done |\n| 🟡 Frontend Developer | ✅ Done |\n| 🔴 DevOps | ✅ Done |\n| 🟣 QA Engineer | ✅ Done |\n\n🔀 **Pull Request created:** %s\n\nPlease review and approve the PR to trigger deployment.\nIssue will move to **Done** after successful deploy to stores.\n' "$PR_URL" > /tmp/completed-comment.md
             gh issue comment "${{ env.ISSUE_NUMBER }}" \
               --repo ${{ env.GH_REPO }} \
-              --body "## ✅ AI Pipeline Completed
-
-| Stage | Status |
-|-------|--------|
-| 🔵 Product Manager | ✅ Done |
-| 🟢 Backend Developer | ✅ Done |
-| 🟡 Frontend Developer | ✅ Done |
-| 🔴 DevOps | ✅ Done |
-| 🟣 QA Engineer | ✅ Done |
-
-🔀 **Pull Request created:** ${PR_URL}
-
-Please review and approve the PR to trigger deployment.
-Issue will move to **Done** after successful deploy to stores."
+              --body-file /tmp/completed-comment.md
           fi
