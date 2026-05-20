@@ -24,8 +24,9 @@ on:
         type: string
 
 concurrency:
-  # Crash-proof concurrency group. Safely handles events without comments or issues.
-  group: ${{ github.event.sender.login == 'github-actions[bot]' && format('bot-noop-{0}', github.run_id) || format('ai-pipeline-{0}', (github.event.issue != null && github.event.issue.number) || github.run_id) }}
+  # Bot comments (not slash commands) get a unique group so they never cancel waiting approval gates.
+  # Only slash commands (/feedback:, /approve, etc.) share the group and can cancel previous runs.
+  group: ${{ (github.event_name == 'issue_comment' && !startsWith(github.event.comment.body, '/')) && format('bot-noop-{0}', github.run_id) || format('ai-pipeline-{0}', (github.event.issue != null && github.event.issue.number) || github.run_id) }}
   cancel-in-progress: true
 
 permissions:
