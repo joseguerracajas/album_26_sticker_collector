@@ -606,15 +606,24 @@ jobs:
           text = sys.stdin.read()
           match = re.search(r'\{.*\}', text, re.DOTALL)
           if match:
+              json_str = match.group()
+              parsed = None
               try:
-                  parsed = json.loads(match.group())
-                  if 'files' not in parsed or not isinstance(parsed['files'], list):
-                      parsed['files'] = []
-                  if not parsed['files']:
-                      parsed['summary'] = 'ERROR: LLM refused to write code and returned empty files array.'
-                  print(json.dumps(parsed))
-              except json.JSONDecodeError as e:
-                  print(json.dumps({'files': [], 'summary': 'ERROR JSON Parse: ' + str(e)}))
+                  parsed = json.loads(json_str)
+              except json.JSONDecodeError:
+                  # Repair invalid escape sequences from Dart code (e.g. \' \$ \!)
+                  # In JSON only \" \\ \/ \b \f \n \r \t \uXXXX are valid escapes
+                  fixed = re.sub(r'\\([^"\\/bfnrtu])', lambda m: m.group(1), json_str)
+                  try:
+                      parsed = json.loads(fixed)
+                  except json.JSONDecodeError as e:
+                      print(json.dumps({'files': [], 'summary': 'ERROR JSON Parse: ' + str(e)}))
+                      sys.exit(0)
+              if 'files' not in parsed or not isinstance(parsed['files'], list):
+                  parsed['files'] = []
+              if not parsed['files']:
+                  parsed['summary'] = 'ERROR: LLM refused to write code and returned empty files array.'
+              print(json.dumps(parsed))
           else:
               print(json.dumps({'files': [], 'summary': 'ERROR: Regex did not find JSON in LLM output.'}))
           PYEOF
