@@ -1,131 +1,73 @@
-# Especificación de Requerimientos de Producto (PRD)
-## Feature: Exportar y Compartir Estadísticas de la Colección (PNG)
+Aquí tienes la especificación detallada para la funcionalidad de compartir estadísticas, siguiendo el formato y las convenciones del proyecto:
 
 ---
 
-## 1. Historias de Usuario
+# 🔵 Agente: Product Manager - Feature Request
 
-### Historia de Usuario 1: Exportar estadísticas visuales como imagen
-```
-COMO coleccionista de cromos (autenticado o invitado)
-QUIERO exportar mis estadísticas de colección como una imagen PNG atractiva y de alta calidad
-PARA PODER compartir mi progreso en mis redes sociales y motivar a otros usuarios a intercambiar conmigo.
+## Exportar y Compartir Estadísticas del Álbum
 
-GIVEN que estoy en la pantalla de Estadísticas ("statistics_screen.dart")
-WHEN presiono el botón de compartir de color Ámbar en la AppBar
-THEN la app genera silenciosamente una tarjeta visual (PNG) optimizada para redes sociales que incluye:
-  - Mi porcentaje de completado actual.
-  - El conteo de cromos que tengo, faltantes y repetidos.
-  - La variante geográfica activa (ej. LATAM, Europa, USA).
-  - El logo transparente de la app ("assets/app_icon.png").
-  - Textos completamente localizados en mi idioma actual.
-AND abre el menú nativo de compartir del dispositivo con la imagen adjunta y un texto promocional.
-```
+### 1. User Stories (Historias de Usuario)
+
+**AS A** coleccionista de stickers
+**I WANT TO** compartir mis estadísticas de colección como una imagen atractiva
+**SO THAT** puedo mostrar mi progreso en redes sociales o a mis amigos.
+
+**Given** que estoy en la pantalla de Estadísticas y tengo datos de mi colección (autenticado o invitado).
+**When** toco el ícono de compartir en la AppBar.
+**Then** se genera una imagen con mis estadísticas (porcentaje de completado, stickers poseídos, faltantes, repetidos) y el ícono de la app, y se abre el menú nativo de compartir del dispositivo con la imagen adjunta y un mensaje predefinido.
 
 ---
 
-## 2. Criterios de Aceptación
+**AS A** coleccionista de stickers
+**I WANT TO** compartir mis estadísticas en mi idioma preferido
+**SO THAT** el mensaje y la imagen generada sean comprensibles para mí y mi audiencia.
 
-### Criterio 1: Interfaz de Usuario y Disparador (Trigger)
-- **Ubicación**: Se debe agregar un botón de acción en la `AppBar` de la pantalla existente `lib/features/catalog/presentation/statistics_screen.dart`.
-- **Icono**: Debe utilizar `Icons.share` (o `Icons.ios_share` en iOS).
-- **Color**: El icono debe ser estrictamente de color Ámbar (`Colors.amber` o el color de acento dorado del tema).
-- **Reutilización**: No se debe crear una nueva pantalla para este flujo. El botón debe interactuar directamente con el estado actual de la pantalla de estadísticas.
-
-### Criterio 2: Diseño y Composición de la Tarjeta PNG
-La tarjeta generada debe renderizarse en memoria (o mediante un widget oculto en un `Stack` usando `RepaintBoundary`) con las siguientes especificaciones de diseño:
-- **Dimensiones**: Optimizada para redes sociales (relación de aspecto 1:1 o 16:9 vertical, ej. 1080x1080 px).
-- **Fondo**: Color oscuro sólido (`#121212`) o degradado sutil que combine con la identidad visual de la app.
-- **Branding**: Debe incluir el logo de la app (`assets/app_icon.png`) en una esquina o como marca de agua estilizada.
-- **Datos Dinámicos**:
-  - Porcentaje de completado (representado con un indicador de progreso visual, como un arco o barra dorada).
-  - Métrica "Tengo" (Owned).
-  - Métrica "Faltan" (Missing).
-  - Métrica "Repetidos" (Duplicates).
-  - Nombre de la variante geográfica activa (ej. "Edición: LATAM").
-- **Estilo**: Tipografías legibles, textos en blanco y acentos en color Ámbar.
-
-### Criterio 3: Integración de Localización (i18n)
-- Todos los textos estáticos dentro de la imagen generada (ej. "Completado", "Tengo", "Faltan", "Repetidos", "Edición") deben traducirse dinámicamente utilizando el sistema de localización de la app (`AppLocalizations`).
-- El mensaje de texto que acompaña a la imagen en el menú de compartir también debe estar localizado.
-
-### Criterio 4: Compartir Nativo
-- Al procesar la imagen, se debe guardar temporalmente en el directorio de caché del dispositivo (`path_provider`).
-- Se debe invocar el menú nativo de compartir utilizando el paquete `share_plus` (`Share.shareXFiles`).
-- El mensaje de texto adjunto debe ser claro y amigable, por ejemplo: 
-  *«¡Mira mi progreso en Album 26! Llevo el {porcentaje}% del álbum {variante}. ¡Vamos por el 100%! 🏆»*
+**Given** que tengo la aplicación configurada en un idioma específico (ej. español).
+**When** genero y comparto la imagen de mis estadísticas.
+**Then** todo el texto dentro de la imagen generada y el mensaje de compartir se muestran en español.
 
 ---
 
-## 3. Impacto en el Modelo de Datos
+### 2. Acceptance Criteria (Criterios de Aceptación)
 
-### Base de Datos (Supabase) & Sincronización (Brick)
-- **Sin impacto en base de datos**: Esta funcionalidad es puramente de presentación y UI. No requiere nuevas tablas, columnas ni modificaciones en el esquema de Supabase o SQLite.
-- **Lectura de Datos**: Se deben consumir los proveedores de estado de Riverpod ya existentes que calculan las estadísticas del inventario local (los cuales leen de la base de datos local SQLite sincronizada por Brick).
-
-### Localización (Archivos ARB)
-Se deben agregar las siguientes claves de traducción en todos los archivos `.arb` bajo `lib/l10n/` (ejemplo para `app_es.arb` y `app_en.arb`):
-
-**`lib/l10n/app_es.arb`**
-```json
-"shareStatsTitle": "Mis Estadísticas - Album 26",
-"shareStatsMessage": "¡Mira mi progreso en Album 26! Llevo el {percentage}% del álbum {variant}. ¡Vamos por el 100%! 🏆",
-"@shareStatsMessage": {
-  "placeholders": {
-    "percentage": {},
-    "variant": {}
-  }
-},
-"shareStatsCompletion": "Completado",
-"shareStatsOwned": "Tengo",
-"shareStatsMissing": "Faltan",
-"shareStatsDuplicates": "Repetidos",
-"shareStatsVariant": "Edición: {variant}",
-"@shareStatsVariant": {
-  "placeholders": {
-    "variant": {}
-  }
-}
-```
-
-**`lib/l10n/app_en.arb`**
-```json
-"shareStatsTitle": "My Stats - Album 26",
-"shareStatsMessage": "Check out my progress on Album 26! I've completed {percentage}% of the {variant} album. Let's go for 100%! 🏆",
-"@shareStatsMessage": {
-  "placeholders": {
-    "percentage": {},
-    "variant": {}
-  }
-},
-"shareStatsCompletion": "Completed",
-"shareStatsOwned": "Owned",
-"shareStatsMissing": "Missing",
-"shareStatsDuplicates": "Duplicates",
-"shareStatsVariant": "Edition: {variant}",
-"@shareStatsVariant": {
-  "placeholders": {
-    "variant": {}
-  }
-}
-```
+*   **AC1: Icono de Compartir:** Un `IconButton` con un ícono de compartir (ej. `Icons.share`) de color `amber` debe estar visible en la `AppBar` de la pantalla de Estadísticas (`lib/features/catalog/presentation/statistics_screen.dart`).
+*   **AC2: Generación de Imagen:** Al tocar el ícono, la aplicación debe generar una imagen PNG de alta calidad con las estadísticas del usuario.
+    *   La imagen debe incluir:
+        *   El porcentaje de completado del álbum.
+        *   El número de stickers poseídos.
+        *   El número de stickers faltantes.
+        *   El número de stickers repetidos.
+        *   El ícono transparente de la aplicación (`assets/app_icon.png`).
+    *   El diseño de la imagen debe adherirse estrictamente a la marca, colores y diseño oficial de la app (fondo oscuro `#121212`, acentos `Colors.amber`, tipografía consistente).
+    *   Todo el texto dentro de la imagen debe estar localizado según el idioma actual del usuario.
+*   **AC3: Menú Nativo de Compartir:** Tras la generación exitosa de la imagen, se debe invocar el menú nativo de compartir del dispositivo (`share_plus`) con la imagen PNG adjunta.
+*   **AC4: Mensaje de Compartir:** El menú nativo de compartir debe incluir un mensaje de texto predefinido que acompañe a la imagen, el cual debe estar localizado (ej. "¡Mira mi progreso en Album 26 Sticker Collector!").
+*   **AC5: Reutilización de Componentes:** La lógica para obtener las estadísticas (porcentaje, poseídos, faltantes, repetidos) debe reutilizar los `Riverpod providers` y `Brick repositories` existentes que ya se usan para mostrar las estadísticas en la pantalla `StatisticsScreen`.
+*   **AC6: Soporte Offline:** La funcionalidad de compartir debe operar completamente offline, utilizando los datos de la colección almacenados localmente a través de Brick.
+*   **AC7: Usuarios Invitados:** Los usuarios invitados deben poder usar esta funcionalidad sin restricciones, compartiendo sus estadísticas locales.
+*   **AC8: No se crean nuevas pantallas:** La funcionalidad se implementa modificando `lib/features/catalog/presentation/statistics_screen.dart` sin crear nuevas pantallas o archivos de pantalla dedicados.
+*   **AC9: Rendimiento:** La generación de la imagen debe ser rápida y no causar bloqueos significativos en la UI.
+*   **AC10: Manejo de Errores:** En caso de un fallo en la generación de la imagen o al invocar el menú de compartir, se debe mostrar un `SnackBar` con un mensaje de error localizado (ej. `commonErrorWithMessage`).
 
 ---
 
-## 4. Descripción del Flujo de UI
+### 3. Data Model Impact (Impacto en el Modelo de Datos)
 
-### Pantallas y Componentes
-1. **Pantalla de Estadísticas (`statistics_screen.dart`)**:
-   - Se añade el botón `IconButton` en la propiedad `actions` del `AppBar`.
-   - Se envuelve el widget que representa la tarjeta de estadísticas (o un widget espejo diseñado específicamente para exportación) en un `RepaintBoundary` con una `GlobalKey` asignada.
+Según la descripción de la característica y las áreas afectadas, esta funcionalidad es puramente de UI y no requiere cambios en el modelo de datos.
 
-### Flujo de Navegación e Interacción
-1. El usuario abre la pantalla de Estadísticas desde el menú de navegación principal.
-2. El usuario visualiza sus estadísticas actuales (calculadas localmente).
-3. El usuario presiona el botón **Compartir (Ámbar)** en la esquina superior derecha.
-4. **Feedback Visual**: Se muestra un `CircularProgressIndicator` modal o un estado de carga en el botón para indicar que la imagen se está procesando.
-5. **Generación**:
-   - La app captura el subárbol de widgets del `RepaintBoundary`.
-   - Convierte los pixeles en un flujo de bytes (`Uint8List`).
-   - Guarda el archivo temporalmente como `stats_share.png`.
-6. **Disparo**: Se abre la hoja de compartir nativa del sistema operativo (iOS/Android
+*   **Nuevas tablas/columnas en Supabase**: Ninguna.
+*   **Nuevos modelos Brick**: Ninguno.
+*   **Relaciones con modelos existentes**: Ninguna nueva relación. La funcionalidad *leerá* datos existentes de los modelos `Album` y `Sticker` (a través de `Inventory` y `Catalog`) para construir las estadísticas, utilizando los mismos `Brick repositories` y `Riverpod providers` que ya alimentan la pantalla de estadísticas.
+
+---
+
+### 4. UI Flow Description (Descripción del Flujo de UI)
+
+**Pantallas Necesarias:**
+*   No se necesitan nuevas pantallas. La funcionalidad se integra en la pantalla existente `StatisticsScreen` (`lib/features/catalog/presentation/statistics_screen.dart`).
+
+**Flujo de Navegación:**
+1.  **Acceso a Estadísticas:** El usuario navega a la pantalla de "Estadísticas" desde el menú principal o cualquier otra parte de la aplicación.
+2.  **Visualización del Botón de Compartir:** En la `AppBar` de la `StatisticsScreen`, el usuario verá un nuevo `IconButton` con un ícono de compartir (ej. `Icons.share`) de color `amber`.
+3.  **Interacción de Compartir:**
+    *   El usuario toca el `IconButton` de compartir
