@@ -24,9 +24,6 @@ on:
         required: true
         type: string
   # El pipeline real se dispara solo con el label ai-pipeline
-  workflow_call:
-
-
 
 # Concurrency más permisivo: solo agrupa por issue/PR, no bloquea ejecuciones legítimas
 concurrency:
@@ -44,7 +41,7 @@ env:
   BRANCH_NAME: ai/issue-${{ (github.event.issue != null && github.event.issue.number) || github.run_id }}
   ISSUE_NUMBER: ${{ (github.event.issue != null && github.event.issue.number) || '' }}
   GH_REPO: ${{ github.repository }}
-  USE_GEMINI: ${{ secrets.USE_GEMINI || env.USE_GEMINI || 'false' }}
+  USE_GEMINI: ${{ vars.USE_GEMINI || 'false' }}
 
 jobs:
   # ===========================================================================
@@ -59,14 +56,59 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PROJECT_TOKEN || github.token }}
         run: |
-          # ... código original de add to project ...
+          set -e
+          ISSUE_NODE_ID="${{ github.event.issue.node_id }}"
+          if [ -z "$ISSUE_NODE_ID" ]; then
+            echo "::warning::No issue node id available; skipping project board update."
+            exit 0
+          fi
 
-# Mover la lógica de generación de código al job product-manager (o el primero del pipeline real)
+          PROJECT_DATA=$(gh api graphql -f query='
+            query {
+              user(login: "joseguerracajas") {
+                projectV2(number: 1) {
+                  id
+                  fields(first: 20) {
+                    nodes {
+                      ... on ProjectV2SingleSelectField {
+                        id
+                        name
+                        options { id name }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ')
+          PROJECT_ID=$(echo "$PROJECT_DATA" | jq -r '.data.user.projectV2.id // empty')
+          if [ -z "$PROJECT_ID" ]; then
+            echo "::warning::Project not found (check PROJECT_TOKEN scopes: read:project, project, repo)."
+            exit 0
+          fi
+
+          ADD_RESULT=$(gh api graphql -f query="mutation { addProjectV2ItemById(input: { projectId: \"$PROJECT_ID\" contentId: \"$ISSUE_NODE_ID\" }) { item { id } } }")
+          ITEM_ID=$(echo "$ADD_RESULT" | jq -r '.data.addProjectV2ItemById.item.id // empty')
+          if [ -z "$ITEM_ID" ]; then
+            echo "::warning::Could not add issue to project: $ADD_RESULT"
+            exit 0
+          fi
+
+          STATUS_FIELD_ID=$(echo "$PROJECT_DATA" | jq -r '[.data.user.projectV2.fields.nodes[] | select(.name == "Status")] | .[0].id')
+          TODO_OPTION_ID=$(echo "$PROJECT_DATA" | jq -r '[.data.user.projectV2.fields.nodes[] | select(.name == "Status")] | .[0].options[] | select(.name == "Todo") | .id')
+          if [ -n "$STATUS_FIELD_ID" ] && [ -n "$TODO_OPTION_ID" ]; then
+            gh api graphql -f query="mutation { updateProjectV2ItemFieldValue(input: { projectId: \"$PROJECT_ID\" itemId: \"$ITEM_ID\" fieldId: \"$STATUS_FIELD_ID\" value: { singleSelectOptionId: \"$TODO_OPTION_ID\" } }) { projectV2Item { id } } }" >/dev/null
+            echo "✅ Issue #${{ github.event.issue.number }} added to project as Todo"
+          else
+            echo "✅ Issue added to project (Status field/Todo option not found, left at default)"
+          fi
+
   product-manager:
     name: "🔵 Product Manager Agent"
     if: |
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'issues' && github.event.action == 'labeled' && github.event.label.name == 'ai-pipeline') ||
+      (github.event_name == 'issues' && github.event.action == 'opened' && contains(github.event.issue.labels.*.name, 'ai-pipeline')) ||
       (github.event_name == 'issue_comment' && startsWith(github.event.comment.body, '/'))
     runs-on: ubuntu-latest
     steps:
