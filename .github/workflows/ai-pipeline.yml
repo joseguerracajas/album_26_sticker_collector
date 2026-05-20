@@ -449,14 +449,15 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          README=$(cat README.md | head -c 8000)
+          # OPTIMIZACIÓN DE TOKENS: Reducimos el contexto secundario para dar espacio al archivo principal
+          README=$(cat README.md | head -c 2000)
           AGENT_PROMPT=$(cat .github/agents/frontend-developer.md)
           HU=$(cat docs/ai-output/user-stories.md 2>/dev/null || echo "")
           BACKEND_CONTEXT=$(cat docs/ai-output/backend-output.json 2>/dev/null | jq -r \
             '"### Summary\n" + (.summary // "No changes") + "\n\n### Generated migrations\n" + ([.files[]? | "**" + .path + "**\n```sql\n" + .content + "\n```"] | join("\n\n"))' \
-            2>/dev/null || echo "No backend changes")
+            2>/dev/null | head -c 1500 || echo "No backend changes")
           ARB_CONTEXT=$(find lib/l10n -name "*.arb" 2>/dev/null | sort | \
-            xargs -I{} sh -c 'echo "=== {} ==="; cat "{}"; echo ""' 2>/dev/null | head -c 3000 || echo "No ARB files")
+            xargs -I{} sh -c 'echo "=== {} ==="; cat "{}"; echo ""' 2>/dev/null | head -c 1500 || echo "No ARB files")
           BRANCH_URL="https://github.com/${{ env.GH_REPO }}/tree/${{ env.BRANCH_NAME }}"
 
           # ===================================================================
@@ -492,9 +493,10 @@ jobs:
           EXISTING_CODE_CONTEXT=$(cat /tmp/existing_code_context.txt)
           # ===================================================================
 
-          EXISTING_FEATURE=$(find lib/features -name "*.dart" 2>/dev/null | sort | head -10 | \
-            xargs -I{} sh -c 'echo "=== FILE: {} ==="; cat "{}"; echo ""' 2>/dev/null | head -c 4000 || echo "No existing features")
-          EXISTING_FILES_LIST=$(find lib/features -name "*.dart" 2>/dev/null | sort | head -40 | tr '\n' ',' || echo "none")
+          # Mantenemos esto pequeño para evitar desbordamiento
+          EXISTING_FEATURE=$(find lib/features -name "*.dart" 2>/dev/null | sort | head -5 | \
+            xargs -I{} sh -c 'echo "=== FILE: {} ==="; cat "{}"; echo ""' 2>/dev/null | head -c 1500 || echo "No existing features")
+          EXISTING_FILES_LIST=$(find lib/features -name "*.dart" 2>/dev/null | sort | head -20 | tr '\n' ',' || echo "none")
 
           FEEDBACK=""
           if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
@@ -525,6 +527,7 @@ jobs:
           USER_MSG="${USER_MSG}\n4. Responde SOLO con un JSON válido con esta estructura exacta:"
           USER_MSG="${USER_MSG}\n{\"files\": [{\"path\": \"ruta/al/archivo.dart\", \"content\": \"código fuente...\"}], \"summary\": \"Lo que hiciste...\"}"
 
+          # OPTIMIZACIÓN CRÍTICA: max_tokens: 4000 deja espacio de 4000 tokens para el Prompt de inyección
           RESPONSE=$(curl -s -X POST \
             "https://models.inference.ai.azure.com/chat/completions" \
             -H "Authorization: Bearer $GITHUB_TOKEN" \
@@ -532,7 +535,7 @@ jobs:
             -d "$(jq -n \
               --arg system "$AGENT_PROMPT" \
               --arg user "$USER_MSG" \
-              '{model:"gpt-4o",messages:[{role:"system",content:$system},{role:"user",content:$user}],max_tokens:8000,temperature:0.2}'
+              '{model:"gpt-4o",messages:[{role:"system",content:$system},{role:"user",content:$user}],max_tokens:4000,temperature:0.2}'
             )")
 
           if ! echo "$RESPONSE" | jq -e . >/dev/null 2>&1; then
@@ -602,7 +605,7 @@ jobs:
               --repo ${{ env.GH_REPO }} \
               --body-file /tmp/frontend-comment.md
           fi
-          
+                 
   # ===========================================================================
   # Stage 6: Approval Gate — Frontend
   # ===========================================================================
