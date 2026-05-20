@@ -14,7 +14,7 @@ name: "🤖 AI Agent Pipeline"
 
 on:
   issues:
-    types: [opened]
+    types: [opened, labeled]
   issue_comment:
     types: [created]
   workflow_dispatch:
