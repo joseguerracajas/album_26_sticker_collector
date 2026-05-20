@@ -21,18 +21,14 @@
       "message": {}
     }
   },
-  "authErrorInvalidCredentials": "אימייל או סיסמה לא חוקיים. אנא בדוק את פרטי הכניסה שלך ונסה שוב.",
-  "shareStatsTooltip": "שתף סטטיסטיקות",
-  "shareStatsMessage": "בדוק את התקדמות איסוף המדבקות שלי ב- {appName}! #StickerCollector",
-  "@shareStatsMessage": {
+  "authErrorInvalidCredentials": "אימייל או סיסמה לא חוקיים. אנא בדוק את פרטי ההתחברות שלך ונסה שוב.",
+  "shareStatisticsTooltip": "שתף סטטיסטיקות",
+  "shareStatisticsMessage": "בדוק את ההתקדמות שלי ב-{appTitle}! השלמתי {percentage}% מהאלבום שלי. הורד את האפליקציה ואסוף איתי: {appLink}",
+  "@shareStatisticsMessage": {
     "placeholders": {
-      "appName": {}
-    }
-  },
-  "shareStatsError": "לא ניתן לשתף סטטיסטיקות: {error}",
-  "@shareStatsError": {
-    "placeholders": {
-      "error": {}
+      "percentage": {},
+      "appLink": {},
+      "appTitle": {}
     }
   }
 }

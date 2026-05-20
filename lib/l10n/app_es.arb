@@ -1,7 +1,7 @@
 {
   "@@locale": "es",
-  "appTitle": "Álbum de Stickers 2026",
-  "authWelcomeTitle": "Bienvenido a Álbum de Stickers 2026",
+  "appTitle": "Sticker Album 2026",
+  "authWelcomeTitle": "Bienvenido a Sticker Album 2026",
   "authEmailLabel": "Correo electrónico",
   "authPasswordLabel": "Contraseña",
   "authLoginButton": "Iniciar sesión",
@@ -11,7 +11,7 @@
   "authContinueGuest": "Continuar como invitado",
   "authNoAccountRegister": "¿No tienes cuenta? Regístrate ahora",
   "authForgotPassword": "¿Olvidaste tu contraseña?",
-  "authResetPasswordEnterEmail": "Ingresa tu correo electrónico para restablecer tu contraseña.",
+  "authResetPasswordEnterEmail": "Introduce tu correo electrónico para restablecer tu contraseña.",
   "authResetPasswordEmailSent": "Te hemos enviado un correo electrónico para restablecer tu contraseña.",
   "authGuestMigratedSuccess": "¡Tu progreso como invitado ha sido migrado exitosamente a tu nueva cuenta! 🏆",
   "authGuestRemotePreserved": "¡Bienvenido de nuevo! Tu colección en la nube ha sido restaurada y el progreso local de invitado descartado.",
@@ -22,17 +22,13 @@
     }
   },
   "authErrorInvalidCredentials": "Correo electrónico o contraseña inválidos. Por favor, verifica tus credenciales e inténtalo de nuevo.",
-  "shareStatsTooltip": "Compartir estadísticas",
-  "shareStatsMessage": "¡Mira mi progreso en la colección de stickers en {appName}! #StickerCollector",
-  "@shareStatsMessage": {
+  "shareStatisticsTooltip": "Compartir estadísticas",
+  "shareStatisticsMessage": "¡Mira mi progreso en {appTitle}! He completado el {percentage}% de mi álbum. Descarga la app y colecciona conmigo: {appLink}",
+  "@shareStatisticsMessage": {
     "placeholders": {
-      "appName": {}
-    }
-  },
-  "shareStatsError": "No se pudieron compartir las estadísticas: {error}",
-  "@shareStatsError": {
-    "placeholders": {
-      "error": {}
+      "percentage": {},
+      "appLink": {},
+      "appTitle": {}
     }
   }
 }

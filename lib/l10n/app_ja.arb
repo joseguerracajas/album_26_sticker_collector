@@ -1,7 +1,7 @@
 {
   "@@locale": "ja",
-  "appTitle": "ステッカーアルバム 2026",
-  "authWelcomeTitle": "ステッカーアルバム 2026へようこそ",
+  "appTitle": "ステッカーアルバム2026",
+  "authWelcomeTitle": "ステッカーアルバム2026へようこそ",
   "authEmailLabel": "メールアドレス",
   "authPasswordLabel": "パスワード",
   "authLoginButton": "ログイン",
@@ -14,7 +14,7 @@
   "authResetPasswordEnterEmail": "パスワードをリセットするためにメールアドレスを入力してください。",
   "authResetPasswordEmailSent": "パスワードリセットメールを送信しました。",
   "authGuestMigratedSuccess": "ゲストの進捗状況が新しいアカウントに正常に移行されました！🏆",
-  "authGuestRemotePreserved": "おかえりなさい！クラウドコレクションが復元され、ローカルのゲスト進捗状況は破棄されました。",
+  "authGuestRemotePreserved": "おかえりなさい！クラウドコレクションが復元され、ローカルのゲスト進捗は破棄されました。",
   "commonErrorWithMessage": "エラー: {message}",
   "@commonErrorWithMessage": {
     "placeholders": {
@@ -22,17 +22,13 @@
     }
   },
   "authErrorInvalidCredentials": "無効なメールアドレスまたはパスワードです。認証情報を確認してもう一度お試しください。",
-  "shareStatsTooltip": "統計を共有",
-  "shareStatsMessage": "{appName}での私のステッカー収集の進捗状況をチェックしてください！ #StickerCollector",
-  "@shareStatsMessage": {
+  "shareStatisticsTooltip": "統計を共有",
+  "shareStatisticsMessage": "{appTitle}での私の進捗を見てください！アルバムの{percentage}%を完了しました。アプリをダウンロードして一緒に集めましょう：{appLink}",
+  "@shareStatisticsMessage": {
     "placeholders": {
-      "appName": {}
-    }
-  },
-  "shareStatsError": "統計を共有できませんでした: {error}",
-  "@shareStatsError": {
-    "placeholders": {
-      "error": {}
+      "percentage": {},
+      "appLink": {},
+      "appTitle": {}
     }
   }
 }

@@ -9,7 +9,7 @@
   "authContinueGoogle": "Mit Google fortfahren",
   "authContinueApple": "Mit Apple fortfahren",
   "authContinueGuest": "Als Gast fortfahren",
-  "authNoAccountRegister": "Noch kein Konto? Jetzt registrieren",
+  "authNoAccountRegister": "Kein Konto? Jetzt registrieren",
   "authForgotPassword": "Passwort vergessen?",
   "authResetPasswordEnterEmail": "Geben Sie Ihre E-Mail-Adresse ein, um Ihr Passwort zurückzusetzen.",
   "authResetPasswordEmailSent": "Wir haben Ihnen eine E-Mail zum Zurücksetzen des Passworts gesendet.",
@@ -22,17 +22,13 @@
     }
   },
   "authErrorInvalidCredentials": "Ungültige E-Mail oder Passwort. Bitte überprüfen Sie Ihre Daten und versuchen Sie es erneut.",
-  "shareStatsTooltip": "Statistiken teilen",
-  "shareStatsMessage": "Schau dir meinen Fortschritt beim Sammeln von Stickern in {appName} an! #StickerCollector",
-  "@shareStatsMessage": {
+  "shareStatisticsTooltip": "Statistiken teilen",
+  "shareStatisticsMessage": "Schau dir meinen Fortschritt im {appTitle} an! Ich habe {percentage}% meines Albums abgeschlossen. Lade die App herunter und sammle mit mir: {appLink}",
+  "@shareStatisticsMessage": {
     "placeholders": {
-      "appName": {}
-    }
-  },
-  "shareStatsError": "Statistiken konnten nicht geteilt werden: {error}",
-  "@shareStatsError": {
-    "placeholders": {
-      "error": {}
+      "percentage": {},
+      "appLink": {},
+      "appTitle": {}
     }
   }
 }

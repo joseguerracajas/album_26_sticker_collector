@@ -4,8 +4,8 @@
   "authWelcomeTitle": "स्टिकर एल्बम 2026 में आपका स्वागत है",
   "authEmailLabel": "ईमेल",
   "authPasswordLabel": "पासवर्ड",
-  "authLoginButton": "लॉग इन करें",
-  "authContinueWith": "या इसके साथ जारी रखें",
+  "authLoginButton": "लॉगिन",
+  "authContinueWith": "या जारी रखें",
   "authContinueGoogle": "Google के साथ जारी रखें",
   "authContinueApple": "Apple के साथ जारी रखें",
   "authContinueGuest": "अतिथि के रूप में जारी रखें",
@@ -22,17 +22,13 @@
     }
   },
   "authErrorInvalidCredentials": "अमान्य ईमेल या पासवर्ड। कृपया अपनी क्रेडेंशियल जांचें और पुनः प्रयास करें।",
-  "shareStatsTooltip": "सांख्यिकी साझा करें",
-  "shareStatsMessage": "{appName} में मेरी स्टिकर संग्रह प्रगति देखें! #StickerCollector",
-  "@shareStatsMessage": {
+  "shareStatisticsTooltip": "सांख्यिकी साझा करें",
+  "shareStatisticsMessage": "{appTitle} में मेरी प्रगति देखें! मैंने अपने एल्बम का {percentage}% पूरा कर लिया है। ऐप डाउनलोड करें और मेरे साथ संग्रह करें: {appLink}",
+  "@shareStatisticsMessage": {
     "placeholders": {
-      "appName": {}
-    }
-  },
-  "shareStatsError": "सांख्यिकी साझा नहीं की जा सकी: {error}",
-  "@shareStatsError": {
-    "placeholders": {
-      "error": {}
+      "percentage": {},
+      "appLink": {},
+      "appTitle": {}
     }
   }
 }

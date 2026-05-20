@@ -22,17 +22,13 @@
     }
   },
   "authErrorInvalidCredentials": "잘못된 이메일 또는 비밀번호입니다. 자격 증명을 확인하고 다시 시도하십시오.",
-  "shareStatsTooltip": "통계 공유",
-  "shareStatsMessage": "{appName}에서 내 스티커 수집 진행 상황을 확인하세요! #StickerCollector",
-  "@shareStatsMessage": {
+  "shareStatisticsTooltip": "통계 공유",
+  "shareStatisticsMessage": "{appTitle}에서 제 진행 상황을 확인하세요! 앨범의 {percentage}%를 완료했습니다. 앱을 다운로드하고 저와 함께 수집하세요: {appLink}",
+  "@shareStatisticsMessage": {
     "placeholders": {
-      "appName": {}
-    }
-  },
-  "shareStatsError": "통계를 공유할 수 없습니다: {error}",
-  "@shareStatsError": {
-    "placeholders": {
-      "error": {}
+      "percentage": {},
+      "appLink": {},
+      "appTitle": {}
     }
   }
 }
