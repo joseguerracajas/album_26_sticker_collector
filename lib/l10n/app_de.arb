@@ -178,7 +178,9 @@
   "paywallFreeTrial": "{days} Tage kostenlos testen",
   "@paywallFreeTrial": {
     "placeholders": {
-      "days": {"type": "int"}
+      "days": {
+        "type": "int"
+      }
     }
   },
   "paywallRestorePurchases": "Käufe wiederherstellen",

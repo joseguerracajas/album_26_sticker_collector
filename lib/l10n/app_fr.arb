@@ -178,7 +178,9 @@
   "paywallFreeTrial": "Essai gratuit de {days} jours",
   "@paywallFreeTrial": {
     "placeholders": {
-      "days": {"type": "int"}
+      "days": {
+        "type": "int"
+      }
     }
   },
   "paywallRestorePurchases": "Restaurer les achats",

@@ -178,7 +178,9 @@
   "paywallFreeTrial": "آزمایش رایگان {days} روزه",
   "@paywallFreeTrial": {
     "placeholders": {
-      "days": {"type": "int"}
+      "days": {
+        "type": "int"
+      }
     }
   },
   "paywallRestorePurchases": "بازیابی خریدها",

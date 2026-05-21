@@ -178,7 +178,9 @@
   "paywallFreeTrial": "تجربة مجانية لمدة {days} أيام",
   "@paywallFreeTrial": {
     "placeholders": {
-      "days": {"type": "int"}
+      "days": {
+        "type": "int"
+      }
     }
   },
   "paywallRestorePurchases": "استعادة المشتريات",

@@ -178,7 +178,9 @@
   "paywallFreeTrial": "{days}日間無料トライアル",
   "@paywallFreeTrial": {
     "placeholders": {
-      "days": {"type": "int"}
+      "days": {
+        "type": "int"
+      }
     }
   },
   "paywallRestorePurchases": "購入を復元",

@@ -178,7 +178,9 @@
   "paywallFreeTrial": "ניסיון חינם של {days} ימים",
   "@paywallFreeTrial": {
     "placeholders": {
-      "days": {"type": "int"}
+      "days": {
+        "type": "int"
+      }
     }
   },
   "paywallRestorePurchases": "שחזור רכישות",
