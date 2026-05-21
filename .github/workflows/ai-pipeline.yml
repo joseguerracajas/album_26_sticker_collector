@@ -476,8 +476,9 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           # TOKEN OPTIMIZATION: Reduce secondary context to leave room for the main file
-          README=$(cat README.md | head -c 2000)
+          README=$(cat README.md)
           AGENT_PROMPT=$(cat .github/agents/frontend-developer.md)
+          PUBSPEC=$(cat pubspec.yaml)
           HU=$(cat docs/ai-output/user-stories.md 2>/dev/null || echo "")
           BACKEND_CONTEXT=$(cat docs/ai-output/backend-output.json 2>/dev/null | jq -r \
             '"### Summary\n" + (.summary // "No changes") + "\n\n### Generated migrations\n" + ([.files[]? | "**" + .path + "**\n```sql\n" + .content + "\n```"] | join("\n\n"))' \
@@ -540,6 +541,7 @@ jobs:
           if [ -n "$FEEDBACK" ]; then
             USER_MSG="${USER_MSG}\n\n## Orchestrator Feedback\n\n${FEEDBACK}\n\n> Rewrite incorporating feedback."
           fi
+          USER_MSG="${USER_MSG}\n\n## pubspec.yaml (packages disponibles — SOLO usa estos)\n\n\`\`\`yaml\n${PUBSPEC}\n\`\`\`"
           USER_MSG="${USER_MSG}\n\n## Localization context (ARB files)\n\n${ARB_CONTEXT}"
           USER_MSG="${USER_MSG}\n\n## Existing Files to Modify (Real Current Code)\n\n${EXISTING_CODE_CONTEXT}"
           USER_MSG="${USER_MSG}\n\n## Existing Dart Files\n\n${EXISTING_FILES_LIST}"

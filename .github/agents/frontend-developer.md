@@ -7,7 +7,7 @@ You are a Frontend Developer AI agent specializing in Flutter for the **Album 26
 ## Context
 
 ### Architecture
-- **State Management**: Riverpod (^3.3.1) with code generation
+- **State Management**: `flutter_riverpod` (^3.3.1) — SIN generación de código (NO se usa `riverpod_annotation` ni `riverpod_generator`)
 - **Offline-First**: Brick (brick_offline_first_with_supabase)
 - **Navigation**: GoRouter (declarative routing)
 - **Localization**: Flutter intl (ARB files in `lib/l10n/`)
@@ -47,7 +47,7 @@ features/{feature_name}/
 ```
 
 ### Key Conventions
-- Riverpod providers use `@riverpod` annotation (code generation)
+- Riverpod providers se declaran **manualmente** (sin `@riverpod`, sin generación de código)
 - All Brick models extend `OfflineFirstWithSupabaseModel`
 - Widgets are composed (small, reusable)
 - Use `flutter_animate` for micro-animations
@@ -81,23 +81,78 @@ features/{feature_name}/
 - SnackBars: use `scaffoldMessengerKey` from `main.dart`
 - Animations: `flutter_animate` for enter/exit transitions
 
-### Existing Providers Pattern
+### Patrones de Providers (REALES del proyecto)
+
+**AsyncNotifier con estado complejo:**
 ```dart
-@riverpod
-class FeatureNotifier extends _$FeatureNotifier {
+// Declaración del provider
+final featureProvider =
+    AsyncNotifierProvider<FeatureNotifier, FeatureState>(() {
+  return FeatureNotifier();
+});
+
+// Notifier
+class FeatureNotifier extends AsyncNotifier<FeatureState> {
+  final _repo = AppRepository();
+
   @override
-  FutureOr<State> build() async {
-    // Initialize
+  Future<FeatureState> build() async {
+    // Carga inicial
+    return await _repo.get<Model>();
   }
-  
+
   Future<void> someAction() async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
-      // Logic
+      // Lógica
+      return await _repo.get<Model>();
     });
   }
 }
 ```
+
+**Notifier síncrono:**
+```dart
+final featureProvider = NotifierProvider<FeatureNotifier, FeatureState>(FeatureNotifier.new);
+
+class FeatureNotifier extends Notifier<FeatureState> {
+  @override
+  FeatureState build() => initialState;
+
+  void toggle() => state = !state;
+}
+```
+
+**FutureProvider simple:**
+```dart
+final itemsProvider = FutureProvider<List<Item>>((ref) async {
+  return await AppRepository().get<Item>();
+});
+
+// Con parámetro
+final itemByIdProvider = FutureProvider.family<Item?, String>(
+  (ref, id) async {
+    final results = await AppRepository().get<Item>(
+      query: Query(where: [Where.exact('id', id)]),
+    );
+    return results.firstOrNull;
+  },
+);
+```
+
+**NotifierProvider.autoDispose (para pantallas):**
+```dart
+final _localStateProvider = NotifierProvider.autoDispose<_LocalNotifier, bool>(
+  _LocalNotifier.new,
+);
+
+class _LocalNotifier extends AutoDisposeNotifier<bool> {
+  @override
+  bool build() => false;
+}
+```
+
+> ⚠️ **NUNCA** uses `@riverpod`, `_$ClassName` ni `part 'file.g.dart'` — el proyecto NO usa generación de código para Riverpod.
 
 ## Your Task
 
@@ -116,7 +171,7 @@ class ModelName extends OfflineFirstWithSupabaseModel {
 
 ### 2. Riverpod Providers
 
-State management for the feature using Riverpod with code generation.
+State management for the feature using Riverpod **manual** (sin generación de código). Usar `AsyncNotifierProvider`, `NotifierProvider`, `FutureProvider` o `FutureProvider.family` según el caso.
 
 ### 3. Screens & Widgets
 
@@ -146,7 +201,7 @@ Produce files ready to be committed, following the project structure:
 
 ## Rules
 
-1. ALWAYS use Riverpod with code generation (`@riverpod`)
+1. NEVER usar `@riverpod`, `riverpod_annotation` ni `riverpod_generator` — el proyecto usa `flutter_riverpod` manual (`AsyncNotifierProvider`, `NotifierProvider`, `FutureProvider`)
 2. ALWAYS support offline-first via Brick models
 3. ALWAYS add localization strings (never hardcode text)
 4. ALWAYS consider guest user state (may not have auth)
