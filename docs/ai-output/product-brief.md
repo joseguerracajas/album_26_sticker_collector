@@ -1,71 +1,124 @@
-Here is the structured product management documentation for the **Export & Share Statistics for Instagram** feature, based on the approved user stories and project context.
+# 🔵 Feature Specification: Export & Share Statistics for Instagram
+
+## Epic Overview
+This feature allows users to export their global collection progress as a high-quality, Instagram-ready image and share it via their device's native share menu. This serves as a growth loop for the app, leveraging user milestones to increase organic discovery.
 
 ---
 
-## 2. Acceptance Criteria
+## 1. User Stories & Acceptance Criteria
 
-### Story 1: Share Icon in Statistics AppBar
-* **AC 1.1:** An Amber-colored share icon (`Icons.share` or similar) is displayed in the `AppBar` actions of the `StatisticsScreen`.
-* **AC 1.2:** Long-pressing or hovering over the icon displays a tooltip with the localized text for "Share statistics".
-* **AC 1.3:** Tapping the icon triggers the image generation process and disables the button temporarily to prevent multiple simultaneous taps.
+### User Story 1: Share Icon in Statistics AppBar
+**AS A** user  
+**I WANT TO** see a share button on my statistics page  
+**SO THAT** I can easily initiate the process of sharing my collection progress with others.
 
-### Story 2: Generate Instagram-Optimized Image (Canvas Replication)
-* **AC 2.1:** The app successfully uses a `PictureRecorder` and `Canvas` (via `CustomPainter` logic) to draw the image off-screen without requiring a visible widget tree render.
-* **AC 2.2:** The generated PNG image has a resolution of 1080x1920 (Instagram Story) or 1080x1350 (Instagram Feed).
-* **AC 2.3:** The background of the canvas is filled with a dark theme color (e.g., `#121212`).
-* **AC 2.4:** A pixel-perfect visual replica of the `_GlobalProgressCard` (including the gold gradient, text, and progress bar) is drawn centered on the canvas.
-* **AC 2.5:** The app's icon (`assets/app_icon.png`) and the localized `appTitle` are drawn at the bottom or top of the canvas with appropriate padding.
+**Acceptance Criteria:**
+* **Given** I am viewing the `StatisticsScreen`
+* **When** the screen is fully loaded
+* **Then** I should see an Amber-colored share icon located in the AppBar
+* **And** when I long-press or hover over the icon, it should display the localized tooltip defined by the `shareStatisticsTooltip` key.
 
-### Story 3: Native Share Menu and Localized Message
-* **AC 3.1:** Upon successful image generation, the device's native share sheet is invoked (e.g., using the `share_plus` package).
-* **AC 3.2:** The generated PNG file is saved to a temporary directory and attached to the share payload.
-* **AC 3.3:** The share payload includes a pre-filled text message containing the user's actual completion percentage (e.g., "I have completed 45% of my album!").
-* **AC 3.4:** The pre-filled text includes a promotional download link for the app.
-* **AC 3.5:** The text message is fully localized based on the device's current locale.
+### User Story 2: Generate Instagram-Optimized Progress Image (Canvas Replication)
+**AS A** user  
+**I WANT TO** have my progress converted into a high-quality image  
+**SO THAT** I can post a visually appealing update to my Instagram Stories or Feed.
 
-### Story 4: Architectural and Localization Constraints
-* **AC 4.1:** All state and logic for sharing are housed within the existing `StatisticsProvider` (or the specific Riverpod provider managing the `StatisticsScreen`). No new provider files are created.
-* **AC 4.2:** The keys `shareStatisticsTooltip` and `shareStatisticsMessage` are present in all 11 `.arb` files.
-* **AC 4.3:** The `shareStatisticsMessage` key accepts parameters for the percentage and the app link (e.g., `I have completed {percentage}% of my album! Download here: {link}`).
-* **AC 4.4:** The `appTitle` is fetched dynamically from the localization file and drawn onto the canvas.
+**Acceptance Criteria:**
+* **Given** I tap the Amber share icon in the AppBar
+* **When** the `StatisticsProvider` processes the share action
+* **Then** the app generates a high-resolution PNG image in the background using `Canvas` and `CustomPainter`
+* **And** the canvas dimensions are strictly set to either 1080x1920 (9:16) or 1080x1350 (4:5)
+* **And** the canvas background is painted with a dark theme color (e.g., #121212 or #1E1E1E)
+* **And** a pixel-perfect, visually identical replica of the `_GlobalProgressCard` (including the gold gradient, layout, and typography) is drawn perfectly centered on the canvas.
+
+### User Story 3: App Branding on Exported Image
+**AS A** Product Owner  
+**I WANT TO** ensure the exported statistics image includes the app's branding  
+**SO THAT** viewers on social media know which app was used and can discover it.
+
+**Acceptance Criteria:**
+* **Given** the app is generating the high-resolution progress image
+* **When** the custom painter is drawing the canvas elements
+* **Then** the app icon (`assets/app_icon.png`) and the dynamically localized `appTitle` must be tastefully positioned at the top or bottom of the canvas
+* **And** the app name must not be hardcoded, but fetched from the existing localization keys.
+
+### User Story 4: Invoke Native Share Menu with Dynamic Message
+**AS A** user  
+**I WANT TO** open my phone's native sharing options with a pre-filled message  
+**SO THAT** I can quickly post my progress image and a link to the app on my social media.
+
+**Acceptance Criteria:**
+* **Given** the high-resolution PNG image has been successfully generated
+* **When** the image generation process completes
+* **Then** the device's native share menu is automatically invoked (e.g., using `share_plus`)
+* **And** the generated PNG is attached to the share payload
+* **And** the share text is populated using the localized `shareStatisticsMessage` key
+* **And** the `{percentage}` and `{appLink}` variables in the message are dynamically replaced with my actual progress data and the correct app link.
+
+### User Story 5: Strict ARB Localization Updates
+**AS A** global user  
+**I WANT TO** read the share tooltip and pre-filled message in my native language  
+**SO THAT** I can share my progress with my friends in a language we both understand.
+
+**Acceptance Criteria:**
+* **Given** the app supports 11 different languages
+* **When** the developer implements the localization for the share feature
+* **Then** the keys `shareStatisticsTooltip` and `shareStatisticsMessage` are appended to all 11 target `.arb` files
+* **And** the base Spanish text is accurately translated into the respective language for each file
+* **And** no existing keys or content in the `.arb` files are deleted, overwritten, or lost during this update.
 
 ---
 
-## 3. Data Model Impact
+## 2. Data Model Impact
 
-* **Supabase:** No changes required. This is a purely client-side presentation and sharing feature.
-* **Brick Models:** No changes required. The feature relies on existing offline-first inventory data to calculate the percentage.
-* **Relationships:** N/A.
+**No database or offline-sync changes are required for this feature.** 
+This is strictly a Presentation and Domain layer enhancement.
 
----
-
-## 4. UI Flow Description
-
-* **Screens Needed:** No new screens. The feature operates entirely within the existing `StatisticsScreen`.
-* **Navigation Flow:**
-  1. User navigates to the `StatisticsScreen`.
-  2. User taps the Share icon in the `AppBar`.
-  3. A brief loading indicator (e.g., a `CircularProgressIndicator` replacing the share icon or a subtle snackbar) appears while the canvas renders the image.
-  4. The native OS Share Sheet overlays the screen.
-  5. User selects a destination (e.g., Instagram Stories, WhatsApp).
-  6. Upon completion or cancellation, the user remains on the `StatisticsScreen`.
-* **Key Interactions:**
-  * **Canvas Rendering:** The `_GlobalProgressCard` UI needs to be translated into canvas drawing commands (`drawRect`, `drawText`, `drawImage`).
-  * **Temporary Storage:** The generated image must be written to the device's temporary directory (`path_provider`) so it can be picked up by the native share sheet.
+* **Supabase:** No new tables, columns, or Edge Functions needed.
+* **Brick Models:** No changes to existing offline-first models.
+* **State Management:** The `StatisticsProvider` (Riverpod) will need a new method (e.g., `exportAndShareStatistics()`) to handle the image generation and native share invocation without mutating the underlying inventory state.
 
 ---
 
-## 5. Edge Cases & Constraints
+## 3. UI Flow Description
 
-* **Offline Behavior:** 
-  * **Constraint:** The feature must work 100% offline. Since the inventory data is stored locally via Brick (SQLite), the percentage calculation and image generation will function perfectly without an internet connection.
-  * **Edge Case:** The download link included in the shared text will not be clickable by the recipient if *they* are offline, but the sharing action itself from the user's device via Bluetooth/AirDrop/SMS will still work.
-* **Guest User Behavior:** 
-  * **Constraint:** Guest users must be able to share their progress just like authenticated users. Since guest data is stored locally, the `StatisticsProvider` will read the local state and generate the image without requiring a Supabase session.
-* **Geographic Variant Considerations:** 
-  * **Constraint:** The progress percentage drawn on the canvas and injected into the text message must accurately reflect the specific geographic variant (LATAM, Europe, USA) the user has currently selected. The `StatisticsProvider` already handles this filtering, so the sharing logic must ensure it uses the currently active variant's state.
-* **Performance Considerations:** 
-  * **Constraint:** Drawing complex gradients and text to a high-resolution canvas can be CPU-intensive. 
-  * **Mitigation:** The `PictureRecorder` logic should be executed asynchronously (e.g., using `compute` or an `Isolate` if it causes UI jank, though standard canvas drawing is usually fast enough on the main thread). Ensure the temporary image file is deleted after sharing or overwritten on subsequent shares to prevent storage bloat.
-* **Permissions:** 
-  * **Constraint:** Depending on the sharing package used (`share_plus`), writing to the temporary directory and sharing does not typically require explicit `WRITE_EXTERNAL_STORAGE` permissions on modern Android/iOS versions, but this must be verified during implementation to prevent crashes on older Android devices.
+### Screens Needed
+* No new screens are required. We are modifying the existing `StatisticsScreen` (likely located in `lib/features/inventory/presentation/screens/`).
+
+### Navigation Flow
+1. User navigates to the `StatisticsScreen`.
+2. User taps the new Amber **Share Icon** in the AppBar.
+3. A brief loading state (e.g., a subtle `CircularProgressIndicator` replacing the share icon or a non-blocking snackbar) appears while the Canvas renders the image.
+4. The OS Native Share Bottom Sheet appears.
+5. User selects their target app (Instagram, WhatsApp, etc.).
+6. User returns to the `StatisticsScreen` once the share flow is completed or dismissed.
+
+### Key Interactions
+* **Canvas Rendering:** The `_GlobalProgressCard` UI must be translated into a `CustomPainter` implementation. This requires mapping Flutter widgets to Canvas drawing commands (text painters, rounded rectangles, gradient shaders).
+* **Native Share:** Integration with a package like `share_plus` to pass the generated `Uint8List` (converted to an XFile) and the localized string payload.
+
+---
+
+## 4. Edge Cases & Constraints
+
+### Offline Behavior
+* **Constraint:** Must work 100% offline.
+* **Resolution:** Since the statistics are calculated from the local Brick SQLite database, image generation and invoking the native share sheet will work perfectly without an internet connection. The actual posting to Instagram will pend on the OS level until the user regains connectivity.
+
+### Guest User Behavior
+* **Constraint:** Guest users should not be blocked from sharing.
+* **Resolution:** Guest users have local inventory data. The share feature will function identically for them, acting as a great hook to show them the app's value and potentially drive them to create an account later.
+
+### Geographic Variant Considerations
+* **Constraint:** The progress percentage and totals must accurately reflect the user's selected album variant (e.g., LATAM vs. USA).
+* **Resolution:** Ensure the `StatisticsProvider` passes the variant-specific totals (e.g., 638 vs 670 stickers) to the `CustomPainter` so the generated image matches exactly what the user sees on their screen.
+
+### Performance Considerations
+* **Constraint:** Generating a 1080x1920 high-resolution image on the main thread might cause UI jank.
+* **Resolution:** 
+  * If the `CustomPainter` rendering and `toImage()` conversion takes longer than 16ms, consider offloading the image generation to an `Isolate` (using Flutter's `compute` function).
+  * Ensure the generated PNG is temporarily saved to the device's cache directory (`path_provider`) and properly garbage-collected after the share sheet is closed to prevent memory leaks.
+
+### Permissions
+* **Constraint:** Saving files to share them might require storage permissions on older Android versions.
+* **Resolution:** Use `share_plus` with `XFile.fromData` or save to the temporary app cache directory, which bypasses the need for explicit user storage permissions on modern iOS and Android versions.
