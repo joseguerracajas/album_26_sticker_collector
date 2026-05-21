@@ -1,51 +1,61 @@
-# 🔵 Product Manager AI Agent
+Here is the Product Manager breakdown for the **Export & Share Statistics** feature.
 
-Here is the product specification for the **Export & Share Statistics** feature, based on your request.
+# 🔵 Feature Specifications: Export & Share Statistics
 
 ## 1. User Stories
 
-**Story 1: Share Progress Card**
+**Story 1: Share Global Progress**
 ```text
 AS A sticker collector
-I WANT TO export and share my global progress card as an image
-SO THAT I can show my friends and social networks how close I am to completing the Album 26.
+I WANT TO export and share my global progress as an image
+SO THAT I can show my friends and community how close I am to completing the album.
+
+Given I am viewing the Statistics Screen
+When I tap the amber share icon in the AppBar
+Then the app generates a pixel-perfect image of my global progress card and opens the native share dialog with a localized message and the image attached.
 ```
 
 ## 2. Acceptance Criteria
 
-- **AC 1: UI Trigger:** An Amber-colored share icon (`Icons.share`) must be present in the `AppBar` of the `StatisticsScreen`. It must use the `shareStatisticsTooltip` for its tooltip.
-- **AC 2: Image Generation:** Tapping the share icon must trigger a function that uses `Canvas`, `PictureRecorder`, and `CustomPainter` to draw a pixel-perfect replica of the `_GlobalProgressCard` (including the gold gradient, typography, and progress bars).
-- **AC 3: Asset Inclusion:** The generated image must successfully load and paint the `assets/app_icon.png` (with transparency) within the canvas layout.
-- **AC 4: Native Sharing:** Once the PNG is generated, the app must invoke the device's native share menu (using the `share_plus` package).
-- **AC 5: Localized Message:** The shared payload must include the generated PNG and the localized text from `shareStatisticsMessage`, dynamically injecting the `{percentage}`, `{appLink}`, and the localized `appTitle`.
-- **AC 6: Strict ARB Policy:** All 11 `app_*.arb` files must be updated with the exact keys `"shareStatisticsTooltip"` and `"shareStatisticsMessage"`. Existing keys must **not** be modified or deleted.
-- **AC 7: Architectural Constraints:** No new files can be created. The `CustomPainter` must be added to `lib/features/catalog/presentation/statistics_screen.dart`, and the generation/sharing logic must be added to the existing `StatisticsProvider`.
+- [ ] **UI Update:** An Amber-colored share icon (`Icons.share`) is added to the `AppBar` of the existing `StatisticsScreen` (`lib/features/catalog/presentation/statistics_screen.dart`).
+- [ ] **Canvas Rendering:** Tapping the share icon triggers a `CustomPainter` / `Canvas` routine that draws a pixel-perfect replica of the `_GlobalProgressCard` (including the gold gradient, typography, progress bars, and layout).
+- [ ] **Asset Integration:** The transparent app icon (`assets/app_icon.png`) is successfully drawn onto the generated Canvas image.
+- [ ] **Native Sharing:** The app invokes the native share menu (via `share_plus`) attaching the generated PNG file and the localized text message.
+- [ ] **Dynamic Localization:** The shared text message dynamically injects the `appTitle` key, the user's current completion `{percentage}`, and an `{appLink}`.
+- [ ] **Strict ARB Policy:** ALL 11 `app_*.arb` files are updated by appending `shareStatisticsTooltip` and `shareStatisticsMessage`. **No existing keys are deleted or modified.**
+- [ ] **Architectural Constraint:** **Zero new files are created.** All painting logic, sharing logic, and state handling are integrated into the existing `StatisticsScreen` and its corresponding provider.
 
 ## 3. Data Model Impact
 
-- **Supabase Schema:** No changes required.
-- **Brick Models:** No changes required.
-- **Relationships:** No changes required.
-- *Note:* This is a purely local, presentation-layer feature. It relies entirely on the existing data already computed by the `StatisticsProvider`.
+- **Supabase (PostgreSQL):** No impact. This is a purely client-side UI/UX feature.
+- **Brick Models (Offline-First):** No impact. The feature will read from the existing in-memory state provided by the `StatisticsProvider`.
+- **Relationships:** N/A.
 
 ## 4. UI Flow Description
 
-- **Screens Needed:** No new screens. Modifications will be strictly contained within `lib/features/catalog/presentation/statistics_screen.dart`.
+- **Screens Needed:** No new screens. Modifications will be strictly confined to `lib/features/catalog/presentation/statistics_screen.dart`.
 - **Navigation Flow:** 
   1. User navigates to the Statistics tab/screen.
-  2. User taps the Amber share icon in the top right of the `AppBar`.
-  3. A brief loading indicator may appear (if rendering takes >16ms, though usually instantaneous).
-  4. The OS native Share Bottom Sheet appears.
-  5. User selects the destination (WhatsApp, Instagram, Save to Gallery, etc.).
+  2. User taps the new Share icon in the top right of the AppBar.
+  3. A brief loading state (e.g., a `CircularProgressIndicator` replacing the share icon temporarily) may appear while the PNG is encoded.
+  4. The OS native Share Bottom Sheet appears over the app.
+  5. User completes or dismisses the share action; remains on the Statistics screen.
 - **Key Interactions:** 
-  - The `StatisticsProvider` will need a new method (e.g., `shareStatistics(BuildContext context, double percentage)`) that handles the conversion of the `CustomPainter` to a PNG image, saves it to the temporary directory using `path_provider`, and triggers `Share.shareXFiles`.
+  - The Canvas generation must capture the *current* state of the user's progress (calculating the exact percentage and counts currently displayed on the screen).
 
 ## 5. Edge Cases & Constraints
 
-- **Offline Behavior:** This feature must work 100% offline. The image generation is done locally via Flutter's rendering engine. The native share sheet will still open offline, allowing users to save the image locally or queue it in messaging apps.
-- **Guest User Behavior:** Guest users have local statistics just like authenticated users. The feature must work identically for them without prompting for login.
-- **Geographic Variant Considerations:** The `StatisticsProvider` already filters data based on the selected geographic variant (LATAM, Europe, USA). The generated image must simply reflect whatever data is currently active in the provider.
+- **Offline Behavior:** 
+  - *Constraint:* Must work 100% offline. 
+  - *Handling:* Since the data is already available locally via Brick and the image generation is done on-device via Flutter's `Canvas`, no network request is needed. The native share sheet will still function offline (e.g., sharing via SMS or saving to local gallery).
+- **Guest User Behavior:** 
+  - *Constraint:* Guest users must be able to share their progress just like authenticated users.
+  - *Handling:* The `StatisticsProvider` already abstracts the user's auth state. The Canvas painter simply reads the current progress numbers regardless of the user's auth status.
+- **Geographic Variant Considerations:** 
+  - *Constraint:* The progress percentage and counts must accurately reflect the user's selected album variant (LATAM, Europe, USA).
+  - *Handling:* Ensure the Canvas painter reads the derived state from the `StatisticsProvider` which already accounts for the active geographic variant filter.
 - **Performance Considerations:** 
-  - Loading `assets/app_icon.png` as a `ui.Image` for the canvas requires an asynchronous byte-loading step. This should be cached or awaited properly before calling `toImage()` on the `PictureRecorder`.
-  - Writing the PNG to the device's temporary directory must be handled asynchronously to avoid blocking the main UI thread.
-- **Localization Constraints:** The `shareStatisticsMessage` requires dynamic parameters. Ensure the Flutter `intl` package correctly parses `{percentage}` and `{appLink}`. The `appTitle` must be fetched from the existing localization context and passed into the share string or drawn onto the canvas, avoiding any hardcoded "Album 26" strings.
+  - *Constraint:* Converting a Canvas `Picture` to a PNG (`toByteData(format: ImageByteFormat.png)`) can be an expensive operation and might cause UI jank if done synchronously on the main thread for very large images.
+  - *Handling:* Keep the generated image resolution reasonable (e.g., 2x or 3x logical pixels to ensure it looks sharp but doesn't consume excessive memory). Ensure the UI doesn't freeze completely (use async/await properly during the byte data conversion).
+- **Localization Constraints:**
+  - *Constraint:* The prompt explicitly requires updating 11 ARB files. The AI developer agent must ensure it parses the `l10n` directory and appends the exact keys provided in the issue description to every single language file without breaking the JSON structure.
