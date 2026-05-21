@@ -1,5 +1,3 @@
-// Archivo: lib/features/catalog/presentation/statistics_screen.dart
-
 import 'dart:math' as math;
 import 'dart:ui' as ui;
 import 'dart:io';

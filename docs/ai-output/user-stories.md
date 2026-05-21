@@ -1,135 +1,137 @@
-# 🔵 Product Manager AI — Feature Specification
+Here is the product management documentation for the **Export & Share Statistics** feature, based on your request. 
 
-## Feature: Export & Share Statistics for Instagram (Canvas Replication)
-
-Based on the feature request, here is the detailed product specification for implementing the Statistics Export & Share functionality. 
+Since the feature request was written in English, this response is provided in English.
 
 ---
 
-### 1. User Stories
+# 📱 Feature: Export & Share Statistics for Instagram
 
-**Story 1: Export and Share Progress**
+## 1. User Stories
+
+**Story 1: Share Progress Image**
 ```text
 AS A collector
-I WANT TO export my global progress card as a high-resolution image
-SO THAT I can share my collection milestones on Instagram Stories, Feed, or other social media platforms.
-
-Given I am on the StatisticsScreen
-When I tap the share icon in the AppBar
-Then the app should generate an image of my progress card and open the native share menu.
+I WANT TO export and share my global progress card as an image
+SO THAT I can showcase my collection progress to my friends on Instagram and other social media platforms.
 ```
 
 **Story 2: Localized Sharing Experience**
 ```text
-AS A global user
-I WANT TO share my progress with a pre-filled message in my native language
-SO THAT my friends can understand the message and download the app via the provided link.
-
-Given my device is set to a supported language (e.g., Japanese)
-When I share my statistics
-Then the pre-filled text in the native share menu should be translated to Japanese.
+AS A non-English speaking user
+I WANT TO see the share tooltip and default share message in my native language
+SO THAT I can easily share my progress with my local network without having to translate the text manually.
 ```
+
+## 2. Acceptance Criteria
+
+- [ ] **UI Trigger:** An Amber-colored share icon (`Icons.share`) is present in the `AppBar` of the `StatisticsScreen`.
+- [ ] **Canvas Generation:** Tapping the share icon triggers a background process that generates a high-resolution PNG image.
+- [ ] **Image Specifications:** 
+  - The image dimensions are exactly 1080x1920 (9:16) or 1080x1350 (4:5).
+  - The background is a solid dark theme color (e.g., `#121212` or `#1E1E1E`).
+- [ ] **Visual Replication:** The generated image contains a pixel-perfect, centered replication of the `_GlobalProgressCard` (gold gradient, typography, layout) using `CustomPainter` and `Canvas`.
+- [ ] **Branding:** The `assets/app_icon.png` and the localized `appTitle` are tastefully positioned (e.g., at the bottom center) of the generated canvas.
+- [ ] **Native Share:** Once generated, the device's native share menu (`share_plus`) is invoked, attaching the PNG file and the localized `shareStatisticsMessage`.
+- [ ] **Architecture Compliance:** No new files or state management classes are created. The logic is integrated into the existing `StatisticsScreen` and its corresponding provider.
+- [ ] **Localization:** All 11 specified `.arb` files are updated with the `shareStatisticsTooltip` and `shareStatisticsMessage` keys, accurately translated, without overwriting or deleting any existing keys.
+
+## 3. Data Model Impact
+
+- **Supabase / Database:** No changes required.
+- **Brick Models (Offline-first):** No changes required.
+- **Relationships:** None. 
+*Note: This is strictly a presentation and local processing feature. It relies entirely on the existing data already loaded into memory by the `StatisticsProvider`.*
+
+## 4. UI Flow Description
+
+- **Screens Needed:** Modifications to existing `lib/features/catalog/presentation/statistics_screen.dart`.
+- **Navigation Flow:** 
+  1. User navigates to the Statistics tab/screen.
+  2. User taps the new Amber share icon in the top right of the `AppBar`.
+  3. (Optional but recommended) A brief loading overlay or indicator appears while the canvas renders and encodes the PNG.
+  4. The native OS Share Bottom Sheet appears.
+- **Key Interactions:**
+  - **Canvas Rendering:** The app must use `PictureRecorder`, `Canvas`, and `CustomPainter` to draw the UI off-screen.
+  - **File Handling:** The resulting image must be converted to byte data (`image.toByteData(format: ImageByteFormat.png)`), saved to the device's temporary directory (`path_provider`), and passed to `share_plus` as an `XFile`.
+
+## 5. Edge Cases & Constraints
+
+- **Offline Behavior:** This feature must work 100% offline. Canvas drawing and native sharing do not require an internet connection. (Note: The `{appLink}` in the shared text will require the recipient to have internet, but the sender does not need it to generate and queue the share).
+- **Guest User Behavior:** Guest users should be able to share their progress exactly like authenticated users. No restrictions should be applied.
+- **Geographic Variants:** The `_GlobalProgressCard` replication must accurately reflect the statistics of the currently selected geographic variant (LATAM, Europe, USA). By reusing the existing `StatisticsProvider`, this should be handled automatically.
+- **Performance Considerations:** Rendering a 1080x1920 canvas and encoding it to PNG can be CPU-intensive. This logic should ideally be executed asynchronously to prevent UI jank or freezing the main thread.
+- **Storage Permissions:** Ensure the generated PNG is written to the temporary directory (`getTemporaryDirectory()`) to avoid requiring explicit storage permissions on Android/iOS.
 
 ---
 
-### 2. Acceptance Criteria
+## 6. Localization (ARB Updates)
 
-- [ ] **UI Trigger**: An Amber-colored `IconButton` (e.g., `Icons.share`) is added to the `AppBar` of `lib/features/catalog/presentation/statistics_screen.dart`.
-- [ ] **Canvas Generation**: Tapping the icon triggers a `CustomPainter` routine that draws a 1080x1920 (or 1080x1350) canvas.
-- [ ] **Visual Accuracy**: The canvas must have a dark background (`#121212` or `#1E1E1E`). The gold gradient `_GlobalProgressCard` must be drawn perfectly centered, matching the existing UI's gradients, typography, and layout.
-- [ ] **Branding**: `assets/icon/app_icon.png` and the localized `appTitle` are drawn tastefully at the top or bottom of the canvas.
-- [ ] **State Integration**: The image generation logic is integrated into the existing `StatisticsProvider` (or directly in the screen using existing state). **No new files or state management classes are created.**
-- [ ] **Native Share**: The generated `Canvas` is converted to a PNG byte array, saved to a temporary directory, and shared using the existing `share_plus` package.
-- [ ] **Localization (Strict)**: The 11 specified `.arb` files are updated (appended only) with the keys `shareStatisticsTooltip` and `shareStatisticsMessage`. The message must dynamically accept `{percentage}` and `{appLink}`.
-- [ ] **No Data Loss**: Existing ARB keys are untouched.
+You must append the following keys to the respective files. **Do not delete existing keys.**
 
----
-
-### 3. Data Model Impact
-
-- **Supabase (PostgreSQL)**: No changes required.
-- **Brick Models (Offline-first)**: No changes required.
-- **Relationships**: No changes required.
-- *Note*: This feature relies entirely on local UI rendering (Canvas) and existing state from `StatisticsProvider`.
-
----
-
-### 4. UI Flow Description
-
-**Screens Needed:**
-- Modifications to existing `StatisticsScreen` (`lib/features/catalog/presentation/statistics_screen.dart`).
-
-**Navigation Flow:**
-1. User navigates to the Statistics tab/screen.
-2. User taps the Amber share icon in the top right of the `AppBar`.
-3. *(Optional but recommended)* A brief loading overlay or indicator appears while the Canvas renders and encodes the PNG (to prevent UI freezing).
-4. The OS native share bottom sheet appears (via `share_plus`), displaying the generated image and the localized text.
-5. User selects a target app (Instagram, WhatsApp, etc.) and completes the share.
-
-**Key Interactions:**
-- The `CustomPainter` must accurately read the current progress percentage and counts from the `StatisticsProvider` to render the text on the canvas.
-- The `{appLink}` parameter in the share message should point to the app's store link or landing page (can be a hardcoded constant in the provider for now if a dynamic link service isn't set up).
-
----
-
-### 5. Edge Cases & Constraints
-
-- **Offline Behavior**: This feature must work 100% offline. The Canvas generation is local. The native share menu will still open, though the `{appLink}` won't be clickable by the recipient until they have an internet connection.
-- **Guest Users**: Guest users should be able to share their local progress just like authenticated users. No auth checks should block this feature.
-- **Geographic Variants**: The progress percentage and counts drawn on the canvas must reflect the currently selected geographic variant (LATAM, Europe, USA). Since we are reusing `StatisticsProvider`, this should be handled automatically.
-- **Performance Considerations**: 
-  - Generating a 1080x1920 image and encoding it to PNG can be CPU-intensive. The `Picture.toImage()` and `Image.toByteData()` calls should be handled carefully so they don't drop frames.
-  - Ensure the temporary file created for `share_plus` is written to the correct temporary directory (`getTemporaryDirectory()` from `path_provider`) to avoid OS permission issues on Android 13+ and iOS.
-
----
-
-### 🌐 Appendix: ARB Translations Required
-
-To strictly comply with the ARB policy, append the following key-value pairs to the end of the respective `lib/l10n/app_*.arb` files (before the final closing brace `}`).
-
-**1. `lib/l10n/app_en.arb`**
+**lib/l10n/app_ar.arb** (Already provided in context, ensure it matches)
 ```json
-  "shareStatisticsTooltip": "Share statistics",
-  "shareStatisticsMessage": "Check out my progress in Album 26! I have completed {percentage}% of my album. Download the app and collect with me: {appLink}"
+"shareStatisticsTooltip": "مشاركة الإحصاءات",
+"shareStatisticsMessage": "تحقق من تقدمي في {appTitle}! لقد أكملت {percentage}% من ألبومي. قم بتنزيل التطبيق واجمع معي: {appLink}"
 ```
 
-**2. `lib/l10n/app_es.arb`**
+**lib/l10n/app_de.arb**
 ```json
-  "shareStatisticsTooltip": "Compartir estadísticas",
-  "shareStatisticsMessage": "¡Mira mi progreso en Album 26! He completado el {percentage}% de mi álbum. Descarga la app y colecciona conmigo: {appLink}"
+"shareStatisticsTooltip": "Statistiken teilen",
+"shareStatisticsMessage": "Sieh dir meinen Fortschritt in {appTitle} an! Ich habe {percentage}% meines Albums vervollständigt. Lade die App herunter und sammle mit mir: {appLink}"
 ```
 
-**3. `lib/l10n/app_ar.arb`**
+**lib/l10n/app_en.arb**
 ```json
-  "shareStatisticsTooltip": "مشاركة الإحصائيات",
-  "shareStatisticsMessage": "تحقق من تقدمي في Album 26! لقد أكملت {percentage}% من ألبومي. قم بتنزيل التطبيق واجمع معي: {appLink}"
+"shareStatisticsTooltip": "Share statistics",
+"shareStatisticsMessage": "Check out my progress in {appTitle}! I have completed {percentage}% of my album. Download the app and collect with me: {appLink}"
 ```
 
-**4. `lib/l10n/app_de.arb`**
+**lib/l10n/app_es.arb**
 ```json
-  "shareStatisticsTooltip": "Statistiken teilen",
-  "shareStatisticsMessage": "Sieh dir meinen Fortschritt in Album 26 an! Ich habe {percentage}% meines Albums vervollständigt. Lade die App herunter und sammle mit mir: {appLink}"
+"shareStatisticsTooltip": "Compartir estadísticas",
+"shareStatisticsMessage": "¡Mira mi progreso en {appTitle}! He completado el {percentage}% de mi álbum. Descarga la app y colecciona conmigo: {appLink}"
 ```
 
-**5. `lib/l10n/app_fa.arb`**
+**lib/l10n/app_fa.arb**
 ```json
-  "shareStatisticsTooltip": "اشتراک‌گذاری آمار",
-  "shareStatisticsMessage": "پیشرفت من را در Album 26 ببینید! من {percentage}٪ از آلبوم خود را کامل کرده‌ام. برنامه را دانلود کنید و با من جمع‌آوری کنید: {appLink}"
+"shareStatisticsTooltip": "اشتراک‌گذاری آمار",
+"shareStatisticsMessage": "پیشرفت من را در {appTitle} ببینید! من {percentage}٪ از آلبوم خود را کامل کرده‌ام. برنامه را دانلود کنید و با من جمع‌آوری کنید: {appLink}"
 ```
 
-**6. `lib/l10n/app_fr.arb`**
+**lib/l10n/app_fr.arb**
 ```json
-  "shareStatisticsTooltip": "Partager les statistiques",
-  "shareStatisticsMessage": "Découvrez mes progrès dans Album 26 ! J'ai terminé {percentage}% de mon album. Téléchargez l'application et collectionnez avec moi : {appLink}"
+"shareStatisticsTooltip": "Partager les statistiques",
+"shareStatisticsMessage": "Découvrez mes progrès dans {appTitle} ! J'ai complété {percentage} % de mon album. Téléchargez l'application et collectionnez avec moi : {appLink}"
 ```
 
-**7. `lib/l10n/app_he.arb`**
+**lib/l10n/app_he.arb**
 ```json
-  "shareStatisticsTooltip": "שתף סטטיסטיקות",
-  "shareStatisticsMessage": "בדוק את ההתקדמות שלי ב-Album 26! השלמתי {percentage}% מהאלבום שלי. הורד את האפליקציה ואסוף איתי: {appLink}"
+"shareStatisticsTooltip": "שתף סטטיסטיקות",
+"shareStatisticsMessage": "בדוק את ההתקדמות שלי ב-{appTitle}! השלמתי {percentage}% מהאלבום שלי. הורד את האפליקציה ואסוף איתי: {appLink}"
 ```
 
-**8. `lib/l10n/app_hi.arb`**
+**lib/l10n/app_hi.arb**
 ```json
-  "shareStatisticsTooltip": "आँकड़े साझा करें",
-  "shareStatisticsMessage": "एल्बम 26 में मेरी प्रगति देखें! मैंने अपना {percentage
+"shareStatisticsTooltip": "आँकड़े साझा करें",
+"shareStatisticsMessage": "{appTitle} में मेरी प्रगति देखें! मैंने अपना {percentage}% एल्बम पूरा कर लिया है। ऐप डाउनलोड करें और मेरे साथ इकट्ठा करें: {appLink}"
+```
+
+**lib/l10n/app_it.arb**
+```json
+"shareStatisticsTooltip": "Condividi statistiche",
+"shareStatisticsMessage": "Guarda i miei progressi in {appTitle}! Ho completato il {percentage}% del mio album. Scarica l'app e colleziona con me: {appLink}"
+```
+
+**lib/l10n/app_ja.arb**
+```json
+"shareStatisticsTooltip": "統計を共有する",
+"shareStatisticsMessage": "{appTitle}での私の進捗を見てください！アルバムの{percentage}％を完了しました。アプリをダウンロードして、私と一緒に集めましょう：{appLink}"
+```
+
+**lib/l10n/app_ko.arb**
+```json
+"shareStatisticsTooltip": "통계 공유",
+"shareStatisticsMessage": "{appTitle}에서 내 진행 상황을 확인하세요! 앨범의 {percentage}%를 완료했습니다. 앱을 다운로드하고 나와 함께 수집하세요: {appLink}"
+```
+
+*(Note: Ensure the ARB files include the proper `@shareStatisticsMessage` metadata block for the `{appTitle}`, `{percentage}`, and `{appLink}` placeholders if required by your `l10n.yaml` strictness settings).*
