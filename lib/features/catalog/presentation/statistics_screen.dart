@@ -1,6 +1,8 @@
 // Archivo: lib/features/catalog/presentation/statistics_screen.dart
 
 import 'dart:math' as math;
+import 'dart:ui' as ui;
+import 'dart:io';
 
 import 'package:album_26_sticker_collector/core/tutorial/statistics_tutorial.dart';
 import 'package:album_26_sticker_collector/core/tutorial/tutorial_keys.dart';
@@ -15,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:share_plus/share_plus.dart';
 
 // ---------------------------------------------------------------------------
 // Provider de activación de pestaña (igual que scanner/exchange/lookup)
@@ -93,6 +96,7 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
   double _pointerDownX = 0;
   final ScrollController _scrollController = ScrollController();
   bool _tutorialScheduled = false;
+  bool _isSharing = false;
 
   Future<void> _maybeShowStatsTutorial() async {
     if (_tutorialScheduled || !mounted) return;
@@ -104,6 +108,90 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
     if (!done && mounted) StatisticsTutorial.show(context);
   }
 
+  Future<void> _shareStats() async {
+    if (_isSharing) return;
+    setState(() => _isSharing = true);
+
+    try {
+      final l10n = AppLocalizations.of(context)!;
+      final totalAsync = ref.read(totalStickersCountProvider);
+      final uniqueCollected = ref.read(uniqueCollectedProvider);
+      final categoryStatsAsync = ref.read(categoryStatsProvider);
+
+      final total = totalAsync.valueOrNull ?? 0;
+      final progress = total == 0 ? 0.0 : uniqueCollected / total;
+      final percentage = (progress * 100).toStringAsFixed(1);
+      
+      final stats = categoryStatsAsync.valueOrNull ?? [];
+
+      // Generate image
+      final recorder = ui.PictureRecorder();
+      final canvas = Canvas(recorder);
+      const size = Size(1080, 1920);
+
+      // Draw background
+      final bgPaint = Paint()..color = const Color(0xFF121212);
+      canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), bgPaint);
+
+      // Load and draw app icon
+      try {
+        final data = await rootBundle.load('assets/icon/app_icon.png');
+        final list = data.buffer.asUint8List();
+        final codec = await ui.instantiateImageCodec(list, targetWidth: 200, targetHeight: 200);
+        final frame = await codec.getNextFrame();
+        final appIcon = frame.image;
+        canvas.drawImage(appIcon, Offset((size.width - appIcon.width) / 2, 200), Paint());
+      } catch (_) {
+        // Ignore if icon fails to load
+      }
+
+      // Draw branding (App Title)
+      final textPainter = TextPainter(
+        text: TextSpan(
+          text: l10n.appTitle,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 64,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        textDirection: TextDirection.ltr,
+      );
+      textPainter.layout();
+      textPainter.paint(canvas, Offset((size.width - textPainter.width) / 2, 440));
+
+      // Draw the card
+      _drawStatsCardOnCanvas(canvas, size, total, uniqueCollected, stats, l10n);
+
+      final picture = recorder.endRecording();
+      final image = await picture.toImage(size.width.toInt(), size.height.toInt());
+      final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+      final buffer = byteData!.buffer.asUint8List();
+
+      final tempDir = Directory.systemTemp;
+      final file = File('${tempDir.path}/stats_share.png');
+      await file.writeAsBytes(buffer);
+
+      final appLink = 'https://album26.app';
+      final message = l10n.shareStatisticsMessage(l10n.appTitle, percentage, appLink);
+
+      await Share.shareXFiles(
+        [XFile(file.path)],
+        text: message,
+      );
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(AppLocalizations.of(context)!.commonErrorWithMessage(e.toString()))),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _isSharing = false);
+      }
+    }
+  }
+
   @override
   void dispose() {
     _scrollController.dispose();
@@ -112,7 +200,7 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final selectedCategoryIds = ref.watch(_selectedCategoryIdsProvider);
     final sortOrder = ref.watch(_statsSortProvider);
     final categoryStatsAsync = ref.watch(categoryStatsProvider);
@@ -150,6 +238,25 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
               elevation: 0,
               centerTitle: true,
               iconTheme: const IconThemeData(color: Colors.amber),
+              actions: [
+                if (_isSharing)
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Center(
+                      child: SizedBox(
+                        width: 24,
+                        height: 24,
+                        child: CircularProgressIndicator(color: Colors.amber, strokeWidth: 2),
+                      ),
+                    ),
+                  )
+                else
+                  IconButton(
+                    icon: const Icon(Icons.share, color: Colors.amber),
+                    tooltip: l10n.shareStatisticsTooltip,
+                    onPressed: _shareStats,
+                  ),
+              ],
             ),
             body: RefreshIndicator(
               color: Colors.amber,
@@ -206,7 +313,7 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(32),
                           child: Text(
-                            l10n.commonErrorWithMessage(e),
+                            l10n.commonErrorWithMessage(e.toString()),
                             style: const TextStyle(color: Colors.redAccent),
                           ),
                         ),
@@ -300,6 +407,155 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
       ),
     );
   }
+}
+
+// ---------------------------------------------------------------------------
+// Helper para dibujar la tarjeta en Canvas
+// ---------------------------------------------------------------------------
+void _drawStatsCardOnCanvas(Canvas canvas, Size size, int total, int uniqueCollected, List<CategoryStats> stats, AppLocalizations l10n) {
+  final cardWidth = 900.0;
+  final cardHeight = 600.0;
+  final cardRect = Rect.fromCenter(center: Offset(size.width / 2, size.height / 2 + 100), width: cardWidth, height: cardHeight);
+
+  // Shadow
+  canvas.drawRRect(
+    RRect.fromRectAndRadius(cardRect.translate(0, 20), const Radius.circular(48)),
+    Paint()
+      ..color = Colors.amber.withValues(alpha: 0.35)
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 36),
+  );
+
+  // Card Background Gradient
+  final gradient = ui.Gradient.linear(
+    cardRect.topLeft,
+    cardRect.bottomRight,
+    [Colors.amber.shade400, Colors.amber.shade800],
+  );
+  canvas.drawRRect(
+    RRect.fromRectAndRadius(cardRect, const Radius.circular(48)),
+    Paint()..shader = gradient,
+  );
+
+  // Draw content inside card
+  final progress = total == 0 ? 0.0 : uniqueCollected / total;
+  final percentage = progress * 100;
+  final missing = total - uniqueCollected;
+
+  // Big Circular Progress
+  final circleCenter = cardRect.topLeft + const Offset(180, 180);
+  final circleRadius = 110.0;
+  final strokeWidth = 24.0;
+
+  // Bg Arc
+  canvas.drawArc(
+    Rect.fromCircle(center: circleCenter, radius: circleRadius),
+    0,
+    2 * math.pi,
+    false,
+    Paint()
+      ..color = Colors.black26
+      ..strokeWidth = strokeWidth
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round,
+  );
+
+  // Fg Arc
+  if (progress > 0) {
+    canvas.drawArc(
+      Rect.fromCircle(center: circleCenter, radius: circleRadius),
+      -math.pi / 2,
+      2 * math.pi * progress.clamp(0.0, 1.0),
+      false,
+      Paint()
+        ..color = Colors.white
+        ..strokeWidth = strokeWidth
+        ..style = PaintingStyle.stroke
+        ..strokeCap = StrokeCap.round,
+    );
+  }
+
+  // Percentage Text
+  final pctPainter = TextPainter(
+    text: TextSpan(
+      text: '${percentage.toStringAsFixed(1)}%',
+      style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 48),
+    ),
+    textDirection: TextDirection.ltr,
+  );
+  pctPainter.layout();
+  pctPainter.paint(canvas, circleCenter - Offset(pctPainter.width / 2, pctPainter.height / 2));
+
+  // Texts on the right
+  final textStartX = circleCenter.dx + circleRadius + 60;
+  var textStartY = cardRect.top + 80;
+
+  void drawText(String text, double size, FontWeight weight, Color color) {
+    final tp = TextPainter(
+      text: TextSpan(text: text, style: TextStyle(color: color, fontSize: size, fontWeight: weight)),
+      textDirection: TextDirection.ltr,
+    );
+    tp.layout();
+    tp.paint(canvas, Offset(textStartX, textStartY));
+    textStartY += tp.height + 16;
+  }
+
+  drawText(l10n.homeGlobalProgressTitle, 36, FontWeight.bold, Colors.black);
+  textStartY += 16;
+  drawText('${l10n.statsTotalLabel}: $total', 28, FontWeight.w600, Colors.black87);
+  drawText('${l10n.statsCollectedLabel}: $uniqueCollected', 28, FontWeight.w600, Colors.black87);
+  drawText('${l10n.filterMissing}: $missing', 28, FontWeight.w600, Colors.black87);
+
+  // Linear Progress
+  final barRect = Rect.fromLTWH(cardRect.left + 60, cardRect.top + 360, cardWidth - 120, 20);
+  canvas.drawRRect(RRect.fromRectAndRadius(barRect, const Radius.circular(10)), Paint()..color = Colors.black12);
+  if (progress > 0) {
+    final progressRect = Rect.fromLTWH(barRect.left, barRect.top, barRect.width * progress.clamp(0.0, 1.0), barRect.height);
+    canvas.drawRRect(RRect.fromRectAndRadius(progressRect, const Radius.circular(10)), Paint()..color = Colors.white);
+  }
+
+  // Collected Count Text
+  final countPainter = TextPainter(
+    text: TextSpan(
+      text: l10n.homeCollectedCount(uniqueCollected, total),
+      style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 24),
+    ),
+    textDirection: TextDirection.ltr,
+  );
+  countPainter.layout();
+  countPainter.paint(canvas, Offset(barRect.right - countPainter.width, barRect.bottom + 16));
+
+  // Divider
+  final dividerY = barRect.bottom + 80;
+  canvas.drawLine(
+    Offset(cardRect.left + 60, dividerY),
+    Offset(cardRect.right - 60, dividerY),
+    Paint()..color = Colors.black26..strokeWidth = 2,
+  );
+
+  // Bottom Stats
+  final duplicateCopies = stats.fold(0, (sum, s) => sum + s.duplicateCopies);
+  final completedCategories = stats.where((s) => s.percentage >= 1.0).length;
+
+  final bottomY = dividerY + 30;
+  
+  void drawBottomStat(String value, String label, double xCenter) {
+    final valTp = TextPainter(
+      text: TextSpan(text: value, style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 36)),
+      textDirection: TextDirection.ltr,
+    );
+    valTp.layout();
+    valTp.paint(canvas, Offset(xCenter - valTp.width / 2, bottomY));
+
+    final lblTp = TextPainter(
+      text: TextSpan(text: label, style: const TextStyle(color: Colors.black87, fontSize: 24)),
+      textDirection: TextDirection.ltr,
+    );
+    lblTp.layout();
+    lblTp.paint(canvas, Offset(xCenter - lblTp.width / 2, bottomY + valTp.height + 8));
+  }
+
+  drawBottomStat('$duplicateCopies', l10n.statsDuplicateCopiesLabel, cardRect.left + cardWidth * 0.25);
+  drawBottomStat('$completedCategories / ${stats.length}', l10n.statsCompletedCategories, cardRect.left + cardWidth * 0.75);
 }
 
 // ---------------------------------------------------------------------------
