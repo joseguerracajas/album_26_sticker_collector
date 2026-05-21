@@ -117,8 +117,8 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
       final uniqueCollected = ref.read(uniqueCollectedProvider);
       final categoryStatsAsync = ref.read(categoryStatsProvider);
 
-      final total = totalAsync.valueOrNull ?? 0;
-      final stats = categoryStatsAsync.valueOrNull ?? [];
+      final total = totalAsync.value ?? 0;
+      final stats = categoryStatsAsync.value ?? [];
 
       int duplicateCopies = 0;
       int completedCategories = 0;
