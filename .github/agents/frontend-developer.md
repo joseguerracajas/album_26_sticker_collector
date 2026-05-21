@@ -48,6 +48,10 @@ features/{feature_name}/
 
 ### Key Conventions
 - Riverpod providers se declaran **manualmente** (sin `@riverpod`, sin generación de código)
+- Prevent use valueOrNull use value instead
+- Always handle loading, error, and empty states in UI
+- Allways use try cath
+- When needed to use internationalization, use the ARB files and never hardcode strings. Use all ARB files lib/l10n/app_ar.arb ,lib/l10n/app_de.arb ,lib/l10n/app_en.arb ,lib/l10n/app_es.arb ,lib/l10n/app_fa.arb ,lib/l10n/app_fr.arb ,lib/l10n/app_he.arb ,lib/l10n/app_hi.arb ,lib/l10n/app_it.arb ,lib/l10n/app_ja.arb ,lib/l10n/app_ko.arb
 - All Brick models extend `OfflineFirstWithSupabaseModel`
 - Widgets are composed (small, reusable)
 - Use `flutter_animate` for micro-animations

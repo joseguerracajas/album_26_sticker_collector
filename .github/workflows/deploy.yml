@@ -280,16 +280,16 @@ jobs:
           ISSUE_NUM="${{ steps.extract.outputs.issue_number }}"
           printf '## 🎉 Feature Deployed!
 
-PR [%s](%s) was merged to `main` and the deployment pipeline has been triggered.
+          PR [%s](%s) was merged to `main` and the deployment pipeline has been triggered.
 
-| Target | Status |
-|--------|--------|
-| 📱 Google Play (internal track) | 🚀 Deploying... |
-| 🍎 App Store Connect (TestFlight) | 🚀 Deploying... |
-| 🗄️ Supabase Migrations | 🚀 Deploying... |
+          | Target | Status |
+          |--------|--------|
+          | 📱 Google Play (internal track) | 🚀 Deploying... |
+          | 🍎 App Store Connect (TestFlight) | 🚀 Deploying... |
+          | 🗄️ Supabase Migrations | 🚀 Deploying... |
 
-> Check the [Actions tab](https://github.com/${{ github.repository }}/actions) for live status.
-' "$PR_TITLE" "$PR_URL" > /tmp/merged-comment.md
-          gh issue comment "$ISSUE_NUM" \
-            --repo ${{ github.repository }} \
-            --body-file /tmp/merged-comment.md
+          > Check the [Actions tab](https://github.com/${{ github.repository }}/actions) for live status.
+          ' "$PR_TITLE" "$PR_URL" > /tmp/merged-comment.md
+                    gh issue comment "$ISSUE_NUM" \
+                      --repo ${{ github.repository }} \
+                      --body-file /tmp/merged-comment.md
