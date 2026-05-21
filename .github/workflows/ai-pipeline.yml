@@ -190,7 +190,7 @@ jobs:
           # --- Call LLM --------------------------------------------------------
           HU=""
           if [ "${{ env.USE_GEMINI }}" = "true" ]; then
-            echo "🤖 Using Gemini 2.5 Flash (Google AI Studio)"
+            echo "🤖 Using Gemini 3.1 Pro (Google AI Studio)"
             if [ -z "$GEMINI_API_KEY" ]; then
               echo "::error::GEMINI_API_KEY secret is not set."
               exit 1
@@ -367,7 +367,7 @@ jobs:
           USER_MSG="${USER_MSG}\n\n---\nIMPORTANT: Respond ONLY with valid JSON (no markdown, no extra text):\n{\"needs_migration\": true, \"files\": [{\"path\": \"supabase/migrations/YYYYMMDDHHMMSS_description.sql\", \"content\": \"-- SQL content here\"}], \"summary\": \"Brief description of what was generated\"}\nIf no changes needed, set needs_migration to false and files to []."
 
           if [ "${{ env.USE_GEMINI }}" = "true" ]; then
-            echo "🤖 Backend using Gemini 2.5 Flash"
+            echo "🤖 Backend using Gemini 3.1 Pro"
             COMBINED_PROMPT="${AGENT_PROMPT}\n\n${USER_MSG}"
             RESPONSE=$(curl -s -X POST \
               "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview-customtools:generateContent?key=${GEMINI_API_KEY}" \
@@ -559,7 +559,7 @@ jobs:
 
           # CRITICAL OPTIMIZATION: max_tokens leaves budget for the injection prompt
           if [ "${{ env.USE_GEMINI }}" = "true" ]; then
-            echo "🤖 Frontend using Gemini 2.5 Flash"
+            echo "🤖 Frontend using Gemini 3.1 Pro"
             COMBINED_PROMPT="${AGENT_PROMPT}\n\n${USER_MSG}"
             RESPONSE=$(curl -s -X POST \
               "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview-customtools:generateContent?key=${GEMINI_API_KEY}" \
