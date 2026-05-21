@@ -1,4 +1,6 @@
 {
+  "shareStatisticsTooltip": "Statistieken delen",
+  "shareStatisticsMessage": "Bekijk mijn voortgang in {appTitle}! Ik heb {percentage}% van mijn album voltooid. Download de app en verzamel met mij: {appLink}",
   "@@locale": "nl",
   "appTitle": "Sticker Album 2026",
   "authWelcomeTitle": "Welkom bij Sticker Album 2026",

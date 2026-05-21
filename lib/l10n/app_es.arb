@@ -1,6 +1,13 @@
 {
   "shareStatisticsTooltip": "Compartir estadísticas",
   "shareStatisticsMessage": "¡Mira mi progreso en {appTitle}! He completado el {percentage}% de mi álbum. Descarga la app y colecciona conmigo: {appLink}",
+  "@shareStatisticsMessage": {
+    "placeholders": {
+      "appTitle": { "type": "Object" },
+      "percentage": { "type": "Object" },
+      "appLink": { "type": "Object" }
+    }
+  },
   "@@locale": "es",
   "appTitle": "Sticker Album 2026",
   "authWelcomeTitle": "Bienvenido a Sticker Album 2026",

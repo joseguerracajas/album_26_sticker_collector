@@ -9,6 +9,18 @@ class AppLocalizationsKo extends AppLocalizations {
   AppLocalizationsKo([String locale = 'ko']) : super(locale);
 
   @override
+  String get shareStatisticsTooltip => '통계 공유';
+
+  @override
+  String shareStatisticsMessage(
+    Object appTitle,
+    Object percentage,
+    Object appLink,
+  ) {
+    return '$appTitle에서 내 진행 상황을 확인하세요! 앨범의 $percentage%를 완료했습니다. 앱을 다운로드하고 나와 함께 모아요: $appLink';
+  }
+
+  @override
   String get appTitle => 'Sticker Album 2026';
 
   @override

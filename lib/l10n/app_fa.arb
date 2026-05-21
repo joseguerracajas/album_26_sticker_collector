@@ -1,4 +1,6 @@
 {
+  "shareStatisticsTooltip": "اشتراک‌گذاری آمار",
+  "shareStatisticsMessage": "پیشرفت من را در {appTitle} ببینید! من {percentage}٪ از آلبوم خود را کامل کرده‌ام. برنامه را دانلود کنید و با من جمع‌آوری کنید: {appLink}",
   "@@locale": "fa",
   "appTitle": "Sticker Album 2026",
   "authWelcomeTitle": "به Sticker Album 2026 خوش آمدید",

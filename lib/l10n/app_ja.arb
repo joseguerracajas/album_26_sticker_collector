@@ -1,4 +1,6 @@
 {
+  "shareStatisticsTooltip": "統計を共有する",
+  "shareStatisticsMessage": "{appTitle}での私の進捗を見てください！アルバムの{percentage}％を完了しました。アプリをダウンロードして、一緒に集めましょう：{appLink}",
   "@@locale": "ja",
   "appTitle": "Sticker Album 2026",
   "authWelcomeTitle": "Sticker Album 2026へようこそ",

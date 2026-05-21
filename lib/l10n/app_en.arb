@@ -4,13 +4,13 @@
   "@shareStatisticsMessage": {
     "placeholders": {
       "appTitle": {
-        "type": "String"
+        "type": "Object"
       },
       "percentage": {
-        "type": "String"
+        "type": "Object"
       },
       "appLink": {
-        "type": "String"
+        "type": "Object"
       }
     }
   },

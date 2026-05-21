@@ -9,6 +9,18 @@ class AppLocalizationsIt extends AppLocalizations {
   AppLocalizationsIt([String locale = 'it']) : super(locale);
 
   @override
+  String get shareStatisticsTooltip => 'Condividi statistiche';
+
+  @override
+  String shareStatisticsMessage(
+    Object appTitle,
+    Object percentage,
+    Object appLink,
+  ) {
+    return 'Guarda i miei progressi in $appTitle! Ho completato il $percentage% del mio album. Scarica l\'app e colleziona con me: $appLink';
+  }
+
+  @override
   String get appTitle => 'Sticker Album 2026';
 
   @override
