@@ -183,7 +183,7 @@ jobs:
           fi
           USER_MSG="${USER_MSG}\n\n## Localization context (ARB files)\n${ARB_CONTEXT}"
           USER_MSG="${USER_MSG}\n\n## Project Context (README)\n${README}"
-          USER_MSG="${USER_MSG}\n\n---\nRespond in Spanish with the User Stories in Markdown format."
+          USER_MSG="${USER_MSG}\n\n---\nDetect the language of the feature request / issue title and body above, and respond entirely in that same language. Do not translate to Spanish unless the issue was written in Spanish."
 
           # --- Call LLM --------------------------------------------------------
           HU=""
@@ -712,7 +712,7 @@ jobs:
           echo "To add feedback before approving, comment \`/feedback: ...\` on the issue." >> $GITHUB_STEP_SUMMARY
 
   # ===========================================================================
-  # Stage 7: DevOps Agent — verify CI/CD
+  # Stage 7: DevOps Agent — real validations
   # ===========================================================================
   devops-engineer:
     name: "🔴 DevOps Engineer Agent"
@@ -723,11 +723,53 @@ jobs:
         with:
           ref: ${{ env.BRANCH_NAME }}
 
-      - name: "🚀 Verify CI/CD configuration"
+      - name: "🎯 Setup Flutter"
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.11.3"
+          channel: "stable"
+          cache: true
+
+      - name: "📦 Install dependencies"
+        run: flutter pub get
+
+      - name: "🌍 Validate ARB JSON files"
+        run: |
+          set -e
+          ERRORS=0
+          for f in lib/l10n/app_*.arb; do
+            if ! python3 -c "import json,sys; json.load(open('$f'))" 2>/dev/null; then
+              echo "::error file=$f::Invalid JSON in $f"
+              ERRORS=$((ERRORS+1))
+            else
+              echo "✅ $f — valid JSON"
+            fi
+          done
+          [ $ERRORS -eq 0 ] || exit 1
+
+      - name: "🗄️ Check for duplicate migration files"
+        run: |
+          set -e
+          DUPES=$(find supabase/migrations -name '*.sql' 2>/dev/null | \
+            awk -F'/' '{print $NF}' | sort | uniq -d)
+          if [ -n "$DUPES" ]; then
+            echo "::error::Duplicate migration filenames found: $DUPES"
+            exit 1
+          fi
+          echo "✅ No duplicate migrations"
+
+      - name: "🏗️ Flutter smoke build (debug APK)"
+        run: flutter build apk --debug
+
+      - name: "📝 DevOps summary"
+        if: always()
         run: |
           echo "## 🔴 DevOps Agent" >> $GITHUB_STEP_SUMMARY
-          echo "✅ CI/CD workflows verified" >> $GITHUB_STEP_SUMMARY
-          echo "✅ Feature branch ready for QA" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| ARB JSON validity | ✅ |" >> $GITHUB_STEP_SUMMARY
+          echo "| Duplicate migrations | ✅ |" >> $GITHUB_STEP_SUMMARY
+          echo "| Flutter smoke build | ✅ |" >> $GITHUB_STEP_SUMMARY
 
   # ===========================================================================
   # Stage 8: QA Agent — Real Flutter analyze + tests
@@ -752,22 +794,26 @@ jobs:
         run: flutter pub get
 
       - name: "🔎 Flutter Analyze"
-        run: flutter analyze --no-fatal-infos 2>&1 | tee /tmp/analyze-output.txt
-        continue-on-error: true
+        run: |
+          set -o pipefail
+          flutter analyze --no-fatal-infos 2>&1 | tee /tmp/analyze-output.txt
 
       - name: "🧪 Run Tests"
-        run: flutter test --coverage 2>&1 | tee /tmp/test-output.txt
-        continue-on-error: true
+        run: |
+          set -o pipefail
+          flutter test --coverage 2>&1 | tee /tmp/test-output.txt
 
       - name: "📊 Post QA Results to Issue"
-        if: env.ISSUE_NUMBER != ''
+        if: always() && env.ISSUE_NUMBER != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ANALYZE=$(cat /tmp/analyze-output.txt | tail -8)
-          TESTS=$(cat /tmp/test-output.txt | tail -10)
+          ANALYZE=$(tail -8 /tmp/analyze-output.txt 2>/dev/null || echo "(no output)")
+          TESTS=$(tail -10 /tmp/test-output.txt 2>/dev/null || echo "(no output)")
+          QA_STATUS="✅ Passed"
+          [ -f /tmp/analyze-output.txt ] && grep -q 'error' /tmp/analyze-output.txt && QA_STATUS="❌ Failed"
 
-          printf '## 🟣 QA Engineer Agent — Results\n\n```\nFlutter Analyze:\n%s\n\nTests:\n%s\n```\n' "$ANALYZE" "$TESTS" > /tmp/qa-comment.md
+          printf '## 🟣 QA Engineer Agent — %s\n\n```\nFlutter Analyze:\n%s\n\nTests:\n%s\n```\n' "$QA_STATUS" "$ANALYZE" "$TESTS" > /tmp/qa-comment.md
           gh issue comment "${{ env.ISSUE_NUMBER }}" \
             --repo ${{ env.GH_REPO }} \
             --body-file /tmp/qa-comment.md

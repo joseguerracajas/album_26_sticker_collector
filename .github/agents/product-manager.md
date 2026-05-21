@@ -79,4 +79,4 @@ Produce a structured markdown document with all sections above. Be specific to t
 3. Always consider geographic variants
 4. Keep scope focused — don't over-engineer
 5. Reference existing features/patterns when applicable
-6. Use Spanish for user-facing text references (the app supports i18n)
+6. Respond in the same language the feature request / issue was written in. Do not default to Spanish unless the input is in Spanish.

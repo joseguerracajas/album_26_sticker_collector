@@ -10,6 +10,9 @@ name: "🚀 Build & Deploy"
 on:
   push:
     branches: [main]
+  pull_request:
+    types: [closed]
+    branches: [main]
   workflow_dispatch:
     inputs:
       deploy_target:
@@ -124,6 +127,16 @@ jobs:
           name: android-release
           path: build/app/outputs/bundle/release/app-release.aab
 
+      - name: "🛒 Deploy to Google Play (internal track)"
+        if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.PLAY_STORE_JSON_KEY }}
+          packageName: com.joseguerracajas.album26stickercollector
+          releaseFiles: build/app/outputs/bundle/release/app-release.aab
+          track: internal
+          status: completed
+
   # ===========================================================================
   # Build iOS
   # ===========================================================================
@@ -156,9 +169,14 @@ jobs:
         with:
           name: ios-release
           path: build/ios/ipa/*.ipa
-
-  # ===========================================================================
-  # Deploy Summary
+      - name: "✈️ Deploy to App Store Connect (TestFlight)"
+        if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+        uses: apple-actions/upload-testflight-build@v3
+        with:
+          app-path: build/ios/ipa/*.ipa
+          issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          api-key-id: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+          api-private-key: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}
   # ===========================================================================
   deploy-summary:
     name: "📊 Deploy Summary"
@@ -234,3 +252,44 @@ jobs:
           done
 
           echo "🎉 All In Progress items moved to Done after successful deploy"
+
+  # ===========================================================================
+  # Notify issue on PR merge
+  # ===========================================================================
+  notify-issue-merged:
+    name: "💬 Notify Issue on PR Merge"
+    if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: "🔍 Extract issue number from PR body"
+        id: extract
+        run: |
+          BODY="${{ github.event.pull_request.body }}"
+          ISSUE_NUM=$(echo "$BODY" | grep -oP '(?<=Closes #)\d+' | head -1 || echo '')
+          echo "issue_number=$ISSUE_NUM" >> $GITHUB_OUTPUT
+
+      - name: "💬 Comment on issue"
+        if: steps.extract.outputs.issue_number != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_URL="${{ github.event.pull_request.html_url }}"
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          ISSUE_NUM="${{ steps.extract.outputs.issue_number }}"
+          printf '## 🎉 Feature Deployed!
+
+PR [%s](%s) was merged to `main` and the deployment pipeline has been triggered.
+
+| Target | Status |
+|--------|--------|
+| 📱 Google Play (internal track) | 🚀 Deploying... |
+| 🍎 App Store Connect (TestFlight) | 🚀 Deploying... |
+| 🗄️ Supabase Migrations | 🚀 Deploying... |
+
+> Check the [Actions tab](https://github.com/${{ github.repository }}/actions) for live status.
+' "$PR_TITLE" "$PR_URL" > /tmp/merged-comment.md
+          gh issue comment "$ISSUE_NUM" \
+            --repo ${{ github.repository }} \
+            --body-file /tmp/merged-comment.md
