@@ -195,7 +195,7 @@ jobs:
             fi
             COMBINED_PROMPT="${AGENT_PROMPT}\n\n${USER_MSG}"
             RESPONSE=$(curl -s -X POST \
-              "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}" \
+              "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview-customtools:generateContent?key=${GEMINI_API_KEY}" \
               -H "Content-Type: application/json" \
               -d "$(jq -n --arg p "$COMBINED_PROMPT" '{contents:[{parts:[{text:$p}]}],generationConfig:{temperature:0.3,maxOutputTokens:4000}}')")
 
@@ -368,7 +368,7 @@ jobs:
             echo "🤖 Backend using Gemini 2.5 Flash"
             COMBINED_PROMPT="${AGENT_PROMPT}\n\n${USER_MSG}"
             RESPONSE=$(curl -s -X POST \
-              "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}" \
+              "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview-customtools:generateContent?key=${GEMINI_API_KEY}" \
               -H "Content-Type: application/json" \
               -d "$(jq -n --arg p "$COMBINED_PROMPT" '{contents:[{parts:[{text:$p}]}],generationConfig:{temperature:0.2,maxOutputTokens:32000,responseMimeType:"application/json",thinkingConfig:{thinkingBudget:0}}}')")
             FINISH=$(echo "$RESPONSE" | jq -r '.candidates[0].finishReason // ""')
@@ -560,7 +560,7 @@ jobs:
             echo "🤖 Frontend using Gemini 2.5 Flash"
             COMBINED_PROMPT="${AGENT_PROMPT}\n\n${USER_MSG}"
             RESPONSE=$(curl -s -X POST \
-              "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}" \
+              "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview-customtools:generateContent?key=${GEMINI_API_KEY}" \
               -H "Content-Type: application/json" \
               -d "$(jq -n --arg p "$COMBINED_PROMPT" '{contents:[{parts:[{text:$p}]}],generationConfig:{temperature:0.2,maxOutputTokens:32000,responseMimeType:"application/json",thinkingConfig:{thinkingBudget:0}}}')")
             FINISH=$(echo "$RESPONSE" | jq -r '.candidates[0].finishReason // ""')
