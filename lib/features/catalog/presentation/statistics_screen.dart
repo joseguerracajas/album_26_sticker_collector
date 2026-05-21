@@ -9,7 +9,6 @@ import 'package:album_26_sticker_collector/core/tutorial/tutorial_keys.dart';
 import 'package:album_26_sticker_collector/core/tutorial/tutorial_service.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/sync_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/category.model.dart';
-import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/app_bar_actions.dart';
 import 'package:album_26_sticker_collector/features/catalog/presentation/widgets/sticker_stat_row.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/stats_provider.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
@@ -113,7 +112,7 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
     setState(() => _isSharing = true);
 
     try {
-      final l10n = AppLocalizations.of(context)!;
+      final l10n = AppLocalizations.of(context);
       final totalAsync = ref.read(totalStickersCountProvider);
       final uniqueCollected = ref.read(uniqueCollectedProvider);
       final categoryStatsAsync = ref.read(categoryStatsProvider);
@@ -193,15 +192,15 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
         appLink,
       );
 
-      await Share.shareXFiles([XFile(file.path)], text: message);
+      await SharePlus.instance.share(
+        ShareParams(files: [XFile(file.path)], text: message),
+      );
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              AppLocalizations.of(
-                context,
-              )!.commonErrorWithMessage(e.toString()),
+              AppLocalizations.of(context).commonErrorWithMessage(e.toString()),
             ),
           ),
         );
@@ -221,7 +220,7 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
     final selectedCategoryIds = ref.watch(_selectedCategoryIdsProvider);
     final sortOrder = ref.watch(_statsSortProvider);
     final categoryStatsAsync = ref.watch(categoryStatsProvider);

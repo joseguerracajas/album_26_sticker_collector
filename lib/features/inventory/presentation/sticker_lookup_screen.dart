@@ -6,7 +6,6 @@ import 'package:album_26_sticker_collector/core/tutorial/tutorial_service.dart';
 import 'package:album_26_sticker_collector/features/catalog/data/stickers_provider.dart';
 import 'package:album_26_sticker_collector/features/catalog/domain/sticker.model.dart';
 import 'package:album_26_sticker_collector/features/inventory/data/inventory_provider.dart';
-import 'package:album_26_sticker_collector/features/inventory/presentation/scanner_screen.dart';
 import 'package:album_26_sticker_collector/features/monetization/data/ads_provider.dart';
 import 'package:album_26_sticker_collector/features/monetization/data/subscription_provider.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
