@@ -128,6 +128,22 @@ abstract class AppLocalizations {
     Locale('zh'),
   ];
 
+  /// No description provided for @shareStatisticsTooltip.
+  ///
+  /// In es, this message translates to:
+  /// **'Compartir estadísticas'**
+  String get shareStatisticsTooltip;
+
+  /// No description provided for @shareStatisticsMessage.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Mira mi progreso en {appTitle}! He completado el {percentage}% de mi álbum. Descarga la app y colecciona conmigo: {appLink}'**
+  String shareStatisticsMessage(
+    Object appTitle,
+    Object percentage,
+    Object appLink,
+  );
+
   /// No description provided for @appTitle.
   ///
   /// In es, this message translates to:

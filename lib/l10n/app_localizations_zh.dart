@@ -9,6 +9,18 @@ class AppLocalizationsZh extends AppLocalizations {
   AppLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
+  String get shareStatisticsTooltip => '分享统计数据';
+
+  @override
+  String shareStatisticsMessage(
+    Object appTitle,
+    Object percentage,
+    Object appLink,
+  ) {
+    return '查看我在$appTitle中的进度！我已完成相册的$percentage%。下载应用并与我一起收集：$appLink';
+  }
+
+  @override
   String get appTitle => 'Sticker Album 2026';
 
   @override

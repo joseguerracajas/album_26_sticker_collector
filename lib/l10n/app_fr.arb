@@ -1,4 +1,6 @@
 {
+  "shareStatisticsTooltip": "Partager les statistiques",
+  "shareStatisticsMessage": "Découvrez mon avancement dans {appTitle} ! J'ai complété {percentage}% de mon album. Téléchargez l'application et collectionnez avec moi : {appLink}",
   "@@locale": "fr",
   "appTitle": "Sticker Album 2026",
   "authWelcomeTitle": "Bienvenue sur Sticker Album 2026",
@@ -176,7 +178,9 @@
   "paywallFreeTrial": "Essai gratuit de {days} jours",
   "@paywallFreeTrial": {
     "placeholders": {
-      "days": {"type": "int"}
+      "days": {
+        "type": "int"
+      }
     }
   },
   "paywallRestorePurchases": "Restaurer les achats",

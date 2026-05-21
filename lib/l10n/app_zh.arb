@@ -1,4 +1,6 @@
 {
+  "shareStatisticsTooltip": "分享统计数据",
+  "shareStatisticsMessage": "查看我在{appTitle}中的进度！我已完成相册的{percentage}%。下载应用并与我一起收集：{appLink}",
   "@@locale": "zh",
   "appTitle": "Sticker Album 2026",
   "authWelcomeTitle": "欢迎来到 Sticker Album 2026",

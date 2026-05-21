@@ -1,4 +1,6 @@
 {
+  "shareStatisticsTooltip": "आँकड़े साझा करें",
+  "shareStatisticsMessage": "{appTitle} में मेरी प्रगति देखें! मैंने अपना {percentage}% एल्बम पूरा कर लिया है। ऐप डाउनलोड करें और मेरे साथ इकट्ठा करें: {appLink}",
   "@@locale": "hi",
   "appTitle": "Sticker Album 2026",
   "authWelcomeTitle": "Sticker Album 2026 में आपका स्वागत है",
@@ -170,14 +172,18 @@
   "paywallPackageLifetime": "आजीवन",
   "paywallPackageTwoMonth": "हर 2 महीने",
   "paywallPackageThreeMonth": "हर 3 महीने",
-  "paywallPackageSixMonth": "हर 6 महीने",  "paywallBestOption": "सर्वश्रेष्ठ विकल्प",
+  "paywallPackageSixMonth": "हर 6 महीने",
+  "paywallBestOption": "सर्वश्रेष्ठ विकल्प",
   "paywallStartFreeTrial": "निःशुल्क परीक्षण शुरू करें",
   "paywallFreeTrial": "{days} दिनों का निःशुल्क परीक्षण",
   "@paywallFreeTrial": {
     "placeholders": {
-      "days": {"type": "int"}
+      "days": {
+        "type": "int"
+      }
     }
-  },  "paywallRestorePurchases": "खरीदारी पुनर्स्थापित करें",
+  },
+  "paywallRestorePurchases": "खरीदारी पुनर्स्थापित करें",
   "paywallCancelAnytime": "कभी भी रद्द करें। कोई प्रतिबद्धता नहीं।",
   "paywallLoadError": "प्लान लोड नहीं हो सके। अपना कनेक्शन जांचें।",
   "paywallRetry": "पुनः प्रयास करें",
