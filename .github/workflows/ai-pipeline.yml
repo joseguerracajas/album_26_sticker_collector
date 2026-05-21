@@ -680,6 +680,14 @@ jobs:
           PYEOF
           echo "$LLM_JSON" | python3 /tmp/create_frontend_files.py
 
+          # Auto-fix: replace .valueOrNull with .value in all generated Dart files
+          echo "$LLM_JSON" | jq -r '.files[].path' 2>/dev/null | grep '\.dart$' | while IFS= read -r dart_file; do
+            if [ -f "$dart_file" ] && grep -q '\.valueOrNull' "$dart_file"; then
+              sed -i 's/\.valueOrNull/.value/g' "$dart_file"
+              echo "🔧 Auto-fixed .valueOrNull → .value in $dart_file"
+            fi
+          done
+
           SUMMARY=$(echo "$LLM_JSON" | jq -r '.summary // "No summary"')
           FILES_LIST=$(echo "$LLM_JSON" | jq -r '[.files[].path] | if length > 0 then "- " + join("\n- ") else "None" end' 2>/dev/null || echo "None")
 

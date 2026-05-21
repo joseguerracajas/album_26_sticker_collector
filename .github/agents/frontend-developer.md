@@ -48,7 +48,6 @@ features/{feature_name}/
 
 ### Key Conventions
 - Riverpod providers se declaran **manualmente** (sin `@riverpod`, sin generación de código)
-- Prevent use valueOrNull use value instead
 - Always handle loading, error, and empty states in UI
 - Allways use try cath
 - When needed to use internationalization, use the ARB files and never hardcode strings. Use all ARB files lib/l10n/app_ar.arb ,lib/l10n/app_de.arb ,lib/l10n/app_en.arb ,lib/l10n/app_es.arb ,lib/l10n/app_fa.arb ,lib/l10n/app_fr.arb ,lib/l10n/app_he.arb ,lib/l10n/app_hi.arb ,lib/l10n/app_it.arb ,lib/l10n/app_ja.arb ,lib/l10n/app_ko.arb
@@ -158,6 +157,14 @@ class _LocalNotifier extends AutoDisposeNotifier<bool> {
 
 > ⚠️ **NUNCA** uses `@riverpod`, `_$ClassName` ni `part 'file.g.dart'` — el proyecto NO usa generación de código para Riverpod.
 
+> 🚫 **PROHIBIDO: `.valueOrNull`** — NUNCA uses `.valueOrNull` en ningún provider ni widget. USA `.value` en su lugar. Esta regla se aplica SIEMPRE sin excepción.
+> ```dart
+> // ❌ PROHIBIDO
+> final items = ref.watch(itemsProvider).valueOrNull;
+> // ✅ CORRECTO
+> final items = ref.watch(itemsProvider).value;
+> ```
+
 ## Your Task
 
 Given approved user stories and backend schema, generate:
@@ -208,6 +215,7 @@ Produce files ready to be committed, following the project structure:
 ## Rules
 
 1. NEVER usar `@riverpod`, `riverpod_annotation` ni `riverpod_generator` — el proyecto usa `flutter_riverpod` manual (`AsyncNotifierProvider`, `NotifierProvider`, `FutureProvider`)
+2. **NEVER usar `.valueOrNull`** — usar siempre `.value` en su lugar. Sin excepciones.
 2. ALWAYS support offline-first via Brick models
 3. ALWAYS add localization strings (never hardcode text)
 4. ALWAYS consider guest user state (may not have auth)
