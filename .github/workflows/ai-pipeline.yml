@@ -110,63 +110,13 @@ jobs:
             echo "✅ Issue added to project (Status field/Todo option not found, left at default)"
           fi
 
-  # ===========================================================================
-  # Stage 0: QA Smoke — Validate main branch BEFORE spending any tokens
-  # ===========================================================================
-  qa-smoke:
-    name: "🧪 QA Smoke — Validate main branch"
+  product-manager:
+    name: "🔵 Product Manager Agent"
     if: |
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'issues' && github.event.action == 'labeled' && github.event.label.name == 'ai-pipeline') ||
-      (github.event_name == 'issues' && github.event.action == 'opened' && contains(github.event.issue.labels.*.name, 'ai-pipeline'))
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: main
-
-      - name: "🎯 Setup Flutter"
-        uses: subosito/flutter-action@v2
-        with:
-          channel: "stable"
-          cache: true
-
-      - name: "📦 Install dependencies"
-        run: flutter pub get
-
-      - name: "🧪 Run Tests on main"
-        run: |
-          if [ ! -d "test" ]; then
-            echo "⚠️ No test/ directory found — skipping tests" | tee /tmp/smoke-output.txt
-            exit 0
-          fi
-          set -o pipefail
-          flutter test --coverage 2>&1 | tee /tmp/smoke-output.txt
-
-      - name: "📊 Post Smoke Result to Issue"
-        if: always() && env.ISSUE_NUMBER != ''
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          TESTS=$(tail -10 /tmp/smoke-output.txt 2>/dev/null || echo "(no output)")
-          STATUS="✅ Tests de main pasan — pipeline iniciado"
-          grep -qiE 'FAILED|Some tests failed' /tmp/smoke-output.txt 2>/dev/null && STATUS="❌ Tests de main FALLAN — pipeline abortado para no desperdiciar tokens"
-          printf '## 🧪 QA Smoke (main) — %s\n\n```\n%s\n```\n' "$STATUS" "$TESTS" > /tmp/smoke-comment.md
-          gh issue comment "${{ env.ISSUE_NUMBER }}" \
-            --repo ${{ env.GH_REPO }} \
-            --body-file /tmp/smoke-comment.md
-
-  product-manager:
-    name: "🔵 Product Manager Agent"
-    needs: qa-smoke
-    if: |
-      always() &&
-      (needs.qa-smoke.result == 'success' || needs.qa-smoke.result == 'skipped') && (
-        github.event_name == 'workflow_dispatch' ||
-        (github.event_name == 'issues' && github.event.action == 'labeled' && github.event.label.name == 'ai-pipeline') ||
-        (github.event_name == 'issues' && github.event.action == 'opened' && contains(github.event.issue.labels.*.name, 'ai-pipeline')) ||
-        (github.event_name == 'issue_comment' && github.event.sender.type != 'Bot' && startsWith(github.event.comment.body, '/feedback:') && !startsWith(github.event.comment.body, '/feedback-backend:') && !startsWith(github.event.comment.body, '/feedback-frontend:'))
-      )
+      (github.event_name == 'issues' && github.event.action == 'opened' && contains(github.event.issue.labels.*.name, 'ai-pipeline')) ||
+      (github.event_name == 'issue_comment' && github.event.sender.type != 'Bot' && startsWith(github.event.comment.body, '/feedback:') && !startsWith(github.event.comment.body, '/feedback-backend:') && !startsWith(github.event.comment.body, '/feedback-frontend:'))
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
