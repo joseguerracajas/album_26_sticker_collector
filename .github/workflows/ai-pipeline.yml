@@ -35,7 +35,8 @@ concurrency:
         github.event.sender.type != 'Bot' &&
         (startsWith(github.event.comment.body, '/feedback:') ||
          startsWith(github.event.comment.body, '/feedback-backend:') ||
-         startsWith(github.event.comment.body, '/feedback-frontend:')) }}
+         startsWith(github.event.comment.body, '/feedback-frontend:') ||
+         startsWith(github.event.comment.body, '/feedback-pm:')) }}
 
 permissions:
   issues: write
@@ -110,13 +111,13 @@ jobs:
             echo "✅ Issue added to project (Status field/Todo option not found, left at default)"
           fi
 
-  product-manager:
-    name: "🔵 Product Manager Agent"
+  product-owner:
+    name: "🟠 Product Owner Agent"
     if: |
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'issues' && github.event.action == 'labeled' && github.event.label.name == 'ai-pipeline') ||
       (github.event_name == 'issues' && github.event.action == 'opened' && contains(github.event.issue.labels.*.name, 'ai-pipeline')) ||
-      (github.event_name == 'issue_comment' && github.event.sender.type != 'Bot' && startsWith(github.event.comment.body, '/feedback:') && !startsWith(github.event.comment.body, '/feedback-backend:') && !startsWith(github.event.comment.body, '/feedback-frontend:'))
+      (github.event_name == 'issue_comment' && github.event.sender.type != 'Bot' && startsWith(github.event.comment.body, '/feedback:') && !startsWith(github.event.comment.body, '/feedback-backend:') && !startsWith(github.event.comment.body, '/feedback-frontend:') && !startsWith(github.event.comment.body, '/feedback-pm:'))
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -151,8 +152,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           # --- Build context ---------------------------------------------------
-          README=$(head -c 8000 README.md 2>/dev/null || echo "")
-          AGENT_PROMPT=$(cat .github/agents/product-manager.md 2>/dev/null || echo "You are a Product Manager. Write user stories in Spanish.")
+          AGENT_PROMPT=$(cat .github/agents/product-owner.md 2>/dev/null || echo "You are a Product Owner. Write user stories in Given/When/Then format.")
           ARB_CONTEXT=$(find lib/l10n -name "*.arb" 2>/dev/null | sort | \
             xargs -I{} sh -c 'echo "=== {} ==="; cat "{}"; echo ""' 2>/dev/null | head -c 2000 || echo "No ARB files")
           BRANCH_URL="https://github.com/${{ env.GH_REPO }}/tree/${{ env.BRANCH_NAME }}"
@@ -184,7 +184,6 @@ jobs:
             USER_MSG="${USER_MSG}\n\n## Orchestrator Feedback — rewrite incorporating this:\n${FEEDBACK}"
           fi
           USER_MSG="${USER_MSG}\n\n## Localization context (ARB files)\n${ARB_CONTEXT}"
-          USER_MSG="${USER_MSG}\n\n## Project Context (README)\n${README}"
           USER_MSG="${USER_MSG}\n\n---\nDetect the language of the feature request / issue title and body above, and respond entirely in that same language. Do not translate to Spanish unless the issue was written in Spanish."
 
           # --- Call LLM --------------------------------------------------------
@@ -245,29 +244,29 @@ jobs:
           mkdir -p docs/ai-output
           printf '%s\n' "$HU" > docs/ai-output/user-stories.md
           git add docs/ai-output/user-stories.md
-          git commit -m "docs: [PM Agent] user stories for issue #${{ env.ISSUE_NUMBER }} [skip ci]" || echo "No changes to commit"
+          git commit -m "docs: [PO Agent] user stories for issue #${{ env.ISSUE_NUMBER }} [skip ci]" || echo "No changes to commit"
           git push origin ${{ env.BRANCH_NAME }}
 
           # --- Post combined comment on issue ---------------------------------
           if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
-            printf '## 🔵 Product Manager Agent — User Stories\n\n%s\n\n---\n🌿 Branch: [%s](%s)\n\n**Feedback commands:**\n- `/feedback: text` — rewrite user stories from scratch (restarts full pipeline)\n- `/feedback-backend: text` — re-run only the Backend agent\n- `/feedback-frontend: text` — re-run only the Frontend agent\n\n---\n\n## 🤖 Pipeline Status\n\n| Stage | Status |\n|-------|--------|\n| 🔵 Product Manager | ✅ Done — review above |\n| 🟢 Backend Developer | ⏸️ Awaiting your approval |\n| 🟡 Frontend Developer | ⏸️ Awaiting approval |\n| 🔴 DevOps | ⏸️ Pending |\n| 🟣 QA Engineer | ⏸️ Pending |\n\n> Pipeline started by: @%s\n> Feature branch: `%s`\n' "$HU" "${{ env.BRANCH_NAME }}" "$BRANCH_URL" "${{ github.actor }}" "${{ env.BRANCH_NAME }}" > /tmp/pm-comment.md
+            printf '## � Product Owner Agent — User Stories\n\n%s\n\n---\n🌿 Branch: [%s](%s)\n\n**Feedback commands:**\n- `/feedback: text` — reescribir historias desde cero (reinicia el pipeline)\n- `/feedback-pm: text` — reescribir solo el brief del PM (después de aprobar PO)\n- `/feedback-backend: text` — re-ejecutar solo el agente Backend\n- `/feedback-frontend: text` — re-ejecutar solo el agente Frontend\n\n---\n\n## 🤖 Pipeline Status\n\n| Stage | Status |\n|-------|--------|\n| 🟠 Product Owner | ✅ Done — review above |\n| 🔵 Product Manager | ⏸️ Awaiting your approval |\n| 🟢 Backend Developer | ⏸️ Pending |\n| 🟡 Frontend Developer | ⏸️ Pending |\n| 🔴 DevOps | ⏸️ Pending |\n| 🟣 QA Engineer | ⏸️ Pending |\n\n> Pipeline started by: @%s\n> Feature branch: `%s`\n' "$HU" "${{ env.BRANCH_NAME }}" "$BRANCH_URL" "${{ github.actor }}" "${{ env.BRANCH_NAME }}" > /tmp/pm-comment.md
             GH_TOKEN="${{ secrets.GITHUB_TOKEN }}" gh issue comment "${{ env.ISSUE_NUMBER }}" \
               --repo ${{ env.GH_REPO }} \
               --body-file /tmp/pm-comment.md
           fi
 
   # ===========================================================================
-  # Stage 2: Approval Gate — User Stories
+  # Stage 2: Approval Gate — User Stories (PO)
   # ===========================================================================
-  approve-stories:
-    name: "🟣 Orchestrator: Approve Stories"
-    needs: product-manager
+  approve-po-stories:
+    name: "🟣 Orchestrator: Approve User Stories (PO)"
+    needs: product-owner
     runs-on: ubuntu-latest
     environment: orchestrator-approval
     steps:
-      - name: "⏳ Waiting for approval on User Stories..."
+      - name: "⏳ Waiting for approval on User Stories (Product Owner)..."
         run: |
-          echo "## 🟣 Approval Required — User Stories" >> $GITHUB_STEP_SUMMARY
+          echo "## 🟣 Approval Required — User Stories (Product Owner)" >> $GITHUB_STEP_SUMMARY
           echo "Review the User Stories posted as an issue comment." >> $GITHUB_STEP_SUMMARY
           echo "To add feedback before approving, comment \`/feedback: ...\` on the issue." >> $GITHUB_STEP_SUMMARY
 
@@ -309,15 +308,136 @@ jobs:
           echo "✅ Issue #${{ env.ISSUE_NUMBER }} moved to In Progress after stories approved"
 
   # ===========================================================================
-  # Stage 3: Backend Developer Agent — LLM generates Supabase changes
+  # Stage 3: Product Manager Agent — LLM generates business brief
   # ===========================================================================
-  backend-developer:
-    name: "🟢 Backend Developer Agent"
-    needs: approve-stories
+  product-manager:
+    name: "🔵 Product Manager Agent"
+    needs: approve-po-stories
     runs-on: ubuntu-latest
     if: |
       always() && (
-        needs.approve-stories.result == 'success' ||
+        needs.approve-po-stories.result == 'success' ||
+        (github.event_name == 'issue_comment' &&
+          github.event.sender.type != 'Bot' &&
+          startsWith(github.event.comment != null && github.event.comment.body || '', '/feedback-pm:') &&
+          github.event.issue != null &&
+          contains(toJson(github.event.issue), 'ai-pipeline'))
+      )
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
+          ref: ${{ env.BRANCH_NAME }}
+
+      - name: "🔵 Generate Product Brief (Gemini or GitHub Models)"
+        env:
+          GITHUB_TOKEN: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
+          MODELS_TOKEN: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          AGENT_PROMPT=$(cat .github/agents/product-manager.md 2>/dev/null || echo "You are a Product Manager. Analyze user stories and provide business context.")
+          HU=$(cat docs/ai-output/user-stories.md 2>/dev/null || echo "No user stories found")
+          # PM needs existing features context (first 3000 chars covers overview + features list)
+          README=$(head -c 3000 README.md 2>/dev/null || echo "")
+          BRANCH_URL="https://github.com/${{ env.GH_REPO }}/tree/${{ env.BRANCH_NAME }}"
+
+          FEEDBACK=""
+          if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
+            FEEDBACK=$(gh issue view "${{ env.ISSUE_NUMBER }}" \
+              --repo ${{ env.GH_REPO }} \
+              --json comments \
+              --jq '[.comments[] | select(.body | startswith("/feedback-pm:")) | .body | ltrimstr("/feedback-pm:")] | last // ""' 2>/dev/null || echo "")
+          fi
+
+          USER_MSG="## Approved User Stories (from Product Owner)\n\n${HU}"
+          if [ -n "$FEEDBACK" ]; then
+            USER_MSG="${USER_MSG}\n\n## Orchestrator Feedback \u2014 rewrite incorporating this:\n${FEEDBACK}"
+          fi
+          USER_MSG="${USER_MSG}\n\n## Project Context (Existing Features)\n${README}"
+          USER_MSG="${USER_MSG}\n\n---\nRespond in the same language as the user stories above."
+
+          PM_BRIEF=""
+          if [ "${{ env.USE_GEMINI }}" = "true" ]; then
+            echo "🤖 Using Gemini 3.1 Pro (Product Manager)"
+            COMBINED_PROMPT="${AGENT_PROMPT}\n\n${USER_MSG}"
+            RESPONSE=$(curl -s -X POST \
+              "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview-customtools:generateContent?key=${GEMINI_API_KEY}" \
+              -H "Content-Type: application/json" \
+              -d "$(jq -n --arg p "$COMBINED_PROMPT" '{contents:[{parts:[{text:$p}]}],generationConfig:{temperature:0.3,maxOutputTokens:4000}}')") 
+            if ! echo "$RESPONSE" | jq -e . >/dev/null 2>&1; then
+              echo "::error::Gemini API returned non-JSON."
+              exit 1
+            fi
+            API_ERROR=$(echo "$RESPONSE" | jq -r '.error.message // empty')
+            if [ -n "$API_ERROR" ]; then echo "::error::Gemini API error: $API_ERROR"; exit 1; fi
+            PM_BRIEF=$(echo "$RESPONSE" | jq -r '.candidates[0].content.parts[0].text // ""')
+          else
+            echo "🤖 Using GitHub Models (gpt-4o) \u2014 Product Manager"
+            RESPONSE=$(curl -s -X POST \
+              "https://models.inference.ai.azure.com/chat/completions" \
+              -H "Authorization: Bearer $MODELS_TOKEN" \
+              -H "Content-Type: application/json" \
+              -d "$(jq -n --arg system "$AGENT_PROMPT" --arg user "$USER_MSG" \
+                '{model:"gpt-4o",messages:[{role:"system",content:$system},{role:"user",content:$user}],max_tokens:3000,temperature:0.3}')")
+            if ! echo "$RESPONSE" | jq -e . >/dev/null 2>&1; then
+              echo "::error::GitHub Models API returned non-JSON."
+              exit 1
+            fi
+            API_ERROR=$(echo "$RESPONSE" | jq -r '.error.message // empty')
+            if [ -n "$API_ERROR" ]; then echo "::error::GitHub Models API error: $API_ERROR"; exit 1; fi
+            PM_BRIEF=$(echo "$RESPONSE" | jq -r '.choices[0].message.content // ""')
+          fi
+
+          if [ -z "$PM_BRIEF" ] || [ "$PM_BRIEF" = "null" ]; then
+            echo "::error::LLM returned empty content."
+            exit 1
+          fi
+          echo "✅ PM brief generated ($(echo "$PM_BRIEF" | wc -c) chars)"
+
+          mkdir -p docs/ai-output
+          printf '%s\n' "$PM_BRIEF" > docs/ai-output/product-brief.md
+          git add docs/ai-output/product-brief.md
+          git commit -m "docs: [PM Agent] product brief for issue #${{ env.ISSUE_NUMBER }} [skip ci]" || echo "No changes to commit"
+          git push origin ${{ env.BRANCH_NAME }}
+
+          if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
+            printf '## \ud83d\udd35 Product Manager Agent \u2014 Business Brief\n\n%s\n\n---\n\ud83c\udf3f Branch: [%s](%s)\n\n**Feedback command:**\n- `/feedback-pm: text` \u2014 reescribir solo el brief del PM\n\n---\n\n## \ud83e\udd16 Pipeline Status\n\n| Stage | Status |\n|-------|--------|\n| \ud83d\udfe0 Product Owner | \u2705 Done |\n| \ud83d\udd35 Product Manager | \u2705 Done \u2014 review above |\n| \ud83d\udfe2 Backend Developer | \u23f8\ufe0f Awaiting your approval |\n| \ud83d\udfe1 Frontend Developer | \u23f8\ufe0f Pending |\n| \ud83d\udd34 DevOps | \u23f8\ufe0f Pending |\n| \ud83d\udfe3 QA Engineer | \u23f8\ufe0f Pending |\n' "$PM_BRIEF" "${{ env.BRANCH_NAME }}" "$BRANCH_URL" > /tmp/pm-brief-comment.md
+            GH_TOKEN="${{ secrets.GITHUB_TOKEN }}" gh issue comment "${{ env.ISSUE_NUMBER }}" \
+              --repo ${{ env.GH_REPO }} \
+              --body-file /tmp/pm-brief-comment.md
+          fi
+
+  # ===========================================================================
+  # Stage 4: Approval Gate — Business Brief (PM)
+  # ===========================================================================
+  approve-pm-brief:
+    name: "🟣 Orchestrator: Approve Business Brief (PM)"
+    needs: product-manager
+    runs-on: ubuntu-latest
+    environment: orchestrator-approval
+    steps:
+      - name: "⏳ Waiting for approval on Business Brief (Product Manager)..."
+        run: |
+          echo "## 🟣 Approval Required \u2014 Business Brief (Product Manager)" >> $GITHUB_STEP_SUMMARY
+          echo "Review the Business Brief posted as an issue comment." >> $GITHUB_STEP_SUMMARY
+          echo "To add feedback before approving, comment \`/feedback-pm: ...\` on the issue." >> $GITHUB_STEP_SUMMARY
+
+  # ===========================================================================
+  # Stage 5: Backend Developer Agent — LLM generates Supabase changes
+  # ===========================================================================
+  backend-developer:
+    name: "🟢 Backend Developer Agent"
+    needs: approve-pm-brief
+    runs-on: ubuntu-latest
+    if: |
+      always() && (
+        needs.approve-pm-brief.result == 'success' ||
         (github.event_name == 'issue_comment' &&
           startsWith(github.event.comment != null && github.event.comment.body || '', '/feedback-backend:') &&
           github.event.issue != null &&
@@ -343,6 +463,7 @@ jobs:
           README=$(cat README.md | head -c 12000)
           AGENT_PROMPT=$(cat .github/agents/backend-developer.md)
           HU=$(cat docs/ai-output/user-stories.md 2>/dev/null || echo "No user stories found")
+          PRODUCT_BRIEF=$(cat docs/ai-output/product-brief.md 2>/dev/null | head -c 2000 || echo "No product brief")
           MIGRATIONS=$(find supabase/migrations -name "*.sql" 2>/dev/null | sort | tail -5 | \
             xargs -I{} sh -c 'echo "### {}"; cat "{}"; echo ""' 2>/dev/null | head -c 3000 || echo "No existing migrations")
           ARB_CONTEXT=$(find lib/l10n -name "*.arb" 2>/dev/null | sort | \
@@ -358,6 +479,7 @@ jobs:
           fi
 
           USER_MSG="## Approved User Stories\n\n${HU}"
+          USER_MSG="${USER_MSG}\n\n## Product Manager Brief (Business Context)\n\n${PRODUCT_BRIEF}"
           if [ -n "$FEEDBACK" ]; then
             USER_MSG="${USER_MSG}\n\n## Orchestrator Feedback — REWRITE your entire output incorporating this feedback\n\n${FEEDBACK}\n\n> Rewrite from scratch including the feedback above. Do not just append."
           fi
@@ -482,6 +604,7 @@ jobs:
           AGENT_PROMPT=$(cat .github/agents/frontend-developer.md)
           PUBSPEC=$(cat pubspec.yaml)
           HU=$(cat docs/ai-output/user-stories.md 2>/dev/null || echo "")
+          PRODUCT_BRIEF=$(cat docs/ai-output/product-brief.md 2>/dev/null | head -c 1500 || echo "No product brief")
           BACKEND_CONTEXT=$(cat docs/ai-output/backend-output.json 2>/dev/null | jq -r \
             '"### Summary\n" + (.summary // "No changes") + "\n\n### Generated migrations\n" + ([.files[]? | "**" + .path + "**\n```sql\n" + .content + "\n```"] | join("\n\n"))' \
             2>/dev/null | head -c 1500 || echo "No backend changes")
@@ -539,6 +662,7 @@ jobs:
           # 🚀 PROMPT CONSTRUCTION WITH ANTI-LAZINESS RULES
           # ===================================================================
           USER_MSG="## Approved User Stories\n\n${HU}"
+          USER_MSG="${USER_MSG}\n\n## Product Manager Brief (Business Context)\n\n${PRODUCT_BRIEF}"
           USER_MSG="${USER_MSG}\n\n## Backend Agent Output\n\n${BACKEND_CONTEXT}"
           if [ -n "$FEEDBACK" ]; then
             USER_MSG="${USER_MSG}\n\n## Orchestrator Feedback\n\n${FEEDBACK}\n\n> Rewrite incorporating feedback."
@@ -777,7 +901,7 @@ jobs:
           HU=$(cat docs/ai-output/user-stories.md 2>/dev/null | head -60 || echo "See issue for details")
           ISSUE_REF="${{ env.ISSUE_NUMBER != '' && format('Closes #{0}', env.ISSUE_NUMBER) || '' }}"
 
-          printf '## 🤖 AI-Generated Feature\n\n%s\n\n## User Stories\n%s\n\n## What was generated\n- ✅ User Stories (PM Agent)\n- ✅ Supabase Migrations (Backend Agent)\n- ✅ Flutter Code (Frontend Agent)\n- ✅ QA — Flutter analyze + tests\n- ✅ DevOps — Build validation\n\n---\n> This PR was generated by the AI Multi-Agent Pipeline.\n> Please review all files carefully before merging.\n' "$ISSUE_REF" "$HU" > /tmp/pr-body.md
+          printf '## 🤖 AI-Generated Feature\n\n%s\n\n## User Stories\n%s\n\n## What was generated\n- ✅ User Stories (PO Agent)\n- ✅ Business Brief (PM Agent)\n- ✅ Supabase Migrations (Backend Agent)\n- ✅ Flutter Code (Frontend Agent)\n- ✅ QA — Flutter analyze + tests\n- ✅ DevOps — Build validation\n\n---\n> This PR was generated by the AI Multi-Agent Pipeline.\n> Please review all files carefully before merging.\n' "$ISSUE_REF" "$HU" > /tmp/pr-body.md
           PR_URL=$(gh pr create \
             --title "feat: [AI Agent] feature for issue #${{ env.ISSUE_NUMBER }}" \
             --body-file /tmp/pr-body.md \
@@ -788,7 +912,7 @@ jobs:
           echo "🔀 PR: $PR_URL" >> $GITHUB_STEP_SUMMARY
 
           if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
-            printf '## ✅ AI Pipeline Completed\n\n| Stage | Status |\n|-------|--------|\n| 🔵 Product Manager | ✅ Done |\n| 🟢 Backend Developer | ✅ Done |\n| 🟡 Frontend Developer | ✅ Done |\n| 🟣 QA Engineer | ✅ Done |\n| 🔴 DevOps | ✅ Done |\n\n🔀 **Pull Request created:** %s\n\nRevisa y mergea el PR — el issue pasará a **Done** automáticamente.\n' "$PR_URL" > /tmp/completed-comment.md
+            printf '## ✅ AI Pipeline Completed\n\n| Stage | Status |\n|-------|--------|\n| � Product Owner | ✅ Done |\n| �🔵 Product Manager | ✅ Done |\n| 🟢 Backend Developer | ✅ Done |\n| 🟡 Frontend Developer | ✅ Done |\n| 🟣 QA Engineer | ✅ Done |\n| 🔴 DevOps | ✅ Done |\n\n🔀 **Pull Request created:** %s\n\nRevisa y mergea el PR — el issue pasará a **Done** automáticamente.\n' "$PR_URL" > /tmp/completed-comment.md
             gh issue comment "${{ env.ISSUE_NUMBER }}" \
               --repo ${{ env.GH_REPO }} \
               --body-file /tmp/completed-comment.md
