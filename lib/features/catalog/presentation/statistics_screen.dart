@@ -1,7 +1,10 @@
 // Archivo: lib/features/catalog/presentation/statistics_screen.dart
 
+import 'dart:io';
 import 'dart:math' as math;
+import 'dart:ui' as ui;
 
+import 'package:album_26_sticker_collector/core/constants/app_constants.dart';
 import 'package:album_26_sticker_collector/core/tutorial/statistics_tutorial.dart';
 import 'package:album_26_sticker_collector/core/tutorial/tutorial_keys.dart';
 import 'package:album_26_sticker_collector/core/tutorial/tutorial_service.dart';
@@ -12,9 +15,12 @@ import 'package:album_26_sticker_collector/features/catalog/presentation/widgets
 import 'package:album_26_sticker_collector/features/inventory/data/stats_provider.dart';
 import 'package:album_26_sticker_collector/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 // ---------------------------------------------------------------------------
 // Provider de activación de pestaña (igual que scanner/exchange/lookup)
@@ -42,7 +48,8 @@ class _SelectedCategoryIdsNotifier extends Notifier<Set<String>?> {
     final current = Set<String>.from(state ?? {});
     if (current.contains(id)) {
       current.remove(id);
-    } else {
+    }
+    else {
       current.add(id);
     }
     state = current.isEmpty ? null : current;
@@ -93,6 +100,7 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
   double _pointerDownX = 0;
   final ScrollController _scrollController = ScrollController();
   bool _tutorialScheduled = false;
+  final GlobalKey _globalProgressCardKey = GlobalKey();
 
   Future<void> _maybeShowStatsTutorial() async {
     if (_tutorialScheduled || !mounted) return;
@@ -102,6 +110,44 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
     if (!mounted) return;
     final done = await TutorialService.isStatsTutorialDone();
     if (!done && mounted) StatisticsTutorial.show(context);
+  }
+
+  Future<void> _shareProgress() async {
+    final l10n = AppLocalizations.of(context);
+    final totalAsync = ref.read(totalStickersCountProvider);
+    final uniqueCollected = ref.read(uniqueCollectedProvider);
+
+    final total = totalAsync.value ?? 0;
+    final progress = total == 0 ? 0.0 : uniqueCollected / total;
+    final percentage = (progress * 100).toStringAsFixed(0);
+
+    // Renderizar la tarjeta de progreso a una imagen
+    final RenderRepaintBoundary? boundary = _globalProgressCardKey.currentContext
+        ?.findRenderObject() as RenderRepaintBoundary?;
+
+    if (boundary == null) {
+      // Handle error: boundary not found
+      return;
+    }
+
+    final image = await boundary.toImage(pixelRatio: 3.0);
+    final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+    final pngBytes = byteData!.buffer.asUint8List();
+
+    final tempDir = await getTemporaryDirectory();
+    final file = await File('${tempDir.path}/progress_share.png').create();
+    await file.writeAsBytes(pngBytes);
+
+    final shareMessage = l10n.shareStatisticsMessage(
+      percentage: percentage,
+      appTitle: l10n.appTitle,
+      appLink: AppConstants.appStoreLink, // Assuming this constant exists
+    );
+
+    await Share.shareXFiles(
+      [XFile(file.path)],
+      text: shareMessage,
+    );
   }
 
   @override
@@ -150,6 +196,16 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
               elevation: 0,
               centerTitle: true,
               iconTheme: const IconThemeData(color: Colors.amber),
+              actions: [
+                IconButton(
+                  key: const ValueKey('share_stats_button'),
+                  icon: const Icon(Icons.share_rounded),
+                  color: Colors.amber,
+                  tooltip: l10n.shareStatisticsTooltip,
+                  onPressed: _shareProgress,
+                ),
+                const AppBarActions(),
+              ],
             ),
             body: RefreshIndicator(
               color: Colors.amber,
@@ -162,13 +218,16 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
                 slivers: [
                   // 1. Sección global de progreso (tarjeta dorada)
                   SliverToBoxAdapter(
-                    child: Container(
-                      key: tutorialStatsGlobalKey,
-                      child: _GlobalProgressCard(
-                        totalAsync: totalAsync,
-                        uniqueCollected: uniqueCollected,
-                        categoryStatsAsync: categoryStatsAsync,
-                        l10n: l10n,
+                    child: RepaintBoundary(
+                      key: _globalProgressCardKey, // Key para capturar el widget
+                      child: Container(
+                        key: tutorialStatsGlobalKey,
+                        child: _GlobalProgressCard(
+                          totalAsync: totalAsync,
+                          uniqueCollected: uniqueCollected,
+                          categoryStatsAsync: categoryStatsAsync,
+                          l10n: l10n,
+                        ),
                       ),
                     ),
                   ),
@@ -185,7 +244,7 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
                         child: _CategoryFilterChips(
                           categories: stats.map((s) => s.category).toList(),
                           selectedIds: selectedCategoryIds,
-                          l10n: l10n,
+                          l110n: l10n,
                         ),
                       ),
                     ),
@@ -337,7 +396,7 @@ class _GlobalProgressCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.amber.withValues(alpha: 0.35),
+                      color: Colors.amber.withOpacity(0.35),
                       blurRadius: 18,
                       offset: const Offset(0, 8),
                     ),
@@ -778,7 +837,7 @@ class _HighlightMiniCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color(0xFF1E1E1E),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: accentColor.withValues(alpha: 0.3), width: 1),
+        border: Border.all(color: accentColor.withOpacity(0.3), width: 1),
       ),
       child: Row(
         children: [
@@ -1032,10 +1091,10 @@ class _CategoryFilterChips extends ConsumerWidget {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.amber.withValues(alpha: 0.15),
+                      color: Colors.amber.withOpacity(0.15),
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
-                        color: Colors.amber.withValues(alpha: 0.5),
+                        color: Colors.amber.withOpacity(0.5),
                         width: 1,
                       ),
                     ),
@@ -1372,8 +1431,8 @@ class _CategoryStatCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(18),
               border: Border.all(
                 color: stats.percentage >= 1.0
-                    ? Colors.greenAccent.withValues(alpha: 0.3)
-                    : Colors.white.withValues(alpha: 0.04),
+                    ? Colors.greenAccent.withOpacity(0.3)
+                    : Colors.white.withOpacity(0.04),
                 width: 1,
               ),
             ),
