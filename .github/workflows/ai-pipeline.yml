@@ -370,7 +370,7 @@ jobs:
             RESPONSE=$(curl -s -X POST \
               "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview-customtools:generateContent?key=${GEMINI_API_KEY}" \
               -H "Content-Type: application/json" \
-              -d "$(jq -n --arg p "$COMBINED_PROMPT" '{contents:[{parts:[{text:$p}]}],generationConfig:{temperature:0.2,maxOutputTokens:32000,responseMimeType:"application/json",thinkingConfig:{thinkingBudget:0}}}')")
+              -d "$(jq -n --arg p "$COMBINED_PROMPT" '{contents:[{parts:[{text:$p}]}],generationConfig:{temperature:0.2,maxOutputTokens:32000,responseMimeType:"application/json",thinkingConfig:{thinkingBudget:4096}}}')")
             FINISH=$(echo "$RESPONSE" | jq -r '.candidates[0].finishReason // ""')
             echo "Gemini finishReason: $FINISH"
             LLM_OUTPUT=$(echo "$RESPONSE" | jq -r '.candidates[0].content.parts[0].text // "{}"')
@@ -562,7 +562,7 @@ jobs:
             RESPONSE=$(curl -s -X POST \
               "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview-customtools:generateContent?key=${GEMINI_API_KEY}" \
               -H "Content-Type: application/json" \
-              -d "$(jq -n --arg p "$COMBINED_PROMPT" '{contents:[{parts:[{text:$p}]}],generationConfig:{temperature:0.2,maxOutputTokens:32000,responseMimeType:"application/json",thinkingConfig:{thinkingBudget:0}}}')")
+              -d "$(jq -n --arg p "$COMBINED_PROMPT" '{contents:[{parts:[{text:$p}]}],generationConfig:{temperature:0.2,maxOutputTokens:32000,responseMimeType:"application/json",thinkingConfig:{thinkingBudget:4096}}}')")
             FINISH=$(echo "$RESPONSE" | jq -r '.candidates[0].finishReason // ""')
             USAGE=$(echo "$RESPONSE" | jq -c '.usageMetadata // {}')
             echo "Gemini finishReason: $FINISH"
