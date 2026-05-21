@@ -1,4 +1,16 @@
 {
+  "shareStatisticsTooltip": "Share progress",
+  "shareStatisticsMessage": "I have collected {percentage}% of the {appTitle}! Can you beat me?",
+  "@shareStatisticsMessage": {
+    "placeholders": {
+      "percentage": {
+        "type": "String"
+      },
+      "appTitle": {
+        "type": "String"
+      }
+    }
+  },
   "@@locale": "en",
   "appTitle": "Sticker Album 2026",
   "authWelcomeTitle": "Welcome to Sticker Album 2026",
@@ -176,7 +188,9 @@
   "paywallFreeTrial": "Free trial for {days} days",
   "@paywallFreeTrial": {
     "placeholders": {
-      "days": {"type": "int"}
+      "days": {
+        "type": "int"
+      }
     }
   },
   "paywallRestorePurchases": "Restore purchases",

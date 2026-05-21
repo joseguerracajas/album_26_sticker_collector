@@ -1,6 +1,7 @@
 // Archivo: lib/features/catalog/presentation/statistics_screen.dart
 
 import 'dart:math' as math;
+import 'dart:ui' as ui;
 
 import 'package:album_26_sticker_collector/core/tutorial/statistics_tutorial.dart';
 import 'package:album_26_sticker_collector/core/tutorial/tutorial_keys.dart';
@@ -15,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:share_plus/share_plus.dart';
 
 // ---------------------------------------------------------------------------
 // Provider de activación de pestaña (igual que scanner/exchange/lookup)
@@ -93,6 +95,7 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
   double _pointerDownX = 0;
   final ScrollController _scrollController = ScrollController();
   bool _tutorialScheduled = false;
+  bool _isSharing = false;
 
   Future<void> _maybeShowStatsTutorial() async {
     if (_tutorialScheduled || !mounted) return;
@@ -102,6 +105,100 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
     if (!mounted) return;
     final done = await TutorialService.isStatsTutorialDone();
     if (!done && mounted) StatisticsTutorial.show(context);
+  }
+
+  Future<void> _shareProgress() async {
+    if (_isSharing) return;
+    
+    final totalAsync = ref.read(totalStickersCountProvider);
+    final categoryStatsAsync = ref.read(categoryStatsProvider);
+    
+    if (totalAsync.isLoading || categoryStatsAsync.isLoading) return;
+
+    setState(() => _isSharing = true);
+    try {
+      final uniqueCollected = ref.read(uniqueCollectedProvider);
+      final total = totalAsync.valueOrNull ?? 0;
+      final progress = total == 0 ? 0.0 : uniqueCollected / total;
+      final percentage = progress * 100;
+
+      int duplicateCopies = 0;
+      int completedCategories = 0;
+      int totalCategories = 0;
+
+      if (categoryStatsAsync.hasValue) {
+        final stats = categoryStatsAsync.value!;
+        totalCategories = stats.length;
+        duplicateCopies = stats.fold(0, (sum, s) => sum + s.duplicateCopies);
+        completedCategories = stats.where((s) => s.percentage >= 1.0).length;
+      }
+
+      // Load app icon
+      ui.Image? appIcon;
+      try {
+        final ByteData data = await rootBundle.load('assets/icon/app_icon.png');
+        final ui.Codec codec = await ui.instantiateImageCodec(
+          data.buffer.asUint8List(),
+          targetWidth: 120,
+          targetHeight: 120,
+        );
+        final ui.FrameInfo fi = await codec.getNextFrame();
+        appIcon = fi.image;
+      } catch (_) {
+        // Ignore if asset not found
+      }
+
+      final recorder = ui.PictureRecorder();
+      final canvas = Canvas(recorder);
+      const size = Size(800, 450);
+      final l10n = AppLocalizations.of(context);
+
+      final painter = _ProgressCardPainter(
+        total: total,
+        uniqueCollected: uniqueCollected,
+        percentage: percentage,
+        duplicateCopies: duplicateCopies,
+        completedCategories: completedCategories,
+        totalCategories: totalCategories,
+        appIcon: appIcon,
+        l10n: l10n,
+      );
+
+      painter.paint(canvas, size);
+
+      final picture = recorder.endRecording();
+      final img = await picture.toImage(size.width.toInt(), size.height.toInt());
+      final byteData = await img.toByteData(format: ui.ImageByteFormat.png);
+      final buffer = byteData!.buffer.asUint8List();
+
+      final message = l10n.shareStatisticsMessage(
+        percentage.toStringAsFixed(1),
+        l10n.appTitle,
+      );
+
+      await Share.shareXFiles(
+        [
+          XFile.fromData(
+            buffer,
+            mimeType: 'image/png',
+            name: 'album_26_progress.png',
+          )
+        ],
+        text: message,
+      );
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              AppLocalizations.of(context).commonErrorWithMessage(e.toString()),
+            ),
+          ),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isSharing = false);
+    }
   }
 
   @override
@@ -150,6 +247,28 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
               elevation: 0,
               centerTitle: true,
               iconTheme: const IconThemeData(color: Colors.amber),
+              actions: [
+                if (_isSharing)
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Center(
+                      child: SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(
+                          color: Colors.amber,
+                          strokeWidth: 2,
+                        ),
+                      ),
+                    ),
+                  )
+                else
+                  IconButton(
+                    icon: const Icon(Icons.share_rounded),
+                    tooltip: l10n.shareStatisticsTooltip,
+                    onPressed: _shareProgress,
+                  ),
+              ],
             ),
             body: RefreshIndicator(
               color: Colors.amber,
@@ -1465,4 +1584,196 @@ class _CategoryStatCard extends StatelessWidget {
           curve: Curves.easeOut,
         );
   }
+}
+
+// ---------------------------------------------------------------------------
+// CustomPainter para generar la imagen de progreso global
+// ---------------------------------------------------------------------------
+class _ProgressCardPainter extends CustomPainter {
+  final int total;
+  final int uniqueCollected;
+  final double percentage;
+  final int duplicateCopies;
+  final int completedCategories;
+  final int totalCategories;
+  final ui.Image? appIcon;
+  final AppLocalizations l10n;
+
+  _ProgressCardPainter({
+    required this.total,
+    required this.uniqueCollected,
+    required this.percentage,
+    required this.duplicateCopies,
+    required this.completedCategories,
+    required this.totalCategories,
+    required this.appIcon,
+    required this.l10n,
+  });
+
+  void _drawText(
+    Canvas canvas,
+    String text,
+    Offset offset, {
+    double fontSize = 14,
+    FontWeight fontWeight = FontWeight.normal,
+    TextAlign align = TextAlign.left,
+    Color color = Colors.black,
+  }) {
+    final span = TextSpan(
+      style: TextStyle(color: color, fontSize: fontSize, fontWeight: fontWeight),
+      text: text,
+    );
+    final tp = TextPainter(
+      text: span,
+      textAlign: align,
+      textDirection: TextDirection.ltr,
+    );
+    tp.layout();
+    if (align == TextAlign.center) {
+      tp.paint(canvas, Offset(offset.dx - tp.width / 2, offset.dy - tp.height / 2));
+    } else {
+      tp.paint(canvas, offset);
+    }
+  }
+
+  void _drawIcon(
+    Canvas canvas,
+    IconData icon,
+    Offset offset, {
+    double size = 24,
+    Color color = Colors.black54,
+  }) {
+    final span = TextSpan(
+      text: String.fromCharCode(icon.codePoint),
+      style: TextStyle(
+        fontSize: size,
+        fontFamily: icon.fontFamily,
+        package: icon.fontPackage,
+        color: color,
+      ),
+    );
+    final tp = TextPainter(text: span, textDirection: TextDirection.ltr);
+    tp.layout();
+    tp.paint(canvas, offset);
+  }
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    // Background
+    final rect = Offset.zero & size;
+    final rrect = RRect.fromRectAndRadius(rect, const Radius.circular(32));
+    final paint = Paint()
+      ..shader = ui.Gradient.linear(
+        rect.topLeft,
+        rect.bottomRight,
+        [Colors.amber.shade400, Colors.amber.shade800],
+      );
+    canvas.drawRRect(rrect, paint);
+
+    // App Icon
+    if (appIcon != null) {
+      canvas.drawImage(appIcon!, Offset(size.width - 140, 40), Paint());
+    }
+
+    // Big Circular Progress
+    final center = const Offset(180, 200);
+    const radius = 100.0;
+    const strokeWidth = 20.0;
+    
+    canvas.drawArc(
+      Rect.fromCircle(center: center, radius: radius),
+      0,
+      2 * math.pi,
+      false,
+      Paint()
+        ..color = Colors.black26
+        ..strokeWidth = strokeWidth
+        ..style = PaintingStyle.stroke
+        ..strokeCap = StrokeCap.round,
+    );
+
+    final sweepAngle = 2 * math.pi * (percentage / 100).clamp(0.0, 1.0);
+    canvas.drawArc(
+      Rect.fromCircle(center: center, radius: radius),
+      -math.pi / 2,
+      sweepAngle,
+      false,
+      Paint()
+        ..color = Colors.white
+        ..strokeWidth = strokeWidth
+        ..style = PaintingStyle.stroke
+        ..strokeCap = StrokeCap.round,
+    );
+
+    _drawText(
+      canvas,
+      '${percentage.toStringAsFixed(1)}%',
+      center,
+      fontSize: 42,
+      fontWeight: FontWeight.bold,
+      align: TextAlign.center,
+    );
+
+    // Stats
+    double startX = 340;
+    double startY = 100;
+    _drawText(
+      canvas,
+      l10n.homeGlobalProgressTitle,
+      Offset(startX, startY),
+      fontSize: 32,
+      fontWeight: FontWeight.bold,
+    );
+    startY += 50;
+
+    void drawStatRow(IconData icon, String label, String value, double y) {
+      _drawIcon(canvas, icon, Offset(startX, y), size: 28);
+      _drawText(canvas, label, Offset(startX + 40, y + 2), fontSize: 22, color: Colors.black87);
+      _drawText(canvas, value, Offset(startX + 250, y + 2), fontSize: 24, fontWeight: FontWeight.bold);
+    }
+
+    drawStatRow(Icons.style_rounded, l10n.statsTotalLabel, '$total', startY);
+    startY += 40;
+    drawStatRow(Icons.check_circle_rounded, l10n.statsCollectedLabel, '$uniqueCollected', startY);
+    startY += 40;
+    drawStatRow(Icons.radio_button_unchecked_rounded, l10n.filterMissing, '${total - uniqueCollected}', startY);
+
+    // Linear Progress
+    final barRect = Rect.fromLTWH(60, 340, size.width - 120, 20);
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(barRect, const Radius.circular(10)),
+      Paint()..color = Colors.black12,
+    );
+    final progressWidth = (size.width - 120) * (percentage / 100).clamp(0.0, 1.0);
+    if (progressWidth > 0) {
+      canvas.drawRRect(
+        RRect.fromRectAndRadius(
+          Rect.fromLTWH(60, 340, progressWidth, 20),
+          const Radius.circular(10),
+        ),
+        Paint()..color = Colors.white,
+      );
+    }
+
+    // Bottom Stats
+    _drawText(
+      canvas,
+      '${l10n.statsDuplicateCopiesLabel}: $duplicateCopies',
+      const Offset(160, 400),
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+      align: TextAlign.center,
+    );
+    _drawText(
+      canvas,
+      '${l10n.statsCompletedCategories}: $completedCategories / $totalCategories',
+      Offset(size.width - 160, 400),
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+      align: TextAlign.center,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant _ProgressCardPainter oldDelegate) => true;
 }
