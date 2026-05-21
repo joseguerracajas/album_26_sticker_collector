@@ -407,7 +407,7 @@ jobs:
           git push origin ${{ env.BRANCH_NAME }}
 
           if [ -n "${{ env.ISSUE_NUMBER }}" ]; then
-            printf '## \ud83d\udd35 Product Manager Agent \u2014 Business Brief\n\n%s\n\n---\n\ud83c\udf3f Branch: [%s](%s)\n\n**Feedback command:**\n- `/feedback-pm: text` \u2014 reescribir solo el brief del PM\n\n---\n\n## \ud83e\udd16 Pipeline Status\n\n| Stage | Status |\n|-------|--------|\n| \ud83d\udfe0 Product Owner | \u2705 Done |\n| \ud83d\udd35 Product Manager | \u2705 Done \u2014 review above |\n| \ud83d\udfe2 Backend Developer | \u23f8\ufe0f Awaiting your approval |\n| \ud83d\udfe1 Frontend Developer | \u23f8\ufe0f Pending |\n| \ud83d\udd34 DevOps | \u23f8\ufe0f Pending |\n| \ud83d\udfe3 QA Engineer | \u23f8\ufe0f Pending |\n' "$PM_BRIEF" "${{ env.BRANCH_NAME }}" "$BRANCH_URL" > /tmp/pm-brief-comment.md
+            printf '## 🔵 Product Manager Agent — Business Brief\n\n%s\n\n---\n🌿 Branch: [%s](%s)\n\n**Feedback command:**\n- `/feedback-pm: text` — reescribir solo el brief del PM\n\n---\n\n## 🤖 Pipeline Status\n\n| Stage | Status |\n|-------|--------|\n| 🟠 Product Owner | ✅ Done |\n| 🔵 Product Manager | ✅ Done — review above |\n| 🟢 Backend Developer | ⏸️ Awaiting your approval |\n| 🟡 Frontend Developer | ⏸️ Pending |\n| 🔴 DevOps | ⏸️ Pending |\n| 🟣 QA Engineer | ⏸️ Pending |\n' "$PM_BRIEF" "${{ env.BRANCH_NAME }}" "$BRANCH_URL" > /tmp/pm-brief-comment.md
             GH_TOKEN="${{ secrets.GITHUB_TOKEN }}" gh issue comment "${{ env.ISSUE_NUMBER }}" \
               --repo ${{ env.GH_REPO }} \
               --body-file /tmp/pm-brief-comment.md

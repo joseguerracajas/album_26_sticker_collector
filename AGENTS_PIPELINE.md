@@ -214,4 +214,4 @@ En cada etapa puedes:
 
 ---
 
-*Built with ❤️ using AI agents for FIFA World Cup 2026 Album Collector*
+*Built with ❤️ using AI agents for Sticker Album 2026*

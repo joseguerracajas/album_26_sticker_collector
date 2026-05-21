@@ -440,7 +440,7 @@ Todos los modelos del catálogo están anotados con `@ConnectOfflineFirstWithSup
 | Campo | Tipo | Descripción |
 |---|---|---|
 | `id` | `String` (UUID) | PK único, indexado |
-| `name` | `String` | Nombre del álbum (ej: "FIFA World Cup 2026") |
+| `name` | `String` | Nombre del álbum (ej: "Sticker Album 2026") |
 | `year` | `int` | Año del álbum |
 | `isActive` | `bool` | Si es el álbum activo que se muestra por defecto |
 | `coverUrl` | `String?` | URL de la portada del álbum |
