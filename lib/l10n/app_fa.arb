@@ -22,17 +22,13 @@
     }
   },
   "authErrorInvalidCredentials": "ایمیل یا رمز عبور نامعتبر است. لطفاً اطلاعات خود را بررسی کرده و دوباره امتحان کنید.",
-  "shareStatsTooltip": "اشتراک گذاری آمار",
-  "shareStatsMessage": "پیشرفت جمع آوری استیکر من را در {appName} بررسی کنید! #StickerCollector",
-  "@shareStatsMessage": {
+  "shareStatisticsTooltip": "اشتراک‌گذاری آمار",
+  "shareStatisticsMessage": "پیشرفت من را در {appTitle} ببینید! من {percentage}% از آلبومم را تکمیل کرده‌ام. برنامه را دانلود کنید و با من جمع‌آوری کنید: {appLink}",
+  "@shareStatisticsMessage": {
     "placeholders": {
-      "appName": {}
-    }
-  },
-  "shareStatsError": "امکان اشتراک گذاری آمار وجود ندارد: {error}",
-  "@shareStatsError": {
-    "placeholders": {
-      "error": {}
+      "percentage": {},
+      "appLink": {},
+      "appTitle": {}
     }
   }
 }

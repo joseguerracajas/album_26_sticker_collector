@@ -22,17 +22,13 @@
     }
   },
   "authErrorInvalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة. تحقق من بياناتك وحاول مجدداً.",
-  "shareStatsTooltip": "مشاركة الإحصائيات",
-  "shareStatsMessage": "تحقق من تقدمي في جمع الملصقات في {appName}! #StickerCollector",
-  "@shareStatsMessage": {
+  "shareStatisticsTooltip": "مشاركة الإحصائيات",
+  "shareStatisticsMessage": "شاهد تقدمي في {appTitle}! لقد أكملت {percentage}% من ألبومي. حمل التطبيق واجمع معي: {appLink}",
+  "@shareStatisticsMessage": {
     "placeholders": {
-      "appName": {}
-    }
-  },
-  "shareStatsError": "تعذر مشاركة الإحصائيات: {error}",
-  "@shareStatsError": {
-    "placeholders": {
-      "error": {}
+      "percentage": {},
+      "appLink": {},
+      "appTitle": {}
     }
   }
 }

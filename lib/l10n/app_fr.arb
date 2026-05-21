@@ -6,7 +6,8 @@
   "authPasswordLabel": "Mot de passe",
   "authLoginButton": "Se connecter",
   "authContinueWith": "Ou continuer avec",
-  "authContinueGoogle": "Continuer avec Google",  "authContinueApple": "Continuer avec Apple",
+  "authContinueGoogle": "Continuer avec Google",
+  "authContinueApple": "Continuer avec Apple",
   "authContinueGuest": "Continuer en tant qu'invité",
   "authNoAccountRegister": "Pas de compte ? Inscrivez-vous maintenant",
   "authForgotPassword": "Mot de passe oublié ?",
@@ -21,17 +22,13 @@
     }
   },
   "authErrorInvalidCredentials": "E-mail ou mot de passe invalide. Veuillez vérifier vos identifiants et réessayer.",
-  "shareStatsTooltip": "Partager les statistiques",
-  "shareStatsMessage": "Découvrez ma progression de collection de stickers dans {appName} ! #StickerCollector",
-  "@shareStatsMessage": {
+  "shareStatisticsTooltip": "Partager les statistiques",
+  "shareStatisticsMessage": "Découvrez ma progression dans {appTitle} ! J'ai complété {percentage}% de mon album. Téléchargez l'application et collectionnez avec moi : {appLink}",
+  "@shareStatisticsMessage": {
     "placeholders": {
-      "appName": {}
-    }
-  },
-  "shareStatsError": "Impossible de partager les statistiques : {error}",
-  "@shareStatsError": {
-    "placeholders": {
-      "error": {}
+      "percentage": {},
+      "appLink": {},
+      "appTitle": {}
     }
   }
 }

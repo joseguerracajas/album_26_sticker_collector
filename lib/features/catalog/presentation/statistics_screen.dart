@@ -57,7 +57,7 @@ class _SelectedCategoryIdsNotifier extends Notifier<Set<String>?> {
 }
 
 final _selectedCategoryIdsProvider =
-    NotifierProvider<_SelectedCategoryIdsNotifier, Set<String>?>(
+    NotifierProvider<_SelectedCategoryIdsNotifier, Set<String>?>( 
       _SelectedCategoryIdsNotifier.new,
     );
 
@@ -85,6 +85,63 @@ final _statsSortProvider =
     );
 
 // ---------------------------------------------------------------------------
+// Provider para manejar la lógica de compartir estadísticas
+// ---------------------------------------------------------------------------
+@riverpod
+class StatisticsNotifier extends _$StatisticsNotifier {
+  @override
+  FutureOr<void> build() {
+    // No es necesario inicializar nada aquí para la funcionalidad de compartir
+    return;
+  }
+
+  Future<void> shareStatistics(BuildContext context, GlobalKey shareImageKey) async {
+    final l10n = AppLocalizations.of(context);
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() async {
+      try {
+        final RenderRepaintBoundary boundary = shareImageKey.currentContext!
+            .findRenderObject()! as RenderRepaintBoundary;
+        final ui.Image image = await boundary.toImage(pixelRatio: 3.0);
+        final ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+        final Uint8List pngBytes = byteData!.buffer.asUint8List();
+
+        final directory = await getTemporaryDirectory();
+        final imagePath = '${directory.path}/statistics.png';
+        final file = File(imagePath);
+        await file.writeAsBytes(pngBytes);
+
+        // Obtener estadísticas para el mensaje localizado
+        final totalAsync = ref.read(totalStickersCountProvider);
+        final uniqueCollected = ref.read(uniqueCollectedProvider);
+        final total = totalAsync.value ?? 0;
+        final progress = total == 0 ? 0.0 : uniqueCollected / total;
+        final percentage = progress * 100;
+
+        await Share.shareXFiles(
+          [XFile(file.path)],
+          text: l10n.shareStatisticsMessage(
+            percentage: percentage.toStringAsFixed(0),
+            appLink: 'https://example.com/album26',
+            appTitle: l10n.appTitle
+          ),
+        );
+      } catch (e) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(l10n.commonErrorWithMessage(e.toString())),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+        rethrow; // Re-throw to be caught by AsyncValue.guard
+      }
+    });
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Pantalla principal
 // ---------------------------------------------------------------------------
 class StatisticsScreen extends ConsumerStatefulWidget {
@@ -108,36 +165,6 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
     if (!mounted) return;
     final done = await TutorialService.isStatsTutorialDone();
     if (!done && mounted) StatisticsTutorial.show(context);
-  }
-
-  Future<void> _shareStatistics() async {
-    final l10n = AppLocalizations.of(context);
-    try {
-      final RenderRepaintBoundary boundary = _shareImageKey.currentContext!
-          .findRenderObject()! as RenderRepaintBoundary;
-      final ui.Image image = await boundary.toImage(pixelRatio: 3.0);
-      final ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-      final Uint8List pngBytes = byteData!.buffer.asUint8List();
-
-      final directory = await getTemporaryDirectory();
-      final imagePath = '${directory.path}/statistics.png';
-      final file = File(imagePath);
-      await file.writeAsBytes(pngBytes);
-
-      await Share.shareXFiles(
-        [XFile(file.path)],
-        text: l10n.shareStatsMessage(l10n.appTitle),
-      );
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n.shareStatsError(e.toString())),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
-    }
   }
 
   @override
@@ -189,8 +216,8 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
               actions: [
                 IconButton(
                   icon: const Icon(Icons.share_rounded, color: Colors.amber),
-                  onPressed: _shareStatistics,
-                  tooltip: l10n.shareStatsTooltip,
+                  onPressed: () => ref.read(statisticsNotifierProvider.notifier).shareStatistics(context, _shareImageKey),
+                  tooltip: l10n.shareStatisticsTooltip,
                 ),
               ],
             ),
@@ -1313,7 +1340,7 @@ class _CategoryPickerSheetState extends ConsumerState<_CategoryPickerSheet> {
                   : GridView.builder(
                       controller: scrollCtrl,
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
-                      gridDelegate:
+                      gridDelegate: 
                           const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3,
                             mainAxisSpacing: 8,

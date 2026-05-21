@@ -9,7 +9,7 @@
   "authContinueGoogle": "Continue with Google",
   "authContinueApple": "Continue with Apple",
   "authContinueGuest": "Continue as Guest",
-  "authNoAccountRegister": "Don't have an account? Register now",
+  "authNoAccountRegister": "No account? Register now",
   "authForgotPassword": "Forgot password?",
   "authResetPasswordEnterEmail": "Enter your email to reset your password.",
   "authResetPasswordEmailSent": "We've sent you a password reset email.",
@@ -22,17 +22,13 @@
     }
   },
   "authErrorInvalidCredentials": "Invalid email or password. Please check your credentials and try again.",
-  "shareStatsTooltip": "Share Statistics",
-  "shareStatsMessage": "Check out my sticker collecting progress in {appName}! #StickerCollector",
-  "@shareStatsMessage": {
+  "shareStatisticsTooltip": "Share statistics",
+  "shareStatisticsMessage": "Check out my progress in {appTitle}! I've completed {percentage}% of my album. Download the app and collect with me: {appLink}",
+  "@shareStatisticsMessage": {
     "placeholders": {
-      "appName": {}
-    }
-  },
-  "shareStatsError": "Could not share statistics: {error}",
-  "@shareStatsError": {
-    "placeholders": {
-      "error": {}
+      "percentage": {},
+      "appLink": {},
+      "appTitle": {}
     }
   }
 }
