@@ -130,7 +130,8 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
 
         final valid = stats.where((s) => s.total > 0).toList();
         if (valid.isNotEmpty) {
-          final sorted = [...valid]..sort((a, b) => b.percentage.compareTo(a.percentage));
+          final sorted = [...valid]
+            ..sort((a, b) => b.percentage.compareTo(a.percentage));
           final best = sorted.first;
           final worst = sorted.last;
           bestName = '${best.category.emoji} ${best.category.name}';
@@ -143,7 +144,10 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
       ui.Image? appIcon;
       try {
         final ByteData data = await rootBundle.load('assets/icon/app_icon.png');
-        final ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(), targetWidth: 200);
+        final ui.Codec codec = await ui.instantiateImageCodec(
+          data.buffer.asUint8List(),
+          targetWidth: 200,
+        );
         final ui.FrameInfo fi = await codec.getNextFrame();
         appIcon = fi.image;
       } catch (_) {}
@@ -170,26 +174,34 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
 
       painter.paint(canvas, size);
       final picture = recorder.endRecording();
-      final image = await picture.toImage(size.width.toInt(), size.height.toInt());
+      final image = await picture.toImage(
+        size.width.toInt(),
+        size.height.toInt(),
+      );
       final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
       final buffer = byteData!.buffer.asUint8List();
 
       final tempDir = Directory.systemTemp;
-      final file = File('${tempDir.path}/stats_share_${DateTime.now().millisecondsSinceEpoch}.png');
+      final file = File(
+        '${tempDir.path}/stats_share_${DateTime.now().millisecondsSinceEpoch}.png',
+      );
       await file.writeAsBytes(buffer);
 
-      final percentageStr = total == 0 ? '0' : ((uniqueCollected / total) * 100).toStringAsFixed(1);
-      final message = l10n.shareStatisticsMessage(percentageStr, l10n.appTitle, 'https://album26.com');
-
-      await Share.shareXFiles(
-        [XFile(file.path)],
-        text: message,
+      final percentageStr = total == 0
+          ? '0'
+          : ((uniqueCollected / total) * 100).toStringAsFixed(1);
+      final message = l10n.shareStatisticsMessage(
+        percentageStr,
+        l10n.appTitle,
+        'https://album26.com',
       );
+
+      await Share.shareXFiles([XFile(file.path)], text: message);
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error: $e')));
       }
     } finally {
       if (mounted) {
@@ -251,7 +263,10 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
                     child: SizedBox(
                       width: 24,
                       height: 24,
-                      child: CircularProgressIndicator(color: Colors.amber, strokeWidth: 2),
+                      child: CircularProgressIndicator(
+                        color: Colors.amber,
+                        strokeWidth: 2,
+                      ),
                     ),
                   )
                 else
@@ -1615,22 +1630,32 @@ class _ShareStatsPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     // Background
-    canvas.drawRect(Offset.zero & size, Paint()..color = const Color(0xFF121212));
+    canvas.drawRect(
+      Offset.zero & size,
+      Paint()..color = const Color(0xFF121212),
+    );
 
     // Draw App Title and Icon at the top
     if (appIcon != null) {
       canvas.drawImage(appIcon!, const Offset(440, 150), Paint());
     }
-    
+
     final titlePainter = TextPainter(
       text: TextSpan(
         text: l10n.appTitle,
-        style: const TextStyle(color: Colors.white, fontSize: 60, fontWeight: FontWeight.bold),
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 60,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       textDirection: textDirection,
     );
     titlePainter.layout();
-    titlePainter.paint(canvas, Offset((size.width - titlePainter.width) / 2, 380));
+    titlePainter.paint(
+      canvas,
+      Offset((size.width - titlePainter.width) / 2, 380),
+    );
 
     // Draw Card
     final cardRect = RRect.fromRectAndRadius(
@@ -1644,12 +1669,18 @@ class _ShareStatsPainter extends CustomPainter {
       [Colors.amber.shade400, Colors.amber.shade800],
     );
 
+    // Draw shadow separately (Paint has no shadow setter)
     canvas.drawRRect(
-      cardRect,
+      cardRect.shift(const Offset(0, 16)),
       Paint()
-        ..shader = gradient
-        ..shadow = const Shadow(color: Color(0x59FFC107), blurRadius: 36, offset: Offset(0, 16)),
+        ..color = const Color(0x59FFC107)
+        ..maskFilter = MaskFilter.blur(
+          BlurStyle.normal,
+          Shadow.convertRadiusToSigma(36),
+        ),
     );
+
+    canvas.drawRRect(cardRect, Paint()..shader = gradient);
 
     // Inside Card
     // Big Circular Progress
@@ -1689,38 +1720,75 @@ class _ShareStatsPainter extends CustomPainter {
     final pctPainter = TextPainter(
       text: TextSpan(
         text: '${percentage.toStringAsFixed(1)}%',
-        style: const TextStyle(color: Colors.black, fontSize: 48, fontWeight: FontWeight.bold),
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 48,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       textDirection: textDirection,
     );
     pctPainter.layout();
-    pctPainter.paint(canvas, Offset(centerCircle.dx - pctPainter.width / 2, centerCircle.dy - pctPainter.height / 2));
+    pctPainter.paint(
+      canvas,
+      Offset(
+        centerCircle.dx - pctPainter.width / 2,
+        centerCircle.dy - pctPainter.height / 2,
+      ),
+    );
 
     // Stats to the right
     double textX = 440;
     double textY = 600;
 
-    _drawText(canvas, l10n.homeGlobalProgressTitle, textX, textY, Colors.black, 40, true);
+    _drawText(
+      canvas,
+      l10n.homeGlobalProgressTitle,
+      textX,
+      textY,
+      Colors.black,
+      40,
+      true,
+    );
     textY += 70;
     _drawStatRow(canvas, l10n.statsTotalLabel, '$total', textX, textY);
     textY += 50;
-    _drawStatRow(canvas, l10n.statsCollectedLabel, '$uniqueCollected', textX, textY);
+    _drawStatRow(
+      canvas,
+      l10n.statsCollectedLabel,
+      '$uniqueCollected',
+      textX,
+      textY,
+    );
     textY += 50;
     _drawStatRow(canvas, l10n.filterMissing, '$missing', textX, textY);
 
     // Linear Progress
     textY += 100;
-    final barRect = RRect.fromRectAndRadius(Rect.fromLTWH(140, textY, 800, 20), const Radius.circular(10));
+    final barRect = RRect.fromRectAndRadius(
+      Rect.fromLTWH(140, textY, 800, 20),
+      const Radius.circular(10),
+    );
     canvas.drawRRect(barRect, Paint()..color = Colors.black12);
     if (progress > 0) {
-      final progressRect = RRect.fromRectAndRadius(Rect.fromLTWH(140, textY, 800 * progress, 20), const Radius.circular(10));
+      final progressRect = RRect.fromRectAndRadius(
+        Rect.fromLTWH(140, textY, 800 * progress, 20),
+        const Radius.circular(10),
+      );
       canvas.drawRRect(progressRect, Paint()..color = Colors.white);
     }
 
     textY += 40;
     final countText = l10n.homeCollectedCount(uniqueCollected, total);
     final countPainter = TextPainter(
-      text: TextSpan(text: countText, style: const TextStyle(color: Colors.black, fontSize: 28, fontWeight: FontWeight.bold)),
+      text: TextSpan(
+        text: countText,
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 28,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
       textDirection: textDirection,
     );
     countPainter.layout();
@@ -1728,63 +1796,176 @@ class _ShareStatsPainter extends CustomPainter {
 
     // Divider
     textY += 80;
-    canvas.drawLine(Offset(140, textY), Offset(940, textY), Paint()..color = Colors.black26..strokeWidth = 2);
+    canvas.drawLine(
+      Offset(140, textY),
+      Offset(940, textY),
+      Paint()
+        ..color = Colors.black26
+        ..strokeWidth = 2,
+    );
 
     // Bottom Stats
     textY += 40;
-    _drawBottomStat(canvas, l10n.statsDuplicateCopiesLabel, '$duplicateCopies', 340, textY);
-    _drawBottomStat(canvas, l10n.statsCompletedCategories, '$completedCategories / $totalCategories', 740, textY);
+    _drawBottomStat(
+      canvas,
+      l10n.statsDuplicateCopiesLabel,
+      '$duplicateCopies',
+      340,
+      textY,
+    );
+    _drawBottomStat(
+      canvas,
+      l10n.statsCompletedCategories,
+      '$completedCategories / $totalCategories',
+      740,
+      textY,
+    );
 
     // Best / Worst Categories
     if (bestCategoryName != null && worstCategoryName != null) {
-      _drawMiniCard(canvas, l10n.statsBestCategory, bestCategoryName!, bestCategoryValue!, Colors.amber, const Rect.fromLTWH(80, 1440, 440, 160));
-      _drawMiniCard(canvas, l10n.statsWorstCategory, worstCategoryName!, worstCategoryValue!, Colors.redAccent, const Rect.fromLTWH(540, 1440, 440, 160));
+      _drawMiniCard(
+        canvas,
+        l10n.statsBestCategory,
+        bestCategoryName!,
+        bestCategoryValue!,
+        Colors.amber,
+        const Rect.fromLTWH(80, 1440, 440, 160),
+      );
+      _drawMiniCard(
+        canvas,
+        l10n.statsWorstCategory,
+        worstCategoryName!,
+        worstCategoryValue!,
+        Colors.redAccent,
+        const Rect.fromLTWH(540, 1440, 440, 160),
+      );
     }
   }
 
-  void _drawText(Canvas canvas, String text, double x, double y, Color color, double size, bool bold) {
+  void _drawText(
+    Canvas canvas,
+    String text,
+    double x,
+    double y,
+    Color color,
+    double size,
+    bool bold,
+  ) {
     final tp = TextPainter(
-      text: TextSpan(text: text, style: TextStyle(color: color, fontSize: size, fontWeight: bold ? FontWeight.bold : FontWeight.normal)),
+      text: TextSpan(
+        text: text,
+        style: TextStyle(
+          color: color,
+          fontSize: size,
+          fontWeight: bold ? FontWeight.bold : FontWeight.normal,
+        ),
+      ),
       textDirection: textDirection,
     );
     tp.layout();
     tp.paint(canvas, Offset(x, y));
   }
 
-  void _drawStatRow(Canvas canvas, String label, String value, double x, double y) {
+  void _drawStatRow(
+    Canvas canvas,
+    String label,
+    String value,
+    double x,
+    double y,
+  ) {
     _drawText(canvas, label, x + 40, y, Colors.black87, 32, false);
     final vp = TextPainter(
-      text: TextSpan(text: value, style: const TextStyle(color: Colors.black, fontSize: 36, fontWeight: FontWeight.bold)),
+      text: TextSpan(
+        text: value,
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 36,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
       textDirection: textDirection,
     );
     vp.layout();
     vp.paint(canvas, Offset(940 - vp.width, y));
   }
 
-  void _drawBottomStat(Canvas canvas, String label, String value, double centerX, double y) {
+  void _drawBottomStat(
+    Canvas canvas,
+    String label,
+    String value,
+    double centerX,
+    double y,
+  ) {
     final vp = TextPainter(
-      text: TextSpan(text: value, style: const TextStyle(color: Colors.black, fontSize: 44, fontWeight: FontWeight.bold)),
+      text: TextSpan(
+        text: value,
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 44,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
       textDirection: textDirection,
     );
     vp.layout();
     vp.paint(canvas, Offset(centerX - vp.width / 2, y));
 
     final lp = TextPainter(
-      text: TextSpan(text: label, style: const TextStyle(color: Colors.black87, fontSize: 28)),
+      text: TextSpan(
+        text: label,
+        style: const TextStyle(color: Colors.black87, fontSize: 28),
+      ),
       textDirection: textDirection,
     );
     lp.layout();
     lp.paint(canvas, Offset(centerX - lp.width / 2, y + 60));
   }
 
-  void _drawMiniCard(Canvas canvas, String title, String name, String value, Color accentColor, Rect rect) {
+  void _drawMiniCard(
+    Canvas canvas,
+    String title,
+    String name,
+    String value,
+    Color accentColor,
+    Rect rect,
+  ) {
     final rrect = RRect.fromRectAndRadius(rect, const Radius.circular(32));
     canvas.drawRRect(rrect, Paint()..color = const Color(0xFF1E1E1E));
-    canvas.drawRRect(rrect, Paint()..color = accentColor.withValues(alpha: 0.3)..style = PaintingStyle.stroke..strokeWidth = 2);
+    canvas.drawRRect(
+      rrect,
+      Paint()
+        ..color = accentColor.withValues(alpha: 0.3)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2,
+    );
 
-    _drawText(canvas, title, rect.left + 30, rect.top + 20, accentColor, 24, true);
-    _drawText(canvas, name, rect.left + 30, rect.top + 60, Colors.white, 32, true);
-    _drawText(canvas, value, rect.left + 30, rect.top + 110, Colors.white54, 28, false);
+    _drawText(
+      canvas,
+      title,
+      rect.left + 30,
+      rect.top + 20,
+      accentColor,
+      24,
+      true,
+    );
+    _drawText(
+      canvas,
+      name,
+      rect.left + 30,
+      rect.top + 60,
+      Colors.white,
+      32,
+      true,
+    );
+    _drawText(
+      canvas,
+      value,
+      rect.left + 30,
+      rect.top + 110,
+      Colors.white54,
+      28,
+      false,
+    );
   }
 
   @override

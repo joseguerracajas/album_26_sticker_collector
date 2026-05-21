@@ -9,6 +9,18 @@ class AppLocalizationsFa extends AppLocalizations {
   AppLocalizationsFa([String locale = 'fa']) : super(locale);
 
   @override
+  String get shareStatisticsTooltip => 'اشتراک‌گذاری پیشرفت';
+
+  @override
+  String shareStatisticsMessage(
+    String percentage,
+    String appTitle,
+    String appLink,
+  ) {
+    return 'من $percentage٪ از آلبوم برچسب‌هایم را جمع‌آوری کرده‌ام! به من در $appTitle بپیوندید: $appLink';
+  }
+
+  @override
   String get appTitle => 'Sticker Album 2026';
 
   @override
