@@ -1,4 +1,19 @@
 {
+  "shareStatisticsTooltip": "進捗を共有する",
+  "shareStatisticsMessage": "ステッカーアルバムの{percentage}%を集めました！{appTitle}に参加しましょう：{appLink}",
+  "@shareStatisticsMessage": {
+    "placeholders": {
+      "percentage": {
+        "type": "String"
+      },
+      "appTitle": {
+        "type": "String"
+      },
+      "appLink": {
+        "type": "String"
+      }
+    }
+  },
   "@@locale": "ja",
   "appTitle": "Sticker Album 2026",
   "authWelcomeTitle": "Sticker Album 2026へようこそ",
@@ -176,7 +191,9 @@
   "paywallFreeTrial": "{days}日間無料トライアル",
   "@paywallFreeTrial": {
     "placeholders": {
-      "days": {"type": "int"}
+      "days": {
+        "type": "int"
+      }
     }
   },
   "paywallRestorePurchases": "購入を復元",

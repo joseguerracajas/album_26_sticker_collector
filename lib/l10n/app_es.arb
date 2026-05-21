@@ -1,4 +1,19 @@
 {
+  "shareStatisticsTooltip": "Compartir progreso",
+  "shareStatisticsMessage": "¡He coleccionado el {percentage}% de mi álbum de cromos! Únete a mí en {appTitle}: {appLink}",
+  "@shareStatisticsMessage": {
+    "placeholders": {
+      "percentage": {
+        "type": "String"
+      },
+      "appTitle": {
+        "type": "String"
+      },
+      "appLink": {
+        "type": "String"
+      }
+    }
+  },
   "@@locale": "es",
   "appTitle": "Sticker Album 2026",
   "authWelcomeTitle": "Bienvenido a Sticker Album 2026",
@@ -183,7 +198,9 @@
   "paywallFreeTrial": "Prueba gratuita de {days} días",
   "@paywallFreeTrial": {
     "placeholders": {
-      "days": {"type": "int"}
+      "days": {
+        "type": "int"
+      }
     }
   },
   "paywallRestorePurchases": "Restaurar compras",
