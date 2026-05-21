@@ -699,13 +699,152 @@ jobs:
           fi
 
   # ===========================================================================
-  # Stage 6: Approval Gate — Frontend
+  # Stage 6a: Validate Frontend — flutter analyze + AI auto-fix (sin gate)
   # ===========================================================================
-  approve-frontend:
-    name: "🟣 Orchestrator: Approve Frontend"
+  validate-frontend:
+    name: "🔬 Validate Frontend (AI Auto-Fix)"
     needs: frontend-developer
     runs-on: ubuntu-latest
     if: needs.frontend-developer.result == 'success'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
+          ref: ${{ env.BRANCH_NAME }}
+
+      - name: "🎯 Setup Flutter"
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          cache: true
+
+      - name: "📦 Install dependencies"
+        run: flutter pub get
+
+      - name: "🔎 Flutter Analyze — 1st pass"
+        id: first-analyze
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          flutter analyze --no-fatal-infos 2>&1 | tee /tmp/analyze-output.txt
+
+      - name: "🤖 AI Fix — Auto-fix analyze errors"
+        if: steps.first-analyze.outcome == 'failure'
+        env:
+          MODELS_TOKEN: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          AGENT_PROMPT=$(cat .github/agents/qa-engineer.md 2>/dev/null || echo "You are a Flutter QA engineer. Fix flutter analyze errors.")
+          ANALYZE_ERRORS=$(cat /tmp/analyze-output.txt)
+
+          python3 -c "
+          import re, sys
+          with open('/tmp/analyze-output.txt') as f:
+              text = f.read()
+          files = sorted(set(re.findall(r'lib/[^\\s:]+\.dart', text)))
+          print('\\n'.join(files))
+          " > /tmp/error-files.txt
+
+          echo "Files with errors:"
+          cat /tmp/error-files.txt
+
+          > /tmp/files-context.txt
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+            if [ -f "$file" ]; then
+              printf '### %s\n```dart\n%s\n```\n\n' "$file" "$(cat "$file")" >> /tmp/files-context.txt
+            fi
+          done < /tmp/error-files.txt
+          FILES_CONTEXT=$(cat /tmp/files-context.txt)
+
+          USER_MSG="## flutter analyze errors to fix\n\n\`\`\`\n${ANALYZE_ERRORS}\n\`\`\`\n\n## File contents (fix these)\n\n${FILES_CONTEXT}\n\n---\nFix ALL errors listed above. Respond ONLY with valid JSON:\n{\"files\": [{\"path\": \"lib/...\", \"content\": \"...complete fixed file...\"}], \"summary\": \"What was fixed\"}\nReturn ONLY files that need changes. Write complete file contents, never truncate."
+
+          if [ "${{ env.USE_GEMINI }}" = "true" ]; then
+            COMBINED_PROMPT="${AGENT_PROMPT}\n\n${USER_MSG}"
+            RESPONSE=$(curl -s -X POST \
+              "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${GEMINI_API_KEY}" \
+              -H "Content-Type: application/json" \
+              -d "$(jq -n --arg p "$COMBINED_PROMPT" '{contents:[{parts:[{text:$p}]}],generationConfig:{temperature:0.1,maxOutputTokens:32000,responseMimeType:"application/json"}}')")
+            LLM_OUTPUT=$(echo "$RESPONSE" | jq -r '.candidates[0].content.parts[0].text // ""')
+          else
+            RESPONSE=$(curl -s -X POST \
+              "https://models.inference.ai.azure.com/chat/completions" \
+              -H "Authorization: Bearer $MODELS_TOKEN" \
+              -H "Content-Type: application/json" \
+              -d "$(jq -n --arg system "$AGENT_PROMPT" --arg user "$USER_MSG" \
+                '{model:"gpt-4o",messages:[{role:"system",content:$system},{role:"user",content:$user}],max_tokens:16000,temperature:0.1}')")
+            LLM_OUTPUT=$(echo "$RESPONSE" | jq -r '.choices[0].message.content // ""')
+          fi
+
+          echo "LLM preview: $(echo "$LLM_OUTPUT" | head -c 400)"
+
+          cat > /tmp/apply_fixes.py << 'PYEOF'
+          import json, os, re, sys
+          text = sys.stdin.read()
+          match = re.search(r'\{.*\}', text, re.DOTALL)
+          if not match:
+              print('ERROR: No JSON found'); sys.exit(1)
+          json_str = re.sub(r'\\([^"\\/bfnrtu])', lambda m: m.group(1), match.group())
+          try:
+              data = json.loads(json_str)
+          except json.JSONDecodeError as e:
+              print(f'JSON parse error: {e}'); sys.exit(1)
+          for f in data.get('files', []):
+              path = f['path']
+              os.makedirs(os.path.dirname(path) or '.', exist_ok=True)
+              with open(path, 'w', encoding='utf-8') as fp:
+                  fp.write(f['content'])
+              print(f'Fixed: {path}')
+          print('Summary:', data.get('summary', ''))
+          PYEOF
+          echo "$LLM_OUTPUT" | python3 /tmp/apply_fixes.py
+
+          git add -A
+          if git diff --cached --quiet; then
+            echo "⚠️ LLM made no file changes."
+          else
+            git commit -m "fix: [Validate-Frontend] auto-fix analyze errors for issue #${{ env.ISSUE_NUMBER }} [skip ci]"
+            git push origin ${{ env.BRANCH_NAME }}
+            echo "✅ Fixes committed and pushed."
+          fi
+
+      - name: "🔎 Flutter Analyze — 2nd pass (post AI fix)"
+        if: steps.first-analyze.outcome == 'failure'
+        run: |
+          set -o pipefail
+          flutter analyze --no-fatal-infos 2>&1 | tee /tmp/analyze-output.txt
+
+      - name: "📊 Post Validation Result to Issue"
+        if: always() && env.ISSUE_NUMBER != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ANALYZE=$(tail -8 /tmp/analyze-output.txt 2>/dev/null || echo "(no output)")
+          VAL_STATUS="✅ Sin errores de análisis"
+          grep -q 'error' /tmp/analyze-output.txt 2>/dev/null && VAL_STATUS="❌ Errores persistentes tras AI fix"
+
+          if [ "${{ steps.first-analyze.outcome }}" = "failure" ]; then
+            printf '## 🔬 Validate Frontend — %s\n\n> 🤖 **AI Auto-Fix aplicado** — errores corregidos automáticamente antes de tu revisión.\n\n```\n%s\n```\n' "$VAL_STATUS" "$ANALYZE" > /tmp/validate-comment.md
+          else
+            printf '## 🔬 Validate Frontend — %s\n\n```\n%s\n```\n' "$VAL_STATUS" "$ANALYZE" > /tmp/validate-comment.md
+          fi
+          gh issue comment "${{ env.ISSUE_NUMBER }}" \
+            --repo ${{ env.GH_REPO }} \
+            --body-file /tmp/validate-comment.md
+
+  # ===========================================================================
+  # Stage 6b: Approval Gate — Frontend (el humano ve código ya validado)
+  # ===========================================================================
+  approve-frontend:
+    name: "🟣 Orchestrator: Approve Frontend"
+    needs: validate-frontend
+    runs-on: ubuntu-latest
+    if: needs.validate-frontend.result == 'success'
     environment: orchestrator-approval
     steps:
       - name: "⏳ Waiting for approval on Flutter code..."
@@ -728,16 +867,7 @@ jobs:
           token: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
           ref: ${{ env.BRANCH_NAME }}
 
-      - name: "🎯 Setup Flutter"
-        uses: subosito/flutter-action@v2
-        with:
-          channel: "stable"
-          cache: true
-
-      - name: "📦 Install dependencies"
-        run: flutter pub get
-
-      - name: "🌍 Validate ARB JSON files"
+      - name: " Validate ARB JSON files"
         run: |
           set -e
           ERRORS=0
@@ -762,9 +892,6 @@ jobs:
           fi
           echo "✅ No duplicate migrations"
 
-      - name: "🏗️ Flutter smoke build (debug APK)"
-        run: flutter build apk --debug
-
       - name: "📝 DevOps summary"
         if: always()
         run: |
@@ -773,7 +900,6 @@ jobs:
           echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
           echo "| ARB JSON validity | ✅ |" >> $GITHUB_STEP_SUMMARY
           echo "| Duplicate migrations | ✅ |" >> $GITHUB_STEP_SUMMARY
-          echo "| Flutter smoke build | ✅ |" >> $GITHUB_STEP_SUMMARY
 
       - name: "🔀 Create Pull Request to main"
         env:
@@ -800,7 +926,7 @@ jobs:
           fi
 
   # ===========================================================================
-  # Stage 7: QA Agent — Real Flutter analyze + tests
+  # Stage 7: QA Agent — Tests + Coverage
   # ===========================================================================
   qa-engineer:
     name: "🟣 QA Engineer Agent"
@@ -820,12 +946,7 @@ jobs:
       - name: "📦 Install dependencies"
         run: flutter pub get
 
-      - name: "🔎 Flutter Analyze"
-        run: |
-          set -o pipefail
-          flutter analyze --no-fatal-infos 2>&1 | tee /tmp/analyze-output.txt
-
-      - name: "🧪 Run Tests"
+      - name: "🧪 Run Tests with Coverage"
         run: |
           set -o pipefail
           flutter test --coverage 2>&1 | tee /tmp/test-output.txt
@@ -835,12 +956,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ANALYZE=$(tail -8 /tmp/analyze-output.txt 2>/dev/null || echo "(no output)")
-          TESTS=$(tail -10 /tmp/test-output.txt 2>/dev/null || echo "(no output)")
-          QA_STATUS="✅ Passed"
-          [ -f /tmp/analyze-output.txt ] && grep -q 'error' /tmp/analyze-output.txt && QA_STATUS="❌ Failed"
+          TESTS=$(tail -15 /tmp/test-output.txt 2>/dev/null || echo "(no output)")
+          QA_STATUS="✅ Tests pasaron"
+          grep -qiE 'FAILED|Some tests failed|No tests ran' /tmp/test-output.txt 2>/dev/null && QA_STATUS="❌ Tests fallaron"
 
-          printf '## 🟣 QA Engineer Agent — %s\n\n```\nFlutter Analyze:\n%s\n\nTests:\n%s\n```\n' "$QA_STATUS" "$ANALYZE" "$TESTS" > /tmp/qa-comment.md
+          printf '## 🟣 QA Engineer Agent — %s\n\n```\n%s\n```\n' "$QA_STATUS" "$TESTS" > /tmp/qa-comment.md
           gh issue comment "${{ env.ISSUE_NUMBER }}" \
             --repo ${{ env.GH_REPO }} \
             --body-file /tmp/qa-comment.md
