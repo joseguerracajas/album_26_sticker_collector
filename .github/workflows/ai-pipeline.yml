@@ -642,13 +642,39 @@ jobs:
 
           cat > /tmp/create_frontend_files.py << 'PYEOF'
           import json, os, sys
+
+          def merge_arb(existing_path, new_content):
+              """Merge new ARB keys INTO existing file — preserves ALL existing keys,
+              only adds keys that are missing. Never deletes any key."""
+              try:
+                  with open(existing_path, 'r', encoding='utf-8') as f:
+                      existing = json.load(f)
+              except (FileNotFoundError, json.JSONDecodeError):
+                  existing = {}
+              try:
+                  incoming = json.loads(new_content)
+              except json.JSONDecodeError:
+                  print(f'  ⚠️  Could not parse ARB JSON from LLM — skipping merge, keeping original.')
+                  return json.dumps(existing, ensure_ascii=False, indent=2)
+              # existing wins on conflict → new keys are added, old ones never deleted
+              merged = {**incoming, **existing}
+              added = [k for k in incoming if k not in existing]
+              if added:
+                  print(f'  ➕ New ARB keys added: {added}')
+              return json.dumps(merged, ensure_ascii=False, indent=2)
+
           data = json.load(sys.stdin)
           for f in data.get('files', []):
               path = f['path']
-              os.makedirs(os.path.dirname(path), exist_ok=True)
-              with open(path, 'w') as fp:
-                  fp.write(f['content'])
-              print(f'Created/Modified: {path}')
+              os.makedirs(os.path.dirname(path) or '.', exist_ok=True)
+              if path.endswith('.arb'):
+                  content = merge_arb(path, f['content'])
+                  print(f'Merged (ARB — existing keys preserved): {path}')
+              else:
+                  content = f['content']
+                  print(f'Created/Modified: {path}')
+              with open(path, 'w', encoding='utf-8') as fp:
+                  fp.write(content)
           PYEOF
           echo "$LLM_JSON" | python3 /tmp/create_frontend_files.py
 

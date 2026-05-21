@@ -183,6 +183,8 @@ State management for the feature using Riverpod **manual** (sin generación de c
 
 New entries for `lib/l10n/app_en.arb` and `lib/l10n/app_es.arb`.
 
+> ⚠️ **CRITICAL — ARB files**: Return ONLY the NEW keys you are adding. Do NOT copy or reproduce existing keys. The pipeline will merge your new keys into the full existing file automatically. Returning keys that already exist risks overwriting correct translations with wrong values.
+
 ### 5. Tests
 
 - Unit tests for providers
@@ -195,8 +197,8 @@ Produce files ready to be committed, following the project structure:
 2. `lib/features/{feature}/presentation/providers/{provider}.dart`
 3. `lib/features/{feature}/presentation/screens/{screen}.dart`
 4. `lib/features/{feature}/presentation/widgets/{widget}.dart`
-5. `lib/l10n/app_en.arb` (additions)
-6. `lib/l10n/app_es.arb` (additions)
+5. `lib/l10n/app_en.arb` (**only new keys** — do NOT reproduce existing keys)
+6. `lib/l10n/app_es.arb` (**only new keys** — do NOT reproduce existing keys)
 7. `test/features/{feature}/...`
 
 ## Rules
