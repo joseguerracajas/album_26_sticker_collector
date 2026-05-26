@@ -113,8 +113,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       }
 
       if (mounted) {
-        Navigator.of(context).pushReplacement(
+        Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => const AppShell()),
+          (route) => false,
         );
       }
     } catch (e) {
@@ -155,8 +156,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       await ref.read(guestSessionProvider.notifier).enableGuestMode();
 
       if (mounted) {
-        Navigator.of(context).pushReplacement(
+        Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => const AppShell()),
+          (route) => false,
         );
       }
     } catch (e) {
