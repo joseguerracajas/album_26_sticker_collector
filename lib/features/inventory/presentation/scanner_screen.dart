@@ -469,9 +469,17 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
 
     if (image.planes.isEmpty) return null;
 
-    final bytes = Platform.isAndroid
-        ? image.planes.first.bytes
-        : image.planes.first.bytes;
+    late final Uint8List bytes;
+    if (Platform.isAndroid) {
+      // Concatenar los planos para NV21/YV12
+      final WriteBuffer allBytes = WriteBuffer();
+      for (final plane in image.planes) {
+        allBytes.putUint8List(plane.bytes);
+      }
+      bytes = allBytes.done().buffer.asUint8List();
+    } else {
+      bytes = image.planes.first.bytes;
+    }
 
     return InputImage.fromBytes(
       bytes: bytes,

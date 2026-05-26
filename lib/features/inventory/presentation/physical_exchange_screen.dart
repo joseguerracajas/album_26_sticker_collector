@@ -705,8 +705,19 @@ class _PhysicalExchangeScreenState extends ConsumerState<PhysicalExchangeScreen>
 
     if (image.planes.isEmpty) return null;
 
+    late final Uint8List bytes;
+    if (Platform.isAndroid) {
+      final WriteBuffer allBytes = WriteBuffer();
+      for (final plane in image.planes) {
+        allBytes.putUint8List(plane.bytes);
+      }
+      bytes = allBytes.done().buffer.asUint8List();
+    } else {
+      bytes = image.planes.first.bytes;
+    }
+
     return InputImage.fromBytes(
-      bytes: image.planes.first.bytes,
+      bytes: bytes,
       metadata: InputImageMetadata(
         size: Size(image.width.toDouble(), image.height.toDouble()),
         rotation: rotation,
