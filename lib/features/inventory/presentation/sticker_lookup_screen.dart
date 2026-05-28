@@ -207,6 +207,12 @@ class _ManualLookupTabState extends ConsumerState<_ManualLookupTab> {
     final input = '$letters$numbers';
     Sticker? sticker = widget.findSticker(input);
 
+    // Caso especial: categoría de dos letras (ej: CC) y un solo dígito
+    if (sticker == null && letters.length == 2 && numbers.length == 1) {
+      final ccFormat = '$letters$numbers';
+      sticker = widget.findSticker(ccFormat);
+    }
+
     // Intentar sin cero inicial (p. ej. "ECU05" → "ECU5")
     if (sticker == null) {
       final trimmed = '$letters${numbers.replaceFirst(RegExp(r'^0+'), '')}';
@@ -337,7 +343,11 @@ class _ManualLookupTabState extends ConsumerState<_ManualLookupTab> {
                       _UpperCaseFormatter(),
                     ],
                     onChanged: (value) {
-                      if (value.length == 3) _numbersFocus.requestFocus();
+                      // Si se ingresan 3 letras (ej: ARG) o 2 letras y es CC, pasar al campo de números
+                      if (value.length == 3 ||
+                          (value.length == 2 && value.toUpperCase() == 'CC')) {
+                        _numbersFocus.requestFocus();
+                      }
                       _autoSearch();
                     },
                     onSubmitted: (_) => _search(),
