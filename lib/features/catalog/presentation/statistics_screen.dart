@@ -183,7 +183,7 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
       final file = File('${tempDir.path}/stats_share.png');
       await file.writeAsBytes(buffer);
 
-      final appLink = 'https://album26.app';
+      final appLink = 'https://onelink.to/5adrft';
       final message = l10n.shareStatisticsMessage(
         l10n.appTitle,
         percentage,
